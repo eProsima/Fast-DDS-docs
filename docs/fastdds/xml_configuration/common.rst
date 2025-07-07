@@ -73,7 +73,7 @@ The table presented below outlines each possible Locator's field.
     - Values
     - Default
   * - ``<port>``
-    - RTPS port number of the locator.     
+    - RTPS port number of the locator.
       *Physical port* in UDP, *logical port* in TCP.
     - ``uint16_t``
     - 0
@@ -83,11 +83,11 @@ The table presented below outlines each possible Locator's field.
     - 0
   * - ``<address>``
     - IP address of the locator.
-    - ``string`` (IPv4/IPv6 format 
+    - ``string`` (IPv4/IPv6 format
       or DNS name)
     - Empty
   * - ``<unique_lan_id>``
-    - The LAN ID uniquely identifies the LAN the 
+    - The LAN ID uniquely identifies the LAN the
       locator belongs to (**TCPv4 only**).
     - ``string`` (16 bytes)
     - Empty
@@ -124,20 +124,20 @@ These tags can be configured with the following attributes:
     - Values
     - Default
   * - ``externality``
-    - Number of hops from the participant's host to the 
-      LAN represented by the external locator.     
+    - Number of hops from the participant's host to the
+      LAN represented by the external locator.
       Valid values: from 1 to 255.
     - ``uint8_t``
     - 1
   * - ``cost``
-    - Communication cost relative to other locators on 
-      the same externality level.     
+    - Communication cost relative to other locators on
+      the same externality level.
       Valid values: from 0 to 255.
     - ``uint8_t``
     - 0
   * - ``mask``
-    - Number of significant bits on the LAN represented 
-      by the external locator.     
+    - Number of significant bits on the LAN represented
+      by the external locator.
       Valid values: from 1 to 31 (UDPv4) or 127 (UDPv6)
     - ``uint8_t``
     - 24
@@ -152,12 +152,12 @@ They should contain the following tags:
     - Description
     - Values
   * - ``<port>``
-    - UDP port number of the locator.     
+    - UDP port number of the locator.
       The UDP port number should be valid.
     - ``uint16_t``
   * - ``<address>``
     - IP address of the locator.
-    - ``string`` (IPv4/IPv6 format 
+    - ``string`` (IPv4/IPv6 format
       or DNS name)
 
 **Example**
@@ -249,15 +249,15 @@ Also, it sets the :ref:`dds_layer_topic_topicQos` configuration with the policie
     - Description
     - Values
   * - ``<historyQos>``
-    - It controls the behavior of *Fast DDS* 
-      when the value of an instance changes  
-      before it is finally communicated to 
-      some of its existing DataReaders. 
+    - It controls the behavior of *Fast DDS*
+      when the value of an instance changes
+      before it is finally communicated to
+      some of its existing DataReaders.
     - :ref:`hQos`
   * - ``<resourceLimitsQos>``
-    - It controls the resources that *Fast DDS* 
-      can use in order to meet the 
-      requirements imposed by the application 
+    - It controls the resources that *Fast DDS*
+      can use in order to meet the
+      requirements imposed by the application
       and other QoS settings.
     - :ref:`rLsQos`
 
@@ -341,9 +341,9 @@ Please refer to :ref:`threadsettingsqos` for further information on ResourceLimi
      - ``int32_t``
      - -2^31
    * - |ThreadSettings::affinity-api|
-     - On some systems (Windows, Linux), this is a bit mask for setting 
-       the threads affinity to each core individually. On MacOS, this 
-       sets the affinity tag for the thread, and the OS tries to share 
+     - On some systems (Windows, Linux), this is a bit mask for setting
+       the threads affinity to each core individually. On MacOS, this
+       sets the affinity tag for the thread, and the OS tries to share
        the L2 cache between threads with the same affinity.
      - ``uint32_t``
      - 0
@@ -387,7 +387,7 @@ The ``<builtinTransport>`` tag can be configured with the following attributes:
     - Default
   * - ``max_msg_size``
     - Maximum message size that will be specified in
-      the transport layer.     
+      the transport layer.
       Valid values: from 1 to (2^32)-1.
     - ``uint32_t``
     - 65500
@@ -507,12 +507,12 @@ Data-Sharing
      - ``string``
      - Empty
    * - ``<max_domains>``
-     - Maximum number of Data-Sharing domain IDs 
+     - Maximum number of Data-Sharing domain IDs
        in the local or remote endpoints.
      - ``uint32_t``
      - 0 (unlimited)
    * - ``<domain_ids>``
-     - List of Data-Sharing domain IDs configured 
+     - List of Data-Sharing domain IDs configured
        for the current endpoint.
      - ``<domainId>``
      - Empty list
@@ -801,7 +801,7 @@ Indicates the way the memory is managed in terms of dealing with the CacheChange
     - Values
     - Default
   * - ``<historyMemoryPolicy>``
-    - Four different options as described 
+    - Four different options as described
       in :ref:`memorymanagementpolicy`.
     - |PREALLOCATED-xml-api| |br|
       |PREALLOCATED_WITH_REALLOC-xml-api| |br|

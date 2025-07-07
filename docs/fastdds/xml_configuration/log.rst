@@ -23,14 +23,14 @@ These are described in the following table.
      - Values
      - Default
    * - ``<use_default>``
-     - If set to ``FALSE``, a call to |Log::ClearConsumers-api| is 
-       |Log::ClearConsumers-api| is 
+     - If set to ``FALSE``, a call to |Log::ClearConsumers-api| is
+       |Log::ClearConsumers-api| is
        performed. See :ref:`dds_layer_log_register_consumers`.
      - ``bool``
      - ``true``
    * - ``<consumer>``
-     - Defines the class and configuration of the consumer to 
-       be registered. Multiple consumers can be registered 
+     - Defines the class and configuration of the consumer to
+       be registered. Multiple consumers can be registered
        this way. See :ref:`dds_layer_log_consumer`.
      - :ref:`xmllogconsumer`
      -

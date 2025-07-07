@@ -23,13 +23,13 @@ The ``<data_reader>`` element has two attributes defined: ``profile_name`` and `
      - Description
      - Use
    * - ``profile_name``
-     - Sets the name under which the ``<data_reader>`` profile is registered in the DDS Domain, 
-       so that it can be loaded later by the |DomainParticipant|, as shown in 
+     - Sets the name under which the ``<data_reader>`` profile is registered in the DDS Domain,
+       so that it can be loaded later by the |DomainParticipant|, as shown in
        :ref:`loadingapplyingprofiles`.
      - Mandatory
    * - ``is_default_profile``
-     - Sets the ``<data_reader>`` profile as the default profile. Thus, if a default profile 
-       exists, it will be used when no other DataReader profile is specified at the 
+     - Sets the ``<data_reader>`` profile as the default profile. Thus, if a default profile
+       exists, it will be used when no other DataReader profile is specified at the
        DataReader's creation.
      - Optional
 
@@ -55,30 +55,30 @@ The DataReader configuration is performed through the XML elements listed in the
      - :ref:`CommonQOS`
      -
    * - ``<times>``
-     - It allows configuring some time related 
+     - It allows configuring some time related
        parameters of the DataReader.
      - :ref:`ReaderTimes <subtimes>`
      -
    * - ``<unicastLocatorList>``
-     - List of input unicast locators. 
+     - List of input unicast locators.
        It expects a :ref:`LocatorListType`.
      - List of :ref:`LocatorListType`
      -
    * - ``<multicastLocatorList>``
-     - List of input multicast locators. 
+     - List of input multicast locators.
        It expects a :ref:`LocatorListType`.
      - List of :ref:`LocatorListType`
      -
    * - ``<external_unicast_locators>``
-     - List of :ref:`external_locators` 
-       to announce for the communication 
+     - List of :ref:`external_locators`
+       to announce for the communication
        with this DataReader.
      - :ref:`externalLocatorListType`
      -
    * - ``<ignore_non_matching_locators>``
-     - Whether to ignore locators received on 
-       announcements from other entities when 
-       they don't match with any of the locators 
+     - Whether to ignore locators received on
+       announcements from other entities when
+       they don't match with any of the locators
        announced by this DataReader.
      - ``bool``
      - false
@@ -103,8 +103,8 @@ The DataReader configuration is performed through the XML elements listed in the
      - ``int16_t``
      - -1
    * - ``<matchedPublishersAllocation>``
-     - Sets the limits of the collection of matched 
-       DataWriters. See 
+     - Sets the limits of the collection of matched
+       DataWriters. See
        :ref:`participantresourcelimitsqos`.
      - :ref:`CommonAlloc`
      -

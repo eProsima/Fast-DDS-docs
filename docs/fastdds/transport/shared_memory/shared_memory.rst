@@ -153,19 +153,19 @@ the TransportDescriptor for Shared Memory defines the following ones:
      - ``uint32_t``
      - ``512*1024``
      - |SharedMemTransportDescriptor::segment_size-api|
-     - Size of the shared memory segment 
+     - Size of the shared memory segment
        (in octets).
    * - ``port_queue_capacity_``
      - ``uint32_t``
      - ``512``
      - |SharedMemTransportDescriptor::port_queue_capacity-api|
-     - The size of the listening port 
+     - The size of the listening port
        (in messages).
    * - ``healthy_check_timeout_ms_``
      - ``uint32_t``
      - ``1000``
      - |SharedMemTransportDescriptor::healthy_check_timeout_ms-api|
-     - Timeout for the health check of ports 
+     - Timeout for the health check of ports
        (in milliseconds).
    * - ``rtps_dump_file_``
      - ``string``

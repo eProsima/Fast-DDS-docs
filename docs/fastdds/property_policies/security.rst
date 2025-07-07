@@ -25,32 +25,32 @@ The following table outlines the properties used for the :ref:`DDS\:Auth\:PKI-DH
    * - PropertyPolicyQos name
      - PropertyPolicyQos value
    * - ``identity_ca``
-     - URI to the X.509 v3 certificate of the Identity CA in PEM format. 
-       Supported URI schemes: file. 
+     - URI to the X.509 v3 certificate of the Identity CA in PEM format.
+       Supported URI schemes: file.
    * - ``identity_certificate``
-     - URI to an X.509 v3 certificate signed by the Identity CA in PEM format 
-       containing the signed public key for the Participant. 
+     - URI to an X.509 v3 certificate signed by the Identity CA in PEM format
+       containing the signed public key for the Participant.
        Supported URI schemes: file.
    * - ``identity_crl`` *(optional)*
-     - URI to a X.509 Certificate Revocation List (CRL). 
+     - URI to a X.509 Certificate Revocation List (CRL).
        Supported URI schemes: file.
    * - ``private_key``
-     - URI to access the private Private Key for the Participant. 
+     - URI to access the private Private Key for the Participant.
        Supported URI schemes: file, :ref:`PKCS#11 <pkcs11-support>`.
    * - ``password`` *(optional)*
-     - A password used to decrypt the *private_key*.  
-       If the *password* property is not present, then the value supplied in the 
-       *private_key* property must contain the decrypted private key. 
+     - A password used to decrypt the *private_key*.
+       If the *password* property is not present, then the value supplied in the
+       *private_key* property must contain the decrypted private key.
        The *password* property is ignored if the *private_key* is given in PKCS#11 scheme.
    * - ``preferred_key_agreement`` *(optional)*
-     - The preferred algorithm to use for generating the session's shared secret 
-       at the end of the authentication phase. Supported values are: 
-       a) ``DH``, ``DH+MODP-2048-256`` for  Diffie-Hellman Ephemeral with 2048-bit MODP Group parameters. 
-       b) ``ECDH``, ``ECDH+prime256v1-CEUM`` for Elliptic Curve Diffie-Hellman Ephemeral with the NIST P-256 curve. 
-       c) ``AUTO`` for selecting the key agreement based on the signature algorithm in the Identity CA's certificate. 
+     - The preferred algorithm to use for generating the session's shared secret
+       at the end of the authentication phase. Supported values are:
+       a) ``DH``, ``DH+MODP-2048-256`` for  Diffie-Hellman Ephemeral with 2048-bit MODP Group parameters.
+       b) ``ECDH``, ``ECDH+prime256v1-CEUM`` for Elliptic Curve Diffie-Hellman Ephemeral with the NIST P-256 curve.
+       c) ``AUTO`` for selecting the key agreement based on the signature algorithm in the Identity CA's certificate.
        Will default to ``AUTO`` if the property is not present.
    * - ``transmit_algorithms_as_legacy`` *(optional)*
-     - Whether to transmit algorithm identifiers in non-standard legacy format. 
+     - Whether to transmit algorithm identifiers in non-standard legacy format.
        Will default to ``false`` if the property is not present.
 
 .. note::

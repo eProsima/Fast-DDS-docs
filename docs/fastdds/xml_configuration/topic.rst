@@ -23,12 +23,12 @@ The ``<topic>`` element has two attributes defined: ``profile_name`` and ``is_de
      - Description
      - Use
    * - ``profile_name``
-     - Sets the name under which the ``<topic>`` profile is registered in the DDS Domain,     
+     - Sets the name under which the ``<topic>`` profile is registered in the DDS Domain,
        so that it can be loaded later by the |DataWriter| or the |DataReader|
      - Mandatory
    * - ``is_default_profile``
-     - Sets the ``<topic>`` profile as the default profile. Thus, if a default profile     
-       exists, it will be used when no other Topic profile is specified at the     
+     - Sets the ``<topic>`` profile as the default profile. Thus, if a default profile
+       exists, it will be used when no other Topic profile is specified at the
        Topic's creation.
      - Optional
 
@@ -45,15 +45,15 @@ This XML element allows the configuration of the :ref:`dds_layer_topic_topicQos`
     - Description
     - Values
   * - ``<historyQos>``
-    - It controls the behavior of *Fast DDS*     
-      when the value of an instance changes      
-      before it is finally communicated to     
-      some of its existing DataReaders.     
+    - It controls the behavior of *Fast DDS*
+      when the value of an instance changes
+      before it is finally communicated to
+      some of its existing DataReaders.
     - :ref:`hQos`
   * - ``<resourceLimitsQos>``
-    - It controls the resources that *Fast DDS*     
-      can use in order to meet the     
-      requirements imposed by the application     
+    - It controls the resources that *Fast DDS*
+      can use in order to meet the
+      requirements imposed by the application
       and other QoS settings.
     - :ref:`rLsQos`
 

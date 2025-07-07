@@ -26,7 +26,7 @@ The Intra-process delivery configuration is performed through the XML elements l
      - Values
      - Default
    * - ``<intraprocess_delivery>``
-     - Speed up communications between entities within the same process by avoiding 
+     - Speed up communications between entities within the same process by avoiding
        any of the overhead involved in the transport layer.
      - ``OFF`` |br|
        ``USER_DATA_ONLY`` |br|

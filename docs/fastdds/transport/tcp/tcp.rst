@@ -70,8 +70,8 @@ The following table describes the common data members for both TCPv4 and TCPv6.
   * - |SocketTransportDescriptor::interface_allowlist-api|
     - ``vector<pair<string, NetmaskFilterKind>>``
     - Empty vector
-    - List of allowed interfaces with 
-      netmask filter configuration.     
+    - List of allowed interfaces with
+      netmask filter configuration.
       See |interfaces_allowlist|.
   * - |SocketTransportDescriptor::interface_blocklist-api|
     - ``vector<string>``

@@ -46,17 +46,17 @@ The following table outlines the properties used for the DDS\:Access\:Permission
    * - Property name
      - Property value
    * - permissions_ca
-     - URI to the X509 certificate of the Permissions CA. 
-       Supported URI schemes: file. 
+     - URI to the X509 certificate of the Permissions CA.
+       Supported URI schemes: file.
        The file schema shall refer to an X.509 v3 certificate in PEM format.
    * - governance
-     - URI to shared Governance Document signed by the Permissions CA  in S/MIME format. 
+     - URI to shared Governance Document signed by the Permissions CA  in S/MIME format.
        Supported URI schemes: file.
    * - permissions
-     - URI to the Participant permissions document signed by the  Permissions CA in S/MIME format. 
+     - URI to the Participant permissions document signed by the  Permissions CA in S/MIME format.
        Supported URI schemes: file.
    * - transmit_algorithms_as_legacy *(optional)*
-     - Whether to transmit algorithm identifiers in non-standard legacy format. 
+     - Whether to transmit algorithm identifiers in non-standard legacy format.
        Will default to ``false`` if the property is not present.
 
 .. note::

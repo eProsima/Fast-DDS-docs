@@ -51,14 +51,14 @@ Said parameters, and their default values under ROS 2, are:
      - Description
      - Default ROS 2 value
    * - |MemoryManagementPolicy|
-     - *Fast DDS* preallocates memory for the publisher 
-       and subscriber histories. When those histories fill 
+     - *Fast DDS* preallocates memory for the publisher
+       and subscriber histories. When those histories fill
        up, a reallocation occurs to reserve more memory.
      - |PREALLOCATED_WITH_REALLOC_MEMORY_MODE-api|
    * - |PublishModeQosPolicy|
-     - User calls to publication method add the messages 
-       in a queue that is managed in a different thread, 
-       meaning that the user thread is available right 
+     - User calls to publication method add the messages
+       in a queue that is managed in a different thread,
+       meaning that the user thread is available right
        after the call to send data.
      - |SYNCHRONOUS_PUBLISH_MODE-api|
 
@@ -109,33 +109,33 @@ The following table summarizes which values are used or ignored according to the
    * - RMW_FASTRTPS_USE_QOS_FROM_XML
      - ``rmw_qos_profile_t``
      - Fast DDS XML QoS
-     - Fast DDS XML history memory policy 
+     - Fast DDS XML history memory policy
        and publication mode
    * - 0 (default)
      - Default values
-     - Overridden by 
+     - Overridden by
        ``rmw_qos_profile_t``
-     - Overridden by 
+     - Overridden by
        *rmw_fastrtps* default value
    * - 0 (default)
      - Non system default
-     - overridden by 
+     - overridden by
        ``rmw_qos_profile_t``
-     - Overridden by 
+     - Overridden by
        *rmw_fastrtps* default value
    * - 0 (default)
      - System default
      - Used
-     - Overridden by 
+     - Overridden by
        *rmw_fastrtps* default value
    * - 1
      - Default values
-     - Overridden by 
+     - Overridden by
        ``rmw_qos_profile_t``
      - Used
    * - 1
      - Non system default
-     - Overridden by 
+     - Overridden by
        *rmw_qos_profile_t*
      - Used
    * - 1

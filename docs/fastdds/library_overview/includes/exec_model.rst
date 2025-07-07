@@ -34,101 +34,101 @@ Transport related threads (marked as UDP, TCP and SHM types) are only created wh
       - General
       - One per DomainParticipant
       - :code:`dds.ev.<participant_id>`
-      - Processes periodic and triggered time events. 
+      - Processes periodic and triggered time events.
         See :ref:`dds_layer_domainParticipantQos`.
     * - Discovery Server Event
       - General
       - One per DomainParticipant
       - :code:`dds.ds_ev.<participant_id>`
-      - Synchronizes access to the Discovery Server  Database. 
+      - Synchronizes access to the Discovery Server  Database.
         See :ref:`dds_layer_domainParticipantQos`.
     * - Asynchronous Writer
       - General
       - One per enabled asynchronous  flow controller.
         Minimum 1.
-      - :code:`dds.asyn.<participant_id>.` 
+      - :code:`dds.asyn.<participant_id>.`
         :code:`<async_flow_controller_index>`
       - Manages asynchronous writes.
-        Even for synchronous writers, some forms of  communication must be initiated in the  background. 
+        Even for synchronous writers, some forms of  communication must be initiated in the  background.
         See :ref:`dds_layer_domainParticipantQos` and :ref:`flowcontrollersqos`.
     * - Datasharing Listener
       - General
       - One per  DataReader
       - :code:`dds.dsha.<reader_id>`
-      - Listener thread that processes messages  received via Datasharing. 
+      - Listener thread that processes messages  received via Datasharing.
         See :ref:`dds_layer_subscriber_dataReaderQos`.
     * - Reception
       - UDP
       - One per port
       - :code:`dds.udp.<port>`
-      - Listener thread that processes incoming  UDP messages. 
+      - Listener thread that processes incoming  UDP messages.
         See :ref:`transportconfigqos` and :ref:`transport_udp_transportDescriptor`.
     * - Reception
       - TCP
       - One per TCP connection
       - :code:`dds.tcp.<port>`
-      - Listener thread that processes incoming  TCP messages. 
+      - Listener thread that processes incoming  TCP messages.
         See :ref:`transport_tcp_transportDescriptor`.
     * - Accept
       - TCP
       - One per TCP transport
       - :code:`dds.tcp_accept`
-      - Thread that processes incoming TCP connection requests. 
+      - Thread that processes incoming TCP connection requests.
         See :ref:`transport_tcp_transportDescriptor`.
     * - Keep Alive
       - TCP
       - One per TCP transport
       - :code:`dds.tcp_keep`
-      - Keep alive thread for TCP connections. 
+      - Keep alive thread for TCP connections.
         See :ref:`transport_tcp_transportDescriptor`.
     * - Reception
       - SHM
       - One per port
       - :code:`dds.shm.<port>`
-      - Listener thread that processes incoming  messages via SHM segments. 
+      - Listener thread that processes incoming  messages via SHM segments.
         See :ref:`transportconfigqos` and :ref:`transport_sharedMemory_transportDescriptor`.
     * - Logging
       - SHM
       - One per port
       - :code:`dds.shmd.<port>`
-      - Stores and dumps transferred packets to a file. 
+      - Stores and dumps transferred packets to a file.
         See :ref:`transportconfigqos` and :ref:`transport_sharedMemory_transportDescriptor`.
     * - Watchdog
       - SHM
       - One
       - :code:`dds.shm.wdog`
-      - Monitors health of open shared memory  segments. 
+      - Monitors health of open shared memory  segments.
         See :ref:`transportconfigqos` and :ref:`transport_sharedMemory_transportDescriptor`.
     * - General Logging
       - Log
       - One
       - :code:`dds.log`
-      - Accumulates and writes to the appropriate  consumer log entries. 
+      - Accumulates and writes to the appropriate  consumer log entries.
         See :ref:`dds_layer_log_thread`.
     * - Security Logging
       - Log
       - One per  DomainParticipant
       - :code:`dds.slog.<participant_id>`
-      - Accumulates and writes security log entries. 
+      - Accumulates and writes security log entries.
         See :ref:`dds_layer_domainParticipantQos`.
     * - Watchdog
       - Filewatch
       - One
       - :code:`dds.fwatch`
-      - Tracks the status of the watched file for  modifications. 
+      - Tracks the status of the watched file for  modifications.
         See :ref:`dds_layer_domainParticipantFactoryQos`.
     * - Callback
       - Filewatch
       - One
       - :code:`dds.fwatch.cb`
-      - Runs the registered callback when the  watched file changes. 
+      - Runs the registered callback when the  watched file changes.
         See :ref:`dds_layer_domainParticipantFactoryQos`.
     * - Reception
       - TypeLookup Service
       - Two per DomainParticipant
-      - :code:`dds.tls.replies.<participant_id>` 
+      - :code:`dds.tls.replies.<participant_id>`
         :code:`dds.tls.requests.<participant_id>`
-      - Runs when remote endpoint discovery information has been received 
+      - Runs when remote endpoint discovery information has been received
         with unknown data type.
 
 Some of these threads are only spawned when certain conditions are met:

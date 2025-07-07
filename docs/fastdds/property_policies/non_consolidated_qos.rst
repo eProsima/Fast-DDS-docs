@@ -261,7 +261,7 @@ Currently there are two different exchange formats which can be selected using t
      - Standard exchange format for Static Discovery.
      - ✅
    * - ``"v1_Reduced"``
-     - Format which reduces the necessary network bandwidth to transmit Static 
+     - Format which reduces the necessary network bandwidth to transmit Static
        Discovery's information in the Participant Discovery Phase (PDP).
      -
 
@@ -305,8 +305,8 @@ The behavior regarding this can be configured using the property ``fastdds.shm.e
      - Enable SHM transport unicast communications.
      -
    * - ``"all"``
-     - Enable SHM transport unicast and multicast communications. 
-       This will enable discovery between SHM only participants 
+     - Enable SHM transport unicast and multicast communications.
+       This will enable discovery between SHM only participants
        and participants having several transports.
      -
 

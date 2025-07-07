@@ -95,13 +95,13 @@ A full example of such file can be found in :ref:`static_xml_example`.
      - ``uint16_t``
      - 0
    * - ``<expects_inline_qos>``
-     - It indicates if QOS is expected inline 
+     - It indicates if QOS is expected inline
        (DataReader **only**).
      - ``bool``
      - ``false``
    * - ``<topicName>``
      - Mandatory. |br|
-       The topic of the remote DataReader/DataWriter. 
+       The topic of the remote DataReader/DataWriter.
        Should match with one of the topics of the local DataReaders/DataWriters.
      - ``string_255``
      -
@@ -116,17 +116,17 @@ A full example of such file can be found in :ref:`static_xml_example`.
        :class:`WITH_KEY` |br|
      - :class:`NO_KEY` |br|
    * - ``<partitionQos>``
-     - The name of a partition of the remote peer. 
+     - The name of a partition of the remote peer.
        Repeat to configure several partitions.
      - ``string``
      -
    * - ``<unicastLocator>``
-     - Unicast locator of the DomainParticipant. 
+     - Unicast locator of the DomainParticipant.
        See :ref:`staticLocators`.
      -
      -
    * - ``<multicastLocator>``
-     - Multicast locator of the DomainParticipant. 
+     - Multicast locator of the DomainParticipant.
        See :ref:`staticLocators`.
      -
      -
@@ -146,7 +146,7 @@ A full example of such file can be found in :ref:`static_xml_example`.
      -
      -
    * - ``<livelinessQos>``
-     - Defines the liveliness of the remote peer. 
+     - Defines the liveliness of the remote peer.
        See :ref:`livelinessQos`.
      -
      -

@@ -99,11 +99,11 @@ The following table lists the available commands for the *Fast DDS* Discovery Se
     * - Command
       - Description
     * - start
-      - Start the Discovery Server daemon with the remote connections specified. 
+      - Start the Discovery Server daemon with the remote connections specified.
         (Example: start -d 1 10.0.0.1:1).
     * - stop
       - Stop the Discovery Server daemon if it is executed with no arguments.
-        If a domain is  specified with the ``-d`` argument it will only stop the corresponding server and 
+        If a domain is  specified with the ``-d`` argument it will only stop the corresponding server and
         the daemon will remain alive.
     * - add
       - Add new remote Discovery Servers to the local server.
@@ -124,9 +124,9 @@ The following table lists the available commands for the *Fast DDS* Discovery Se
       - Selects the domain of the server to target for this action.
         It is mandatory for  commands ``start``, ``add`` and ``set``.
     * - ``<remote_server>``
-      - It is an IP-domain pair defining a remote server to connect to: 
+      - It is an IP-domain pair defining a remote server to connect to:
         ``<IP:domain>``.
-        It is mandatory with the `start`, `add` and `set` commands. 
+        It is mandatory with the `start`, `add` and `set` commands.
         Only valid IPv4 addresses are accepted.
 
 .. note::

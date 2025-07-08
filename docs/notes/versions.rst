@@ -122,7 +122,7 @@ The following table shows the minimum version required of the Fast DDS build sys
               - **───**
             * - Windows 11
               - Tier 1: MSVC v142 (Visual Studio 2019) |br|
-              - Tier 1: MSVC v143 (Visual Studio 2022)
+                Tier 1: MSVC v143 (Visual Studio 2022)
               - Tier 3: MSVC v143 (Visual Studio 2022)
               - **───**
             * - Debian Buster (10)

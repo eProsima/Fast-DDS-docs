@@ -22,7 +22,7 @@ The STATIC discovery related settings are:
 +==============================+=======================================================================================+
 | :ref:`static_edp`            | It activates the STATIC discovery protocol.                                           |
 +------------------------------+---------------------------------------------------------------------------------------+
-| :ref:`static_xml`            | Specifies an XML content with a description of the remote DataWriters and |br|        |
+| :ref:`static_xml`            | Specifies an XML content with a description of the remote DataWriters and             |
 |                              | DataReaders.                                                                          |
 +------------------------------+---------------------------------------------------------------------------------------+
 | :ref:`Initial Announcements` | It defines the behavior of the DomainParticipant initial announcements (PDP phase).   |
@@ -95,13 +95,13 @@ A full example of such file can be found in :ref:`static_xml_example`.
      - ``uint16_t``
      - 0
    * - ``<expects_inline_qos>``
-     - It indicates if QOS is expected inline |br|
+     - It indicates if QOS is expected inline
        (DataReader **only**).
      - ``bool``
      - ``false``
    * - ``<topicName>``
      - Mandatory. |br|
-       The topic of the remote DataReader/DataWriter. |br|
+       The topic of the remote DataReader/DataWriter.
        Should match with one of the topics of the local DataReaders/DataWriters.
      - ``string_255``
      -
@@ -116,17 +116,17 @@ A full example of such file can be found in :ref:`static_xml_example`.
        :class:`WITH_KEY` |br|
      - :class:`NO_KEY` |br|
    * - ``<partitionQos>``
-     - The name of a partition of the remote peer. |br|
+     - The name of a partition of the remote peer.
        Repeat to configure several partitions.
      - ``string``
      -
    * - ``<unicastLocator>``
-     - Unicast locator of the DomainParticipant. |br|
+     - Unicast locator of the DomainParticipant.
        See :ref:`staticLocators`.
      -
      -
    * - ``<multicastLocator>``
-     - Multicast locator of the DomainParticipant. |br|
+     - Multicast locator of the DomainParticipant.
        See :ref:`staticLocators`.
      -
      -
@@ -146,7 +146,7 @@ A full example of such file can be found in :ref:`static_xml_example`.
      -
      -
    * - ``<livelinessQos>``
-     - Defines the liveliness of the remote peer. |br|
+     - Defines the liveliness of the remote peer.
        See :ref:`livelinessQos`.
      -
      -

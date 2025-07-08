@@ -58,7 +58,7 @@ Where the options are:
    * - -d <directory>
      - Sets the output directory for the generated files.
    * - -default-container-prealloc-size
-     - Sets the default preallocated size for unbounded collections (sequences and maps) |br|
+     - Sets the default preallocated size for unbounded collections (sequences and maps)
        Default value: 0 (empty collection).
    * - -default_extensibility <extensibility> |br|
        -de <extensibility>
@@ -68,13 +68,13 @@ Where the options are:
        - appendable (default) |br|
        - mutable
    * - -example <platform>
-     - Generates an example and a solution to compile the generated source code for a specific |br|
+     - Generates an example and a solution to compile the generated source code for a specific
        platform.
        The help command shows the supported platforms.
    * - -extrastg <template> <output>
-     - Specifies a custom template used for generating source code. |br|
+     - Specifies a custom template used for generating source code.
        This option expects the location of the template and the location of the file where source code output will be
-       stored. |br|
+       stored.
        A custom template example can be found in this `link <https://raw.githubusercontent.com/eProsima/Fast-DDS-Gen/master/resources/Custom.stg>`_
    * - -flat-output-dir
      - Ignores input files relative paths and place all generated files in the specified output directory.
@@ -85,7 +85,7 @@ Where the options are:
    * - -no-typesupport
      - Avoids generating the type support files.
    * - -no-typeobjectsupport
-     - Avoids generating the TypeObject support specific files. |br|
+     - Avoids generating the TypeObject support specific files.
        Enabled automatically if -no-typesupport argument is used.
    * - -no-dependencies
      - Avoids processing the dependent IDL files.
@@ -94,7 +94,7 @@ Where the options are:
    * - -ppPath
      - Specifies the preprocessor path.
    * - -python
-     - Generates source code and a CMake solution to compile a library containing the data types |br|
+     - Generates source code and a CMake solution to compile a library containing the data types
        Python bindings required to run a *Fast DDS* Python-based application.
        This option is incompatible with `-example`.
    * - -replace

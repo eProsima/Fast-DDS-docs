@@ -15,22 +15,22 @@ These are:
 +-------------------------------+------------------------------------+---------------------------------+---------------+
 | Name                          | Description                        | Type                            |     Default   |
 +===============================+====================================+=================================+===============+
-| :ref:`discovery_protocol`     | The discovery protocol to use |br| | |DiscoveryProtocol-api|         | |SIMPLE|      |
+| :ref:`discovery_protocol`     | The discovery protocol to use      | |DiscoveryProtocol-api|         | |SIMPLE|      |
 |                               | (see :ref:`disc_mechanisms`).      |                                 |               |
 +-------------------------------+------------------------------------+---------------------------------+---------------+
-| :ref:`discovery_ignore_flags` | Filter discovery traffic for |br|  | |ParticipantFilteringFlags-api| | |NO_FILTER|   |
-|                               | |DomainParticipants| in the |br|   |                                 |               |
-|                               | same process, in different |br|    |                                 |               |
+| :ref:`discovery_ignore_flags` | Filter discovery traffic for       | |ParticipantFilteringFlags-api| | |NO_FILTER|   |
+|                               | |DomainParticipants| in the        |                                 |               |
+|                               | same process, in different         |                                 |               |
 |                               | processes, or in different hosts.  |                                 |               |
 +-------------------------------+------------------------------------+---------------------------------+---------------+
-| :ref:`discovery_lease_dur`    | Indicates for how much time |br|   | |Duration_t-api|                |     20 s      |
+| :ref:`discovery_lease_dur`    | Indicates for how much time        | |Duration_t-api|                |     20 s      |
 |                               | should a remote                    |                                 |               |
-|                               | DomainParticipant   |br| consider  |                                 |               |
-|                               | the local DomainParticipant   |br| |                                 |               |
+|                               | DomainParticipant    consider      |                                 |               |
+|                               | the local DomainParticipant        |                                 |               |
 |                               | to be alive.                       |                                 |               |
 +-------------------------------+------------------------------------+---------------------------------+---------------+
 | :ref:`discovery_lease_announ` | The period for the                 | |Duration_t-api|                |     3 s       |
-|                               | DomainParticipant   |br|           |                                 |               |
+|                               | DomainParticipant                  |                                 |               |
 |                               | to send PDP announcements.         |                                 |               |
 +-------------------------------+------------------------------------+---------------------------------+---------------+
 
@@ -49,24 +49,24 @@ The possible values are:
 |                     |                     | `RTPS standard <https://www.omg.org/spec/DDSI-RTPS/2.2/PDF>`_.           |
 +---------------------+---------------------+--------------------------------------------------------------------------+
 | Discovery Server    | |SERVER|            | The DomainParticipant acts as a hub for discovery traffic, receiving     |
-|                     |                     | |br| and distributing discovery information.                             |
+|                     |                     | and distributing discovery information.                                  |
 |                     +---------------------+--------------------------------------------------------------------------+
-|                     | |CLIENT|            | The DomainParticipant acts as a client for discovery traffic. |br|       |
-|                     |                     | It sends its discovery information to the server, and it receives |br|   |
+|                     | |CLIENT|            | The DomainParticipant acts as a client for discovery traffic.            |
+|                     |                     | It sends its discovery information to the server, and it receives        |
 |                     |                     | only the information that is relevant to it.                             |
 |                     +---------------------+--------------------------------------------------------------------------+
-|                     | |SUPER_CLIENT|      | The DomainParticipant acts as a client for discovery traffic. |br|       |
-|                     |                     | It sends its discovery information to the server, and it receives |br|   |
+|                     | |SUPER_CLIENT|      | The DomainParticipant acts as a client for discovery traffic.            |
+|                     |                     | It sends its discovery information to the server, and it receives        |
 |                     |                     | all other discovery information from the server.                         |
 |                     +---------------------+--------------------------------------------------------------------------+
 |                     | |BACKUP|            | Creates a SERVER DomainParticipant which has a persistent ``sqlite``     |
-|                     |                     | |br| database. A BACKUP server can load the a database on start. |br|    |
-|                     |                     | This type of sever makes the Discovery Server architecture |br|          |
+|                     |                     | database. A BACKUP server can load the a database on start.              |
+|                     |                     | This type of sever makes the Discovery Server architecture               |
 |                     |                     | resilient to server destruction.                                         |
 +---------------------+---------------------+--------------------------------------------------------------------------+
-| Manual              | |NONE|              | Disables PDP phase, therefore there is no EDP phase. |br|                |
-|                     |                     | All matching must be done manually through the |br|                      |
-|                     |                     | ``addReaderLocator``, ``addReaderProxy``, ``addWriterProxy`` |br|        |
+| Manual              | |NONE|              | Disables PDP phase, therefore there is no EDP phase.                     |
+|                     |                     | All matching must be done manually through the                           |
+|                     |                     | ``addReaderLocator``, ``addReaderProxy``, ``addWriterProxy``             |
 |                     |                     | RTPS layer methods.                                                      |
 +---------------------+---------------------+--------------------------------------------------------------------------+
 

@@ -43,7 +43,7 @@ The following table outlines the properties used for the DDS:\Auth\:PKI-DH plugi
      - URI to the X.509 v3 certificate of the Identity CA in PEM format. |br|
        Supported URI schemes: file. |br|
    * - identity_certificate
-     - URI to an X.509 v3 certificate signed by the Identity CA in PEM format |br|
+     - URI to an X.509 v3 certificate signed by the Identity CA in PEM format
        containing the signed public key for the Participant. |br|
        Supported URI schemes: file.
    * - identity_crl *(optional)*
@@ -54,11 +54,11 @@ The following table outlines the properties used for the DDS:\Auth\:PKI-DH plugi
        Supported URI schemes: file, :ref:`PKCS#11 <pkcs11-support>`.
    * - password *(optional)*
      - A password used to decrypt the *private_key*.  |br|
-       If the *password* property is not present, then the value supplied in the |br|
+       If the *password* property is not present, then the value supplied in the
        *private_key* property must contain the decrypted private key. |br|
        The *password* property is ignored if the *private_key* is given in PKCS#11 scheme.
    * - preferred_key_agreement *(optional)*
-     - The preferred algorithm to use for generating the session's shared secret |br|
+     - The preferred algorithm to use for generating the session's shared secret
        at the end of the authentication phase. Supported values are: |br|
        a) ``DH``, ``DH+MODP-2048-256`` for  Diffie-Hellman Ephemeral with 2048-bit MODP Group parameters. |br|
        b) ``ECDH``, ``ECDH+prime256v1-CEUM`` for Elliptic Curve Diffie-Hellman Ephemeral with the NIST P-256 curve. |br|

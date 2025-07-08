@@ -75,19 +75,19 @@ Simple EDP Attributes
 +-----------------------------+----------------------------------------------------------------+-------------+---------+
 | Name                        | Description                                                    | Type        | Default |
 +=============================+================================================================+=============+=========+
-| SIMPLE EDP                  | It defines the use of the SIMPLE protocol as a discovery |br|  | ``bool``    | true    |
-|                             | protocol for the EDP phase. A DomainParticipant may |br|       |             |         |
+| SIMPLE EDP                  | It defines the use of the SIMPLE protocol as a discovery       | ``bool``    | true    |
+|                             | protocol for the EDP phase. A DomainParticipant may            |             |         |
 |                             | create DataWriters, DataReaders, both or neither.              |             |         |
 +-----------------------------+----------------------------------------------------------------+-------------+---------+
-| Publication writer and |br| | It is intended for DomainParticipants that implement only |br| | ``bool``    | true    |
+| Publication writer and      | It is intended for DomainParticipants that implement only      | ``bool``    | true    |
 | Subscription reader         | one or more DataWriters, i.e. do not implement DataReaders.    |             |         |
-|                             | |br| It allows the creation of only DataReader discovery       |             |         |
+|                             | It allows the creation of only DataReader discovery            |             |         |
 |                             | related EDP endpoints.                                         |             |         |
 +-----------------------------+----------------------------------------------------------------+-------------+---------+
-| Publication reader and |br| | It is intended for DomainParticipants that implement only |br| | ``bool``    | true    |
+| Publication reader and      | It is intended for DomainParticipants that implement only      | ``bool``    | true    |
 | Subscription writer         | one or more DataReaders, i.e. do not implement DataWriters.    |             |         |
-|                             | |br| It allows the creation of only DataWriter discovery       |             |         |
-|                             | related |br| EDP endpoints.                                    |             |         |
+|                             | It allows the creation of only DataWriter discovery            |             |         |
+|                             | related  EDP endpoints.                                        |             |         |
 +-----------------------------+----------------------------------------------------------------+-------------+---------+
 
 .. tab-set-code::

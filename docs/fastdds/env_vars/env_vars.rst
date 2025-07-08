@@ -71,14 +71,14 @@ All existing values, along with a brief description, are shown below:
 | Builtin Transports Options | Description                                                                  |
 +============================+==============================================================================+
 | ``NONE``                   | No transport will be instantiated. Hence, the user must manually add         |
-|                            | the desired |br| transports. Otherwise, the participant creation will fail.  |
+|                            | the desired  transports. Otherwise, the participant creation will fail.      |
 +----------------------------+------------------------------------------------------------------------------+
 | ``DEFAULT``                | UDPv4 and SHM transports will be instantiated. SHM transport has priority    |
-|                            | over the UDPv4 |br| transport. Meaning that SHM will always be used          |
+|                            | over the UDPv4  transport. Meaning that SHM will always be used              |
 |                            | when possible.                                                               |
 +----------------------------+------------------------------------------------------------------------------+
 | ``DEFAULTv6``              | UDPv6 and SHM transports will be instantiated. SHM transport has priority    |
-|                            | over the UDPv4 |br| transport. Meaning that SHM will always be used          |
+|                            | over the UDPv4  transport. Meaning that SHM will always be used              |
 |                            | when possible.                                                               |
 +----------------------------+------------------------------------------------------------------------------+
 | ``SHM``                    | Only a SHM transport will be instantiated.                                   |
@@ -88,9 +88,9 @@ All existing values, along with a brief description, are shown below:
 | ``UDPv6``                  | Only a UDPv6 transport will be instantiated.                                 |
 +----------------------------+------------------------------------------------------------------------------+
 | ``LARGE_DATA``             | UDPv4, TCPv4, and SHM transports will be instantiated. However, UDP will     |
-|                            | only be used |br| for multicast announcements during the participant         |
-|                            | discovery phase (see :ref:`disc_phases`) |br| while the participant          |
-|                            | liveliness and the application data delivery occurs over TCP or SHM. |br|    |
+|                            | only be used  for multicast announcements during the participant             |
+|                            | discovery phase (see :ref:`disc_phases`)  while the participant              |
+|                            | liveliness and the application data delivery occurs over TCP or SHM.         |
 |                            | This configuration is useful when working with large data.(See               |
 |                            | :ref:`use-case-tcp`).                                                        |
 +----------------------------+------------------------------------------------------------------------------+
@@ -125,22 +125,22 @@ This mode can also be configured with the ``tcp_negotiation_timeout`` parameter:
 +----------------------------+--------------------------------------------------------------------+-------------------+
 | Builtin Transports Options | Description                                                        | Type              |
 +============================+====================================================================+===================+
-| ``max_msg_size``           | It determines the maximum message size that will be specified |br| | uint32_t          |
-|                            | in the transport layer. Selecting a message size large |br|        |                   |
-|                            | enough to accommodate the largest data message will |br|           |                   |
-|                            | prevent fragmentation, which can significantly enhance |br|        |                   |
+| ``max_msg_size``           | It determines the maximum message size that will be specified      | uint32_t          |
+|                            | in the transport layer. Selecting a message size large             |                   |
+|                            | enough to accommodate the largest data message will                |                   |
+|                            | prevent fragmentation, which can significantly enhance             |                   |
 |                            | the overall sending rate.                                          |                   |
 +----------------------------+--------------------------------------------------------------------+-------------------+
-| ``sockets_size``           | It determines the size of the send and receive socket buffers. |br|| uint32_t          |
-|                            | This parameter needs to be higher or equal to the maximum |br|     |                   |
+| ``sockets_size``           | It determines the size of the send and receive socket buffers.     | uint32_t          |
+|                            | This parameter needs to be higher or equal to the maximum          |                   |
 |                            | message size specified in order to be valid.                       |                   |
 +----------------------------+--------------------------------------------------------------------+-------------------+
-| ``non_blocking``           | It determines whether to use non-blocking send calls or not. |br|  | bool              |
-|                            | When activated, the transport will discard messages if the |br|    |                   |
+| ``non_blocking``           | It determines whether to use non-blocking send calls or not.       | bool              |
+|                            | When activated, the transport will discard messages if the         |                   |
 |                            | socket buffers are full.                                           |                   |
 +----------------------------+--------------------------------------------------------------------+-------------------+
-| ``tcp_negotiation_timeout``| It determines the time to wait for logical port negotiation. |br|  | uint32_t          |
-|                            | Only valid if the ``LARGE_DATA`` mode is being used. |br|          |                   |
+| ``tcp_negotiation_timeout``| It determines the time to wait for logical port negotiation.       | uint32_t          |
+|                            | Only valid if the ``LARGE_DATA`` mode is being used.               |                   |
 |                            | It only accepts milliseconds.                                      |                   |
 +----------------------------+--------------------------------------------------------------------+-------------------+
 

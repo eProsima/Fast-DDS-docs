@@ -99,18 +99,18 @@ The following table lists the available commands for the *Fast DDS* Discovery Se
     * - Command
       - Description
     * - start
-      - Start the Discovery Server daemon with the remote connections specified. |br|
+      - Start the Discovery Server daemon with the remote connections specified.
         (Example: start -d 1 10.0.0.1:1).
     * - stop
       - Stop the Discovery Server daemon if it is executed with no arguments.
-        If a domain is |br| specified with the ``-d`` argument it will only stop the corresponding server and |br|
+        If a domain is  specified with the ``-d`` argument it will only stop the corresponding server and
         the daemon will remain alive.
     * - add
       - Add new remote Discovery Servers to the local server.
-        This will connect both servers |br| and their sub-networks without modifying existing remote servers.
+        This will connect both servers  and their sub-networks without modifying existing remote servers.
     * - set
       - Rewrite the remote Discovery Servers connected to the local server.
-        This will replace |br| existing remote servers with the new connections.
+        This will replace  existing remote servers with the new connections.
     * - list
       - List local active Discovery Servers created with the CLI Tool or the ``ROS2_EASY_MODE=<ip>``.
 
@@ -122,11 +122,11 @@ The following table lists the available commands for the *Fast DDS* Discovery Se
       - Description
     * - ``-d  --domain``
       - Selects the domain of the server to target for this action.
-        It is mandatory for |br| commands ``start``, ``add`` and ``set``.
+        It is mandatory for  commands ``start``, ``add`` and ``set``.
     * - ``<remote_server>``
-      - It is an IP-domain pair defining a remote server to connect to: |br|
+      - It is an IP-domain pair defining a remote server to connect to:
         ``<IP:domain>``.
-        It is mandatory with the `start`, `add` and `set` commands. |br|
+        It is mandatory with the `start`, `add` and `set` commands.
         Only valid IPv4 addresses are accepted.
 
 .. note::
@@ -203,26 +203,26 @@ The following table lists the available parameters for the *Fast DDS* Discovery 
 +==========================+===========================================================================================+
 | ``-h  --help``           | Produce help message with examples.                                                       |
 +--------------------------+-------------------------------------------------------------------------------------------+
-| ``-l  --udp-address``    | IPv4/IPv6 address chosen to listen the clients using UDP transport. Defaults to any |br|  |
+| ``-l  --udp-address``    | IPv4/IPv6 address chosen to listen the clients using UDP transport. Defaults to any       |
 |                          | (0.0.0.0/::0). Instead of an address, a DNS domain name can be specified.                 |
 +--------------------------+-------------------------------------------------------------------------------------------+
-| ``-p  --udp-port``       | UDP port chosen to listen the clients. Defaults to '11811'. Only one server can be |br|   |
+| ``-p  --udp-port``       | UDP port chosen to listen the clients. Defaults to '11811'. Only one server can be        |
 |                          | configured using the default UDP port.                                                    |
 +--------------------------+-------------------------------------------------------------------------------------------+
-| ``-t  --tcp-address``    | IPv4/IPv6 address chosen to listen the clients using TCP transport. Instead of an |br|    |
+| ``-t  --tcp-address``    | IPv4/IPv6 address chosen to listen the clients using TCP transport. Instead of an         |
 |                          | address, a DNS domain name can be specified. Defaults to any (0.0.0.0).                   |
 +--------------------------+-------------------------------------------------------------------------------------------+
-| ``-q  --tcp-port``       | TCP port chosen to listen the clients. Defaults to '42100'. Only one server can be |br|   |
+| ``-q  --tcp-port``       | TCP port chosen to listen the clients. Defaults to '42100'. Only one server can be        |
 |                          | configured using the default TCP port.                                                    |
 +--------------------------+-------------------------------------------------------------------------------------------+
 | ``-b  --backup``         | Creates a BACKUP *server* (see :ref:`discovery_protocol`)                                 |
 +--------------------------+-------------------------------------------------------------------------------------------+
-| ``-x  --xml-file``       | XML configuration file (see :ref:`xml_profiles`). In this case, the default |br|          |
-|                          | configuration file is not loaded. The CLI options override XML configuration for |br|     |
-|                          | that specific parameter. The default profile in the XML file is loaded except if |br|     |
+| ``-x  --xml-file``       | XML configuration file (see :ref:`xml_profiles`). In this case, the default               |
+|                          | configuration file is not loaded. The CLI options override XML configuration for          |
+|                          | that specific parameter. The default profile in the XML file is loaded except if          |
 |                          | a specific profile name is specified: ``profile_name@xml_file``                           |
 +--------------------------+-------------------------------------------------------------------------------------------+
-| ``-i  --server-id``      | Unique server identifier. Its functionality its deprecated. It can be used to select |br| |
+| ``-i  --server-id``      | Unique server identifier. Its functionality its deprecated. It can be used to select      |
 |                          | a fixed GUID in the form shown below. Must be an integer in range [0, 255].               |
 +--------------------------+-------------------------------------------------------------------------------------------+
 

@@ -499,13 +499,13 @@ annotations might be applied without the need of defining them).
       - Shortcut for :code:`@extensibility(APPENDABLE)`.
       - ✅
     * - :code:`@autoid`
-      - Member ID algorithm configuration if there is no member ID explicitly set using :code:`@id` annotation. |br|
-        Possible values are :code:`SEQUENTIAL` (member ID is assigned sequentially. Default value) or |br|
-        :code:`HASH` (member ID is calculated with an algorithm involving hashing the member name). |br|
+      - Member ID algorithm configuration if there is no member ID explicitly set using :code:`@id` annotation.
+        Possible values are :code:`SEQUENTIAL` (member ID is assigned sequentially. Default value) or
+        :code:`HASH` (member ID is calculated with an algorithm involving hashing the member name).
         This annotation might be defined in module, structure or union declarations.
       - ✅
     * - :code:`@bit_bound`
-      - Set number of bits on `bitmasks`_ and `enumerations`_ underlying primitive type. |br|
+      - Set number of bits on `bitmasks`_ and `enumerations`_ underlying primitive type.
         Currently, :code:`@bit_bound` can only be applied to bitmask types.
       - ✅❌
     * - :code:`@data_representation`
@@ -522,7 +522,7 @@ annotations might be applied without the need of defining them).
       - ❌
     * - :code:`@extensibility`
       - Applicable to any constructed element.
-        Specify how the element is allowed to evolve. |br|
+        Specify how the element is allowed to evolve.
         Please, refer to Extensibility_ for more information.
       - ✅
     * - :code:`@external`
@@ -541,7 +541,7 @@ annotations might be applied without the need of defining them).
       - When checking evolved type compatibility, take or not into account member names.
       - ❌
     * - :code:`@key`
-      - Mark a structure member as part of the key. :code:`@Key` is also supported. |br|
+      - Mark a structure member as part of the key. :code:`@Key` is also supported.
         Please, refer to :ref:`dds_layer_topic_instances` for more information.
       - ✅
     * - :code:`@max`
@@ -584,7 +584,7 @@ annotations might be applied without the need of defining them).
       - Structure or union is meant to be used as Topic Data Type.
       - ❌
     * - :code:`@try_construct`
-      - When checking evolved type compatibility, configure the behavior for |br|
+      - When checking evolved type compatibility, configure the behavior for
         collection/aggregated types construction and what to do in case of failure.
       - ❌
     * - :code:`@unit`

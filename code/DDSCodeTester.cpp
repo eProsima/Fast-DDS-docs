@@ -1239,11 +1239,14 @@ class TypeIntrospectionSubscriber : public DomainParticipantListener
 
         // Serialize DynamicType into its IDL representation
         std::stringstream idl;
-        if (RETCODE_OK == idl_serialize(remote_type, idl))
+        if (RETCODE_OK != idl_serialize(remote_type, idl))
         {
-            // Print IDL representation
-            std::cout << "Type discovered:\n" << idl.str() << std::endl;
+            // Error
+            return;
         }
+
+        // Print IDL representation
+        std::cout << "Type discovered:\n" << idl.str() << std::endl;
     }
 
     /* Custom Callback on_data_writer_discovery */
@@ -1269,11 +1272,14 @@ class TypeIntrospectionSubscriber : public DomainParticipantListener
 
         // Serialize DynamicType into its IDL representation
         std::stringstream idl;
-        if (RETCODE_OK == idl_serialize(remote_type, idl))
+        if (RETCODE_OK != idl_serialize(remote_type, idl))
         {
-            // Print IDL representation
-            std::cout << "Type discovered:\n" << idl.str() << std::endl;
+            // Error
+            return;
         }
+
+        // Print IDL representation
+        std::cout << "Type discovered:\n" << idl.str() << std::endl;
     }
 
     //!--
@@ -1293,13 +1299,17 @@ class TypeIntrospectionSubscriber : public DomainParticipantListener
             output << std::setw(4);
 
             // Serialize DynamicData into JSON string format
-            if (RETCODE_OK == json_serialize(
+            if (RETCODE_OK != json_serialize(
                     new_data,
                     DynamicDataJsonFormat::EPROSIMA,
                     output))
             {
-                std::cout << "Message received:\n" << output.str() << std::endl;
+                // Error
+                return;
             }
+
+            // Print JSON representation
+            std::cout << "Message received:\n" << output.str() << std::endl;
         }
     }
 
@@ -1316,14 +1326,17 @@ class TypeIntrospectionSubscriber : public DomainParticipantListener
         // Deserialize JSON string into DynamicData
         // The required DynamicType can be created from discovered TypeObject or through Dynamic Language Binding API
         DynamicData::_ref_type new_data;
-        if (RETCODE_OK == json_deserialize(
+        if (RETCODE_OK != json_deserialize(
                 json_data,
                 dyn_type_deserialization_,
                 DynamicDataJsonFormat::EPROSIMA,
                 new_data))
         {
-            // Process the new data
+            // Error
+            return;
         }
+
+        // Process the new data
     }
 
     // DynamicType corresponding to JSON data to be deserialized into DynamicData

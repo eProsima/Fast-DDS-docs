@@ -101,6 +101,7 @@ dereferences
 deserialization
 deserialize
 deserialized
+deserializer
 deserializes
 destructor
 destructors

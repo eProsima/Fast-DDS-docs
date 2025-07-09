@@ -1,11 +1,11 @@
-``Version 3.3.0 (latest) <https://fast-dds.docs.eprosima.com/en/v3.3.0/index.html>``_
+`Version 3.3.0 (latest) <https://fast-dds.docs.eprosima.com/en/v3.3.0/index.html>`_
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 This minor release includes the following **features**:
 
 #. QoS Policies added to ``EDP`` messages. New property to send ``eProsima`` Extensions QoS
 #. Allow ``ResourceLimitsQos`` serialization method compatibility
-#. Add ``WireProtocolConfigQos`` to optional QoS serialization and make ``Monitor Service`` always serialize optionals
+#. Add ``WireProtocolConfigQos`` to optional QoS serialization and make ``Monitor Service`` always serialize them
 #. RPC over DDS example
 #. ``DataWriter`` sample prefilter
 #. Add generic interfaces for RPC servers
@@ -57,7 +57,7 @@ This minor release includes the following **ci management updates**:
 #. Add ``uncrustify`` to Github CI
 #. Increase the warning level for Ubuntu CI compilation
 #. Include all example tests in Windows CI
-#. Add ``VS143 ``toolset to Windows CI
+#. Add ``VS143 toolset`` to Windows CI
 #. Install Fix ``OpenSSL`` version in windows example testing
 #. Set ``Windows 10`` as ``Tier 1``
 

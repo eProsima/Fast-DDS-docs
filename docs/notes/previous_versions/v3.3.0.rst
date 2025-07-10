@@ -4,10 +4,12 @@
 This minor release includes the following **features**:
 
 #. RPC related:
-  #. Add generic interfaces for servers
-  #. Enhanced discovery feature
-  #. Add RPC over DDS example
-  #. Add methods for ``TypeObject`` registration of RPC types
+
+   * Add generic interfaces for servers
+   * Enhanced discovery feature
+   * Add RPC over DDS example
+   * Add methods for ``TypeObject`` registration of RPC types
+
 #. QoS Policies added to ``EDP`` messages. New property to send ``eProsima`` Extensions QoS
 #. Allow ``ResourceLimitsQos`` serialization method compatibility
 #. Add ``WireProtocolConfigQos`` to optional QoS serialization and make ``Monitor Service`` always serialize them

@@ -1239,7 +1239,11 @@ class TypeIntrospectionSubscriber : public DomainParticipantListener
 
         // Serialize DynamicType into its IDL representation
         std::stringstream idl;
-        idl_serialize(remote_type, idl);
+        if (RETCODE_OK != idl_serialize(remote_type, idl))
+        {
+            // Error
+            return;
+        }
 
         // Print IDL representation
         std::cout << "Type discovered:\n" << idl.str() << std::endl;
@@ -1255,8 +1259,8 @@ class TypeIntrospectionSubscriber : public DomainParticipantListener
         // Get remote type information
         xtypes::TypeObject remote_type_object;
         if (RETCODE_OK != DomainParticipantFactory::get_instance()->type_object_registry().get_type_object(
-                    info.type_information.type_information.complete().typeid_with_size().type_id(),
-                    remote_type_object))
+                info.type_information.type_information.complete().typeid_with_size().type_id(),
+                remote_type_object))
         {
             // Error
             return;
@@ -1268,7 +1272,11 @@ class TypeIntrospectionSubscriber : public DomainParticipantListener
 
         // Serialize DynamicType into its IDL representation
         std::stringstream idl;
-        idl_serialize(remote_type, idl);
+        if (RETCODE_OK != idl_serialize(remote_type, idl))
+        {
+            // Error
+            return;
+        }
 
         // Print IDL representation
         std::cout << "Type discovered:\n" << idl.str() << std::endl;
@@ -1280,25 +1288,59 @@ class TypeIntrospectionSubscriber : public DomainParticipantListener
     void on_data_available(
             DataReader* reader)
     {
-        // Dynamic DataType
+        // Create data using the DynamicType created from discovered TypeObject or through Dynamic Language Binding API
         DynamicData::_ref_type new_data =
-                DynamicDataFactory::get_instance()->create_data(dyn_type_);
+                DynamicDataFactory::get_instance()->create_data(dyn_type_serialization_);
 
         SampleInfo info;
-
         while ((RETCODE_OK == reader->take_next_sample(&new_data, &info)))
         {
             std::stringstream output;
             output << std::setw(4);
 
             // Serialize DynamicData into JSON string format
-            json_serialize(new_data, DynamicDataJsonFormat::EPROSIMA, output);
+            if (RETCODE_OK != json_serialize(
+                    new_data,
+                    DynamicDataJsonFormat::EPROSIMA,
+                    output))
+            {
+                // Error
+                return;
+            }
+
+            // Print JSON representation
             std::cout << "Message received:\n" << output.str() << std::endl;
         }
     }
 
-    // DynamicType created in discovery callback
-    DynamicType::_ref_type dyn_type_;
+    // DynamicType corresponding to received data
+    DynamicType::_ref_type dyn_type_serialization_;
+    //!--
+
+    //!--
+
+    //!--JSON_DYNDATA_DESERIALIZATION
+    void json_to_data(
+            const std::string& json_data)
+    {
+        // Deserialize JSON string into DynamicData
+        // The required DynamicType can be created from discovered TypeObject or through Dynamic Language Binding API
+        DynamicData::_ref_type new_data;
+        if (RETCODE_OK != json_deserialize(
+                json_data,
+                dyn_type_deserialization_,
+                DynamicDataJsonFormat::EPROSIMA,
+                new_data))
+        {
+            // Error
+            return;
+        }
+
+        // Process the new data
+    }
+
+    // DynamicType corresponding to JSON data to be deserialized into DynamicData
+    DynamicType::_ref_type dyn_type_deserialization_;
     //!--
 };
 //!--

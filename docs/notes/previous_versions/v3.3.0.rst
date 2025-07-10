@@ -3,17 +3,17 @@
 
 This minor release includes the following **features**:
 
+#. RPC related:
+  #. Add generic interfaces for servers
+  #. Enhanced discovery feature
+  #. Add RPC over DDS example
+  #. Add methods for ``TypeObject`` registration of RPC types
 #. QoS Policies added to ``EDP`` messages. New property to send ``eProsima`` Extensions QoS
 #. Allow ``ResourceLimitsQos`` serialization method compatibility
 #. Add ``WireProtocolConfigQos`` to optional QoS serialization and make ``Monitor Service`` always serialize them
-#. RPC over DDS example
 #. ``DataWriter`` sample prefilter
-#. Add generic interfaces for RPC servers
-#. Add methods for ``TypeObject`` registration of RPC types
 #. Support modules in IDL Parser
 #. New version of EDP static discovery
-#. Update RPC example types and code
-#. RPC enhanced discovery
 #. Process ``key-only`` payloads
 #. Add ``has_more_replies`` to ``WriteParams`` and ``SampleInfo``
 #. ``JSON`` to ``DynamicData`` deserializer
@@ -25,7 +25,7 @@ This minor release includes the following **improvements**:
 #. Add references to documentation
 #. Update ``ROSin`` image links in ``README``
 #. Update reception timestamp when it is added to the instance
-#. Updates  due to ``EOL`` versions
+#. Updates due to ``EOL`` versions
 #. Allow creation of built-in content filters with different type name
 #. Add localhost capability only to ``UDP`` and ``TCP`` transports
 #. Add ``ParticipantBuiltinTopicData`` header in ``StatisticsDomainParticipant``

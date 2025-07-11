@@ -136,16 +136,22 @@ asynchronous model.
 TinyXML2 is a simple, small and efficient C++ XML parser.
 They can be downloaded directly from the links below:
 
-* `Asio <https://github.com/ros2/choco-packages/releases/download/2020-02-24/asio.1.12.1.nupkg>`_
-* `TinyXML2 <https://github.com/ros2/choco-packages/releases/download/2020-02-24/tinyxml2.6.0.0.nupkg>`_
+* `Asio <https://www.nuget.org/api/v2/package/asio-cppp-latest/1.24.0>`_
+* `TinyXML2 <https://github.com/ros2/choco-packages/releases/download/2022-03-15/tinyxml2.6.0.0.nupkg>`_
 
 After downloading these packages, open an administrative shell with *PowerShell* and execute the following command:
 
 .. code-block:: winbatch
 
-    choco install -y -s <PATH_TO_DOWNLOADS> asio tinyxml2
+    choco install -y -s <PATH_TO_DOWNLOADS> asio-cppp-latest tinyxml2
 
 where :code:`<PATH_TO_DOWNLOADS>` is the folder into which the packages have been downloaded.
+
+Also include the path to the :code:`asio` and :code:`tinyxml2` libraries in the :code:`PATH` environment variable.
+
+.. code-block:: powershell
+
+    Set-Item -Force -Path "env:PATH" -Value "C:\ProgramData\chocolatey\lib\asio-cppp-latest\build\native;C:\ProgramData\chocolatey\lib\tinyxml2;C:\ProgramData\chocolatey\lib\tinyxml2\lib;$env:PATH"
 
 .. _openssl_sw:
 

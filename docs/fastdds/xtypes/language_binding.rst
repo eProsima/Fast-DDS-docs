@@ -861,78 +861,78 @@ Please, refer to :ref:`builtin annotations <builtin_annotations>` for the comple
       - |TypeDescriptor-api| :code:`extensibility_kind` property.
       - ✅
       - ❌
-      - ❌
+      - ✅
     * - :code:`@bit_bound`
       - |TypeDescriptor-api| :code:`bound` property for :ref:`xtypes_supportedtypes_bitset`. |br|
         |MemberDescriptor-api| :code:`type` property for :ref:`xtypes_supportedtypes_enumeration`.
       - ✅
       - ✅❌ (`Enumeration types`_ not configurable).
-      - ❌
+      - ✅
     * - :code:`@default`
       - |MemberDescriptor-api| :code:`default_value` property.
       - ✅
       - ❌
-      - ❌
+      - ✅
     * - :code:`default_literal`
       - |MemberDescriptor-api| :code:`is_default_label` property.
       - ✅
       - ❌
-      - ❌
+      - ✅
     * - :code:`@extensibility`
       - |TypeDescriptor-api| :code:`extensibility_kind` property.
       - ✅
       - ❌
-      - ❌
+      - ✅
     * - :code:`@external`
       - |MemberDescriptor-api| :code:`is_shared` property.
       - ❌
       - ❌
-      - ❌
+      - ✅
     * - :code:`@final`
       - |TypeDescriptor-api| :code:`extensibility_kind` property.
       - ✅
       - ❌
-      - ❌
+      - ✅
     * - :code:`@id`
       - |MemberDescriptor-api| :code:`id` property.
       - ✅
       - ❌
-      - ❌
+      - ✅
     * - :code:`@key` / :code:`@Key`
       - |MemberDescriptor-api| :code:`is_key` property.
       - ✅
       - ❌
-      - ❌
+      - ✅
     * - :code:`@mutable`
       - |TypeDescriptor-api| :code:`extensibility_kind` property.
       - ✅
       - ❌
-      - ❌
+      - ✅
     * - :code:`@nested`
       - |TypeDescriptor-api| :code:`is_nested` property.
       - ❌
       - ❌
-      - ❌
+      - ✅
     * - :code:`@optional`
       - |MemberDescriptor-api| :code:`is_optional` property.
       - ❌
       - ❌
-      - ❌
+      - ✅
     * - :code:`@position`
       - |MemberDescriptor-api| :code:`id` property.
       - ✅
       - ✅
-      - ❌
+      - ✅
     * - :code:`@try_construct`
       - |MemberDescriptor-api| :code:`try_construct_kind` property.
       - ❌
       - ❌
-      - ❌
+      - ✅
     * - :code:`@value`
       - |MemberDescriptor-api| :code:`default_value` property.
       - ✅
       - ✅
-      - ❌
+      - ✅
     * - :code:`@verbatim`
       - |VerbatimTextDescriptor-api|
       - ❌

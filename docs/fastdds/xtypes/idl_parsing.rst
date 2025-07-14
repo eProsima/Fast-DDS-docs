@@ -33,6 +33,7 @@ For further information about the supported |DynamicTypes|, please, refer to :re
 * Arithmetic expressions
 * Union/struct forward declarations
 * Modules/scoped types
+* :ref:`xtypes_builtin_annotations`
 
 The following types are currently not supported by the IDL parsing feature:
 

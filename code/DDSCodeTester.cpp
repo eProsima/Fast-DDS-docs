@@ -4428,6 +4428,18 @@ void dds_qos_examples()
     }
 
     {
+        //DDS_CHANGE_TRANSPORT_PRIORITY_QOS_POLICY
+        // This example only applies to DataWriter entities
+        DataWriterQos writer_qos;
+        // The TransportPriorityQosPolicy is constructed with value 0 by default
+        // Change the strength to 12
+        writer_qos.transport_priority().value = 12;
+        // Use modified QoS in the creation of the corresponding DataWriter
+        writer_ = publisher_->create_datawriter(topic_, writer_qos);
+        //!--
+    }
+
+    {
         //DDS_CHANGE_PARTITION_QOS_POLICY
         // This example uses a Publisher, but it can also be applied to Subscriber entities
         PublisherQos publisher_qos;

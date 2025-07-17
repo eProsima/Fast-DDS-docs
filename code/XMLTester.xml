@@ -106,6 +106,12 @@
 </data_writer>
 <!--><-->
 
+<!-->PUBSUB_API_CONF_PUBSUB_TRANSPORT_PRIORITY<-->
+<data_writer profile_name="writer_xml_conf_transport_priority_profile">
+    <transport_priority>12</transport_priority>
+</data_writer>
+<!--><-->
+
 <!-->CONF-QOS-DATASHARING<-->
 <!--
 <?xml version="1.0" encoding="UTF-8" ?>

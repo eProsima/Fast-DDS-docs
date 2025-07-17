@@ -1296,9 +1296,6 @@ Example
 TransportPriorityQosPolicy
 ^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-.. warning::
-    This QoS Policy will be implemented in future releases.
-
 The purpose of this QoS Policy is to allow the service to take advantage of those transports capable of sending
 messages with different priorities. It establishes the priority of the underlying transport used to send the data.
 See |TransportPriorityQosPolicy-api|
@@ -1310,7 +1307,7 @@ List of QoS Policy data members:
 +-------------------------------------------------------------------------------------+----------------+---------------+
 | Data Member Name                                                                    | Type           | Default Value |
 +=====================================================================================+================+===============+
-| |TransportPriorityQosPolicy::value-api|                                             | ``uint32_t``   | 0             |
+| |TransportPriorityQosPolicy::value-api|                                             | ``int32_t``    | 0             |
 +-------------------------------------------------------------------------------------+----------------+---------------+
 
 .. note::

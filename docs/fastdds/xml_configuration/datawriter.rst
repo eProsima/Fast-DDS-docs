@@ -55,9 +55,13 @@ The DataWriter configuration is performed through the XML elements listed in the
      - :ref:`CommonQOS`
      -
    * - ``<times>``
-     - It configures some time related parameters  of the DataWriter.
+     - It configures some time related parameters of the DataWriter.
      - :ref:`WriterTimes <pubtimes>`
      -
+   * - ``<transport_priority>``
+     - It configures the :ref:`transport priority <transportpriorityqospolicy>` of the DataWriter.
+     - ``int32_t``
+     - 0
    * - ``<unicastLocatorList>``
      - List of input unicast locators.
        It expects a :ref:`LocatorListType`.

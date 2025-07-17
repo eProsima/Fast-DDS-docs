@@ -1315,6 +1315,22 @@ List of QoS Policy data members:
      :raw-html:`<br />`
      It can be changed on enabled entities.
 
+Example
+"""""""
+
+.. tab-set-code::
+
+    .. literalinclude:: /../code/DDSCodeTester.cpp
+        :language: c++
+        :dedent: 8
+        :start-after: //DDS_CHANGE_TRANSPORT_PRIORITY_QOS_POLICY
+        :end-before: //!
+
+    .. literalinclude:: /../code/XMLTester.xml
+        :language: xml
+        :start-after: <!-->PUBSUB_API_CONF_PUBSUB_TRANSPORT_PRIORITY
+        :end-before: <!--><-->
+
 
 .. _userdataqospolicy:
 

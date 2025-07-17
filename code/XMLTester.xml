@@ -1737,6 +1737,8 @@
                 </nack_supression_duration>
             </times>
 
+            <transport_priority>12</transport_priority>
+
             <unicastLocatorList>
                 <!-- LOCATOR_LIST -->
                 <locator>

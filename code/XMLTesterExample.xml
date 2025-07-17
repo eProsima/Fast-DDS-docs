@@ -610,6 +610,8 @@
                 </nack_supression_duration>
             </times>
 
+            <transport_priority>-20</transport_priority>
+
             <unicastLocatorList>
                 <locator>
                     <udpv4>

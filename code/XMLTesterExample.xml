@@ -572,6 +572,7 @@
                 <ownershipStrength>
                     <value>50</value>
                 </ownershipStrength>
+                <transport_priority>-20</transport_priority>
                 <partition>
                     <names>
                         <name>part1</name>
@@ -609,8 +610,6 @@
                     <nanosec>856000</nanosec>
                 </nack_supression_duration>
             </times>
-
-            <transport_priority>-20</transport_priority>
 
             <unicastLocatorList>
                 <locator>

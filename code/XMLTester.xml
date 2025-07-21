@@ -108,7 +108,9 @@
 
 <!-->PUBSUB_API_CONF_PUBSUB_TRANSPORT_PRIORITY<-->
 <data_writer profile_name="writer_xml_conf_transport_priority_profile">
-    <transport_priority>12</transport_priority>
+    <qos>
+        <transport_priority>12</transport_priority>
+    </qos>
 </data_writer>
 <!--><-->
 
@@ -1737,8 +1739,6 @@
                 </nack_supression_duration>
             </times>
 
-            <transport_priority>12</transport_priority>
-
             <unicastLocatorList>
                 <!-- LOCATOR_LIST -->
                 <locator>
@@ -2086,6 +2086,8 @@
     <ownershipStrength>
         <value>50</value>
     </ownershipStrength>
+
+    <transport_priority>12</transport_priority>
 
     <partition>
         <names>

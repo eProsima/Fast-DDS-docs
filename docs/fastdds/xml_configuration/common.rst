@@ -460,6 +460,9 @@ Please refer to the :ref:`dds_layer_core_policy` section for more information on
   * - ``<ownershipStrength>``
     - See :ref:`ownershipstrengthqospolicy`.
     - :ref:`xml_ownershipstrength`
+  * - ``<transport_priority>``
+    - See :ref:`transportpriorityqospolicy`.
+    - ``int32_t`` (default: 0)
   * - ``<partition>``
     - See :ref:`partitionqospolicy`.
     - :ref:`xml_partition`

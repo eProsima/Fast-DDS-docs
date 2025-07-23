@@ -154,6 +154,15 @@ dependency on other options.
 
         - ``OFF`` |br| ``Address`` |br| ``Thread``
         - ``OFF``
+    *   - :class:`USE_PYTHON_STABLE_ABI`
+        - Enables building a Python extension module using the Stable ABI (Application Binary Interface),
+          allowing the resulting binary to be used across multiple Python 3 minor versions without recompilation.
+
+          When is enabled, the extension is compatible with all newer (>= 3.9) Python 3.x interpreters
+          (e.g.: A module built for Python 3.13 will work unmodified on 3.12, 3.11, etc.)
+
+        - ``ON`` ``OFF``
+        - ``OFF``
 
 .. _POSIX: https://man7.org/linux/man-pages/man3/pthread_rwlockattr_setkind_np.3.html
 

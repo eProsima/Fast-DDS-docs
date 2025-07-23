@@ -55,7 +55,7 @@ The DataWriter configuration is performed through the XML elements listed in the
      - :ref:`CommonQOS`
      -
    * - ``<times>``
-     - It configures some time related parameters  of the DataWriter.
+     - It configures some time related parameters of the DataWriter.
      - :ref:`WriterTimes <pubtimes>`
      -
    * - ``<unicastLocatorList>``

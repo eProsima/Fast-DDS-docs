@@ -1296,9 +1296,6 @@ Example
 TransportPriorityQosPolicy
 ^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-.. warning::
-    This QoS Policy will be implemented in future releases.
-
 The purpose of this QoS Policy is to allow the service to take advantage of those transports capable of sending
 messages with different priorities. It establishes the priority of the underlying transport used to send the data.
 See |TransportPriorityQosPolicy-api|
@@ -1310,13 +1307,29 @@ List of QoS Policy data members:
 +-------------------------------------------------------------------------------------+----------------+---------------+
 | Data Member Name                                                                    | Type           | Default Value |
 +=====================================================================================+================+===============+
-| |TransportPriorityQosPolicy::value-api|                                             | ``uint32_t``   | 0             |
+| |TransportPriorityQosPolicy::value-api|                                             | ``int32_t``    | 0             |
 +-------------------------------------------------------------------------------------+----------------+---------------+
 
 .. note::
      This QoS Policy applies to |Topic| and |DataWriter| entities.
      :raw-html:`<br />`
      It can be changed on enabled entities.
+
+Example
+"""""""
+
+.. tab-set-code::
+
+    .. literalinclude:: /../code/DDSCodeTester.cpp
+        :language: c++
+        :dedent: 8
+        :start-after: //DDS_CHANGE_TRANSPORT_PRIORITY_QOS_POLICY
+        :end-before: //!
+
+    .. literalinclude:: /../code/XMLTester.xml
+        :language: xml
+        :start-after: <!-->PUBSUB_API_CONF_PUBSUB_TRANSPORT_PRIORITY
+        :end-before: <!--><-->
 
 
 .. _userdataqospolicy:

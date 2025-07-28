@@ -284,7 +284,8 @@ The |MemberDescriptor-api| passed to the previous function must determine the en
 :code:`name` property.
 
 The underlying primitive type related to the enumeration is configured using |MemberDescriptor-api| :code:`type`
-property. Due to this primitive type is determined when adding the first enumeration literal,
+property.
+As the primitive type is determined when adding the first enumeration literal,
 the remaining enumeration literals must be of the same primitive type to keep the enumeration type consistent.
 The underlying primitive type can also be forced by setting the |TypeDescriptor-api| :code:`literal_type` property.
 If :code:`literal_type` is set and the first enumeration literal is not of the same type,
@@ -293,7 +294,7 @@ If :code:`literal_type` is set and the first enumeration literal is not of the s
 Additionally, the enumeration literal value might be set using |MemberDescriptor-api| :code:`literal_value` property.
 The behavior is the same as setting the :code:`@value` :ref:`builtin annotation<builtin_annotations>`.
 The default literal of the enumeration type can be modified by setting the |MemberDescriptor-api|
-:code:`is_default_literal` property, which have the same behavior as annotating the member with
+:code:`is_default_literal` property, which has the same behavior as annotating the member with
 :code:`@default_literal` :ref:`builtin annotation<builtin_annotations>`.
 
 As the enumeration type is basically a signed integer type which might take only some specific values defined with the

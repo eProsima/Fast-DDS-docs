@@ -1085,6 +1085,7 @@
 
 .. |DynamicTypeMember-api| replace:: :cpp:class:`DynamicTypeMember <eprosima::fastdds::dds::DynamicTypeMember>`
 .. |MemberDescriptor-api| replace:: :cpp:class:`MemberDescriptor <eprosima::fastdds::dds::MemberDescriptor>`
+.. |MemberDescriptor::type-api| replace:: :cpp:func:`MemberDescriptor::type()<eprosima::fastdds::dds::MemberDescriptor::type()>`
 .. |TypeDescriptor-api| replace:: :cpp:class:`TypeDescriptor <eprosima::fastdds::dds::TypeDescriptor>`
 .. |VerbatimTextDescriptor-api| replace:: :cpp:class:`VerbatimTextDescriptor <eprosima::fastdds::dds::VerbatimTextDescriptor>`
 

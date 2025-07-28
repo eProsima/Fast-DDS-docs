@@ -854,6 +854,10 @@ Builtin annotations
 Beside the user-defined custom annotations, there are a number of builtin annotations that have already mentioned
 throughout this section.
 
+.. warning::
+
+    Currently, annotating union discriminators is not supported.
+
 The table below summarizes the builtin annotations that can be applied using the Dynamic Language Binding API.
 Please, refer to :ref:`builtin annotations <builtin_annotations>` for the complete list and their behavior.
 

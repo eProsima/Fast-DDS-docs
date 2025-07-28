@@ -114,6 +114,7 @@ public:
             const CustomChainingTransportDescriptor& descriptor)
         : ChainingTransport(descriptor)
         , descriptor_(descriptor)
+        , transport_priority_(0)
     {
     }
 
@@ -136,7 +137,7 @@ public:
 
         // Call low level transport
         return low_sender_resource->send(buffers, total_bytes, destination_locators_begin,
-                       destination_locators_end, timeout);
+                       destination_locators_end, timeout, transport_priority_);
     }
 
     void receive(
@@ -157,6 +158,7 @@ public:
 private:
 
     CustomChainingTransportDescriptor descriptor_;
+    uint32_t transport_priority_;
 };
 //!--
 

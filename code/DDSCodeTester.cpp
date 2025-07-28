@@ -2098,7 +2098,7 @@ void dds_topic_examples()
     }
 
     {
-        //DDS_DYNAMIC_TYPES_IDL_PARSING
+        //DDS_DYNAMIC_TYPES_IDL_PARSING_CREATE_TYPE
         // Create a DomainParticipant in the desired domain
         DomainParticipant* participant =
                 DomainParticipantFactory::get_instance()->create_participant(0, PARTICIPANT_QOS_DEFAULT);
@@ -2133,6 +2133,36 @@ void dds_topic_examples()
             // Error
             return;
         }
+        //!--
+    }
+
+    {
+        //DDS_DYNAMIC_TYPES_IDL_PARSING_ITERATE_OVER_TYPES
+        // Optional: Set the preprocessor to be executed before parsing the IDL
+        DynamicTypeBuilderFactory::get_instance()->set_preprocessor("<optional_path_to_your_preprocessor_executable>");
+
+        // Load the IDL file
+        std::string idl_file = "<path_to_idl>.idl";
+        std::vector<std::string> include_paths;
+        include_paths.push_back("<path/to/folder/containing/included/idl/files>");
+
+        // Vector to store the names of the parsed types
+        std::vector<std::string> parsed_types;
+
+        // Define the function callback to be executed for each aggregated type parsed in the IDL file
+        auto callback = [&parsed_types](traits<DynamicTypeBuilder>::ref_type builder)
+        {
+            if (builder)
+            {
+                parsed_types.emplace_back(builder->get_name().to_string());
+            }
+
+            return true; // continue parsing
+        };
+
+        // Store the names of the parsed types in the vector
+        DynamicTypeBuilderFactory::get_instance()->for_each_type_w_uri(idl_file, include_paths, callback);
+
         //!--
     }
 }

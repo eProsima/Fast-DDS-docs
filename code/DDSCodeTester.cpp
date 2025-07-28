@@ -136,7 +136,25 @@ public:
 
         // Call low level transport
         return low_sender_resource->send(buffers, total_bytes, destination_locators_begin,
-                       destination_locators_end, timeout);
+                       destination_locators_end, timeout, 0);
+    }
+
+    bool send_w_priority(
+            eprosima::fastdds::rtps::SenderResource* low_sender_resource,
+            const std::vector<eprosima::fastdds::rtps::NetworkBuffer>& buffers,
+            uint32_t total_bytes,
+            eprosima::fastdds::rtps::LocatorsIterator* destination_locators_begin,
+            eprosima::fastdds::rtps::LocatorsIterator* destination_locators_end,
+            const std::chrono::steady_clock::time_point& timeout,
+            int32_t transport_priority) override
+    {
+        //
+        // Preprocess outcoming buffer.
+        //
+
+        // Call low level transport
+        return low_sender_resource->send(buffers, total_bytes, destination_locators_begin,
+                       destination_locators_end, timeout, transport_priority);
     }
 
     void receive(

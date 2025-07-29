@@ -5376,7 +5376,7 @@ void dynamictypes_examples()
         MemberDescriptor::_ref_type bitfield_member_descriptor {traits<MemberDescriptor>::make_shared()};
         bitfield_member_descriptor->type(DynamicTypeBuilderFactory::get_instance()->get_primitive_type(TK_BOOLEAN));
         bitfield_member_descriptor->name("flag0");
-        bitfield_member_descriptor->id(0);
+        bitfield_member_descriptor->position(0);
         bitmask_builder->add_member(bitfield_member_descriptor);
         bitfield_member_descriptor = traits<MemberDescriptor>::make_shared();
         bitfield_member_descriptor->type(DynamicTypeBuilderFactory::get_instance()->get_primitive_type(TK_BOOLEAN));
@@ -5389,7 +5389,7 @@ void dynamictypes_examples()
         bitfield_member_descriptor = traits<MemberDescriptor>::make_shared();
         bitfield_member_descriptor->type(DynamicTypeBuilderFactory::get_instance()->get_primitive_type(TK_BOOLEAN));
         bitfield_member_descriptor->name("flag5");
-        bitfield_member_descriptor->id(5);
+        bitfield_member_descriptor->position(5);
         bitmask_builder->add_member(bitfield_member_descriptor);
         // Build the bitmask type
         DynamicType::_ref_type bitmask_type =  bitmask_builder->build();

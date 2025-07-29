@@ -282,12 +282,20 @@ The enumeration literals must be configured using the |DynamicTypeBuilder-api| b
 |DynamicTypeBuilder::add_member| function for the respective supported values.
 The |MemberDescriptor-api| passed to the previous function must determine the enumeration literal name by using
 :code:`name` property.
+
 The underlying primitive type related to the enumeration is configured using |MemberDescriptor-api| :code:`type`
 property.
-This primitive type is determined when adding the first enumeration literal.
-For the enumeration type to be consistent, the remaining enumeration literals must be of the same primitive type.
-Additionally, the enumeration literal value might be set using |MemberDescriptor-api| :code:`default_value` property.
+As the primitive type is determined when adding the first enumeration literal,
+the remaining enumeration literals must be of the same primitive type to keep the enumeration type consistent.
+The underlying primitive type can also be forced by setting the |TypeDescriptor-api| :code:`literal_type` property.
+If :code:`literal_type` is set and the first enumeration literal is not of the same type,
+|DynamicTypeBuilder::add_member| will fail when trying to add it.
+
+Additionally, the enumeration literal value might be set using |MemberDescriptor-api| :code:`literal_value` property.
 The behavior is the same as setting the :code:`@value` :ref:`builtin annotation<builtin_annotations>`.
+The default literal of the enumeration type can be modified by setting the |MemberDescriptor-api|
+:code:`is_default_literal` property, which has the same behavior as annotating the member with
+:code:`@default_literal` :ref:`builtin annotation<builtin_annotations>`.
 
 As the enumeration type is basically a signed integer type which might take only some specific values defined with the
 enumeration literals, the corresponding DynamicData getters and setters are the ones corresponding to the underlying
@@ -330,7 +338,7 @@ function.
 Each bitflag is described using a |MemberDescriptor-api| defining the bitflag name using the :code:`name` property.
 The underlying primitive type related to bitflags must be of kind :code:`TK_BOOLEAN` and must be set in
 |MemberDescriptor-api| :code:`type` property.
-The |MemberDescriptor-api| :code:`id` property might be used to indicate the bitflag position within the bitmask.
+The |MemberDescriptor-api| :code:`position` property might be used to indicate the bitflag position within the bitmask.
 This behavior is the same as setting the :code:`@position` :ref:`builtin annotation<builtin_annotations>`.
 If the position is not specified, sequential order is followed.
 
@@ -783,6 +791,8 @@ For a detailed explanation about the XML definition of this type, please refer t
 Annotations
 ^^^^^^^^^^^
 
+.. _xtypes_custom_annotations:
+
 Custom annotations
 """"""""""""""""""
 
@@ -845,6 +855,10 @@ Builtin annotations
 Beside the user-defined custom annotations, there are a number of builtin annotations that have already mentioned
 throughout this section.
 
+.. warning::
+
+    Currently, annotating union discriminators is not supported.
+
 The table below summarizes the builtin annotations that can be applied using the Dynamic Language Binding API.
 Please, refer to :ref:`builtin annotations <builtin_annotations>` for the complete list and their behavior.
 
@@ -861,78 +875,78 @@ Please, refer to :ref:`builtin annotations <builtin_annotations>` for the comple
       - |TypeDescriptor-api| :code:`extensibility_kind` property.
       - ✅
       - ❌
-      - ❌
+      - ✅
     * - :code:`@bit_bound`
       - |TypeDescriptor-api| :code:`bound` property for :ref:`xtypes_supportedtypes_bitset`. |br|
-        |MemberDescriptor-api| :code:`type` property for :ref:`xtypes_supportedtypes_enumeration`.
+        |TypeDescriptor-api| :code:`literal_type` property for :ref:`xtypes_supportedtypes_enumeration`.
       - ✅
       - ✅❌ (`Enumeration types`_ not configurable).
-      - ❌
+      - ✅
     * - :code:`@default`
       - |MemberDescriptor-api| :code:`default_value` property.
       - ✅
       - ❌
-      - ❌
+      - ✅
     * - :code:`default_literal`
-      - |MemberDescriptor-api| :code:`is_default_label` property.
+      - |MemberDescriptor-api| :code:`is_default_literal` property.
       - ✅
       - ❌
-      - ❌
+      - ✅
     * - :code:`@extensibility`
       - |TypeDescriptor-api| :code:`extensibility_kind` property.
       - ✅
       - ❌
-      - ❌
+      - ✅
     * - :code:`@external`
       - |MemberDescriptor-api| :code:`is_shared` property.
       - ❌
       - ❌
-      - ❌
+      - ✅
     * - :code:`@final`
       - |TypeDescriptor-api| :code:`extensibility_kind` property.
       - ✅
       - ❌
-      - ❌
+      - ✅
     * - :code:`@id`
       - |MemberDescriptor-api| :code:`id` property.
       - ✅
       - ❌
-      - ❌
+      - ✅
     * - :code:`@key` / :code:`@Key`
       - |MemberDescriptor-api| :code:`is_key` property.
       - ✅
       - ❌
-      - ❌
+      - ✅
     * - :code:`@mutable`
       - |TypeDescriptor-api| :code:`extensibility_kind` property.
       - ✅
       - ❌
-      - ❌
+      - ✅
     * - :code:`@nested`
       - |TypeDescriptor-api| :code:`is_nested` property.
       - ❌
       - ❌
-      - ❌
+      - ✅
     * - :code:`@optional`
       - |MemberDescriptor-api| :code:`is_optional` property.
       - ❌
       - ❌
-      - ❌
+      - ✅
     * - :code:`@position`
-      - |MemberDescriptor-api| :code:`id` property.
+      - |MemberDescriptor-api| :code:`position` property.
       - ✅
       - ✅
-      - ❌
+      - ✅
     * - :code:`@try_construct`
       - |MemberDescriptor-api| :code:`try_construct_kind` property.
       - ❌
       - ❌
-      - ❌
+      - ✅
     * - :code:`@value`
-      - |MemberDescriptor-api| :code:`default_value` property.
+      - |MemberDescriptor-api| :code:`literal_value` property.
       - ✅
       - ✅
-      - ❌
+      - ✅
     * - :code:`@verbatim`
       - |VerbatimTextDescriptor-api|
       - ❌

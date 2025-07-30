@@ -1,0 +1,52 @@
+`Version 2.13.5 (EOL) <https://fast-dds.docs.eprosima.com/en/v2.13.5/index.html>`_
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+This release includes the following **features** in an ABI compatible manner:
+
+#. New :ref:`property_max_message_size` property to limit output datagrams size
+
+This release includes the following **improvements**:
+
+#. Improve ThreadSettingsQoS logging
+#. Allow processing of AckNack submessages with ``count == 0``
+#. Internal refactor on port handling
+#. Do not require ``PYTHON_VERSION`` to be defined in .bat files
+#. Use ``%*`` instead of loop in ``.bat`` scripts
+#. Consider library behavior changes as ABI breaks in the PR template checklist
+#. Refactor IStatusQueryable and make monitor service interfaces private
+#. Automatically unmatch remote participants on participant deletion
+#. Handle errors when setting socket buffer sizes
+#. Github CI management:
+
+    #. Refactor Github CI sanitizer related jobs
+    #. Build Fast DDS Python bindings in Fast DDS Docs Github CI job
+    #. Build ShapesDemo on Ubuntu Github CI
+    #. Fix Python Installation version in Github CI. Address failing system tests environment issues.
+    #. Fix sanitizers CI test summary report
+    #. Run selected VS tool on Windows CI
+    #. Increase sleep to miss the deadline in macOS flaky tests
+    #. Fix ShmTransport buffer recovery MacOS flaky test
+    #. Set fallback branch for ``get_related_branch_from_repo`` correctly
+    #. Add DNS entries to hosts files on github workflows
+
+This release includes the following **fixes**:
+
+#. Add check for XML API to PR template
+#. Use absolute paths when loading XML files
+#. Fix some leaks in XML DynamicTypes Parser
+#. Force unlimited ResourceLimits if lower or equal to zero
+#. Enforce SHM ports open mode exclusions
+#. Run ``is_plain`` method with the corresponding data representation
+#. Removed warning
+#. Don't require Fast CDR v2 in examples
+#. Make reader ``get_first_untaken_info()`` coherent with ``read()`` / ``take()``
+#. Fix leak in ``SecurityManager::participant_volatile_message_secure_writer_``
+#. Fix CVE-2024-30258 / CVE-2024-30259
+#. Fix support for ``@key`` annotation in Dynamic types
+#. Set DataSharing in ``Writer|ReaderProxyData``
+#. Fix on_sample_lost notification on best-effort readers for fragmented samples
+#. Correct liveliness state in a multiple reader - one writer scenario
+
+.. note::
+  When upgrading to version 2.13.5 it is **advisable** to regenerate generated source from IDL files
+  using `Fast DDS-Gen v3.2.1 <https://github.com/eProsima/Fast-DDS-Gen/releases/tag/v3.2.1>`_.

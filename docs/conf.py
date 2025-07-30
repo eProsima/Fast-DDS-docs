@@ -476,6 +476,9 @@ autodoc_default_options = {
 }
 
 plantuml = "/usr/bin/plantuml -Djava.awt.headless=true "
+if sys.platform.startswith("win"):
+    plantuml = "C:\\ProgramData\\chocolatey\\bin\\plantuml.exe -Djava.awt.headless=true "
+
 plantuml_output_format = "svg"
 
 # Add any paths that contain templates here, relative to this directory.

@@ -1544,7 +1544,8 @@ void dds_discovery_examples()
     }
 
     {
-        DomainParticipant* client_or_server;
+        DomainParticipant* client_or_server =
+                DomainParticipantFactory::get_instance()->create_participant(0, PARTICIPANT_QOS_DEFAULT);
         //CONF_SERVER_ADD_SERVERS
         // Get existing QoS for the server or client
         DomainParticipantQos client_or_server_qos;
@@ -2985,7 +2986,8 @@ void dds_dataWriter_examples()
         // Create a DataWriter with default QoS and a custom TopicQos.
         // The value DATAWRITER_QOS_USE_TOPIC_QOS is used to denote the default QoS
         // and to override the TopicQos.
-        Topic* topic;
+        Topic* topic =
+                participant->create_topic("", "", TOPIC_QOS_DEFAULT);
         DataWriter* data_writer_with_default_qos_and_custom_topic_qos =
                 publisher->create_datawriter(topic, DATAWRITER_QOS_USE_TOPIC_QOS);
         if (nullptr == data_writer_with_default_qos_and_custom_topic_qos)
@@ -3865,7 +3867,8 @@ void dds_dataReader_examples()
         // Create a DataReader with default QoS and a custom TopicQos.
         // The value DATAREADER_QOS_USE_TOPIC_QOS is used to denote the default QoS
         // and to override the TopicQos.
-        Topic* topic;
+        Topic* topic =
+                participant->create_topic("", "", TOPIC_QOS_DEFAULT);
         DataReader* data_reader_with_default_qos_and_custom_topic_qos =
                 subscriber->create_datareader(topic, DATAREADER_QOS_USE_TOPIC_QOS);
         if (nullptr == data_reader_with_default_qos_and_custom_topic_qos)

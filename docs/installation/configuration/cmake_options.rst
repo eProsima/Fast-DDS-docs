@@ -348,3 +348,24 @@ The building and execution of these tests is specified by the *Fast DDS* CMake o
           use for installing and running the tests.
         - ``Valid Unix filesystem path string``
         - ``""``
+
+Python-Binding
+^^^^^^^^^^^^^^
+
+The *Fast DDS Python-Binding* CMake options are shown below, together with their description and values.
+
+.. list-table::
+    :header-rows: 1
+
+    *   - Option
+        - Description
+        - Possible values
+        - Default
+    *   - :class:`SHARED_LIBRARY_SUFFIX`
+        - Defines the file suffix (extension) used for shared libraries in the build process.
+          For example ".dll" on Windows or ".so" on Linux. The default value for this argument is
+          an empty string, setting the default extension for each platform (Linux and macOS: ".so",
+          Windows: ".dll"). The "dot" in the extension does not have to be included in the CMake argument.
+
+        - ``Valid string (e.g.: "dll", "so", ...)``
+        - ``"""``

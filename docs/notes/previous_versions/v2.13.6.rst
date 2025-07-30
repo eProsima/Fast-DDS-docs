@@ -1,0 +1,23 @@
+`Version 2.13.6 (EOL) <https://fast-dds.docs.eprosima.com/en/v2.13.6/index.html>`_
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+This release includes the following **improvements**:
+
+#. Create InitialConnection for TCP initial peers
+#. Only apply content filter to ALIVE changes
+#. Update version support documentation
+#. Add XML configuration for ``FlowControllerDescriptor``
+#. Github CI improvements
+
+This release includes the following **fixes**:
+
+#. Fix DS servers not connecting due to ports logic
+#. Correctly initialize ``MatchingFailureMask`` constants to be used with the ``std::bitset`` API
+#. Fix topic interference on ``liveliness_changed`` status
+#. Properly delete builtin statistics writers upon ``delete_contained_entities()``
+#. Fix Latency tests
+#. Remove doxygen warnings
+
+.. note::
+  When upgrading to version 2.13.6 it is **advisable** to regenerate generated source from IDL files
+  using `Fast DDS-Gen v3.2.1 <https://github.com/eProsima/Fast-DDS-Gen/releases/tag/v3.2.1>`_.

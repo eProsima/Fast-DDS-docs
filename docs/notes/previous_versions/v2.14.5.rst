@@ -8,7 +8,11 @@
 
 This patch release includes the following **features**:
 
-#. New property to select preferred key agreement algorithm
+#. New property to select :ref:`preferred key agreement algorithm <auth-pki-dh>`.
+
+This patch release includes the following **security fixes**:
+
+#. `CVE-2025-24807 <https://www.cve.org/CVERecord?id=CVE-2025-24807>`_
 
 This patch release includes the following **improvements**:
 
@@ -47,7 +51,6 @@ This patch release includes the following **fixes**:
 #. Fix comparison in ``is_update_allowed``
 #. Use correct algorithm strings on ``PermissionsToken`` and ``IdentityToken``
 #. Fix ``tsan potential deadlock`` between ``StatefulWriter`` and ``FlowController``
-#. Fix `CVE-2025-24807 <https://www.cve.org/CVERecord?id=CVE-2025-24807>`_
 #. Reliable volatile change dropped when all history is ``acked``
 #. Fix log category name macro collision in MacOS
 #. Fix ``null-dereference`` in ``parseXMLMemberDynamicType``

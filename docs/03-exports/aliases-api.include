@@ -1080,6 +1080,7 @@
 .. |DynamicTypeBuilderFactory::create_type_w_uri| replace:: :cpp:func:`DynamicTypeBuilderFactory::create_type_w_uri <eprosima::fastdds::dds::DynamicTypeBuilderFactory::create_type_w_uri>`
 .. |DynamicTypeBuilderFactory::create_type| replace:: :cpp:func:`DynamicTypeBuilderFactory::create_type <eprosima::fastdds::dds::DynamicTypeBuilderFactory::create_type>`
 .. |DynamicTypeBuilderFactory::create_wstring_type| replace:: :cpp:func:`DynamicTypeBuilderFactory::create_wstring_type <eprosima::fastdds::dds::DynamicTypeBuilderFactory::create_wstring_type>`
+.. |DynamicTypeBuilderFactory::for_each_type_w_uri| replace:: :cpp:func:`DynamicTypeBuilderFactory::for_each_type_w_uri <eprosima::fastdds::dds::DynamicTypeBuilderFactory::for_each_type_w_uri>`
 .. |DynamicTypeBuilderFactory::get_primitive_type| replace:: :cpp:func:`DynamicTypeBuilderFactory::get_primitive_type <eprosima::fastdds::dds::DynamicTypeBuilderFactory::get_primitive_type>`
 .. |DynamicTypeBuilderFactory::set_preprocessor| replace:: :cpp:func:`DynamicTypeBuilderFactory::set_preprocessor <eprosima::fastdds::dds::DynamicTypeBuilderFactory::set_preprocessor>`
 

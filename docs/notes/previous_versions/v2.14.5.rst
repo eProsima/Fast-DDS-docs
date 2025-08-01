@@ -33,7 +33,6 @@ This patch release includes the following **improvements**:
 #. Fix for ``Configurability`` example
 #. Increase the announcement period in liveliness test
 #. Allow creation of built-in content filters with different type name
-#. Return sample notifying changes on instance state
 #. Update ``sqlite`` from ``3.36.0`` to ``3.47.2``
 #. Log any errors before ``cancel_init()``
 #. Add ``--quiet`` to git ``submodule`` invocations
@@ -70,6 +69,8 @@ This patch release includes the following **fixes**:
 #. Fix ``EDP`` reliability timings
 #. Fix compatibility with ``Fast CDR v1``
 #. Regression test for fuzz ``XMLParser null-dereference``
+#. Improve resilience against clock adjustments
+#. Fix doxygen documentation for ``iHandle2GUID``
 
 This patch release includes the following **CI improvements**:
 

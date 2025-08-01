@@ -70,7 +70,7 @@ This patch release includes the following **fixes**:
 #. Fix compatibility with ``Fast CDR v1``
 #. Regression test for fuzz ``XMLParser null-dereference``
 #. Improve resilience against clock adjustments
-#. Fix doxygen documentation for iHandle2GUID
+#. Fix doxygen documentation for ``iHandle2GUID``
 
 This patch release includes the following **CI improvements**:
 

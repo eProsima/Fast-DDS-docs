@@ -363,9 +363,10 @@ The *Fast DDS Python-Binding* CMake options are shown below, together with their
         - Default
     *   - :class:`SHARED_LIBRARY_SUFFIX`
         - Defines the file suffix (extension) used for shared libraries in the build process.
-          For example ".dll" on Windows or ".so" on Linux. The default value for this argument is
-          an empty string, setting the default extension for each platform (Linux and macOS: ".so",
-          Windows: ".dll"). The "dot" in the extension does not have to be included in the CMake argument.
+          For Windows OS, the extension can not be modified, always use the cmake default value.
+          The default value for this argument is an empty string,
+          setting the default extension for each platform (Linux and macOS: ".so").
+          The "dot" in the extension does not have to be included in the CMake argument.
 
-        - ``Valid string (e.g.: "dll", "so", ...)``
+        - ``Valid string (e.g.: "dylib", "so", ...)``
         - ``"""``

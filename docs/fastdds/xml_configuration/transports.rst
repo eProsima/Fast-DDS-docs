@@ -23,6 +23,7 @@ The following table lists all the available XML elements that can be defined wit
 element for the configuration of the transport layer.
 A more detailed explanation of each of these elements can be found in :ref:`comm-transports-configuration`.
 
+<<<<<<< HEAD
 +-------------------------------+----------------------------------------------------+----------------------+----------+
 | Name                          | Description                                        | Values               | Default  |
 +===============================+====================================================+======================+==========+
@@ -137,6 +138,148 @@ A more detailed explanation of each of these elements can be found in :ref:`comm
 |                               | purposes. An empty string indicates no trace |br|  |                      |          |
 |                               | will be performed (Optional, **SHM only**).        |                      |          |
 +-------------------------------+----------------------------------------------------+----------------------+----------+
+=======
+.. list-table::
+   :header-rows: 1
+   :align: left
+
+   * - Name
+     - Description
+     - Values
+     - Default
+   * - ``<transport_id>``
+     - Unique name to identify each transport descriptor.
+     - ``string``
+     -
+   * - ``<type>``
+     - Type of the transport descriptor.
+     - ``UDPv4``, ``UDPv6``, ``TCPv4``, ``TCPv6``, ``SHM``
+     - ``UDPv4``
+   * - ``<sendBufferSize>``
+     - Size in bytes of the send socket buffer. If the value is zero, *Fast DDS* will use the system default socket size.
+     - ``uint32_t``
+     - ``0``
+   * - ``<receiveBufferSize>``
+     - Size in bytes of the reception socket buffer. If the value is zero, *Fast DDS* will use the system default socket size.
+     - ``uint32_t``
+     - ``0``
+   * - ``<maxMessageSize>``
+     - The maximum size in bytes of the transport's message buffer.
+     - ``uint32_t``
+     - ``65500``
+   * - ``<maxInitialPeersRange>``
+     - Number of channels opened with each initial remote peer.
+     - ``uint32_t``
+     - ``4``
+   * - ``<netmask_filter>``
+     - Transport's :ref:`netmask_filtering` configuration.
+     - ``string``
+     - ``AUTO``
+   * - ``<interfaces>``
+     - Allows defining an :ref:`ifaces_config`.
+     - ``string``
+     -
+   * - ``<interfaceWhiteList>``
+     - Allows defining an interfaces |whitelist|.
+     - ``string``
+     -
+   * - ``<TTL>``
+     - Time To Live (UDP only). See  :ref:`transport_udp_udp`.
+     - ``uint8_t``
+     - ``1``
+   * - ``<non_blocking_send>``
+     - Whether to set the non-blocking send mode on the socket (NOT available for SHM type). See :ref:`transport_udp_transportDescriptor` and :ref:`transport_tcp_transportDescriptor`.
+     - ``bool``
+     - ``false``
+   * - ``<output_port>``
+     - Port used for output bound. If this field isn't defined, the output port will be random (UDP only).
+     - ``uint16_t``
+     - ``0``
+   * - ``<wan_addr>``
+     - Public WAN address when using TCPv4 transports. This field is optional if the transport doesn't need to define a WAN address (TCPv4 only).
+     - ``string``
+     -
+   * - ``<keep_alive_frequency_ms>``
+     - Frequency in milliseconds for sending :ref:`RTCP <rtcpdefinition>` keep-alive requests (TCP only).
+     - ``uint32_t``
+     - ``50000``
+   * - ``<keep_alive_timeout_ms>``
+     - Time in milliseconds since the last keep-alive request was sent to consider a connection as broken (TCP only).
+     - ``uint32_t``
+     - ``10000``
+   * - ``<max_logical_port>``
+     - The maximum number of logical ports to try during :ref:`RTCP <rtcpdefinition>` negotiations (TCP only).
+     - ``uint16_t``
+     - ``100``
+   * - ``<logical_port_range>``
+     - The maximum number of logical ports per request to try during :ref:`RTCP <rtcpdefinition>` negotiations (TCP only).
+     - ``uint16_t``
+     - ``20``
+   * - ``<logical_port_increment>``
+     - Increment between logical ports to try during :ref:`RTCP <rtcpdefinition>` negotiation (TCP only).
+     - ``uint16_t``
+     - ``2``
+   * - ``<listening_ports>``
+     - Local port to work as TCP acceptor for input connections. If not set, the transport will work as TCP client only. If set to 0, an available port will be automatically assigned (TCP only).
+     - ``List<uint16_t>``
+     -
+   * - ``<tls>``
+     - Allows to define TLS related parameters and options (TCP only).
+     - :ref:`tcp-tls`
+     -
+   * - ``<calculate_crc>``
+     - Calculates the Cyclic Redundancy Code (CRC) for error control (TCP only).
+     - ``bool``
+     - ``true``
+   * - ``<check_crc>``
+     - Check the CRC for error control (TCP only).
+     - ``bool``
+     - ``true``
+   * - ``<enable_tcp_nodelay>``
+     - Socket option for disabling the Nagle algorithm (TCP only).
+     - ``bool``
+     - ``false``
+   * - ``<tcp_negotiation_timeout>``
+     - Time to wait for logical port negotiation (in ms) (TCP only).
+     - ``uint32_t``
+     - ``0``
+   * - ``<keep_alive_thread>``
+     - Settings for the keep-alive thread.
+     - |ThreadSettings|
+     -
+   * - ``<accept_thread>``
+     - Settings for the accept thread.
+     - |ThreadSettings|
+     -
+   * - ``<segment_size>``
+     - Size (in bytes) of the shared-memory segment (Optional, SHM only).
+     - ``uint32_t``
+     - ``262144``
+   * - ``<port_queue_capacity>``
+     - Capacity (in number of messages) available to every Listener (Optional, SHM only).
+     - ``uint32_t``
+     - ``512``
+   * - ``<healthy_check_timeout_ms>``
+     - Maximum time-out (in milliseconds) used when checking whether a Listener is alive (Optional, SHM only).
+     - ``uint32_t``
+     - ``1000``
+   * - ``<rtps_dump_file>``
+     - Complete path (including file) where RTPS messages will be stored for debugging purposes. An empty string indicates no trace will be performed (Optional, SHM only).
+     - ``string``
+     - ``Empty``
+   * - ``<default_reception_threads>``
+     - Default |ThreadSettings| for the reception threads.
+     - |ThreadSettings|
+     -
+   * - ``<reception_threads>``
+     - |ThreadSettings| for the reception threads on specific ports.
+     - ``std::map<uint32_t, ThreadSettings>``
+     -
+   * - ``<dump_thread>``
+     - |ThreadSettings| for the SHM dump thread.
+     - |ThreadSettings|
+     -
+>>>>>>> 76a3e66 (Add missing fields to transport descriptor documentation (#1111))
 
 The following XML code shows an example of transport protocol configuration using all configurable parameters.
 More examples of transports descriptors can be found in the :ref:`comm-transports-configuration` section.
@@ -145,7 +288,7 @@ More examples of transports descriptors can be found in the :ref:`comm-transport
     :language: xml
     :start-after: <!--XML_PROFILES_TRANSPORT_DESCRIPTORS-->
     :end-before: <!--><-->
-    :lines: 2-4, 6-50, 52-53
+    :lines: 2-4, 6-70, 72-73
 
 .. _rtcpdefinition:
 

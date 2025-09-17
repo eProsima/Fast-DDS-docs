@@ -248,28 +248,6 @@ The following table shows the corresponding versions of the Fast DDS library dep
 
 .. tab-set::
 
-<<<<<<< HEAD
-=======
-    .. tab-item:: 3.3.x
-        :sync: 3.3.x
-
-        .. list-table::
-            :header-rows: 1
-
-            * - Product
-              - Related version
-            * - `Fast CDR <https://github.com/eProsima/Fast-CDR/>`__
-              - `v2.3.1 <https://github.com/eProsima/Fast-CDR/releases/tag/v2.3.1>`__
-            * - `Foonathan Memory Vendor <https://github.com/eProsima/foonathan_memory_vendor/>`__
-              - `v1.3.1 <https://github.com/eProsima/foonathan_memory_vendor/releases/tag/v1.3.1>`__
-            * - `Asio <https://github.com/chriskohlhoff/asio>`__
-              - `v1.34.2 <https://github.com/chriskohlhoff/asio/tree/asio-1-34-2>`__
-            * - `TinyXML2 <https://github.com/leethomason/tinyxml2>`__
-              - `v6.0.0 <https://github.com/leethomason/tinyxml2/tree/6.0.0>`__
-            * - `OpenSSL <https://github.com/openssl/openssl>`__
-              - `v3.1.1 <https://github.com/openssl/openssl/releases/tag/openssl-3.1.1>`__
-
->>>>>>> 2d2c812 (Update fastcdr release in Library dependencies section (#1126))
     .. tab-item:: 3.2.x
         :sync: 3.2.x
 

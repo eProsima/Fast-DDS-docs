@@ -650,7 +650,7 @@ html_css_files = [
     select_css(script_path),
     download_file(
         "https://raw.githubusercontent.com/eProsima/all-docs/master/source/_static/css/pro-badge.css",
-        "{}/_static/pro-badge.css".format(script_path))
+        "{}/_static/css/pro-badge.css".format(script_path))
 ]
 
 # Custom substitutions that are included at the beginning of every source file.

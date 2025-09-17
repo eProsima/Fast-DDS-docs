@@ -125,7 +125,7 @@ with distributed systems:
     /fastdds/use_cases/zero_copy/zero_copy.rst
     /fastdds/use_cases/unique_network_flows/unique_network_flows.rst
     /fastdds/use_cases/statistics_module/statistics_module.rst
-    /fastdds/use_cases/dynamic_network_interfaces/dynamic_network_interfaces.rst
+    /fastdds/use_cases/ip_mobility/ip_mobility.rst
     /fastdds/use_cases/dds_record_and_replay/dds_record_and_replay.rst
     /fastdds/use_cases/request_reply/request_reply.rst
     /fastdds/use_cases/remote_type_discovery_matching/remote_type_discovery_matching.rst

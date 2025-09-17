@@ -2,6 +2,8 @@
 .. include:: ../../../03-exports/aliases-api.include
 .. include:: ../../../03-exports/roles.include
 
+:orphan:
+
 .. _dynamic-network-interfaces:
 
 Dynamic network interfaces

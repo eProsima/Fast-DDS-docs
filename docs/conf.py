@@ -614,7 +614,18 @@ html_theme_options.update(download_json())
 
 html_use_smartypants = True
 
-html_css_files = [select_css(script_path)]
+html_css_files = [
+    select_css(script_path),
+    "pro-badge.css"
+]
+
+# Custom substitutions that are included at the beginning of every source file.
+# |Pro|: badge with PRO text. Place it after titles where needed as follows:
+#    Title |Pro|
+#    ===========
+rst_prolog = r"""
+.. |Pro| replace:: :bdg-primary-line:`Pro`
+"""
 
 # Add any paths that contain custom themes here, relative to this directory.
 # html_theme_path = []

@@ -206,6 +206,28 @@ def select_css(html_css_dir):
     return ret
 
 
+def download_file(url, output_path):
+    """
+    Download a file from a URL to a local path.
+
+    :param url: The URL of the file to download.
+    :param output_path: The local path where the file will be saved.
+    :return: The path to the file if downloaded successfully, or an empty string otherwise.
+    """
+    try:
+        req = requests.get(url, allow_redirects=True, timeout=10)
+        req.raise_for_status()  # Raise an error for bad responses
+        os.makedirs(os.path.dirname(output_path), exist_ok=True)
+        with open(output_path, "wb") as f:
+            f.write(req.content)
+        return output_path
+    except requests.RequestException as e:
+        print(f"Failed to download the file from {url}. Request Error: {e}")
+    except OSError as e:
+        print(f"Failed to create the file at {output_path}. OS Error: {e}")
+    return ""
+
+
 def get_git_branch():
     """Get the git branch this repository is currently on."""
     path_to_here = os.path.abspath(os.path.dirname(__file__))
@@ -616,7 +638,9 @@ html_use_smartypants = True
 
 html_css_files = [
     select_css(script_path),
-    "pro-badge.css"
+    download_file(
+        "https://raw.githubusercontent.com/eProsima/all-docs/master/source/_static/css/pro-badge.css",
+        "{}/_static/pro-badge.css".format(script_path))
 ]
 
 # Custom substitutions that are included at the beginning of every source file.

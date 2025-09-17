@@ -212,7 +212,7 @@ def download_file(url, output_path):
 
     :param url: The URL of the file to download.
     :param output_path: The local path where the file will be saved.
-    :return: The path to the file if downloaded successfully, or an empty string otherwise.
+    :return: The path to the file if downloaded successfully, or the path to an empty file otherwise.
     """
     try:
         req = requests.get(url, allow_redirects=True, timeout=10)
@@ -225,7 +225,17 @@ def download_file(url, output_path):
         print(f"Failed to download the file from {url}. Request Error: {e}")
     except OSError as e:
         print(f"Failed to create the file at {output_path}. OS Error: {e}")
-    return ""
+
+    # Create an empty file if the download fails
+    try:
+        os.makedirs(os.path.dirname(output_path), exist_ok=True)
+        with open(output_path, "wb") as f:
+            pass  # Create an empty file
+        print(f"Created an empty file at {output_path}")
+        return output_path
+    except OSError as e:
+        print(f"Failed to create an empty file at {output_path}. OS Error: {e}")
+        return ""
 
 
 def get_git_branch():

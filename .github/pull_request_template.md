@@ -43,6 +43,7 @@ Related implementation PR:
 - [ ] Commit messages follow the project guidelines. <!-- External contributors should sign the DCO. Fast DDS docs developers must also refer to the internal Redmine task. -->
 - [ ] Code snippets related to the added documentation have been provided.
 - [ ] Documentation tests pass locally.
+- [ ] The ``Pro`` version badge has been added if the documented feature is exclusive to Fast DDS Pro.
 - [ ] Applicable backports have been included in the description.
 
 ## Reviewer Checklist

@@ -7,6 +7,10 @@
 Dynamic network interfaces
 ==========================
 
+.. note::
+
+   Starting in Fast DDS v3.4.0, this feature has been deprecated in favor of :ref:`IP mobility <ip-mobility>`.
+
 DDS :ref:`Simple Discovery <simple_disc_settings>` relies on well-known multicast addresses and ports to relay the
 Participant announcement messages (see :ref:`disc_phases`).
 Such Participant announcement includes information about the unicast address-port pairs (a.k.a locators) where the

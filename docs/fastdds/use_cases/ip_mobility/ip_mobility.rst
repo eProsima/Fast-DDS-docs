@@ -19,5 +19,29 @@ protocol, so other participants start sending data to the new addresses.
 
 .. important::
 
+   This feature is still under development and only officially supported for UDPv4 Transport without whitelisting.
+
    This feature is only available in Windows and Linux.
    MacOS will be supported in future releases.
+
+Prerequisites
+-------------
+
+This feature is intended to be used when *Fast DDS* automatically sets the listening unicast locators.
+Consequently, all the locator lists in |DomainParticipantQos::wire_protocol-api| must be empty when the
+participant is created.
+
+These locator lists are:
+
+* |BuiltinAttributes::metatrafficUnicastLocatorList-api|
+* |BuiltinAttributes::metatrafficMulticastLocatorList-api|
+* |WireProtocolConfigQos::default_unicast_locator_list-api|
+* |WireProtocolConfigQos::default_multicast_locator_list-api|
+
+Please refer to :ref:`dds_layer_domainParticipantQos` for more information about these attributes.
+
+.. note::
+
+   Be aware of the remote locators' collections limits set within the |DomainParticipantQoS| (please refer to
+   :ref:`remotelocatorsallocationattributes`).
+   It is recommended to use the highest number of local addresses found on all the systems belonging to the same domain.

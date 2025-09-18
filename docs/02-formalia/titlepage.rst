@@ -24,9 +24,17 @@ information distribution among Real-Time Systems.
 Commercial support
 ^^^^^^^^^^^^^^^^^^
 
-Looking for commercial support? Write us to info@eprosima.com
+.. |commercial_support_link| raw:: html
 
-Find more about us at `eProsima's webpage <https://eprosima.com/>`__.
+   <a href="https://forms.zohopublic.com/reach/form/CommercialSupportRequest/formperma/Ac8GwewD7PTDadQZIV92qDEzNFfMlJnYmA029mSJtJ8" target="_blank" rel="noopener noreferrer">share your details</a>
+
+Looking for commercial support? Please |commercial_support_link| so we can assist you.
+
+.. |eprosima_webpage_link| raw:: html
+
+   <a href="https://www.eprosima.com" target="_blank" rel="noopener noreferrer">eProsima’s webpage</a>
+
+Find more about us at |eprosima_webpage_link|.
 
 Key features
 ^^^^^^^^^^^^

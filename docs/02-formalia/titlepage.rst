@@ -26,7 +26,7 @@ Commercial support
 
 .. |commercial_support_link| raw:: html
 
-   <a href="https://forms.zohopublic.com/reach/form/CommercialSupportRequest/formperma/Ac8GwewD7PTDadQZIV92qDEzNFfMlJnYmA029mSJtJ8" target="_blank" rel="noopener noreferrer">share your details</a>
+   <a href="https://forms.eprosima.com/reach/form/CommercialSupportRequest/formperma/Ac8GwewD7PTDadQZIV92qDEzNFfMlJnYmA029mSJtJ8" target="_blank" rel="noopener noreferrer">share your details</a>
 
 Looking for commercial support? Please |commercial_support_link| so we can assist you.
 

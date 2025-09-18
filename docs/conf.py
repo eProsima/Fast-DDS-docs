@@ -608,6 +608,8 @@ html_theme_options.update(download_json())
 
 html_use_smartypants = True
 
+# The CSS files referenced here should have a path relative to the _static folder.
+# We use static_relative(download_file(...)) to ensure the resulting paths are relative to "_static".
 html_css_files = [
     static_relative(download_file(
         "https://raw.githubusercontent.com/eProsima/all-docs/master/source/_static/css/eprosima-furo.css",

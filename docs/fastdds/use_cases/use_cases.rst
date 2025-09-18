@@ -112,6 +112,7 @@ with distributed systems:
     :maxdepth: 2
     :hidden:
 
+    /fastdds/use_cases/tsn/tsn.rst
     /fastdds/use_cases/tcp/tcp_use_case.rst
     /fastdds/use_cases/wifi/wifi.rst
     /fastdds/use_cases/well_known_deployments/well_known_deployments.rst

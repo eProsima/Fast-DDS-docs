@@ -57,6 +57,7 @@
 #include <fastdds/rtps/reader/ReaderDiscoveryStatus.hpp>
 #include <fastdds/rtps/transport/ChainingTransport.hpp>
 #include <fastdds/rtps/transport/ChainingTransportDescriptor.hpp>
+#include <fastdds/rtps/transport/ethernet/EthernetTransportDescriptor.hpp>
 #include <fastdds/rtps/transport/network/AllowedNetworkInterface.hpp>
 #include <fastdds/rtps/transport/network/BlockedNetworkInterface.hpp>
 #include <fastdds/rtps/transport/network/NetmaskFilterKind.hpp>
@@ -67,6 +68,8 @@
 #include <fastdds/rtps/transport/TCPv6TransportDescriptor.hpp>
 #include <fastdds/rtps/transport/UDPv4TransportDescriptor.hpp>
 #include <fastdds/rtps/transport/UDPv6TransportDescriptor.hpp>
+#include <fastdds/rtps/transport/udp_tsn/TSN_UDPv4TransportDescriptor.hpp>
+#include <fastdds/rtps/transport/udp_tsn/UDPPriorityMappings.hpp>
 #include <fastdds/statistics/dds/domain/DomainParticipant.hpp>
 #include <fastdds/statistics/dds/publisher/qos/DataWriterQos.hpp>
 #include <fastdds/statistics/topic_names.hpp>
@@ -6244,6 +6247,87 @@ void dds_transport_examples ()
 
         // Link the Transport Layer to the Participant.
         qos.transport().user_transports.push_back(udp_transport);
+
+        // Avoid using the default transport
+        qos.transport().use_builtin_transports = false;
+        //!--
+    }
+
+    {
+        //TSN_SET_UDP_TUPLE
+        DomainParticipantQos qos;
+
+        // Create a descriptor for the new transport.
+        auto udp_transport = std::make_shared<TSN_UDPv4TransportDescriptor>();
+
+        // Set the TSN-UDP tuples
+        UDPPriorityMapping udp_priority_mapping_1;
+        int32_t udp_priority_1 = -1;
+        udp_priority_mapping_1.source_port = 5000;
+        udp_transport->udp_priority_mappings[udp_priority_1] = udp_priority_mapping_1;
+
+        UDPPriorityMapping udp_priority_mapping_2;
+        int32_t udp_priority_2 = 1;
+        udp_priority_mapping_2.source_port = 5000;
+        udp_priority_mapping_2.dscp = 1;
+        udp_transport->udp_priority_mappings[udp_priority_2] = udp_priority_mapping_2;
+
+        UDPPriorityMapping udp_priority_mapping_3;
+        int32_t udp_priority_3 = 2;
+        udp_priority_mapping_3.source_port = 5000;
+        udp_priority_mapping_3.dscp = 2;
+        udp_priority_mapping_3.interface = "eth0";
+        udp_transport->udp_priority_mappings[udp_priority_3] = udp_priority_mapping_3;
+
+        UDPPriorityMapping udp_priority_mapping_4;
+        int32_t udp_priority_4 = 3;
+        udp_priority_mapping_4.source_port = 5000;
+        udp_priority_mapping_4.dscp = 3;
+        udp_priority_mapping_4.interface = "10.10.1.2";
+        udp_transport->udp_priority_mappings[udp_priority_4] = udp_priority_mapping_4;
+
+        // Link the Transport Layer to the Participant.
+        qos.transport().user_transports.push_back(udp_transport);
+
+        // Avoid using the default transport
+        qos.transport().use_builtin_transports = false;
+        //!--
+    }
+
+    {
+        //TSN_SET_ETHERNET_TUPLE
+        DomainParticipantQos qos;
+
+        // Create a descriptor for the new transport.
+        auto ethernet_transport = std::make_shared<EthernetTransportDescriptor>();
+
+        // Set the ethernet interface name
+        ethernet_transport->interface_name = "lo";
+
+        // Set default source port
+        ethernet_transport->default_source_port = 6000;
+
+        // Set the TSN-Ethernet tuples
+        EthernetTransportDescriptor::PriorityMapping ethernet_priority_mapping_1;
+        int32_t ethernet_priority_1 = -1;
+        ethernet_priority_mapping_1.source_port = 5000;
+        ethernet_transport->ethernet_priority_mappings[ethernet_priority_1] = ethernet_priority_mapping_1;
+
+        EthernetTransportDescriptor::PriorityMapping ethernet_priority_mapping_2;
+        int32_t ethernet_priority_2 = 1;
+        ethernet_priority_mapping_2.source_port = 5000;
+        ethernet_priority_mapping_2.pcp = 1;
+        ethernet_transport->ethernet_priority_mappings[ethernet_priority_2] = ethernet_priority_mapping_2;
+
+        EthernetTransportDescriptor::PriorityMapping ethernet_priority_mapping_3;
+        int32_t ethernet_priority_3 = 2;
+        ethernet_priority_mapping_3.source_port = 5000;
+        ethernet_priority_mapping_3.pcp = 2;
+        ethernet_priority_mapping_3.vlan_id = 100;
+        ethernet_transport->ethernet_priority_mappings[ethernet_priority_3] = ethernet_priority_mapping_3;
+
+        // Link the Transport Layer to the Participant.
+        qos.transport().user_transports.push_back(ethernet_transport);
 
         // Avoid using the default transport
         qos.transport().use_builtin_transports = false;

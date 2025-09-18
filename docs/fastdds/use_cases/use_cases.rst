@@ -10,6 +10,12 @@ Use-Cases
 This section provides configuration examples for the following typical use cases when dealing
 with distributed systems:
 
++ :ref:`use-case-dds-tsn` |Pro|.
+  Describes how to configure *Fast DDS* to use DDS over Time-Sensitive Networking (TSN). This configuration leverages
+  IEEE 802.1 standards to provide deterministic, real-time data delivery over Ethernet. It ensures predictable latency
+  and high reliability for critical applications by mapping DDS QoS policies to TSN capabilities and supporting both
+  UDP/IP and raw Ethernet transports.
+
 + :ref:`use-case-tcp`.
   Describes how to configure *Fast DDS* to use the ``LARGE_DATA`` builtin transports mode. This mode enables
   efficient utilization of TCP transport without the need for constant reconfiguration during deployment changes. It

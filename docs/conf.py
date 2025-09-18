@@ -152,58 +152,52 @@ def retrieve_custom_sidebar(root_dir):
     return ret
 
 
-def download_css(html_css_dir):
+def download_file(url, output_path):
     """
-    Download the common theme of eProsima readthedocs documentation.
+    Download a file from a URL to a local path.
 
-    The theme is defined in a CSS file that is hosted in the eProsima GitHub
-    repository with the index of all eProsima product documentation
-    (https://github.com/eProsima/all-docs).
-
-    :param html_css_dir: The directory to save the CSS stylesheet.
-    :return: True if the file was downloaded and generated successfully.
-        False if not.
+    :param url: The URL of the file to download.
+    :param output_path: The local path where the file will be saved.
+    :return: The path to the file if downloaded successfully, or the path to an empty file otherwise.
     """
-    url = "https://raw.githubusercontent.com/eProsima/all-docs/master/source/_static/css/eprosima-furo.css"
     try:
         req = requests.get(url, allow_redirects=True, timeout=10)
-    except requests.RequestException as e:
-        print(
-            "Failed to download the CSS with the eProsima rtd theme."
-            "Request Error: {}".format(e)
-        )
-        return False
-    if req.status_code != 200:
-        print(
-            "Failed to download the CSS with the eProsima rtd theme."
-            "Return code: {}".format(req.status_code)
-        )
-        return False
-    os.makedirs(os.path.dirname("{}/_static/css/".format(html_css_dir)), exist_ok=True)
-    theme_path = "{}/_static/css/eprosima-furo.css".format(html_css_dir)
-    with open(theme_path, "wb") as f:
-        try:
+        req.raise_for_status()  # Raise an error for bad responses
+        os.makedirs(os.path.dirname(output_path), exist_ok=True)
+        with open(output_path, "wb") as f:
             f.write(req.content)
-        except OSError:
-            print("Failed to create the file: {}".format(theme_path))
-            return False
-    return True
+        return output_path
+    except requests.RequestException as e:
+        print(f"Failed to download the file from {url}. Request Error: {e}")
+    except OSError as e:
+        print(f"Failed to create the file at {output_path}. OS Error: {e}")
+
+    # Create an empty file if the download fails
+    try:
+        os.makedirs(os.path.dirname(output_path), exist_ok=True)
+        with open(output_path, "wb") as f:
+            pass  # Create an empty file
+        print(f"Created an empty file at {output_path}")
+        return output_path
+    except OSError as e:
+        print(f"Failed to create an empty file at {output_path}. OS Error: {e}")
+        return ""
 
 
-def select_css(html_css_dir):
+def static_relative(path):
     """
-    Select CSS file with the website's template.
-
-    :param html_css_dir: The directory to save the CSS stylesheet.
-    :return: Returns a list of CSS files to be imported.
+    Get the relative path after "_static" in a posix style.
+    :param path: The original path.
+    :return: The relative path after "_static" in a posix style.
     """
-    ret = ""
-    common_css = "css/eprosima-furo.css"
-    if download_css(html_css_dir):
-        print("Applying common CSS style file: {}".format(common_css))
-        ret = common_css
-
-    return ret
+    if not path:
+        return ""
+    parts = path.split(os.path.sep)
+    if "_static" in parts:
+        idx = len(parts) - 1 - parts[::-1].index("_static")
+        rel_parts = parts[idx + 1 :]
+        return "/".join(rel_parts) if rel_parts else ""
+    return path
 
 
 def get_git_branch():
@@ -614,7 +608,24 @@ html_theme_options.update(download_json())
 
 html_use_smartypants = True
 
-html_css_files = [select_css(script_path)]
+# The CSS files referenced here should have a path relative to the _static folder.
+# We use static_relative(download_file(...)) to ensure the resulting paths are relative to "_static".
+html_css_files = [
+    static_relative(download_file(
+        "https://raw.githubusercontent.com/eProsima/all-docs/master/source/_static/css/eprosima-furo.css",
+        "{}/_static/css/eprosima-furo.css".format(script_path))),
+    static_relative(download_file(
+        "https://raw.githubusercontent.com/eProsima/all-docs/master/source/_static/css/pro-badge.css",
+        "{}/_static/css/pro-badge.css".format(script_path)))
+]
+
+# Custom substitutions that are included at the beginning of every source file.
+# |Pro|: badge with PRO text. Place it after titles where needed as follows:
+#    Title |Pro|
+#    ===========
+rst_prolog = r"""
+.. |Pro| replace:: :bdg-primary-line:`Pro`
+"""
 
 # Add any paths that contain custom themes here, relative to this directory.
 # html_theme_path = []

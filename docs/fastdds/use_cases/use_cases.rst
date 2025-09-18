@@ -1,7 +1,7 @@
-.. _typical_use_cases:
+.. _use_cases:
 
-Typical Use-Cases
-=================
+Use-Cases
+=========
 
 .. _OSRF: https://www.openrobotics.org/
 .. _Robot Operation System 2 (ROS 2): https://index.ros.org/doc/ros2/

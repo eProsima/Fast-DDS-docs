@@ -75,13 +75,13 @@ Supported transports
 
   .. tab-set-code::
 
-    .. literalinclude:: /../code/DDSCodeTester.cpp
+    .. literalinclude:: /../code/ProDDSCodeTester.cpp
        :language: c++
        :start-after: //TSN_SET_UDP_TUPLE
        :end-before: //!--
        :dedent: 8
 
-    .. literalinclude:: /../code/XMLTester.xml
+    .. literalinclude:: /../code/ProXMLTester.xml
        :language: xml
        :start-after: <!-->TSN_SET_UDP_TUPLE<-->
        :end-before: <!--><-->
@@ -112,13 +112,13 @@ Supported transports
 
   .. tab-set-code::
 
-    .. literalinclude:: /../code/DDSCodeTester.cpp
+    .. literalinclude:: /../code/ProDDSCodeTester.cpp
        :language: c++
        :start-after: //TSN_SET_ETHERNET_TUPLE
        :end-before: //!--
        :dedent: 8
 
-    .. literalinclude:: /../code/XMLTester.xml
+    .. literalinclude:: /../code/ProXMLTester.xml
        :language: xml
        :start-after: <!-->TSN_SET_ETHERNET_TUPLE<-->
        :end-before: <!--><-->

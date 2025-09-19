@@ -338,55 +338,6 @@
 <-->
 <!--><-->
 
-<!-->TSN_SET_UDP_TUPLE<-->
-<transport_descriptors>
-    <transport_descriptor>
-        <transport_id>tsn_udp_transport</transport_id>
-        <type>UDPv4</type>
-        <udp_priority_mappings>
-                <priority value="-1" source_port="5000"/>
-                <priority value="1" source_port="5000" dscp="1"/>
-                <priority value="2" source_port="5000" dscp="2" interface="eth0"/>
-                <priority value="3" source_port="5000" dscp="3" interface="10.10.1.2"/>
-        </udp_priority_mappings>
-    </transport_descriptor>
-</transport_descriptors>
-
-<participant profile_name="TSNUDPParticipant">
-    <rtps>
-        <userTransports>
-            <transport_id>tsn_udp_transport</transport_id>
-        </userTransports>
-        <useBuiltinTransports>false</useBuiltinTransports>
-    </rtps>
-</participant>
-<!--><-->
-
-<!-->TSN_SET_ETHERNET_TUPLE<-->
-<transport_descriptors>
-    <transport_descriptor>
-        <transport_id>tsn_ethernet_transport</transport_id>
-        <type>ETH</type>
-        <eth_interface_name>lo</eth_interface_name>
-        <eth_output_port>6000</eth_output_port>
-        <eth_priority_mappings>
-            <priority value="-1" source_port="5000"/>
-            <priority value="1" source_port="5000" pcp="1"/>
-            <priority value="2" source_port="5000" pcp="2" vlan_id="100"/>
-        </eth_priority_mappings>
-	</transport_descriptor>
-</transport_descriptors>
-
-<participant profile_name="TSNEthernetParticipant">
-    <rtps>
-        <userTransports>
-            <transport_id>tsn_ethernet_transport</transport_id>
-        </userTransports>
-        <useBuiltinTransports>false</useBuiltinTransports>
-    </rtps>
-</participant>
-<!--><-->
-
 <!-->CONF-TCP-TRANSPORT-SETTING-SERVER<-->
 <!--
 <?xml version="1.0" encoding="UTF-8" ?>

@@ -127,7 +127,7 @@ Supported transports
 TSN Compatible QoS Policies
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-The following QoS configurations shall be enforced:
+The DDS-TSN specification recommends using the following QoS configuration in the topics that need to leverage TSN capabilities:
 
 * **Reliability**
 

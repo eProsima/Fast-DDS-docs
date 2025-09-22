@@ -124,6 +124,17 @@ Supported transports
        :start-after: <!-->TSN_SET_ETHERNET_TUPLE<-->
        :end-before: <!--><-->
 
+ .. note::
+      This transport is only supported on Linux systems.
+      It requires either root privileges or the ``CAP_NET_RAW`` capability.
+
+ .. note::
+      The *Fast DDS* |Pro| installation provides a helper file ``rtps_eth.lua`` under the ``share/fastdds``
+      subfolder.
+      This script allows to easily dissect packets from this transport in Wireshark.
+      For details on installing custom plugins, see the
+      `Wireshark documentation <https://www.wireshark.org/docs/wsug_html_chunked/ChPluginFolders.html>`_.
+
 TSN Compatible QoS Policies
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^
 

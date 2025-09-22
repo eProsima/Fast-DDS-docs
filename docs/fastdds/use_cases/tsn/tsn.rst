@@ -87,6 +87,22 @@ Supported transports
        :start-after: <!-->TSN_SET_UDP_TUPLE<-->
        :end-before: <!--><-->
 
+ .. note::
+   On Windows systems, modifying the `DSCP` value requires additional operating system changes.
+   It is not sufficient to configure the QoS profile alone.
+   You must also update the Windows registry and group policies to allow applications to set `DSCP` values:
+
+   - In the registry editor, set ``DisableUserTOSSetting`` to ``0`` under
+     ``HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Services\Tcpip\Parameters``.
+   - Under ``HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Services\Tcpip\Qos``, create the string value
+     ``Do not use NLA`` and set it to ``1`` (create the ``Qos`` key if it does not exist).
+   - Reboot the system and open ``gpedit.msc``.
+   - Create a new policy under *Computer Configuration → Windows Settings → Policy-based QoS*.
+     Enable **Specify DSCP Value** and enter the desired value.
+     Restrict the policy to the specific application executable.
+
+   After completing these steps, your application will be able to use the configured `DSCP` value.
+
 - **Ethernet Transport Support**
 
   *Fast DDS* |Pro| includes a custom `Ethernet` transport that operates directly at Layer 2 (data link layer),
@@ -125,15 +141,15 @@ Supported transports
        :end-before: <!--><-->
 
  .. note::
-      This transport is only supported on Linux systems.
-      It requires either root privileges or the ``CAP_NET_RAW`` capability.
+   This transport is only supported on Linux systems.
+   It requires either root privileges or the ``CAP_NET_RAW`` capability.
 
  .. note::
-      The *Fast DDS* |Pro| installation provides a helper file ``rtps_eth.lua`` under the ``share/fastdds``
-      subfolder.
-      This script allows to easily dissect packets from this transport in Wireshark.
-      For details on installing custom plugins, see the
-      `Wireshark documentation <https://www.wireshark.org/docs/wsug_html_chunked/ChPluginFolders.html>`_.
+   The *Fast DDS* |Pro| installation provides a helper file ``rtps_eth.lua`` under the ``share/fastdds``
+   subfolder.
+   This script allows to easily dissect packets from this transport in Wireshark.
+   For details on installing custom plugins, see the
+   `Wireshark documentation <https://www.wireshark.org/docs/wsug_html_chunked/ChPluginFolders.html>`_.
 
 TSN Compatible QoS Policies
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^

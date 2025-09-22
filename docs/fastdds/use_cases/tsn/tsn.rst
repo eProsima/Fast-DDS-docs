@@ -44,7 +44,7 @@ Fast DDS TSN Implementation
 
 TSN flow configuration can be set via a mapping between a defined
 :ref:`TransportPriorityQosPolicy <transportpriorityqospolicy>` value and a set of tuple parameters.
-Then, any :ref:`DataWriter<dds_layer_publisher_dataWriter>` which has been assigned such of the mapped
+Then, any :ref:`DataWriter<dds_layer_publisher_dataWriter>` which has been assigned such mapped
 :ref:`TransportPriorityQosPolicy <transportpriorityqospolicy>` will use the corresponding tuple parameters for
 its communication.
 

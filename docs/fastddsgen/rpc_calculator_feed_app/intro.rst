@@ -3,8 +3,8 @@
 
 .. _fastddsgen_rpc_calculator_feed_app_intro:
 
-Building a RPC Client/Server application with data streaming
-============================================================
+Building a RPC Client/Server application with data streaming |Pro|
+==================================================================
 
 *Fast DDS-Gen* supports the generation of source code for interfaces that specify
 data streaming operations using the ``@feed`` builtin annotation.

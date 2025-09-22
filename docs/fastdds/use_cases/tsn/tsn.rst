@@ -70,7 +70,8 @@ Supported transports
   * **DSCP**
   * **Protocol**
 
-  The `protocol` field is fixed to `UDPv4` / `UDPv6` by the selected :ref:`UDP Transport <transport_udp_transportDescriptor>`.
+  The `protocol` field is fixed to `UDPv4` / `UDPv6` by the selected
+  :ref:`UDP Transport <transport_udp_transportDescriptor>`.
   The rest of the fields can be set like in the following example:
 
   .. tab-set-code::
@@ -138,5 +139,5 @@ The following QoS configurations shall be enforced:
 
   Must use `KEEP_LAST_HISTORY_QOS with depth=1`
 
-These restrictions are in place to align with the deterministic nature of TSN networks, where retransmissions
+These restrictions are in place to align with the deterministic nature of TSN networks, where re-transmissions
 and history caching would potentially disrupt the time-critical delivery of messages.

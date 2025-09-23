@@ -87,21 +87,24 @@ Supported transports
        :start-after: <!-->TSN_SET_UDP_TUPLE<-->
        :end-before: <!--><-->
 
- .. note::
-   On Windows systems, modifying the `DSCP` value requires additional operating system changes.
-   It is not sufficient to configure the QoS profile alone.
-   You must also update the Windows registry and group policies to allow applications to set `DSCP` values:
+  .. note::
 
-   - In the registry editor, set ``DisableUserTOSSetting`` to ``0`` under
-     ``HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Services\Tcpip\Parameters``.
-   - Under ``HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Services\Tcpip\Qos``, create the string value
-     ``Do not use NLA`` and set it to ``1`` (create the ``Qos`` key if it does not exist).
-   - Reboot the system and open ``gpedit.msc``.
-   - Create a new policy under *Computer Configuration → Windows Settings → Policy-based QoS*.
-     Enable **Specify DSCP Value** and enter the desired value.
-     Restrict the policy to the specific application executable.
+    On Windows systems, modifying the `DSCP` value requires additional operating system changes.
+    It is not sufficient to configure the QoS profile alone.
+    You must also update the Windows registry and group policies to allow applications to set `DSCP` values:
 
-   After completing these steps, your application will be able to use the configured `DSCP` value.
+    - In the `regedit` application, under ``HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Services\Tcpip\Parameters``,
+      create a new `DWORD` value named `DisableUserTOSSetting`, and set it to `0`.
+    - Under ``HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Services\Tcpip\QoS`` (create the ``QoS`` key if it does
+      not exist), create a new string value named  ``Do not use NLA`` and set it to ``1``.
+    - Reboot the system and open ``gpedit.msc``.
+    - Create a new policy under *Computer Configuration → Windows Settings → Policy-based QoS*.
+      Select *Specify DSCP Value* and enter the desired value.
+      On the next page, select `Only applications with this executable name`, and specify the full path to your
+      application’s executable file.
+      Then click "Next" until the configuration is complete.
+
+    After completing these steps, your application will be able to use the configured `DSCP` value.
 
 - **Ethernet Transport Support**
 
@@ -140,21 +143,24 @@ Supported transports
        :start-after: <!-->TSN_SET_ETHERNET_TUPLE<-->
        :end-before: <!--><-->
 
- .. note::
-   This transport is only supported on Linux systems.
-   It requires either root privileges or the ``CAP_NET_RAW`` capability.
+  .. note::
 
- .. note::
-   The *Fast DDS* |Pro| installation provides a helper file ``rtps_eth.lua`` under the ``share/fastdds``
-   subfolder.
-   This script allows to easily dissect packets from this transport in Wireshark.
-   For details on installing custom plugins, see the
-   `Wireshark documentation <https://www.wireshark.org/docs/wsug_html_chunked/ChPluginFolders.html>`_.
+    This transport is only supported on Linux systems.
+    It requires either root privileges or the ``CAP_NET_RAW`` capability.
+
+  .. note::
+
+    The *Fast DDS* |Pro| installation provides a helper file ``rtps_eth.lua`` under the ``share/fastdds``
+    subfolder.
+    This script allows to easily dissect packets from this transport in Wireshark.
+    For details on installing custom plugins, see the
+    `Wireshark documentation <https://www.wireshark.org/docs/wsug_html_chunked/ChPluginFolders.html>`_.
 
 TSN Compatible QoS Policies
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-The DDS-TSN specification recommends using the following QoS configuration in the topics that need to leverage TSN capabilities:
+The DDS-TSN specification recommends using the following QoS configuration in the topics that need to leverage
+TSN capabilities:
 
 * **Reliability**
 

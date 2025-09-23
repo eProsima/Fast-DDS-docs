@@ -1,7 +1,7 @@
-.. _typical_use_cases:
+.. _use_cases:
 
-Typical Use-Cases
-=================
+Use-Cases
+=========
 
 .. _OSRF: https://www.openrobotics.org/
 .. _Robot Operation System 2 (ROS 2): https://index.ros.org/doc/ros2/
@@ -10,11 +10,19 @@ Typical Use-Cases
 This section provides configuration examples for the following typical use cases when dealing
 with distributed systems:
 
++ :ref:`use-case-dds-tsn` |Pro|.
+  Describes how to configure *Fast DDS* to use DDS over Time-Sensitive Networking (TSN).
+  This configuration leverages IEEE 802.1 standards to provide deterministic, real-time data delivery
+  over Ethernet.
+  It ensures predictable latency and high reliability for critical applications by mapping DDS QoS policies
+  to TSN capabilities and supporting both UDP/IP and raw Ethernet transports.
+
 + :ref:`use-case-tcp`.
-  Describes how to configure *Fast DDS* to use the ``LARGE_DATA`` builtin transports mode. This mode enables
-  efficient utilization of TCP transport without the need for constant reconfiguration during deployment changes. It
-  optimizes communication performance for large data samples over lossy networks by employing a combination of UDP and
-  TCP/SHM transports.
+  Describes how to configure *Fast DDS* to use the ``LARGE_DATA`` builtin transports mode.
+  This mode enables efficient utilization of TCP transport without the need for constant reconfiguration
+  during deployment changes.
+  It optimizes communication performance for large data samples over lossy networks by employing a combination
+  of UDP and TCP/SHM transports.
 
 + :ref:`use-case-fast-rtps-over-wifi`.
   Presents a case where :ref:`discovery` through multicast communication is a challenge.
@@ -106,6 +114,7 @@ with distributed systems:
     :maxdepth: 2
     :hidden:
 
+    /fastdds/use_cases/tsn/tsn.rst
     /fastdds/use_cases/tcp/tcp_use_case.rst
     /fastdds/use_cases/wifi/wifi.rst
     /fastdds/use_cases/well_known_deployments/well_known_deployments.rst

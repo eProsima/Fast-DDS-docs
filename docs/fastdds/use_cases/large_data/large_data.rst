@@ -128,6 +128,27 @@ For receiving sockets, the command is:
 
     $> sudo sysctl -w net.core.rmem_max=12582912
 
+Linux also defines per-socket TCP buffer sizes as triplets:
+
+.. code-block:: text
+
+    $> net.ipv4.tcp_wmem = <min> <default> <max> (TCP send buffer)
+    $> net.ipv4.tcp_rmem = <min> <default> <max> (TCP receive buffer)
+
+The middle value is the default used for most connections. If only the global maxima are raised, sockets may still
+use a small default and saturate during bursts.
+Set the current values for sending sockets with:
+
+.. code-block:: bash
+
+    $> sudo sysctl -w net.ipv4.tcp_wmem="4096 12582912 12582912"
+
+For receiving sockets, the command is:
+
+.. code-block:: bash
+
+    $> sudo sysctl -w net.ipv4.tcp_rmem="4096 12582912 12582912"
+
 Windows
 .......
 

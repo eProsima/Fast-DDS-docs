@@ -184,7 +184,7 @@ However, all other commands are only compatible with Linux OS.
     #default_keyfile = privkey.pem
     distinguished_name= req_distinguished_name
     #attributes = req_attributes
-    #x509_extensions = v3_ca # The extentions to add to the self signed cert
+    x509_extensions = root_ca_extensions # The extensions to add to the self signed cert
     string_mask = utf8only
 
     [ req_distinguished_name ]
@@ -194,6 +194,12 @@ However, all other commands are only compatible with Linux OS.
     0.organizationName = eProsima
     commonName = eProsima Main Test CA
     emailAddress = mainca@eprosima.com
+
+    [root_ca_extensions]
+    basicConstraints = critical, CA:true
+
+.. note::
+   For a self-signed **root CA**, the X.509 extension ``basicConstraints = CA:true`` is **required**. Without it, stacks might not recognize the certificate as a CA.
 
 After writing the configuration file, next commands generate the certificate using the
 Elliptic Curve Digital Signature Algorithm (ECDSA).

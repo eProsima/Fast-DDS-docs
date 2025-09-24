@@ -9,9 +9,9 @@
 Dynamic network interfaces
 ==========================
 
-.. note::
+.. warning::
 
-   Starting in Fast DDS v3.4.0, this feature has been deprecated in favor of :ref:`IP mobility <ip-mobility>`.
+   Starting in Fast DDS v3.4.0, this feature has been deprecated in favor of :ref:`IP mobility <ip-mobility>` |Pro|.
 
 DDS :ref:`Simple Discovery <simple_disc_settings>` relies on well-known multicast addresses and ports to relay the
 Participant announcement messages (see :ref:`disc_phases`).

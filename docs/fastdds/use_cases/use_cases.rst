@@ -17,6 +17,10 @@ with distributed systems:
   It ensures predictable latency and high reliability for critical applications by mapping DDS QoS policies
   to TSN capabilities and supporting both UDP/IP and raw Ethernet transports.
 
++ :ref:`IP mobility <ip-mobility>` |Pro|.
+  If the network interfaces are expected to change while the application is running, *Fast DDS Pro* provides an
+  automatic way of re-scanning the available interfaces and including them.
+
 + :ref:`use-case-tcp`.
   Describes how to configure *Fast DDS* to use the ``LARGE_DATA`` builtin transports mode.
   This mode enables efficient utilization of TCP transport without the need for constant reconfiguration
@@ -82,10 +86,6 @@ with distributed systems:
 + :ref:`use-case-unique-flows`.
   This use case illustrates the APIs that allow for the request of unique network flows, and for the identification
   of those in use.
-
-+ :ref:`dynamic-network-interfaces`.
-  If the network interfaces are expected to change while the application is running, *Fast DDS* provides an easy way
-  of re-scanning the available interfaces and including them.
 
 + :ref:`statistics_module`.
   This use case explains how to enable the Statistics module within the monitored application, and how to create a

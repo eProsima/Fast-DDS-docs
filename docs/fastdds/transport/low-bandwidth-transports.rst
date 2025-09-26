@@ -30,7 +30,7 @@ Payload Compression Transport
 This low-bandwidth transport performs a standard compression of data before sending and the corresponding decompression
 after receiving.
 The compression algorithm may be selected between Zlib and Bzip2, or even let the transport perform both and use the one
-ahich produces the shortest output.
+which produces the shortest output.
 
 This transport can be configured using the |DomainParticipantQos| |DomainParticipantQos::properties-api|
 ``rtps.payload_compression``.

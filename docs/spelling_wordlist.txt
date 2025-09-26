@@ -40,6 +40,7 @@ bitset
 bitsets
 blackbox
 BNF
+Bzip
 boolean
 booleans
 Bugfix
@@ -349,3 +350,4 @@ WString
 Xcode
 XMLProfiles
 XTypes
+Zlib

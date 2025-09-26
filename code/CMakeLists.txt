@@ -46,7 +46,6 @@ endif()
 ####################################################################################################
 add_subdirectory(Examples/C++/DDSHelloWorld)
 add_subdirectory(Examples/C++/RpcClientServerBasic)
-add_subdirectory(Examples/C++/RpcClientServerFeed)
 
 ####################################################################################################
 # Compile test applications

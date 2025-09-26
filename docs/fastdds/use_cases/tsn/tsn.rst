@@ -86,6 +86,7 @@ Supported transports
        :language: xml
        :start-after: <!-->TSN_SET_UDP_TUPLE<-->
        :end-before: <!--><-->
+       :lines: 2-4,6-26,28-29
 
   .. note::
 
@@ -142,6 +143,7 @@ Supported transports
        :language: xml
        :start-after: <!-->TSN_SET_ETHERNET_TUPLE<-->
        :end-before: <!--><-->
+       :lines: 2-4,6-27,29-30
 
   .. note::
 

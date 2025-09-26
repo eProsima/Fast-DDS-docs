@@ -55,6 +55,7 @@ The figure below shows a comparison between the different transports available i
     /fastdds/transport/datasharing.rst
     /fastdds/transport/intraprocess.rst
     /fastdds/transport/tcp/tls.rst
+    /fastdds/transport/low-bandwidth-transports.rst
     /fastdds/transport/listening_locators.rst
     /fastdds/transport/announced_locators.rst
     /fastdds/transport/whitelist.rst

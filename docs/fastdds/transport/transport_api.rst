@@ -306,6 +306,8 @@ the associated ``low_level_transport_``.
 Also, when a incoming buffer arrives to the ``low_level_transport_``, this one calls the overridden
 |ChainingTransport::receive-api| function to allow to pre-process the buffer.
 
+.. _transport_transportApi_chaining_descriptor:
+
 ChainingTransportDescriptor
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^
 

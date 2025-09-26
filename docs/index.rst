@@ -73,7 +73,6 @@
    /fastddsgen/dataTypes/dataTypes
    /fastddsgen/interfaces/introduction
    /fastddsgen/rpc_calculator_basic_app/intro
-   /fastddsgen/rpc_calculator_feed_app/intro
 
 .. _index_cli:
 

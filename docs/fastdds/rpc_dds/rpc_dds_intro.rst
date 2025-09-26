@@ -53,4 +53,3 @@ The RPC specification provides two different APIs to build RPC over DDS applicat
 
    /fastdds/rpc_dds/request_reply/request_reply_api_intro
    /fastdds/rpc_dds/exceptions/rpc_exceptions
-   /fastdds/rpc_dds/data_streaming/rpc_data_streaming_intro

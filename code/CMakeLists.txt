@@ -102,9 +102,6 @@ configure_file(${CMAKE_CURRENT_SOURCE_DIR}/helloworld_test.py
 configure_file(${CMAKE_CURRENT_SOURCE_DIR}/rpc_calculator_basic_test.py
 ${CMAKE_CURRENT_BINARY_DIR}/rpc_calculator_basic_test.py COPYONLY)
 
-configure_file(${CMAKE_CURRENT_SOURCE_DIR}/rpc_calculator_feed_test.py
-${CMAKE_CURRENT_BINARY_DIR}/rpc_calculator_feed_test.py COPYONLY)
-
 configure_file(${CMAKE_CURRENT_SOURCE_DIR}/grep.py
     ${CMAKE_CURRENT_BINARY_DIR}/grep.py COPYONLY)
 
@@ -153,12 +150,6 @@ if(${Python3_FOUND} AND (${Python3_VERSION} VERSION_GREATER "3.6"))
         APPEND PROPERTY ENVIRONMENT "CLIENT_TEST_BIN=$<TARGET_FILE:basic_client>")
     set_property(TEST calculator_basic
         APPEND PROPERTY ENVIRONMENT "SERVER_TEST_BIN=$<TARGET_FILE:basic_server>")
-
-    add_test(NAME calculator_feed COMMAND ${Python3_EXECUTABLE} rpc_calculator_feed_test.py)
-    set_property(TEST calculator_feed
-        APPEND PROPERTY ENVIRONMENT "CLIENT_TEST_BIN=$<TARGET_FILE:feed_client>")
-    set_property(TEST calculator_feed
-        APPEND PROPERTY ENVIRONMENT "SERVER_TEST_BIN=$<TARGET_FILE:feed_server>")
 endif()
 
 # Check docs style

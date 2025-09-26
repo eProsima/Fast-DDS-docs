@@ -16,8 +16,6 @@ RPC over DDS
     /fastdds/api_reference/dds_pim/rpc/requesterqos.rst
     /fastdds/api_reference/dds_pim/rpc/requestinfo.rst
     /fastdds/api_reference/dds_pim/rpc/rpcbrokenpipeexception.rst
-    /fastdds/api_reference/dds_pim/rpc/rpcclientreader.rst
-    /fastdds/api_reference/dds_pim/rpc/rpcclientwriter.rst
     /fastdds/api_reference/dds_pim/rpc/rpcentity.rst
     /fastdds/api_reference/dds_pim/rpc/rpcexception.rst
     /fastdds/api_reference/dds_pim/rpc/rpcfeedcancelledexception.rst
@@ -26,8 +24,6 @@ RPC over DDS
     /fastdds/api_reference/dds_pim/rpc/rpcrequest.rst
     /fastdds/api_reference/dds_pim/rpc/rpcserver.rst
     /fastdds/api_reference/dds_pim/rpc/rpcserverschedulingstrategy.rst
-    /fastdds/api_reference/dds_pim/rpc/rpcserverreader.rst
-    /fastdds/api_reference/dds_pim/rpc/rpcserverwriter.rst
     /fastdds/api_reference/dds_pim/rpc/rpcstatuscode.rst
     /fastdds/api_reference/dds_pim/rpc/rpctimeoutexception.rst
     /fastdds/api_reference/dds_pim/rpc/service.rst

@@ -46,7 +46,12 @@ endif()
 ####################################################################################################
 add_subdirectory(Examples/C++/DDSHelloWorld)
 add_subdirectory(Examples/C++/RpcClientServerBasic)
-add_subdirectory(Examples/C++/RpcClientServerFeed)
+# Add Pro features only when Fast DDS Pro is being used
+if(_fastdds_pro)
+    add_subdirectory(Examples/C++/RpcClientServerFeed)
+else()
+    message(STATUS "Skipping RpcClientServerFeed example because Fast DDS Pro is not being used")
+endif()
 
 ####################################################################################################
 # Compile test applications
@@ -61,7 +66,12 @@ target_include_directories(doctest PRIVATE ${FAST_INCLUDE_DIR})
 target_link_libraries(doctest fastdds fastcdr)
 
 # DDSCodeTester utilizes Fast DDS API
-add_executable(dds-doctest DDSCodeTester.cpp FastDDSGenCodeTester.cpp)
+set(DDS_CODE_TEST_SRC DDSCodeTester.cpp FastDDSGenCodeTester.cpp)
+# Append Pro features only when Fast DDS Pro is being used
+if(_fastdds_pro)
+    list(APPEND DDS_CODE_TEST_SRC ProDDSCodeTester.cpp)
+endif()
+add_executable(dds-doctest ${DDS_CODE_TEST_SRC})
 target_include_directories(dds-doctest PRIVATE ${FAST_INCLUDE_DIR})
 target_link_libraries(dds-doctest fastdds fastcdr)
 
@@ -78,6 +88,11 @@ configure_file(${CMAKE_CURRENT_SOURCE_DIR}/XMLTesterExample.xml
 
 configure_file(${CMAKE_CURRENT_SOURCE_DIR}/XMLTesterSkipValidation.xml
     ${CMAKE_CURRENT_BINARY_DIR}/XMLTesterSkipValidation.xml COPYONLY)
+
+if(_fastdds_pro)
+    configure_file(${CMAKE_CURRENT_SOURCE_DIR}/ProXMLTester.xml
+        ${CMAKE_CURRENT_BINARY_DIR}/ProXMLTester.xml COPYONLY)
+endif()
 
 configure_file(${CMAKE_CURRENT_SOURCE_DIR}/certs/maincacert.pem
     ${CMAKE_CURRENT_BINARY_DIR}/certs/maincacert.pem COPYONLY)
@@ -103,8 +118,10 @@ configure_file(${CMAKE_CURRENT_SOURCE_DIR}/helloworld_test.py
 configure_file(${CMAKE_CURRENT_SOURCE_DIR}/rpc_calculator_basic_test.py
 ${CMAKE_CURRENT_BINARY_DIR}/rpc_calculator_basic_test.py COPYONLY)
 
-configure_file(${CMAKE_CURRENT_SOURCE_DIR}/rpc_calculator_feed_test.py
-${CMAKE_CURRENT_BINARY_DIR}/rpc_calculator_feed_test.py COPYONLY)
+if(_fastdds_pro)
+  configure_file(${CMAKE_CURRENT_SOURCE_DIR}/rpc_calculator_feed_test.py
+  ${CMAKE_CURRENT_BINARY_DIR}/rpc_calculator_feed_test.py COPYONLY)
+endif()
 
 configure_file(${CMAKE_CURRENT_SOURCE_DIR}/grep.py
     ${CMAKE_CURRENT_BINARY_DIR}/grep.py COPYONLY)
@@ -123,12 +140,18 @@ add_test(NAME xml.rtps_permissions_test
 
 # Check validity of XML profiles snippets
 add_test(NAME xml.profiles COMMAND dds-doctest XMLTester.xml)
+# Validate XML snippets doc against XSD schema
+add_test(NAME xml.profiles.validate COMMAND fastdds xml validate XMLTester.xml -x fastdds_profiles.xsd)
 # Check validity of XML full example
 add_test(NAME xml.example COMMAND dds-doctest XMLTesterExample.xml)
 # Validate XML full example against XSD schema
-add_test(NAME xml.validate COMMAND fastdds xml validate XMLTesterExample.xml -x fastdds_profiles.xsd)
-# Validate XML snippets doc against XSD schema
-add_test(NAME xml.snippets COMMAND fastdds xml validate XMLTester.xml -x fastdds_profiles.xsd)
+add_test(NAME xml.example.validate COMMAND fastdds xml validate XMLTesterExample.xml -x fastdds_profiles.xsd)
+if(_fastdds_pro)
+    # Check validity of XML pro features example
+    add_test(NAME xml.pro COMMAND dds-doctest ProXMLTester.xml)
+    # Validate XML pro features example against XSD schema
+    add_test(NAME xml.pro.validate COMMAND fastdds xml validate ProXMLTester.xml -x fastdds_profiles.xsd)
+endif()
 # Check validity of Permissions and Governance XML files using Fast DDS API
 add_test(NAME xml.fastdds_permissions_test
     COMMAND dds-doctest
@@ -155,11 +178,13 @@ if(${Python3_FOUND} AND (${Python3_VERSION} VERSION_GREATER "3.6"))
     set_property(TEST calculator_basic
         APPEND PROPERTY ENVIRONMENT "SERVER_TEST_BIN=$<TARGET_FILE:basic_server>")
 
-    add_test(NAME calculator_feed COMMAND ${Python3_EXECUTABLE} rpc_calculator_feed_test.py)
-    set_property(TEST calculator_feed
-        APPEND PROPERTY ENVIRONMENT "CLIENT_TEST_BIN=$<TARGET_FILE:feed_client>")
-    set_property(TEST calculator_feed
-        APPEND PROPERTY ENVIRONMENT "SERVER_TEST_BIN=$<TARGET_FILE:feed_server>")
+    if(_fastdds_pro)
+        add_test(NAME calculator_feed COMMAND ${Python3_EXECUTABLE} rpc_calculator_feed_test.py)
+        set_property(TEST calculator_feed
+            APPEND PROPERTY ENVIRONMENT "CLIENT_TEST_BIN=$<TARGET_FILE:feed_client>")
+        set_property(TEST calculator_feed
+            APPEND PROPERTY ENVIRONMENT "SERVER_TEST_BIN=$<TARGET_FILE:feed_server>")
+    endif()
 endif()
 
 # Check docs style

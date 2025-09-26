@@ -3,8 +3,8 @@
 
 .. _rpc_data_streaming_intro:
 
-RPC Data Streaming
-------------------
+RPC Data Streaming |Pro|
+------------------------
 
 *Fast DDS-Gen* tool also supports data streaming for *function-call based API*'s operations
 in both client and server sides. In this case, the mapping between high-level and low-level API's

@@ -2,10 +2,16 @@
 .. include:: ../../../03-exports/aliases-api.include
 .. include:: ../../../03-exports/roles.include
 
+:orphan:
+
 .. _dynamic-network-interfaces:
 
 Dynamic network interfaces
 ==========================
+
+.. warning::
+
+   Starting in Fast DDS v3.4.0, this feature has been deprecated in favor of :ref:`IP mobility <ip-mobility>` |Pro|.
 
 DDS :ref:`Simple Discovery <simple_disc_settings>` relies on well-known multicast addresses and ports to relay the
 Participant announcement messages (see :ref:`disc_phases`).

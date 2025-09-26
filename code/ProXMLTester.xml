@@ -2,7 +2,12 @@
 <dds xmlns="http://www.eprosima.com" >
     <profiles>
 
-        <!-->TSN_SET_UDP_TUPLE<-->
+<!-->TSN_SET_UDP_TUPLE<-->
+<!--
+<?xml version="1.0" encoding="UTF-8" ?>
+<dds>
+    <profiles xmlns="http://www.eprosima.com">
+-->
         <transport_descriptors>
             <transport_descriptor>
                 <transport_id>tsn_udp_transport</transport_id>
@@ -24,9 +29,18 @@
                 <useBuiltinTransports>false</useBuiltinTransports>
             </rtps>
         </participant>
-        <!--><-->
+<!-->
+    </profiles>
+</dds>
+<-->
+<!--><-->
 
-        <!-->TSN_SET_ETHERNET_TUPLE<-->
+<!-->TSN_SET_ETHERNET_TUPLE<-->
+<!--
+<?xml version="1.0" encoding="UTF-8" ?>
+<dds>
+    <profiles xmlns="http://www.eprosima.com">
+-->
         <transport_descriptors>
             <transport_descriptor>
                 <transport_id>tsn_ethernet_transport</transport_id>
@@ -49,7 +63,11 @@
                 <useBuiltinTransports>false</useBuiltinTransports>
             </rtps>
         </participant>
-        <!--><-->
+<!-->
+    </profiles>
+</dds>
+<-->
+<!--><-->
 
 <!-->CONF-PAYLOAD-COMPRESSION-TRANSPORT<-->
 <!--

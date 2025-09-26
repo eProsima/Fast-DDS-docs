@@ -141,8 +141,8 @@ cases previously described):
     :start-after: //!--OPERATION_STATUS
     :end-before: //!--
 
-It makes easier to add new operations (for example, ``@feed`` operations) without modifying the
-main execution flow. Each operation stores the data required to execute the operation,
+It makes easier to add new operations without modifying the main execution flow.
+Each operation stores the data required to execute the operation,
 for example, a reference to the client used to send the request, as well as the operation input data.
 
 When ``RepresentationLimits`` operation is executed, client sends a request to the server and waits
@@ -271,11 +271,3 @@ The output of the rest operations should be similar to the following:
     Attempting to send request, attempt 2/10
     Representation limits received: min_value = -2147483648, max_value = 2147483647
     Request sent successfully
-
-Next steps
-----------
-
-The application that we have created only contains basic asynchronous RPC operations.
-This example can be extended to include streaming of input and output data by defining
-``@feed`` annotated operations in the interface of the IDL file. An example of this can be seen
-in the next section (:ref:`fastddsgen_rpc_calculator_feed_app_intro`).

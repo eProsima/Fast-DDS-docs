@@ -5,17 +5,17 @@
 Low Bandwidth Transports |Pro|
 ==============================
 
-The Low Bandwidth Transports feature in Fast DDS Pro enables efficient communication over constrained networks by
+The Low Bandwidth Transports feature in *Fast DDS Pro* enables efficient communication over constrained networks by
 reducing the size of network packets.
 This optimization is particularly beneficial for environments with limited bandwidth, such as satellite links or
 tactical radios, allowing Fast DDS applications to operate reliably and efficiently in such scenarios.
 
 This feature provides two specialized transports:
 
-- **PayloadCompressionTransport**: Compresses the message payload before transmitting it over the network.
+- **Payload Compression Transport**: Compresses the message payload before transmitting it over the network.
   By reducing the amount of data sent, it minimizes bandwidth usage and can improve throughput and reduce latency on
   bandwidth-constrained links.
-- **HeaderReductionTransport**: Minimizes the size of the RTPS protocol headers in each packet.
+- **Header Reduction Transport**: Minimizes the size of the RTPS protocol headers in each packet.
   By reducing header overhead, it further optimizes total packet size and ensures efficient communication,
   especially for small and frequent messages.
 
@@ -24,10 +24,10 @@ configured independently or together, providing flexibility to adapt Fast DDS to
 environments.
 
 
-PayloadCompressionTransport
----------------------------
+Payload Compression Transport
+-----------------------------
 
-This low bandwidth transport performs a standard compression of data before sending and the corresponding decompression
+This low-bandwidth transport performs a standard compression of data before sending and the corresponding decompression
 after receiving.
 The compression algorithm may be selected between Zlib and Bzip2, or even let the transport perform both and use the one
 ahich produces the shortest output.
@@ -79,8 +79,8 @@ PayloadCompressionTransportDescriptor
 :ref:`transport_transportApi_chaining_descriptor`.
 
 
-Enabling PayloadCompressionTransport
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+Enabling Payload Compression Transport
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 To enable a new :class:`PayloadCompressionTransport` in a :ref:`dds_layer_domainParticipant`, first
 create an instance of :ref:`transport_transportApi_payloadcompression_descriptor`,
@@ -102,8 +102,8 @@ The examples below show this procedure in both C++ code and XML file.
         :end-before: <!--><-->
         :lines: 2-4,6-33,35-36
 
-HeaderReductionTransport
-------------------------
+Header Reduction Transport
+--------------------------
 
 This transport performs a specific compression of data before sending and the corresponding decompression after
 receiving.
@@ -159,8 +159,8 @@ HeaderReductionTransportDescriptor
 :ref:`transport_transportApi_chaining_descriptor`.
 
 
-Enabling HeaderReductionTransport
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+Enabling Header Reduction Transport
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 To enable a new :class:`HeaderReductionTransport` in a :ref:`dds_layer_domainParticipant`, first
 create an instance of :ref:`transport_transportApi_headerreduction_descriptor`,
@@ -185,7 +185,7 @@ The examples below show this procedure in both C++ code and XML file.
 Full example
 ------------
 
-This example shows how to combine all low bandwidth transports to ensure optimal performance in constrained networks.
+This example shows how to combine all low-bandwidth transports to ensure optimal performance in constrained networks.
 This procedure can be configured in C++ code or XML file.
 
 .. tab-set-code::

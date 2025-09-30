@@ -40,7 +40,7 @@ The specification defines:
 Fast DDS TSN Implementation
 ---------------------------
 
-*Fast DDS* |Pro| provides the required scaffolding for using DDS over TSN compliant with the OMG specification.
+*Fast DDS Pro* provides the required scaffolding for using DDS over TSN compliant with the OMG specification.
 
 TSN flow configuration can be set via a mapping between a defined
 :ref:`TransportPriorityQosPolicy <transportpriorityqospolicy>` value and a set of tuple parameters.
@@ -55,12 +55,12 @@ sends.
 Supported transports
 ^^^^^^^^^^^^^^^^^^^^
 
-*Fast DDS* |Pro| currently supports two transports that can be used over TSN-capable networks:
+*Fast DDS Pro* currently supports two transports that can be used over TSN-capable networks:
 
 - **UDP Transport Support (UDPv4 / UDPv6)**
 
   *Fast DDS* supports DDSI-RTPS communication over standard POSIX `UDPv4` and `UDPv6` sockets.
-  *Fast DDS* |Pro| extends these transports to enable seamless operation on TSN-capable networks
+  *Fast DDS Pro* extends these transports to enable seamless operation on TSN-capable networks
   while preserving compatibility with existing DDS deployments.
 
   In this transport, the tuple parameters (`IPv4Tuple` / `IPv6Tuple`) are:
@@ -109,7 +109,7 @@ Supported transports
 
 - **Ethernet Transport Support**
 
-  *Fast DDS* |Pro| includes a custom `Ethernet` transport that operates directly at Layer 2 (data link layer),
+  *Fast DDS Pro* includes a custom `Ethernet` transport that operates directly at Layer 2 (data link layer),
   bypassing the TCP/IP stack for reduced latency and direct control over ethernet frames.
 
   *Fast DDS* extends the standard `Locator` class with a new kind for ethernet communication,
@@ -152,7 +152,7 @@ Supported transports
 
   .. note::
 
-    The *Fast DDS* |Pro| installation provides a helper file ``rtps_eth.lua`` under the ``share/fastdds``
+    The *Fast DDS Pro* installation provides a helper file ``rtps_eth.lua`` under the ``share/fastdds``
     subfolder.
     This script allows to easily dissect packets from this transport in Wireshark.
     For details on installing custom plugins, see the

@@ -42,30 +42,6 @@ Each interface represents a set of operations and attributes, and it is constitu
 
 Interfaces can also be forward declared, for example :code:`interface MyInterface;`.
 
-.. _fastddsgen_interfaces_data_streaming:
-
-Defining data streaming operations
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-
-*eProsima Fast DDS-Gen* allows to generate code for data streaming in each use case
-described in :ref:`rpc_data_streaming_intro`, using the ``@feed`` builtin annotation in operations:
-
-* Input feeds can be specified by adding ``@feed`` before an *in* parameter, for example:
-  :code:`return_type input_feed_operation(@feed in long param);`. When a parameter ``param`` is marked
-  as ``@feed`` parameter, an input feed will be expected to process the values associated to ``param``.
-
-* Output feeds can be specified by adding ``@feed`` before a return type, for example:
-  :code:`@feed return_type output_feed_operation(in long param);`. When a return type is marked
-  as ``@feed`` parameter, an output feed will be expected to process the values associated to result of the operation.
-
-Client-side, Server-side or bidirectional data streamings can be specified by marking
-with ``@feed`` annotations input parameters, return types or both, respectively.
-
-.. _note:
-  ``@feed`` annotated parameters can be combined with non ``@feed`` annotated, for example
-  :code:`return_type mixed_operation(@feed in long param1, in long param2);`
-
-
 Example
 ^^^^^^^
 
@@ -92,18 +68,6 @@ The following example shows how to define an interfaces, addressing the cases de
             // Operation with no parameters and no return
             void my_void_operation();
 
-            // Operation describing a Server-side data streaming
-            @feed my_return_type my_server_streaming_operation(
-                    in long param);
-
-            // Operation describing a Client-side data streaming
-            my_return_type my_client_streaming_operation(
-                    @feed in long param);
-
-            // Operation describing a Bidirectional data streaming
-            @feed my_return_type my_bidirectional_streaming_operation(
-                    in long param1,
-                    @feed in long param2);
         };
 
         interface MyInterface : MyBaseInterface {

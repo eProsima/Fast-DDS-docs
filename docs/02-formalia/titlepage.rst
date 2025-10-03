@@ -21,10 +21,12 @@ Fast DDS |Pro|
 ^^^^^^^^^^^^^^
 
 *Fast DDS Pro* is the commercial, enterprise-grade edition of *eProsima Fast DDS*.
-It enhances the open-source core with advanced features for large-scale, production-critical systems — including enterprise security options, and professional support.
-Designed for demanding real-time and mission-critical applications, Fast DDS Pro helps teams accelerate development, ensure reliability, and reduce integration complexity when deploying DDS-based systems at scale.
+It enhances the open-source core with advanced features for large-scale, production-critical systems — including
+enterprise security options, and professional support.
+Designed for demanding real-time and mission-critical applications, Fast DDS Pro helps teams accelerate development,
+ensure reliability, and reduce integration complexity when deploying DDS-based systems at scale.
 
-.. |eprosima_fastdds_pro_website_bold| raw:: html
+.. |eprosima_fastdds_pro_website| raw:: html
 
   <a href="https://www.eprosima.com/middleware/fast-dds" target="_blank" rel="noopener noreferrer">eProsima Fast DDS Pro</a>
 

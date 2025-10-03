@@ -122,7 +122,7 @@ The following table shows the minimum version required of the Fast DDS build sys
               - **───**
               - Tier 1: GCC 11.4 |br|
                 Tier 3: Clang 15
-            * - MacOS Sonoma (14)
+            * - MacOS Ventura (13)
               - Tier 1: Clang 15
               - **───**
               - **───**

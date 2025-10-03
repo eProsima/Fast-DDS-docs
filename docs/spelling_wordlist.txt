@@ -283,6 +283,7 @@ Serialization
 shm
 SHM
 simpleEDP
+Sonoma
 sqlite
 statechart
 stateful

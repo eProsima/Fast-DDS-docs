@@ -17,22 +17,18 @@ that deploy
 a Data-Centric Publisher-Subscriber (DCPS) model, with the purpose of establishing efficient and reliable
 information distribution among Real-Time Systems.
 
-.. raw:: html
-
-    <br/>
-
 Fast DDS |Pro|
 ^^^^^^^^^^^^^^
 
-Fast DDS Pro is the commercial, enterprise-grade edition of eProsima Fast DDS.
+*Fast DDS Pro* is the commercial, enterprise-grade edition of *eProsima Fast DDS*.
 It enhances the open-source core with advanced features for large-scale, production-critical systems — including enterprise security options, and professional support.
 Designed for demanding real-time and mission-critical applications, Fast DDS Pro helps teams accelerate development, ensure reliability, and reduce integration complexity when deploying DDS-based systems at scale.
 
-.. |eprosima_fastdds_pro_website| raw:: html
+.. |eprosima_fastdds_pro_website_bold| raw:: html
 
-   <a href="https://www.eprosima.com/middleware/fast-dds" target="_blank" rel="noopener noreferrer">eProsima Fast DDS Pro</a>
+  <a href="https://www.eprosima.com/middleware/fast-dds" target="_blank" rel="noopener noreferrer">eProsima Fast DDS Pro</a>
 
-**Discover all features and request a commercial license at |eprosima_fastdds_pro_website|.**
+Discover all features and request a commercial license at |eprosima_fastdds_pro_website|.
 
 Commercial support
 ^^^^^^^^^^^^^^^^^^

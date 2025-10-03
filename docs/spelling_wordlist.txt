@@ -283,6 +283,7 @@ Serialization
 shm
 SHM
 simpleEDP
+Sonoma
 sqlite
 statechart
 stateful
@@ -337,6 +338,7 @@ updatability
 updatable
 Valgrind
 vcstool
+Ventura
 verbosities
 vm
 waitsets

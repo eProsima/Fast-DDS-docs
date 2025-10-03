@@ -623,9 +623,15 @@ html_css_files = [
 # |Pro|: badge with PRO text. Place it after titles where needed as follows:
 #    Title |Pro|
 #    ===========
-rst_prolog = r"""
-.. |Pro| replace:: :bdg-primary-line:`Pro`
+# rst_prolog = r"""
+# .. |Pro| replace:: :bdg-primary-line:`Pro`
+# """
+rst_prolog = """
+.. |Pro| raw:: html
+
+    <span class="sd-badge sd-outline-primary sd-text-primary" title="Exclusive to Fast DDS Pro">Pro</span>
 """
+
 
 # Add any paths that contain custom themes here, relative to this directory.
 # html_theme_path = []

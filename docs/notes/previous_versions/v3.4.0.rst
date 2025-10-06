@@ -30,7 +30,7 @@ This minor release includes the following **fixes**:
 * Fix socket buffer size handling
 * Avoid setting thread affinity of 0 in Mac
 * Some RPC related fixes
-* Fix latency & troughput tests names
+* Fix latency & throughput tests names
 * Allow empty partition list to match against ``"*"``
 * Fix duplicated transport when using specific XML with CLI
 * Fix topic argument in Discovery Server example

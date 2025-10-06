@@ -438,6 +438,7 @@ extensions = [
     "sphinx_copybutton",
     "sphinx_design",
     "sphinx.ext.autodoc",  # Document Pydoc documentation from Python bindings.
+    "sphinx_substitution_extensions",
     "sphinx_toolbox.collapse",
 ]
 
@@ -471,7 +472,9 @@ autodoc_default_options = {
 
 plantuml = "/usr/bin/plantuml -Djava.awt.headless=true "
 if sys.platform.startswith("win"):
-    plantuml = "C:\\ProgramData\\chocolatey\\bin\\plantuml.exe -Djava.awt.headless=true "
+    plantuml = (
+        "C:\\ProgramData\\chocolatey\\bin\\plantuml.exe -Djava.awt.headless=true "
+    )
 
 plantuml_output_format = "svg"
 
@@ -611,12 +614,18 @@ html_use_smartypants = True
 # The CSS files referenced here should have a path relative to the _static folder.
 # We use static_relative(download_file(...)) to ensure the resulting paths are relative to "_static".
 html_css_files = [
-    static_relative(download_file(
-        "https://raw.githubusercontent.com/eProsima/all-docs/master/source/_static/css/eprosima-furo.css",
-        "{}/_static/css/eprosima-furo.css".format(script_path))),
-    static_relative(download_file(
-        "https://raw.githubusercontent.com/eProsima/all-docs/master/source/_static/css/pro-badge.css",
-        "{}/_static/css/pro-badge.css".format(script_path)))
+    static_relative(
+        download_file(
+            "https://raw.githubusercontent.com/eProsima/all-docs/master/source/_static/css/eprosima-furo.css",
+            "{}/_static/css/eprosima-furo.css".format(script_path),
+        )
+    ),
+    static_relative(
+        download_file(
+            "https://raw.githubusercontent.com/eProsima/all-docs/master/source/_static/css/pro-badge.css",
+            "{}/_static/css/pro-badge.css".format(script_path),
+        )
+    ),
 ]
 
 # Custom substitutions that are included at the beginning of every source file.
@@ -626,10 +635,12 @@ html_css_files = [
 # rst_prolog = r"""
 # .. |Pro| replace:: :bdg-primary-line:`Pro`
 # """
-rst_prolog = """
+rst_prolog = f"""
 .. |Pro| raw:: html
 
     <span class="sd-badge sd-outline-primary sd-text-primary" title="Exclusive to Fast DDS Pro">Pro</span>
+
+.. |ProjectVersion| replace:: {version}
 """
 
 

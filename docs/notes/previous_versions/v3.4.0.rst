@@ -15,6 +15,7 @@ This minor release includes the following **features**:
 
 This minor release includes the following **improvements**:
 
+* :ref:`Linux binaries <linux_binaries>` installation with ``.deb`` packages
 * Update to Fast DDS Gen 4.2.0
 * Return sample notifying changes on instance state
 * Performance improvements with large history caches

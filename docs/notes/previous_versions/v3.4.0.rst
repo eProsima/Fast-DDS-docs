@@ -21,6 +21,7 @@ This minor release includes the following **improvements**:
 * Fix doxygen documentation typos
 * Change ``eprosima::fastdds::rtps::octet`` to be ``uint8_t`` according to C++11 standard
 * Add ``tcp_negotiation_timeout`` to XML Schema
+* Some improvements on python generated code
 
 This minor release includes the following **fixes**:
 
@@ -33,6 +34,7 @@ This minor release includes the following **fixes**:
 * Allow empty partition list to match against ``"*"``
 * Fix duplicated transport when using specific XML with CLI
 * Fix topic argument in Discovery Server example
+* Fix type code generation for IDL files with no structs
 
 This minor release includes the following **CI management updates**:
 

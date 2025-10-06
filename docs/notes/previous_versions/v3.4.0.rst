@@ -4,7 +4,7 @@
 This minor release includes the following **features**:
 
 * *Fast DDS Pro* features:
-    * Automatic detecition of changes in IP addresses and network interfaces (:ref:`IP mobility <ip-mobility>`)
+    * Automatic detection of changes in IP addresses and network interfaces (:ref:`IP mobility <ip-mobility>`)
     * Support for :ref:`DDS-TSN <use-case-dds-tsn>`
     * :ref:`Low Bandwidth Transports <low_bandwidth_transports>`
 * Pass value of `TransportPriorityQosPolicy` to transport layer

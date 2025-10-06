@@ -26,7 +26,7 @@ This minor release includes the following **improvements**:
 This minor release includes the following **fixes**:
 
 * Fix memory consumption issues in PKIDH plugin
-* Fix build with strict C++11
+* Fix tests build with strict C++11
 * Fix socket buffer size handling
 * Avoid setting thread affinity of 0 in Mac
 * Some RPC related fixes

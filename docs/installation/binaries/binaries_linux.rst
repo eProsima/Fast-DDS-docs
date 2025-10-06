@@ -96,7 +96,7 @@ following command:
 
 .. code-block:: bash
 
-    pip install xmlschema
+   pip install psutil xmlschema
 
 Python3 is required to run the CLI tool, and the `xmlschema <https://pypi.org/project/xmlschema/>`_ dependency is
 needed to use the :ref:`XML validation command<cli_xml>`.

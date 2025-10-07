@@ -13,14 +13,12 @@ Install
 
 The latest release of *eProsima Fast DDS* for Linux is available at the eProsima website
 `Downloads tab <https://eprosima.com/index.php/downloads-all>`_.
-Once downloaded, install the packagen using `apt`.
+Once downloaded, install the package using `apt`.
 
 .. code-block:: bash
    :substitutions:
 
-   sudo apt install ./fastdds-|ProjectVersion|_amd64.deb
-
-.. _contents_bl:
+   sudo apt update && sudo apt install ./fastdds-|ProjectVersion|_amd64.deb
 
 .. _contents_bl:
 
@@ -35,6 +33,13 @@ By default, the installation will download all the available packages, namely:
   `standard CDR <https://www.omg.org/cgi-bin/doc?formal/02-06-51>`_ serialization mechanism.
 * :code:`fastdds`, the core library of *eProsima Fast DDS* library.
 * :code:`fastddsgen`, a Java application that generates source code using the data types defined in an IDL file.
+
+  .. note:: To run this application, a Java Runtime Environment (JRE) must be installed in the system.
+            The recommended version is 17 or higher.
+
+            .. code-block:: bash
+
+               sudo apt install openjdk-17-jre
 
 .. seealso::
 

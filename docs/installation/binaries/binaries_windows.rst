@@ -138,8 +138,8 @@ following command:
 
 .. code-block:: winbatch
 
-    choco install python
-    python -m pip install --upgrade pywin32 xmlschema
+   choco install python
+   python -m pip install --upgrade psutil pywin32 xmlschema
 
 Python3 is required to run the CLI tool, and the `xmlschema <https://pypi.org/project/xmlschema/>`_ dependency is
 needed to use the :ref:`XML validation command<cli_xml>`.

@@ -20,17 +20,22 @@ information distribution among Real-Time Systems.
 Fast DDS |Pro|
 ^^^^^^^^^^^^^^
 
-*Fast DDS Pro* is the commercial, enterprise-grade edition of *eProsima Fast DDS*.
-It enhances the open-source core with advanced features for large-scale, production-critical systems — including
-enterprise security options, and professional support.
-Designed for demanding real-time and mission-critical applications, Fast DDS Pro helps teams accelerate development,
-ensure reliability, and reduce integration complexity when deploying DDS-based systems at scale.
+*Fast DDS Pro* is the commercial edition of *eProsima Fast DDS*, created for industrial and defense applications that
+require advanced networking capabilities.
+
+It extends the open-source version with premium features such as:
+
+* :ref:`Low Bandwidth Transports <low_bandwidth_transports>` |Pro| – optimized DDS communication for constrained or
+  unstable links.
+* :ref:`TSN Support <use-case-dds-tsn>` |Pro| – deterministic communication with guaranteed latency.
+* :ref:`IP Mobility <ip-mobility>` |Pro| – uninterrupted communication even when network conditions change.
+* Congestion Control |Pro| (coming soon) – adaptive traffic management in congested environments.
 
 .. |eprosima_fastdds_pro_website| raw:: html
 
-  <a href="https://www.eprosima.com/middleware/fast-dds" target="_blank" rel="noopener noreferrer">eProsima Fast DDS Pro</a>
+   <a href="https://forms.eprosima.com/reach/form/CommercialSupportRequest/formperma/Ac8GwewD7PTDadQZIV92qDEzNFfMlJnYmA029mSJtJ8" target="_blank" rel="noopener noreferrer">share your contact details</a>
 
-Discover all features and request a commercial license at |eprosima_fastdds_pro_website|.
+To discover all features and request a commercial license please |eprosima_fastdds_pro_website|.
 
 Commercial support
 ^^^^^^^^^^^^^^^^^^

@@ -33,9 +33,9 @@ It extends the open-source version with premium features such as:
 
 .. |eprosima_fastdds_pro_website| raw:: html
 
-  <a href="https://www.eprosima.com/middleware/fast-dds" target="_blank" rel="noopener noreferrer">eProsima Fast DDS Pro</a>
+   <a href="https://forms.eprosima.com/reach/form/CommercialSupportRequest/formperma/Ac8GwewD7PTDadQZIV92qDEzNFfMlJnYmA029mSJtJ8" target="_blank" rel="noopener noreferrer">share your contact details</a>
 
-Discover all features and request a commercial license at |eprosima_fastdds_pro_website|.
+To discover all features and request a commercial license please |eprosima_fastdds_pro_website|.
 
 Commercial support
 ^^^^^^^^^^^^^^^^^^

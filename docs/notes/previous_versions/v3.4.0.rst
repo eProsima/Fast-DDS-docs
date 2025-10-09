@@ -36,6 +36,8 @@ This minor release includes the following **fixes**:
 * Fix duplicated transport when using specific XML with CLI
 * Fix topic argument in Discovery Server example
 * Fix type code generation for IDL files with no structs
+* Some TCP transport fixes
+* Remote writers considered volatile by default
 
 This minor release includes the following **CI management updates**:
 

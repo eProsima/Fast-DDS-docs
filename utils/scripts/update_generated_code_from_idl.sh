@@ -1,9 +1,7 @@
 #!/usr/bin/env bash
 
 files_to_exclude=(
-    './code/DynamicTypesIDLExamples.idl'
-    './code/Examples/C++/RpcClientServerFeed/src/types/calculator.idl'
-)
+    )
 
 files_not_needing_typeobject=(
     )

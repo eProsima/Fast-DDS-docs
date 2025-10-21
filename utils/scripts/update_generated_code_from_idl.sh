@@ -2,7 +2,7 @@
 
 files_to_exclude=(
     './code/DynamicTypesIDLExamples.idl'
-    './code/Examples/C++/RpcClientServerFeed/src/types/calculator.idl'
+    './code/Examples/C++/RpcClientServerBasic/src/types/calculator.idl'
 )
 
 files_not_needing_typeobject=(

@@ -420,7 +420,7 @@ Fast DDS as the core middleware.
             * - `Shapes Demo <https://github.com/eProsima/ShapesDemo/>`__
               - `v3.3.0 <https://github.com/eProsima/ShapesDemo/releases/tag/v3.3.0>`__
             * - `Discovery Server <https://github.com/eProsima/Discovery-Server/>`__
-              - `v2.0.0 <https://github.com/eProsima/Discovery-Server/releases/tag/v2.0.0>`__
+              - `v2.1.0 <https://github.com/eProsima/Discovery-Server/releases/tag/v2.1.0>`__
 
     .. tab-item:: 3.2.x
         :sync: 3.2.x

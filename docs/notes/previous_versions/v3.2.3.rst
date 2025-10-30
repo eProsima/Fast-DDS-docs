@@ -4,7 +4,8 @@
 This release includes the following **features**:
 
 #. Send only non-default QoS & Use ``serialize_optional_qos`` for optional QoS in EDP messages
-#. Add ``WireProtocolConfigQos`` to optionals serialization and make ``Monitor Service`` always serialize optionals
+#. Add ``WireProtocolConfigQos`` to ``optionals`` serialization and make ``Monitor Service`` always serialize
+   ``optionals``
 #. RPC over DDS example
 #. Bump to asio 1.34.2
 #. Support aliases in Content Filtered Topic
@@ -16,12 +17,12 @@ This release includes the following **improvements**:
 #. Address some compilation warnings with latest ``GCC``
 #. Improvements on RPC entities
 #. Add references to documentation
-#. Update ROSin image links in Readme
-#. Avoid calling setIPv4 in TCPTransportInterface
+#. Update ROSin image links in ``Readme``
+#. Avoid calling ``setIPv4`` in ``TCPTransportInterface``
 #. Send heartbeat when ``wait_for_all_acked`` is called
 #. Use binary search in ``find_change_nts``
 #. Improve latency tests
-#. Apply uncrustify to all files
+#. Apply ``uncrustify`` to all files
 
 This release includes the following **fixes**:
 
@@ -41,7 +42,7 @@ This release includes the following **fixes**:
 #. Avoid sending duplicated ACKs in DataSharing
 #. Allow empty partition list to match against ``"*"``
 #. Release change while authentication fails
-#. Change non_blocking_send threshold to sendBufferSize
+#. Change non_blocking_send threshold to ``sendBufferSize``
 #. Remote writers considered volatile by default
 #. Solve TCP disconnect while incomplete read deadlock
 #. Handle maximum deadline misses case
@@ -49,7 +50,7 @@ This release includes the following **fixes**:
 #. Add localhost capability only to UDP & TCP transports
 #. Fix doxygen documentation for ``iHandle2GUID``
 #. Avoid setting thread affinity of 0 in mac
-#. Add missing field to xsd
+#. Add missing field to ``xsd``
 #. Fix topic argument in Discovery Server example
 #. Add missing IDL to code generator script
 #. Do not export discovery server as cmake target
@@ -66,9 +67,9 @@ This release includes the following **CI and release management updates**:
 #. Correct Python fallback branch
 #. Add ``uncrustify`` to Github CI
 #. Install Fix OpenSSL version in windows example testing
-#. Add VS143 toolset to Windows CI
+#. Add VS143 ``toolset`` to Windows CI
 #. Add ``--quiet`` to ``git submodule`` invocations
-#. Fix doxygen to avoid errors in python bindings docstrings
+#. Fix doxygen to avoid errors in python bindings ``docstrings``
 #. Update fallback branches to use environment variables
 #. Update fastcdr submodule to v2.3.3
 #. Split Mac CI build and testing phases

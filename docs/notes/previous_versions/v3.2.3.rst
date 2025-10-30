@@ -1,4 +1,4 @@
-`Version 3.2.3 <https://fast-dds.docs.eprosima.com/en/v3.2.3/index.html>`_
+`Version 3.2.3 (latest) <https://fast-dds.docs.eprosima.com/en/v3.2.3/index.html>`_
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 This release includes the following **features**:
@@ -16,7 +16,7 @@ This release includes the following **improvements**:
 #. Address some compilation warnings with latest ``GCC``
 #. Improvements on RPC entities
 #. Add references to documentation
-#. Update ROSin imgage links in Readme
+#. Update ROSin image links in Readme
 #. Avoid calling setIPv4 in TCPTransportInterface
 #. Send heartbeat when ``wait_for_all_acked`` is called
 #. Use binary search in ``find_change_nts``
@@ -58,9 +58,9 @@ This release includes the following **CI and release management updates**:
 
 #. Move ``SimpleCommunication`` and ``system`` tests in Windows nightly
 #. Add compilation with latest ``GCC`` to ``fastdds_alternative_builds`` Ubuntu CI
-#. Remove 2.10.x from PR template
+#. Remove ``2.10.x`` from PR template
 #. Remove ``3.1.x`` from PR template and nightly for ``3.1.x`` and ``2.10.x``
-#. Move 2.10.x to EOL versions
+#. Move ``2.10.x`` to EOL versions
 #. Update ``3.2.x`` to be a supported branch
 #. Split windows workflow
 #. Correct Python fallback branch

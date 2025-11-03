@@ -1,0 +1,84 @@
+`Version 3.2.3 <https://fast-dds.docs.eprosima.com/en/v3.2.3/index.html>`_
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+This release includes the following **features**:
+
+#. Send only non-default QoS & Use ``serialize_optional_qos`` for optional QoS in EDP messages
+#. Add ``WireProtocolConfigQos`` to ``optionals`` serialization and make ``Monitor Service`` always serialize
+   ``optionals``
+#. RPC over DDS example
+#. Bump to asio 1.34.2
+#. Support aliases in Content Filtered Topic
+#. Add methods for TypeObject registration of RPC types
+
+This release includes the following **improvements**:
+
+#. Add regression test checking type_information is always copied in ``ProxyDatas`` copies
+#. Address some compilation warnings with latest ``GCC``
+#. Improvements on RPC entities
+#. Add references to documentation
+#. Update ROSin image links in ``Readme``
+#. Avoid calling ``setIPv4`` in ``TCPTransportInterface``
+#. Send heartbeat when ``wait_for_all_acked`` is called
+#. Use binary search in ``find_change_nts``
+#. Improve latency tests
+#. Apply ``uncrustify`` to all files
+
+This release includes the following **fixes**:
+
+#. Update reception timestamp when it is added to the instance
+#. Allow creation of built-in content filters with different type name
+#. Set different content filter signatures for each requester
+#. Allow ResourceLimitsQos serialization method compatibility
+#. Solve Discovery Server race conditions
+#. Properly delete secure endpoints if registration fails
+#. Add condition for ``string_builder`` nullptr on XMLDynamicParser.cpp in case bound is 0
+#. Create RPC example participants with default profile
+#. Avoid Data Race in Reader Locator
+#. Add multicast locator to correct locator list in ReaderProxydata
+#. Fix ParticipantGenericMessage serialization
+#. Fix build on QNX
+#. Fix DS initialization on "any" if no interfaces are available
+#. Avoid sending duplicated ACKs in DataSharing
+#. Allow empty partition list to match against ``"*"``
+#. Release change while authentication fails
+#. Change non_blocking_send threshold to ``sendBufferSize``
+#. Remote writers considered volatile by default
+#. Solve TCP disconnect while incomplete read deadlock
+#. Handle maximum deadline misses case
+#. Fix duplicated transport when using specific XML with CLI
+#. Add localhost capability only to UDP & TCP transports
+#. Fix doxygen documentation for ``iHandle2GUID``
+#. Avoid setting thread affinity of 0 in mac
+#. Add missing field to ``xsd``
+#. Fix topic argument in Discovery Server example
+#. Add missing IDL to code generator script
+#. Do not export discovery server as cmake target
+
+This release includes the following **CI and release management updates**:
+
+#. Move ``SimpleCommunication`` and ``system`` tests in Windows nightly
+#. Add compilation with latest ``GCC`` to ``fastdds_alternative_builds`` Ubuntu CI
+#. Remove ``2.10.x`` from PR template
+#. Remove ``3.1.x`` from PR template and nightly for ``3.1.x`` and ``2.10.x``
+#. Move ``2.10.x`` to EOL versions
+#. Update ``3.2.x`` to be a supported branch
+#. Split windows workflow
+#. Correct Python fallback branch
+#. Add ``uncrustify`` to Github CI
+#. Install Fix OpenSSL version in windows example testing
+#. Add VS143 ``toolset`` to Windows CI
+#. Add ``--quiet`` to ``git submodule`` invocations
+#. Fix doxygen to avoid errors in python bindings ``docstrings``
+#. Update fallback branches to use environment variables
+#. Update fastcdr submodule to v2.3.3
+#. Split Mac CI build and testing phases
+#. Remove RPC example
+#. Regenerate types with Fast DDS Gen 4.0.5
+#. Use appropriate Discovery-Server repository branch
+
+.. important::
+
+    When upgrading to version 3.2.3 it is **highly recommended** to regenerate generated source from IDL files
+    using at least `Fast DDS-Gen v4.0.5 <https://github.com/eProsima/Fast-DDS-Gen/releases/tag/v4.0.5>`_.
+    But it is advisable to regenerate them using the latest patch version of ``Fast DDS-Gen v4.0.x``.

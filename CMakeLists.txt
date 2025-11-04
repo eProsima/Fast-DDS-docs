@@ -51,7 +51,7 @@ set(_fastdds_pro FALSE)
 
 # If the version has a 4th component, capture it
 if(DEFINED fastdds_VERSION AND
-   fastdds_VERSION MATCHES "^([0-9]+)\\.([0-9]+)\\.([0-9]+)\\.(\\d+)$")
+   fastdds_VERSION MATCHES "^([0-9]+)\\.([0-9]+)\\.([0-9]+)\\.([0-9]+)$")
   # CMAKE_MATCH_4 is the tweak component
   set(_fastdds_tweak "${CMAKE_MATCH_4}")
   if(_fastdds_tweak GREATER 0)

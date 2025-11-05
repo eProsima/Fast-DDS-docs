@@ -160,6 +160,9 @@ def download_file(url, output_path):
     :param output_path: The local path where the file will be saved.
     :return: The path to the file if downloaded successfully, or the path to an empty file otherwise.
     """
+
+    # Normalize path to avoid problems in Windows.
+    output_path = os.path.normpath(output_path)
     try:
         req = requests.get(url, allow_redirects=True, timeout=10)
         req.raise_for_status()  # Raise an error for bad responses

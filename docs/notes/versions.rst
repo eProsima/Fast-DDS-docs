@@ -35,7 +35,7 @@ The following table shows the currently supported versions of Fast DDS and their
       - January 2026
     * - 3.2
       - `3.2.x <https://github.com/eProsima/Fast-DDS/tree/3.2.x>`__ (LTS)
-      - `v3.2.2 <https://github.com/eProsima/Fast-DDS/releases/tag/v3.2.2>`__
+      - `v3.2.3 <https://github.com/eProsima/Fast-DDS/releases/tag/v3.2.3>`__
       - March 2025
       - March 2026 (*)
       - March 2026 (*)
@@ -431,15 +431,15 @@ Fast DDS as the core middleware.
             * - Product
               - Related version
             * - `Fast DDS Gen <https://github.com/eProsima/Fast-DDS-Gen/>`__
-              - `v4.1.0 <https://github.com/eProsima/Fast-DDS-Gen/releases/tag/v4.1.0>`__
+              - `v4.0.5 <https://github.com/eProsima/Fast-DDS-Gen/releases/tag/v4.0.5>`__
             * - `Fast DDS Gen - IDL parser <https://github.com/eProsima/IDL-Parser/>`__
               - `v4.1.0 <https://github.com/eProsima/IDL-Parser/releases/tag/v4.1.0>`__
             * - `Fast DDS python <https://github.com/eProsima/Fast-DDS-python/>`__
-              - `v2.2.0 <https://github.com/eProsima/Fast-DDS-python/releases/tag/v2.2.0>`__
+              - `v2.2.1 <https://github.com/eProsima/Fast-DDS-python/releases/tag/v2.2.1>`__
             * - `Shapes Demo <https://github.com/eProsima/ShapesDemo/>`__
-              - `v3.2.2 <https://github.com/eProsima/ShapesDemo/releases/tag/v3.2.2>`__
+              - `v3.2.3 <https://github.com/eProsima/ShapesDemo/releases/tag/v3.2.3>`__
             * - `Discovery Server <https://github.com/eProsima/Discovery-Server/>`__
-              - `v2.0.0 <https://github.com/eProsima/Discovery-Server/releases/tag/v2.0.0>`__
+              - `v2.0.1 <https://github.com/eProsima/Discovery-Server/releases/tag/v2.0.1>`__
 
     .. tab-item:: 2.14.x
         :sync: 2.14.x

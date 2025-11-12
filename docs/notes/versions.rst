@@ -49,7 +49,181 @@ The following table shows the minimum version required of the Fast DDS build sys
 
 .. tabs::
 
+<<<<<<< HEAD
     .. group-tab:: 2.14.x
+=======
+    .. tab-item:: 3.4.x
+        :sync: 3.4.x
+
+        .. list-table::
+
+            * - **CMake**
+              - 3.20
+
+        .. list-table::
+            :header-rows: 1
+
+            * - OS \ Architecture
+              - amd64
+              - amd32
+              - arm64
+            * - Ubuntu Noble (24.04)
+              - Tier 3: GCC 13.2
+              - **───**
+              - Tier 3: GCC 13.2
+            * - Ubuntu Jammy (22.04)
+              - Tier 1: GCC 11.4 |br|
+                Tier 3: Clang 15
+              - **───**
+              - Tier 1: GCC 11.4 |br|
+                Tier 3: Clang 15
+            * - MacOS Sequoia (15)
+              - Tier 1: Clang 16
+              - **───**
+              - **───**
+            * - Windows 10
+              - Tier 1: MSVC v142 (Visual Studio 2019) |br|
+                Tier 3: MSVC v141 (Visual Studio 2017)
+              - Tier 3: MSVC v142 (Visual Studio 2019) |br|
+                Tier 3: MSVC v141 (Visual Studio 2017)
+              - **───**
+            * - Windows 11
+              - Tier 3: MSVC v143 (Visual Studio 2022)
+              - Tier 3: MSVC v143 (Visual Studio 2022)
+              - **───**
+            * - Debian Buster (10)
+              - Tier 3: GCC 8
+              - **───**
+              - Tier 3: GCC 8
+            * - Android 12
+              - Tier 3: SDK 31
+              - **───**
+              - Tier 3: SDK 31
+            * - Android 13
+              - Tier 3: SDK 33
+              - **───**
+              - Tier 3: SDK 33
+            * - QNX 7.1
+              - Tier 3: QCC (over GCC 8.3)
+              - **───**
+              - Tier 3: QCC (over GCC 8.3)
+
+    .. tab-item:: 3.3.x
+        :sync: 3.3.x
+
+        .. list-table::
+
+            * - **CMake**
+              - 3.20
+
+        .. list-table::
+            :header-rows: 1
+
+            * - OS \ Architecture
+              - amd64
+              - amd32
+              - arm64
+            * - Ubuntu Noble (24.04)
+              - Tier 3: GCC 13.2
+              - **───**
+              - Tier 3: GCC 13.2
+            * - Ubuntu Jammy (22.04)
+              - Tier 1: GCC 11.4 |br|
+                Tier 3: Clang 15
+              - **───**
+              - Tier 1: GCC 11.4 |br|
+                Tier 3: Clang 15
+            * - MacOS Sequoia (15)
+              - Tier 1: Clang 16
+              - **───**
+              - **───**
+            * - Windows 10
+              - Tier 1: MSVC v142 (Visual Studio 2019) |br|
+                Tier 3: MSVC v141 (Visual Studio 2017)
+              - Tier 3: MSVC v142 (Visual Studio 2019) |br|
+                Tier 3: MSVC v141 (Visual Studio 2017)
+              - **───**
+            * - Windows 11
+              - Tier 3: MSVC v143 (Visual Studio 2022)
+              - Tier 3: MSVC v143 (Visual Studio 2022)
+              - **───**
+            * - Debian Buster (10)
+              - Tier 3: GCC 8
+              - **───**
+              - Tier 3: GCC 8
+            * - Android 12
+              - Tier 3: SDK 31
+              - **───**
+              - Tier 3: SDK 31
+            * - Android 13
+              - Tier 3: SDK 33
+              - **───**
+              - Tier 3: SDK 33
+            * - QNX 7.1
+              - Tier 3: QCC (over GCC 8.3)
+              - **───**
+              - Tier 3: QCC (over GCC 8.3)
+
+    .. tab-item:: 3.2.x
+        :sync: 3.2.x
+
+        .. list-table::
+
+            * - **CMake**
+              - 3.20
+
+        .. list-table::
+            :header-rows: 1
+
+            * - OS \ Architecture
+              - amd64
+              - amd32
+              - arm64
+            * - Ubuntu Noble (24.04)
+              - Tier 3: GCC 13.2
+              - **───**
+              - Tier 3: GCC 13.2
+            * - Ubuntu Jammy (22.04)
+              - Tier 1: GCC 11.4 |br|
+                Tier 3: Clang 15
+              - **───**
+              - Tier 1: GCC 11.4 |br|
+                Tier 3: Clang 15
+            * - MacOS Sequoia (15)
+              - Tier 1: Clang 16
+              - **───**
+              - **───**
+            * - Windows 10
+              - Tier 1: MSVC v142 (Visual Studio 2019) |br|
+                Tier 3: MSVC v141 (Visual Studio 2017)
+              - Tier 3: MSVC v142 (Visual Studio 2019) |br|
+                Tier 3: MSVC v141 (Visual Studio 2017)
+              - **───**
+            * - Windows 11
+              - Tier 1: MSVC v142 (Visual Studio 2019) |br|
+                Tier 1: MSVC v143 (Visual Studio 2022)
+              - Tier 3: MSVC v143 (Visual Studio 2022)
+              - **───**
+            * - Debian Buster (10)
+              - Tier 3: GCC 8
+              - **───**
+              - Tier 3: GCC 8
+            * - Android 12
+              - Tier 3: SDK 31
+              - **───**
+              - Tier 3: SDK 31
+            * - Android 13
+              - Tier 3: SDK 33
+              - **───**
+              - Tier 3: SDK 33
+            * - QNX 7.1
+              - Tier 3: QCC (over GCC 8.3)
+              - **───**
+              - Tier 3: QCC (over GCC 8.3)
+
+    .. tab-item:: 2.14.x
+        :sync: 2.14.x
+>>>>>>> 9b8762c (Update Tier support to MacOS Sequoia (#1163))
 
         .. list-table::
 
@@ -73,8 +247,8 @@ The following table shows the minimum version required of the Fast DDS build sys
               - Tier 3: GCC 9
               - **───**
               - Tier 3: GCC 9
-            * - MacOS Mojave (10.14)
-              - Tier 1: Clang 15
+            * - MacOS Sequoia (15)
+              - Tier 1: Clang 16
               - **───**
               - **───**
             * - Windows 10
@@ -124,8 +298,8 @@ The following table shows the minimum version required of the Fast DDS build sys
               - **───**
               - Tier 1: GCC 9 |br|
                 Tier 3: Clang 12
-            * - MacOS Mojave (10.14)
-              - Tier 1: Clang 12
+            * - MacOS Sequoia (15)
+              - Tier 1: Clang 16
               - **───**
               - **───**
             * - Windows 10

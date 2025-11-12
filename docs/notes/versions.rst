@@ -116,8 +116,8 @@ The following table shows the minimum version required of the Fast DDS build sys
               - **───**
               - Tier 1: GCC 11.4 |br|
                 Tier 3: Clang 15
-            * - MacOS Mojave (10.14)
-              - Tier 1: Clang 15
+            * - MacOS Sequoia (15)
+              - Tier 1: Clang 16
               - **───**
               - **───**
             * - Windows 10
@@ -172,8 +172,8 @@ The following table shows the minimum version required of the Fast DDS build sys
               - **───**
               - Tier 1: GCC 11.4 |br|
                 Tier 3: Clang 15
-            * - MacOS Mojave (10.14)
-              - Tier 1: Clang 15
+            * - MacOS Sequoia (15)
+              - Tier 1: Clang 16
               - **───**
               - **───**
             * - Windows 10
@@ -229,8 +229,8 @@ The following table shows the minimum version required of the Fast DDS build sys
               - Tier 3: GCC 9
               - **───**
               - Tier 3: GCC 9
-            * - MacOS Mojave (10.14)
-              - Tier 1: Clang 15
+            * - MacOS Sequoia (15)
+              - Tier 1: Clang 16
               - **───**
               - **───**
             * - Windows 10
@@ -281,8 +281,8 @@ The following table shows the minimum version required of the Fast DDS build sys
               - **───**
               - Tier 1: GCC 9 |br|
                 Tier 3: Clang 12
-            * - MacOS Mojave (10.14)
-              - Tier 1: Clang 12
+            * - MacOS Sequoia (15)
+              - Tier 1: Clang 16
               - **───**
               - **───**
             * - Windows 10

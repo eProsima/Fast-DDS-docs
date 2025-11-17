@@ -1,3 +1,5 @@
+.. include:: ../../03-exports/aliases-api.include
+
 Supported versions
 ==================
 

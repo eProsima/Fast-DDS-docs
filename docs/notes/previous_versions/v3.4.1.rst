@@ -17,7 +17,7 @@ This patch release includes the following **improvements**:
 * Send heartbeat when |RTPSWriters::wait_for_all_acked-api| is called
 * Update fastcdr submodule
 * Update RELEASE_SUPPORT with release 3.2.3
-* Apply uncrustify
+* Apply ``Uncrustify``
 
 This patch release includes the following **fixes**:
 

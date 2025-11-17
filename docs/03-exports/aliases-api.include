@@ -937,7 +937,7 @@
 .. |RTPSWriters-api| replace:: :cpp:class:`RTPSWriters <eprosima::fastdds::rtps::RTPSWriter>`
 .. |WriterAttributes-api| replace:: :cpp:class:`WriterAttributes<eprosima::fastdds::rtps::WriterAttributes>`
 .. |RTPSWriters::new_change-api| replace:: :cpp:func:`RTPSWriter::new_change() <eprosima::fastdds::rtps::RTPSWriter::new_change>`
-.. |RTPSWriters::wait_for_all_acked-api| replace:: :cpp:func:`RTPSWriter::wait_for_all_acked() <eprosima::fastdds::rtps::RTPSWriter::wait_for_all_acked>`
+.. |RTPSWriters::wait_for_all_acked-api| replace:: :cpp:func:`RTPSWriter::wait_for_all_acked <eprosima::fastdds::rtps::RTPSWriter::wait_for_all_acked>`
 
 .. |History-api| replace:: :cpp:class:`History <eprosima::fastdds::rtps::History>`
 .. |WriterHistory-api| replace:: :cpp:class:`WriterHistory <eprosima::fastdds::rtps::WriterHistory>`

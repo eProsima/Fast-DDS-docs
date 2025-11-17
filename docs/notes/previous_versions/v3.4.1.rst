@@ -1,0 +1,26 @@
+`Version 3.4.1 (latest) <https://fast-dds.docs.eprosima.com/en/v3.4.1/index.html>`_
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+This patch release includes the following **improvements**:
+
+* Improve Fast DDS Pro introduction
+* Add script to generate IDL files
+* Update Discovery-Server repository versioning
+* Add 3.2.3 release notes
+
+This patch release includes the following **fixes**:
+
+* Fix 3.4.0 release notes
+* Fix regular expression for Pro version detection
+* Fix pro examples
+* Fix tests against PRO
+
+It also includes the following **CI management improvements**:
+
+* Update Tier support to MacOS Sequoia
+
+.. important::
+
+    When upgrading to version 3.4.1 it is **highly recommended** to regenerate generated source from IDL files
+    using at least `Fast DDS-Gen v4.2.0 <https://github.com/eProsima/Fast-DDS-Gen/releases/tag/v4.2.0>`_.
+    But it is advisable to regenerate them using the latest patch version of ``Fast DDS-Gen v4.2.x``.

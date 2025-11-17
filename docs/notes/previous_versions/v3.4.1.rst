@@ -1,23 +1,41 @@
 `Version 3.4.1 (latest) <https://fast-dds.docs.eprosima.com/en/v3.4.1/index.html>`_
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
+This patch release includes the following **security fixes**:
+
+* `CVE-2025-62599 <https://www.cve.org/CVERecord?id=CVE-2025-62599>`_
+* `CVE-2025-62600 <https://www.cve.org/CVERecord?id=CVE-2025-62600>`_
+* `CVE-2025-62601 <https://www.cve.org/CVERecord?id=CVE-2025-62601>`_
+* `CVE-2025-62602 <https://www.cve.org/CVERecord?id=CVE-2025-62602>`_
+* `CVE-2025-62603 <https://www.cve.org/CVERecord?id=CVE-2025-62603>`_
+* `CVE-2025-64098 <https://www.cve.org/CVERecord?id=CVE-2025-64098>`_
+* `CVE-2025-62799 <https://www.cve.org/CVERecord?id=CVE-2025-62799>`_
+* `CVE-2025-64438 <https://www.cve.org/CVERecord?id=CVE-2025-64438>`_
+
 This patch release includes the following **improvements**:
 
-* Improve Fast DDS Pro introduction
-* Add script to generate IDL files
-* Update Discovery-Server repository versioning
-* Add 3.2.3 release notes
+* Send heartbeat when wait_for_all_acked is called
+* Update fastcdr submodule
+* Update RELEASE_SUPPORT with release 3.2.3
+* Apply uncrustify
 
 This patch release includes the following **fixes**:
 
-* Fix 3.4.0 release notes
-* Fix regular expression for Pro version detection
-* Fix pro examples
-* Fix tests against PRO
+* Remove residual generated files
+* Guard gnu::optimize with defined(__GNUC__)
+* Making system libraries private in target_link_libraries
+* Remove manually change of "/Zi" MSVC option
+* Avoid PROJECT_SOURCE_DIR and make_unique when building blackbox tests
+* Avoid casting GUID_t into InstanceHandle_t
+* Fixed some data races
+
 
 It also includes the following **CI management improvements**:
 
-* Update Tier support to MacOS Sequoia
+* Allow CI to run tests with manual dispatch
+* Reduce disk usage in TSAN job
+* Upgrade to macOS Sequoia
+
 
 .. important::
 

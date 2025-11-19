@@ -29,7 +29,7 @@ The following table shows the currently supported versions of Fast DDS and their
       - EOL date
     * - 3.4
       - `3.4.x <https://github.com/eProsima/Fast-DDS/tree/3.4.x>`__
-      - `v3.4.0 <https://github.com/eProsima/Fast-DDS/releases/tag/v3.4.0>`__
+      - `v3.4.1 <https://github.com/eProsima/Fast-DDS/releases/tag/v3.4.1>`__
       - October 2025
       - April 2026
       - April 2026
@@ -382,7 +382,7 @@ The following table shows the corresponding versions of the Fast DDS library dep
             * - Product
               - Related version
             * - `Fast CDR <https://github.com/eProsima/Fast-CDR/>`__
-              - `v2.3.2 <https://github.com/eProsima/Fast-CDR/releases/tag/v2.3.2>`__
+              - `v2.3.4 <https://github.com/eProsima/Fast-CDR/releases/tag/v2.3.4>`__
             * - `Foonathan Memory Vendor <https://github.com/eProsima/foonathan_memory_vendor/>`__
               - `v1.3.1 <https://github.com/eProsima/foonathan_memory_vendor/releases/tag/v1.3.1>`__
             * - `Asio <https://github.com/chriskohlhoff/asio>`__
@@ -497,7 +497,7 @@ Fast DDS as the core middleware.
             * - `Fast DDS Gen - IDL parser <https://github.com/eProsima/IDL-Parser/>`__
               - `v4.2.0 <https://github.com/eProsima/IDL-Parser/releases/tag/v4.2.0>`__
             * - `Fast DDS python <https://github.com/eProsima/Fast-DDS-python/>`__
-              - `v2.4.0 <https://github.com/eProsima/Fast-DDS-python/releases/tag/v2.4.0>`__
+              - `v2.4.1 <https://github.com/eProsima/Fast-DDS-python/releases/tag/v2.4.1>`__
             * - `Shapes Demo <https://github.com/eProsima/ShapesDemo/>`__
               - `v3.4.0 <https://github.com/eProsima/ShapesDemo/releases/tag/v3.4.0>`__
             * - `Discovery Server <https://github.com/eProsima/Discovery-Server/>`__

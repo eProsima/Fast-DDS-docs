@@ -71,7 +71,6 @@
    /fastddsgen/pubsub_app/pubsub_app
    /fastddsgen/python_bindings/python_bindings
    /fastddsgen/dataTypes/dataTypes
-   /fastddsgen/interfaces/introduction
 
 .. _index_cli:
 

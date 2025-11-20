@@ -72,7 +72,6 @@
    /fastddsgen/python_bindings/python_bindings
    /fastddsgen/dataTypes/dataTypes
    /fastddsgen/interfaces/introduction
-   /fastddsgen/rpc_calculator_basic_app/intro
 
 .. _index_cli:
 

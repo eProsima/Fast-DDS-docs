@@ -31,12 +31,11 @@ The RPC specification provides two different APIs to build RPC over DDS applicat
   to be used directly by the user.
 
 * *A high-level function-call style based API*, built on top of the request/reply API, and generated automatically
-  by the *Fast DDS-Gen* tool from an IDL file, containing an interface with the operations to be used by both client
-  and server (see :ref:`fastddsgen_interfaces_introduction`).
+  from an IDL file, containing an interface with the operations to be used by both client and server.
 
   This high level API is intended to be used to implement RPC applications with multiple data flows.
 
-  Once the user declares the methods in the IDL file, *Fast DDS-Gen* generates the source code required
+  Once the user declares the methods in the IDL file, a code generator generates the source code required
   to make remote invokations in a function-call, user-friendly style, and provides a source file to allow the user to
   implement the operations in the server side:
 
@@ -44,6 +43,9 @@ The RPC specification provides two different APIs to build RPC over DDS applicat
    :width: 100%
    :align: center
    :alt: RPC over DDS API comparison
+
+.. note::
+    The current version of *Fast DDS-Gen* does not generate code for interfaces.
 
 |br|
 

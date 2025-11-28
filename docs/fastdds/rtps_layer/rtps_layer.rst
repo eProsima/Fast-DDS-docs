@@ -94,9 +94,9 @@ Changes are always managed by the History.
 You can add a new :class:`CacheChange_t` to the History of the Writer to send data.
 The procedure is as follows:
 
-1. Request a :class:`CacheChange_t` from the Writer with |RTPSWriters::new_change-api|.
+1. Request a :class:`CacheChange_t` from the Writer History with |WriterHistory::create_change-api|.
    In order to allocate enough memory,
-   you need to provide a callback that returns the maximum number bytes in the payload.
+   you need to provide as argument the maximum number of bytes in the payload.
 2. Fill the :class:`CacheChange_t` with the data.
 3. Add it to the History with |WriterHistory::add_change-api|.
 

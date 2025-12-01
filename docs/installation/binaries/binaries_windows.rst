@@ -49,8 +49,6 @@ version and architecture when prompted.
     By default, *eProsima Fast DDS* does not compile tests. To activate them, please refer to the
     :ref:`windows_sources` page.
 
-    To use the :ref:`cli_xml` validation tool, please refer to the :ref:`windows_sources` page.
-
 .. _contents_bw:
 
 Contents

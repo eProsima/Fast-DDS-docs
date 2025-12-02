@@ -130,7 +130,10 @@ In order to grant access to the HSM module a user must belong to this group.
 
 .. code-block:: bash
 
-   sudo usermod -a -G softhsm <user>
+   sudo usermod -a -G softhsm $USER
+
+.. warning::
+    If you add your current user to a new group, you must log out and log back in for the change to take effect.
 
 OpenSSL access HSM and other hardware devices through its engine functionality.
 In order to set up a new engine the OpenSSL configuration files (usually `/etc/ssl/openssl.cnf`)

@@ -2,7 +2,7 @@ Import linked libraries and its dependencies
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 The DDS application requires the Fast DDS and Fast CDR libraries.
-Depending on the installation procedure followed the process of making these libraries available for our DDS application
+Depending on the installation procedure followed, the process of making these libraries available for our DDS application
 will be slightly different.
 
 Installation from binaries and manual installation

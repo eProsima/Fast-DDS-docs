@@ -181,7 +181,7 @@ Compatibility Rule
 """"""""""""""""""
 
 To maintain the compatibility between DisablePositiveACKsQosPolicy in DataReaders and DataWriters, the DataReader
-cannot have this QoS enabled if the DataWriter have it disabled.
+cannot have this QoS enabled if the DataWriter has it disabled.
 
 Table with the possible combinations:
 

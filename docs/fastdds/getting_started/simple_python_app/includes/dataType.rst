@@ -45,7 +45,7 @@ This must have generated the following files:
 * HelloWorld.hpp: HelloWorld C++ type definition.
 * HelloWorld.i: `SWIG`_ interface file for HelloWorld C++ type definition.
 * HelloWorldPubSubTypes.cxx: C++ interface used by Fast DDS to support HelloWorld type.
-* HelloWorldPubSubTypes.h: C++ header file for HelloWorldPubSubTypes.cxx.
+* HelloWorldPubSubTypes.hpp: C++ header file for HelloWorldPubSubTypes.cxx.
 * HelloWorldPubSubTypes.i: `SWIG`_ interface file for C++ Serialization and Deserialization code.
 * HelloWorldCdrAux.ipp: C++ serialization and deserialization code for the HelloWorld type.
 * HelloWorldCdrAux.hpp: C++ header file for HelloWorldCdrAux.ipp.

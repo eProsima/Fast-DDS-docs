@@ -51,7 +51,7 @@ Output files
 Assuming the IDL file had the name *“Mytype”*, and none of the above options have been defined, these files are:
 
 *   MyType.hpp: Type definition.
-*   MyTypePubSubType.cxx/.h: Serialization and deserialization source code for the data type.
+*   MyTypePubSubType.cxx/.hpp: Serialization and deserialization source code for the data type.
     It also defines the |TopicDataType::getKey-api| member function of the :class:`MyTypePubSubType` class in case the
     topic implements keys (see :ref:`dds_layer_topic_keyed_data_types`).
 *   MyTypeCdrAux.hpp/.ipp: Auxiliary methods required by Fast CDR for type encoding and decoding.

@@ -24,7 +24,7 @@ Subscriber application respectively.
             ├── HelloWorldCdrAux.ipp
             ├── HelloWorldPublisher.cpp
             ├── HelloWorldPubSubTypes.cxx
-            ├── HelloWorldPubSubTypes.h
+            ├── HelloWorldPubSubTypes.hpp
             ├── HelloWorldSubscriber.cpp
             ├── HelloWorldTypeObjectSupport.cxx
             └── HelloWorldTypeObjectSupport.hpp

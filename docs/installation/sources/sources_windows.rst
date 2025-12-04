@@ -3,8 +3,8 @@
 Windows installation from sources
 =================================
 
-The instructions for installing both the :ref:`Fast DDS library <_fastdds_lib_sw>`
-and the :ref:`Fast DDS-Gen <_fastddsgen_sw>` generation tool from sources are provided in this page.
+The instructions for installing both the :ref:`Fast DDS library <fastdds_lib_sw>`
+and the :ref:`Fast DDS-Gen <fastddsgen_sw>` generation tool from sources are provided in this page.
 It is organized as follows:
 
 .. _fastdds_lib_sw:

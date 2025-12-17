@@ -3,7 +3,7 @@
 Information about the release lifecycle can be found
 `here <https://github.com/eProsima/Fast-DDS/blob/master/RELEASE_SUPPORT.md>`_.
 
-Version 2.6.10 (maintenance)
+Version 2.6.11 (maintenance)
 ============================
 
 .. important::
@@ -13,27 +13,28 @@ Version 2.6.10 (maintenance)
 
 This release includes the following **critical fixes**:
 
-#. Fix `CVE-2025-24807 <https://www.cve.org/CVERecord?id=CVE-2025-24807>`_
-#. Discard changes with big ``key-only`` payload and no key hash
-#. Update types regeneration script ``homing`` path
-#. Fix topic interference on ``liveliness_changed`` status
+#. Fix `CVE-2025-62599 <https://www.cve.org/CVERecord?id=CVE-2025-62599>`_
+#. Fix `CVE-2025-62600 <https://www.cve.org/CVERecord?id=CVE-2025-62600>`_
+#. Fix `CVE-2025-62601 <https://www.cve.org/CVERecord?id=CVE-2025-62601>`_
+#. Fix `CVE-2025-62602 <https://www.cve.org/CVERecord?id=CVE-2025-62602>`_
+#. Fix `CVE-2025-62603 <https://www.cve.org/CVERecord?id=CVE-2025-62603>`_
+#. Fix `CVE-2025-64098 <https://www.cve.org/CVERecord?id=CVE-2025-64098>`_
+#. Fix `CVE-2025-62799 <https://www.cve.org/CVERecord?id=CVE-2025-62799>`_
+#. Fix `CVE-2025-64438 <https://www.cve.org/CVERecord?id=CVE-2025-64438>`_
+#. Fix `CVE-2025-65016 <https://www.cve.org/CVERecord?id=CVE-2025-65016>`_
 
 This release includes the following **improvements**:
 
-#. Add ``unsigned`` specification to literals
-#. Update commercial support section in README
-#. Update ``sqlite`` from ``3.36.0`` to ``3.47.2``
+#. Verify Safe DDS signature
+#. Improvements in message receiver
+#. Regenerate types with Fast DDS Gen 2.1.4
+#. Upgrade to Fast CDR v1.0.29
 
 This release includes the following **ci management updates**:
 
-#. Exclude flaky tests when compiling without security
-#. Fix python version in sanitizers CI
-#. Fix Windows CI and add vanilla build step in Ubuntu CI
-#. Update submodules when cloning Fast DDS on CI
-#. Add Ubuntu weekly CI
-#. Allow running CI on external contributions
-#. Use ``eProsima-CI`` action to install ``Qt``
-#. Add references to new nightly jobs per supported branch in README
+#. Add ``uncrustify`` to Github CI
+#. Remove deprecated windows 2019 from CI in favor of 2022
+#. Upgrade to macOS Sequoia
 
 .. note::
   If you are upgrading from a version older than 1.7.0, it is **required** to regenerate generated source from IDL

@@ -11,8 +11,6 @@ Version 2.6.10 (maintenance)
   `release support guidelines <https://github.com/eProsima/Fast-DDS/blob/master/RELEASE_SUPPORT.md>`_
   the v2.6 minor will only receive patches for critical issues and security fixes.
 
-This release includes the following critical fixes:
-
 This release includes the following **critical fixes**:
 
 #. Fix `CVE-2025-24807 <https://www.cve.org/CVERecord?id=CVE-2025-24807>`_
@@ -45,6 +43,7 @@ This release includes the following **ci management updates**:
 Previous versions
 =================
 
+.. include:: previous_versions/v2.6.10.rst
 .. include:: previous_versions/v2.6.9.rst
 .. include:: previous_versions/v2.6.8.rst
 .. include:: previous_versions/v2.6.7.rst

@@ -53,7 +53,7 @@ The following table shows the currently supported versions of Fast DDS and their
       - March 2025 (*)
     * - 2.6 (maintenance)
       - `2.6.x <https://github.com/eProsima/Fast-DDS/tree/2.6.x>`__
-      - `v2.6.10 <https://github.com/eProsima/Fast-DDS/releases/tag/v2.6.10>`__
+      - `v2.6.11 <https://github.com/eProsima/Fast-DDS/releases/tag/v2.6.11>`__
       - March 2022
       - July 2024
       - May 2025

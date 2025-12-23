@@ -293,6 +293,11 @@ Example configuration
    can cause the messages to never be sent.
 
 
+.. _congestion-control:
+
+Congestion Control |Pro|
+------------------------
+
 .. _tuning-heartbeat-period:
 
 Tuning Heartbeat Period

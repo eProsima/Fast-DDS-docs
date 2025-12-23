@@ -30,7 +30,7 @@ It extends the open-source version with premium features such as:
 * :ref:`TSN Support <use-case-dds-tsn>` |Pro| – deterministic communication with guaranteed latency.
 * :ref:`IP Mobility <ip-mobility>` |Pro| – uninterrupted communication even when network conditions change.
 * :ref:`RPC over DDS <rpc_dds_intro>` |Pro| – seamless integration of remote procedure calls with DDS communication.
-* Congestion Control |Pro| (coming soon) – adaptive traffic management in congested environments.
+* :ref:`Congestion Control <congestion-control>` |Pro| – adaptive traffic management in congested environments.
 
 .. |eprosima_fastdds_pro_website| raw:: html
 

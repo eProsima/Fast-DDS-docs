@@ -13,6 +13,7 @@ This section contains the list of :ref:`propertypolicyqos` that can be set with 
 
     non_consolidated_qos.rst
     flow_control.rst
+    congestion_control.rst
     persistence.rst
     security.rst
     logging.rst

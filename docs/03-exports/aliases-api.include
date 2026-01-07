@@ -933,11 +933,11 @@
 
 .. |RTPSWriters-api| replace:: :cpp:class:`RTPSWriters <eprosima::fastdds::rtps::RTPSWriter>`
 .. |WriterAttributes-api| replace:: :cpp:class:`WriterAttributes<eprosima::fastdds::rtps::WriterAttributes>`
-.. |RTPSWriters::new_change-api| replace:: :cpp:func:`RTPSWriter::new_change() <eprosima::fastdds::rtps::RTPSWriter::new_change>`
 
 .. |History-api| replace:: :cpp:class:`History <eprosima::fastdds::rtps::History>`
 .. |WriterHistory-api| replace:: :cpp:class:`WriterHistory <eprosima::fastdds::rtps::WriterHistory>`
 .. |WriterHistory::add_change-api| replace:: :cpp:func:`WriterHistory::add_change() <eprosima::fastdds::rtps::WriterHistory::add_change>`
+.. |WriterHistory::create_change-api| replace:: :cpp:func:`WriterHistory::create_change() <CacheChange_t* eprosima::fastdds::rtps::WriterHistory::create_change(uint32_t payload_size, ChangeKind_t change_kind, InstanceHandle_t handle)>`
 .. |ReaderHistory-api| replace:: :cpp:class:`ReaderHistory <eprosima::fastdds::rtps::ReaderHistory>`
 .. |CacheChange_t-api| replace:: :cpp:class:`CacheChange_t<eprosima::fastdds::rtps::CacheChange_t>`
 

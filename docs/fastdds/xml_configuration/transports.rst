@@ -84,13 +84,13 @@ A more detailed explanation of each of these elements can be found in :ref:`comm
      - ``string``
      -
    * - ``<keep_alive_frequency_ms>``
-     - Frequency in milliseconds for sending :ref:`RTCP <rtcpdefinition>` keep-alive requests (TCP only).
+     - |Pro| Frequency in milliseconds for sending :ref:`RTCP <rtcpdefinition>` keep-alive requests (TCP only).
      - ``uint32_t``
-     - ``50000``
+     - ``0``
    * - ``<keep_alive_timeout_ms>``
-     - Time in milliseconds since the last keep-alive request was sent to consider a connection as broken (TCP only).
+     - |Pro| Time in milliseconds since the last keep-alive request was sent to consider a connection as broken (TCP only).
      - ``uint32_t``
-     - ``10000``
+     - ``0``
    * - ``<max_logical_port>``
      - The maximum number of logical ports to try during :ref:`RTCP <rtcpdefinition>` negotiations (TCP only).
      - ``uint16_t``

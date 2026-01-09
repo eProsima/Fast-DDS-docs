@@ -6489,6 +6489,23 @@ void dds_transport_examples ()
     }
 
     {
+        //CONF-TCP-KEEP-ALIVE
+        DomainParticipantQos qos;
+
+        // Create a descriptor for the new transport.
+        auto tcp_transport = std::make_shared<TCPv4TransportDescriptor>();
+
+        // Configure keep alive options
+        tcp_transport->keep_alive_frequency_ms = 5000;  // Send a keep-alive message every 5 seconds when connection is idle
+        tcp_transport->keep_alive_timeout_ms = 2000;  // Consider connection lost if no response is received within 2 seconds
+        tcp_transport->keep_alive_thread = eprosima::fastdds::rtps::ThreadSettings{-1, 0, 0, -1};  // Configure thread settings
+
+        // Link the Transport Layer to the Participant.
+        qos.transport().user_transports.push_back(tcp_transport);
+        //!--
+    }
+
+    {
         //TRANSPORT-DESCRIPTORS
         DomainParticipantQos qos;
 

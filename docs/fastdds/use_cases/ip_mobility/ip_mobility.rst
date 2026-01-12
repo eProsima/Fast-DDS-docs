@@ -54,8 +54,8 @@ Please refer to :ref:`dds_layer_domainParticipantQos` for more information about
 TCP Keep Alive |Pro|
 ====================
 
-Fast DDS Pro additionally provides a TCP keep-alive mechanism to detect stalled TCP connections and recover from link failures
-more reliably.
+Fast DDS Pro additionally provides a TCP keep-alive mechanism to detect stalled TCP connections and recover
+from link failures more reliably.
 When enabled, the TCP transport periodically sends keep-alive requests on established TCP channels, and monitors
 activity to determine whether a connection is still responsive.
 Keep alive requests are sent only when no incoming data has been received for a specified interval.

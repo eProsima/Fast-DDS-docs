@@ -304,13 +304,14 @@ Please refer to :ref:`ResourceLimitsQosPolicy` for further information on Resour
 +--------------------------------+-----------------------------------------------------------+---------------+---------+
 | Name                           | Description                                               | Values        | Default |
 +================================+===========================================================+===============+=========+
-| ``<max_samples>``              | It must verify that:                                      | ``int32_t``   | 5000    |
-|                                | ``<max_samples>`` `>=` ``<max_samples_per_instance>``.    |               |         |
+| ``<max_samples>``              | It must verify that:                                      | ``int32_t``   | -1 (no  |
+|                                | ``<max_samples>`` `>=` ``<max_samples_per_instance>``.    |               | limits) |
 +--------------------------------+-----------------------------------------------------------+---------------+---------+
-| ``<max_instances>``            | It defines the maximum number of instances.               | ``int32_t``   | 10      |
+| ``<max_instances>``            | It defines the maximum number of instances.               | ``int32_t``   | -1 (no  |
+|                                |                                                           |               | limits) |
 +--------------------------------+-----------------------------------------------------------+---------------+---------+
-| ``<max_samples_per_instance>`` | It must verify that: :ref:`HistoryQos <hQos>`             | ``int32_t``   | 400     |
-|                                | ``<depth>`` `<=` ``<max_samples_per_instance>``.          |               |         |
+| ``<max_samples_per_instance>`` | It must verify that: :ref:`HistoryQos <hQos>`             | ``int32_t``   | -1 (no  |
+|                                | ``<depth>`` `<=` ``<max_samples_per_instance>``.          |               | limits) |
 +--------------------------------+-----------------------------------------------------------+---------------+---------+
 | ``<allocated_samples>``        | It controls the maximum number of samples to be stored.   | ``int32_t``   | 100     |
 +--------------------------------+-----------------------------------------------------------+---------------+---------+

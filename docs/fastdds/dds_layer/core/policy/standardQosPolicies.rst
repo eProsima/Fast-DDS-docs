@@ -1152,31 +1152,29 @@ See |ResourceLimitsQosPolicy-api|.
 
 List of QoS Policy data members:
 
-+----------------------------------------------------------------------------------------+-------------+---------------+
-| Data Member Name                                                                       | Type        | Default Value |
-+========================================================================================+=============+===============+
-| |ResourceLimitsQosPolicy::max_samples-api|                                             | ``int32_t`` | 5000          |
-+----------------------------------------------------------------------------------------+-------------+---------------+
-| |ResourceLimitsQosPolicy::max_instances-api|                                           | ``int32_t`` | 10            |
-+----------------------------------------------------------------------------------------+-------------+---------------+
-| |ResourceLimitsQosPolicy::max_samples_per_instance-api|                                | ``int32_t`` | 400           |
-+----------------------------------------------------------------------------------------+-------------+---------------+
-| |ResourceLimitsQosPolicy::allocated_samples-api|                                       | ``int32_t`` | 100           |
-+----------------------------------------------------------------------------------------+-------------+---------------+
-| |ResourceLimitsQosPolicy::extra_samples-api|                                           | ``int32_t`` | 1             |
-+----------------------------------------------------------------------------------------+-------------+---------------+
++----------------------------------------------------------------+-------------+-----------------------+
+| Data Member Name                                               | Type        | Default Value         |
++================================================================+=============+=======================+
+| |ResourceLimitsQosPolicy::max_samples-api|                     | ``int32_t`` | -1 (Length Unlimited) |
++----------------------------------------------------------------+-------------+-----------------------+
+| |ResourceLimitsQosPolicy::max_instances-api|                   | ``int32_t`` | -1 (Length Unlimited) |
++----------------------------------------------------------------+-------------+-----------------------+
+| |ResourceLimitsQosPolicy::max_samples_per_instance-api|        | ``int32_t`` | -1 (Length Unlimited) |
++----------------------------------------------------------------+-------------+-----------------------+
+| |ResourceLimitsQosPolicy::allocated_samples-api|               | ``int32_t`` | 100                   |
++----------------------------------------------------------------+-------------+-----------------------+
+| |ResourceLimitsQosPolicy::extra_samples-api|                   | ``int32_t`` | 1                     |
++----------------------------------------------------------------+-------------+-----------------------+
 
 * |ResourceLimitsQosPolicy::max_samples-api|: Controls the maximum number of samples that the DataWriter or DataReader
-  can manage across all the
-  instances associated with it.
+  can manage across all the instances associated with it.
   In other words, it represents the maximum samples that the middleware can store for a DataReader or DataWriter.
   **Value less or equal to 0 means infinite resources.**
 * |ResourceLimitsQosPolicy::max_instances-api|: Controls the maximum number of instances that a DataWriter or
   DataReader can manage.
   **Value less or equal to 0 means infinite resources.**
 * |ResourceLimitsQosPolicy::max_samples_per_instance-api|: Controls the maximum number of samples within an instance
-  that the DataWriter or
-  DataReader can manage.
+  that the DataWriter or DataReader can manage.
   **Value less or equal to 0 means infinite resources.**
 * |ResourceLimitsQosPolicy::allocated_samples-api|: States the number of samples that will be allocated on
   initialization.

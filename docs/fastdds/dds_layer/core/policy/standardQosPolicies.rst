@@ -1172,9 +1172,11 @@ List of QoS Policy data members:
   **Value less or equal to 0 means infinite resources.**
 * |ResourceLimitsQosPolicy::max_instances-api|: Controls the maximum number of instances that a DataWriter or
   DataReader can manage.
+  It will be internally fixed to 1 for topics without keys.
   **Value less or equal to 0 means infinite resources.**
 * |ResourceLimitsQosPolicy::max_samples_per_instance-api|: Controls the maximum number of samples within an instance
   that the DataWriter or DataReader can manage.
+  It will be ignored for topics without keys (|ResourceLimitsQosPolicy::max_samples-api| will be used instead).
   **Value less or equal to 0 means infinite resources.**
 * |ResourceLimitsQosPolicy::allocated_samples-api|: States the number of samples that will be allocated on
   initialization.

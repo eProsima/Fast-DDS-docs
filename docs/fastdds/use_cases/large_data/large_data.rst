@@ -27,6 +27,9 @@ In this scenario, several approaches can be considered depending on the problem:
   :ref:`flow-controllers`, in order to limit the effect of message bursts, and avoid to flood
   the Subscribers faster than they can process the messages.
 
+* :ref:`Congestion Control <congestion-control>` |Pro| uses a special flow controller that adapts the data rate
+  to the capabilities of the network and the Subscribers.
+
 * On |RELIABLE_RELIABILITY_QOS-api| mode,
   the overall message rate can be affected due to the retransmission of lost packets.
   Selecting the Heartbeat period allows to tune between increased meta traffic or faster response to lost packets.

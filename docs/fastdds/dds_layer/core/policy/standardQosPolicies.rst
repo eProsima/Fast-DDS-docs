@@ -1180,6 +1180,7 @@ List of QoS Policy data members:
   **Value less or equal to 0 means infinite resources.**
 * |ResourceLimitsQosPolicy::allocated_samples-api|: States the number of samples that will be allocated on
   initialization.
+  Will be limited by |ResourceLimitsQosPolicy::max_samples-api| (i.e. the minimum between both values will be used).
 * |ResourceLimitsQosPolicy::extra_samples-api|: States the number of extra samples that will be allocated on
   the pool, so the maximum number of samples on the pool will be
   |ResourceLimitsQosPolicy::max_samples-api| plus |ResourceLimitsQosPolicy::extra_samples-api|.

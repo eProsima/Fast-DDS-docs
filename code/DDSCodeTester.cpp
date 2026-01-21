@@ -4542,13 +4542,13 @@ void dds_qos_examples()
         //DDS_CHANGE_RESOURCE_LIMITS_QOS_POLICY
         // This example uses a DataWriter, but it can also be applied to DataReader and Topic entities
         DataWriterQos writer_qos;
-        // The ResourceLimitsQosPolicy is constructed with max_samples = 5000 by default
+        // The ResourceLimitsQosPolicy is constructed with max_samples = LENGTH_UNLIMITED by default
         // Change max_samples to 2000
         writer_qos.resource_limits().max_samples = 2000;
-        // The ResourceLimitsQosPolicy is constructed with max_instances = 10 by default
+        // The ResourceLimitsQosPolicy is constructed with max_instances = LENGTH_UNLIMITED by default
         // Change max_instances to 20
         writer_qos.resource_limits().max_instances = 20;
-        // The ResourceLimitsQosPolicy is constructed with max_samples_per_instance = 400 by default
+        // The ResourceLimitsQosPolicy is constructed with max_samples_per_instance = LENGTH_UNLIMITED by default
         // Change max_samples_per_instance to 100
         writer_qos.resource_limits().max_samples_per_instance = 100;
         // The ResourceLimitsQosPolicy is constructed with allocated_samples = 100 by default
@@ -7102,15 +7102,15 @@ void dds_usecase_examples()
         //CONF-MEMORY-QOS-PUBSUB
         ResourceLimitsQosPolicy resource_limits;
 
-        // The ResourceLimitsQosPolicy is constructed with max_samples = 5000 by default
+        // The ResourceLimitsQosPolicy is constructed with max_samples = LENGTH_UNLIMITED by default
         // Change max_samples to the minimum
         resource_limits.max_samples = 1;
 
-        // The ResourceLimitsQosPolicy is constructed with max_instances = 10 by default
+        // The ResourceLimitsQosPolicy is constructed with max_instances = LENGTH_UNLIMITED by default
         // Change max_instances to the minimum
         resource_limits.max_instances = 1;
 
-        // The ResourceLimitsQosPolicy is constructed with max_samples_per_instance = 400 by default
+        // The ResourceLimitsQosPolicy is constructed with max_samples_per_instance = LENGTH_UNLIMITED by default
         // Change max_samples_per_instance to the minimum
         resource_limits.max_samples_per_instance = 1;
 

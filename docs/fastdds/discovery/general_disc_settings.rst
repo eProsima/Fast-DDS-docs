@@ -51,7 +51,7 @@ The possible values are:
 | Discovery Server    | |SERVER|            | The DomainParticipant acts as a hub for discovery traffic, receiving     |
 |                     |                     | and distributing discovery information.                                  |
 |                     +---------------------+--------------------------------------------------------------------------+
-|                     | |CLIENT|            | The DomainParticipant acts as a client for discovery traffic.            |
+|                     | |CLIENT| |Pro|      | The DomainParticipant acts as a client for discovery traffic.            |
 |                     |                     | It sends its discovery information to the server, and it receives        |
 |                     |                     | only the information that is relevant to it.                             |
 |                     +---------------------+--------------------------------------------------------------------------+

@@ -22,9 +22,9 @@ This patch release includes the following **improvements**:
 #. Improve signal handling in RPC example
 #. Change ``non_blocking_send`` threshold to ``sendBufferSize``
 #. Avoid sending duplicated ``ACKs`` in ``DataSharing``
-#. Use binary search in find_change_nts
+#. Use binary search in ``find_change_nts``
 #. Guard ``gnu::optimize`` with ``defined(__GNUC__)``
-#. Apply uncrustify
+#. Apply ``uncrustify``
 #. Do not export discovery server as ``cmake`` target
 #. Send ``heartbeat`` when ``wait_for_all_acked`` is called
 #. Update ``RELEASE_SUPPORT`` with release ``3.2.3``

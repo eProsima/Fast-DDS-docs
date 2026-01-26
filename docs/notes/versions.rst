@@ -12,6 +12,60 @@ together with Fast DDS.
 This section provides information about the required dependencies for building Fast DDS, as well as about the versions
 of the eProsima software products related to Fast DDS.
 
+.. _currently_supported_versions:
+
+Currently supported versions
+----------------------------
+The following table shows the currently supported versions of Fast DDS and their corresponding release and EOL dates.
+
+.. list-table::
+    :header-rows: 1
+
+    * - Version
+      - Version Branch
+      - Latest Release
+      - Release date
+      - End of Standard Support date
+      - EOL date
+    * - 3.5
+      - `3.5.x <https://github.com/eProsima/Fast-DDS/tree/3.4.x>`__
+      - Not yet released
+      - March 2026
+      - March 2027 (*)
+      - March 2027 (*)
+    * - 3.4
+      - `3.4.x <https://github.com/eProsima/Fast-DDS/tree/3.4.x>`__
+      - `v3.4.1 <https://github.com/eProsima/Fast-DDS/releases/tag/v3.4.1>`__
+      - October 2025
+      - April 2026
+      - April 2026
+    * - 3.3
+      - `3.3.x <https://github.com/eProsima/Fast-DDS/tree/3.3.x>`__
+      - `v3.3.0 <https://github.com/eProsima/Fast-DDS/releases/tag/v3.3.0>`__
+      - July 2025
+      - January 2026
+      - January 2026
+    * - 3.2
+      - `3.2.x <https://github.com/eProsima/Fast-DDS/tree/3.2.x>`__ (LTS)
+      - `v3.2.3 <https://github.com/eProsima/Fast-DDS/releases/tag/v3.2.3>`__
+      - March 2025
+      - March 2026 (*)
+      - March 2026 (*)
+    * - 2.14
+      - `2.14.x <https://github.com/eProsima/Fast-DDS/tree/2.14.x>`__
+      - `v2.14.5 <https://github.com/eProsima/Fast-DDS/releases/tag/v2.14.5>`__
+      - March 2024
+      - March 2025 (*)
+      - March 2025 (*)
+    * - 2.6 (maintenance)
+      - `2.6.x <https://github.com/eProsima/Fast-DDS/tree/2.6.x>`__
+      - `v2.6.11 <https://github.com/eProsima/Fast-DDS/releases/tag/v2.6.11>`__
+      - March 2022
+      - July 2024
+      - May 2025
+
+(*): Support may be extended.
+
 .. _dependencies_compatibilities_platform_support:
 
 Platform support
@@ -238,7 +292,7 @@ Fast DDS as the core middleware.
             * - `Fast DDS python <https://github.com/eProsima/Fast-DDS-python/>`__
               - `v1.0.2 <https://github.com/eProsima/Fast-DDS-python/releases/tag/v1.0.2>`__
             * - `Shapes Demo <https://github.com/eProsima/ShapesDemo/>`__
-              - `v2.6.10 <https://github.com/eProsima/ShapesDemo/releases/tag/v2.6.11>`__
+              - `v2.6.11 <https://github.com/eProsima/ShapesDemo/releases/tag/v2.6.11>`__
             * - `Discovery Server <https://github.com/eProsima/Discovery-Server/>`__
               - `v1.2.1 <https://github.com/eProsima/Discovery-Server/releases/tag/v1.2.1>`__
 

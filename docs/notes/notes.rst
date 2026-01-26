@@ -5,7 +5,7 @@
 Information about the release lifecycle can be found
 `here <https://github.com/eProsima/Fast-DDS/blob/master/RELEASE_SUPPORT.md>`_.
 
-.. include:: previous_versions/v3.3.0.rst
+.. include:: previous_versions/v3.3.1.rst
 
 .. seealso::
 

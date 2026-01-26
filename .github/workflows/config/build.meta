@@ -4,6 +4,7 @@ names:
             - "-DBUILD_DOCUMENTATION=ON"
     fastrtps:
         cmake-args:
+            - "-DCMAKE_COMPILE_WARNING_AS_ERROR=ON"
             - "-DBUILD_DOCUMENTATION=ON"
             - "-DSECURITY=ON"
     fastdds_python:

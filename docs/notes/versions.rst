@@ -12,8 +12,6 @@ together with Fast DDS.
 This section provides information about the required dependencies for building Fast DDS, as well as about the versions
 of the eProsima software products related to Fast DDS.
 
-<<<<<<< HEAD
-=======
 .. _currently_supported_versions:
 
 Currently supported versions
@@ -68,7 +66,6 @@ The following table shows the currently supported versions of Fast DDS and their
 
 (*): Support may be extended.
 
->>>>>>> 35b12f7 (Update after releasing v2.6.11 (#1179))
 .. _dependencies_compatibilities_platform_support:
 
 Platform support
@@ -295,11 +292,7 @@ Fast DDS as the core middleware.
             * - `Fast DDS python <https://github.com/eProsima/Fast-DDS-python/>`__
               - `v1.0.2 <https://github.com/eProsima/Fast-DDS-python/releases/tag/v1.0.2>`__
             * - `Shapes Demo <https://github.com/eProsima/ShapesDemo/>`__
-<<<<<<< HEAD
-              - `v2.6.10 <https://github.com/eProsima/ShapesDemo/releases/tag/v2.6.11>`__
-=======
               - `v2.6.11 <https://github.com/eProsima/ShapesDemo/releases/tag/v2.6.11>`__
->>>>>>> 35b12f7 (Update after releasing v2.6.11 (#1179))
             * - `Discovery Server <https://github.com/eProsima/Discovery-Server/>`__
               - `v1.2.1 <https://github.com/eProsima/Discovery-Server/releases/tag/v1.2.1>`__
 

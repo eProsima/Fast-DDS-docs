@@ -14,11 +14,8 @@ Version 2.14
 Version 2.6 (maintenance)
 -------------------------
 
-<<<<<<< HEAD
-=======
 .. include:: v2.6.11.rst
 .. include:: v2.6.10.rst
->>>>>>> 35b12f7 (Update after releasing v2.6.11 (#1179))
 .. include:: v2.6.9.rst
 .. include:: v2.6.8.rst
 .. include:: v2.6.7.rst

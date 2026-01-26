@@ -2,13 +2,9 @@ names:
     fastdds-docs:
         cmake-args:
             - "-DBUILD_DOCUMENTATION=ON"
-<<<<<<< HEAD
     fastrtps:
-=======
-            - "-DCMAKE_COMPILE_WARNING_AS_ERROR=ON"
-    fastdds:
->>>>>>> 66348dc (Compile with warnings as errors in CI (#1103))
         cmake-args:
+            - "-DCMAKE_COMPILE_WARNING_AS_ERROR=ON"
             - "-DBUILD_DOCUMENTATION=ON"
             - "-DSECURITY=ON"
     fastdds_python:

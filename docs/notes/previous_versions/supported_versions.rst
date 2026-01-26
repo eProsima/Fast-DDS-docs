@@ -1,8 +1,8 @@
 Supported versions
 ==================
 
-Version 3.3
------------
+Version 3.3 (EOL)
+-----------------
 
 .. include:: v3.3.1.rst
 .. include:: v3.3.0.rst

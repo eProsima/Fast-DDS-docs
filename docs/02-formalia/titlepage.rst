@@ -18,8 +18,6 @@ The *eProsima Fast DDS* library provides both an Application Programming Interfa
 that deploy
 a Data-Centric Publisher-Subscriber (DCPS) model, with the purpose of establishing efficient and reliable
 information distribution among Real-Time Systems.
-<<<<<<< HEAD
-=======
 
 .. raw:: html
 
@@ -43,7 +41,6 @@ Find more about us at |eprosima_webpage_link|.
 Key features
 ^^^^^^^^^^^^
 
->>>>>>> e9193cd (New commercial message. (#1121))
 *eProsima Fast DDS* is predictable, scalable, flexible, and efficient in resource handling.
 For meeting these requirements, it makes use of typed interfaces and hinges on a many-to-many
 distributed network paradigm that neatly allows separation of the publisher and subscriber sides of the communication.

@@ -466,9 +466,6 @@ The HistoryQos must be set consistently with the :ref:`resourcelimitsqospolicy`,
 * When |HistoryQosPolicy::depth-api| is set higher than
   |ResourceLimitsQosPolicy::max_samples_per_instance-api|, the effective depth used
   will be limited by |ResourceLimitsQosPolicy::max_samples_per_instance-api|.
-  In versions prior to 3.5.x, this would silently use max_samples_per_instance as the
-  effective depth. From version 3.5.x onwards, this configuration generates a QoS
-  consistency error.
 * The |HistoryQosPolicy::depth-api| cannot be lower or equal than zero.
   If an unlimited depth is required, please consider using |HistoryQosPolicy::kind-api| as |KEEP_ALL_HISTORY_QOS-api|.
 * Setting the |HistoryQosPolicy::kind-api| as |KEEP_ALL_HISTORY_QOS-api| entails that limits are set by the
@@ -1207,9 +1204,9 @@ conditions:
 * The value of |ResourceLimitsQosPolicy::max_samples-api| must be higher or equal to the value of
   |ResourceLimitsQosPolicy::max_samples_per_instance-api|.
 * The value established for the :ref:`historyqospolicy` |HistoryQosPolicy::depth-api| must be lower or equal to the
-  value stated for |ResourceLimitsQosPolicy::max_samples_per_instance-api|. If the depth is configured
-  higher, |ResourceLimitsQosPolicy::max_samples_per_instance-api| will take precedence
-  as the effective depth, although this will throw an error in version 3.5.x and later.
+  value stated for |ResourceLimitsQosPolicy::max_samples_per_instance-api|.
+  If the depth is configured higher, |ResourceLimitsQosPolicy::max_samples_per_instance-api|
+  will take precedence as the effective depth.
 
 
 Example

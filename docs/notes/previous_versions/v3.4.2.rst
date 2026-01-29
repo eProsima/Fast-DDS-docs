@@ -3,8 +3,8 @@
 
 This patch release includes the following **security fixes**:
 
-1. `CVE-2025-65016 <https://github.com/eProsima/Fast-DDS/commit/65d17fa1c6f3fd4e6d46e01aaaa1bce4a5926cbe>`_
-2. `CVE-2026-22590 <https://github.com/eProsima/Fast-DDS/commit/0695732f91aeaf77c433a38a73cfb03e78e8a320>`_
+1. `CVE-2025-65016 <https://github.com/eProsima/Fast-DDS/commit/65d17fa1c6f3fd4e6d46e01aaaa1bce4a5926cbe>`__
+2. `CVE-2026-22590 <https://github.com/eProsima/Fast-DDS/commit/0695732f91aeaf77c433a38a73cfb03e78e8a320>`__
 
 This patch release includes the following **improvements**:
 

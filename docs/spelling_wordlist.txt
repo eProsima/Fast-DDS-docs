@@ -180,6 +180,7 @@ le
 Libp
 libs
 lifecycle
+linters
 loanable
 localhost
 localtime

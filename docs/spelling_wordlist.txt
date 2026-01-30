@@ -43,6 +43,7 @@ BNF
 Bzip
 boolean
 booleans
+branchout
 Bugfix
 bugfixes
 calculatorCdrAux
@@ -180,6 +181,7 @@ le
 Libp
 libs
 lifecycle
+linters
 loanable
 localhost
 localtime

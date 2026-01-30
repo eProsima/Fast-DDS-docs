@@ -1,0 +1,40 @@
+`Version 3.4.2 (latest) <https://fast-dds.docs.eprosima.com/en/v3.4.2/index.html>`_
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+This patch release includes the following **security fixes**:
+
+1. `CVE-2025-65016 <https://github.com/eProsima/Fast-DDS/commit/65d17fa1c6f3fd4e6d46e01aaaa1bce4a5926cbe>`__
+2. `CVE-2026-22590 <https://github.com/eProsima/Fast-DDS/commit/0695732f91aeaf77c433a38a73cfb03e78e8a320>`__
+
+This patch release includes the following **improvements**:
+
+1. Improve some tests
+2. Replace ``logWarning`` with ``EPROSIMA_LOG_WARNING`` in ``RTCPHeader.h``
+3. Improvements in message receiver
+4. Improvements on compute_key generated code
+5. Add new ``StatefulWriterListener``
+6. Remove out the responsibility for bandwidth limitation from ``RTPSMessageGroup``
+7. Update ``RELEASE_SUPPORT.md`` after ``2.6.11`` release
+8. Updates on ``3.4.x`` after branchout of ``3.5.x``
+9. Verify Safe DDS signature
+10. Improve Open SSL includes
+11. Allow empty payloads in dispose/unregister operations
+12. Reset irrelevant sequence numbers interval in proxy readers
+13. Update fastcdr to ``2.3.5``
+14. Bump version to ``3.4.2``
+
+This patch release includes the following **fixes**:
+
+1. Fix compilation errors against android-clang
+2. Fix GAP messages are not sent when there is no Reader requesting the DATA
+3. Fix handling of InstanceHandle use cases
+4. Fix usage of invalid iterator in ``DynamicDataImpl::deserialize()``
+5. Fix build in GCC 15
+6. Account for notification sample in ``DataReaderHistory::get_first_untaken_info``
+7. Fix DataReader history enforcement to respect ``max_samples_per_instance``
+
+This patch release includes the following **CI improvements**:
+
+1. Single line for ``ctest_args`` in Mac CI
+2. Free disk space in Ubuntu runners
+3. Upgrade Linters CI runner image to ``ubuntu-24.04``

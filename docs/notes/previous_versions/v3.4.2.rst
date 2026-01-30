@@ -28,7 +28,7 @@ This patch release includes the following **fixes**:
 1. Fix compilation errors against android-clang
 2. Fix GAP messages are not sent when there is no Reader requesting the DATA
 3. Fix handling of InstanceHandle use cases
-4. Fix usage of invalid interator in ``DynamicDataImpl::deserialize()``
+4. Fix usage of invalid iterator in ``DynamicDataImpl::deserialize()``
 5. Fix build in GCC 15
 6. Account for notification sample in ``DataReaderHistory::get_first_untaken_info``
 7. Fix DataReader history enforcement to respect ``max_samples_per_instance``

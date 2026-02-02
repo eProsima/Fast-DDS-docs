@@ -22,17 +22,17 @@ SHM transport provides better performance than other network transports like UDP
 even when these transports use loopback interface.
 This is mainly due to the following reasons:
 
- * Large message support: Network protocols need to fragment data in order to comply with the specific protocol and
-   network stacks requirements, increasing communication overhead.
-   SHM transport allows the copy of full messages where the only size limit is the machine's memory capacity.
+* Large message support: Network protocols need to fragment data in order to comply with the specific protocol and
+  network stacks requirements, increasing communication overhead.
+  SHM transport allows the copy of full messages where the only size limit is the machine's memory capacity.
 
- * Reduce the number of memory copies: When sending the same message to different endpoints, SHM transport can
-   directly share the same memory buffer with all the destination endpoints.
-   Other protocols require to perform one copy of the message per endpoint.
+* Reduce the number of memory copies: When sending the same message to different endpoints, SHM transport can
+  directly share the same memory buffer with all the destination endpoints.
+  Other protocols require to perform one copy of the message per endpoint.
 
- * Less operating system overhead: Once initial setup is completed, shared memory transfers require much less system
-   calls than the other protocols.
-   Therefore, there is a performance/time consume gain by using SHM.
+* Less operating system overhead: Once initial setup is completed, shared memory transfers require much less system
+  calls than the other protocols.
+  Therefore, there is a performance/time consume gain by using SHM.
 
 
 .. _transport_sharedMemory_concepts:
@@ -153,19 +153,19 @@ the TransportDescriptor for Shared Memory defines the following ones:
      - ``uint32_t``
      - ``512*1024``
      - |SharedMemTransportDescriptor::segment_size-api|
-     - Size of the shared memory segment |br|
+     - Size of the shared memory segment
        (in octets).
    * - ``port_queue_capacity_``
      - ``uint32_t``
      - ``512``
      - |SharedMemTransportDescriptor::port_queue_capacity-api|
-     - The size of the listening port |br|
+     - The size of the listening port
        (in messages).
    * - ``healthy_check_timeout_ms_``
      - ``uint32_t``
      - ``1000``
      - |SharedMemTransportDescriptor::healthy_check_timeout_ms-api|
-     - Timeout for the health check of ports |br|
+     - Timeout for the health check of ports
        (in milliseconds).
    * - ``rtps_dump_file_``
      - ``string``
@@ -218,23 +218,19 @@ and add it to the user transport list of the :ref:`dds_layer_domainParticipant`.
 
 The examples below show this procedure in both C++ code and XML file.
 
-.. tabs::
-
-  .. tab:: C++
+.. tab-set-code::
 
     .. literalinclude:: /../code/DDSCodeTester.cpp
-      :language: c++
-      :start-after: //CONF-SHM-TRANSPORT-SETTING
-      :end-before: //!--
-      :dedent: 8
-
-  .. tab:: XML
+        :language: c++
+        :start-after: //CONF-SHM-TRANSPORT-SETTING
+        :end-before: //!--
+        :dedent: 8
 
     .. literalinclude:: /../code/XMLTester.xml
-      :language: xml
-      :start-after: <!-->CONF-SHM-TRANSPORT-SETTING
-      :end-before: <!--><-->
-      :lines: 2-4,6-41,43-44
+        :language: xml
+        :start-after: <!-->CONF-SHM-TRANSPORT-SETTING
+        :end-before: <!--><-->
+        :lines: 2-4,6-41,43-44
 
 .. note::
 
@@ -252,30 +248,27 @@ The examples below show this procedure in both C++ code and XML file.
   The snippet examples below show this procedure in both C++ code and XML file.
   See :ref:`transport_sharedMemory_example` for a complete example.
 
-  .. tabs::
-
-    .. tab:: C++
+  .. tab-set-code::
 
       .. literalinclude:: /../code/DDSCodeTester.cpp
-        :language: c++
-        :start-after: //CONF-SHM-TRANSPORT-DISABLE-BUILTIN-TRANSPORTS
-        :end-before: //!--
-        :dedent: 8
-
-    .. tab:: XML
+          :language: c++
+          :start-after: //CONF-SHM-TRANSPORT-DISABLE-BUILTIN-TRANSPORTS
+          :end-before: //!--
+          :dedent: 8
 
       .. literalinclude:: /../code/XMLTester.xml
-        :language: xml
-        :start-after: <!-->CONF-SHM-TRANSPORT-DISABLE-BUILTIN-TRANSPORTS
-        :end-before: <!--><-->
-        :lines: 2-3,5-
-        :append: </profiles>
+          :language: xml
+          :start-after: <!-->CONF-SHM-TRANSPORT-DISABLE-BUILTIN-TRANSPORTS
+          :end-before: <!--><-->
+          :lines: 2-3,5-
+          :append: </profiles>
 
 .. _transport_sharedMemory_example:
 
-HelloWorldExampleSharedMem
---------------------------
+Delivery Mechanisms example
+---------------------------
 
-A Shared Memory version of helloworld example can be found in the
-`HelloWorldExampleSharedMem folder <https://github.com/eProsima/Fast-DDS/tree/master/examples/cpp/dds/HelloWorldExampleSharedMem>`_.
-It shows a publisher and a subscriber that communicate through Shared Memory.
+A hello world example suitable for supported delivery mechanisms can be found in the
+`delivery_mechanisms folder <https://github.com/eProsima/Fast-DDS/tree/master/examples/cpp/delivery_mechanisms>`_.
+It shows a publisher and a subscriber that communicate through the desired delivery mechanism (which can be set to
+shared memory only).

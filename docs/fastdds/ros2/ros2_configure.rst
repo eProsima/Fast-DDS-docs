@@ -13,18 +13,12 @@ However, *rmw_fastrtps* offers extended configuration capabilities
 to take full advantage of the features in *Fast DDS*.
 This section describes how to specify this extended configuration.
 
-.. contents::
-    :local:
-    :backlinks: none
-    :depth: 2
-
-
 .. _ros2_configure_publication_mode:
 
 Changing publication mode
 -------------------------
 
-*rmw_fastrtps* in ROS 2 uses asynchronous publication by default.
+*rmw_fastrtps* in ROS 2 uses synchronous publication by default.
 This can be easily changed setting the environment variable ``RMW_FASTRTPS_PUBLICATION_MODE``
 to one of the following allowed values:
 
@@ -57,16 +51,16 @@ Said parameters, and their default values under ROS 2, are:
      - Description
      - Default ROS 2 value
    * - |MemoryManagementPolicy|
-     - *Fast DDS* preallocates memory for the publisher |br|
-       and subscriber histories. When those histories fill |br|
+     - *Fast DDS* preallocates memory for the publisher
+       and subscriber histories. When those histories fill
        up, a reallocation occurs to reserve more memory.
      - |PREALLOCATED_WITH_REALLOC_MEMORY_MODE-api|
    * - |PublishModeQosPolicy|
-     - User calls to publication method add the messages |br|
-       in a queue that is managed in a different thread, |br|
-       meaning that the user thread is available right |br|
+     - User calls to publication method add the messages
+       in a queue that is managed in a different thread,
+       meaning that the user thread is available right
        after the call to send data.
-     - |ASYNCHRONOUS_PUBLISH_MODE-api|
+     - |SYNCHRONOUS_PUBLISH_MODE-api|
 
 
 .. _ros2_configure_xml:
@@ -115,33 +109,33 @@ The following table summarizes which values are used or ignored according to the
    * - RMW_FASTRTPS_USE_QOS_FROM_XML
      - ``rmw_qos_profile_t``
      - Fast DDS XML QoS
-     - Fast DDS XML history memory policy |br|
+     - Fast DDS XML history memory policy
        and publication mode
    * - 0 (default)
      - Default values
-     - Overridden by |br|
+     - Overridden by
        ``rmw_qos_profile_t``
-     - Overridden by |br|
+     - Overridden by
        *rmw_fastrtps* default value
    * - 0 (default)
      - Non system default
-     - overridden by |br|
+     - overridden by
        ``rmw_qos_profile_t``
-     - Overridden by |br|
+     - Overridden by
        *rmw_fastrtps* default value
    * - 0 (default)
      - System default
      - Used
-     - Overridden by |br|
+     - Overridden by
        *rmw_fastrtps* default value
    * - 1
      - Default values
-     - Overridden by |br|
+     - Overridden by
        ``rmw_qos_profile_t``
      - Used
    * - 1
      - Non system default
-     - Overridden by |br|
+     - Overridden by
        *rmw_qos_profile_t*
      - Used
    * - 1

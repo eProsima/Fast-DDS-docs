@@ -50,9 +50,9 @@ This is a minimal example that will perform a Publisher/Subscriber match and sta
 .. code-block:: bash
 
    goToExamples
-   cd dds/HelloWorldExample/bin
-   tmux new-session "./DDSHelloWorldExample publisher 0 1000" \; \
-        split-window "./DDSHelloWorldExample subscriber" \; \
+   cd hello_world/bin
+   tmux new-session "./hello_world publisher" \; \
+        split-window "./hello_world subscriber" \; \
         select-layout even-vertical
 
 This example is not constrained to the current instance.
@@ -62,35 +62,13 @@ following from each container.
 .. code-block:: bash
 
     goToExamples
-    cd dds/HelloWorldExample/bin
-    ./DDSHelloWorldExample publisher
+    cd hello_world/bin
+    ./hello_world publisher
 
 or
 
 .. code-block:: bash
 
     goToExamples
-    cd dds/HelloWorldExample/bin
-    ./DDSHelloWorldExample subscriber
-
-Benchmark Example
-^^^^^^^^^^^^^^^^^
-
-This example creates either a Publisher or a Subscriber and on a successful match starts sending samples.
-After a few seconds the process that launched the Publisher will show a report with the number of samples transmitted.
-
-On the subscriber side, run:
-
-.. code-block:: bash
-
-    goToExamples
-    cd dds/Benchmark/bin
-    ./DDSBenchmark subscriber udp
-
-On the publisher side, run:
-
-.. code-block:: bash
-
-    goToExamples
-    cd dds/Benchmark/bin
-    ./DDSBenchmark publisher udp
+    cd hello_world/bin
+    ./hello_world subscriber

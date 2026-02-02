@@ -11,11 +11,53 @@ jobs:
     with:
       # It would be desirable to have a matrix of ubuntu OS for this job, but due to the issue opened in this ticket:
       # https://github.com/orgs/community/discussions/128118 , it has been set as a single OS job.
-      os-version: 'ubuntu-22.04'
+      os-version: 'ubuntu-24.04'
       label: 'nightly-ubuntu-ci-master'
       fastdds-docs-branch: 'master'
       fastdds-branch: 'master'
       fastdds-python-branch: 'main'
+      run-build: true
+      run-tests: true
+      use-ccache: false
+
+  nightly-ubuntu-ci-3_4_x:
+    uses: eProsima/Fast-DDS-docs/.github/workflows/reusable-ubuntu-ci.yml@3.4.x
+    with:
+      # It would be desirable to have a matrix of ubuntu OS for this job, but due to the issue opened in this ticket:
+      # https://github.com/orgs/community/discussions/128118 , it has been set as a single OS job.
+      os-version: 'ubuntu-24.04'
+      label: 'nightly-ubuntu-ci-3.4.x'
+      fastdds-docs-branch: '3.4.x'
+      fastdds-branch: '3.4.x'
+      fastdds-python-branch: '2.4.x'
+      run-build: true
+      run-tests: true
+      use-ccache: false
+
+  nightly-ubuntu-ci-3_3_x:
+    uses: eProsima/Fast-DDS-docs/.github/workflows/reusable-ubuntu-ci.yml@3.3.x
+    with:
+      # It would be desirable to have a matrix of ubuntu OS for this job, but due to the issue opened in this ticket:
+      # https://github.com/orgs/community/discussions/128118 , it has been set as a single OS job.
+      os-version: 'ubuntu-24.04'
+      label: 'nightly-ubuntu-ci-3.3.x'
+      fastdds-docs-branch: '3.3.x'
+      fastdds-branch: '3.3.x'
+      fastdds-python-branch: '2.3.x'
+      run-build: true
+      run-tests: true
+      use-ccache: false
+
+  nightly-ubuntu-ci-3_2_x:
+    uses: eProsima/Fast-DDS-docs/.github/workflows/reusable-ubuntu-ci.yml@3.2.x
+    with:
+      # It would be desirable to have a matrix of ubuntu OS for this job, but due to the issue opened in this ticket:
+      # https://github.com/orgs/community/discussions/128118 , it has been set as a single OS job.
+      os-version: 'ubuntu-24.04'
+      label: 'nightly-ubuntu-ci-3.2.x'
+      fastdds-docs-branch: '3.2.x'
+      fastdds-branch: '3.2.x'
+      fastdds-python-branch: '2.2.x'
       run-build: true
       run-tests: true
       use-ccache: false
@@ -30,20 +72,6 @@ jobs:
       fastdds-docs-branch: '2.14.x'
       fastdds-branch: '2.14.x'
       fastdds-python-branch: '1.4.x'
-      run-build: true
-      run-tests: true
-      use-ccache: false
-
-  nightly-ubuntu-ci-2_10_x:
-    uses: eProsima/Fast-DDS-docs/.github/workflows/reusable-ubuntu-ci.yml@2.10.x
-    with:
-      # It would be desirable to have a matrix of ubuntu OS for this job, but due to the issue opened in this ticket:
-      # https://github.com/orgs/community/discussions/128118 , it has been set as a single OS job.
-      os-version: 'ubuntu-22.04'
-      label: '-nightly-ubuntu-ci-2.10.x'
-      fastdds-docs-branch: '2.10.x'
-      fastdds-branch: '2.10.x'
-      fastdds-python-branch: '1.2.x'
       run-build: true
       run-tests: true
       use-ccache: false

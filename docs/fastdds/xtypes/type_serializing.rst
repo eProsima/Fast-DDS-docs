@@ -51,9 +51,12 @@ remote type discovery.
     :language: c++
     :start-after: //!--DYNTYPE_IDL_SERIALIZATION
     :end-before: //!--
+    :dedent: 4
+
+.. _xtypes_serialization_utilities_dyndata_json:
 
 DynamicData to JSON
---------------------
+-------------------
 
 In the context of DDS (Data Distribution Service), |DynamicType-api| represents the structure of the data being
 distributed across the system.
@@ -63,6 +66,8 @@ To enhance interoperability and readability, it is often useful to serialize |Dy
 manageable format, to enable easier data processing and analysis across different systems and applications.
 The method |XTypesUtils-json_serialize-api| converts a |DynamicData-api| object into a JSON object, then
 dumped into a ``std::ostream``.
+The inverse conversion is also possible using the method |XTypesUtils-json_deserialize-api|, as described in the
+:ref:`corresponding section<xtypes_serialization_utilities_json_dyndata>`.
 
 Supported Types
 ^^^^^^^^^^^^^^^
@@ -126,17 +131,19 @@ The previous DynamicData object can be serialized in two different formats, `ePr
 flexibility depending on the required interoperability and compatibility with other systems.
 The previous |DynamicData-api| object would be serialized as follows in the different formats:
 
-.. tabs::
+.. tab-set::
 
-    .. tab:: eProsima
+    .. tab-item:: eProsima
+       :sync: eprosima
 
-        .. literalinclude:: /../code/json/Enum_EPROSIMA.json
-            :language: json
+       .. literalinclude:: /../code/json/Enum_EPROSIMA.json
+           :language: json
 
-    .. tab:: OMG
+    .. tab-item:: OMG
+       :sync: omg
 
-        .. literalinclude:: /../code/json/Enum_OMG.json
-            :language: json
+       .. literalinclude:: /../code/json/Enum_OMG.json
+           :language: json
 
 .. _xtypes_serialization_utilities_bitmask:
 
@@ -155,17 +162,19 @@ Here is an example of the definition of bitmask types in IDL:
 Bitmask also present different serialized structures in the different formats `eProsima` and `OMG`.
 The previous |DynamicData-api| object would be serialized as follows in the different formats:
 
-.. tabs::
+.. tab-set::
 
-    .. tab:: eProsima
+    .. tab-item:: eProsima
+       :sync: eprosima
 
-        .. literalinclude:: /../code/json/Bitmask_EPROSIMA.json
-            :language: json
+       .. literalinclude:: /../code/json/Bitmask_EPROSIMA.json
+           :language: json
 
-    .. tab:: OMG
+    .. tab-item:: OMG
+       :sync: omg
 
-        .. literalinclude:: /../code/json/Bitmask_OMG.json
-            :language: json
+       .. literalinclude:: /../code/json/Bitmask_OMG.json
+           :language: json
 
 .. _xtypes_serialization_utilities_sequence:
 
@@ -283,7 +292,7 @@ would be serialized as follows:
 .. literalinclude:: /../code/json/Bitsets.json
     :language: json
 
-.. _xtypes_serialization_utilities_json_example:
+.. _xtypes_serialization_utilities_dyndata_json_example:
 
 Example: Convert received data into JSON format
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -299,4 +308,29 @@ remote type discovery.
     :language: c++
     :dedent: 4
     :start-after: //!--DYNDATA_JSON_SERIALIZATION
+    :end-before: //!--
+
+.. _xtypes_serialization_utilities_json_dyndata:
+
+JSON to DynamicData
+-------------------
+
+Apart from having the possibility to serialize :ref:`DynamicData to JSON<xtypes_serialization_utilities_dyndata_json>`,
+Fast DDS also provides a way to perform the inverse conversion.
+The method |XTypesUtils-json_deserialize-api| is able to convert a JSON object into a |DynamicData-api| instance,
+by only providing its associated |DynamicType-api|.
+This method is useful for injecting data from external sources into a DDS network, allowing for the integration of data
+from various systems and applications.
+
+.. _xtypes_serialization_utilities_json_dyndata_example:
+
+Example: Convert JSON data into DynamicData
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+The following code demonstrates how to use the |XTypesUtils-json_deserialize-api| function in Fast DDS to convert
+JSON data into a |DynamicData-api| object.
+
+.. literalinclude:: /../code/DDSCodeTester.cpp
+    :language: c++
+    :dedent: 4
+    :start-after: //!--JSON_DYNDATA_DESERIALIZATION
     :end-before: //!--

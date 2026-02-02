@@ -1,0 +1,42 @@
+`Version 3.4.1 (latest) <https://fast-dds.docs.eprosima.com/en/v3.4.1/index.html>`_
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+This patch release includes the following **security fixes**:
+
+* `CVE-2025-62599 <https://www.cve.org/CVERecord?id=CVE-2025-62599>`_
+* `CVE-2025-62600 <https://www.cve.org/CVERecord?id=CVE-2025-62600>`_
+* `CVE-2025-62601 <https://www.cve.org/CVERecord?id=CVE-2025-62601>`_
+* `CVE-2025-62602 <https://www.cve.org/CVERecord?id=CVE-2025-62602>`_
+* `CVE-2025-62603 <https://www.cve.org/CVERecord?id=CVE-2025-62603>`_
+* `CVE-2025-64098 <https://www.cve.org/CVERecord?id=CVE-2025-64098>`_
+* `CVE-2025-62799 <https://www.cve.org/CVERecord?id=CVE-2025-62799>`_
+* `CVE-2025-64438 <https://www.cve.org/CVERecord?id=CVE-2025-64438>`_
+
+This patch release includes the following **improvements**:
+
+* Send heartbeat when |RTPSWriters::wait_for_all_acked-api| is called
+* Update fastcdr submodule
+* Update RELEASE_SUPPORT with release 3.2.3
+* Apply ``Uncrustify``
+
+This patch release includes the following **fixes**:
+
+* Remove residual generated files
+* Guard ``gnu::optimize`` with ``defined(__GNUC__)``
+* Making system libraries private in ``target_link_libraries``
+* Remove manually change of ``/Zi`` MSVC option
+* Avoid ``PROJECT_SOURCE_DIR`` and ``make_unique`` when building blackbox tests
+* Avoid casting ``GUID_t`` into ``InstanceHandle_t``
+* Fixed some data races
+
+It also includes the following **CI management improvements**:
+
+* Allow CI to run tests with manual dispatch
+* Reduce disk usage in TSAN job
+* Upgrade to MacOS Sequoia
+
+.. important::
+
+    When upgrading to version 3.4.1 it is **highly recommended** to regenerate generated source from IDL files
+    using at least `Fast DDS-Gen v4.2.0 <https://github.com/eProsima/Fast-DDS-Gen/releases/tag/v4.2.0>`_.
+    But it is advisable to regenerate them using the latest patch version of ``Fast DDS-Gen v4.2.x``.

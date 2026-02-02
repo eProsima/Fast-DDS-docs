@@ -4,6 +4,7 @@
 #include <thread>
 
 #include <fastcdr/Cdr.h>
+#include <fastcdr/xcdr/optional.hpp>
 
 #include <fastdds/dds/builtin/topic/ParticipantBuiltinTopicData.hpp>
 #include <fastdds/dds/core/condition/GuardCondition.hpp>
@@ -12,6 +13,8 @@
 #include <fastdds/dds/domain/DomainParticipantFactory.hpp>
 #include <fastdds/dds/domain/DomainParticipantListener.hpp>
 #include <fastdds/dds/domain/qos/DomainParticipantQos.hpp>
+#include <fastdds/dds/domain/qos/ReplierQos.hpp>
+#include <fastdds/dds/domain/qos/RequesterQos.hpp>
 #include <fastdds/dds/log/FileConsumer.hpp>
 #include <fastdds/dds/log/Log.hpp>
 #include <fastdds/dds/log/OStreamConsumer.hpp>
@@ -22,6 +25,14 @@
 #include <fastdds/dds/publisher/PublisherListener.hpp>
 #include <fastdds/dds/publisher/qos/DataWriterQos.hpp>
 #include <fastdds/dds/publisher/qos/PublisherQos.hpp>
+#include <fastdds/dds/rpc/exceptions.hpp>
+#include <fastdds/dds/rpc/interfaces.hpp>
+#include <fastdds/dds/rpc/RemoteExceptionCode_t.hpp>
+#include <fastdds/dds/rpc/Replier.hpp>
+#include <fastdds/dds/rpc/Requester.hpp>
+#include <fastdds/dds/rpc/RequestInfo.hpp>
+#include <fastdds/dds/rpc/Service.hpp>
+#include <fastdds/dds/rpc/ServiceTypeSupport.hpp>
 #include <fastdds/dds/subscriber/DataReader.hpp>
 #include <fastdds/dds/subscriber/DataReaderListener.hpp>
 #include <fastdds/dds/subscriber/qos/DataReaderQos.hpp>
@@ -49,19 +60,20 @@
 #include <fastdds/rtps/transport/network/AllowedNetworkInterface.hpp>
 #include <fastdds/rtps/transport/network/BlockedNetworkInterface.hpp>
 #include <fastdds/rtps/transport/network/NetmaskFilterKind.hpp>
+#include <fastdds/rtps/transport/NetworkBuffer.hpp>
 #include <fastdds/rtps/transport/shared_mem/SharedMemTransportDescriptor.hpp>
 #include <fastdds/rtps/transport/TCPTransportDescriptor.hpp>
 #include <fastdds/rtps/transport/TCPv4TransportDescriptor.hpp>
 #include <fastdds/rtps/transport/TCPv6TransportDescriptor.hpp>
 #include <fastdds/rtps/transport/UDPv4TransportDescriptor.hpp>
 #include <fastdds/rtps/transport/UDPv6TransportDescriptor.hpp>
-#include <fastdds/rtps/transport/NetworkBuffer.hpp>
 #include <fastdds/statistics/dds/domain/DomainParticipant.hpp>
 #include <fastdds/statistics/dds/publisher/qos/DataWriterQos.hpp>
 #include <fastdds/statistics/topic_names.hpp>
 #include <fastdds/utils/IPLocator.hpp>
 
 using namespace eprosima::fastdds::dds;
+using namespace eprosima::fastdds::dds::rpc;
 
 class CustomChainingTransportDescriptor : public eprosima::fastdds::rtps::ChainingTransportDescriptor
 {
@@ -124,7 +136,25 @@ public:
 
         // Call low level transport
         return low_sender_resource->send(buffers, total_bytes, destination_locators_begin,
-                       destination_locators_end, timeout);
+                       destination_locators_end, timeout, 0);
+    }
+
+    bool send_w_priority(
+            eprosima::fastdds::rtps::SenderResource* low_sender_resource,
+            const std::vector<eprosima::fastdds::rtps::NetworkBuffer>& buffers,
+            uint32_t total_bytes,
+            eprosima::fastdds::rtps::LocatorsIterator* destination_locators_begin,
+            eprosima::fastdds::rtps::LocatorsIterator* destination_locators_end,
+            const std::chrono::steady_clock::time_point& timeout,
+            int32_t transport_priority) override
+    {
+        //
+        // Preprocess outcoming buffer.
+        //
+
+        // Call low level transport
+        return low_sender_resource->send(buffers, total_bytes, destination_locators_begin,
+                       destination_locators_end, timeout, transport_priority);
     }
 
     void receive(
@@ -642,6 +672,12 @@ void dds_domain_examples()
         pqos.properties().properties().emplace_back(
             "dds.sec.auth.builtin.PKI-DH.password",
             "domainParticipantPassword");
+        pqos.properties().properties().emplace_back(
+            "dds.sec.auth.builtin.PKI-DH.preferred_key_agreement",
+            "ECDH");
+        pqos.properties().properties().emplace_back(
+            "dds.sec.auth.builtin.PKI-DH.transmit_algorithms_as_legacy",
+            "true");
         //!--
     }
     {
@@ -677,6 +713,9 @@ void dds_domain_examples()
         pqos.properties().properties().emplace_back(
             "dds.sec.access.builtin.Access-Permissions.permissions",
             "file://certs/permissions.smime");
+        pqos.properties().properties().emplace_back(
+            "dds.sec.access.builtin.Access-Permissions.transmit_algorithms_as_legacy",
+            "true");
         //!--
     }
     {
@@ -961,7 +1000,17 @@ void dds_domain_examples()
 
         pqos.properties().properties().emplace_back(
             "fastdds.type_propagation",
-            "enabled");
+            "disabled");
+        //!--
+    }
+
+    {
+        // SERIALIZE_OPTIONAL_QOS_PROPERTY
+        DomainParticipantQos pqos;
+
+        pqos.properties().properties().emplace_back(
+            "fastdds.serialize_optional_qos",
+            "true"); // true or True or TRUE or 1
         //!--
     }
 }
@@ -1208,7 +1257,11 @@ class TypeIntrospectionSubscriber : public DomainParticipantListener
 
         // Serialize DynamicType into its IDL representation
         std::stringstream idl;
-        idl_serialize(remote_type, idl);
+        if (RETCODE_OK != idl_serialize(remote_type, idl))
+        {
+            // Error
+            return;
+        }
 
         // Print IDL representation
         std::cout << "Type discovered:\n" << idl.str() << std::endl;
@@ -1224,8 +1277,8 @@ class TypeIntrospectionSubscriber : public DomainParticipantListener
         // Get remote type information
         xtypes::TypeObject remote_type_object;
         if (RETCODE_OK != DomainParticipantFactory::get_instance()->type_object_registry().get_type_object(
-                    info.type_information.type_information.complete().typeid_with_size().type_id(),
-                    remote_type_object))
+                info.type_information.type_information.complete().typeid_with_size().type_id(),
+                remote_type_object))
         {
             // Error
             return;
@@ -1237,7 +1290,11 @@ class TypeIntrospectionSubscriber : public DomainParticipantListener
 
         // Serialize DynamicType into its IDL representation
         std::stringstream idl;
-        idl_serialize(remote_type, idl);
+        if (RETCODE_OK != idl_serialize(remote_type, idl))
+        {
+            // Error
+            return;
+        }
 
         // Print IDL representation
         std::cout << "Type discovered:\n" << idl.str() << std::endl;
@@ -1249,25 +1306,59 @@ class TypeIntrospectionSubscriber : public DomainParticipantListener
     void on_data_available(
             DataReader* reader)
     {
-        // Dynamic DataType
+        // Create data using the DynamicType created from discovered TypeObject or through Dynamic Language Binding API
         DynamicData::_ref_type new_data =
-                DynamicDataFactory::get_instance()->create_data(dyn_type_);
+                DynamicDataFactory::get_instance()->create_data(dyn_type_serialization_);
 
         SampleInfo info;
-
         while ((RETCODE_OK == reader->take_next_sample(&new_data, &info)))
         {
             std::stringstream output;
             output << std::setw(4);
 
             // Serialize DynamicData into JSON string format
-            json_serialize(new_data, DynamicDataJsonFormat::EPROSIMA, output);
+            if (RETCODE_OK != json_serialize(
+                    new_data,
+                    DynamicDataJsonFormat::EPROSIMA,
+                    output))
+            {
+                // Error
+                return;
+            }
+
+            // Print JSON representation
             std::cout << "Message received:\n" << output.str() << std::endl;
         }
     }
 
-    // DynamicType created in discovery callback
-    DynamicType::_ref_type dyn_type_;
+    // DynamicType corresponding to received data
+    DynamicType::_ref_type dyn_type_serialization_;
+    //!--
+
+    //!--
+
+    //!--JSON_DYNDATA_DESERIALIZATION
+    void json_to_data(
+            const std::string& json_data)
+    {
+        // Deserialize JSON string into DynamicData
+        // The required DynamicType can be created from discovered TypeObject or through Dynamic Language Binding API
+        DynamicData::_ref_type new_data;
+        if (RETCODE_OK != json_deserialize(
+                json_data,
+                dyn_type_deserialization_,
+                DynamicDataJsonFormat::EPROSIMA,
+                new_data))
+        {
+            // Error
+            return;
+        }
+
+        // Process the new data
+    }
+
+    // DynamicType corresponding to JSON data to be deserialized into DynamicData
+    DynamicType::_ref_type dyn_type_deserialization_;
     //!--
 };
 //!--
@@ -1453,7 +1544,8 @@ void dds_discovery_examples()
     }
 
     {
-        DomainParticipant* client_or_server;
+        DomainParticipant* client_or_server =
+                DomainParticipantFactory::get_instance()->create_participant(0, PARTICIPANT_QOS_DEFAULT);
         //CONF_SERVER_ADD_SERVERS
         // Get existing QoS for the server or client
         DomainParticipantQos client_or_server_qos;
@@ -2021,6 +2113,75 @@ void dds_topic_examples()
             // Error
             return;
         }
+        //!--
+    }
+
+    {
+        //DDS_DYNAMIC_TYPES_IDL_PARSING_CREATE_TYPE
+        // Create a DomainParticipant in the desired domain
+        DomainParticipant* participant =
+                DomainParticipantFactory::get_instance()->create_participant(0, PARTICIPANT_QOS_DEFAULT);
+        if (nullptr == participant)
+        {
+            // Error
+            return;
+        }
+
+        // Optional: Set the preprocessor to be executed before parsing the IDL
+        DynamicTypeBuilderFactory::get_instance()->set_preprocessor("<optional_path_to_your_preprocessor_executable>");
+
+        // Load the IDL file
+        std::string idl_file = "<path_to_idl>.idl";
+        std::string type_name = "YourType";
+        std::vector<std::string> include_paths;
+        include_paths.push_back("<path/to/folder/containing/included/idl/files>");
+
+        // Retrieve the instance of the desired type
+        DynamicTypeBuilder::_ref_type dyn_type_builder =
+                DynamicTypeBuilderFactory::get_instance()->create_type_w_uri(idl_file, type_name, include_paths);
+
+        // Register dynamic type
+        TypeSupport dyn_type_support(new DynamicPubSubType(dyn_type_builder->build()));
+        dyn_type_support.register_type(participant, nullptr);
+
+        // Create a Topic with the registered type.
+        Topic* topic =
+                participant->create_topic("topic_name", dyn_type_support.get_type_name(), TOPIC_QOS_DEFAULT);
+        if (nullptr == topic)
+        {
+            // Error
+            return;
+        }
+        //!--
+    }
+
+    {
+        //DDS_DYNAMIC_TYPES_IDL_PARSING_ITERATE_OVER_TYPES
+        // Optional: Set the preprocessor to be executed before parsing the IDL
+        DynamicTypeBuilderFactory::get_instance()->set_preprocessor("<optional_path_to_your_preprocessor_executable>");
+
+        // Load the IDL file
+        std::string idl_file = "<path_to_idl>.idl";
+        std::vector<std::string> include_paths;
+        include_paths.push_back("<path/to/folder/containing/included/idl/files>");
+
+        // Vector to store the names of the parsed types
+        std::vector<std::string> parsed_types;
+
+        // Define the function callback to be executed for each aggregated type parsed in the IDL file
+        auto callback = [&parsed_types](traits<DynamicTypeBuilder>::ref_type builder)
+        {
+            if (builder)
+            {
+                parsed_types.emplace_back(builder->get_name().to_string());
+            }
+
+            return true; // continue parsing
+        };
+
+        // Store the names of the parsed types in the vector
+        DynamicTypeBuilderFactory::get_instance()->for_each_type_w_uri(idl_file, include_paths, callback);
+
         //!--
     }
 }
@@ -2855,7 +3016,8 @@ void dds_dataWriter_examples()
         // Create a DataWriter with default QoS and a custom TopicQos.
         // The value DATAWRITER_QOS_USE_TOPIC_QOS is used to denote the default QoS
         // and to override the TopicQos.
-        Topic* topic;
+        Topic* topic =
+                participant->create_topic("", "", TOPIC_QOS_DEFAULT);
         DataWriter* data_writer_with_default_qos_and_custom_topic_qos =
                 publisher->create_datawriter(topic, DATAWRITER_QOS_USE_TOPIC_QOS);
         if (nullptr == data_writer_with_default_qos_and_custom_topic_qos)
@@ -3120,10 +3282,6 @@ void dds_dataWriter_examples()
                     return;
                 }
             }
-
-            // The data instance can be reused to publish new values,
-            // but delete it at the end to avoid leaks
-            custom_type_support->delete_data(data);
             //!--
         }
 
@@ -3218,6 +3376,85 @@ void dds_dataWriter_examples()
             data_writer->dispose(&second_flight_position, HANDLE_NIL);
             //!
         }
+    }
+
+    {
+        //DDS_DATAWRITER_SAMPLE_PREFILTER
+        struct CustomUserWriteData : public eprosima::fastdds::rtps::WriteParams::UserWriteData
+        {
+            CustomUserWriteData(
+                    const eprosima::fastdds::rtps::GuidPrefix_t& prefix)
+                : filtered_out_prefix(prefix)
+            {
+            }
+
+            eprosima::fastdds::rtps::GuidPrefix_t filtered_out_prefix;
+        };
+
+        struct CustomPreFilter : public eprosima::fastdds::dds::IContentFilter
+        {
+            // Custom evaluation
+            bool evaluate(
+                    const SerializedPayload& payload,
+                    const FilterSampleInfo& filter_sample_info,
+                    const eprosima::fastdds::rtps::GUID_t& reader_guid) const override
+            {
+                static_cast<void>(payload);
+                static_cast<void>(filter_sample_info);
+
+                bool sample_should_be_sent = true;
+
+                auto custom_write_data =
+                        std::static_pointer_cast<CustomUserWriteData>(
+                            filter_sample_info.user_write_data);
+
+                // If the reader is the one to filter out, do not send the sample
+                if (custom_write_data->filtered_out_prefix == reader_guid.guidPrefix)
+                {
+                    sample_should_be_sent = false;
+                }
+                return sample_should_be_sent;
+            }
+
+        };
+
+        // Create a DataWriter
+        DataWriter* data_writer =
+                publisher->create_datawriter(topic, DATAWRITER_QOS_DEFAULT);
+        if (nullptr == data_writer)
+        {
+            // Error
+            return;
+        }
+
+        // Set a prefilter on the filtered reader
+        eprosima::fastdds::dds::ReturnCode_t ret = data_writer->set_sample_prefilter(
+                    std::make_shared<CustomPreFilter>());
+
+        if (ret != eprosima::fastdds::dds::RETCODE_OK)
+        {
+            // Error
+            return;
+        }
+
+        // Create a custom user write data
+        eprosima::fastdds::rtps::GuidPrefix_t filtered_out_prefix;
+        std::istringstream("44.53.00.5f.45.60.52.4f.53.49.7c.41") >> filtered_out_prefix;
+
+        std::shared_ptr<CustomUserWriteData> custom_write_data =
+                std::make_shared<CustomUserWriteData>(filtered_out_prefix);
+
+        // Set the custom user write data
+        eprosima::fastdds::rtps::WriteParams write_params;
+        write_params.user_write_data(custom_write_data);
+
+        HelloWorld sample;     //Auto-generated container class for topic data from Fast DDS-Gen
+        sample.msg("Hello there!");     // Add contents to the message
+
+        // Write a sample with the custom user write data
+        data_writer->write(&sample, write_params);
+
+        //!--
     }
 }
 
@@ -3660,7 +3897,8 @@ void dds_dataReader_examples()
         // Create a DataReader with default QoS and a custom TopicQos.
         // The value DATAREADER_QOS_USE_TOPIC_QOS is used to denote the default QoS
         // and to override the TopicQos.
-        Topic* topic;
+        Topic* topic =
+                participant->create_topic("", "", TOPIC_QOS_DEFAULT);
         DataReader* data_reader_with_default_qos_and_custom_topic_qos =
                 subscriber->create_datareader(topic, DATAREADER_QOS_USE_TOPIC_QOS);
         if (nullptr == data_reader_with_default_qos_and_custom_topic_qos)
@@ -4241,6 +4479,23 @@ void dds_qos_examples()
     }
 
     {
+        //DDS_CHANGE_TRANSPORT_PRIORITY_QOS_POLICY
+        // This example only applies to DataWriter entities
+        DataWriterQos writer_qos;
+        // The TransportPriorityQosPolicy is constructed with value 0 by default
+        // Change the value to 12
+        writer_qos.transport_priority().value = 12;
+        // Use modified QoS in the creation of the corresponding DataWriter
+        writer_ = publisher_->create_datawriter(topic_, writer_qos);
+
+        // Change the TransportPriorityQosPolicy at runtime
+        writer_qos.transport_priority().value = 23;
+        // Update the QoS in the corresponding entity
+        writer_->set_qos(writer_qos);
+        //!--
+    }
+
+    {
         //DDS_CHANGE_PARTITION_QOS_POLICY
         // This example uses a Publisher, but it can also be applied to Subscriber entities
         PublisherQos publisher_qos;
@@ -4287,14 +4542,14 @@ void dds_qos_examples()
         //DDS_CHANGE_RESOURCE_LIMITS_QOS_POLICY
         // This example uses a DataWriter, but it can also be applied to DataReader and Topic entities
         DataWriterQos writer_qos;
-        // The ResourceLimitsQosPolicy is constructed with max_samples = 5000 by default
-        // Change max_samples to 200
-        writer_qos.resource_limits().max_samples = 200;
-        // The ResourceLimitsQosPolicy is constructed with max_instances = 10 by default
+        // The ResourceLimitsQosPolicy is constructed with max_samples = LENGTH_UNLIMITED by default
+        // Change max_samples to 2000
+        writer_qos.resource_limits().max_samples = 2000;
+        // The ResourceLimitsQosPolicy is constructed with max_instances = LENGTH_UNLIMITED by default
         // Change max_instances to 20
         writer_qos.resource_limits().max_instances = 20;
-        // The ResourceLimitsQosPolicy is constructed with max_samples_per_instance = 400 by default
-        // Change max_samples_per_instance to 100 as it must be lower than max_samples
+        // The ResourceLimitsQosPolicy is constructed with max_samples_per_instance = LENGTH_UNLIMITED by default
+        // Change max_samples_per_instance to 100
         writer_qos.resource_limits().max_samples_per_instance = 100;
         // The ResourceLimitsQosPolicy is constructed with allocated_samples = 100 by default
         // Change allocated_samples to 50
@@ -4653,7 +4908,9 @@ void dds_qos_examples()
         DomainParticipantQos participant_qos;
         // Set the guid prefix
         std::istringstream("72.61.73.70.66.61.72.6d.74.65.73.74") >> participant_qos.wire_protocol().prefix;
-        //Configure Builtin Attributes
+        // Manually set the participantId
+        participant_qos.wire_protocol().participant_id = 11;
+        // Configure Builtin Attributes
         participant_qos.wire_protocol().builtin.discovery_config.discoveryProtocol =
                 eprosima::fastdds::rtps::DiscoveryProtocol::SERVER;
         // Add locator to unicast list
@@ -4686,6 +4943,12 @@ void dds_qos_examples()
         participant_qos.wire_protocol().default_external_unicast_locators[1][0].push_back(external_locator);
         // Drop non matching locators
         participant_qos.wire_protocol().ignore_non_matching_locators = true;
+        // Configure the ROS 2 Easy Mode master Discovery Server IP
+        participant_qos.wire_protocol().easy_mode("127.0.0.1");
+        // Increase mutation tries
+        participant_qos.wire_protocol().builtin.mutation_tries = 300u;
+        // Use a specific flow controller to control the builtin writers
+        participant_qos.wire_protocol().builtin.flow_controller_name = "AlreadyExistingFlowController";
         // Use modified QoS in the creation of the DomainParticipant entity
         participant_ = factory_->create_participant(domain, participant_qos);
         //!--
@@ -5146,7 +5409,7 @@ void dynamictypes_examples()
         MemberDescriptor::_ref_type bitfield_member_descriptor {traits<MemberDescriptor>::make_shared()};
         bitfield_member_descriptor->type(DynamicTypeBuilderFactory::get_instance()->get_primitive_type(TK_BOOLEAN));
         bitfield_member_descriptor->name("flag0");
-        bitfield_member_descriptor->id(0);
+        bitfield_member_descriptor->position(0);
         bitmask_builder->add_member(bitfield_member_descriptor);
         bitfield_member_descriptor = traits<MemberDescriptor>::make_shared();
         bitfield_member_descriptor->type(DynamicTypeBuilderFactory::get_instance()->get_primitive_type(TK_BOOLEAN));
@@ -5159,7 +5422,7 @@ void dynamictypes_examples()
         bitfield_member_descriptor = traits<MemberDescriptor>::make_shared();
         bitfield_member_descriptor->type(DynamicTypeBuilderFactory::get_instance()->get_primitive_type(TK_BOOLEAN));
         bitfield_member_descriptor->name("flag5");
-        bitfield_member_descriptor->id(5);
+        bitfield_member_descriptor->position(5);
         bitmask_builder->add_member(bitfield_member_descriptor);
         // Build the bitmask type
         DynamicType::_ref_type bitmask_type =  bitmask_builder->build();
@@ -5837,6 +6100,41 @@ void xml_profiles_examples()
             DomainParticipant* participant =
                     DomainParticipantFactory::get_instance()->create_participant(
                 0, participant_qos);
+        }
+        //!--
+    }
+    {
+        //XML-GET-QOS-FROM-XML
+        DomainParticipant* participant =
+                DomainParticipantFactory::get_instance()->create_participant(0, PARTICIPANT_QOS_DEFAULT);
+
+        Topic* topic =
+                participant->create_topic("TopicName", "DataTypeName", TOPIC_QOS_DEFAULT);
+
+        Publisher* publisher = participant->create_publisher(PUBLISHER_QOS_DEFAULT);
+
+        // Load XML as string data buffer
+        std::string xml_profile =
+                "\
+                <?xml version=\"1.0\" encoding=\"UTF-8\" ?>\
+                <dds>\
+                    <profiles xmlns=\"http://www.eprosima.com\" >\
+                        <data_writer profile_name=\"test_datawriter_profile\" is_default_profile=\"true\">\
+                            <qos>\
+                                <durability>\
+                                    <kind>TRANSIENT_LOCAL</kind>\
+                                </durability>\
+                            </qos>\
+                        </data_writer>\
+                    </profiles>\
+                </dds>\
+                ";
+
+        // Extract Qos from XML
+        DataWriterQos qos;
+        if (RETCODE_OK == publisher->get_datawriter_qos_from_xml(xml_profile, qos, "test_datawriter_profile"))
+        {
+            // Modify extracted qos and use it to create DDS entities
         }
         //!--
     }
@@ -6645,6 +6943,9 @@ void dds_usecase_examples()
         DomainParticipantQos participant_qos;
         participant_qos.flow_controllers().push_back(flow_control_300k_per_sec);
 
+        // [OPTIONAL] Link builtin writers to any of the registered flow controllers
+        participant_qos.wire_protocol().builtin.flow_controller_name = "example_flow_controller";
+
         // .... create participant and publisher
 
         // Link writer to the registered flow controller.
@@ -6801,15 +7102,15 @@ void dds_usecase_examples()
         //CONF-MEMORY-QOS-PUBSUB
         ResourceLimitsQosPolicy resource_limits;
 
-        // The ResourceLimitsQosPolicy is constructed with max_samples = 5000 by default
+        // The ResourceLimitsQosPolicy is constructed with max_samples = LENGTH_UNLIMITED by default
         // Change max_samples to the minimum
         resource_limits.max_samples = 1;
 
-        // The ResourceLimitsQosPolicy is constructed with max_instances = 10 by default
+        // The ResourceLimitsQosPolicy is constructed with max_instances = LENGTH_UNLIMITED by default
         // Change max_instances to the minimum
         resource_limits.max_instances = 1;
 
-        // The ResourceLimitsQosPolicy is constructed with max_samples_per_instance = 400 by default
+        // The ResourceLimitsQosPolicy is constructed with max_samples_per_instance = LENGTH_UNLIMITED by default
         // Change max_samples_per_instance to the minimum
         resource_limits.max_samples_per_instance = 1;
 
@@ -7700,28 +8001,6 @@ bool dds_permissions_test(
     return false;
 }
 
-bool dds_rosbag_example()
-{
-    //CREATE THE PARTICIPANT
-    DomainParticipant* participant_;
-    Topic* topic_;
-    TypeSupport type_;
-
-    participant_ = DomainParticipantFactory::get_instance()->create_participant(0, PARTICIPANT_QOS_DEFAULT);
-
-    //CREATE THE TOPIC FOR ROSBAG
-    topic_ = participant_->create_topic(
-        "rt/HelloWorldTopic",
-        type_.get_type_name(),
-        TOPIC_QOS_DEFAULT);
-    if (topic_ == nullptr)
-    {
-        return false;
-    }
-    //!
-    return true;
-}
-
 void pubsub_api_example_create_entities()
 {
     //PUBSUB_API_CREATE_PARTICIPANT
@@ -7756,6 +8035,278 @@ void pubsub_api_example_create_entities()
 
     //PUBSUB_API_CREATE_SUBSCRIBER
     Subscriber* subscriber = participant->create_subscriber(eprosima::fastdds::dds::SUBSCRIBER_QOS_DEFAULT);
+    //!--
+}
+
+void rpcdds_internal_api_examples()
+{
+    {
+        //!--CREATE_DELETE_SERVICE_EXAMPLE
+        TypeSupport request_type_support = TypeSupport(new CustomDataType());
+        TypeSupport reply_type_support = TypeSupport(new CustomDataType());
+        DomainParticipant* participant =
+            DomainParticipantFactory::get_instance()->create_participant(0, PARTICIPANT_QOS_DEFAULT);
+
+        // Create a new ServiceTypeSupport instance
+        ServiceTypeSupport service_type_support(request_type_support, reply_type_support);
+
+        // Register the ServiceTypeSupport instance in a DomainParticipant
+        ReturnCode_t ret;
+        ret = participant->register_service_type(service_type_support, "ServiceType");
+        if (RETCODE_OK != ret)
+        {
+            // Error
+            return;
+        }
+
+        // Create a new Service instance
+        Service* service = participant->create_service("Service", "ServiceType");
+        if (!service)
+        {
+            // Error
+            return;
+        }
+
+        // ... Create Requesters and Repliers here
+
+        // Delete the created Service
+        ret = participant->delete_service(service);
+        if (RETCODE_OK != ret)
+        {
+            // Error
+            return;
+        }
+        //!--
+    }
+
+    {
+        DomainParticipant* participant =
+            DomainParticipantFactory::get_instance()->create_participant(0, PARTICIPANT_QOS_DEFAULT);
+        TypeSupport request_type_support = TypeSupport(new CustomDataType());
+        TypeSupport reply_type_support = TypeSupport(new CustomDataType());
+        ServiceTypeSupport service_type_support(request_type_support, reply_type_support);
+        participant->register_service_type(service_type_support, "ServiceType");
+        participant->create_service("Service", "ServiceType");
+
+        //!--RPC_REQUESTER_EXAMPLE
+        ReturnCode_t ret;
+
+        // Get a valid service
+        Service* service = participant->find_service("Service");
+        if (!service)
+        {
+            // Error
+            return;
+        }
+
+        /* Create a new Requester instance */
+        RequesterQos requester_qos;
+
+        Requester* requester = participant->create_service_requester(service, requester_qos);
+        if (!requester)
+        {
+            // Error
+            return;
+        }
+
+        /* Send a new Request sample and check if a received Reply sample is a match */
+        // Make sure that all RPC Entities are enabled
+        if (!service->is_enabled())
+        {
+            ret = service->enable();
+            if (RETCODE_OK != ret)
+            {
+                // Error
+                return;
+            }
+        }
+
+        //  Enabling the service enables the registered Requester unless
+        //  the creation of the internal DataWriter and DataReader failed.
+        //  We can make sure that they have been created correctly by checking if the Requester is enabled.
+        if (!requester->is_enabled())
+        {
+            // Error
+            return;
+        }
+
+        RequestInfo expected_request_info;
+        RequestInfo received_request_info;
+        // Create a new Request sample
+        void* request_data = request_type_support->create_data();
+        ret = requester->send_request(request_data, expected_request_info);
+        if (RETCODE_OK != ret)
+        {
+            // Error
+            return;
+        }
+
+        // Wait for some time until a Reply sample is received
+        requester->get_requester_reader()->wait_for_unread_message(Duration_t{3,0});
+
+        void* data = nullptr;
+        ret = requester->take_reply(data, received_request_info);
+        if (RETCODE_OK != ret)
+        {
+            // Error
+            return;
+        }
+
+        if (expected_request_info.related_sample_identity == received_request_info.related_sample_identity)
+        {
+          // Received Reply sample is associated to the sent Request sample
+          if (received_request_info.has_more_replies)
+          {
+              // More replies for the same request will be received
+          }
+        }
+
+        // Delete created Requester
+        ret = participant->delete_service_requester(requester->get_service_name(), requester);
+        if (RETCODE_OK != ret)
+        {
+          // Error
+          return;
+        }
+        //!--
+    }
+
+    {
+        DomainParticipant* participant =
+            DomainParticipantFactory::get_instance()->create_participant(0, PARTICIPANT_QOS_DEFAULT);
+        TypeSupport request_type_support = TypeSupport(new CustomDataType());
+        TypeSupport reply_type_support = TypeSupport(new CustomDataType());
+        ServiceTypeSupport service_type_support(request_type_support, reply_type_support);
+        participant->register_service_type(service_type_support, "ServiceType");
+        participant->create_service("Service", "ServiceType");
+
+        //!--RPC_REPLIER_EXAMPLE
+        ReturnCode_t ret;
+
+        // Get a valid service
+        Service* service = participant->find_service("Service");
+        if (!service)
+        {
+            // Error
+            return;
+        }
+
+        /* Create a new Replier instance */
+        ReplierQos replier_qos;
+
+        Replier* replier = participant->create_service_replier(service, replier_qos);
+        if (!replier)
+        {
+            // Error
+            return;
+        }
+
+        /* Take a received Request sample and send a new Reply sample */
+
+        // Make sure that all RPC Entities are enabled
+        if (!service->is_enabled())
+        {
+            ret = service->enable();
+            if (RETCODE_OK != ret)
+            {
+                // Error
+                return;
+            }
+        }
+
+        //  Enabling the service enables the registered Replier unless
+        //  the creation of the internal DataWriter and DataReader failed.
+        //  We can make sure that they have been created correctly by checking if the Replier is enabled.
+        if (!replier->is_enabled())
+        {
+            // Error
+            return;
+        }
+
+        RequestInfo received_request_info;
+
+        // Wait for some time until a Request sample is received
+        replier->get_replier_reader()->wait_for_unread_message(Duration_t{3,0});
+
+        void* received_data = nullptr;
+
+        ret = replier->take_request(received_data, received_request_info);
+        if (RETCODE_OK != ret)
+        {
+            // Error
+            return;
+        }
+
+        // ... Process received data
+
+        // Send a Reply with the received related_sample_identity, indicating there will be more replies.
+        void* reply_data = reply_type_support->create_data();
+        received_request_info.has_more_replies = true;
+        ret = replier->send_reply(reply_data, received_request_info);
+        if (RETCODE_OK != ret)
+        {
+            // Error
+            return;
+        }
+
+        // Send a Reply with the received related_sample_identity, indicating it is the last one.
+        void* reply_data_2 = reply_type_support->create_data();
+        received_request_info.has_more_replies = false;
+        ret = replier->send_reply(reply_data_2, received_request_info);
+        if (RETCODE_OK != ret)
+        {
+            // Error
+            return;
+        }
+
+        /* Delete created Replier */
+        ret = participant->delete_service_replier(replier->get_service_name(), replier);
+        if (RETCODE_OK != ret)
+        {
+          // Error
+          return;
+        }
+        //!--
+    }
+}
+
+void rpcdds_custom_scheduling_examples()
+{
+    //!--RPC_CUSTOM_SCHEDULING_EXAMPLES
+    // A scheduling strategy where requests are processed in the same thread where they are received.
+    // Should not be used in servers with feed operations.
+    struct DirectRequestScheduling : public eprosima::fastdds::dds::rpc::RpcServerSchedulingStrategy
+    {
+        void schedule_request(
+                const std::shared_ptr<eprosima::fastdds::dds::rpc::RpcRequest>& request,
+                const std::shared_ptr<eprosima::fastdds::dds::rpc::RpcServer>& server) override
+        {
+            server->execute_request(request);
+        }
+
+        void server_stopped(
+                const std::shared_ptr<eprosima::fastdds::dds::rpc::RpcServer>& server) override
+        {
+            static_cast<void>(server);
+        }
+    };
+
+    // A scheduling strategy where each request is processed in a detached thread.
+    struct DetachedThreadRequestScheduling : public eprosima::fastdds::dds::rpc::RpcServerSchedulingStrategy
+    {
+        void schedule_request(
+                const std::shared_ptr<eprosima::fastdds::dds::rpc::RpcRequest>& request,
+                const std::shared_ptr<eprosima::fastdds::dds::rpc::RpcServer>& server) override
+        {
+            std::thread([server, request](){server->execute_request(request);}).detach();
+        }
+
+        void server_stopped(
+                const std::shared_ptr<eprosima::fastdds::dds::rpc::RpcServer>& server) override
+        {
+            static_cast<void>(server);
+        }
+    };
     //!--
 }
 

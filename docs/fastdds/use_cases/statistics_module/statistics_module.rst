@@ -12,11 +12,6 @@ The user can also use for the latter the
 `eProsima Fast DDS Statistics Backend <https://fast-dds-statistics-backend.readthedocs.io/en/latest/>`_ which already
 implements the collection and aggregation of the data coming from the statistics topics.
 
-.. contents::
-    :local:
-    :backlinks: none
-    :depth: 1
-
 Enable Statistics module
 ------------------------
 

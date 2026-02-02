@@ -9,11 +9,6 @@ CLI
 The *Fast DDS* command line interface provides a set commands and sub-commands to perform, *Fast DDS*
 related, maintenance and configuration tasks.
 
-.. contents::
-    :local:
-    :backlinks: none
-    :depth: 2
-
 An executable file for Linux and Windows that runs the *Fast DDS CLI* application is
 available in the `tools` folder.
 If the `tools/fastdds` folder path is added to the ``PATH``, or by sourcing the `<path/to/fastdds>/install/setup.bash`
@@ -21,15 +16,15 @@ configuration file, *Fast DDS CLI* can be executed running the following command
 
 - Linux:
 
-    .. code-block:: bash
+  .. code-block:: bash
 
-        $ fastdds <command> [<command-args>]
+      $ fastdds <command> [<command-args>]
 
--  Windows:
+- Windows:
 
-    .. code-block:: bash
+  .. code-block:: winbatch
 
-        > fastdds.bat <command> [<command-args>]
+      > fastdds.bat <command> [<command-args>]
 
 There are three verbs whose functionality is described in the following table:
 
@@ -49,58 +44,185 @@ There are three verbs whose functionality is described in the following table:
 discovery
 ---------
 
-This command launches a |SERVER| (or |BACKUP|) for :ref:`Discovery Server <discovery_server>`. This *server* will manage
-the discovery phases of the |CLIENTS| which are connected to it.
-*Clients* must know how to reach the *server*, which is accomplished by specifying an IP address, a port and
-a transport protocol like UDP or TCP.
-*Servers* do not need any prior knowledge of their *clients*, but require the listening IP address and port
-where they may be reached.
+This command provides a simple and direct way to launch a *Fast DDS* :ref:`Discovery Server <discovery_server>`.
+It encompasses two main functionalities:
+
+* **Discovery Server CLI Easy Mode**: It launches a background daemon which will automatically handle the
+  creation of servers.
+  The port of each server is calculated based on the Domain ID (``-d`` argument or ``ROS_DOMAIN_ID``), which is the
+  only parameter that the user must specify.
+  If no Domain ID is provided, the default value is 0.
+
+  It is intended to be used along with the ``ROS2_EASY_MODE`` environment variable, which will manage clients
+  connections automatically.
+  This CLI feature allows the user to dynamically manage servers from the network: launching, stopping, restarting
+  and even modifying their remote servers connections.
+  For further information about this mode refer to `Discovery Server Easy Mode <https://docs.vulcanexus.org/en/latest/rst/enhancements/easy_mode/easy_mode.html>`__.
+
+* **Discovery Server CLI Standard Mode**: It launches a server running in foreground with the specified parameters.
+  Configurable parameters include IP address, port, transport protocol, XML profile, etc.
+  In this mode, *clients* must know how to reach the *server*, which is accomplished by specifying an IP address,
+  a port and a transport protocol like UDP or TCP.
+  *Servers* do not need any prior knowledge of their *clients*, but require the listening IP address and port
+  where they may be reached.
+
+.. _cli_discovery_easy_mode:
+
+Discovery Server CLI Easy Mode
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+This mode aims to simplify the deployment and configuration of *Fast DDS* Discovery Servers by automatically handling
+the server's connections.
+This mode of the CLI is meant to be used along with the ``ROS2_EASY_MODE`` environment variable, which can be used to
+remove **multicast announcements** from DDS entities and interconnect different hosts by just using the environment
+variable ``ROS2_EASY_MODE=<ip>``.
+(Check `Discovery Server Easy Mode <https://docs.vulcanexus.org/en/latest/rst/enhancements/easy_mode/easy_mode.html>`__
+to see a detailed explanation of this feature).
+
+In this way, the CLI provides an auxiliary tool to obtain more advanced configuration for specific cases of use.
+It can be used to manage running servers, modifying their remote connections, restarting them or stopping them.
+*Fast DDS* Discovery servers are handled and monitored from a background daemon which is automatically spawned when
+required.
+
+Configuration of servers launched with ``ROS2_EASY_MODE`` is available by using the following command:
+
+.. code-block:: bash
+
+    fastdds discovery <command> [optional -d <domain>] [optional "<remote_server_list>"]
+
+The following table lists the available commands for the *Fast DDS* Discovery Server CLI:
+
+.. list-table::
+    :header-rows: 1
+    :align: left
+
+    * - Command
+      - Description
+    * - start
+      - Start the Discovery Server daemon with the remote connections specified.
+        (Example: start -d 1 10.0.0.1:1).
+    * - stop
+      - Stop the Discovery Server daemon if it is executed with no arguments.
+        If a domain is  specified with the ``-d`` argument it will only stop the corresponding server and
+        the daemon will remain alive.
+    * - add
+      - Add new remote Discovery Servers to the local server.
+        This will connect both servers  and their sub-networks without modifying existing remote servers.
+    * - set
+      - Rewrite the remote Discovery Servers connected to the local server.
+        This will replace  existing remote servers with the new connections.
+    * - list
+      - List local active Discovery Servers created with the CLI Tool or the ``ROS2_EASY_MODE=<ip>``.
+
+.. list-table::
+    :header-rows: 1
+    :align: left
+
+    * - Option parameters
+      - Description
+    * - ``-d  --domain``
+      - Selects the domain of the server to target for this action.
+        It is mandatory for  commands ``start``, ``add`` and ``set``.
+    * - ``<remote_server>``
+      - It is an IP-domain pair defining a remote server to connect to:
+        ``<IP:domain>``.
+        It is mandatory with the `start`, `add` and `set` commands.
+        Only valid IPv4 addresses are accepted.
+
+.. note::
+    The command ``add`` also accepts a remote server list using the structure ``"<IP:domain>;<IP:domain>;..."``.
+
+.. _easy_mode_discovery_examples:
+
+Examples
+""""""""
+
+1.  Start a DS in the default domain 0 pointing to itself (no remote server):
+
+    .. code-block:: bash
+
+        fastdds discovery start -d 0 127.0.0.1:0
+
+2.  Stop all running DS and shut down Fast DDS daemon:
+
+    .. code-block:: bash
+
+        fastdds discovery stop
+
+3.  Stop DS running in domain 0:
+
+    .. code-block:: bash
+
+        fastdds discovery stop -d 0
+
+4.  Start a DS in domain 4 pointing to remote DS in domain 4 and IP 10.0.0.7:
+
+    .. code-block:: bash
+
+        fastdds discovery start -d 4 10.0.0.7:4
+
+5.  Add a new remote server to DS running in domain 4 :
+
+    .. code-block:: bash
+
+        fastdds discovery add -d 4 10.0.0.7:4
+
+6.  List all servers running locally:
+
+    .. code-block:: bash
+
+        fastdds discovery list
+
+7.  Starts a DS in domain 3 pointing to local DS in domain 6:
+
+    .. code-block:: bash
+
+        fastdds discovery start -d 3 127.0.0.1:6
+
+.. _cli_discovery_cli:
+
+Discovery Server CLI Standard Mode
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+This mode allows the user to deeply customize Discovery Servers initialization avoiding programming.
+However, it requires manual configuration for clients to reach the server, as they must know the server's
+IP address, port and protocol.
 For more information on the different *Fast DDS* discovery mechanisms and how to configure them, please refer to
 :ref:`discovery`.
 
-.. important::
-    It is possible to interconnect *servers* (or *backup* servers) instantiated with ``fastdds discovery`` using
-    environment variable ``ROS_DISCOVERY_SERVER`` (see :ref:`env_vars_ros_discovery_server`) or a XML configuration
-    file.
-
-.. _cli_discovery_run:
-
-How to run
-^^^^^^^^^^
-
-On a shell, execute:
+To use this mode, execute on a shell:
 
 .. code-block:: bash
 
     fastdds discovery [optional parameters]
 
-Where the parameters are:
+The following table lists the available parameters for the *Fast DDS* Discovery Server CLI mode:
 
 +--------------------------+-------------------------------------------------------------------------------------------+
 | Option                   | Description                                                                               |
 +==========================+===========================================================================================+
 | ``-h  --help``           | Produce help message with examples.                                                       |
 +--------------------------+-------------------------------------------------------------------------------------------+
-| ``-l  --udp-address``    | IPv4/IPv6 address chosen to listen the clients using UDP transport. Defaults to any |br|  |
+| ``-l  --udp-address``    | IPv4/IPv6 address chosen to listen the clients using UDP transport. Defaults to any       |
 |                          | (0.0.0.0/::0). Instead of an address, a DNS domain name can be specified.                 |
 +--------------------------+-------------------------------------------------------------------------------------------+
-| ``-p  --udp-port``       | UDP port chosen to listen the clients. Defaults to '11811'. Only one server can be |br|   |
+| ``-p  --udp-port``       | UDP port chosen to listen the clients. Defaults to '11811'. Only one server can be        |
 |                          | configured using the default UDP port.                                                    |
 +--------------------------+-------------------------------------------------------------------------------------------+
-| ``-t  --tcp-address``    | IPv4/IPv6 address chosen to listen the clients using TCP transport. Instead of an |br|    |
+| ``-t  --tcp-address``    | IPv4/IPv6 address chosen to listen the clients using TCP transport. Instead of an         |
 |                          | address, a DNS domain name can be specified. Defaults to any (0.0.0.0).                   |
 +--------------------------+-------------------------------------------------------------------------------------------+
-| ``-q  --tcp-port``       | TCP port chosen to listen the clients. Defaults to '42100'. Only one server can be |br|   |
+| ``-q  --tcp-port``       | TCP port chosen to listen the clients. Defaults to '42100'. Only one server can be        |
 |                          | configured using the default TCP port.                                                    |
 +--------------------------+-------------------------------------------------------------------------------------------+
 | ``-b  --backup``         | Creates a BACKUP *server* (see :ref:`discovery_protocol`)                                 |
 +--------------------------+-------------------------------------------------------------------------------------------+
-| ``-x  --xml-file``       | XML configuration file (see :ref:`xml_profiles`). In this case, the default |br|          |
-|                          | configuration file is not loaded. The CLI options override XML configuration for |br|     |
-|                          | that specific parameter. The default profile in the XML file is loaded except if |br|     |
+| ``-x  --xml-file``       | XML configuration file (see :ref:`xml_profiles`). In this case, the default               |
+|                          | configuration file is not loaded. The CLI options override XML configuration for          |
+|                          | that specific parameter. The default profile in the XML file is loaded except if          |
 |                          | a specific profile name is specified: ``profile_name@xml_file``                           |
 +--------------------------+-------------------------------------------------------------------------------------------+
-| ``-i  --server-id``      | Unique server identifier. Its functionality its deprecated. It can be used to select |br| |
+| ``-i  --server-id``      | Unique server identifier. Its functionality its deprecated. It can be used to select      |
 |                          | a fixed GUID in the form shown below. Must be an integer in range [0, 255].               |
 +--------------------------+-------------------------------------------------------------------------------------------+
 
@@ -110,18 +232,21 @@ The output is:
 
 .. code-block:: bash
 
-    ### Server is running ###
-      Participant Type:   <SERVER|BACKUP>
-      Security:           <YES|NO>
-      Server GUID prefix: <Default>|44.53.<server-id-in-hex>.5f.45.50.52.4f.53.49.4d.41
-      Server Addresses:   UDPv4:[<ip-address>]:<port>
-                          UDPv6:[<ip-address>]:<port>
-                          TCPv4:[<ip-address>]:<physical-port>-<logical-port>
-                          TCPv6:[<ip-address>]:<physical-port>-<logical-port>
+    #### Server started ####
+      GUID prefix: <Default>|44.53.<server-id-in-hex>.5f.45.50.52.4f.53.49.4d.41
+      Running on:  UDPv4:[<ip-address>]:<port>
+                   UDPv6:[<ip-address>]:<port>
+                   TCPv4:[<ip-address>]:<physical-port>-<logical-port>
+                   TCPv6:[<ip-address>]:<physical-port>-<logical-port>
 
 Once the *server* is instantiated, the *clients* can be configured either programmatically or by XML (see
 :ref:`discovery_server`), or using environment variable ``ROS_DISCOVERY_SERVER`` (see
 :ref:`env_vars_ros_discovery_server`)
+
+.. important::
+    It is possible to interconnect *servers* (or *backup* servers) instantiated with :ref:`cli_discovery_cli` using
+    environment variable ``ROS_DISCOVERY_SERVER`` (see :ref:`env_vars_ros_discovery_server`) or a XML configuration
+    file.
 
 .. note::
   The :ref:`security` configuration of the discovery server should be done through XML.
@@ -130,7 +255,7 @@ Once the *server* is instantiated, the *clients* can be configured either progra
 .. _cli_discovery_examples:
 
 Examples
-^^^^^^^^
+""""""""
 
 1.  Launch a **default server** listening on all available interfaces on UDP port '11811'.
     Only one server can use default values per machine.
@@ -143,11 +268,9 @@ Examples
 
     .. code-block:: bash
 
-        ### Server is running ###
-          Participant Type:   SERVER
-          Security:           NO
-          Server GUID prefix: <Default GUID>
-          Server Addresses:   UDPv4:[0.0.0.0]:11811
+        #### Server started ####
+          GUID prefix: <Default GUID>
+          Running on:  UDPv4:[0.0.0.0]:11811
 
 2.  Launch a default server listening on localhost with UDP port 14520.
     Only localhost clients can reach the server defining as `ROS_DISCOVERY_SERVER=127.0.0.1:14520`.
@@ -160,11 +283,9 @@ Examples
 
     .. code-block:: bash
 
-        ### Server is running ###
-          Participant Type:   SERVER
-          Security:           NO
-          Server GUID prefix: <Default GUID>
-          Server Addresses:   UDPv4:[127.0.0.1]:14520
+        #### Server started ####
+          GUID prefix: <Default GUID>
+          Running on:  UDPv4:[127.0.0.1]:14520
 
     This same output can be obtained loading the following XML configuration file ``DiscoveryServerCLI.xml``:
 
@@ -188,11 +309,9 @@ Examples
 
     .. code-block:: bash
 
-        ### Server is running ###
-          Participant Type:   SERVER
-          Security:           NO
-          Server GUID prefix: <Default GUID>
-          Server Addresses:   TCPv4:[0.0.0.0]:42100
+        #### Server started ####
+          GUID prefix: <Default GUID>
+          Running on:  TCPv4:[0.0.0.0]:42100
 
 .. _Deprecated_CLI: https://fast-dds.docs.eprosima.com/en/v2.14.0/fastddscli/cli/cli.html
 
@@ -207,11 +326,9 @@ Examples
 
     .. code-block:: bash
 
-        ### Server is running ###
-          Participant Type:   SERVER
-          Security:           NO
-          Server GUID prefix: 44.53.01.5f.45.50.52.4f.53.49.4d.41
-          Server Addresses:   UDPv6:[2a02:ec80:600:ed1a::3]:14520
+        #### Server started ####
+          GUID prefix: 44.53.01.5f.45.50.52.4f.53.49.4d.41
+          Running on:  UDPv6:[2a02:ec80:600:ed1a::3]:14520
 
 5.  Launch a default server listening on WiFi (192.168.36.34) and Ethernet (172.20.96.1)
     local interfaces with UDP ports 8783 and 51083 respectively
@@ -225,12 +342,10 @@ Examples
 
     .. code-block:: bash
 
-        ### Server is running ###
-          Participant Type    SERVER
-          Security:           NO
-          Server GUID prefix: <Default GUID>
-          Server Addresses:   UDPv4:[192.168.36.34]:8783
-                              UDPv4:[172.20.96.1]:51083
+        #### Server started ####
+          GUID prefix: <Default GUID>
+          Running on:  UDPv4:[192.168.36.34]:8783
+                       UDPv4:[172.20.96.1]:51083
 
     Using the same XML configuration file from the second example, the same
     output can be obtained loading a specific profile: `second_participant_profile_discovery_server_cli`.
@@ -250,11 +365,9 @@ Examples
 
     .. code-block:: bash
 
-        ### Server is running ###
-          Participant Type    BACKUP
-          Security:           NO
-          Server GUID prefix: <Default GUID>
-          Server Addresses:   UDPv4:[172.30.144.1]:12345
+        #### Backup Server started ####
+          GUID prefix: <Default GUID>
+          Running on:  UDPv4:[172.30.144.1]:12345
 
 7.  Launch a secure server listening on all available interfaces on UDP port '11811'.
 
@@ -266,11 +379,9 @@ Examples
 
     .. code-block:: bash
 
-        ### Server is running ###
-          Participant Type:   SERVER
-          Security:           YES
-          Server GUID prefix: <Default GUID>
-          Server Addresses:   UDPv4:[0.0.0.0]:11811
+        #### Server started ####
+          GUID prefix: <Default GUID>
+          Running on:  UDPv4:[0.0.0.0]:11811
 
 8.  Launch a server reading specific `profile_name` configuration from XML file.
 
@@ -282,11 +393,9 @@ Examples
 
     .. code-block:: bash
 
-        ### Server is running ###
-          Participant Type:   SERVER
-          Security:           NO
-          Server GUID prefix: <Default GUID>
-          Server Addresses:   UDPv4:[127.0.0.1]:56542
+        #### Server started ####
+          GUID prefix: <Default GUID>
+          Running on:  UDPv4:[127.0.0.1]:56542
 
 9.  Launch a server listening on localhost on default TCP port '42100'.
 
@@ -298,11 +407,9 @@ Examples
 
     .. code-block:: bash
 
-        ### Server is running ###
-          Participant Type:   SERVER
-          Security:           NO
-          Server GUID prefix: <Default GUID>
-          Server Addresses:   TCPv4:[127.0.0.1]:42100-42100
+        #### Server started ####
+          GUID prefix: <Default GUID>
+          Running on:  TCPv4:[127.0.0.1]:42100-42100
 
 10. Launch a server listening on localhost and WiFi (192.163.6.34). Two TCP ports need to be
     specified because transports cannot share ports.
@@ -315,12 +422,10 @@ Examples
 
     .. code-block:: bash
 
-        ### Server is running ###
-          Participant Type:   SERVER
-          Security:           NO
-          Server GUID prefix: <Default GUID>
-          Server Addresses:   TCPv4:[127.0.0.1]:42100-42100
-                              TCPv4:[192.163.6.34]:42101-42101
+        #### Server started ####
+          GUID prefix: <Default GUID>
+          Running on:  TCPv4:[127.0.0.1]:42100-42100
+                       TCPv4:[192.163.6.34]:42101-42101
 
 .. note::
      When using Discovery Server over TCP, the first port shown in the output
@@ -330,7 +435,7 @@ Examples
 .. note::
      A server can be instantiated just by passing the port arguments ``-p``
      and ``-q``. Fast DDS CLI will use the default values of the IP addresses,
-     that is, ``0.0.0.0`` for UDP and ``0.0.0.0`` for TCP.
+     that is, ``0.0.0.0`` for both UDP and TCP.
 
 .. _cli_shm:
 
@@ -342,6 +447,10 @@ Provides maintenance tasks related with :ref:`transport_sharedMemory_sharedMemor
 Zombie files are memory blocks that were reserved by shared memory and are no longer in use which take up valuable
 memory resources.
 This tool finds and frees those memory allocations.
+
+It is also possible to clean :ref:`Data Sharing<datasharing-delivery>` segments when the ``--force`` option is used.
+However, this option should be used with caution, as it will remove all Data Sharing segments, including the ones
+that are being used by active applications.
 
 .. code-block:: bash
 
@@ -356,8 +465,15 @@ This tool finds and frees those memory allocations.
 +--------------------------+-------------------------------------------------------------------------------------------+
 | Option                   | Description                                                                               |
 +==========================+===========================================================================================+
-| ``-h  -help``            | Produce help message.                                                                     |
+| ``-h  --help``           | Produce help message.                                                                     |
 +--------------------------+-------------------------------------------------------------------------------------------+
+| ``-f  --force``          | Force the deletion of data sharing segments.                                              |
++--------------------------+-------------------------------------------------------------------------------------------+
+
+.. warning::
+     Running this command with the ``--force`` option will remove all Data Sharing segments, including the ones that
+     are being used by active applications. Use this option only when there are no running Fast DDS applications,
+     as it might raise errors if the segments are still in use.
 
 .. _cli_xml:
 

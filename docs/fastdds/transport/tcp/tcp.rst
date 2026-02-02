@@ -70,8 +70,8 @@ The following table describes the common data members for both TCPv4 and TCPv6.
   * - |SocketTransportDescriptor::interface_allowlist-api|
     - ``vector<pair<string, NetmaskFilterKind>>``
     - Empty vector
-    - List of allowed interfaces with |br|
-      netmask filter configuration. |br|
+    - List of allowed interfaces with
+      netmask filter configuration.
       See |interfaces_allowlist|.
   * - |SocketTransportDescriptor::interface_blocklist-api|
     - ``vector<string>``
@@ -241,29 +241,31 @@ configuration.
 Builtin Transports can be configured using the ``FASTDDS_BUILTIN_TRANSPORTS`` environment variable (see
 :ref:`env_vars_builtin_transports`), XML profiles (see :ref:`RTPS`) or via code.
 
-.. tabs::
+.. tab-set::
 
-  .. tab:: Environment Variable
+  .. tab-item:: Environment Variable
 
       .. code-block:: bash
 
           export FASTDDS_BUILTIN_TRANSPORTS=LARGE_DATA
 
-  .. tab:: XML
+  .. tab-item:: XML
+      :sync: xml
 
-    .. literalinclude:: /../code/XMLTester.xml
-        :language: xml
-        :start-after: <!-->LARGE_DATA_BUILTIN_TRANSPORTS<-->
-        :end-before: <!--><-->
-        :lines: 2-4, 6-13, 15-16
+      .. literalinclude:: /../code/XMLTester.xml
+          :language: xml
+          :start-after: <!-->LARGE_DATA_BUILTIN_TRANSPORTS<-->
+          :end-before: <!--><-->
+          :lines: 2-4, 6-13, 15-16
 
-  .. tab:: C++
+  .. tab-item:: C++
+      :sync: cpp
 
-    .. literalinclude:: /../code/DDSCodeTester.cpp
-      :language: c++
-      :start-after: //CONF-TCP-TRANSPORT-BUILTIN-TRANSPORT
-      :end-before: //!--
-      :dedent: 8
+      .. literalinclude:: /../code/DDSCodeTester.cpp
+          :language: c++
+          :start-after: //CONF-TCP-TRANSPORT-BUILTIN-TRANSPORT
+          :end-before: //!--
+          :dedent: 8
 
 .. note::
    Note that ``LARGE_DATA`` configuration of the builtin transports will also create a SHM transport along the UDP
@@ -286,46 +288,50 @@ TCP Server or TCP Client.
   will act as *TCP server*, listening for incoming remote connections on the given ports.
   The examples below show this procedure in both C++ code and XML file.
 
-  .. tabs::
+  .. tab-set::
 
-    .. tab:: C++
+    .. tab-item:: C++
+       :sync: cpp
 
-      .. literalinclude:: /../code/DDSCodeTester.cpp
-        :language: c++
-        :start-after: //CONF-TCP-TRANSPORT-SETTING-SERVER
-        :end-before: //!--
-        :dedent: 8
+       .. literalinclude:: /../code/DDSCodeTester.cpp
+          :language: c++
+          :start-after: //CONF-TCP-TRANSPORT-SETTING-SERVER
+          :end-before: //!--
+          :dedent: 8
 
-    .. tab:: XML
+    .. tab-item:: XML
+       :sync: xml
 
-      .. literalinclude:: /../code/XMLTester.xml
-        :language: xml
-        :start-after: <!-->CONF-TCP-TRANSPORT-SETTING-SERVER
-        :end-before: <!--><-->
-        :lines: 2-4,6-74,76-77
+       .. literalinclude:: /../code/XMLTester.xml
+          :language: xml
+          :start-after: <!-->CONF-TCP-TRANSPORT-SETTING-SERVER
+          :end-before: <!--><-->
+          :lines: 2-4,6-74,76-77
 
 * **TCP Client**: If you provide |BuiltinAttributes::initialPeersList-api| to the DomainParticipant, it will act as
   *TCP client*, trying to connect to the remote *servers* at the given addresses and ports.
   The examples below show this procedure in both C++ code and XML file.
   See :ref:`Simple Initial Peers` for more information about their configuration.
 
-  .. tabs::
+  .. tab-set::
 
-    .. tab:: C++
+    .. tab-item:: C++
+        :sync: cpp
 
-      .. literalinclude:: /../code/DDSCodeTester.cpp
-        :language: c++
-        :start-after: //CONF-TCP-TRANSPORT-SETTING-CLIENT
-        :end-before: //!--
-        :dedent: 8
+        .. literalinclude:: /../code/DDSCodeTester.cpp
+            :language: c++
+            :start-after: //CONF-TCP-TRANSPORT-SETTING-CLIENT
+            :end-before: //!--
+            :dedent: 8
 
-    .. tab:: XML
+    .. tab-item:: XML
+        :sync: xml
 
-      .. literalinclude:: /../code/XMLTester.xml
-        :language: xml
-        :start-after: <!-->CONF-TCP-TRANSPORT-SETTING-CLIENT
-        :end-before: <!--><-->
-        :lines: 2-4,6-59,61-62
+        .. literalinclude:: /../code/XMLTester.xml
+            :language: xml
+            :start-after: <!-->CONF-TCP-TRANSPORT-SETTING-CLIENT
+            :end-before: <!--><-->
+            :lines: 2-4,6-59,61-62
 
 .. note::
 
@@ -405,52 +411,56 @@ the :ref:`transport_tcp_v4transportDescriptor` must indicate its **public** IP a
 in the |TCPv4TransportDescriptor::wan_addr-api| data member.
 The following examples show how to configure the DomainParticipant both in C++ and XML.
 
-.. tabs::
+.. tab-set::
 
-  .. tab:: C++
+  .. tab-item:: C++
+      :sync: cpp
 
-    .. literalinclude:: /../code/DDSCodeTester.cpp
-      :language: c++
-      :start-after: //CONF-TCP-TRANSPORT-SETTING-WAN-SERVER
-      :end-before: //!--
-      :dedent: 8
+      .. literalinclude:: /../code/DDSCodeTester.cpp
+          :language: c++
+          :start-after: //CONF-TCP-TRANSPORT-SETTING-WAN-SERVER
+          :end-before: //!--
+          :dedent: 8
 
-  .. tab:: XML
+  .. tab-item:: XML
+      :sync: xml
 
-    .. literalinclude:: /../code/XMLTester.xml
-      :language: xml
-      :start-after: <!-->CONF-TCP-TRANSPORT-SETTING-WAN-SERVER
-      :end-before: <!--><-->
-      :lines: 2-4,6-79,81-82
+      .. literalinclude:: /../code/XMLTester.xml
+          :language: xml
+          :start-after: <!-->CONF-TCP-TRANSPORT-SETTING-WAN-SERVER
+          :end-before: <!--><-->
+          :lines: 2-4,6-79,81-82
 
 On the client side, the DomainParticipant must be configured
 with the **public** IP address and |TCPTransportDescriptor::listening_ports-api| of the *TCP server* as
 :ref:`Simple Initial Peers`.
 
-.. tabs::
+.. tab-set::
 
-  .. tab:: C++
+  .. tab-item:: C++
+      :sync: cpp
 
-    .. literalinclude:: /../code/DDSCodeTester.cpp
-      :language: c++
-      :start-after: //CONF-TCP-TRANSPORT-SETTING-WAN-CLIENT
-      :end-before: //!--
-      :dedent: 8
+      .. literalinclude:: /../code/DDSCodeTester.cpp
+          :language: c++
+          :start-after: //CONF-TCP-TRANSPORT-SETTING-WAN-CLIENT
+          :end-before: //!--
+          :dedent: 8
 
-  .. tab:: XML
+  .. tab-item:: XML
+      :sync: xml
 
-    .. literalinclude:: /../code/XMLTester.xml
-      :language: xml
-      :start-after: <!-->CONF-TCP-TRANSPORT-SETTING-WAN-CLIENT
-      :end-before: <!--><-->
-      :lines: 2-4,6-65,67-68
+      .. literalinclude:: /../code/XMLTester.xml
+          :language: xml
+          :start-after: <!-->CONF-TCP-TRANSPORT-SETTING-WAN-CLIENT
+          :end-before: <!--><-->
+          :lines: 2-4,6-65,67-68
 
 .. _transport_tcp_example:
 
-HelloWorldExampleTCP
---------------------
+Delivery Mechanisms example
+---------------------------
 
-A TCP version of helloworld example can be found in the
-`HelloWorldExampleTCP folder <https://github.com/eProsima/Fast-DDS/tree/master/examples/cpp/dds/HelloWorldExampleTCP>`_.
-It shows a publisher and a subscriber that communicate through TCP.
-The publisher is configured as *TCP server* while the Subscriber is acting as *TCP client*.
+A hello world example suitable for supported delivery mechanisms can be found in the
+`delivery_mechanisms folder <https://github.com/eProsima/Fast-DDS/tree/master/examples/cpp/delivery_mechanisms>`_.
+It shows a publisher and a subscriber that communicate through the desired delivery mechanism (which can be set to TCP
+only).

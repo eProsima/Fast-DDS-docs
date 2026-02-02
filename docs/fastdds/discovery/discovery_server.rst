@@ -16,12 +16,8 @@ ease Discovery Server setup and testing.
 
 .. note::
 
-  :ref:`DDS Domain <dds_layer_domain>` concept does not apply when enabling the Discovery Server mechanism.
-
-.. contents::
-    :local:
-    :backlinks: none
-    :depth: 1
+  :ref:`DDS Domain <dds_layer_domain>` concept does not apply when enabling the default Discovery Server mechanism,
+  but it applies when using :ref:`ROS2_EASY_MODE<env_vars_easy_mode>`.
 
 .. figure:: /01-figures/fast_dds/discovery/discovery-server.svg
     :align: center
@@ -45,45 +41,46 @@ In this architecture there are several key concepts to understand:
 
 - A |SERVER| is a participant to which the *clients* (and maybe other *servers*) send their discovery information.
 
-    * The role of the *server* is to redistribute its *clients* discovery information to its known
-      *clients* and *servers*.
-    * A *server* also announces the existence of a new *server* to its known *servers*, and vice versa.
-      In this way, a new server can connect to every other existing *server* in the network by just knowing the
-      existence of one of them.
-    * The discovery information that is redistributed might come from a **direct** *client* connected to the |SERVER|,
-      or from another *server* that is redirecting the discovery data from **its** *clients*.
-    * Known *servers* will receive all the information from the **direct** *clients* known by the *server* and the
-      participant information of other *servers* (to announce a new server).
-    * Known *clients* will only receive the information they need to establish communication, i.e. the information
-      about the DomainParticipants, DataWriters, and DataReaders to which they match.
-      This means that the *server* runs a "matching" algorithm to sort out which information is required by which
-      *client*.
+  * The role of the *server* is to redistribute its *clients* discovery information to its known
+    *clients* and *servers*.
+  * A *server* also announces the existence of a new *server* to its known *servers*, and vice versa.
+    In this way, a new server can connect to every other existing *server* in the network by just knowing the
+    existence of one of them.
+    In this way, a mesh topology between servers is created with minimal configuration.
+  * The discovery information that is redistributed might come from a **direct** *client* connected to the |SERVER|,
+    or from another *server* that is redirecting the discovery data from **its** *clients*.
+  * Known *servers* will receive all the information from the **direct** *clients* known by the *server* and the
+    participant information of other *servers* (to announce a new server).
+  * Known *clients* will only receive the information they need to establish communication, i.e. the information
+    about the DomainParticipants, DataWriters, and DataReaders to which they match.
+    This means that the *server* runs a "matching" algorithm to sort out which information is required by which
+    *client*.
 
 - A |BACKUP| *server* is a *server* that persists its discovery database into a file.
 
-    * This type of *server* can load the network graph from a file on start-up without the need of receiving any
-      *client's* information.
-    * It can be used to persist the *server* knowledge about the network between runs, thus securing the *server's*
-      information in case of unexpected shutdowns.
-    * It is important to note that the discovery times will be negatively affected when using this type of *server*,
-      since periodically writing to a file is an expensive operation.
+  * This type of *server* can load the network graph from a file on start-up without the need of receiving any
+    *client's* information.
+  * It can be used to persist the *server* knowledge about the network between runs, thus securing the *server's*
+    information in case of unexpected shutdowns.
+  * It is important to note that the discovery times will be negatively affected when using this type of *server*,
+    since periodically writing to a file is an expensive operation.
 
 - A |CLIENT| is a participant that connects to one or more *servers* from which it receives only the discovery
   information they require to establish communication with matching endpoints.
 
-    * *Clients* require prior knowledge of the *servers* to which they want to link.
-      Basically, it consists of a list of locators where the *servers* are listening, namely, an IP address and a port.
-      These locators also define the transport protocol (UDP or TCP) the client will use to contact the *server*.
+  * *Clients* require prior knowledge of the *servers* to which they want to link.
+    Basically, it consists of a list of locators where the *servers* are listening, namely, an IP address and a port.
+    These locators also define the transport protocol (UDP or TCP) the client will use to contact the *server*.
 
 - A |SUPER_CLIENT| is a *client* that receives the discovery information known by the *server*, in opposition to
   *clients*, which only receive the information they need.
 
   .. note::
 
-    A |SUPER_CLIENT| does not behave as a *Server* as it only receives the discovery information through the *Server* to
-    which it is connected.
-    It will not connect to other servers, and it will not redistribute the information it receives.
-    Any DomainParticipant discovered by the *Server* with no endpoints will not be known by the |SUPER_CLIENT|.
+      A |SUPER_CLIENT| does not behave as a *Server* as it only receives the discovery information through the *Server* to
+      which it is connected.
+      It will not connect to other servers, and it will not redistribute the information it receives.
+      Any DomainParticipant discovered by the *Server* with no endpoints will not be known by the |SUPER_CLIENT|.
 
 - *Servers* do not require any prior knowledge of their *clients*, but they must listen in the address specified
   by the locator provided to the *clients*.
@@ -102,24 +99,20 @@ A participant can only play one role (despite the fact that a *server* may conne
 It is mandatory to fill this value because it defaults to |SIMPLE|.
 The examples below shows how to set this parameter both programmatically and using XML.
 
-.. tabs::
+.. tab-set-code::
 
-   .. tab:: **C++**
+    .. literalinclude:: /../code/DDSCodeTester.cpp
+        :language: c++
+        :start-after: //CONF_SERVER_DISCOVERY_PROTOCOL
+        :end-before: //!--
+        :dedent: 8
 
-      .. literalinclude:: /../code/DDSCodeTester.cpp
-         :language: c++
-         :start-after: //CONF_SERVER_DISCOVERY_PROTOCOL
-         :end-before: //!--
-         :dedent: 8
-
-   .. tab:: **XML**
-
-      .. literalinclude:: /../code/XMLTester.xml
-         :language: xml
-         :start-after: <!-->CONF-SERVER-DISCOVERY-PROTOCOL<-->
-         :end-before: <!--><-->
-         :lines: 2-3,5-18
-         :append: </profiles>
+    .. literalinclude:: /../code/XMLTester.xml
+        :language: xml
+        :start-after: <!-->CONF-SERVER-DISCOVERY-PROTOCOL<-->
+        :end-before: <!--><-->
+        :lines: 2-3,5-18
+        :append: </profiles>
 
 .. _DS_locators:
 
@@ -140,24 +133,20 @@ Each locator must contain:
 - Port.
 - Transport protocol (UDPv4/6 or TCPv4/6).
 
-.. tabs::
+.. tab-set-code::
 
-   .. tab:: **C++**
+    .. literalinclude:: /../code/DDSCodeTester.cpp
+        :language: c++
+        :start-after: //CONF_SERVER_SERVER_LOCATORS
+        :end-before: //!--
+        :dedent: 8
 
-      .. literalinclude:: /../code/DDSCodeTester.cpp
-         :language: c++
-         :start-after: //CONF_SERVER_SERVER_LOCATORS
-         :end-before: //!--
-         :dedent: 8
-
-   .. tab:: **XML**
-
-      .. literalinclude:: /../code/XMLTester.xml
-         :language: xml
-         :start-after: <!-->CONF-SERVER-SERVER-LOCATORS<-->
-         :end-before: <!--><-->
-         :lines: 2-3,5-19
-         :append: </profiles>
+    .. literalinclude:: /../code/XMLTester.xml
+        :language: xml
+        :start-after: <!-->CONF-SERVER-SERVER-LOCATORS<-->
+        :end-before: <!--><-->
+        :lines: 2-3,5-19
+        :append: </profiles>
 
 Note that a *server* can connect to other *servers*, thus, the following section may also apply.
 
@@ -169,24 +158,20 @@ Each *client* must keep a list of locators associated to the *servers* to which 
 Note that providing an unreachable locator will result in the *client* sending ping messages to that direction at
 regular intervals until it is connected to the same amount of servers that has been configured in the locator list.
 
-.. tabs::
+.. tab-set-code::
 
-   .. tab:: **C++**
+    .. literalinclude:: /../code/DDSCodeTester.cpp
+        :language: c++
+        :start-after: //CONF_SERVER_CLIENT_LOCATORS
+        :end-before: //!--
+        :dedent: 8
 
-      .. literalinclude:: /../code/DDSCodeTester.cpp
-         :language: c++
-         :start-after: //CONF_SERVER_CLIENT_LOCATORS
-         :end-before: //!--
-         :dedent: 8
-
-   .. tab:: **XML**
-
-      .. literalinclude:: /../code/XMLTester.xml
-         :language: xml
-         :start-after: <!-->CONF-SERVER-CLIENT-LOCATORS<-->
-         :end-before: <!--><-->
-         :lines: 2-3,5-21
-         :append: </profiles>
+    .. literalinclude:: /../code/XMLTester.xml
+        :language: xml
+        :start-after: <!-->CONF-SERVER-CLIENT-LOCATORS<-->
+        :end-before: <!--><-->
+        :lines: 2-3,5-21
+        :append: </profiles>
 
 .. note::
 
@@ -207,24 +192,20 @@ intervals (ping period) until they receive as many message reception acknowledge
 Mind that this period also applies for those *servers* which connect to other *servers*.
 The default value for this period is 450 ms, but it can be configured to a different value.
 
-.. tabs::
-
-  .. tab:: **C++**
+.. tab-set-code::
 
     .. literalinclude:: /../code/DDSCodeTester.cpp
-      :language: c++
-      :start-after: //CONF_SERVER_CLIENT_PING
-      :end-before: //!--
-      :dedent: 8
-
-  .. tab:: **XML**
+        :language: c++
+        :start-after: //CONF_SERVER_CLIENT_PING
+        :end-before: //!--
+        :dedent: 8
 
     .. literalinclude:: /../code/XMLTester.xml
-      :language: xml
-      :start-after: <!-->CONF-SERVER-CLIENT-PING<-->
-      :end-before: <!--><-->
-      :lines: 2-3,5-16
-      :append: </profiles>
+        :language: xml
+        :start-after: <!-->CONF-SERVER-CLIENT-PING<-->
+        :end-before: <!--><-->
+        :lines: 2-3,5-16
+        :append: </profiles>
 
 .. _DS_guidPrefix:
 
@@ -244,32 +225,34 @@ Server side setup
 
 The examples below show how to manage the corresponding enum data member and XML tag.
 
-.. tabs::
+.. tab-set::
 
-  .. tab:: **C++** - Option 1
+   .. tab-item:: C++ - Option 1
+       :sync: cpp
 
-    .. literalinclude:: /../code/DDSCodeTester.cpp
-        :language: c++
-        :start-after: //CONF_SERVER_SERVER_GUIDPREFIX_OPTION_1
-        :end-before: //!--
-        :dedent: 8
+       .. literalinclude:: /../code/DDSCodeTester.cpp
+           :language: c++
+           :start-after: //CONF_SERVER_SERVER_GUIDPREFIX_OPTION_1
+           :end-before: //!--
+           :dedent: 8
 
-  .. tab:: **C++** - Option 2
+   .. tab-item:: C++ - Option 2
 
-    .. literalinclude:: /../code/DDSCodeTester.cpp
-        :language: c++
-        :start-after: //CONF_SERVER_SERVER_GUIDPREFIX_OPTION_2
-        :end-before: //!--
-        :dedent: 8
+       .. literalinclude:: /../code/DDSCodeTester.cpp
+           :language: c++
+           :start-after: //CONF_SERVER_SERVER_GUIDPREFIX_OPTION_2
+           :end-before: //!--
+           :dedent: 8
 
-  .. tab:: **XML**
+   .. tab-item:: XML
+       :sync: xml
 
-    .. literalinclude:: /../code/XMLTester.xml
-        :language: xml
-        :start-after: <!-->CONF-SERVER-SERVER-PREFIX<-->
-        :end-before: <!--><-->
-        :lines: 2-3,5-
-        :append: </profiles>
+       .. literalinclude:: /../code/XMLTester.xml
+           :language: xml
+           :start-after: <!-->CONF-SERVER-SERVER-PREFIX<-->
+           :end-before: <!--><-->
+           :lines: 2-3,5-
+           :append: </profiles>
 
 .. important::
      When selecting a GUID prefix for the *server*, it is important to take into account that Fast DDS also uses this
@@ -310,15 +293,13 @@ in case that the remote server is relaunched with a different listening locator.
     It is strongly advised to use either the API or the environment file.
     Using both at the same time may cause undefined behavior.
 
-.. tabs::
-
-  .. tab:: **C++**
+.. tab-set-code::
 
     .. literalinclude:: /../code/DDSCodeTester.cpp
-      :language: c++
-      :start-after: //CONF_SERVER_ADD_SERVERS
-      :end-before: //!--
-      :dedent: 8
+        :language: c++
+        :start-after: //CONF_SERVER_ADD_SERVERS
+        :end-before: //!--
+        :dedent: 8
 
 .. _DS_dns_name:
 
@@ -334,52 +315,44 @@ Full example
 ^^^^^^^^^^^^
 
 The following constitutes a full example on how to configure *server* and *client* both programmatically and using XML.
-You may also have a look at the *eProsima Fast DDS* Github repository, which contains `an example <https://github.com/eProsima/Fast-DDS/tree/master/examples/cpp/dds/DiscoveryServerExample>`_
+You may also have a look at the *eProsima Fast DDS* Github repository, which contains `an example <https://github.com/eProsima/Fast-DDS/tree/master/examples/cpp/discovery_server>`_
 similar to the one discussed in this section, as well as multiple other examples for different use cases.
 
 Server side setup
 """""""""""""""""
 
-.. tabs::
-
-  .. tab:: **C++**
+.. tab-set-code::
 
     .. literalinclude:: /../code/DDSCodeTester.cpp
-       :language: c++
-       :start-after: //CONF_SERVER_FULL_EXAMPLE
-       :end-before: //!--
-       :dedent: 8
-
-  .. tab:: XML
+        :language: c++
+        :start-after: //CONF_SERVER_FULL_EXAMPLE
+        :end-before: //!--
+        :dedent: 8
 
     .. literalinclude:: /../code/XMLTester.xml
-       :language: xml
-       :start-after: <!-->CONF_SERVER_FULL_EXAMPLE<-->
-       :end-before: <!--><-->
-       :lines: 2-3,5-36
-       :append: </profiles>
+        :language: xml
+        :start-after: <!-->CONF_SERVER_FULL_EXAMPLE<-->
+        :end-before: <!--><-->
+        :lines: 2-3,5-36
+        :append: </profiles>
 
 Client side setup
 """""""""""""""""
 
-.. tabs::
-
-  .. tab:: **C++**
+.. tab-set-code::
 
     .. literalinclude:: /../code/DDSCodeTester.cpp
-       :language: c++
-       :start-after: //CONF_CLIENT_FULL_EXAMPLE
-       :end-before: //!--
-       :dedent: 8
-
-  .. tab:: **XML**
+        :language: c++
+        :start-after: //CONF_CLIENT_FULL_EXAMPLE
+        :end-before: //!--
+        :dedent: 8
 
     .. literalinclude:: /../code/XMLTester.xml
-       :language: xml
-       :start-after: <!-->CONF_CLIENT_FULL_EXAMPLE<-->
-       :end-before: <!--><-->
-       :lines: 2-3,5-31
-       :append: </profiles>
+        :language: xml
+        :start-after: <!-->CONF_CLIENT_FULL_EXAMPLE<-->
+        :end-before: <!--><-->
+        :lines: 2-3,5-31
+        :append: </profiles>
 
 .. _DS_security:
 
@@ -397,7 +370,7 @@ discovery.
 
 As in SDP, when using this feature, the Domain Governance Document of all *clients* and *servers* connecting to a
 *server* must match that of the *server*, which implies that all |DomainParticipants| belonging to the same Discovery
-Sever network must configure the discovery protection in the same manner.
+Server network must configure the discovery protection in the same manner.
 
 Although the *server* mediates the discovery process and creates connections between *clients*, the *clients* themselves
 still go through the PKI (Public Key Infrastructure) exchange in order to have a secure communication between them.

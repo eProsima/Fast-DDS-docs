@@ -38,11 +38,10 @@ How to use the RTPS Layer
 We will now go over the use of the RTPS Layer like we did with the :ref:`dds_layer` one,
 explaining the new features it presents.
 
-We recommend you to look at the two examples describing how to use the RTPS layer that come with the distribution
+We recommend you to look at the example describing how to use the RTPS layer that come with the distribution
 while reading this section.
-They are located in
-`examples/cpp/rtps/AsSocket <https://github.com/eProsima/Fast-DDS/tree/master/examples/cpp/rtps/AsSocket>`_ and
-`examples/cpp/rtps/Registered <https://github.com/eProsima/Fast-DDS/tree/master/examples/cpp/rtps/Registered>`_
+It is located in
+`examples/cpp/rtps <https://github.com/eProsima/Fast-DDS/tree/master/examples/cpp/rtps>`_.
 
 Managing the Participant
 ^^^^^^^^^^^^^^^^^^^^^^^^
@@ -95,9 +94,9 @@ Changes are always managed by the History.
 You can add a new :class:`CacheChange_t` to the History of the Writer to send data.
 The procedure is as follows:
 
-1. Request a :class:`CacheChange_t` from the Writer with |RTPSWriters::new_change-api|.
+1. Request a :class:`CacheChange_t` from the Writer History with |WriterHistory::create_change-api|.
    In order to allocate enough memory,
-   you need to provide a callback that returns the maximum number bytes in the payload.
+   you need to provide as argument the maximum number of bytes in the payload.
 2. Fill the :class:`CacheChange_t` with the data.
 3. Add it to the History with |WriterHistory::add_change-api|.
 
@@ -144,14 +143,14 @@ instantiated.
 | Builtin Transports Options | Description                                                                  |
 +============================+==============================================================================+
 | ``NONE``                   | No transport will be instantiated. Hence, the user must manually add         |
-|                            | the desired |br| transports. Otherwise, the participant creation will fail.  |
+|                            | the desired  transports. Otherwise, the participant creation will fail.      |
 +----------------------------+------------------------------------------------------------------------------+
 | ``DEFAULT``                | UDPv4 and SHM transports will be instantiated. SHM transport has priority    |
-|                            | over the UDPv4 |br| transport. Meaning that SHM will always be used          |
+|                            | over the UDPv4  transport. Meaning that SHM will always be used              |
 |                            | when possible.                                                               |
 +----------------------------+------------------------------------------------------------------------------+
 | ``DEFAULTv6``              | UDPv6 and SHM transports will be instantiated. SHM transport has priority    |
-|                            | over the UDPv4 |br| transport. Meaning that SHM will always be used          |
+|                            | over the UDPv4  transport. Meaning that SHM will always be used              |
 |                            | when possible.                                                               |
 +----------------------------+------------------------------------------------------------------------------+
 | ``SHM``                    | Only a SHM transport will be instantiated.                                   |
@@ -161,9 +160,9 @@ instantiated.
 | ``UDPv6``                  | Only a UDPv6 transport will be instantiated.                                 |
 +----------------------------+------------------------------------------------------------------------------+
 | ``LARGE_DATA``             | UDPv4, TCPv4, and SHM transports will be instantiated. However, UDP will     |
-|                            | only be used |br| for multicast announcements during the participant         |
-|                            | discovery phase (see :ref:`disc_phases`) |br| while the participant          |
-|                            | liveliness and the application data delivery occurs over TCP or SHM. |br|    |
+|                            | only be used  for multicast announcements during the participant             |
+|                            | discovery phase (see :ref:`disc_phases`)  while the participant              |
+|                            | liveliness and the application data delivery occurs over TCP or SHM.         |
 |                            | This configuration is useful when working with large data.(See               |
 |                            | :ref:`use-case-tcp`).                                                        |
 +----------------------------+------------------------------------------------------------------------------+
@@ -182,11 +181,11 @@ function of the :ref:`dds_layer_domainParticipantQos`, XML profiles (see :ref:`R
 
   TCPv4 transport is initialized with the following configuration:
 
-    * |TCPTransportDescriptor::calculate_crc-api|, |TCPTransportDescriptor::check_crc-api| and
-      |TCPTransportDescriptor::apply_security-api| are set to false.
-    * |TCPTransportDescriptor::enable_tcp_nodelay-api| is set to true.
-    * |TCPTransportDescriptor::keep_alive_thread-api| and
-      |TCPTransportDescriptor::accept_thread-api| use the default configuration.
+  * |TCPTransportDescriptor::calculate_crc-api|, |TCPTransportDescriptor::check_crc-api| and
+    |TCPTransportDescriptor::apply_security-api| are set to false.
+  * |TCPTransportDescriptor::enable_tcp_nodelay-api| is set to true.
+  * |TCPTransportDescriptor::keep_alive_thread-api| and
+    |TCPTransportDescriptor::accept_thread-api| use the default configuration.
 
 .. warning::
 
@@ -293,6 +292,7 @@ However, a custom Payload pool can be given to |RTPSDomain::createRTPSWriter-api
 Writers and Readers will use the provided pool when a new :class:`CacheChange_t` is requested
 or released.
 
+.. _rtps_layer_ipayload_pool_interface:
 
 IPayloadPool interface
 ^^^^^^^^^^^^^^^^^^^^^^

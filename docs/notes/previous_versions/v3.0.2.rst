@@ -1,0 +1,79 @@
+`Version 3.0.2 (EOL) <https://fast-dds.docs.eprosima.com/en/v3.0.2/index.html>`_
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+This release includes the following **improvements**:
+
+#. Add support for ``DLL`` export on Windows
+#. Modify help command of XML CLI tool
+#. Register and propagate ``MonitorService`` status type object
+#. Add tests for ``TypeLookup`` service
+#. Discard changes with big ``key-only`` payload and no ``key hash``
+#. Improve on Step-by-Step User Guide from the Migration Guide
+#. Add test for support of enumeration literal
+#. Update new nightly jobs on ``README``
+#. Change ``xsd`` files installation directory to ``share/fastdds`` and remove icons on Windows uninstall
+#. Update commercial support section in ``README``
+#. Rename ``RTPSParticipantImpl.h`` to ``RTPSParticipantImpl.hpp``
+#. Add new property to select preferred key agreement algorithm
+#. Improve ``OpenSSL`` lifecycle handling
+#. Improve Blackbox TCP tests suite
+#. Improve ``PDPClientsp`` initialization
+#. Update ``sqlite`` from 3.36.0 to 3.47.2
+#. Improve debugging process by adding logs before running ``SecurityManager::cancel_init()``
+#. Update Benchmark example
+#. Add ``replace`` tag to ``package.xml``
+#. Decouple transport receivers creation using unique network flows
+#. Support compiler MSYS2-MinGW
+#. Avoid redefinition warning for ``OPENSSL_API_COMPAT``
+
+Github CI management:
+
+#. Allow running CI on external contributions
+#. Add Windows CI example testing
+#. Update submodules when cloning Fast DDS on CI
+#. Add ``flow_control``, ``rtps``, ``custom_payload_pool`` and ``content_filter`` to Windows example CI testing
+
+This release includes the following **fixes**:
+
+#. Fix CVE-2025-24807
+#. Update request reply refactored example ``README``
+#. Fix ``xtypes`` example issue if XML environment variable was not set
+#. Fix length checks in the builtin decoder
+#. Remove unused ``validMatching`` methods in ``EDP``
+#. Regression test for ``Fast DDS-Gen``
+#. Fix memory leak issue deleting ``TypeLookupManager``
+#. Fix issues in Dynamic Network Interfaces
+#. Fix wrong Data type referred in flow control example
+#. Address ``oss fuzz`` ``XMLParser`` regression
+#. Fix destruction ``data-race`` on participant removal in ``intra-process``
+#. Fix ``DataReaderHistory`` regression
+#. Fix ``FASTDDS_SHM_TRANSPORT_DISABLED`` for ``LARGE_DATA`` modes
+#. Address ``XMLDynamicParser`` regression
+#. Fix ``SecurityManager`` assertion in ``Secure DS``
+#. Fix issue on ``participant_stateless``
+#. Fix comparison in ``is_update_allowed``
+#. Fix ``-Werror=template-id-cdtor``
+#. Fix TCP discovery server locators translation
+#. Fix ``cmake`` generator evaluation
+#. Fix ``TSAN`` potential deadlock by lock inversion
+#. Fix issue on ``NetworkBuffers``
+#. Fix unique network flows with TCP transports
+#. Fix algorithm strings on ``PermissionsToken`` and ``IdentityToken``
+#. Arithmetic overflow in fragment size calculations
+#. Address ``parseXMLMemberDynamicType`` regression
+#. Fix ``EDP`` reliability timings
+#. Fix null-dereference in ``parseXMLMemberDynamicType``
+#. Fix double-locking issue in ``DataSharingListener``
+#. Fix Discovery CLI Tool in Windows (No privileges)
+#. Fix socket buffer size configuration mechanism
+#. Fix issue on ``reliable`` ``volatile`` when all history acked
+#. Fix log category name macro collision in ``MacOS``
+#. Fix issue of infinite loop when setting thread affinity fails
+#. Fix error handling logic in ``try_setting_buffer_size``
+#. Fix call to ``on_unacknowledged_sample_removed`` when keep all history is used
+
+.. important::
+
+    When upgrading to version 3.0.2 it is **required** to regenerate generated source from IDL files
+    using at least `Fast DDS-Gen v4.0.0 <https://github.com/eProsima/Fast-DDS-Gen/releases/tag/v4.0.0>`_.
+    But it is advisable to regenerate them using the latest patch version of ``Fast DDS-Gen v4.0.x``.

@@ -3,14 +3,9 @@
 Windows installation from sources
 =================================
 
-The instructions for installing both the :ref:`Fast DDS library <fastdds_lib_sl>`
-and the :ref:`Fast DDS-Gen <fastddsgen_sl>` generation tool from sources are provided in this page.
+The instructions for installing both the :ref:`Fast DDS library <fastdds_lib_sw>`
+and the :ref:`Fast DDS-Gen <fastddsgen_sw>` generation tool from sources are provided in this page.
 It is organized as follows:
-
-.. contents::
-    :local:
-    :backlinks: none
-    :depth: 2
 
 .. _fastdds_lib_sw:
 
@@ -93,13 +88,13 @@ when calling colcon_ or CMake_.
 For more details, please refer to the :ref:`cmake_options` section.
 Also add the `Gtest repository <https://github.com/google/googletest>`_ into the workspace directory.
 
-.. code-block:: bash
+.. code-block:: winbatch
 
     git clone --branch release-1.11.0 https://github.com/google/googletest src/googletest-distribution
 
 and add next argument to the `colcon` call
 
-.. code-block:: bash
+.. code-block:: winbatch
 
     colcon build --cmake-args -Dgtest_force_shared_crt=ON
 
@@ -141,16 +136,22 @@ asynchronous model.
 TinyXML2 is a simple, small and efficient C++ XML parser.
 They can be downloaded directly from the links below:
 
-* `Asio <https://github.com/ros2/choco-packages/releases/download/2020-02-24/asio.1.12.1.nupkg>`_
-* `TinyXML2 <https://github.com/ros2/choco-packages/releases/download/2020-02-24/tinyxml2.6.0.0.nupkg>`_
+* `Asio <https://www.nuget.org/api/v2/package/asio-cppp-latest/1.24.0>`_
+* `TinyXML2 <https://github.com/ros2/choco-packages/releases/download/2022-03-15/tinyxml2.6.0.0.nupkg>`_
 
 After downloading these packages, open an administrative shell with *PowerShell* and execute the following command:
 
-.. code-block:: bash
+.. code-block:: winbatch
 
-    choco install -y -s <PATH_TO_DOWNLOADS> asio tinyxml2
+    choco install -y -s <PATH_TO_DOWNLOADS> asio-cppp-latest tinyxml2
 
 where :code:`<PATH_TO_DOWNLOADS>` is the folder into which the packages have been downloaded.
+
+Also include the path to the :code:`asio` and :code:`tinyxml2` libraries in the :code:`PATH` environment variable.
+
+.. code-block:: powershell
+
+    Set-Item -Force -Path "env:PATH" -Value "C:\ProgramData\chocolatey\lib\asio-cppp-latest\build\native;C:\ProgramData\chocolatey\lib\tinyxml2;C:\ProgramData\chocolatey\lib\tinyxml2\lib;$env:PATH"
 
 .. _openssl_sw:
 
@@ -160,7 +161,7 @@ OpenSSL
 OpenSSL is a robust toolkit for the TLS and SSL protocols and a general-purpose cryptography library.
 Install it by running the following command inside an administrative shell with *PowerShell*:
 
-.. code-block:: bash
+.. code-block:: winbatch
 
    choco install -y openssl
 
@@ -252,7 +253,7 @@ This section explains how to use it to compile *eProsima Fast DDS* and its depen
 
 #. Install the ROS 2 development tools (colcon_ and vcstool_) by executing the following command:
 
-   .. code-block:: bash
+   .. code-block:: winbatch
 
        pip3 install -U colcon-common-extensions vcstool
 
@@ -266,7 +267,7 @@ This section explains how to use it to compile *eProsima Fast DDS* and its depen
 #. Create a :code:`Fast-DDS` directory and download the repos file that will be used to install
    *eProsima Fast DDS* and its dependencies:
 
-   .. code-block:: bash
+   .. code-block:: winbatch
 
        mkdir ~\Fast-DDS
        cd ~\Fast-DDS
@@ -276,7 +277,7 @@ This section explains how to use it to compile *eProsima Fast DDS* and its depen
 
    Finally, use colcon_ to compile all software:
 
-   .. code-block:: bash
+   .. code-block:: winbatch
 
        colcon build --packages-up-to fastdds
 
@@ -299,7 +300,7 @@ There are two possibilities:
 * Every time a new shell is opened, prepare the environment locally by typing the
   command:
 
-  .. code-block:: bash
+  .. code-block:: winbatch
 
       setup.bat
 
@@ -324,7 +325,7 @@ Local installation
 #. Open a command prompt, and create a :code:`Fast-DDS` directory where to download and build *eProsima Fast DDS* and
    its dependencies:
 
-   .. code-block:: bash
+   .. code-block:: winbatch
 
        mkdir %USERPROFILE%\Fast-DDS
 
@@ -335,7 +336,7 @@ Local installation
      `Foonathan memory vendor <https://github.com/eProsima/foonathan_memory_vendor>`_, which downloads and builds a
      specific revision of *Foonathan memory* if the library is not found in the system.
 
-     .. code-block:: bash
+     .. code-block:: winbatch
 
          cd %USERPROFILE%\Fast-DDS
          git clone https://github.com/eProsima/foonathan_memory_vendor.git
@@ -346,7 +347,7 @@ Local installation
 
    * `Fast CDR <https://github.com/eProsima/Fast-CDR.git>`_
 
-     .. code-block:: bash
+     .. code-block:: winbatch
 
          cd %USERPROFILE%\Fast-DDS
          git clone https://github.com/eProsima/Fast-CDR.git
@@ -357,7 +358,7 @@ Local installation
 
 #. Once all dependencies are installed, install *eProsima Fast DDS*:
 
-   .. code-block:: bash
+   .. code-block:: winbatch
 
        cd %USERPROFILE%\Fast-DDS
        git clone https://github.com/eProsima/Fast-DDS.git
@@ -449,7 +450,7 @@ This section explains how to use it to compile *Fast DDS Python bindings* and it
 
 #. Install the ROS 2 development tools (colcon_ and vcstool_) by executing the following command:
 
-   .. code-block:: bash
+   .. code-block:: winbatch
 
        pip3 install -U colcon-common-extensions vcstool
 
@@ -463,7 +464,7 @@ This section explains how to use it to compile *Fast DDS Python bindings* and it
 #. Create a :code:`Fast-DDS-python` directory and download the repos file that will be used to install
    *Fast DDS Python bindings* and its dependencies:
 
-   .. code-block:: bash
+   .. code-block:: winbatch
 
        mkdir ~\Fast-DDS-python
        cd ~\Fast-DDS-python
@@ -473,7 +474,7 @@ This section explains how to use it to compile *Fast DDS Python bindings* and it
 
 #. Build the packages:
 
-   .. code-block:: bash
+   .. code-block:: winbatch
 
        colcon build --packages-up-to fastdds_python
 
@@ -494,7 +495,7 @@ There are two possibilities:
 * Every time a new shell is opened, prepare the environment locally by typing the
   command:
 
-  .. code-block:: bash
+  .. code-block:: winbatch
 
       setup.bat
 
@@ -518,7 +519,7 @@ Local installation
 #. Open a command prompt, and create a :code:`Fast-DDS-python` directory where to download and build
    *Fast DDS Python bindings* and its dependencies:
 
-   .. code-block:: bash
+   .. code-block:: winbatch
 
        mkdir %USERPROFILE%\Fast-DDS-python
 
@@ -529,7 +530,7 @@ Local installation
      `Foonathan memory vendor <https://github.com/eProsima/foonathan_memory_vendor>`_, which downloads and builds a
      specific revision of *Foonathan memory* if the library is not found in the system.
 
-     .. code-block:: bash
+     .. code-block:: winbatch
 
          cd %USERPROFILE%\Fast-DDS-python
          git clone https://github.com/eProsima/foonathan_memory_vendor.git
@@ -540,7 +541,7 @@ Local installation
 
    * `Fast CDR <https://github.com/eProsima/Fast-CDR.git>`_
 
-     .. code-block:: bash
+     .. code-block:: winbatch
 
          cd %USERPROFILE%\Fast-DDS-python
          git clone https://github.com/eProsima/Fast-CDR.git
@@ -551,7 +552,7 @@ Local installation
 
    * `Fast DDS <https://github.com/eProsima/Fast-DDS.git>`_
 
-     .. code-block:: bash
+     .. code-block:: winbatch
 
          cd %USERPROFILE%\Fast-DDS-python
          git clone https://github.com/eProsima/Fast-DDS.git
@@ -562,7 +563,7 @@ Local installation
 
 #. Once all dependencies are installed, install *Fast DDS Python bindings*:
 
-   .. code-block:: bash
+   .. code-block:: winbatch
 
        cd ~/Fast-DDS-python
        git clone https://github.com/eProsima/Fast-DDS-python.git
@@ -580,7 +581,7 @@ To install *Fast DDS Python bindings* system-wide instead of locally, remove all
 appear in the configuration steps of :code:`Fast-CDR`, :code:`Fast-DDS` and :code:`Fast-DDS-python`, and change the
 first in the configuration step of :code:`foonathan_memory_vendor` to the following:
 
-.. code-block:: bash
+.. code-block:: winbatch
 
     -DCMAKE_INSTALL_PREFIX=/usr/local/ -DBUILD_SHARED_LIBS=ON
 
@@ -589,7 +590,7 @@ first in the configuration step of :code:`foonathan_memory_vendor` to the follow
     Installation on system directories may need of permissions.
     Maybe permissions have to be granted through :code:`sudo`.
 
-    .. code-block:: bash
+    .. code-block:: winbatch
 
         sudo cmake --build . --target install
 
@@ -663,7 +664,7 @@ Please, follow the steps below to build *Fast DDS-Gen*:
     If Fast DDS has already been installed following :ref:`colcon_installation_windows`, skip cloning *Fast DDS-Gen*'s
     repository, as it can already be found under the :code:`src` directory within the colcon workspace.
 
-.. code-block:: bash
+.. code-block:: winbatch
 
     mkdir -p ~/Fast-DDS/src
     cd ~/Fast-DDS/src
@@ -676,7 +677,7 @@ Please, follow the steps below to build *Fast DDS-Gen*:
     In case that a supported Gradle version is already installed in the system, *Fast DDS-Gen* can also be built running
     directly:
 
-    .. code-block:: bash
+    .. code-block:: winbatch
 
         gradle assemble
 

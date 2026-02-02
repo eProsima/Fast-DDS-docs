@@ -71,14 +71,14 @@ All existing values, along with a brief description, are shown below:
 | Builtin Transports Options | Description                                                                  |
 +============================+==============================================================================+
 | ``NONE``                   | No transport will be instantiated. Hence, the user must manually add         |
-|                            | the desired |br| transports. Otherwise, the participant creation will fail.  |
+|                            | the desired  transports. Otherwise, the participant creation will fail.      |
 +----------------------------+------------------------------------------------------------------------------+
 | ``DEFAULT``                | UDPv4 and SHM transports will be instantiated. SHM transport has priority    |
-|                            | over the UDPv4 |br| transport. Meaning that SHM will always be used          |
+|                            | over the UDPv4  transport. Meaning that SHM will always be used              |
 |                            | when possible.                                                               |
 +----------------------------+------------------------------------------------------------------------------+
 | ``DEFAULTv6``              | UDPv6 and SHM transports will be instantiated. SHM transport has priority    |
-|                            | over the UDPv4 |br| transport. Meaning that SHM will always be used          |
+|                            | over the UDPv4  transport. Meaning that SHM will always be used              |
 |                            | when possible.                                                               |
 +----------------------------+------------------------------------------------------------------------------+
 | ``SHM``                    | Only a SHM transport will be instantiated.                                   |
@@ -88,9 +88,9 @@ All existing values, along with a brief description, are shown below:
 | ``UDPv6``                  | Only a UDPv6 transport will be instantiated.                                 |
 +----------------------------+------------------------------------------------------------------------------+
 | ``LARGE_DATA``             | UDPv4, TCPv4, and SHM transports will be instantiated. However, UDP will     |
-|                            | only be used |br| for multicast announcements during the participant         |
-|                            | discovery phase (see :ref:`disc_phases`) |br| while the participant          |
-|                            | liveliness and the application data delivery occurs over TCP or SHM. |br|    |
+|                            | only be used  for multicast announcements during the participant             |
+|                            | discovery phase (see :ref:`disc_phases`)  while the participant              |
+|                            | liveliness and the application data delivery occurs over TCP or SHM.         |
 |                            | This configuration is useful when working with large data.(See               |
 |                            | :ref:`use-case-tcp`).                                                        |
 +----------------------------+------------------------------------------------------------------------------+
@@ -125,22 +125,22 @@ This mode can also be configured with the ``tcp_negotiation_timeout`` parameter:
 +----------------------------+--------------------------------------------------------------------+-------------------+
 | Builtin Transports Options | Description                                                        | Type              |
 +============================+====================================================================+===================+
-| ``max_msg_size``           | It determines the maximum message size that will be specified |br| | uint32_t          |
-|                            | in the transport layer. Selecting a message size large |br|        |                   |
-|                            | enough to accommodate the largest data message will |br|           |                   |
-|                            | prevent fragmentation, which can significantly enhance |br|        |                   |
+| ``max_msg_size``           | It determines the maximum message size that will be specified      | uint32_t          |
+|                            | in the transport layer. Selecting a message size large             |                   |
+|                            | enough to accommodate the largest data message will                |                   |
+|                            | prevent fragmentation, which can significantly enhance             |                   |
 |                            | the overall sending rate.                                          |                   |
 +----------------------------+--------------------------------------------------------------------+-------------------+
-| ``sockets_size``           | It determines the size of the send and receive socket buffers. |br|| uint32_t          |
-|                            | This parameter needs to be higher or equal to the maximum |br|     |                   |
+| ``sockets_size``           | It determines the size of the send and receive socket buffers.     | uint32_t          |
+|                            | This parameter needs to be higher or equal to the maximum          |                   |
 |                            | message size specified in order to be valid.                       |                   |
 +----------------------------+--------------------------------------------------------------------+-------------------+
-| ``non_blocking``           | It determines whether to use non-blocking send calls or not. |br|  | bool              |
-|                            | When activated, the transport will discard messages if the |br|    |                   |
+| ``non_blocking``           | It determines whether to use non-blocking send calls or not.       | bool              |
+|                            | When activated, the transport will discard messages if the         |                   |
 |                            | socket buffers are full.                                           |                   |
 +----------------------------+--------------------------------------------------------------------+-------------------+
-| ``tcp_negotiation_timeout``| It determines the time to wait for logical port negotiation. |br|  | uint32_t          |
-|                            | Only valid if the ``LARGE_DATA`` mode is being used. |br|          |                   |
+| ``tcp_negotiation_timeout``| It determines the time to wait for logical port negotiation.       | uint32_t          |
+|                            | Only valid if the ``LARGE_DATA`` mode is being used.               |                   |
 |                            | It only accepts milliseconds.                                      |                   |
 +----------------------------+--------------------------------------------------------------------+-------------------+
 
@@ -195,28 +195,28 @@ Setting this variable configures the :ref:`DomainParticipant<dds_layer_domainPar
 
 * The value of the variable must list the locator of the server in the form of:
 
-    + An IPv4 address like ``192.168.2.23``. The UDP protocol is used by default. The UDP port can be appended using `:`
-      as in ``192.168.2.23:35665``.
-    + An IPv6 address that follows RFC3513_ address convention like ``1080::8:800:200C:417A``. Again, it uses the UDP
-      protocol by default. An UDP port can be appended like in ``[1080::8:800:200C:417A]:35665``. Note the use of square
-      brackets to avoid ambiguities.
-    + TCPv4 specifier + IPv4 address like ``TCPv4:[127.0.0.1]``. The TCP protocol is used to communicate with the server.
-      The TCP port can be appended using `:` as in ``TCPv4:[127.0.0.1]:42100``.
-    + TCPv6 specifier + IPv6 address like ``TCPv6:[::1]``. The TCP protocol is used to communicate with the server. The
-      TCP port can be appended using `:` as in ``TCPv6:[::1]:42100``.
-    + A DNS name can be specified. This name will be used to query known hosts and available DNS servers to try to
-      resolve valid IP addresses. Several formats are acceptable:
+  + An IPv4 address like ``192.168.2.23``. The UDP protocol is used by default. The UDP port can be appended using `:`
+    as in ``192.168.2.23:35665``.
+  + An IPv6 address that follows RFC3513_ address convention like ``1080::8:800:200C:417A``. Again, it uses the UDP
+    protocol by default. An UDP port can be appended like in ``[1080::8:800:200C:417A]:35665``. Note the use of square
+    brackets to avoid ambiguities.
+  + TCPv4 specifier + IPv4 address like ``TCPv4:[127.0.0.1]``. The TCP protocol is used to communicate with the server.
+    The TCP port can be appended using `:` as in ``TCPv4:[127.0.0.1]:42100``.
+  + TCPv6 specifier + IPv6 address like ``TCPv6:[::1]``. The TCP protocol is used to communicate with the server. The
+    TCP port can be appended using `:` as in ``TCPv6:[::1]:42100``.
+  + A DNS name can be specified. This name will be used to query known hosts and available DNS servers to try to
+    resolve valid IP addresses. Several formats are acceptable:
 
-        - Plain domain name: ``eprosima.com``. This will include all available IP addresses.
-        - Domain name + port: ``eprosima.com:35665``. As above but using a specific port.
-        - UDPv4 specifier + domain name: ``UDPv4:[eprosima.com]``. Only the first IPv4 address resolved will be used.
-        - UDPv4 specifier + domain name + port: ``UDPv4:[eprosima.com]:35665``. As above but using a specific port.
-        - UDPv6 specifier + domain name: ``UDPv6:[<dns>]``. Only the first IPv6 address resolved will be used.
-        - UDPv6 specifier + domain name + port: ``UDPv6:[<dns>]:35665``. As above but using a specific port.
-        - TCPv4 specifier + domain name: ``TCPv4:[eprosima.com]``. Only the first IPv4 address resolver will be used.
-        - TCPv4 specifier + domain name + port: ``TCPv4:[eprosima.com]:42100``. As above but using a specific port.
-        - TCPv6 specifier + domain name: ``TCPv6:[<dns>]``. Only the first IPv4 address resolver will be used.
-        - TCPv6 specifier + domain name + port: ``TCPv6:[<dns>]:42100``. As above but using a specific port.
+    - Plain domain name: ``eprosima.com``. This will include all available IP addresses.
+    - Domain name + port: ``eprosima.com:35665``. As above but using a specific port.
+    - UDPv4 specifier + domain name: ``UDPv4:[eprosima.com]``. Only the first IPv4 address resolved will be used.
+    - UDPv4 specifier + domain name + port: ``UDPv4:[eprosima.com]:35665``. As above but using a specific port.
+    - UDPv6 specifier + domain name: ``UDPv6:[<dns>]``. Only the first IPv6 address resolved will be used.
+    - UDPv6 specifier + domain name + port: ``UDPv6:[<dns>]:35665``. As above but using a specific port.
+    - TCPv4 specifier + domain name: ``TCPv4:[eprosima.com]``. Only the first IPv4 address resolver will be used.
+    - TCPv4 specifier + domain name + port: ``TCPv4:[eprosima.com]:42100``. As above but using a specific port.
+    - TCPv6 specifier + domain name: ``TCPv6:[<dns>]``. Only the first IPv4 address resolver will be used.
+    - TCPv6 specifier + domain name + port: ``TCPv6:[<dns>]:42100``. As above but using a specific port.
 
 * If no port is specified when using default UDP transport, the default port 11811 is used.
 * If no port is specified when using TCP transport, the default port 42100 is used.
@@ -227,19 +227,19 @@ Setting this variable configures the :ref:`DomainParticipant<dds_layer_domainPar
 The following example shows how to set the address of two remote discovery servers with addresses
 '84.22.259.329:8888' and 'localhost:1234'.
 
-    +----------------------------------------------------------------------------+
-    | **Linux**                                                                  |
-    +----------------------------------------------------------------------------+
-    | .. code-block:: bash                                                       |
-    |                                                                            |
-    |    export ROS_DISCOVERY_SERVER="84.22.259.329:8888;localhost:1234"         |
-    +----------------------------------------------------------------------------+
-    | **Windows**                                                                |
-    +----------------------------------------------------------------------------+
-    | .. code-block:: bash                                                       |
-    |                                                                            |
-    |    set ROS_DISCOVERY_SERVER=84.22.259.329:8888;localhost:1234              |
-    +----------------------------------------------------------------------------+
++----------------------------------------------------------------------------+
+| **Linux**                                                                  |
++----------------------------------------------------------------------------+
+| .. code-block:: bash                                                       |
+|                                                                            |
+|    export ROS_DISCOVERY_SERVER="84.22.259.329:8888;localhost:1234"         |
++----------------------------------------------------------------------------+
+| **Windows**                                                                |
++----------------------------------------------------------------------------+
+| .. code-block:: bash                                                       |
+|                                                                            |
+|    set ROS_DISCOVERY_SERVER=84.22.259.329:8888;localhost:1234              |
++----------------------------------------------------------------------------+
 
 .. important::
     IP addresses specified in ``ROS_DISCOVERY_SERVER`` must be either valid IPv4/IPv6 addresses or domain names.
@@ -251,6 +251,52 @@ The following example shows how to set the address of two remote discovery serve
     This environment variable can be changed at runtime adding new remote servers to a |SERVER|, |BACKUP| or |CLIENT|
     (that has been initialized with this environment variable previously) if loaded from an environment file using
     :ref:`env_vars_fastdds_environment_file`.
+
+.. _env_vars_easy_mode:
+
+``ROS2_EASY_MODE``
+------------------
+
+Setting ``ROS2_EASY_MODE`` to an IP value allows a participant to automatically enter the
+`Discovery Server Easy Mode <https://docs.vulcanexus.org/en/latest/rst/enhancements/easy_mode/easy_mode.html>`__.
+This mode completely disables **multicast communication**, and relies on Discovery Servers for discovery purposes.
+
+With ``ROS2_EASY_MODE`` a new Discovery Server will be automatically spawned locally in the given
+:ref:`domain<dds_layer_domain>`, pointing to another Discovery Server located in the specified IP.
+If the specified IP belongs to the same host, it will only work in localhost, until another host connects to it.
+If there exists a Discovery Server for that domain, the spawn process will be skipped, relying on the existing server
+for discovery purposes.
+Therefore, only one Discovery Server per host will be present in the domain.
+
+In order for this variable to take effect, the participant must have its
+:ref:`discovery protocol<discovery_protocol>` set to |SIMPLE| (default), to automatically enter the
+`Discovery Server Easy Mode <https://docs.vulcanexus.org/en/latest/rst/enhancements/easy_mode/easy_mode.html>`__.
+If this happens, the participant will be configured as a |SUPER_CLIENT| pointing to the local server.
+
+The following example will configure participants as |SUPER_CLIENT| pointing to a local Discovery Server,
+which will try to connect to another Discovery Server located in the host ``10.0.0.1``.
+
+.. code-block:: bash
+
+    export ROS2_EASY_MODE=10.0.0.1
+
+The port of the Discovery Server is calculated using the rules explained in the :ref:`listening_locators_defaultPorts`.
+The transports configured in this new mode include :ref:`UDP<transport_udp_udp>` unicast for discovery and
+:ref:`TCP<transport_tcp_tcp>` and :ref:`Shared Memory<transport_sharedMemory_sharedMemory>` for user data.
+
+A detailed tutorial can be found in the
+`Vucanexus Easy Mode Tutorial <https://docs.vulcanexus.org/en/latest/rst/tutorials/core/wifi/easy_mode/easy_mode.html>`__ documentation.
+
+.. note::
+    When ``ROS2_EASY_MODE`` is enabled, Fast DDS automatically loads a custom XML profile named ``service``.
+    This profile increases the server's response timeout for ROS 2 services by modifying the
+    |ReliabilityQosPolicy::max_blocking_time-api|.
+    However, if the user provides an XML file that already contains a profile with the same name, Fast DDS will not
+    load any extra profile.
+    Instead, the |ReliabilityQosPolicy::max_blocking_time-api| value defined in the user's XML file will be used.
+
+.. warning::
+    Discovery Server ``ROS2_EASY_MODE`` is not yet available for Windows platforms.
 
 .. _env_vars_ros_super_client:
 
@@ -271,19 +317,19 @@ The possible values are: **TRUE**, **true**, **True**, **1**, **FALSE**, **false
 
 The following example shows how to set the environment variable to true.
 
-    +----------------------------------------------------------------------------+
-    | **Linux**                                                                  |
-    +----------------------------------------------------------------------------+
-    | .. code-block:: bash                                                       |
-    |                                                                            |
-    |    export ROS_SUPER_CLIENT=TRUE                                            |
-    +----------------------------------------------------------------------------+
-    | **Windows**                                                                |
-    +----------------------------------------------------------------------------+
-    | .. code-block:: bash                                                       |
-    |                                                                            |
-    |    set ROS_SUPER_CLIENT=TRUE                                               |
-    +----------------------------------------------------------------------------+
++----------------------------------------------------------------------------+
+| **Linux**                                                                  |
++----------------------------------------------------------------------------+
+| .. code-block:: bash                                                       |
+|                                                                            |
+|    export ROS_SUPER_CLIENT=TRUE                                            |
++----------------------------------------------------------------------------+
+| **Windows**                                                                |
++----------------------------------------------------------------------------+
+| .. code-block:: bash                                                       |
+|                                                                            |
+|    set ROS_SUPER_CLIENT=TRUE                                               |
++----------------------------------------------------------------------------+
 
 .. _env_vars_fastdds_statistics:
 
@@ -303,19 +349,19 @@ The elements of the list should be separated by semicolons and match the
 For example, to enable the statistics DataWriters that report the latency measurements, the environment variable should
 be set as follows:
 
-    +----------------------------------------------------------------------------+
-    | **Linux**                                                                  |
-    +----------------------------------------------------------------------------+
-    | .. code-block:: bash                                                       |
-    |                                                                            |
-    |    export FASTDDS_STATISTICS="HISTORY_LATENCY_TOPIC;NETWORK_LATENCY_TOPIC" |
-    +----------------------------------------------------------------------------+
-    | **Windows**                                                                |
-    +----------------------------------------------------------------------------+
-    | .. code-block:: bash                                                       |
-    |                                                                            |
-    |    set FASTDDS_STATISTICS=HISTORY_LATENCY_TOPIC;NETWORK_LATENCY_TOPIC      |
-    +----------------------------------------------------------------------------+
++----------------------------------------------------------------------------+
+| **Linux**                                                                  |
++----------------------------------------------------------------------------+
+| .. code-block:: bash                                                       |
+|                                                                            |
+|    export FASTDDS_STATISTICS="HISTORY_LATENCY_TOPIC;NETWORK_LATENCY_TOPIC" |
++----------------------------------------------------------------------------+
+| **Windows**                                                                |
++----------------------------------------------------------------------------+
+| .. code-block:: bash                                                       |
+|                                                                            |
+|    set FASTDDS_STATISTICS=HISTORY_LATENCY_TOPIC;NETWORK_LATENCY_TOPIC      |
++----------------------------------------------------------------------------+
 
 .. important::
     This environment variable can be used together with the XML profiles

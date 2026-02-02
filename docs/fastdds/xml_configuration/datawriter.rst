@@ -23,13 +23,13 @@ The ``<data_writer>`` element has two attributes defined: ``profile_name`` and `
      - Description
      - Use
    * - ``profile_name``
-     - Sets the name under which the ``<data_writer>`` profile is registered in the DDS Domain, |br|
-       so that it can be loaded later by the |DomainParticipant|, as shown in |br|
+     - Sets the name under which the ``<data_writer>`` profile is registered in the DDS Domain,
+       so that it can be loaded later by the |DomainParticipant|, as shown in
        :ref:`loadingapplyingprofiles`.
      - Mandatory
    * - ``is_default_profile``
-     - Sets the ``<data_writer>`` profile as the default profile. Thus, if a default profile |br|
-       exists, it will be used when no other DataWriter profile is specified at the |br|
+     - Sets the ``<data_writer>`` profile as the default profile. Thus, if a default profile
+       exists, it will be used when no other DataWriter profile is specified at the
        DataWriter's creation.
      - Optional
 
@@ -55,34 +55,34 @@ The DataWriter configuration is performed through the XML elements listed in the
      - :ref:`CommonQOS`
      -
    * - ``<times>``
-     - It configures some time related parameters |br| of the DataWriter.
+     - It configures some time related parameters of the DataWriter.
      - :ref:`WriterTimes <pubtimes>`
      -
    * - ``<unicastLocatorList>``
-     - List of input unicast locators. |br|
+     - List of input unicast locators.
        It expects a :ref:`LocatorListType`.
      - ``<locator>``
      -
    * - ``<multicastLocatorList>``
-     - List of input multicast locators. |br|
+     - List of input multicast locators.
        It expects a :ref:`LocatorListType`.
      - ``<locator>``
      -
    * - ``<external_unicast_locators>``
-     - List of :ref:`external_locators` |br|
-       to announce for the communication |br|
+     - List of :ref:`external_locators`
+       to announce for the communication
        with this DataWriter.
      - :ref:`externalLocatorListType`
      -
    * - ``<ignore_non_matching_locators>``
-     - Whether to ignore locators received on |br|
-       announcements from other entities when |br|
-       they don't match with any of the locators |br|
+     - Whether to ignore locators received on
+       announcements from other entities when
+       they don't match with any of the locators
        announced by this DataWriter.
      - ``bool``
      - false
    * - ``<historyMemoryPolicy>``
-     - Memory allocation kind for DataWriter's |br|
+     - Memory allocation kind for DataWriter's
        history. See :ref:`historyqospolicykind`.
      - :ref:`historymemorypoliciesXML`
      - |PREALLOCATED-xml-api|
@@ -95,12 +95,12 @@ The DataWriter configuration is performed through the XML elements listed in the
      - ``int16_t``
      - -1
    * - ``<entityID>``
-     - Sets the |RTPSEndpointQos::entity_id-api| of the |RTPSEndpointQos| |br| class.
+     - Sets the |RTPSEndpointQos::entity_id-api| of the |RTPSEndpointQos|  class.
      - ``int16_t``
      - -1
    * - ``<matchedSubscribersAllocation>``
-     - Sets the limits of the collection of matched |br|
-       DataReaders. See |br|
+     - Sets the limits of the collection of matched
+       DataReaders. See
        :ref:`participantresourcelimitsqos`.
      - :ref:`CommonAlloc`
      -
@@ -153,8 +153,8 @@ These parameters are included within :ref:`rtpsreliablewriterqos` in the :ref:`w
      - :ref:`DurationType`
      - 5 ms
    * - ``<nack_supression_duration>``
-     - This time allows the DataWriter to ignore NACK |br|
-       messages for a given period of time right after |br|
+     - This time allows the DataWriter to ignore NACK
+       messages for a given period of time right after
        the data has been sent.
      - :ref:`DurationType`
      - 0 ms

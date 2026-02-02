@@ -73,7 +73,7 @@ The table presented below outlines each possible Locator's field.
     - Values
     - Default
   * - ``<port>``
-    - RTPS port number of the locator. |br|
+    - RTPS port number of the locator.
       *Physical port* in UDP, *logical port* in TCP.
     - ``uint16_t``
     - 0
@@ -83,11 +83,11 @@ The table presented below outlines each possible Locator's field.
     - 0
   * - ``<address>``
     - IP address of the locator.
-    - ``string`` (IPv4/IPv6 format |br|
+    - ``string`` (IPv4/IPv6 format
       or DNS name)
     - Empty
   * - ``<unique_lan_id>``
-    - The LAN ID uniquely identifies the LAN the |br|
+    - The LAN ID uniquely identifies the LAN the
       locator belongs to (**TCPv4 only**).
     - ``string`` (16 bytes)
     - Empty
@@ -124,20 +124,20 @@ These tags can be configured with the following attributes:
     - Values
     - Default
   * - ``externality``
-    - Number of hops from the participant's host to the |br|
-      LAN represented by the external locator. |br|
+    - Number of hops from the participant's host to the
+      LAN represented by the external locator.
       Valid values: from 1 to 255.
     - ``uint8_t``
     - 1
   * - ``cost``
-    - Communication cost relative to other locators on |br|
-      the same externality level. |br|
+    - Communication cost relative to other locators on
+      the same externality level.
       Valid values: from 0 to 255.
     - ``uint8_t``
     - 0
   * - ``mask``
-    - Number of significant bits on the LAN represented |br|
-      by the external locator. |br|
+    - Number of significant bits on the LAN represented
+      by the external locator.
       Valid values: from 1 to 31 (UDPv4) or 127 (UDPv6)
     - ``uint8_t``
     - 24
@@ -152,12 +152,12 @@ They should contain the following tags:
     - Description
     - Values
   * - ``<port>``
-    - UDP port number of the locator. |br|
+    - UDP port number of the locator.
       The UDP port number should be valid.
     - ``uint16_t``
   * - ``<address>``
     - IP address of the locator.
-    - ``string`` (IPv4/IPv6 format |br|
+    - ``string`` (IPv4/IPv6 format
       or DNS name)
 
 **Example**
@@ -186,7 +186,7 @@ It is useful at defining extended or custom configuration parameters.
 +-----------------+---------------------------------------------------------------------+-------------+----------------+
 | ``<value>``     | Property's value.                                                   | ``string``  |                |
 +-----------------+---------------------------------------------------------------------+-------------+----------------+
-| ``<propagate>`` | Indicates if it is going to be serialized along with the |br|       | ``bool``    | ``false``      |
+| ``<propagate>`` | Indicates if it is going to be serialized along with the            | ``bool``    | ``false``      |
 |                 | object it belongs to.                                               |             |                |
 +-----------------+---------------------------------------------------------------------+-------------+----------------+
 
@@ -249,15 +249,15 @@ Also, it sets the :ref:`dds_layer_topic_topicQos` configuration with the policie
     - Description
     - Values
   * - ``<historyQos>``
-    - It controls the behavior of *Fast DDS* |br|
-      when the value of an instance changes  |br|
-      before it is finally communicated to |br|
-      some of its existing DataReaders. |br|
+    - It controls the behavior of *Fast DDS*
+      when the value of an instance changes
+      before it is finally communicated to
+      some of its existing DataReaders.
     - :ref:`hQos`
   * - ``<resourceLimitsQos>``
-    - It controls the resources that *Fast DDS* |br|
-      can use in order to meet the |br|
-      requirements imposed by the application |br|
+    - It controls the resources that *Fast DDS*
+      can use in order to meet the
+      requirements imposed by the application
       and other QoS settings.
     - :ref:`rLsQos`
 
@@ -281,14 +281,14 @@ Please refer to :ref:`HistoryQosPolicyKind` for further information on HistoryQo
 | Name        | Description                                             | Values                | Default              |
 +=============+=========================================================+=======================+======================+
 | ``<kind>``  | *Fast DDS* will only attempt to keep the latest values  | |KEEP_LAST-xml-api|   | |KEEP_LAST-xml-api|  |
-|             | of the instance |br| and discard the older ones.        |                       |                      |
+|             | of the instance  and discard the older ones.            |                       |                      |
 |             +---------------------------------------------------------+-----------------------+                      |
 |             | *Fast DDS* will attempt to maintain and deliver all the | |KEEP_ALL-xml-api|    |                      |
-|             | values of the instance |br| to existing DataReaders.    |                       |                      |
+|             | values of the instance  to existing DataReaders.        |                       |                      |
 +-------------+---------------------------------------------------------+-----------------------+----------------------+
 | ``<depth>`` | It must be consistent with the :ref:`rLsQos`            | ``uint32_t``          | 1                    |
-|             | ``<max_samples_per_instance>`` |br|                     |                       |                      |
-|             | element value. It must be verified that: |br|           |                       |                      |
+|             | ``<max_samples_per_instance>``                          |                       |                      |
+|             | element value. It must be verified that:                |                       |                      |
 |             | ``<depth>`` `<=` ``<max_samples_per_instance>``.        |                       |                      |
 +-------------+---------------------------------------------------------+-----------------------+----------------------+
 
@@ -304,13 +304,14 @@ Please refer to :ref:`ResourceLimitsQosPolicy` for further information on Resour
 +--------------------------------+-----------------------------------------------------------+---------------+---------+
 | Name                           | Description                                               | Values        | Default |
 +================================+===========================================================+===============+=========+
-| ``<max_samples>``              | It must verify that:                                      | ``int32_t``   | 5000    |
-|                                | ``<max_samples>`` `>=` ``<max_samples_per_instance>``.    |               |         |
+| ``<max_samples>``              | It must verify that:                                      | ``int32_t``   | -1 (no  |
+|                                | ``<max_samples>`` `>=` ``<max_samples_per_instance>``.    |               | limits) |
 +--------------------------------+-----------------------------------------------------------+---------------+---------+
-| ``<max_instances>``            | It defines the maximum number of instances.               | ``int32_t``   | 10      |
+| ``<max_instances>``            | It defines the maximum number of instances.               | ``int32_t``   | -1 (no  |
+|                                |                                                           |               | limits) |
 +--------------------------------+-----------------------------------------------------------+---------------+---------+
-| ``<max_samples_per_instance>`` | It must verify that: :ref:`HistoryQos <hQos>`             | ``int32_t``   | 400     |
-|                                | ``<depth>`` `<=` ``<max_samples_per_instance>``.          |               |         |
+| ``<max_samples_per_instance>`` | It must verify that: :ref:`HistoryQos <hQos>`             | ``int32_t``   | -1 (no  |
+|                                | ``<depth>`` `<=` ``<max_samples_per_instance>``.          |               | limits) |
 +--------------------------------+-----------------------------------------------------------+---------------+---------+
 | ``<allocated_samples>``        | It controls the maximum number of samples to be stored.   | ``int32_t``   | 100     |
 +--------------------------------+-----------------------------------------------------------+---------------+---------+
@@ -341,9 +342,9 @@ Please refer to :ref:`threadsettingsqos` for further information on ResourceLimi
      - ``int32_t``
      - -2^31
    * - |ThreadSettings::affinity-api|
-     - On some systems (Windows, Linux), this is a bit mask for setting |br|
-       the threads affinity to each core individually. On MacOS, this |br|
-       sets the affinity tag for the thread, and the OS tries to share |br|
+     - On some systems (Windows, Linux), this is a bit mask for setting
+       the threads affinity to each core individually. On MacOS, this
+       sets the affinity tag for the thread, and the OS tries to share
        the L2 cache between threads with the same affinity.
      - ``uint32_t``
      - 0
@@ -387,7 +388,7 @@ The ``<builtinTransport>`` tag can be configured with the following attributes:
     - Default
   * - ``max_msg_size``
     - Maximum message size that will be specified in
-      the transport layer. |br|
+      the transport layer.
       Valid values: from 1 to (2^32)-1.
     - ``uint32_t``
     - 65500
@@ -460,6 +461,9 @@ Please refer to the :ref:`dds_layer_core_policy` section for more information on
   * - ``<ownershipStrength>``
     - See :ref:`ownershipstrengthqospolicy`.
     - :ref:`xml_ownershipstrength`
+  * - ``<transport_priority>``
+    - See :ref:`transportpriorityqospolicy`.
+    - ``int32_t`` (default: 0)
   * - ``<partition>``
     - See :ref:`partitionqospolicy`.
     - :ref:`xml_partition`
@@ -507,12 +511,12 @@ Data-Sharing
      - ``string``
      - Empty
    * - ``<max_domains>``
-     - Maximum number of Data-Sharing domain IDs |br|
+     - Maximum number of Data-Sharing domain IDs
        in the local or remote endpoints.
      - ``uint32_t``
      - 0 (unlimited)
    * - ``<domain_ids>``
-     - List of Data-Sharing domain IDs configured |br|
+     - List of Data-Sharing domain IDs configured
        for the current endpoint.
      - ``<domainId>``
      - Empty list
@@ -709,7 +713,7 @@ Partition
 | Name                      | Description                                                                 | Values     |
 +===========================+=============================================================================+============+
 | ``<names>``               | It comprises a set of ``<name>`` elements containing the name of each       | ``<name>`` |
-|                           | partition. |br| See :ref:`partitionqospolicy`.                              |            |
+|                           | partition.  See :ref:`partitionqospolicy`.                                  |            |
 |                           |                                                                             |            |
 +---------------------------+-----------------------------------------------------------------------------+------------+
 
@@ -801,7 +805,7 @@ Indicates the way the memory is managed in terms of dealing with the CacheChange
     - Values
     - Default
   * - ``<historyMemoryPolicy>``
-    - Four different options as described |br|
+    - Four different options as described
       in :ref:`memorymanagementpolicy`.
     - |PREALLOCATED-xml-api| |br|
       |PREALLOCATED_WITH_REALLOC-xml-api| |br|
@@ -845,7 +849,7 @@ and to :ref:`realtime-allocations` for detailed information on how to tune alloc
      - ``uint32_t``
      - 0 (Means no limit)
    * - ``<increment>``
-     - Number of new elements that will be allocated when more space is |br| necessary.
+     - Number of new elements that will be allocated when more space is necessary.
      - ``uint32_t``
      - 1
 

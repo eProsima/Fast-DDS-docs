@@ -52,7 +52,9 @@
    /fastdds/xtypes/xtypes
    /fastdds/use_cases/use_cases
    /fastdds/ros2/ros2
+   /fastdds/rpc_dds/rpc_dds_intro
    /fastdds/troubleshooting/troubleshooting
+   /fastdds/faq/faq
    /fastdds/api_reference/api_reference
    /fastdds/python_api_reference/python_api_reference
 
@@ -69,6 +71,7 @@
    /fastddsgen/pubsub_app/pubsub_app
    /fastddsgen/python_bindings/python_bindings
    /fastddsgen/dataTypes/dataTypes
+   /fastddsgen/interfaces/introduction
 
 .. _index_cli:
 
@@ -98,6 +101,7 @@
    :hidden:
 
    /notes/versions
+   /notes/migration_guide
    /notes/notes
    /notes/previous_versions/supported_versions
    /notes/previous_versions/previous_versions

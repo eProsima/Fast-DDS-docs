@@ -13,11 +13,6 @@ without copying data in memory, saving time and resources.
 In order to achieve this, it uses Data-sharing delivery between the |DataWriter|
 and the |DataReader|, and data buffer loans between the application and *Fast DDS*.
 
-.. contents::
-    :local:
-    :backlinks: none
-    :depth: 1
-
 Overview
 ---------
 
@@ -53,6 +48,7 @@ To enable Zero-Copy perform the following steps:
 
     .. code-block:: omg-idl
 
+        @extensibility(FINAL)
         struct LoanableHelloWorld
         {
             unsigned long index;
@@ -167,6 +163,7 @@ it has some constraints:
 Next steps
 ----------
 
-The *eProsima Fast DDS* Github repository contains the complete example discussed in this section, as well as
-multiple other examples for different use cases. The example implementing Zero-Copy transfers can be found
-`here <https://github.com/eProsima/Fast-DDS/tree/master/examples/cpp/dds/ZeroCopyExample>`_.
+A hello world example suitable for supported delivery mechanisms can be found in the
+`delivery_mechanisms folder <https://github.com/eProsima/Fast-DDS/tree/master/examples/cpp/delivery_mechanisms>`_.
+It shows a publisher and a subscriber that communicate through the desired delivery mechanism.
+As long as it is zero-copy compatible, both intra-process and data-sharing delivery mechanisms are zero-copy if used.

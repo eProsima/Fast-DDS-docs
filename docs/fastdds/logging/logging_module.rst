@@ -30,17 +30,17 @@ The logging module provides the following classes:
     It defines how to consume log entries for outputting to an |std::ostream-api| object.
     It includes a member function that derived classes must overload to define the desired |std::ostream-api| object.
 
-      1. |StdoutConsumer-api| derives from |OStreamConsumer-api|.
-      It defines STDOUT as the output |std::ostream-api| object (see :ref:`dds_layer_ostream_consumer_stdout`).
+    1. |StdoutConsumer-api| derives from |OStreamConsumer-api|.
+    It defines STDOUT as the output |std::ostream-api| object (see :ref:`dds_layer_ostream_consumer_stdout`).
 
-      2. |StdoutErrConsumer-api| derives from |OStreamConsumer-api|.
-      It defines a |Log::Kind-api| threshold so that if the |Log::Kind-api| is equal to or more severe than the selected
-      threshold, the output defined will be STDERR.
-      Otherwise, it defines STDOUT as the output (see :ref:`dds_layer_ostream_consumer_stdouterr`).
+    2. |StdoutErrConsumer-api| derives from |OStreamConsumer-api|.
+    It defines a |Log::Kind-api| threshold so that if the |Log::Kind-api| is equal to or more severe than the selected
+    threshold, the output defined will be STDERR.
+    Otherwise, it defines STDOUT as the output (see :ref:`dds_layer_ostream_consumer_stdouterr`).
 
-      3. |FileConsumer-api| derives from |OStreamConsumer-api|.
-      It defines an user specified file as the output |std::ostream-api| object
-      (see :ref:`dds_layer_ostream_consumer_file`).
+    3. |FileConsumer-api| derives from |OStreamConsumer-api|.
+    It defines an user specified file as the output |std::ostream-api| object
+    (see :ref:`dds_layer_ostream_consumer_file`).
 
 .. figure:: /01-figures/fast_dds/log/class_diagram.svg
     :align: center

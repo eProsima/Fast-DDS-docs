@@ -14,29 +14,29 @@ issues.
   configuring the ``FASTDDS_BUILTIN_TRANSPORTS`` environment variable, or alternatively through XML profiles
   or via code. For more information, please refer to :ref:`use-case-tcp-multicast`.
 
-  .. tabs::
+  .. tab-set::
 
-   .. tab:: Environment Variable
+      .. tab-item:: Environment Variable
 
-      .. code-block:: bash
+          .. code-block:: bash
 
-          export FASTDDS_BUILTIN_TRANSPORTS=LARGE_DATA
+              export FASTDDS_BUILTIN_TRANSPORTS=LARGE_DATA
 
-   .. tab:: XML
+      .. tab-item:: XML
 
-      .. literalinclude:: /../code/XMLTester.xml
-          :language: xml
-          :start-after: <!-->LARGE_DATA_BUILTIN_TRANSPORTS<-->
-          :end-before: <!--><-->
-          :lines: 2-4, 6-13, 15-16
+          .. literalinclude:: /../code/XMLTester.xml
+              :language: xml
+              :start-after: <!-->LARGE_DATA_BUILTIN_TRANSPORTS<-->
+              :end-before: <!--><-->
+              :lines: 2-4, 6-13, 15-16
 
-   .. tab:: C++
+      .. tab-item:: C++
 
-      .. literalinclude:: ../../../code/DDSCodeTester.cpp
-        :language: c++
-        :dedent: 8
-        :start-after: //LARGE_DATA_BUILTIN_TRANSPORTS
-        :end-before: //!
+          .. literalinclude:: ../../../code/DDSCodeTester.cpp
+              :language: c++
+              :dedent: 8
+              :start-after: //LARGE_DATA_BUILTIN_TRANSPORTS
+              :end-before: //!
 
 * If having problems with transmitting **large samples** when using the ``LARGE_DATA`` mode, try to use the builtin
   transports configuration options to adjust ``LARGE_DATA`` to your specific use case.
@@ -44,3 +44,8 @@ issues.
 
 * If having problems with transmitting **large samples such as video or point clouds**, please refer to
   :ref:`use-case-largeData`.
+
+* Fast DDS v3 introduced the new feature :ref:`XTypes<dynamic-types>`, which allows to discover remote types.
+  In consequence, discovery traffic can be increased during start up.
+  If you are experiencing high load during discovery, try disabling the new feature.
+  Please refer to :ref:`disable type propagation<property_type_propagation>` to learn how to do it.

@@ -106,6 +106,7 @@ Endianness
 entityId
 Enum
 eprosima
+EthernetTransportDescriptor
 expects_inline_qos
 ExtendedAnnotationParameterValuePubSubType
 ExtendedTypeDefnPubSubType
@@ -122,6 +123,7 @@ guid
 GuidPrefix
 hashid
 Hashid
+HeaderReductionTransportDescriptor
 heartbeat_period
 heartbeat_response_delay
 HistoryQosPolicy
@@ -244,6 +246,7 @@ sequenceNumber
 serializedPaylaod
 SetVerbosity
 sn
+SourceTimestampTransportDescriptor
 StatefulReader
 StatefulWriter
 StatelessReader

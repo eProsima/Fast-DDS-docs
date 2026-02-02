@@ -1,0 +1,38 @@
+.. _fastddsgen_rpc_calculator_feed_app_workspace:
+
+Create the application workspace
+--------------------------------
+
+First, create a directory named *workspace_CalculatorFeed*, which will represent the workspace of the application.
+
+The workspace will have the following structure at the end of the project.
+The files ``build/client`` and ``build/server`` corresponds to
+the generated *Fast DDS* client and server applications, respectively:
+
+.. code-block:: shell-session
+
+    .
+    ├── build
+    │   ├── feed_client
+    │   ├── feed_server
+    │   ├── ...
+    ├── CMakeLists.txt
+    └── src
+        ├── CalculatorClient.cpp
+        ├── CalculatorServer.cpp
+        ├── ServerImplementation.hpp
+        └── types
+            ├── calculatorCdrAux.hpp
+            ├── calculatorCdrAux.ipp
+            ├── calculatorClient.cxx
+            ├── calculatorClient.hpp
+            ├── calculator_details.hpp
+            ├── calculator.hpp
+            ├── calculator.idl
+            ├── calculatorPubSubTypes.cxx
+            ├── calculatorPubSubTypes.hpp
+            ├── calculatorServer.cxx
+            ├── calculatorServer.hpp
+            ├── calculatorServerImpl.hpp
+            ├── calculatorTypeObjectSupport.cxx
+            └── calculatorTypeObjectSupport.hpp

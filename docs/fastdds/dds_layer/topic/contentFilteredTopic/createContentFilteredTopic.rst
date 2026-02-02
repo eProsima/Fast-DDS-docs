@@ -17,25 +17,25 @@ function on the |DomainParticipant-api| instance, that acts as a factory for the
 
 Mandatory arguments are:
 
- * A string with the name that identifies the ContentFilteredTopic.
+* A string with the name that identifies the ContentFilteredTopic.
 
- * The related |Topic-api| being filtered.
+* The related |Topic-api| being filtered.
 
- * A string with the filter expression indicating the conditions for a sample to be returned.
+* A string with the filter expression indicating the conditions for a sample to be returned.
 
- * A list of strings with the value of the parameters present on the filter expression.
+* A list of strings with the value of the parameters present on the filter expression.
 
 .. note::
-   The number of parameter values cannot exceed the maximum set by the
-   |ContentFilterProperty::AllocationConfiguration::expression_parameters-api| QoS configuration.
-   The default (and absolute) maximum allowed as set by the OMG DDS Standard is 100.
+    The number of parameter values cannot exceed the maximum set by the
+    |ContentFilterProperty::AllocationConfiguration::expression_parameters-api| QoS configuration.
+    The default (and absolute) maximum allowed as set by the OMG DDS Standard is 100.
 
 Optional arguments are:
 
- * A string with the name of the filter class to use for the filter creation.
-   This allows the user to create filters different from the standard SQL like one
-   (please refer to :ref:`dds_layer_topic_contentFilteredTopic_custom_filters`).
-   Defaults to |FASTDDS_SQLFILTER_NAME-api| (``DDSSQL``).
+* A string with the name of the filter class to use for the filter creation.
+  This allows the user to create filters different from the standard SQL like one
+  (please refer to :ref:`dds_layer_topic_contentFilteredTopic_custom_filters`).
+  Defaults to |FASTDDS_SQLFILTER_NAME-api| (``DDSSQL``).
 
 .. important::
     Setting an empty string as filter expression results in the disabling of the filtering.
@@ -55,10 +55,10 @@ It is advisable to check that the returned value is a valid pointer.
 
 
 .. literalinclude:: /../code/DDSCodeTester.cpp
-   :language: c++
-   :start-after: //DDS_CREATE_CONTENT_FILTERED_TOPIC
-   :end-before: //!
-   :dedent: 8
+    :language: c++
+    :start-after: //DDS_CREATE_CONTENT_FILTERED_TOPIC
+    :end-before: //!
+    :dedent: 8
 
 
 .. _dds_layer_topic_contentFilteredTopic_update:
@@ -69,23 +69,23 @@ Updating the filter expression and parameters
 A ContentFilteredTopic provides several member functions for the management of the filter expression and
 the expression parameters:
 
- * The filter expression can be retrieved with the |ContentFilteredTopic::get_filter_expression-api| member function.
+* The filter expression can be retrieved with the |ContentFilteredTopic::get_filter_expression-api| member function.
 
- * The expression parameters can be retrieved with the |ContentFilteredTopic::get_expression_parameters-api| member
-   function.
+* The expression parameters can be retrieved with the |ContentFilteredTopic::get_expression_parameters-api| member
+  function.
 
- * The expression parameters can be modified using the |ContentFilteredTopic::set_expression_parameters-api| member
-   function.
-   The same constraints as when creating a ContentFilteredTopic apply.
+* The expression parameters can be modified using the |ContentFilteredTopic::set_expression_parameters-api| member
+  function.
+  The same constraints as when creating a ContentFilteredTopic apply.
 
- * The filter expression can be modified along with the expression parameters using the
-   |ContentFilteredTopic::set_filter_expression-api| member function.
+* The filter expression can be modified along with the expression parameters using the
+  |ContentFilteredTopic::set_filter_expression-api| member function.
 
 .. literalinclude:: /../code/DDSCodeTester.cpp
-   :language: c++
-   :start-after: //DDS_UPDATE_CONTENT_FILTERED_TOPIC
-   :end-before: //!
-   :dedent: 8
+    :language: c++
+    :start-after: //DDS_UPDATE_CONTENT_FILTERED_TOPIC
+    :end-before: //!
+    :dedent: 8
 
 .. _dds_layer_topic_contentFilteredTopic_deletion:
 
@@ -96,8 +96,8 @@ A ContentFilteredTopic can be deleted with the |DomainParticipant::delete_conten
 on the DomainParticipant instance where the ContentFilteredTopic was created.
 
 .. literalinclude:: /../code/DDSCodeTester.cpp
-   :language: c++
-   :start-after: //DDS_DELETE_CONTENT_FILTERED_TOPIC
-   :end-before: //!
-   :dedent: 8
+    :language: c++
+    :start-after: //DDS_DELETE_CONTENT_FILTERED_TOPIC
+    :end-before: //!
+    :dedent: 8
 

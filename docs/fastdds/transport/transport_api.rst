@@ -35,13 +35,6 @@ It shows the abstract API interfaces, and the classes required to implement a tr
     CustomTransport <--right CustomTransportDescriptor : create
     Locator <--right TransportInterface
 
-
-.. contents::
-    :local:
-    :backlinks: none
-    :depth: 1
-
-
 .. _transport_transportApi_transportDescriptor:
 
 TransportDescriptorInterface
@@ -244,23 +237,19 @@ resolve the IP address.
 This address will in turn be used to create the listening locator in the case of *server*, or as the address of the
 remote *server* in the case of *clients* (and *servers* that connect to other *servers*).
 
-.. tabs::
+.. tab-set-code::
 
-    .. tab:: C++
+    .. literalinclude:: /../code/DDSCodeTester.cpp
+        :language: c++
+        :start-after: //CONF_SERVER_DNS_LOCATORS
+        :end-before: //!--
+        :dedent: 8
 
-      .. literalinclude:: /../code/DDSCodeTester.cpp
-         :language: c++
-         :start-after: //CONF_SERVER_DNS_LOCATORS
-         :end-before: //!--
-         :dedent: 8
-
-    .. tab:: XML
-
-      .. literalinclude:: /../code/XMLTester.xml
-         :language: xml
-         :start-after: <!-->CONF_SERVER_DNS_LOCATORS<-->
-         :end-before: <!--><-->
-         :dedent: 20
+    .. literalinclude:: /../code/XMLTester.xml
+        :language: xml
+        :start-after: <!-->CONF_SERVER_DNS_LOCATORS<-->
+        :end-before: <!--><-->
+        :dedent: 20
 
 .. warning::
 
@@ -317,6 +306,8 @@ the associated ``low_level_transport_``.
 Also, when a incoming buffer arrives to the ``low_level_transport_``, this one calls the overridden
 |ChainingTransport::receive-api| function to allow to pre-process the buffer.
 
+.. _transport_transportApi_chaining_descriptor:
+
 ChainingTransportDescriptor
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
@@ -345,6 +336,7 @@ User has to specify the ``low_level_transport_`` in the definition of its new cu
    :language: c++
    :start-after: //CONF-CUSTOM-CHAINING-TRANSPORT-SETTING
    :end-before: //!
+   :dedent: 8
 
 ChainingTransport
 ^^^^^^^^^^^^^^^^^

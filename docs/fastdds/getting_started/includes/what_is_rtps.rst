@@ -21,7 +21,6 @@ To do this, the RTPSParticipants use their **Endpoints**:
 A RTPSParticipant can have any number of writer and reader endpoints.
 
 .. figure:: /01-figures/fast_dds/getting_started/rtps_domain.svg
-    :scale: 100 %
     :align: center
 
     RTPS high-level architecture

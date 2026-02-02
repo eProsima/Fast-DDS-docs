@@ -19,7 +19,7 @@
     In case of bug fixes, please provide the list of supported branches where this fix should be also merged.
     Please uncomment following line, adjusting the corresponding target branches for the backport.
 -->
-<!-- @Mergifyio backport 2.14.x 2.10.x 2.6.x -->
+<!-- @Mergifyio backport 3.4.x 3.3.x 3.2.x 2.14.x -->
 
 <!-- If an issue is already opened, please uncomment next line with the corresponding issue number. -->
 <!-- Fixes #(issue) -->
@@ -43,6 +43,7 @@ Related implementation PR:
 - [ ] Commit messages follow the project guidelines. <!-- External contributors should sign the DCO. Fast DDS docs developers must also refer to the internal Redmine task. -->
 - [ ] Code snippets related to the added documentation have been provided.
 - [ ] Documentation tests pass locally.
+- [ ] The ``Pro`` version badge has been added if the documented feature is exclusive to Fast DDS Pro.
 - [ ] Applicable backports have been included in the description.
 
 ## Reviewer Checklist

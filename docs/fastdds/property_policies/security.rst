@@ -25,23 +25,33 @@ The following table outlines the properties used for the :ref:`DDS\:Auth\:PKI-DH
    * - PropertyPolicyQos name
      - PropertyPolicyQos value
    * - ``identity_ca``
-     - URI to the X.509 v3 certificate of the Identity CA in PEM format. |br|
-       Supported URI schemes: file. |br|
+     - URI to the X.509 v3 certificate of the Identity CA in PEM format.
+       Supported URI schemes: file.
    * - ``identity_certificate``
-     - URI to an X.509 v3 certificate signed by the Identity CA in PEM format |br|
-       containing the signed public key for the Participant. |br|
+     - URI to an X.509 v3 certificate signed by the Identity CA in PEM format
+       containing the signed public key for the Participant.
        Supported URI schemes: file.
    * - ``identity_crl`` *(optional)*
-     - URI to a X.509 Certificate Revocation List (CRL). |br|
+     - URI to a X.509 Certificate Revocation List (CRL).
        Supported URI schemes: file.
    * - ``private_key``
-     - URI to access the private Private Key for the Participant. |br|
+     - URI to access the private Private Key for the Participant.
        Supported URI schemes: file, :ref:`PKCS#11 <pkcs11-support>`.
    * - ``password`` *(optional)*
-     - A password used to decrypt the *private_key*.  |br|
-       If the *password* property is not present, then the value supplied in the |br|
-       *private_key* property must contain the decrypted private key. |br|
+     - A password used to decrypt the *private_key*.
+       If the *password* property is not present, then the value supplied in the
+       *private_key* property must contain the decrypted private key.
        The *password* property is ignored if the *private_key* is given in PKCS#11 scheme.
+   * - ``preferred_key_agreement`` *(optional)*
+     - The preferred algorithm to use for generating the session's shared secret
+       at the end of the authentication phase. Supported values are:
+       a) ``DH``, ``DH+MODP-2048-256`` for  Diffie-Hellman Ephemeral with 2048-bit MODP Group parameters.
+       b) ``ECDH``, ``ECDH+prime256v1-CEUM`` for Elliptic Curve Diffie-Hellman Ephemeral with the NIST P-256 curve.
+       c) ``AUTO`` for selecting the key agreement based on the signature algorithm in the Identity CA's certificate.
+       Will default to ``AUTO`` if the property is not present.
+   * - ``transmit_algorithms_as_legacy`` *(optional)*
+     - Whether to transmit algorithm identifiers in non-standard legacy format.
+       Will default to ``false`` if the property is not present.
 
 .. note::
   All properties listed above have the ``dds.sec.auth.builtin.PKI-DH."`` prefix.
@@ -101,22 +111,18 @@ the ``dds.sec.auth.builtin.PKI-DH`` plugin:
 The following is an example of how to set the properties of DomainParticipantQoS for the
 authentication handshake configuration.
 
-+----------------------------------------------------------------------------------------------------------------------+
-| **C++**                                                                                                              |
-+----------------------------------------------------------------------------------------------------------------------+
-| .. literalinclude:: /../code/DDSCodeTester.cpp                                                                       |
-|    :language: c++                                                                                                    |
-|    :start-after: // DDS_SECURITY_AUTH_HANDSHAKE_PROPS                                                                |
-|    :end-before: //!--                                                                                                |
-|    :dedent: 8                                                                                                        |
-+----------------------------------------------------------------------------------------------------------------------+
-| **XML**                                                                                                              |
-+----------------------------------------------------------------------------------------------------------------------+
-| .. literalinclude:: /../code/XMLTester.xml                                                                           |
-|    :language: xml                                                                                                    |
-|    :start-after: <!-->DDS_SECURITY_AUTH_HANDSHAKE_PROPS<-->                                                          |
-|    :end-before: <!--><-->                                                                                            |
-+----------------------------------------------------------------------------------------------------------------------+
+.. tab-set-code::
+
+    .. literalinclude:: /../code/DDSCodeTester.cpp
+        :language: c++
+        :start-after: // DDS_SECURITY_AUTH_HANDSHAKE_PROPS
+        :end-before: //!--
+        :dedent: 8
+
+    .. literalinclude:: /../code/XMLTester.xml
+        :language: xml
+        :start-after: <!-->DDS_SECURITY_AUTH_HANDSHAKE_PROPS<-->
+        :end-before: <!--><-->
 
 Cryptographic plugin settings
 *****************************

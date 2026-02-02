@@ -6,7 +6,7 @@ on:
       os-version:
         description: 'The OS image for the workflow'
         required: false
-        default: 'ubuntu-22.04'
+        default: 'ubuntu-24.04'
         type: string
       label:
         description: 'ID associated to the workflow'
@@ -51,6 +51,11 @@ on:
         required: false
         type: boolean
         default: false
+      add-label:
+        description: 'Add the ci-pending label to the PR'
+        required: false
+        type: boolean
+        default: false
 env:
     build-meta: ${{ inputs.run-tests == true && './src/fastdds-docs/.github/workflows/config/build.meta ./src/fastdds-docs/.github/workflows/config/test.meta' || './src/fastdds-docs/.github/workflows/config/build.meta' }}
 defaults:
@@ -68,7 +73,7 @@ jobs:
           - 'RelWithDebInfo'
     steps:
       - name: Add ci-pending label if PR
-        if: ${{ github.event_name == 'pull_request' }}
+        if: ${{ github.event_name == 'pull_request' && inputs.add-label == true}}
         uses: eProsima/eProsima-CI/external/add_labels@v0
         with:
           labels: ci-pending
@@ -89,12 +94,15 @@ jobs:
       - name: Get minimum supported version of CMake
         uses: eProsima/eProsima-CI/external/get-cmake@v0
         with:
-          cmakeVersion: '3.22.6'
+          cmakeVersion: '3.24.4'
+
+      - name: Remove default swig version
+        run: sudo apt-get remove -y swig
 
       - name: Install apt dependencies
         uses: eProsima/eProsima-CI/ubuntu/install_apt_packages@v0
         with:
-          packages: libasio-dev libtinyxml2-dev libssl-dev swig doxygen imagemagick plantuml
+          packages: aspell-en libasio-dev libenchant-2-2 libtinyxml2-dev libssl-dev swig4.1 doxygen imagemagick plantuml
           update: true
           upgrade: false
 
@@ -104,7 +112,7 @@ jobs:
       - name: Install Python dependencies
         uses: eProsima/eProsima-CI/multiplatform/install_python_packages@v0
         with:
-          packages: vcstool xmlschema
+          packages: vcstool xmlschema psutil
           upgrade: false
 
       - name: Install Fast DDS Docs required python packages
@@ -185,6 +193,10 @@ jobs:
           workspace: ${{ github.workspace }}
           workspace_dependencies: ''
           test_report_artifact: ${{ format('test_report_{0}_{1}_{2}', inputs.label, github.job, join(matrix.*, '_')) }}
+
+      - name: Spelling check summary
+        if: ${{ !cancelled() && inputs.run-tests == true }}
+        run: find build -type f -iname "*.spelling" -exec cat {} \;
 
       - name: Fast DDS Docs test summary
         uses: eProsima/eProsima-CI/multiplatform/junit_summary@v0

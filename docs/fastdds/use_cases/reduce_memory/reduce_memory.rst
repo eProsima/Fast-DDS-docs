@@ -41,24 +41,20 @@ application's needs. Below is an example of a configuration for the minimum reso
   * The value established for the :ref:`historyqospolicy` |depth| must be lower or equal to the value stated for
     |max_samples_per_instance|.
 
-+--------------------------------------------------------+
-| **C++**                                                |
-+--------------------------------------------------------+
-| .. literalinclude:: /../code/DDSCodeTester.cpp         |
-|    :language: c++                                      |
-|    :start-after: //CONF-MEMORY-QOS-PUBSUB              |
-|    :end-before: //!--                                  |
-|    :dedent: 8                                          |
-+--------------------------------------------------------+
-| **XML**                                                |
-+--------------------------------------------------------+
-| .. literalinclude:: /../code/XMLTester.xml             |
-|    :language: xml                                      |
-|    :start-after: <!-->CONF-MEMORY-QOS-PUBSUB           |
-|    :end-before: <!--><-->                              |
-|    :lines: 2-3,5-                                      |
-|    :append: </profiles>                                |
-+--------------------------------------------------------+
+.. tab-set-code::
+
+    .. literalinclude:: /../code/DDSCodeTester.cpp
+        :language: c++
+        :start-after: //CONF-MEMORY-QOS-PUBSUB
+        :end-before: //!--
+        :dedent: 8
+
+    .. literalinclude:: /../code/XMLTester.xml
+        :language: xml
+        :start-after: <!-->CONF-MEMORY-QOS-PUBSUB
+        :end-before: <!--><-->
+        :lines: 2-3,5-
+        :append: </profiles>
 
 Set Dynamic Allocation
 ^^^^^^^^^^^^^^^^^^^^^^
@@ -72,24 +68,18 @@ allocated when needed and freed as soon as it stops being used. For higher deter
 |DYNAMIC_REUSABLE_MEMORY_MODE-api| option is available, this option is similar but once more memory is allocated it is
 not freed and is reused for future messages.
 
+.. tab-set-code::
 
+    .. literalinclude:: /../code/DDSCodeTester.cpp
+        :language: c++
+        :start-after: //CONF-MEMORY-QOS-ENDPOINTS
+        :end-before: //!--
+        :dedent: 8
 
-+--------------------------------------------------------+
-| **C++**                                                |
-+--------------------------------------------------------+
-| .. literalinclude:: /../code/DDSCodeTester.cpp         |
-|    :language: c++                                      |
-|    :start-after: //CONF-MEMORY-QOS-ENDPOINTS           |
-|    :end-before: //!--                                  |
-|    :dedent: 8                                          |
-+--------------------------------------------------------+
-| **XML**                                                |
-+--------------------------------------------------------+
-| .. literalinclude:: /../code/XMLTester.xml             |
-|    :language: xml                                      |
-|    :start-after: <!-->CONF-MEMORY-QOS-ENDPOINTS        |
-|    :end-before: <!--><-->                              |
-|    :lines: 2-3,5-                                      |
-|    :append: </profiles>                                |
-+--------------------------------------------------------+
+    .. literalinclude:: /../code/XMLTester.xml
+        :language: xml
+        :start-after: <!-->CONF-MEMORY-QOS-ENDPOINTS
+        :end-before: <!--><-->
+        :lines: 2-3,5-
+        :append: </profiles>
 

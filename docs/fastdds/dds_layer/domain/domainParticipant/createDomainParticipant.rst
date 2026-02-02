@@ -15,25 +15,24 @@ Please refer to :ref:`dds_layer_domainParticipant_deletion` for further details 
 
 Mandatory arguments are:
 
- * The |DomainId-api| that identifies the domain where the DomainParticipant will be created.
+* The |DomainId-api| that identifies the domain where the DomainParticipant will be created.
 
- * The :ref:`dds_layer_domainParticipantQos` describing the behavior of the DomainParticipant.
-   If the provided value is :class:`TOPIC_QOS_DEFAULT`, the value of the DomainParticipantQos is used.
+* The :ref:`dds_layer_domainParticipantQos` describing the behavior of the DomainParticipant.
+  If the provided value is :class:`PARTICIPANT_QOS_DEFAULT`, the value of the DomainParticipantQos is used.
 
 Alternatively, instead of the two mandatory arguments above, you can use:
 
- * The :ref:`dds_layer_domainParticipantExtendedQos` which encompasses both the |DomainId-api| and
-   the :ref:`dds_layer_domainParticipantQos`.
+* The :ref:`dds_layer_domainParticipantExtendedQos` which encompasses both the |DomainId-api| and
+  the :ref:`dds_layer_domainParticipantQos`.
 
 Optional arguments are:
 
- * A Listener derived from :ref:`dds_layer_domainParticipantListener`, implementing the callbacks
-   that will be triggered in response to events and state changes on the DomainParticipant.
-   By default empty callbacks are used.
+* A Listener derived from :ref:`dds_layer_domainParticipantListener`, implementing the callbacks
+  that will be triggered in response to events and state changes on the DomainParticipant.
+  By default empty callbacks are used.
 
- * A |StatusMask-api| that activates or deactivates triggering of individual callbacks on the
-   :ref:`dds_layer_domainParticipantListener`.
-   By default all events are enabled.
+* A |StatusMask-api| that activates or deactivates triggering of individual callbacks on the
+  :ref:`dds_layer_domainParticipantListener`.
 
 .. _DDSI-RTPS V2.2: https://www.omg.org/spec/DDSI-RTPS/2.2/PDF
 
@@ -66,21 +65,21 @@ member function on the :ref:`dds_layer_domainParticipantFactory` singleton.
 
 Mandatory arguments are:
 
- * The |DomainId-api| that identifies the domain where the DomainParticipant will be created.
-   Do not use |DomainId-api| higher than 200 (see :ref:`dds_layer_domainParticipant_creation`).
+* The |DomainId-api| that identifies the domain where the DomainParticipant will be created.
+  Do not use |DomainId-api| higher than 200 (see :ref:`dds_layer_domainParticipant_creation`).
 
 
- * The name of the profile to be applied to the DomainParticipant.
+* The name of the profile to be applied to the DomainParticipant.
 
 Optional arguments are:
 
- * A Listener derived from :ref:`dds_layer_domainParticipantListener`, implementing the callbacks
-   that will be triggered in response to events and state changes on the DomainParticipant.
-   By default empty callbacks are used.
+* A Listener derived from :ref:`dds_layer_domainParticipantListener`, implementing the callbacks
+  that will be triggered in response to events and state changes on the DomainParticipant.
+  By default empty callbacks are used.
 
- * A |StatusMask-api| that activates or deactivates triggering of individual callbacks on the
-   :ref:`dds_layer_domainParticipantListener`.
-   By default all events are enabled.
+* A |StatusMask-api| that activates or deactivates triggering of individual callbacks on the
+  :ref:`dds_layer_domainParticipantListener`.
+  By default all events are enabled.
 
 |DomainParticipantFactory::create_participant_with_profile-api| will return a null pointer if there was an error during
 the operation, e.g if the provided QoS is not compatible or is not supported.
@@ -110,13 +109,13 @@ If the profile has not been exported, the DomainParticipant will be created with
 
 Optional arguments are:
 
- * A Listener derived from :ref:`dds_layer_domainParticipantListener`, implementing the callbacks
-   that will be triggered in response to events and state changes on the DomainParticipant.
-   By default empty callbacks are used.
+* A Listener derived from :ref:`dds_layer_domainParticipantListener`, implementing the callbacks
+  that will be triggered in response to events and state changes on the DomainParticipant.
+  By default empty callbacks are used.
 
- * A |StatusMask-api| that activates or deactivates triggering of individual callbacks on the
-   :ref:`dds_layer_domainParticipantListener`.
-   By default all events are enabled.
+* A |StatusMask-api| that activates or deactivates triggering of individual callbacks on the
+  :ref:`dds_layer_domainParticipantListener`.
+  By default all events are enabled.
 
 |DomainParticipantFactory::create_participant_with_default_profile-api| will return a null pointer if there was an
 error during the operation.

@@ -24,13 +24,13 @@ or if the callback is disabled by the |StatusMask-api| on the DataReader.
 
 Additionally, SubscriberListener adds the following callback:
 
- * |SubscriberListener::on_data_on_readers-api|:
-   New data is available on any DataReader
-   belonging to this Subscriber.
-   There is no queuing of invocations to this callback, meaning that if several new data changes are received
-   at once, only one callback invocation may be issued for all of them, instead of one per change.
-   If the application is retrieving the received data on this callback, it must keep
-   :ref:`reading data<dds_layer_subscriber_accessreceived>` until no new changes are left.
+* |SubscriberListener::on_data_on_readers-api|:
+  New data is available on any DataReader
+  belonging to this Subscriber.
+  There is no queuing of invocations to this callback, meaning that if several new data changes are received
+  at once, only one callback invocation may be issued for all of them, instead of one per change.
+  If the application is retrieving the received data on this callback, it must keep
+  :ref:`reading data<dds_layer_subscriber_accessreceived>` until no new changes are left.
 
 .. important::
 

@@ -10,7 +10,8 @@ Dynamic Language Binding
 The Dynamic Language Binding API allows to define data types at runtime instead of having the types predefined as it is
 required by the Plain Language Binding.
 This API includes both the type definition and, the getters and setters required to use the defined types.
-Type definition can also be done using a XML configuration file as explained in :ref:`xmldynamictypes` section.
+Type definition can also be done using a XML configuration file as explained in :ref:`xmldynamictypes` section or by
+parsing an IDL file at runtime, as explained in :ref:`dynamic-types-idl-parsing` section.
 
 This section presents first the Dynamic Language Binding API, and then the supported types and specific examples
 defining and using those types.
@@ -157,28 +158,23 @@ The :code:`TypeKind` is used to query the DynamicTypeBuilderFactory for the spec
 
 The example below shows how to create an structure with primitive members.
 
-.. tabs::
+.. tab-set-code::
 
-    .. tab:: IDL
+    .. literalinclude:: /../code/DynamicTypesIDLExamples.idl
+        :language: omg-idl
+        :start-after: //!--IDL_PRIMITIVES
+        :end-before: //!--
 
-        .. literalinclude:: /../code/DynamicTypesIDLExamples.idl
-            :language: omg-idl
-            :start-after: //!--IDL_PRIMITIVES
-            :end-before: //!--
+    .. literalinclude:: /../code/XMLTester.xml
+        :language: xml
+        :start-after: <!-->XML_PRIMITIVES<-->
+        :end-before: <!--><-->
 
-    .. tab:: XML
-
-        .. literalinclude:: /../code/XMLTester.xml
-            :language: xml
-            :start-after: <!-->XML_PRIMITIVES<-->
-            :end-before: <!--><-->
-
-    .. tab:: C++
-
-        .. literalinclude:: /../code/DDSCodeTester.cpp
-            :language: c++
-            :start-after: //!--CPP_PRIMITIVES
-            :end-before: //!--
+    .. literalinclude:: /../code/DDSCodeTester.cpp
+        :language: c++
+        :start-after: //!--CPP_PRIMITIVES
+        :end-before: //!--
+        :dedent: 8
 
 For a detailed explanation about the XML definition of this type,
 please refer to :ref:`XML Primitive Types <xmldynamictypes_primivites>`.
@@ -252,28 +248,23 @@ parameter (:code:`LENGTH_UNLIMITED` is used for unbounded strings).
 |DynamicData-api| class provides also with specific getters and setters: |DynamicData::get_string_value|,
 |DynamicData::get_wstring_value|, |DynamicData::set_string_value|, and |DynamicData::set_wstring_value|.
 
-.. tabs::
+.. tab-set-code::
 
-    .. tab:: IDL
+    .. literalinclude:: /../code/DynamicTypesIDLExamples.idl
+        :language: omg-idl
+        :start-after: //!--IDL_STRINGS
+        :end-before: //!--
 
-        .. literalinclude:: /../code/DynamicTypesIDLExamples.idl
-            :language: omg-idl
-            :start-after: //!--IDL_STRINGS
-            :end-before: //!--
+    .. literalinclude:: /../code/XMLTester.xml
+        :language: xml
+        :start-after: <!-->XML_STRINGS<-->
+        :end-before: <!--><-->
 
-    .. tab:: XML
-
-        .. literalinclude:: /../code/XMLTester.xml
-            :language: xml
-            :start-after: <!-->XML_STRINGS<-->
-            :end-before: <!--><-->
-
-    .. tab:: C++
-
-        .. literalinclude:: /../code/DDSCodeTester.cpp
-            :language: c++
-            :start-after: //!--CPP_STRINGS
-            :end-before: //!--
+    .. literalinclude:: /../code/DDSCodeTester.cpp
+        :language: c++
+        :start-after: //!--CPP_STRINGS
+        :end-before: //!--
+        :dedent: 8
 
 For a detailed explanation about the XML definition of this type, please refer to
 :ref:`XML String Types <xmldynamictypes_strings>`.
@@ -291,43 +282,42 @@ The enumeration literals must be configured using the |DynamicTypeBuilder-api| b
 |DynamicTypeBuilder::add_member| function for the respective supported values.
 The |MemberDescriptor-api| passed to the previous function must determine the enumeration literal name by using
 :code:`name` property.
+
 The underlying primitive type related to the enumeration is configured using |MemberDescriptor-api| :code:`type`
 property.
-This primitive type is determined when adding the first enumeration literal.
-For the enumeration type to be consistent, the remaining enumeration literals must be of the same primitive type.
-Additionally, the enumeration literal value might be set using |MemberDescriptor-api| :code:`default_value` property.
+As the primitive type is determined when adding the first enumeration literal,
+the remaining enumeration literals must be of the same primitive type to keep the enumeration type consistent.
+The underlying primitive type can also be forced by setting the |TypeDescriptor-api| :code:`literal_type` property.
+If :code:`literal_type` is set and the first enumeration literal is not of the same type,
+|DynamicTypeBuilder::add_member| will fail when trying to add it.
+
+Additionally, the enumeration literal value might be set using |MemberDescriptor-api| :code:`literal_value` property.
 The behavior is the same as setting the :code:`@value` :ref:`builtin annotation<builtin_annotations>`.
-
-.. note::
-
-  Currently, Fast DDS-Gen does not support :code:`@value` builtin annotation.
+The default literal of the enumeration type can be modified by setting the |MemberDescriptor-api|
+:code:`is_default_literal` property, which has the same behavior as annotating the member with
+:code:`@default_literal` :ref:`builtin annotation<builtin_annotations>`.
 
 As the enumeration type is basically a signed integer type which might take only some specific values defined with the
 enumeration literals, the corresponding DynamicData getters and setters are the ones corresponding to the underlying
 signed integer type (and any other method promotable to that specific primitive type).
 
-.. tabs::
+.. tab-set-code::
 
-    .. tab:: IDL
+    .. literalinclude:: /../code/DynamicTypesIDLExamples.idl
+        :language: omg-idl
+        :start-after: //!--IDL_ENUM
+        :end-before: //!--
 
-        .. literalinclude:: /../code/DynamicTypesIDLExamples.idl
-            :language: omg-idl
-            :start-after: //!--IDL_ENUM
-            :end-before: //!--
+    .. literalinclude:: /../code/XMLTester.xml
+        :language: xml
+        :start-after: <!-->XML_ENUM<-->
+        :end-before: <!--><-->
 
-    .. tab:: XML
-
-        .. literalinclude:: /../code/XMLTester.xml
-            :language: xml
-            :start-after: <!-->XML_ENUM<-->
-            :end-before: <!--><-->
-
-    .. tab:: C++
-
-        .. literalinclude:: /../code/DDSCodeTester.cpp
-            :language: c++
-            :start-after: //!--CPP_ENUM
-            :end-before: //!--
+    .. literalinclude:: /../code/DDSCodeTester.cpp
+        :language: c++
+        :start-after: //!--CPP_ENUM
+        :end-before: //!--
+        :dedent: 8
 
 For a detailed explanation about the XML definition of this type, please refer to
 :ref:`XML Enumeration Types <xmldynamictypes_enums>`.
@@ -348,7 +338,7 @@ function.
 Each bitflag is described using a |MemberDescriptor-api| defining the bitflag name using the :code:`name` property.
 The underlying primitive type related to bitflags must be of kind :code:`TK_BOOLEAN` and must be set in
 |MemberDescriptor-api| :code:`type` property.
-The |MemberDescriptor-api| :code:`id` property might be used to indicate the bitflag position within the bitmask.
+The |MemberDescriptor-api| :code:`position` property might be used to indicate the bitflag position within the bitmask.
 This behavior is the same as setting the :code:`@position` :ref:`builtin annotation<builtin_annotations>`.
 If the position is not specified, sequential order is followed.
 
@@ -359,28 +349,23 @@ Bitmask types can be manipulated either using the |DynamicData::get_boolean_valu
 order to set a specific bitflag, or by using the unsigned integer setter/getter corresponding to the bitmask bound.
 In this latest case, only bitflags are going to be set (bits not named are always unset).
 
-.. tabs::
+.. tab-set-code::
 
-    .. tab:: IDL
+    .. literalinclude:: /../code/DynamicTypesIDLExamples.idl
+        :language: omg-idl
+        :start-after: //!--IDL_BITMASK
+        :end-before: //!--
 
-        .. literalinclude:: /../code/DynamicTypesIDLExamples.idl
-            :language: omg-idl
-            :start-after: //!--IDL_BITMASK
-            :end-before: //!--
+    .. literalinclude:: /../code/XMLTester.xml
+        :language: xml
+        :start-after: <!-->XML_BITMASK<-->
+        :end-before: <!--><-->
 
-    .. tab:: XML
-
-        .. literalinclude:: /../code/XMLTester.xml
-            :language: xml
-            :start-after: <!-->XML_BITMASK<-->
-            :end-before: <!--><-->
-
-    .. tab:: C++
-
-        .. literalinclude:: /../code/DDSCodeTester.cpp
-            :language: c++
-            :start-after: //!--CPP_BITMASK
-            :end-before: //!--
+    .. literalinclude:: /../code/DDSCodeTester.cpp
+        :language: c++
+        :start-after: //!--CPP_BITMASK
+        :end-before: //!--
+        :dedent: 8
 
 For a detailed explanation about the XML definition of this type, please refer to
 :ref:`XML Bitmask Types<xmldynamictypes_bitmask>`.
@@ -398,28 +383,23 @@ Alias recursion is supported by defining another alias type as the base type.
 
 Once the |DynamicData-api| is created, information can be accessed as if working with the base type.
 
-.. tabs::
+.. tab-set-code::
 
-    .. tab:: IDL
+    .. literalinclude:: /../code/DynamicTypesIDLExamples.idl
+        :language: omg-idl
+        :start-after: //!--IDL_TYPEDEF
+        :end-before: //!--
 
-        .. literalinclude:: /../code/DynamicTypesIDLExamples.idl
-            :language: omg-idl
-            :start-after: //!--IDL_TYPEDEF
-            :end-before: //!--
+    .. literalinclude:: /../code/XMLTester.xml
+        :language: xml
+        :start-after: <!-->XML_TYPEDEF<-->
+        :end-before: <!--><-->
 
-    .. tab:: XML
-
-        .. literalinclude:: /../code/XMLTester.xml
-            :language: xml
-            :start-after: <!-->XML_TYPEDEF<-->
-            :end-before: <!--><-->
-
-    .. tab:: C++
-
-        .. literalinclude:: /../code/DDSCodeTester.cpp
-            :language: c++
-            :start-after: //!--CPP_TYPEDEF
-            :end-before: //!--
+    .. literalinclude:: /../code/DDSCodeTester.cpp
+        :language: c++
+        :start-after: //!--CPP_TYPEDEF
+        :end-before: //!--
+        :dedent: 8
 
 For a detailed explanation about the XML definition of this type, please refer to
 :ref:`XML Alias Types<xmldynamictypes_typedef>`.
@@ -451,28 +431,23 @@ input.
 Specific collection's element can be also be modified using the :func:`get_value` / :func:`set_value` passing the index
 of the element to be modified.
 
-.. tabs::
+.. tab-set-code::
 
-    .. tab:: IDL
+    .. literalinclude:: /../code/DynamicTypesIDLExamples.idl
+        :language: omg-idl
+        :start-after: //!--IDL_SEQUENCES
+        :end-before: //!--
 
-        .. literalinclude:: /../code/DynamicTypesIDLExamples.idl
-            :language: omg-idl
-            :start-after: //!--IDL_SEQUENCES
-            :end-before: //!--
+    .. literalinclude:: /../code/XMLTester.xml
+        :language: xml
+        :start-after: <!-->XML_SEQUENCES<-->
+        :end-before: <!--><-->
 
-    .. tab:: XML
-
-        .. literalinclude:: /../code/XMLTester.xml
-            :language: xml
-            :start-after: <!-->XML_SEQUENCES<-->
-            :end-before: <!--><-->
-
-    .. tab:: C++
-
-        .. literalinclude:: /../code/DDSCodeTester.cpp
-            :language: c++
-            :start-after: //!--CPP_SEQUENCES
-            :end-before: //!--
+    .. literalinclude:: /../code/DDSCodeTester.cpp
+        :language: c++
+        :start-after: //!--CPP_SEQUENCES
+        :end-before: //!--
+        :dedent: 8
 
 For a detailed explanation about the XML definition of this type, please refer to
 :ref:`XML Sequence Types <xmldynamictypes_sequence>`.
@@ -508,28 +483,23 @@ input.
 Specific collection's element can be also be modified using the :func:`get_value` / :func:`set_value` passing the index
 of the element to be modified.
 
-.. tabs::
+.. tab-set-code::
 
-    .. tab:: IDL
+    .. literalinclude:: /../code/DynamicTypesIDLExamples.idl
+        :language: omg-idl
+        :start-after: //!--IDL_ARRAYS
+        :end-before: //!--
 
-        .. literalinclude:: /../code/DynamicTypesIDLExamples.idl
-            :language: omg-idl
-            :start-after: //!--IDL_ARRAYS
-            :end-before: //!--
+    .. literalinclude:: /../code/XMLTester.xml
+        :language: xml
+        :start-after: <!-->XML_ARRAYS<-->
+        :end-before: <!--><-->
 
-    .. tab:: XML
-
-        .. literalinclude:: /../code/XMLTester.xml
-            :language: xml
-            :start-after: <!-->XML_ARRAYS<-->
-            :end-before: <!--><-->
-
-    .. tab:: C++
-
-        .. literalinclude:: /../code/DDSCodeTester.cpp
-            :language: c++
-            :start-after: //!--CPP_ARRAYS
-            :end-before: //!--
+    .. literalinclude:: /../code/DDSCodeTester.cpp
+        :language: c++
+        :start-after: //!--CPP_ARRAYS
+        :end-before: //!--
+        :dedent: 8
 
 For a detailed explanation about the XML definition of this type, please refer to
 :ref:`XML Array Types<xmldynamictypes_array>`.
@@ -567,28 +537,23 @@ In order to call this method, the correct :code:`string` representation of the k
 The map value can now be set using the API corresponding to the map value type.
 For complex map values, please refer to :ref:`xtypes_complextypes`.
 
-.. tabs::
+.. tab-set-code::
 
-    .. tab:: IDL
+    .. literalinclude:: /../code/DynamicTypesIDLExamples.idl
+        :language: omg-idl
+        :start-after: //!--IDL_MAPS
+        :end-before: //!--
 
-        .. literalinclude:: /../code/DynamicTypesIDLExamples.idl
-            :language: omg-idl
-            :start-after: //!--IDL_MAPS
-            :end-before: //!--
+    .. literalinclude:: /../code/XMLTester.xml
+        :language: xml
+        :start-after: <!-->XML_MAPS<-->
+        :end-before: <!--><-->
 
-    .. tab:: XML
-
-        .. literalinclude:: /../code/XMLTester.xml
-            :language: xml
-            :start-after: <!-->XML_MAPS<-->
-            :end-before: <!--><-->
-
-    .. tab:: C++
-
-        .. literalinclude:: /../code/DDSCodeTester.cpp
-            :language: c++
-            :start-after: //!--CPP_MAPS
-            :end-before: //!--
+    .. literalinclude:: /../code/DDSCodeTester.cpp
+        :language: c++
+        :start-after: //!--CPP_MAPS
+        :end-before: //!--
+        :dedent: 8
 
 For a detailed explanation about the XML definition of this type, please refer to
 :ref:`XML Map Types<xmldynamictypes_map>`.
@@ -643,28 +608,23 @@ Member data can be managed using the corresponding accessors for the underlying 
 Member ID might be retrieved using |DynamicData::get_member_id_by_name| API.
 For managing complex type members, please refer to :ref:`xtypes_complextypes`.
 
-.. tabs::
+.. tab-set-code::
 
-    .. tab:: IDL
+    .. literalinclude:: /../code/DynamicTypesIDLExamples.idl
+        :language: omg-idl
+        :start-after: //!--IDL_STRUCT
+        :end-before: //!--
 
-        .. literalinclude:: /../code/DynamicTypesIDLExamples.idl
-            :language: omg-idl
-            :start-after: //!--IDL_STRUCT
-            :end-before: //!--
+    .. literalinclude:: /../code/XMLTester.xml
+        :language: xml
+        :start-after: <!-->XML_STRUCT<-->
+        :end-before: <!--><-->
 
-    .. tab:: XML
-
-        .. literalinclude:: /../code/XMLTester.xml
-            :language: xml
-            :start-after: <!-->XML_STRUCT<-->
-            :end-before: <!--><-->
-
-    .. tab:: C++
-
-        .. literalinclude:: /../code/DDSCodeTester.cpp
-            :language: c++
-            :start-after: //!--CPP_STRUCT
-            :end-before: //!--
+    .. literalinclude:: /../code/DDSCodeTester.cpp
+        :language: c++
+        :start-after: //!--CPP_STRUCT
+        :end-before: //!--
+        :dedent: 8
 
 For a detailed explanation about the XML definition of this type, please refer to
 :ref:`XML Structure Types<xmldynamictypes_struct>`.
@@ -737,28 +697,23 @@ When reading a member, the discriminator must be selecting the member being read
 Member ID might be retrieved using |DynamicData::get_member_id_by_name| API.
 For managing complex type members, please refer to :ref:`xtypes_complextypes`.
 
-.. tabs::
+.. tab-set-code::
 
-    .. tab:: IDL
+    .. literalinclude:: /../code/DynamicTypesIDLExamples.idl
+        :language: omg-idl
+        :start-after: //!--IDL_UNION
+        :end-before: //!--
 
-        .. literalinclude:: /../code/DynamicTypesIDLExamples.idl
-            :language: omg-idl
-            :start-after: //!--IDL_UNION
-            :end-before: //!--
+    .. literalinclude:: /../code/XMLTester.xml
+        :language: xml
+        :start-after: <!-->XML_UNION<-->
+        :end-before: <!--><-->
 
-    .. tab:: XML
-
-        .. literalinclude:: /../code/XMLTester.xml
-            :language: xml
-            :start-after: <!-->XML_UNION<-->
-            :end-before: <!--><-->
-
-    .. tab:: C++
-
-        .. literalinclude:: /../code/DDSCodeTester.cpp
-            :language: c++
-            :start-after: //!--CPP_UNION
-            :end-before: //!--
+    .. literalinclude:: /../code/DDSCodeTester.cpp
+        :language: c++
+        :start-after: //!--CPP_UNION
+        :end-before: //!--
+        :dedent: 8
 
 For a detailed explanation about the XML definition of this type, please refer to
 :ref:`XML Union Types<xmldynamictypes_union>`.
@@ -810,28 +765,23 @@ If not set, the minimum unsigned integer type is used instead:
 Each bitfield (or member) works like its primitive type with the only difference that the internal storage only
 modifies the involved bits instead of the full primitive value.
 
-.. tabs::
+.. tab-set-code::
 
-    .. tab:: IDL
+    .. literalinclude:: /../code/DynamicTypesIDLExamples.idl
+        :language: omg-idl
+        :start-after: //!--IDL_BITSET
+        :end-before: //!--
 
-        .. literalinclude:: /../code/DynamicTypesIDLExamples.idl
-            :language: omg-idl
-            :start-after: //!--IDL_BITSET
-            :end-before: //!--
+    .. literalinclude:: /../code/XMLTester.xml
+        :language: xml
+        :start-after: <!-->XML_BITSET<-->
+        :end-before: <!--><-->
 
-    .. tab:: XML
-
-        .. literalinclude:: /../code/XMLTester.xml
-            :language: xml
-            :start-after: <!-->XML_BITSET<-->
-            :end-before: <!--><-->
-
-    .. tab:: C++
-
-        .. literalinclude:: /../code/DDSCodeTester.cpp
-            :language: c++
-            :start-after: //!--CPP_BITSET
-            :end-before: //!--
+    .. literalinclude:: /../code/DDSCodeTester.cpp
+        :language: c++
+        :start-after: //!--CPP_BITSET
+        :end-before: //!--
+        :dedent: 8
 
 For a detailed explanation about the XML definition of this type, please refer to
 :ref:`XML Bitset Types<xmldynamictypes_bitset>`.
@@ -840,6 +790,8 @@ For a detailed explanation about the XML definition of this type, please refer t
 
 Annotations
 ^^^^^^^^^^^
+
+.. _xtypes_custom_annotations:
 
 Custom annotations
 """"""""""""""""""
@@ -877,35 +829,35 @@ The annotation parameter value must be converted to its string representation.
 
   Currently, custom annotations are not supported with :ref:`XML DynamicTypes <xmldynamictypes>`.
 
-.. tabs::
+.. tab-set-code::
 
-    .. tab:: IDL
+    .. literalinclude:: /../code/DynamicTypesIDLExamples.idl
+        :language: omg-idl
+        :start-after: //!--IDL_CUSTOM_ANNOTATION
+        :end-before: //!--
 
-        .. literalinclude:: /../code/DynamicTypesIDLExamples.idl
-            :language: omg-idl
-            :start-after: //!--IDL_CUSTOM_ANNOTATION
-            :end-before: //!--
+    .. literalinclude:: /../code/XMLTester.xml
+        :language: xml
+        :start-after: <!-->XML_CUSTOM_ANNOTATION<-->
+        :end-before: <!--><-->
 
-    .. tab:: XML
+    .. literalinclude:: /../code/DDSCodeTester.cpp
+        :language: c++
+        :start-after: //!--CPP_CUSTOM_ANNOTATION
+        :end-before: //!--
+        :dedent: 8
 
-        .. literalinclude:: /../code/XMLTester.xml
-            :language: xml
-            :start-after: <!-->XML_CUSTOM_ANNOTATION<-->
-            :end-before: <!--><-->
-
-    .. tab:: C++
-
-        .. literalinclude:: /../code/DDSCodeTester.cpp
-            :language: c++
-            :start-after: //!--CPP_CUSTOM_ANNOTATION
-            :end-before: //!--
-
+.. _xtypes_builtin_annotations:
 
 Builtin annotations
 """""""""""""""""""
 
 Beside the user-defined custom annotations, there are a number of builtin annotations that have already mentioned
 throughout this section.
+
+.. warning::
+
+    Currently, annotating union discriminators is not supported.
 
 The table below summarizes the builtin annotations that can be applied using the Dynamic Language Binding API.
 Please, refer to :ref:`builtin annotations <builtin_annotations>` for the complete list and their behavior.
@@ -918,69 +870,86 @@ Please, refer to :ref:`builtin annotations <builtin_annotations>` for the comple
       - Dynamic Language Binding API
       - Dynamic Language Binding support
       - XML Dynamic Type profiles support
+      - IDL Parsing Dynamic Type support
     * - :code:`@appendable`
       - |TypeDescriptor-api| :code:`extensibility_kind` property.
       - ✅
       - ❌
+      - ✅
     * - :code:`@bit_bound`
       - |TypeDescriptor-api| :code:`bound` property for :ref:`xtypes_supportedtypes_bitset`. |br|
-        |MemberDescriptor-api| :code:`type` property for :ref:`xtypes_supportedtypes_enumeration`.
+        |TypeDescriptor-api| :code:`literal_type` property for :ref:`xtypes_supportedtypes_enumeration`.
       - ✅
       - ✅❌ (`Enumeration types`_ not configurable).
+      - ✅
     * - :code:`@default`
       - |MemberDescriptor-api| :code:`default_value` property.
       - ✅
       - ❌
+      - ✅
     * - :code:`default_literal`
-      - |MemberDescriptor-api| :code:`is_default_label` property.
+      - |MemberDescriptor-api| :code:`is_default_literal` property.
       - ✅
       - ❌
+      - ✅
     * - :code:`@extensibility`
       - |TypeDescriptor-api| :code:`extensibility_kind` property.
       - ✅
       - ❌
+      - ✅
     * - :code:`@external`
       - |MemberDescriptor-api| :code:`is_shared` property.
       - ❌
       - ❌
+      - ✅
     * - :code:`@final`
       - |TypeDescriptor-api| :code:`extensibility_kind` property.
       - ✅
       - ❌
+      - ✅
     * - :code:`@id`
       - |MemberDescriptor-api| :code:`id` property.
       - ✅
       - ❌
+      - ✅
     * - :code:`@key` / :code:`@Key`
       - |MemberDescriptor-api| :code:`is_key` property.
       - ✅
       - ❌
+      - ✅
     * - :code:`@mutable`
       - |TypeDescriptor-api| :code:`extensibility_kind` property.
       - ✅
       - ❌
+      - ✅
     * - :code:`@nested`
       - |TypeDescriptor-api| :code:`is_nested` property.
       - ❌
       - ❌
+      - ✅
     * - :code:`@optional`
       - |MemberDescriptor-api| :code:`is_optional` property.
       - ❌
       - ❌
+      - ✅
     * - :code:`@position`
-      - |MemberDescriptor-api| :code:`id` property.
+      - |MemberDescriptor-api| :code:`position` property.
+      - ✅
       - ✅
       - ✅
     * - :code:`@try_construct`
       - |MemberDescriptor-api| :code:`try_construct_kind` property.
       - ❌
       - ❌
+      - ✅
     * - :code:`@value`
-      - |MemberDescriptor-api| :code:`default_value` property.
+      - |MemberDescriptor-api| :code:`literal_value` property.
+      - ✅
       - ✅
       - ✅
     * - :code:`@verbatim`
       - |VerbatimTextDescriptor-api|
+      - ❌
       - ❌
       - ❌
 
@@ -1006,3 +975,4 @@ The following snippet includes an example of managing complex data using the sam
     :language: c++
     :start-after: //!--CPP_COMPLEX_DATA
     :end-before: //!--
+    :dedent: 8

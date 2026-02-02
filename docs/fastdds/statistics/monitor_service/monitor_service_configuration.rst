@@ -16,44 +16,47 @@ for the purpose: ``fastdds.enable_monitor_service``.
 
 The following table depicts the different ways in which the *Monitor Service* can be enabled or disabled:
 
-.. tabs::
+.. tab-set::
 
-    .. tab:: C++ API
+    .. tab-item:: C++ API
+       :sync: cpp
 
-      .. literalinclude:: /../code/DDSCodeTester.cpp
-        :language: c++
-        :dedent: 8
-        :start-after: // FASTDDS_MONITOR_SERVICE_API
-        :end-before: //!
+       .. literalinclude:: /../code/DDSCodeTester.cpp
+          :language: c++
+          :dedent: 8
+          :start-after: // FASTDDS_MONITOR_SERVICE_API
+          :end-before: //!
 
-    .. tab:: C++ Property
+    .. tab-item:: C++ Property
+       :sync: cpp
 
-      .. literalinclude:: /../code/DDSCodeTester.cpp
-        :language: c++
-        :dedent: 8
-        :start-after: // FASTDDS_MONITOR_SERVICE_PROPERTY
-        :end-before: //!
+       .. literalinclude:: /../code/DDSCodeTester.cpp
+          :language: c++
+          :dedent: 8
+          :start-after: // FASTDDS_MONITOR_SERVICE_PROPERTY
+          :end-before: //!
 
-    .. tab:: XML
+    .. tab-item:: XML
+       :sync: xml
 
-      .. literalinclude:: /../code/XMLTester.xml
-        :language: xml
-        :start-after: <!-->DDS_MONITOR_SERVICE<-->
-        :end-before: <!--><-->
-        :lines: 2-3,5-22
-        :append: </profiles>
+       .. literalinclude:: /../code/XMLTester.xml
+          :language: xml
+          :start-after: <!-->DDS_MONITOR_SERVICE<-->
+          :end-before: <!--><-->
+          :lines: 2-3,5-22
+          :append: </profiles>
 
-    .. tab:: Env. Variable Linux
+    .. tab-item:: Env. Variable Linux
 
-      .. code-block:: bash
+       .. code-block:: bash
 
-        export FASTDDS_STATISTICS="MONITOR_SERVICE_TOPIC"
+          export FASTDDS_STATISTICS="MONITOR_SERVICE_TOPIC"
 
-    .. tab:: Env. Variable Windows
+    .. tab-item:: Env. Variable Windows
 
-      .. code-block:: bash
+       .. code-block:: bash
 
-        set FASTDDS_STATISTICS=MONITOR_SERVICE_TOPIC
+          set FASTDDS_STATISTICS=MONITOR_SERVICE_TOPIC
 
 Endpoints QoS
 ^^^^^^^^^^^^^

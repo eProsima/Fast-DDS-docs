@@ -12,12 +12,6 @@ eProsima Extensions
 
 The eProsima QoS Policies extensions are those that allow changing the values of the RTPS layer configurable settings.
 
-.. contents::
-    :local:
-    :backlinks: none
-    :depth: 1
-
-
 .. _datasharingqospolicy:
 
 DataSharingQosPolicy
@@ -128,23 +122,19 @@ so it must be done before the entity is enabled.
 Example
 """""""
 
-.. tabs::
+.. tab-set-code::
 
-   .. tab:: C++
-
-      .. literalinclude:: ../../../../../code/DDSCodeTester.cpp
+    .. literalinclude:: ../../../../../code/DDSCodeTester.cpp
         :language: c++
         :dedent: 8
         :start-after: //DDS_CHANGE_DATASHARING_QOS_POLICY
         :end-before: //!
 
-   .. tab:: XML
-
-      .. literalinclude:: /../code/XMLTester.xml
-          :language: xml
-          :start-after: <!-->CONF-QOS-DATASHARING<-->
-          :end-before: <!--><-->
-          :lines: 2-4, 6-34, 36-37
+    .. literalinclude:: /../code/XMLTester.xml
+        :language: xml
+        :start-after: <!-->CONF-QOS-DATASHARING<-->
+        :end-before: <!--><-->
+        :lines: 2-4, 6-34, 36-37
 
 .. _disablepositiveacksqospolicy:
 
@@ -191,7 +181,7 @@ Compatibility Rule
 """"""""""""""""""
 
 To maintain the compatibility between DisablePositiveACKsQosPolicy in DataReaders and DataWriters, the DataReader
-cannot have this QoS enabled if the DataWriter have it disabled.
+cannot have this QoS enabled if the DataWriter has it disabled.
 
 Table with the possible combinations:
 
@@ -210,22 +200,18 @@ Table with the possible combinations:
 Example
 """""""
 
-.. tabs::
+.. tab-set-code::
 
-   .. tab:: C++
+    .. literalinclude:: ../../../../../code/DDSCodeTester.cpp
+        :language: c++
+        :dedent: 8
+        :start-after: //DDS_CHANGE_DISABLE_POSITIVE_ACKS_QOS_POLICY
+        :end-before: //!
 
-      .. literalinclude:: ../../../../../code/DDSCodeTester.cpp
-          :language: c++
-          :dedent: 8
-          :start-after: //DDS_CHANGE_DISABLE_POSITIVE_ACKS_QOS_POLICY
-          :end-before: //!
-
-   .. tab:: XML
-
-      .. literalinclude:: /../code/XMLTester.xml
-          :language: xml
-          :start-after: <!-->PUBSUB_API_CONF_PUBSUB_DISABLE_POSITIVE_ACKS
-          :end-before: <!--><-->
+    .. literalinclude:: /../code/XMLTester.xml
+        :language: xml
+        :start-after: <!-->PUBSUB_API_CONF_PUBSUB_DISABLE_POSITIVE_ACKS
+        :end-before: <!--><-->
 
 .. _rtpsreliablereaderqos:
 
@@ -283,22 +269,18 @@ List of structure members:
 Example
 """""""
 
-.. tabs::
+.. tab-set-code::
 
-   .. tab:: C++
-
-     .. literalinclude:: ../../../../../code/DDSCodeTester.cpp
+    .. literalinclude:: ../../../../../code/DDSCodeTester.cpp
         :language: c++
         :dedent: 8
         :start-after: //DDS_CHANGE_RTPS_RELIABLE_READER_QOS
         :end-before: //!
 
-   .. tab:: XML
-
-      .. literalinclude:: /../code/XMLTester.xml
-          :language: xml
-          :start-after: <!-->XML_RTPS_RELIABLE_READER_QOS<-->
-          :end-before: <!--><-->
+    .. literalinclude:: /../code/XMLTester.xml
+        :language: xml
+        :start-after: <!-->XML_RTPS_RELIABLE_READER_QOS<-->
+        :end-before: <!--><-->
 
 
 .. _rtpsreliablewriterqos:
@@ -388,22 +370,18 @@ This mechanism can be disabled using this policy.
 Example
 """""""
 
-.. tabs::
+.. tab-set-code::
 
-   .. tab:: C++
+    .. literalinclude:: ../../../../../code/DDSCodeTester.cpp
+        :language: c++
+        :dedent: 8
+        :start-after: //DDS_CHANGE_RTPS_RELIABLE_WRITER_QOS
+        :end-before: //!
 
-     .. literalinclude:: ../../../../../code/DDSCodeTester.cpp
-          :language: c++
-          :dedent: 8
-          :start-after: //DDS_CHANGE_RTPS_RELIABLE_WRITER_QOS
-          :end-before: //!
-
-   .. tab:: XML
-
-      .. literalinclude:: /../code/XMLTester.xml
-          :language: xml
-          :start-after: <!-->XML_RTPS_RELIABLE_WRITER_QOS<-->
-          :end-before: <!--><-->
+    .. literalinclude:: /../code/XMLTester.xml
+        :language: xml
+        :start-after: <!-->XML_RTPS_RELIABLE_WRITER_QOS<-->
+        :end-before: <!--><-->
 
 .. _flowcontrollersqos:
 
@@ -655,24 +633,20 @@ List of structure members:
 Example
 """""""
 
-.. tabs::
+.. tab-set-code::
 
-   .. tab:: C++
+    .. literalinclude:: ../../../../../code/DDSCodeTester.cpp
+        :language: c++
+        :dedent: 8
+        :start-after: //DDS_CHANGE_PARTICIPANT_RESOURCE_LIMITS_QOS_POLICY
+        :end-before: //!
 
-      .. literalinclude:: ../../../../../code/DDSCodeTester.cpp
-          :language: c++
-          :dedent: 8
-          :start-after: //DDS_CHANGE_PARTICIPANT_RESOURCE_LIMITS_QOS_POLICY
-          :end-before: //!
-
-   .. tab:: XML
-
-      .. literalinclude:: /../code/XMLTester.xml
-          :language: xml
-          :start-after: <!-->CONF-ALLOCATION-QOS-EXAMPLE
-          :dedent: 4
-          :end-before: <data_writer
-          :lines: 5-
+    .. literalinclude:: /../code/XMLTester.xml
+        :language: xml
+        :start-after: <!-->CONF-ALLOCATION-QOS-EXAMPLE
+        :dedent: 4
+        :end-before: <data_writer
+        :lines: 5-
 
 .. _propertypolicyqos:
 
@@ -694,22 +668,18 @@ This could be done by setting as :code:`true` the :code:`propagate` value of the
 Example
 """""""
 
-.. tabs::
+.. tab-set-code::
 
-   .. tab:: C++
+    .. literalinclude:: ../../../../../code/DDSCodeTester.cpp
+        :language: c++
+        :dedent: 8
+        :start-after: //DDS_CHANGE_PROPERTY_POLICY_QOS
+        :end-before: //!
 
-      .. literalinclude:: ../../../../../code/DDSCodeTester.cpp
-          :language: c++
-          :dedent: 8
-          :start-after: //DDS_CHANGE_PROPERTY_POLICY_QOS
-          :end-before: //!
-
-   .. tab:: XML
-
-      .. literalinclude:: /../code/XMLTester.xml
-          :language: xml
-          :start-after: <!-->XML_PROPERTY_POLICY
-          :end-before: <!--><-->
+    .. literalinclude:: /../code/XMLTester.xml
+        :language: xml
+        :start-after: <!-->XML_PROPERTY_POLICY
+        :end-before: <!--><-->
 
 .. _publishmodeqospolicy:
 
@@ -761,22 +731,18 @@ descriptor name.
 Example
 """""""
 
-.. tabs::
+.. tab-set-code::
 
-   .. tab:: C++
+    .. literalinclude:: ../../../../../code/DDSCodeTester.cpp
+        :language: c++
+        :dedent: 8
+        :start-after: //DDS_CHANGE_PUBLISH_MODE_QOS
+        :end-before: //!
 
-      .. literalinclude:: ../../../../../code/DDSCodeTester.cpp
-          :language: c++
-          :dedent: 8
-          :start-after: //DDS_CHANGE_PUBLISH_MODE_QOS
-          :end-before: //!
-
-   .. tab:: XML
-
-      .. literalinclude:: /../code/XMLTester.xml
-          :language: xml
-          :start-after: <!-->CONF-QOS-PUBLISHMODE<-->
-          :end-before: <!--><-->
+    .. literalinclude:: /../code/XMLTester.xml
+        :language: xml
+        :start-after: <!-->CONF-QOS-PUBLISHMODE<-->
+        :end-before: <!--><-->
 
 .. _readerresourcelimitsqos:
 
@@ -804,22 +770,18 @@ List of QoS Policy data members:
 Example
 """""""
 
-.. tabs::
+.. tab-set-code::
 
-   .. tab:: C++
+    .. literalinclude:: ../../../../../code/DDSCodeTester.cpp
+        :language: c++
+        :dedent: 8
+        :start-after: //DDS_CHANGE_READER_RESOURCE_LIMITS_QOS
+        :end-before: //!
 
-      .. literalinclude:: ../../../../../code/DDSCodeTester.cpp
-          :language: c++
-          :dedent: 8
-          :start-after: //DDS_CHANGE_READER_RESOURCE_LIMITS_QOS
-          :end-before: //!
-
-   .. tab:: XML
-
-      .. literalinclude:: /../code/XMLTester.xml
-          :language: xml
-          :start-after: <!-->XML_READER_RESOURCE_LIMITS_QOS<-->
-          :end-before: <!--><-->
+    .. literalinclude:: /../code/XMLTester.xml
+        :language: xml
+        :start-after: <!-->XML_READER_RESOURCE_LIMITS_QOS<-->
+        :end-before: <!--><-->
 
 .. _writerresourcelimitsqos:
 
@@ -848,22 +810,18 @@ List of QoS Policy data members:
 Example
 """""""
 
-.. tabs::
+.. tab-set-code::
 
-   .. tab:: C++
+    .. literalinclude:: ../../../../../code/DDSCodeTester.cpp
+        :language: c++
+        :dedent: 8
+        :start-after: //DDS_CHANGE_WRITER_RESOURCE_LIMITS_QOS
+        :end-before: //!
 
-     .. literalinclude:: ../../../../../code/DDSCodeTester.cpp
-          :language: c++
-          :dedent: 8
-          :start-after: //DDS_CHANGE_WRITER_RESOURCE_LIMITS_QOS
-          :end-before: //!
-
-   .. tab:: XML
-
-      .. literalinclude:: /../code/XMLTester.xml
-          :language: xml
-          :start-after: <!-->XML_WRITER_RESOURCE_LIMITS_QOS<-->
-          :end-before: <!--><-->
+    .. literalinclude:: /../code/XMLTester.xml
+        :language: xml
+        :start-after: <!-->XML_WRITER_RESOURCE_LIMITS_QOS<-->
+        :end-before: <!--><-->
 
 .. _rtpsendpointqos:
 
@@ -957,22 +915,18 @@ There are four possible values (see |MemoryManagementPolicy-api|):
 Example
 """""""
 
-.. tabs::
+.. tab-set-code::
 
-   .. tab:: C++
+    .. literalinclude:: ../../../../../code/DDSCodeTester.cpp
+        :language: c++
+        :dedent: 8
+        :start-after: //DDS_CHANGE_RTPS_ENDPOINT_QOS
+        :end-before: //!
 
-     .. literalinclude:: ../../../../../code/DDSCodeTester.cpp
-          :language: c++
-          :dedent: 8
-          :start-after: //DDS_CHANGE_RTPS_ENDPOINT_QOS
-          :end-before: //!
-
-   .. tab:: XML
-
-      .. literalinclude:: /../code/XMLTester.xml
-          :language: xml
-          :start-after: <!-->XML_RTPS_ENDPOINT_QOS<-->
-          :end-before: <!--><-->
+    .. literalinclude:: /../code/XMLTester.xml
+        :language: xml
+        :start-after: <!-->XML_RTPS_ENDPOINT_QOS<-->
+        :end-before: <!--><-->
 
 .. _threadsettingsqos:
 
@@ -1023,17 +977,13 @@ Example
 
 The following example illustrate a thread settings configuration:
 
-.. tabs::
-
-  .. tab:: C++
+.. tab-set-code::
 
     .. literalinclude:: ../../../../../code/DDSCodeTester.cpp
-      :language: c++
-      :dedent: 8
-      :start-after: //DDS_CHANGE_THREAD_SETTINGS
-      :end-before: //!
-
-  .. tab:: XML
+        :language: c++
+        :dedent: 8
+        :start-after: //DDS_CHANGE_THREAD_SETTINGS
+        :end-before: //!
 
     .. literalinclude:: /../code/XMLTester.xml
         :language: xml
@@ -1043,17 +993,13 @@ The following example illustrate a thread settings configuration:
 
 The subsequent example depicts a reception threads settings configuration:
 
-.. tabs::
-
-  .. tab:: C++
+.. tab-set-code::
 
     .. literalinclude:: ../../../../../code/DDSCodeTester.cpp
-      :language: c++
-      :dedent: 8
-      :start-after: //DDS_RECEPTION_THREADS_SETTINGS
-      :end-before: //!
-
-  .. tab:: XML
+        :language: c++
+        :dedent: 8
+        :start-after: //DDS_RECEPTION_THREADS_SETTINGS
+        :end-before: //!
 
     .. literalinclude:: /../code/XMLTester.xml
         :language: xml
@@ -1148,22 +1094,18 @@ List of structure members:
 Example
 """""""
 
-.. tabs::
+.. tab-set-code::
 
-   .. tab:: C++
+    .. literalinclude:: ../../../../../code/DDSCodeTester.cpp
+        :language: c++
+        :dedent: 8
+        :start-after: //DDS_CHANGE_TRANSPORT_CONFIG_QOS
+        :end-before: //!
 
-     .. literalinclude:: ../../../../../code/DDSCodeTester.cpp
-          :language: c++
-          :dedent: 8
-          :start-after: //DDS_CHANGE_TRANSPORT_CONFIG_QOS
-          :end-before: //!
-
-   .. tab:: XML
-
-      .. literalinclude:: /../code/XMLTester.xml
-          :language: xml
-          :start-after: <!-->CONF-COMMON-TRANSPORT-SETTING<-->
-          :end-before: <!--><-->
+    .. literalinclude:: /../code/XMLTester.xml
+        :language: xml
+        :start-after: <!-->CONF-COMMON-TRANSPORT-SETTING<-->
+        :end-before: <!--><-->
 
 .. note::
      :ref:`transportconfigqos` can also be configured modifying the builtin
@@ -1211,6 +1153,25 @@ List of QoS Policy data members:
       - ``bool``
       - false
 
+List of QoS Policy methods:
+
+.. list-table::
+    :header-rows: 1
+    :align: left
+
+    * - Method name
+      - Input parameters
+      - Return type
+      - Description
+    * - |WireProtocolConfigQos::easy_mode-api|
+      - ``std::string ip``
+      - ``ReturnCode_t``
+      - Setter for ``easy_mode_ip_`` private member.
+    * - |WireProtocolConfigQos::easy_mode-api|
+      - Empty
+      - ``std::string``
+      - Getter for ``easy_mode_ip_`` private member.
+
 * |WireProtocolConfigQos::prefix-api|:
   This data member allows the user to set manually the GUID prefix.
 * |WireProtocolConfigQos::participant_id-api|:
@@ -1234,6 +1195,18 @@ List of QoS Policy data members:
 * |WireProtocolConfigQos::ignore_non_matching_locators-api|:
   Defines whether to ignore locators received on announcements from other DDS participants when they don't match with
   any of the locators announced by this DDS participant.
+* |WireProtocolConfigQos::easy_mode-api|:
+  This method allows the user to set or get the ``easy_mode_ip_`` private member, which stores the IP address to be used
+  in the `Discovery Server Easy Mode
+  <https://docs.vulcanexus.org/en/latest/rst/enhancements/easy_mode/easy_mode.html>`__ configuration.
+  When |WireProtocolConfigQos::easy_mode-api| setter is called, the input string parameter is validated to make sure
+  it is a valid IPv4 address.
+  If not, ``easy_mode_ip_`` will be set to an empty string, indicating that ROS 2 Easy Mode is disabled.
+
+.. note::
+     If the Easy Mode Discovery Server IP is configured simultaneously using
+     the :ref:`ROS2_EASY_MODE<env_vars_easy_mode>` environment variable and manually via XML or with |WireProtocolConfigQos-api|,
+     the manually configured value takes precedence, thereby ignoring the environment variable value.
 
 .. note::
      This QoS Policy applies to |DomainParticipant| entities.
@@ -1243,23 +1216,32 @@ List of QoS Policy data members:
      |BuiltinAttributes::discovery_config-api| within |WireProtocolConfigQos::builtin-api| (see
      :ref:`DS_modify_server_list`).
 
+.. note::
+     Deployments where multiple DomainParticipants are created within the same host can lead into denying
+     available ports for them if the amount of DomainParticipants created reaches the value of
+     :cpp:var:`BuiltinAttributes::mutation_tries<eprosima::fastdds::rtps::BuiltinAttributes::mutation_tries>`
+     (100 by default).
+     When that happens, the DomainParticipants will not be able to create the listening ports (this is notified
+     with a log warning) and will be created without unicast locators configured.
+
+.. _wireprotocolconfigqos_example:
+
 Example
 """""""
 
-.. tabs::
+.. tab-set-code::
 
-   .. tab:: C++
+    .. literalinclude:: ../../../../../code/DDSCodeTester.cpp
+        :language: c++
+        :dedent: 8
+        :start-after: //DDS_CHANGE_WIRE_PROTOCOL_CONFIG_QOS
+        :end-before: //!
 
-     .. literalinclude:: ../../../../../code/DDSCodeTester.cpp
-          :language: c++
-          :dedent: 8
-          :start-after: //DDS_CHANGE_WIRE_PROTOCOL_CONFIG_QOS
-          :end-before: //!
+    .. literalinclude:: /../code/XMLTester.xml
+        :language: xml
+        :start-after: <!-->XML_WIRE_PROTOCOL_CONFIG_QOS<-->
+        :end-before: <!--><-->
 
-   .. tab:: XML
-
-      .. literalinclude:: /../code/XMLTester.xml
-          :language: xml
-          :start-after: <!-->XML_WIRE_PROTOCOL_CONFIG_QOS<-->
-          :end-before: <!--><-->
+.. note::
+    For extended XML information, refer to :ref:`domainparticipantconfig` and :ref:`builtin` XML sections.
 

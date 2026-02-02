@@ -14,19 +14,19 @@ However, it is possible to fully disable each macro (and therefore each verbosit
 
 * |EPROSIMA_LOG_INFO| is fully disabled by either:
 
-    * Setting CMake option |LOG_NO_INFO| to ``ON`` (default for Single-Config generators if ``CMAKE_BUILD_TYPE``
-      is other than ``Debug``).
-    * Defining macro |HAVE_LOG_NO_INFO| to ``1``.
+  * Setting CMake option |LOG_NO_INFO| to ``ON`` (default for Single-Config generators if ``CMAKE_BUILD_TYPE``
+    is other than ``Debug``).
+  * Defining macro |HAVE_LOG_NO_INFO| to ``1``.
 
 * |EPROSIMA_LOG_WARNING| is fully disabled by either:
 
-    * Setting CMake option |LOG_NO_WARNING| to ``ON``.
-    * Defining macro |HAVE_LOG_NO_WARNING| to ``1``.
+  * Setting CMake option |LOG_NO_WARNING| to ``ON``.
+  * Defining macro |HAVE_LOG_NO_WARNING| to ``1``.
 
 * |EPROSIMA_LOG_ERROR| is fully disabled by either:
 
-    * Setting CMake option |LOG_NO_ERROR| to ``ON``.
-    * Defining macro |HAVE_LOG_NO_ERROR| to ``1``.
+  * Setting CMake option |LOG_NO_ERROR| to ``ON``.
+  * Defining macro |HAVE_LOG_NO_ERROR| to ``1``.
 
 Applying either of the previously described methods will set the macro to be empty at configuration time, thus allowing
 the compiler to optimize the call out.

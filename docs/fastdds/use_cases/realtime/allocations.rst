@@ -69,24 +69,20 @@ setting them to a static maximum expected value, as shown in the example below.
 Please, refer to :ref:`resourcelimitedcontainerconfig` for a complete description of additional configuration
 alternatives given by these data members.
 
-+--------------------------------------------------------+
-| **C++**                                                |
-+--------------------------------------------------------+
-| .. literalinclude:: /../code/DDSCodeTester.cpp         |
-|    :language: c++                                      |
-|    :start-after: //CONF-ALLOCATION-QOS-PARTICIPANTS    |
-|    :end-before: //!--                                  |
-|    :dedent: 8                                          |
-+--------------------------------------------------------+
-| **XML**                                                |
-+--------------------------------------------------------+
-| .. literalinclude:: /../code/XMLTester.xml             |
-|    :language: xml                                      |
-|    :start-after: <!-->CONF-ALLOCATION-QOS-PARTICIPANTS |
-|    :end-before: <!--><-->                              |
-|    :lines: 2-3,5-                                      |
-|    :append: </profiles>                                |
-+--------------------------------------------------------+
+.. tab-set-code::
+
+    .. literalinclude:: /../code/DDSCodeTester.cpp
+        :language: c++
+        :start-after: //CONF-ALLOCATION-QOS-PARTICIPANTS
+        :end-before: //!--
+        :dedent: 8
+
+    .. literalinclude:: /../code/XMLTester.xml
+        :language: xml
+        :start-after: <!-->CONF-ALLOCATION-QOS-PARTICIPANTS
+        :end-before: <!--><-->
+        :lines: 2-3,5-
+        :append: </profiles>
 
 .. warning::
 
@@ -127,24 +123,20 @@ to configure the allocation behavior of content filter discovery information:
   Receiving information about a content filter with more parameters than the maximum configured here, will make
   the filtering happen on the reader side.
 
-+--------------------------------------------------------+
-| **C++**                                                |
-+--------------------------------------------------------+
-| .. literalinclude:: /../code/DDSCodeTester.cpp         |
-|    :language: c++                                      |
-|    :start-after: //CONF-ALLOCATION-QOS-PARAMETERS      |
-|    :end-before: //!--                                  |
-|    :dedent: 8                                          |
-+--------------------------------------------------------+
-| **XML**                                                |
-+--------------------------------------------------------+
-| .. literalinclude:: /../code/XMLTester.xml             |
-|    :language: xml                                      |
-|    :start-after: <!-->CONF-ALLOCATION-QOS-PARAMETERS   |
-|    :end-before: <!--><-->                              |
-|    :lines: 2-3,5-                                      |
-|    :append: </profiles>                                |
-+--------------------------------------------------------+
+.. tab-set-code::
+
+    .. literalinclude:: /../code/DDSCodeTester.cpp
+       :language: c++
+       :start-after: //CONF-ALLOCATION-QOS-PARAMETERS
+       :end-before: //!--
+       :dedent: 8
+
+    .. literalinclude:: /../code/XMLTester.xml
+       :language: xml
+       :start-after: <!-->CONF-ALLOCATION-QOS-PARAMETERS
+       :end-before: <!--><-->
+       :lines: 2-3,5-
+       :append: </profiles>
 
 .. warning::
 
@@ -176,24 +168,20 @@ Please, refer to :ref:`resourcelimitedcontainerconfig` for a complete descriptio
 alternatives given by these data members.
 
 
-+--------------------------------------------------------+
-| **C++**                                                |
-+--------------------------------------------------------+
-| .. literalinclude:: /../code/DDSCodeTester.cpp         |
-|    :language: c++                                      |
-|    :start-after: //CONF-ALLOCATION-QOS-WRITER          |
-|    :end-before: //!--                                  |
-|    :dedent: 8                                          |
-+--------------------------------------------------------+
-| **XML**                                                |
-+--------------------------------------------------------+
-| .. literalinclude:: /../code/XMLTester.xml             |
-|    :language: xml                                      |
-|    :start-after: <!-->CONF-ALLOCATION-QOS-WRITER       |
-|    :end-before: <!--><-->                              |
-|    :lines: 2-3,5-                                      |
-|    :append: </profiles>                                |
-+--------------------------------------------------------+
+.. tab-set-code::
+
+    .. literalinclude:: /../code/DDSCodeTester.cpp
+        :language: c++
+        :start-after: //CONF-ALLOCATION-QOS-WRITER
+        :end-before: //!--
+        :dedent: 8
+
+    .. literalinclude:: /../code/XMLTester.xml
+        :language: xml
+        :start-after: <!-->CONF-ALLOCATION-QOS-WRITER
+        :end-before: <!--><-->
+        :lines: 2-3,5-
+        :append: </profiles>
 
 .. warning::
 
@@ -223,24 +211,20 @@ as shown in the example below.
 Please, refer to :ref:`resourcelimitedcontainerconfig` for a complete description of additional configuration
 alternatives given by this data member.
 
-+--------------------------------------------------------+
-| **C++**                                                |
-+--------------------------------------------------------+
-| .. literalinclude:: /../code/DDSCodeTester.cpp         |
-|    :language: c++                                      |
-|    :start-after: //CONF-ALLOCATION-QOS-READER          |
-|    :end-before: //!--                                  |
-|    :dedent: 8                                          |
-+--------------------------------------------------------+
-| **XML**                                                |
-+--------------------------------------------------------+
-| .. literalinclude:: /../code/XMLTester.xml             |
-|    :language: xml                                      |
-|    :start-after: <!-->CONF-ALLOCATION-QOS-READER       |
-|    :end-before: <!--><-->                              |
-|    :lines: 2-3,5-                                      |
-|    :append: </profiles>                                |
-+--------------------------------------------------------+
+.. tab-set-code::
+
+    .. literalinclude:: /../code/DDSCodeTester.cpp
+        :language: c++
+        :start-after: //CONF-ALLOCATION-QOS-READER
+        :end-before: //!--
+        :dedent: 8
+
+    .. literalinclude:: /../code/XMLTester.xml
+        :language: xml
+        :start-after: <!-->CONF-ALLOCATION-QOS-READER
+        :end-before: <!--><-->
+        :lines: 2-3,5-
+        :append: </profiles>
 
 .. warning::
 
@@ -292,23 +276,19 @@ We will assume that content filtering is not being used, and will also limit the
 
 The following piece of code shows the set of parameters needed for the use case depicted in this example.
 
-+-----------------------------------------------------+
-| **C++**                                             |
-+-----------------------------------------------------+
-| .. literalinclude:: /../code/DDSCodeTester.cpp      |
-|    :language: c++                                   |
-|    :start-after: //CONF-ALLOCATION-QOS-EXAMPLE      |
-|    :end-before: //!--                               |
-|    :dedent: 8                                       |
-+-----------------------------------------------------+
-| **XML**                                             |
-+-----------------------------------------------------+
-| .. literalinclude:: /../code/XMLTester.xml          |
-|    :language: xml                                   |
-|    :start-after: <!-->CONF-ALLOCATION-QOS-EXAMPLE   |
-|    :end-before: <!--><-->                           |
-|    :lines: 2-3,5-                                   |
-|    :append: </profiles>                             |
-+-----------------------------------------------------+
+.. tab-set-code::
+
+    .. literalinclude:: /../code/DDSCodeTester.cpp
+       :language: c++
+       :start-after: //CONF-ALLOCATION-QOS-EXAMPLE
+       :end-before: //!--
+       :dedent: 8
+
+    .. literalinclude:: /../code/XMLTester.xml
+       :language: xml
+       :start-after: <!-->CONF-ALLOCATION-QOS-EXAMPLE
+       :end-before: <!--><-->
+       :lines: 2-3,5-
+       :append: </profiles>
 
 

@@ -40,15 +40,15 @@ The configuration of the persistence service is accomplished by setting of the a
 or DataReader) |PropertyPolicyQos|.
 
 * For the :ref:`persistence_service` to have any effect, the |DurabilityQosPolicyKind-api| needs to be set to
-  |TRANSIENT_DURABILITY_QOS-api|.
+  |TRANSIENT_DURABILITY_QOS-api| or |PERSISTENT_DURABILITY_QOS-api|.
 
 * A persistence identifier (|Guid_t-api|) must be set for the entity using the property ``dds.persistence.guid``.
   This identifier is used to load the appropriate data from the database, and also to synchronize DataWriter and
   DataReader between restarts.
   The GUID consists of 16 bytes separated into two groups:
 
-    * The first 12 bytes correspond to the |GuidPrefix_t-api|.
-    * The last 4 bytes correspond to the |EntityId_t-api|.
+  * The first 12 bytes correspond to the |GuidPrefix_t-api|.
+  * The last 4 bytes correspond to the |EntityId_t-api|.
 
   The persistence identifier is specified using a string of 12 dot-separated bytes, expressed in hexadecimal base,
   followed by a vertical bar separator (``|``) and another 4 dot-separated bytes, also expressed in hexadecimal base
@@ -56,9 +56,11 @@ or DataReader) |PropertyPolicyQos|.
   For selecting an appropriate GUID for the DataReader and DataWriter, please refer to
   `RTPS standard <https://www.omg.org/spec/DDSI-RTPS/2.2/PDF>`_ (section *9.3.1 The Globally Unique Identifier (GUID)*).
 
+  If no ``dds.persistence.guid`` is specified,
+  the durability behavior will fallback to |TRANSIENT_LOCAL_DURABILITY_QOS-api|.
+
 * A persistence plugin must be configured for managing the database using property ``dds.persistence.plugin`` (see
   :ref:`persistence_sqlite3_builtin_plugin`):
-
 
 .. _persistence_sqlite3_builtin_plugin:
 
@@ -101,17 +103,13 @@ Example
 This example shows how to configure the persistence service using :ref:`persistence_sqlite3_builtin_plugin` plugin both
 from C++ and using *eProsima Fast DDS* XML profile files (see :ref:`xml_profiles`).
 
-.. tabs::
-
-  .. tab:: C++
+.. tab-set-code::
 
     .. literalinclude:: /../code/DDSCodeTester.cpp
        :language: c++
        :start-after: //CONF-PERSISTENCE-SERVICE-SQLITE3-EXAMPLE
        :end-before: //!--
        :dedent: 4
-
-  .. tab:: XML
 
     .. literalinclude:: /../code/XMLTester.xml
        :language: xml

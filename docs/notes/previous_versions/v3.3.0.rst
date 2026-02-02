@@ -1,0 +1,70 @@
+`Version 3.3.0 <https://fast-dds.docs.eprosima.com/en/v3.3.0/index.html>`_
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+This minor release includes the following **features**:
+
+#. RPC related:
+
+   * Add generic interfaces for servers
+   * Enhanced discovery feature
+   * Add RPC over DDS example
+   * Add methods for ``TypeObject`` registration of RPC types
+
+#. QoS Policies added to ``EDP`` messages. New property to send ``eProsima`` Extensions QoS
+#. Allow ``ResourceLimitsQos`` serialization method compatibility
+#. Add ``WireProtocolConfigQos`` to optional QoS serialization and make ``Monitor Service`` always serialize them
+#. ``DataWriter`` sample prefilter
+#. Support modules in IDL Parser
+#. New version of EDP static discovery
+#. Process ``key-only`` payloads
+#. Add ``has_more_replies`` to ``WriteParams`` and ``SampleInfo``
+#. ``JSON`` to ``DynamicData`` deserializer
+
+This minor release includes the following **improvements**:
+
+#. Improvements on RPC entities
+#. Add regression test checking ``type_information`` is always copied in ``ProxyData`` copies
+#. Add references to documentation
+#. Update ``ROSin`` image links in ``README``
+#. Update reception timestamp when it is added to the instance
+#. Updates due to ``EOL`` versions
+#. Allow creation of built-in content filters with different type name
+#. Add localhost capability only to ``UDP`` and ``TCP`` transports
+#. Add ``ParticipantBuiltinTopicData`` header in ``StatisticsDomainParticipant``
+#. Fix DS initialization on ``"any"`` if no interfaces are available
+#. Make ``DomainParticipant`` creation fail if ``MaxMessageSize`` is lower than ``PDP`` package size
+#. Avoid calling ``setIPv4`` in ``TCPTransportInterface``
+#. Bump ``asio`` to ``1.34.2``
+#. Update types for Fast DDS Gen v4.1.0 Release
+
+This minor release includes the following **fixes**:
+
+#. Solve Discovery Server race conditions
+#. Address some compilation warnings with ``GCC`` latest
+#. Properly delete secure endpoints if registration fails
+#. Add condition for ``string_builder`` ``nullptr`` on ``XMLDynamicParser`` in case bound is zero
+#. Add multicast locator to correct locator list in ``ReaderProxydata``
+#. Avoid Data Race in ``Reader Locator``
+#. Fix ``ParticipantGenericMessage`` serialization
+#. Fix build on ``QNX``
+#. Fix custom feature IDL files
+#. Pass ``Uncrustify`` to all ``ipp`` files
+#. Fix ``null-dereference`` error on Ubuntu
+
+This minor release includes the following **ci management updates**:
+
+#. Move ``SimpleCommunication`` and ``system tests`` in Windows nightly
+#. Split Windows workflow in different test suites
+#. Add compilation with ``GCC`` latest to ``fastdds_alternative_builds`` Ubuntu CI
+#. Add ``uncrustify`` to Github CI
+#. Increase the warning level for Ubuntu CI compilation
+#. Include all example tests in Windows CI
+#. Add ``VS143 toolset`` to Windows CI
+#. Install Fix ``OpenSSL`` version in windows example testing
+#. Set ``Windows 10`` as ``Tier 1``
+
+.. important::
+
+    When upgrading to version 3.3.0 it is **highly recommended** to regenerate generated source from IDL files
+    using at least `Fast DDS-Gen v4.1.0 <https://github.com/eProsima/Fast-DDS-Gen/releases/tag/v4.1.0>`_.
+    But it is advisable to regenerate them using the latest patch version of ``Fast DDS-Gen v4.1.x``.

@@ -88,6 +88,7 @@
 .. |DataWriter::register_instance_w_timestamp| replace:: :cpp:func:`DataWriter::register_instance_w_timestamp()<eprosima::fastdds::dds::DataWriter::register_instance_w_timestamp>`
 .. |DataWriter::unregister_instance_w_timestamp| replace:: :cpp:func:`DataWriter::unregister_instance_w_timestamp()<eprosima::fastdds::dds::DataWriter::unregister_instance_w_timestamp>`
 .. |DataWriter::dispose_w_timestamp| replace:: :cpp:func:`DataWriter::dispose_w_timestamp()<eprosima::fastdds::dds::DataWriter::dispose_w_timestamp>`
+.. |DataWriter::set_sample_prefilter| replace:: :cpp:func:`DataWriter::set_sample_prefilter()<eprosima::fastdds::dds::DataWriter::set_sample_prefilter>`
 
 .. |DataWriterListener-api| replace:: :cpp:class:`DataWriterListener <eprosima::fastdds::dds::DataWriterListener>`
 
@@ -140,18 +141,43 @@
 .. |DomainParticipant::set_default_subscriber_qos-api| replace:: :cpp:func:`set_default_subscriber_qos()<eprosima::fastdds::dds::DomainParticipant::set_default_subscriber_qos>`
 .. |DomainParticipant::set_default_topic_qos-api| replace:: :cpp:func:`set_default_topic_qos()<eprosima::fastdds::dds::DomainParticipant::set_default_topic_qos>`
 .. |DomainParticipant::get_qos-api| replace:: :cpp:func:`DomainParticipant::get_qos()<eprosima::fastdds::dds::DomainParticipant::get_qos>`
-.. |DomainParticipant::get_publisher_qos_from_profile| replace:: :cpp:func:`get_publisher_qos_from_profile()<eprosima::fastdds::dds::DomainParticipant::get_publisher_qos_from_profile>`
-.. |DomainParticipant::get_subscriber_qos_from_profile| replace:: :cpp:func:`get_subscriber_qos_from_profile()<eprosima::fastdds::dds::DomainParticipant::get_subscriber_qos_from_profile>`
-.. |DomainParticipant::get_topic_qos_from_profile| replace:: :cpp:func:`get_topic_qos_from_profile()<eprosima::fastdds::dds::DomainParticipant::get_topic_qos_from_profile>`
+.. |DomainParticipant::get_publisher_qos_from_profile-api| replace:: :cpp:func:`get_publisher_qos_from_profile()<eprosima::fastdds::dds::DomainParticipant::get_publisher_qos_from_profile>`
+.. |DomainParticipant::get_publisher_qos_from_xml-api| replace:: :cpp:func:`get_publisher_qos_from_xml()<eprosima::fastdds::dds::DomainParticipant::get_publisher_qos_from_xml>`
+.. |DomainParticipant::get_default_publisher_qos_from_xml-api| replace:: :cpp:func:`get_default_publisher_qos_from_xml()<eprosima::fastdds::dds::DomainParticipant::get_default_publisher_qos_from_xml>`
+.. |DomainParticipant::get_subscriber_qos_from_profile-api| replace:: :cpp:func:`get_subscriber_qos_from_profile()<eprosima::fastdds::dds::DomainParticipant::get_subscriber_qos_from_profile>`
+.. |DomainParticipant::get_subscriber_qos_from_xml-api| replace:: :cpp:func:`get_subscriber_qos_from_xml()<eprosima::fastdds::dds::DomainParticipant::get_subscriber_qos_from_xml>`
+.. |DomainParticipant::get_default_subscriber_qos_from_xml-api| replace:: :cpp:func:`get_default_subscriber_qos_from_xml()<eprosima::fastdds::dds::DomainParticipant::get_default_subscriber_qos_from_xml>`
+.. |DomainParticipant::get_topic_qos_from_profile-api| replace:: :cpp:func:`get_topic_qos_from_profile()<eprosima::fastdds::dds::DomainParticipant::get_topic_qos_from_profile>`
+.. |DomainParticipant::get_topic_qos_from_xml-api| replace:: :cpp:func:`get_topic_qos_from_xml()<eprosima::fastdds::dds::DomainParticipant::get_topic_qos_from_xml>`
+.. |DomainParticipant::get_default_topic_qos_from_xml-api| replace:: :cpp:func:`get_default_topic_qos_from_xml()<eprosima::fastdds::dds::DomainParticipant::get_default_topic_qos_from_xml>`
+.. |DomainParticipant::get_requester_qos_from_profile-api| replace:: :cpp:func:`get_requester_qos_from_profile()<eprosima::fastdds::dds::DomainParticipant::get_requester_qos_from_profile>`
+.. |DomainParticipant::get_requester_qos_from_xml-api| replace:: :cpp:func:`get_requester_qos_from_xml()<eprosima::fastdds::dds::DomainParticipant::get_requester_qos_from_xml>`
+.. |DomainParticipant::get_default_requester_qos_from_xml-api| replace:: :cpp:func:`get_default_requester_qos_from_xml()<eprosima::fastdds::dds::DomainParticipant::get_default_requester_qos_from_xml>`
+.. |DomainParticipant::get_replier_qos_from_profile-api| replace:: :cpp:func:`get_replier_qos_from_profile()<eprosima::fastdds::dds::DomainParticipant::get_replier_qos_from_profile>`
+.. |DomainParticipant::get_replier_qos_from_xml-api| replace:: :cpp:func:`get_replier_qos_from_xml()<eprosima::fastdds::dds::DomainParticipant::get_replier_qos_from_xml>`
+.. |DomainParticipant::get_default_replier_qos_from_xml-api| replace:: :cpp:func:`get_default_replier_qos_from_xml()<eprosima::fastdds::dds::DomainParticipant::get_default_replier_qos_from_xml>`
 .. |DomainParticipant::set_qos-api| replace:: :cpp:func:`DomainParticipant::set_qos()<eprosima::fastdds::dds::DomainParticipant::set_qos>`
 .. |DomainParticipant::delete_contained_entities-api| replace:: :cpp:func:`delete_contained_entities()<eprosima::fastdds::dds::DomainParticipant::delete_contained_entities>`
 .. |DomainParticipant::create_topic_with_profile-api| replace:: :cpp:func:`create_topic_with_profile()<eprosima::fastdds::dds::DomainParticipant::create_topic_with_profile>`
 .. |DomainParticipant::find_topic| replace:: :cpp:func:`find_topic()<eprosima::fastdds::dds::DomainParticipant::find_topic>`
+.. |DomainParticipant::create_service-api| replace:: :cpp:func:`DomainParticipant::create_service()<eprosima::fastdds::dds::DomainParticipant::create_service>`
+.. |DomainParticipant::find_service-api| replace:: :cpp:func:`DomainParticipant::find_service()<eprosima::fastdds::dds::DomainParticipant::find_service>`
+.. |DomainParticipant::delete_service-api| replace:: :cpp:func:`DomainParticipant::delete_service()<eprosima::fastdds::dds::DomainParticipant::delete_service>`
+.. |DomainParticipant::create_service_requester-api| replace:: :cpp:func:`DomainParticipant::create_service_requester()<eprosima::fastdds::dds::DomainParticipant::create_service_requester>`
+.. |DomainParticipant::delete_service_requester-api| replace:: :cpp:func:`DomainParticipant::delete_service_requester()<eprosima::fastdds::dds::DomainParticipant::delete_service_requester>`
+.. |DomainParticipant::create_service_replier-api| replace:: :cpp:func:`DomainParticipant::create_service_replier()<eprosima::fastdds::dds::DomainParticipant::create_service_replier>`
+.. |DomainParticipant::delete_service_replier-api| replace:: :cpp:func:`DomainParticipant::delete_service_replier()<eprosima::fastdds::dds::DomainParticipant::delete_service_replier>`
+.. |DomainParticipant::register_service_type-api| replace:: :cpp:func:`register_service_type()<eprosima::fastdds::dds::DomainParticipant::register_service_type>`
+.. |DomainParticipant::unregister_service_type-api| replace:: :cpp:func:`unregister_service_type()<eprosima::fastdds::dds::DomainParticipant::unregister_service_type>`
+.. |DomainParticipant::find_service_type-api| replace:: :cpp:func:`find_service_type()<eprosima::fastdds::dds::DomainParticipant::find_service_type>`
+
 .. |DomainParticipant::ignore_participant-api| replace:: :cpp:func:`ignore_participant()<eprosima::fastdds::dds::DomainParticipant::ignore_participant>`
 .. |DomainParticipant::enable-monitor-service-api| replace:: :cpp:func:`enable_monitor_service()<eprosima::fastdds::dds::DomainParticipant::enable_monitor_service>`
 .. |DomainParticipant::disable-monitor-service-api| replace:: :cpp:func:`disable_monitor_service()<eprosima::fastdds::dds::DomainParticipant::disable_monitor_service>`
 
-.. |DomainParticipant::get_participant_qos_from_profile| replace:: :cpp:func:`get_participant_qos_from_profile()<eprosima::fastdds::dds::DomainParticipant::get_participant_qos_from_profile>`
+.. |DomainParticipantFactory::get_participant_qos_from_profile-api| replace:: :cpp:func:`get_participant_qos_from_profile()<eprosima::fastdds::dds::DomainParticipantFactory::get_participant_qos_from_profile>`
+.. |DomainParticipantFactory::get_participant_qos_from_xml-api| replace:: :cpp:func:`get_participant_qos_from_xml()<eprosima::fastdds::dds::DomainParticipantFactory::get_participant_qos_from_xml>`
+.. |DomainParticipantFactory::get_default_participant_qos_from_xml-api| replace:: :cpp:func:`get_default_participant_qos_from_xml()<eprosima::fastdds::dds::DomainParticipantFactory::get_default_participant_qos_from_xml>`
 .. |DomainParticipantFactory-api| replace:: :cpp:class:`DomainParticipantFactory<eprosima::fastdds::dds::DomainParticipantFactory>`
 .. |DomainParticipantFactory::check_xml_static_discovery-api| replace:: :cpp:func:`DomainParticipantFactory::check_xml_static_discovery()<eprosima::fastdds::dds::DomainParticipantFactory::check_xml_static_discovery>`
 .. |DomainParticipantFactory::create_participant_with_default_profile-api| replace:: :cpp:func:`create_participant_with_default_profile()<eprosima::fastdds::dds::DomainParticipantFactory::create_participant_with_default_profile>`
@@ -162,6 +188,8 @@
 .. |DomainParticipantFactory::get_dynamic_type_builder_from_xml_by_name-api| replace:: :cpp:func:`DomainParticipantFactory::get_dynamic_type_builder_from_xml_by_name()<eprosima::fastdds::dds::DomainParticipantFactory::get_dynamic_type_builder_from_xml_by_name>`
 .. |DomainParticipantFactory::get_instance-api| replace:: :cpp:func:`get_instance()<eprosima::fastdds::dds::DomainParticipantFactory::get_instance>`
 .. |DomainParticipantFactory::get_participant_extended_qos_from_profile-api| replace:: :cpp:func:`get_participant_extended_qos_from_profile()<eprosima::fastdds::dds::DomainParticipantFactory::get_participant_extended_qos_from_profile>`
+.. |DomainParticipantFactory::get_participant_extended_qos_from_xml-api| replace:: :cpp:func:`get_participant_extended_qos_from_xml()<eprosima::fastdds::dds::DomainParticipantFactory::get_participant_extended_qos_from_xml>`
+.. |DomainParticipantFactory::get_default_participant_extended_qos_from_xml-api| replace:: :cpp:func:`get_default_participant_extended_qos_from_xml()<eprosima::fastdds::dds::DomainParticipantFactory::get_default_participant_extended_qos_from_xml>`
 .. |DomainParticipantFactory::load_XML_profiles_file-api| replace:: :cpp:func:`load_XML_profiles_file()<eprosima::fastdds::dds::DomainParticipantFactory::load_XML_profiles_file>`
 .. |DomainParticipantFactory::load_XML_profiles_string-api| replace:: :cpp:func:`load_XML_profiles_string()<eprosima::fastdds::dds::DomainParticipantFactory::load_XML_profiles_string>`
 .. |DomainParticipantFactory::set_default_participant_qos-api| replace:: :cpp:func:`set_default_participant_qos()<eprosima::fastdds::dds::DomainParticipantFactory::set_default_participant_qos>`
@@ -211,6 +239,8 @@
 
 .. |IContentFilter-api| replace:: :cpp:class:`IContentFilter<eprosima::fastdds::dds::IContentFilter>`
 .. |IContentFilter::evaluate-api| replace:: :cpp:func:`evaluate()<eprosima::fastdds::dds::IContentFilter::evaluate>`
+.. |FilteredSampleInfo-api| replace:: :cpp:class:`FilteredSampleInfo<eprosima::fastdds::dds::IContentFilter::FilteredSampleInfo>`
+.. |FilteredSampleInfo::user_write_data-api| replace:: :cpp:member:`user_write_data<eprosima::fastdds::dds::IContentFilter::FilteredSampleInfo::user_write_data>`
 .. |IContentFilterFactory-api| replace:: :cpp:class:`IContentFilterFactory<eprosima::fastdds::dds::IContentFilterFactory>`
 .. |IContentFilterFactory::create_content_filter-api| replace:: :cpp:func:`create_content_filter()<eprosima::fastdds::dds::IContentFilterFactory::create_content_filter>`
 .. |IContentFilterFactory::delete_content_filter-api| replace:: :cpp:func:`delete_content_filter()<eprosima::fastdds::dds::IContentFilterFactory::delete_content_filter>`
@@ -222,7 +252,9 @@
 .. |Publisher::create_datawriter-api| replace:: :cpp:func:`create_datawriter()<eprosima::fastdds::dds::Publisher::create_datawriter>`
 .. |Publisher::delete_datawriter-api| replace:: :cpp:func:`delete_datawriter()<eprosima::fastdds::dds::Publisher::delete_datawriter>`
 .. |Publisher::get_default_datawriter_qos-api| replace:: :cpp:func:`get_default_datawriter_qos()<eprosima::fastdds::dds::Publisher::get_default_datawriter_qos>`
-.. |Publisher::get_datawriter_qos_from_profile| replace:: :cpp:func:`get_datawriter_qos_from_profile()<eprosima::fastdds::dds::Publisher::get_datawriter_qos_from_profile>`
+.. |Publisher::get_datawriter_qos_from_profile-api| replace:: :cpp:func:`get_datawriter_qos_from_profile()<eprosima::fastdds::dds::Publisher::get_datawriter_qos_from_profile>`
+.. |Publisher::get_datawriter_qos_from_xml-api| replace:: :cpp:func:`get_datawriter_qos_from_xml()<eprosima::fastdds::dds::Publisher::get_datawriter_qos_from_xml>`
+.. |Publisher::get_default_datawriter_qos_from_xml-api| replace:: :cpp:func:`get_default_datawriter_qos_from_xml()<eprosima::fastdds::dds::Publisher::get_default_datawriter_qos_from_xml>`
 .. |Publisher::get_qos-api| replace:: :cpp:func:`get_qos()<eprosima::fastdds::dds::Publisher::get_qos>`
 .. |Publisher::set_default_datawriter_qos-api| replace:: :cpp:func:`set_default_datawriter_qos()<eprosima::fastdds::dds::Publisher::set_default_datawriter_qos>`
 .. |Publisher::set_qos-api| replace:: :cpp:func:`Publisher::set_qos()<eprosima::fastdds::dds::Publisher::set_qos>`
@@ -246,7 +278,9 @@
 .. |Subscriber::get_datareaders-api| replace:: :cpp:func:`Subscriber::get_datareaders()<eprosima::fastdds::dds::Subscriber::get_datareaders>`
 .. |Subscriber::get_default_datareader_qos-api| replace:: :cpp:func:`get_default_datareader_qos()<eprosima::fastdds::dds::Subscriber::get_default_datareader_qos>`
 .. |Subscriber::set_default_datareader_qos-api| replace:: :cpp:func:`set_default_datareader_qos()<eprosima::fastdds::dds::Subscriber::set_default_datareader_qos>`
-.. |Subscriber::get_datareader_qos_from_profile| replace:: :cpp:func:`get_datareader_qos_from_profile()<eprosima::fastdds::dds::Subscriber::get_datareader_qos_from_profile>`
+.. |Subscriber::get_datareader_qos_from_profile-api| replace:: :cpp:func:`get_datareader_qos_from_profile()<eprosima::fastdds::dds::Subscriber::get_datareader_qos_from_profile>`
+.. |Subscriber::get_datareader_qos_from_xml-api| replace:: :cpp:func:`get_datareader_qos_from_xml()<eprosima::fastdds::dds::Subscriber::get_datareader_qos_from_xml>`
+.. |Subscriber::get_default_datareader_qos_from_xml-api| replace:: :cpp:func:`get_default_datareader_qos_from_xml()<eprosima::fastdds::dds::Subscriber::get_default_datareader_qos_from_xml>`
 .. |Subscriber::create_datareader-api| replace:: :cpp:func:`create_datareader()<eprosima::fastdds::dds::Subscriber::create_datareader>`
 .. |Subscriber::delete_datareader-api| replace:: :cpp:func:`delete_datareader()<eprosima::fastdds::dds::Subscriber::delete_datareader>`
 .. |Subscriber::create_datareader_with_profile-api| replace:: :cpp:func:`create_datareader_with_profile()<eprosima::fastdds::dds::Subscriber::create_datareader_with_profile>`
@@ -308,10 +342,70 @@
 .. |SampleInfo::valid_data-api| replace:: :cpp:member:`valid_data<eprosima::fastdds::dds::SampleInfo::valid_data>`
 .. |SampleInfo::sample_identity-api| replace:: :cpp:member:`sample_identity<eprosima::fastdds::dds::SampleInfo::sample_identity>`
 .. |SampleInfo::related_sample_identity-api| replace:: :cpp:member:`related_sample_identity<eprosima::fastdds::dds::SampleInfo::related_sample_identity>`
+.. |SampleInfo::has_more_replies-api| replace:: :cpp:member:`has_more_replies<eprosima::fastdds::dds::SampleInfo::has_more_replies>`
 
 .. |Entity-api| replace:: :cpp:class:`Entity<eprosima::fastdds::dds::Entity>`
 .. |Entity::get_instance_handle-api| replace:: :cpp:func:`get_instance_handle()<eprosima::fastdds::dds::Entity::get_instance_handle>`
 .. |Entity::get_status_changes-api| replace:: :cpp:func:`get_status_changes()<eprosima::fastdds::dds::Entity::get_status_changes>`
+
+.. |Replier-api| replace:: :cpp:class:`Replier<eprosima::fastdds::dds::rpc::Replier>`
+.. |Replier::get_replier_writer-api| replace:: :cpp:func:`Replier::get_replier_writer()<eprosima::fastdds::dds::Replier::get_replier_writer>`
+.. |Replier::get_replier_reader-api| replace:: :cpp:func:`Replier::get_replier_reader()<eprosima::fastdds::dds::Replier::get_replier_reader>`
+.. |Replier::get_service_name-api| replace:: :cpp:func:`Replier::get_service_name()<eprosima::fastdds::dds::rpc::Replier::get_service_name>`
+.. |Replier::take_request-api| replace:: :cpp:func:`Replier::take_request()<eprosima::fastdds::dds::rpc::Replier::take_request>`
+.. |Replier::send_reply-api| replace:: :cpp:func:`Replier::send_reply()<eprosima::fastdds::dds::rpc::Replier::send_reply>`
+.. |Replier::return_loan-api| replace:: :cpp:func:`Replier::return_loan()<eprosima::fastdds::dds::rpc::Replier::return_loan>`
+.. |ReplierQos-api| replace:: :cpp:class:`ReplierQos<eprosima::fastdds::dds::ReplierQos>`
+.. |Requester-api| replace:: :cpp:class:`Requester<eprosima::fastdds::dds::rpc::Requester>`
+.. |Requester::get_service_name-api| replace:: :cpp:func:`Requester::get_service_name()<eprosima::fastdds::dds::rpc::Requester::get_service_name>`
+.. |Requester::get_requester_writer-api| replace:: :cpp:func:`Requester::get_requester_writer()<eprosima::fastdds::dds::Requester::get_requester_writer>`
+.. |Requester::get_requester_reader-api| replace:: :cpp:func:`Requester::get_requester_reader()<eprosima::fastdds::dds::Requester::get_requester_reader>`
+.. |Requester::take_reply-api| replace:: :cpp:func:`Requester::take_reply()<eprosima::fastdds::dds::rpc::Requester::take_reply>`
+.. |Requester::send_request-api| replace:: :cpp:func:`Requester::send_request()<eprosima::fastdds::dds::rpc::Requester::send_request>`
+.. |Requester::return_loan-api| replace:: :cpp:func:`Requester::return_loan()<eprosima::fastdds::dds::rpc::Requester::return_loan>`
+.. |RequesterQos-api| replace:: :cpp:class:`RequesterQos<eprosima::fastdds::dds::RequesterQos>`
+.. |Service-api| replace:: :cpp:class:`Service<eprosima::fastdds::dds::rpc::Service>`
+.. |Service::get_service_name-api| replace:: :cpp:func:`get_service_name()<eprosima::fastdds::dds::rpc::Service::get_service_name>`
+.. |Service::get_service_type_name-api| replace:: :cpp:func:`get_service_type_name()<eprosima::fastdds::dds::rpc::Service::get_service_type_name>`
+.. |RPCEntity-api| replace:: :cpp:class:`RPCEntity<eprosima::fastdds::dds::rpc::RPCEntity>`
+.. |RPCEntity::enable-api| replace:: :cpp:func:`enable()<eprosima::fastdds::dds::rpc::RPCEntity::enable>`
+.. |RPCEntity::close-api| replace:: :cpp:func:`close()<eprosima::fastdds::dds::rpc::RPCEntity::close>`
+.. |RPCEntity::is_enabled-api| replace:: :cpp:func:`is_enabled()<eprosima::fastdds::dds::rpc::RPCEntity::is_enabled>`
+.. |RequestInfo-api| replace:: :cpp:type:`RequestInfo<eprosima::fastdds::dds::rpc::RequestInfo>`
+.. |ServiceTypeSupport-api| replace:: :cpp:class:`ServiceTypeSupport<eprosima::fastdds::dds::rpc::ServiceTypeSupport>`
+.. |RpcRequest-api| replace:: :cpp:class:`RpcRequest<eprosima::fastdds::dds::rpc::RpcRequest>`
+.. |RpcRequest::get_client_id-api| replace:: :cpp:func:`get_client_id()<eprosima::fastdds::dds::rpc::RpcRequest::get_client_id>`
+.. |RpcRequest::get_client_locators-api| replace:: :cpp:func:`get_client_locators()<eprosima::fastdds::dds::rpc::RpcRequest::get_client_locators>`
+.. |RpcServer-api| replace:: :cpp:class:`RpcServer<eprosima::fastdds::dds::rpc::RpcServer>`
+.. |RpcServer::run-api| replace:: :cpp:func:`run()<eprosima::fastdds::dds::rpc::RpcServer::run>`
+.. |RpcServer::stop-api| replace:: :cpp:func:`stop()<eprosima::fastdds::dds::rpc::RpcServer::stop>`
+.. |RpcServer::execute_request-api| replace:: :cpp:func:`execute_request()<eprosima::fastdds::dds::rpc::RpcServer::execute_request>`
+.. |RpcServerSchedulingStrategy-api| replace:: :cpp:class:`RpcServerSchedulingStrategy<eprosima::fastdds::dds::rpc::RpcServerSchedulingStrategy>`
+.. |RpcServerSchedulingStrategy::schedule_request-api| replace:: :cpp:func:`schedule_request()<eprosima::fastdds::dds::rpc::RpcServerSchedulingStrategy::schedule_request>`
+.. |RpcServerSchedulingStrategy::server_stopped-api| replace:: :cpp:func:`server_stopped()<eprosima::fastdds::dds::rpc::RpcServerSchedulingStrategy::server_stopped>`
+.. |RpcServerWriter-api| replace:: :cpp:class:`RpcServerWriter<eprosima::fastdds::dds::rpc::RpcServerWriter>`
+.. |RpcServerWriter::write-api| replace:: :cpp:func:`write()<eprosima::fastdds::dds::rpc::RpcServerWriter::write>`
+.. |RpcClientReader-api| replace:: :cpp:class:`RpcClientReader<eprosima::fastdds::dds::rpc::RpcClientReader>`
+.. |RpcClientReader::read-api| replace:: :cpp:func:`read()<eprosima::fastdds::dds::rpc::RpcClientReader::read>`
+.. |RpcClientReader::cancel-api| replace:: :cpp:func:`cancel()<eprosima::fastdds::dds::rpc::RpcClientReader::cancel>`
+.. |RpcClientWriter-api| replace:: :cpp:class:`RpcClientWriter<eprosima::fastdds::dds::rpc::RpcClientWriter>`
+.. |RpcClientWriter::write-api| replace:: :cpp:func:`write()<eprosima::fastdds::dds::rpc::RpcClientWriter::write>`
+.. |RpcClientWriter::finish-api| replace:: :cpp:func:`finish()<eprosima::fastdds::dds::rpc::RpcClientWriter::finish>`
+.. |RpcServerReader-api| replace:: :cpp:class:`RpcServerReader<eprosima::fastdds::dds::rpc::RpcServerReader>`
+.. |RpcServerReader::read-api| replace:: :cpp:func:`read()<eprosima::fastdds::dds::rpc::RpcServerReader::read>`
+.. |RpcStatusCode-api| replace:: :cpp:type:`RpcStatusCode<eprosima::fastdds::dds::rpc::RpcStatusCode>`
+.. |RemoteInvalidArgumentError-api| replace:: :cpp:class:`RemoteInvalidArgumentError<eprosima::fastdds::dds::rpc::RemoteInvalidArgumentError>`
+.. |RemoteOutOfResourcesError-api| replace:: :cpp:class:`RemoteOutOfResourcesError<eprosima::fastdds::dds::rpc::RemoteOutOfResourcesError>`
+.. |RemoteUnknownExceptionError-api| replace:: :cpp:class:`RemoteUnknownExceptionError<eprosima::fastdds::dds::rpc::RemoteUnknownExceptionError>`
+.. |RemoteUnknownOperationError-api| replace:: :cpp:class:`RemoteUnknownOperationError<eprosima::fastdds::dds::rpc::RemoteUnknownOperationError>`
+.. |RemoteUnsupportedError-api| replace:: :cpp:class:`RemoteUnsupportedError<eprosima::fastdds::dds::rpc::RemoteUnsupportedError>`
+.. |RpcBrokenPipeException-api| replace:: :cpp:class:`RpcBrokenPipeException<eprosima::fastdds::dds::rpc::RpcBrokenPipeException>`
+.. |RpcException-api| replace:: :cpp:class:`RpcException<eprosima::fastdds::dds::rpc::RpcException>`
+.. |RpcFeedCancelledException-api| replace:: :cpp:class:`RpcFeedCancelledException<eprosima::fastdds::dds::rpc::RpcFeedCancelledException>`
+.. |RpcOperationError-api| replace:: :cpp:class:`RpcOperationError<eprosima::fastdds::dds::rpc::RpcOperationError>`
+.. |RpcRemoteException-api| replace:: :cpp:class:`RpcRemoteException<eprosima::fastdds::dds::rpc::RpcRemoteException>`
+.. |RpcTimeoutException-api| replace:: :cpp:class:`RpcTimeoutException<eprosima::fastdds::dds::rpc::RpcTimeoutException>`
+.. |RemoteExceptionCode_t-api| replace:: :cpp:enum:`RemoteExceptionCode_t<eprosima::fastdds::dds::rpc::RemoteExceptionCode_t>`
 
 .. |DestinationOrderQosPolicyKind-api| replace:: :cpp:enum:`DestinationOrderQosPolicyKind<eprosima::fastdds::dds::DestinationOrderQosPolicyKind>`
 .. |BY_RECEPTION_TIMESTAMP| replace:: :cpp:enumerator:`BY_RECEPTION_TIMESTAMP_DESTINATIONORDER_QOS<eprosima::fastdds::dds::DestinationOrderQosPolicyKind::BY_RECEPTION_TIMESTAMP_DESTINATIONORDER_QOS>`
@@ -699,6 +793,9 @@
 .. |SharedMemTransportDescriptor::rtps_dump_file-api| replace:: :cpp:func:`rtps_dump_file()<eprosima::fastdds::rtps::SharedMemTransportDescriptor::rtps_dump_file>`
 .. |SharedMemTransportDescriptor::dump_thread-api| replace:: :cpp:func:`dump_thread()<eprosima::fastdds::rtps::SharedMemTransportDescriptor::dump_thread>`
 
+.. |PayloadCompressionTransportDescriptor-api| replace:: :cpp:struct:`PayloadCompressionTransportDescriptor<eprosima::fastdds::rtps::PayloadCompressionTransportDescriptor>`
+.. |HeaderReductionTransportDescriptor-api| replace:: :cpp:struct:`HeaderReductionTransportDescriptor<eprosima::fastdds::rtps::HeaderReductionTransportDescriptor>`
+
 .. |WireProtocolConfigQos-api| replace:: :cpp:class:`WireProtocolConfigQos<eprosima::fastdds::dds::WireProtocolConfigQos>`
 .. |WireProtocolConfigQos::prefix-api| replace:: :cpp:member:`prefix<eprosima::fastdds::dds::WireProtocolConfigQos::prefix>`
 .. |WireProtocolConfigQos::participant_id-api| replace:: :cpp:member:`participant_id<eprosima::fastdds::dds::WireProtocolConfigQos::participant_id>`
@@ -708,6 +805,7 @@
 .. |WireProtocolConfigQos::default_multicast_locator_list-api| replace:: :cpp:member:`default_multicast_locator_list<eprosima::fastdds::dds::WireProtocolConfigQos::default_multicast_locator_list>`
 .. |WireProtocolConfigQos::default_external_unicast_locators-api| replace:: :cpp:member:`default_external_unicast_locators<eprosima::fastdds::dds::WireProtocolConfigQos::default_external_unicast_locators>`
 .. |WireProtocolConfigQos::ignore_non_matching_locators-api| replace:: :cpp:member:`ignore_non_matching_locators<eprosima::fastdds::dds::WireProtocolConfigQos::ignore_non_matching_locators>`
+.. |WireProtocolConfigQos::easy_mode-api| replace:: :cpp:func:`easy_mode()<eprosima::fastdds::dds::WireProtocolConfigQos::easy_mode>`
 
 .. |PortParameters-api| replace:: :cpp:class:`PortParameters<eprosima::fastdds::rtps::PortParameters>`
 .. |PortParameters::domainIDGain-qos-api| replace:: :cpp:member:`wire_protocol().port.domainIDGain<eprosima::fastdds::rtps::PortParameters::domainIDGain>`
@@ -717,6 +815,7 @@
 .. |PortParameters::offsetd1-qos-api| replace:: :cpp:member:`wire_protocol().port.offsetd1<eprosima::fastdds::rtps::PortParameters::offsetd1>`
 .. |PortParameters::offsetd2-qos-api| replace:: :cpp:member:`wire_protocol().port.offsetd2<eprosima::fastdds::rtps::PortParameters::offsetd2>`
 .. |PortParameters::offsetd3-qos-api| replace:: :cpp:member:`wire_protocol().port.offsetd3<eprosima::fastdds::rtps::PortParameters::offsetd3>`
+.. |PortParameters::offsetd4-qos-api| replace:: :cpp:member:`wire_protocol().port.offsetd4<eprosima::fastdds::rtps::PortParameters::offsetd4>`
 
 .. |WriterResourceLimitsQos-api| replace:: :cpp:class:`WriterResourceLimitsQos<eprosima::fastdds::dds::WriterResourceLimitsQos>`
 .. |WriterResourceLimitsQos::matched_subscriber_allocation-api| replace:: :cpp:member:`matched_subscriber_allocation<eprosima::fastdds::dds::WriterResourceLimitsQos::matched_subscriber_allocation>`
@@ -837,11 +936,12 @@
 
 .. |RTPSWriters-api| replace:: :cpp:class:`RTPSWriters <eprosima::fastdds::rtps::RTPSWriter>`
 .. |WriterAttributes-api| replace:: :cpp:class:`WriterAttributes<eprosima::fastdds::rtps::WriterAttributes>`
-.. |RTPSWriters::new_change-api| replace:: :cpp:func:`RTPSWriter::new_change() <eprosima::fastdds::rtps::RTPSWriter::new_change>`
+.. |RTPSWriters::wait_for_all_acked-api| replace:: :cpp:func:`RTPSWriter::wait_for_all_acked <eprosima::fastdds::rtps::RTPSWriter::wait_for_all_acked>`
 
 .. |History-api| replace:: :cpp:class:`History <eprosima::fastdds::rtps::History>`
 .. |WriterHistory-api| replace:: :cpp:class:`WriterHistory <eprosima::fastdds::rtps::WriterHistory>`
 .. |WriterHistory::add_change-api| replace:: :cpp:func:`WriterHistory::add_change() <eprosima::fastdds::rtps::WriterHistory::add_change>`
+.. |WriterHistory::create_change-api| replace:: :cpp:func:`WriterHistory::create_change() <CacheChange_t* eprosima::fastdds::rtps::WriterHistory::create_change(uint32_t payload_size, ChangeKind_t change_kind, InstanceHandle_t handle)>`
 .. |ReaderHistory-api| replace:: :cpp:class:`ReaderHistory <eprosima::fastdds::rtps::ReaderHistory>`
 .. |CacheChange_t-api| replace:: :cpp:class:`CacheChange_t<eprosima::fastdds::rtps::CacheChange_t>`
 
@@ -885,6 +985,7 @@
 .. |EntityId_t-api| replace:: :cpp:struct:`EntityId_t<eprosima::fastdds::rtps::EntityId_t>`
 .. |InitialAnnouncementConfig-api| replace:: :cpp:struct:`InitialAnnouncementConfig<eprosima::fastdds::rtps::InitialAnnouncementConfig>`
 .. |InitialAnnouncementConfig::period-api| replace:: :cpp:member:`period<eprosima::fastdds::rtps::InitialAnnouncementConfig::period>`
+.. |InitialAnnouncementConfig::count-api| replace:: :cpp:member:`count<eprosima::fastdds::rtps::InitialAnnouncementConfig::count>`
 .. |BuiltinAttributes-api| replace:: :cpp:class:`BuiltinAttributes<eprosima::fastdds::rtps::BuiltinAttributes>`
 .. |BuiltinAttributes::discovery_config-api| replace:: :cpp:member:`discovery_config<eprosima::fastdds::rtps::BuiltinAttributes::discovery_config>`
 .. |BuiltinAttributes::metatrafficUnicastLocatorList-api| replace:: :cpp:member:`metatrafficUnicastLocatorList<eprosima::fastdds::rtps::BuiltinAttributes::metatrafficUnicastLocatorList>`
@@ -980,11 +1081,16 @@
 .. |DynamicTypeBuilderFactory::create_sequence_type| replace:: :cpp:func:`DynamicTypeBuilderFactory::create_sequence_type <eprosima::fastdds::dds::DynamicTypeBuilderFactory::create_sequence_type>`
 .. |DynamicTypeBuilderFactory::create_string_type| replace:: :cpp:func:`DynamicTypeBuilderFactory::create_string_type <eprosima::fastdds::dds::DynamicTypeBuilderFactory::create_string_type>`
 .. |DynamicTypeBuilderFactory::create_type_w_type_object| replace:: :cpp:func:`DynamicTypeBuilderFactory::create_type_w_type_object <eprosima::fastdds::dds::DynamicTypeBuilderFactory::create_type_w_type_object>`
+.. |DynamicTypeBuilderFactory::create_type_w_uri| replace:: :cpp:func:`DynamicTypeBuilderFactory::create_type_w_uri <eprosima::fastdds::dds::DynamicTypeBuilderFactory::create_type_w_uri>`
 .. |DynamicTypeBuilderFactory::create_type| replace:: :cpp:func:`DynamicTypeBuilderFactory::create_type <eprosima::fastdds::dds::DynamicTypeBuilderFactory::create_type>`
 .. |DynamicTypeBuilderFactory::create_wstring_type| replace:: :cpp:func:`DynamicTypeBuilderFactory::create_wstring_type <eprosima::fastdds::dds::DynamicTypeBuilderFactory::create_wstring_type>`
+.. |DynamicTypeBuilderFactory::for_each_type_w_uri| replace:: :cpp:func:`DynamicTypeBuilderFactory::for_each_type_w_uri <eprosima::fastdds::dds::DynamicTypeBuilderFactory::for_each_type_w_uri>`
 .. |DynamicTypeBuilderFactory::get_primitive_type| replace:: :cpp:func:`DynamicTypeBuilderFactory::get_primitive_type <eprosima::fastdds::dds::DynamicTypeBuilderFactory::get_primitive_type>`
+.. |DynamicTypeBuilderFactory::set_preprocessor| replace:: :cpp:func:`DynamicTypeBuilderFactory::set_preprocessor <eprosima::fastdds::dds::DynamicTypeBuilderFactory::set_preprocessor>`
+
 .. |DynamicTypeMember-api| replace:: :cpp:class:`DynamicTypeMember <eprosima::fastdds::dds::DynamicTypeMember>`
 .. |MemberDescriptor-api| replace:: :cpp:class:`MemberDescriptor <eprosima::fastdds::dds::MemberDescriptor>`
+.. |MemberDescriptor::type-api| replace:: :cpp:func:`MemberDescriptor::type()<eprosima::fastdds::dds::MemberDescriptor::type()>`
 .. |TypeDescriptor-api| replace:: :cpp:class:`TypeDescriptor <eprosima::fastdds::dds::TypeDescriptor>`
 .. |VerbatimTextDescriptor-api| replace:: :cpp:class:`VerbatimTextDescriptor <eprosima::fastdds::dds::VerbatimTextDescriptor>`
 
@@ -993,6 +1099,7 @@
 .. |TypeObjectUtils-api| replace:: :cpp:class:`TypeObjectUtils <eprosima::fastdds::dds::xtypes::TypeObjectUtils>`
 .. |XTypesUtils-idl_serialize-api| replace:: :cpp:func:`idl_serialize <eprosima::fastdds::dds::idl_serialize>`
 .. |XTypesUtils-json_serialize-api| replace:: :cpp:func:`json_serialize <eprosima::fastdds::dds::json_serialize>`
+.. |XTypesUtils-json_deserialize-api| replace:: :cpp:func:`json_deserialize <eprosima::fastdds::dds::json_deserialize>`
 .. }}}
 
 .. |DomainParticipant::set_listener-api| replace:: :cpp:func:`DomainParticipant::set_listener()<eprosima::fastdds::dds::DomainParticipant::set_listener>`
@@ -1036,6 +1143,9 @@
 .. |WriteParams-api| replace:: :cpp:class:`WriteParams <eprosima::fastdds::rtps::WriteParams>`
 .. |WriteParams-sample_identity-api| replace:: :cpp:func:`sample_identity() <eprosima::fastdds::rtps::WriteParams::sample_identity>`
 .. |WriteParams-related_sample_identity-api| replace:: :cpp:func:`related_sample_identity() <eprosima::fastdds::rtps::WriteParams::related_sample_identity>`
+.. |WriteParams-has_more_replies-api| replace:: :cpp:func:`has_more_replies() <eprosima::fastdds::rtps::WriteParams::has_more_replies>`
+.. |WriteParams-user_write_data-api| replace:: :cpp:func:`user_write_data() <eprosima::fastdds::rtps::WriteParams::user_write_data>`
+.. |WriteParams-UserWriteData-api| replace:: :cpp:struct:`UserWriteData <eprosima::fastdds::rtps::WriteParams::UserWriteData>`
 
 .. |ThreadSettings::scheduling_policy-api| replace:: :cpp:member:`scheduling_policy<eprosima::fastdds::rtps::ThreadSettings::scheduling_policy>`
 .. |ThreadSettings::priority-api| replace:: :cpp:member:`priority<eprosima::fastdds::rtps::ThreadSettings::priority>`

@@ -1,0 +1,52 @@
+`Version 3.4.0 <https://fast-dds.docs.eprosima.com/en/v3.4.0/index.html>`_
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+This minor release includes the following **features**:
+
+* *Fast DDS Pro* features:
+    * Automatic detection of changes in IP addresses and network interfaces (:ref:`IP mobility <ip-mobility>`)
+    * Support for :ref:`DDS-TSN <use-case-dds-tsn>`
+    * :ref:`Low Bandwidth Transports <low_bandwidth_transports>`
+* Pass value of `TransportPriorityQosPolicy` to transport layer
+* Add field ``original_writer_info`` to ``WriteParams`` and ``SampleInfo``
+* Support annotated types and builtin annotations in IDL Parser
+* Iterate over declared types processed with IDL Parser
+* Support aliases in :ref:`Content Filtered Topic <dds_layer_topic_contentFilteredTopic>`
+
+This minor release includes the following **improvements**:
+
+* :ref:`Linux binaries <linux_binaries>` installation with ``.deb`` packages
+* Update to Fast DDS Gen 4.2.0
+* Return sample notifying changes on instance state
+* Performance improvements with large history caches
+* Fix doxygen documentation typos
+* Change ``eprosima::fastdds::rtps::octet`` to be ``uint8_t`` according to C++11 standard
+* Add ``tcp_negotiation_timeout`` to XML Schema
+* Some improvements on python generated code
+
+This minor release includes the following **fixes**:
+
+* Fix memory consumption issues in PKIDH plugin
+* Fix tests build with strict C++11
+* Fix socket buffer size handling
+* Avoid setting thread affinity of 0 in Mac
+* Some RPC related fixes
+* Fix latency & throughput tests names
+* Allow empty partition list to match against ``"*"``
+* Fix duplicated transport when using specific XML with CLI
+* Fix topic argument in Discovery Server example
+* Fix type code generation for IDL files with no structs
+* Some TCP transport fixes
+* Remote writers considered volatile by default
+
+This minor release includes the following **CI management updates**:
+
+* Add ``--quiet`` to ``git submodule`` invocations in CI
+* Split Mac CI build and testing phases
+* Update fallback branches to use environment variables
+
+.. important::
+
+    When upgrading to version 3.4.0 it is **highly recommended** to regenerate generated source from IDL files
+    using at least `Fast DDS-Gen v4.2.0 <https://github.com/eProsima/Fast-DDS-Gen/releases/tag/v4.2.0>`_.
+    But it is advisable to regenerate them using the latest patch version of ``Fast DDS-Gen v4.2.x``.

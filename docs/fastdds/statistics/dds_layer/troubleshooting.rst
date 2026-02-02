@@ -31,9 +31,9 @@ With this configuration, the following may happen:
 The easiest fix to overcome this situation is to simply increase the History Depth of the DataWriter to create Some
 buffer to answer to requests:
 
-.. tabs::
+.. tab-set::
 
-  .. tab:: Generic profile
+  .. tab-item:: Generic profile
 
         .. literalinclude:: /../code/XMLTester.xml
             :language: xml
@@ -41,13 +41,19 @@ buffer to answer to requests:
             :end-before: <!--><-->
             :lines: 2-4, 6-53, 55-56
 
-  .. tab:: Specific profile
+  .. tab-item:: Specific profile
 
         .. literalinclude:: /../code/XMLTester.xml
             :language: xml
             :start-after: <!-->FASTDDS_STATISTICS_TROUBLESHOOTING_SINGLE_TOPIC<-->
             :end-before: <!--><-->
             :lines: 2-4, 6-53, 55-56
+
+        .. warning::
+
+            Mind that the specific profile only targets to the DataWriter which profile name matches with the alias of
+            the corresponding statistics topic.
+            Check the complete list of topics and their aliases in the :ref:`statistics_topic_names` section.
 
 .. note::
     Increasing the History Depth of the statistics DataWriters has an impact on memory usage, as sufficient space is

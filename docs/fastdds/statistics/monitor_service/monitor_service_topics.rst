@@ -28,33 +28,42 @@ The possible values are described in the following table:
 
 .. _monitoring_statuses:
 
-+---------+-----------------------------+-----------------------------------------+
-|**Value**|          **Name**           | **Description**                         |
-+---------+-----------------------------+-----------------------------------------+
-|  0      |     ``ProxyInfo``           | Collection of Parameters describing the |
-|         |                             | ``Proxy Data`` of that entity           |
-+---------+-----------------------------+-----------------------------------------+
-|  1      |     ``ConnectionList``      | List of connections that this entity is |
-|         |                             | using with its matched remote entities. |
-+---------+-----------------------------+-----------------------------------------+
-|  2      |  ``IncompatibleQoSInfo``    | Status of the Incompatible QoS          |
-|         |                             | of that entity.                         |
-+---------+-----------------------------+-----------------------------------------+
-|  3      | ``InconsistentTopicInfo``   | Status of Inconsistent topics that the  |
-|         |                             | topic of that entity has.               |
-+---------+-----------------------------+-----------------------------------------+
-|  4      |   ``LivelinessLostInfo``    | Tracks the status of the number of times|
-|         |                             | a writer lost liveliness.               |
-+---------+-----------------------------+-----------------------------------------+
-|  5      |   ``LivelinessChangedInfo`` | Tracks the status of the number of times|
-|         |                             | the liveliness changed in a reader.     |
-+---------+-----------------------------+-----------------------------------------+
-|  6      |  ``DeadlineMissedInfo``     | The Status of the number of deadlines   |
-|         |                             | missed of a sample for that entity.     |
-+---------+-----------------------------+-----------------------------------------+
-|  7      |     ``SampleLostInfo``      | Tracks the status of the number of times|
-|         |                             | this entity lost samples.               |
-+---------+-----------------------------+-----------------------------------------+
++---------+-----------------------------+------------------------------------------------------+
+|**Value**|          **Name**           | **Description**                                      |
++---------+-----------------------------+------------------------------------------------------+
+|  0      |     ``ProxyInfo``           | Collection of Parameters describing the              |
+|         |                             | ``Proxy Data`` of that entity. Contains optional qos.|
++---------+-----------------------------+------------------------------------------------------+
+|  1      |     ``ConnectionList``      | List of connections that this entity is              |
+|         |                             | using with its matched remote entities.              |
++---------+-----------------------------+------------------------------------------------------+
+|  2      |  ``IncompatibleQoSInfo``    | Status of the Incompatible QoS                       |
+|         |                             | of that entity.                                      |
++---------+-----------------------------+------------------------------------------------------+
+|  3      | ``InconsistentTopicInfo``   | Status of Inconsistent topics that the               |
+|         |                             | topic of that entity has.                            |
++---------+-----------------------------+------------------------------------------------------+
+|  4      |   ``LivelinessLostInfo``    | Tracks the status of the number of times             |
+|         |                             | a writer lost liveliness.                            |
++---------+-----------------------------+------------------------------------------------------+
+|  5      |   ``LivelinessChangedInfo`` | Tracks the status of the number of times             |
+|         |                             | the liveliness changed in a reader.                  |
++---------+-----------------------------+------------------------------------------------------+
+|  6      |  ``DeadlineMissedInfo``     | The Status of the number of deadlines                |
+|         |                             | missed of a sample for that entity.                  |
++---------+-----------------------------+------------------------------------------------------+
+|  7      |     ``SampleLostInfo``      | Tracks the status of the number of times             |
+|         |                             | this entity lost samples.                            |
++---------+-----------------------------+------------------------------------------------------+
+|  8      | ``ExtendedIncompatibleQoS`` | Stores the list of remote incompatible ``GUIDs``     |
+|         |                             | and QoS policies for each local entity guid.         |
++---------+-----------------------------+------------------------------------------------------+
+
+.. note::
+
+    The ``ProxyInfo`` within the ``Monitor Service Status Topic``
+    always includes the :ref:`optional qos <property_serialize_optional_qos>` independently of the
+    ``fastdds.serialize_optional_qos`` property.
 
 .. note::
 
@@ -124,32 +133,46 @@ The actual field names for the different values are described below:
 
 * *sample_lost_status:* The number of samples that entity lost.
 
+* *extended_incompatible_qos_status:* Details a list of remote GUIDs with incompatible QoS with
+  a local entity and the particular |QosPolicyId_t-api| of those incompatible policies.
+
+.. code-block:: bash
+
+    ExtendedIncompatibleQoSStatus_s
+      GUID remote_guid
+      sequence<unsigned long> current_incompatible_policies
+
+    ExtendedIncompatibleQoSStatusSeq = sequence<ExtendedIncompatibleQoSStatus>
+
 The following table depicts the relation between each of the ``StatusKind`` values and the ``Data`` field:
 
-+---------------------+---------------------------+---------------------------+---------------------------+
-|**StatusKind Value** |     **StatusKind Name**   | **Data field Name**       | **IDL Data field Type**   |
-+---------------------+---------------------------+---------------------------+---------------------------+
-|  0                  |     ``ProxyInfo``         | entity_proxy              | sequence<octet>           |
-|                     |                           |                           |                           |
-+---------------------+---------------------------+---------------------------+---------------------------+
-|  1                  |     ``ConnectionList``    | connection_list           | sequence<Connection>      |
-|                     |                           |                           |                           |
-+---------------------+---------------------------+---------------------------+---------------------------+
-|  2                  |  ``IncompatibleQoSInfo``  | incompatible_qos_status   | IncompatibleQoSStatus     |
-|                     |                           |                           |                           |
-+---------------------+---------------------------+---------------------------+---------------------------+
-|  3                  | ``InconsistentTopicInfo`` | inconsistent_topic_status | InconsistentTopicStatus   |
-|                     |                           |                           |                           |
-+---------------------+---------------------------+---------------------------+---------------------------+
-|  4                  |   ``LivelinessLostInfo``  | liveliness_lost_status    | LivelinessLostStatus      |
-|                     |                           |                           |                           |
-+---------------------+---------------------------+---------------------------+---------------------------+
-|  5                  |   ``LivelinessLostInfo``  | liveliness_changed_status | LivelinessChangedStatus   |
-|                     |                           |                           |                           |
-+---------------------+---------------------------+---------------------------+---------------------------+
-|  6                  |  ``DeadlineMissedInfo``   | deadline_missed_status    | DeadlineMissedStatus      |
-|                     |                           |                           |                           |
-+---------------------+---------------------------+---------------------------+---------------------------+
-|  7                  |     ``SampleLostInfo``    | sample_lost_status        | SampleLostStatus          |
-|                     |                           |                           |                           |
-+---------------------+---------------------------+---------------------------+---------------------------+
++--------------+---------------------------+----------------------------------+----------------------------------+
+|**StatusKind**|     **StatusKind Name**   | **Data field Name**              | **IDL Data field Type**          |
++--------------+---------------------------+----------------------------------+----------------------------------+
+|  0           |     ``ProxyInfo``         | entity_proxy                     | sequence<octet>                  |
+|              |                           |                                  |                                  |
++--------------+---------------------------+----------------------------------+----------------------------------+
+|  1           |     ``ConnectionList``    | connection_list                  | sequence<Connection>             |
+|              |                           |                                  |                                  |
++--------------+---------------------------+----------------------------------+----------------------------------+
+|  2           |  ``IncompatibleQoSInfo``  | incompatible_qos_status          | IncompatibleQoSStatus            |
+|              |                           |                                  |                                  |
++--------------+---------------------------+----------------------------------+----------------------------------+
+|  3           | ``InconsistentTopicInfo`` | inconsistent_topic_status        | InconsistentTopicStatus          |
+|              |                           |                                  |                                  |
++--------------+---------------------------+----------------------------------+----------------------------------+
+|  4           |   ``LivelinessLostInfo``  | liveliness_lost_status           | LivelinessLostStatus             |
+|              |                           |                                  |                                  |
++--------------+---------------------------+----------------------------------+----------------------------------+
+|  5           |   ``LivelinessLostInfo``  | liveliness_changed_status        | LivelinessChangedStatus          |
+|              |                           |                                  |                                  |
++--------------+---------------------------+----------------------------------+----------------------------------+
+|  6           |  ``DeadlineMissedInfo``   | deadline_missed_status           | DeadlineMissedStatus             |
+|              |                           |                                  |                                  |
++--------------+---------------------------+----------------------------------+----------------------------------+
+|  7           |     ``SampleLostInfo``    | sample_lost_status               | SampleLostStatus                 |
+|              |                           |                                  |                                  |
++--------------+---------------------------+----------------------------------+----------------------------------+
+|  8           |``ExtendedIncompatibleQoS``| extended_incompatible_qos_status | ExtendedIncompatibleQoSStatusSeq |
+|              |                           |                                  |                                  |
++--------------+---------------------------+----------------------------------+----------------------------------+

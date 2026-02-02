@@ -12,6 +12,60 @@ together with Fast DDS.
 This section provides information about the required dependencies for building Fast DDS, as well as about the versions
 of the eProsima software products related to Fast DDS.
 
+.. _currently_supported_versions:
+
+Currently supported versions
+----------------------------
+The following table shows the currently supported versions of Fast DDS and their corresponding release and EOL dates.
+
+.. list-table::
+    :header-rows: 1
+
+    * - Version
+      - Version Branch
+      - Latest Release
+      - Release date
+      - End of Standard Support date
+      - EOL date
+    * - 3.5
+      - `3.5.x <https://github.com/eProsima/Fast-DDS/tree/3.4.x>`__
+      - Not yet released
+      - March 2026
+      - March 2027 (*)
+      - March 2027 (*)
+    * - 3.4
+      - `3.4.x <https://github.com/eProsima/Fast-DDS/tree/3.4.x>`__
+      - `v3.4.1 <https://github.com/eProsima/Fast-DDS/releases/tag/v3.4.1>`__
+      - October 2025
+      - April 2026
+      - April 2026
+    * - 3.3
+      - `3.3.x <https://github.com/eProsima/Fast-DDS/tree/3.3.x>`__
+      - `v3.3.0 <https://github.com/eProsima/Fast-DDS/releases/tag/v3.3.0>`__
+      - July 2025
+      - January 2026
+      - January 2026
+    * - 3.2
+      - `3.2.x <https://github.com/eProsima/Fast-DDS/tree/3.2.x>`__ (LTS)
+      - `v3.2.3 <https://github.com/eProsima/Fast-DDS/releases/tag/v3.2.3>`__
+      - March 2025
+      - March 2026 (*)
+      - March 2026 (*)
+    * - 2.14
+      - `2.14.x <https://github.com/eProsima/Fast-DDS/tree/2.14.x>`__
+      - `v2.14.5 <https://github.com/eProsima/Fast-DDS/releases/tag/v2.14.5>`__
+      - March 2024
+      - March 2025 (*)
+      - March 2025 (*)
+    * - 2.6 (maintenance)
+      - `2.6.x <https://github.com/eProsima/Fast-DDS/tree/2.6.x>`__
+      - `v2.6.11 <https://github.com/eProsima/Fast-DDS/releases/tag/v2.6.11>`__
+      - March 2022
+      - July 2024
+      - May 2025
+
+(*): Support may be extended.
+
 .. _dependencies_compatibilities_platform_support:
 
 Platform support
@@ -47,9 +101,179 @@ Build system dependencies
 
 The following table shows the minimum version required of the Fast DDS build system dependencies.
 
-.. tabs::
+.. tab-set::
 
-    .. group-tab:: 2.14.x
+    .. tab-item:: 3.4.x
+        :sync: 3.4.x
+
+        .. list-table::
+
+            * - **CMake**
+              - 3.20
+
+        .. list-table::
+            :header-rows: 1
+
+            * - OS \ Architecture
+              - amd64
+              - amd32
+              - arm64
+            * - Ubuntu Noble (24.04)
+              - Tier 3: GCC 13.2
+              - **───**
+              - Tier 3: GCC 13.2
+            * - Ubuntu Jammy (22.04)
+              - Tier 1: GCC 11.4 |br|
+                Tier 3: Clang 15
+              - **───**
+              - Tier 1: GCC 11.4 |br|
+                Tier 3: Clang 15
+            * - MacOS Sequoia (15)
+              - Tier 1: Clang 16
+              - **───**
+              - **───**
+            * - Windows 10
+              - Tier 1: MSVC v142 (Visual Studio 2019) |br|
+                Tier 3: MSVC v141 (Visual Studio 2017)
+              - Tier 3: MSVC v142 (Visual Studio 2019) |br|
+                Tier 3: MSVC v141 (Visual Studio 2017)
+              - **───**
+            * - Windows 11
+              - Tier 3: MSVC v143 (Visual Studio 2022)
+              - Tier 3: MSVC v143 (Visual Studio 2022)
+              - **───**
+            * - Debian Buster (10)
+              - Tier 3: GCC 8
+              - **───**
+              - Tier 3: GCC 8
+            * - Android 12
+              - Tier 3: SDK 31
+              - **───**
+              - Tier 3: SDK 31
+            * - Android 13
+              - Tier 3: SDK 33
+              - **───**
+              - Tier 3: SDK 33
+            * - QNX 7.1
+              - Tier 3: QCC (over GCC 8.3)
+              - **───**
+              - Tier 3: QCC (over GCC 8.3)
+
+    .. tab-item:: 3.3.x
+        :sync: 3.3.x
+
+        .. list-table::
+
+            * - **CMake**
+              - 3.20
+
+        .. list-table::
+            :header-rows: 1
+
+            * - OS \ Architecture
+              - amd64
+              - amd32
+              - arm64
+            * - Ubuntu Noble (24.04)
+              - Tier 3: GCC 13.2
+              - **───**
+              - Tier 3: GCC 13.2
+            * - Ubuntu Jammy (22.04)
+              - Tier 1: GCC 11.4 |br|
+                Tier 3: Clang 15
+              - **───**
+              - Tier 1: GCC 11.4 |br|
+                Tier 3: Clang 15
+            * - MacOS Sequoia (15)
+              - Tier 1: Clang 16
+              - **───**
+              - **───**
+            * - Windows 10
+              - Tier 1: MSVC v142 (Visual Studio 2019) |br|
+                Tier 3: MSVC v141 (Visual Studio 2017)
+              - Tier 3: MSVC v142 (Visual Studio 2019) |br|
+                Tier 3: MSVC v141 (Visual Studio 2017)
+              - **───**
+            * - Windows 11
+              - Tier 3: MSVC v143 (Visual Studio 2022)
+              - Tier 3: MSVC v143 (Visual Studio 2022)
+              - **───**
+            * - Debian Buster (10)
+              - Tier 3: GCC 8
+              - **───**
+              - Tier 3: GCC 8
+            * - Android 12
+              - Tier 3: SDK 31
+              - **───**
+              - Tier 3: SDK 31
+            * - Android 13
+              - Tier 3: SDK 33
+              - **───**
+              - Tier 3: SDK 33
+            * - QNX 7.1
+              - Tier 3: QCC (over GCC 8.3)
+              - **───**
+              - Tier 3: QCC (over GCC 8.3)
+
+    .. tab-item:: 3.2.x
+        :sync: 3.2.x
+
+        .. list-table::
+
+            * - **CMake**
+              - 3.20
+
+        .. list-table::
+            :header-rows: 1
+
+            * - OS \ Architecture
+              - amd64
+              - amd32
+              - arm64
+            * - Ubuntu Noble (24.04)
+              - Tier 3: GCC 13.2
+              - **───**
+              - Tier 3: GCC 13.2
+            * - Ubuntu Jammy (22.04)
+              - Tier 1: GCC 11.4 |br|
+                Tier 3: Clang 15
+              - **───**
+              - Tier 1: GCC 11.4 |br|
+                Tier 3: Clang 15
+            * - MacOS Sequoia (15)
+              - Tier 1: Clang 16
+              - **───**
+              - **───**
+            * - Windows 10
+              - Tier 1: MSVC v142 (Visual Studio 2019) |br|
+                Tier 3: MSVC v141 (Visual Studio 2017)
+              - Tier 3: MSVC v142 (Visual Studio 2019) |br|
+                Tier 3: MSVC v141 (Visual Studio 2017)
+              - **───**
+            * - Windows 11
+              - Tier 1: MSVC v142 (Visual Studio 2019) |br|
+                Tier 1: MSVC v143 (Visual Studio 2022)
+              - Tier 3: MSVC v143 (Visual Studio 2022)
+              - **───**
+            * - Debian Buster (10)
+              - Tier 3: GCC 8
+              - **───**
+              - Tier 3: GCC 8
+            * - Android 12
+              - Tier 3: SDK 31
+              - **───**
+              - Tier 3: SDK 31
+            * - Android 13
+              - Tier 3: SDK 33
+              - **───**
+              - Tier 3: SDK 33
+            * - QNX 7.1
+              - Tier 3: QCC (over GCC 8.3)
+              - **───**
+              - Tier 3: QCC (over GCC 8.3)
+
+    .. tab-item:: 2.14.x
+        :sync: 2.14.x
 
         .. list-table::
 
@@ -73,8 +297,8 @@ The following table shows the minimum version required of the Fast DDS build sys
               - Tier 3: GCC 9
               - **───**
               - Tier 3: GCC 9
-            * - MacOS Mojave (10.14)
-              - Tier 1: Clang 15
+            * - MacOS Sequoia (15)
+              - Tier 1: Clang 16
               - **───**
               - **───**
             * - Windows 10
@@ -104,56 +328,8 @@ The following table shows the minimum version required of the Fast DDS build sys
               - **───**
               - Tier 3: QCC (over GCC 8.3)
 
-    .. group-tab:: 2.10.x
-
-        .. list-table::
-
-            * - **CMake**
-              - 3.16
-
-        .. list-table::
-            :header-rows: 1
-
-            * - OS \ Architecture
-              - amd64
-              - amd32
-              - arm64
-            * - Ubuntu Jammy (22.04)
-              - Tier 1: GCC 9 |br|
-                Tier 3: Clang 12
-              - **───**
-              - Tier 1: GCC 9 |br|
-                Tier 3: Clang 12
-            * - Ubuntu Focal (20.04)
-              - Tier 1: GCC 9 |br|
-                Tier 3: Clang 12
-              - **───**
-              - Tier 1: GCC 9 |br|
-                Tier 3: Clang 12
-            * - MacOS Mojave (10.14)
-              - Tier 1: Clang 12
-              - **───**
-              - **───**
-            * - Windows 10
-              - Tier 1: MSVC v142 (Visual Studio 2019) |br|
-                Tier 2: MSVC v141 (Visual Studio 2017)
-              - Tier 2: MSVC v142 (Visual Studio 2019) |br|
-                Tier 2: MSVC v141 (Visual Studio 2017)
-              - **───**
-            * - Debian Buster (10)
-              - Tier 3: GCC 8
-              - **───**
-              - Tier 3: GCC 8
-            * - Android 11
-              - Tier 3: SDK 30
-              - **───**
-              - Tier 3: SDK 30
-            * - QNX 7.1
-              - Tier 3: QCC (over GCC 8.3)
-              - **───**
-              - Tier 3: QCC (over GCC 8.3)
-
-    .. group-tab:: 2.6.x (maintenance)
+    .. tab-item:: 2.6.x (maintenance)
+        :sync: 2.6.x
 
         .. list-table::
 
@@ -173,8 +349,8 @@ The following table shows the minimum version required of the Fast DDS build sys
               - **───**
               - Tier 1: GCC 9 |br|
                 Tier 3: Clang 12
-            * - MacOS Mojave (10.14)
-              - Tier 1: Clang 12
+            * - MacOS Sequoia (15)
+              - Tier 1: Clang 16
               - **───**
               - **───**
             * - Windows 10
@@ -201,9 +377,10 @@ Library dependencies
 
 The following table shows the corresponding versions of the Fast DDS library dependencies.
 
-.. tabs::
+.. tab-set::
 
-    .. group-tab:: 2.14.x
+    .. tab-item:: 3.4.x
+        :sync: 3.4.x
 
         .. list-table::
             :header-rows: 1
@@ -211,7 +388,64 @@ The following table shows the corresponding versions of the Fast DDS library dep
             * - Product
               - Related version
             * - `Fast CDR <https://github.com/eProsima/Fast-CDR/>`__
-              - `v2.2.2 <https://github.com/eProsima/Fast-CDR/releases/tag/v2.2.2>`__
+              - `v2.3.4 <https://github.com/eProsima/Fast-CDR/releases/tag/v2.3.4>`__
+            * - `Foonathan Memory Vendor <https://github.com/eProsima/foonathan_memory_vendor/>`__
+              - `v1.3.1 <https://github.com/eProsima/foonathan_memory_vendor/releases/tag/v1.3.1>`__
+            * - `Asio <https://github.com/chriskohlhoff/asio>`__
+              - `v1.34.2 <https://github.com/chriskohlhoff/asio/tree/asio-1-34-2>`__
+            * - `TinyXML2 <https://github.com/leethomason/tinyxml2>`__
+              - `v6.0.0 <https://github.com/leethomason/tinyxml2/tree/6.0.0>`__
+            * - `OpenSSL <https://github.com/openssl/openssl>`__
+              - `v3.1.1 <https://github.com/openssl/openssl/releases/tag/openssl-3.1.1>`__
+
+    .. tab-item:: 3.3.x
+        :sync: 3.3.x
+
+        .. list-table::
+            :header-rows: 1
+
+            * - Product
+              - Related version
+            * - `Fast CDR <https://github.com/eProsima/Fast-CDR/>`__
+              - `v2.3.2 <https://github.com/eProsima/Fast-CDR/releases/tag/v2.3.2>`__
+            * - `Foonathan Memory Vendor <https://github.com/eProsima/foonathan_memory_vendor/>`__
+              - `v1.3.1 <https://github.com/eProsima/foonathan_memory_vendor/releases/tag/v1.3.1>`__
+            * - `Asio <https://github.com/chriskohlhoff/asio>`__
+              - `v1.34.2 <https://github.com/chriskohlhoff/asio/tree/asio-1-34-2>`__
+            * - `TinyXML2 <https://github.com/leethomason/tinyxml2>`__
+              - `v6.0.0 <https://github.com/leethomason/tinyxml2/tree/6.0.0>`__
+            * - `OpenSSL <https://github.com/openssl/openssl>`__
+              - `v3.1.1 <https://github.com/openssl/openssl/releases/tag/openssl-3.1.1>`__
+
+    .. tab-item:: 3.2.x
+        :sync: 3.2.x
+
+        .. list-table::
+            :header-rows: 1
+
+            * - Product
+              - Related version
+            * - `Fast CDR <https://github.com/eProsima/Fast-CDR/>`__
+              - `v2.3.2 <https://github.com/eProsima/Fast-CDR/releases/tag/v2.3.2>`__
+            * - `Foonathan Memory Vendor <https://github.com/eProsima/foonathan_memory_vendor/>`__
+              - `v1.3.1 <https://github.com/eProsima/foonathan_memory_vendor/releases/tag/v1.3.1>`__
+            * - `Asio <https://github.com/chriskohlhoff/asio>`__
+              - `v1.31.0 <https://github.com/chriskohlhoff/asio/tree/asio-1-31-0>`__
+            * - `TinyXML2 <https://github.com/leethomason/tinyxml2>`__
+              - `v6.0.0 <https://github.com/leethomason/tinyxml2/tree/6.0.0>`__
+            * - `OpenSSL <https://github.com/openssl/openssl>`__
+              - `v3.1.1 <https://github.com/openssl/openssl/releases/tag/openssl-3.1.1>`__
+
+    .. tab-item:: 2.14.x
+        :sync: 2.14.x
+
+        .. list-table::
+            :header-rows: 1
+
+            * - Product
+              - Related version
+            * - `Fast CDR <https://github.com/eProsima/Fast-CDR/>`__
+              - `v2.2.5 <https://github.com/eProsima/Fast-CDR/releases/tag/v2.2.5>`__
             * - `Foonathan Memory Vendor <https://github.com/eProsima/foonathan_memory_vendor/>`__
               - `v1.3.1 <https://github.com/eProsima/foonathan_memory_vendor/releases/tag/v1.3.1>`__
             * - `Asio <https://github.com/chriskohlhoff/asio>`__
@@ -221,25 +455,8 @@ The following table shows the corresponding versions of the Fast DDS library dep
             * - `OpenSSL <https://github.com/openssl/openssl>`__
               - `v3.1.1 <https://github.com/openssl/openssl/releases/tag/openssl-3.1.1>`__
 
-    .. group-tab:: 2.10.x
-
-        .. list-table::
-            :header-rows: 1
-
-            * - Product
-              - Related version
-            * - `Fast CDR <https://github.com/eProsima/Fast-CDR/>`__
-              - `v1.0.28 <https://github.com/eProsima/Fast-CDR/releases/tag/v1.0.28>`__
-            * - `Foonathan Memory Vendor <https://github.com/eProsima/foonathan_memory_vendor/>`__
-              - `v1.3.1 <https://github.com/eProsima/foonathan_memory_vendor/releases/tag/v1.3.1>`__
-            * - `Asio <https://github.com/chriskohlhoff/asio>`__
-              - `v1.18.1 <https://github.com/chriskohlhoff/asio/tree/asio-1-18-1>`__
-            * - `TinyXML2 <https://github.com/leethomason/tinyxml2>`__
-              - `v6.0.0 <https://github.com/leethomason/tinyxml2/tree/6.0.0>`__
-            * - `OpenSSL <https://github.com/openssl/openssl>`__
-              - `v3.1.1 <https://github.com/openssl/openssl/releases/tag/openssl-3.1.1>`__
-
-    .. group-tab:: 2.6.x (maintenance)
+    .. tab-item:: 2.6.x (maintenance)
+        :sync: 2.6.x
 
         .. list-table::
             :header-rows: 1
@@ -271,9 +488,10 @@ eProsima products compatibility
 The following table shows the compatibility between the different versions of the eProsima software products that use
 Fast DDS as the core middleware.
 
-.. tabs::
+.. tab-set::
 
-    .. group-tab:: 2.14.x
+    .. tab-item:: 3.4.x
+        :sync: 3.4.x
 
         .. list-table::
             :header-rows: 1
@@ -281,35 +499,75 @@ Fast DDS as the core middleware.
             * - Product
               - Related version
             * - `Fast DDS Gen <https://github.com/eProsima/Fast-DDS-Gen/>`__
-              - `v3.3.0 <https://github.com/eProsima/Fast-DDS-Gen/releases/tag/v3.3.0>`__
+              - `v4.2.0 <https://github.com/eProsima/Fast-DDS-Gen/releases/tag/v4.2.0>`__
             * - `Fast DDS Gen - IDL parser <https://github.com/eProsima/IDL-Parser/>`__
-              - `v3.0.0 <https://github.com/eProsima/IDL-Parser/releases/tag/v3.0.0>`__
+              - `v4.2.0 <https://github.com/eProsima/IDL-Parser/releases/tag/v4.2.0>`__
             * - `Fast DDS python <https://github.com/eProsima/Fast-DDS-python/>`__
-              - `v1.4.2 <https://github.com/eProsima/Fast-DDS-python/releases/tag/v1.4.2>`__
+              - `v2.4.1 <https://github.com/eProsima/Fast-DDS-python/releases/tag/v2.4.1>`__
             * - `Shapes Demo <https://github.com/eProsima/ShapesDemo/>`__
-              - `v2.14.3 <https://github.com/eProsima/ShapesDemo/releases/tag/v2.14.3>`__
+              - `v3.4.0 <https://github.com/eProsima/ShapesDemo/releases/tag/v3.4.0>`__
+            * - `Discovery Server <https://github.com/eProsima/Discovery-Server/>`__
+              - `v2.2.0 <https://github.com/eProsima/Discovery-Server/releases/tag/v2.2.0>`__
+
+    .. tab-item:: 3.3.x
+        :sync: 3.3.x
+
+        .. list-table::
+            :header-rows: 1
+
+            * - Product
+              - Related version
+            * - `Fast DDS Gen <https://github.com/eProsima/Fast-DDS-Gen/>`__
+              - `v4.1.0 <https://github.com/eProsima/Fast-DDS-Gen/releases/tag/v4.1.0>`__
+            * - `Fast DDS Gen - IDL parser <https://github.com/eProsima/IDL-Parser/>`__
+              - `v4.1.0 <https://github.com/eProsima/IDL-Parser/releases/tag/v4.1.0>`__
+            * - `Fast DDS python <https://github.com/eProsima/Fast-DDS-python/>`__
+              - `v2.3.0 <https://github.com/eProsima/Fast-DDS-python/releases/tag/v2.3.0>`__
+            * - `Shapes Demo <https://github.com/eProsima/ShapesDemo/>`__
+              - `v3.3.0 <https://github.com/eProsima/ShapesDemo/releases/tag/v3.3.0>`__
+            * - `Discovery Server <https://github.com/eProsima/Discovery-Server/>`__
+              - `v2.1.0 <https://github.com/eProsima/Discovery-Server/releases/tag/v2.1.0>`__
+
+    .. tab-item:: 3.2.x
+        :sync: 3.2.x
+
+        .. list-table::
+            :header-rows: 1
+
+            * - Product
+              - Related version
+            * - `Fast DDS Gen <https://github.com/eProsima/Fast-DDS-Gen/>`__
+              - `v4.0.5 <https://github.com/eProsima/Fast-DDS-Gen/releases/tag/v4.0.5>`__
+            * - `Fast DDS Gen - IDL parser <https://github.com/eProsima/IDL-Parser/>`__
+              - `v4.0.4 <https://github.com/eProsima/IDL-Parser/releases/tag/v4.0.4>`__
+            * - `Fast DDS python <https://github.com/eProsima/Fast-DDS-python/>`__
+              - `v2.2.1 <https://github.com/eProsima/Fast-DDS-python/releases/tag/v2.2.1>`__
+            * - `Shapes Demo <https://github.com/eProsima/ShapesDemo/>`__
+              - `v3.2.3 <https://github.com/eProsima/ShapesDemo/releases/tag/v3.2.3>`__
+            * - `Discovery Server <https://github.com/eProsima/Discovery-Server/>`__
+              - `v2.0.1 <https://github.com/eProsima/Discovery-Server/releases/tag/v2.0.1>`__
+
+    .. tab-item:: 2.14.x
+        :sync: 2.14.x
+
+        .. list-table::
+            :header-rows: 1
+
+            * - Product
+              - Related version
+            * - `Fast DDS Gen <https://github.com/eProsima/Fast-DDS-Gen/>`__
+              - `v3.3.1 <https://github.com/eProsima/Fast-DDS-Gen/releases/tag/v3.3.1>`__
+            * - `Fast DDS Gen - IDL parser <https://github.com/eProsima/IDL-Parser/>`__
+              - `v3.0.1 <https://github.com/eProsima/IDL-Parser/releases/tag/v3.0.1>`__
+            * - `Fast DDS python <https://github.com/eProsima/Fast-DDS-python/>`__
+              - `v1.4.3 <https://github.com/eProsima/Fast-DDS-python/releases/tag/v1.4.3>`__
+            * - `Shapes Demo <https://github.com/eProsima/ShapesDemo/>`__
+              - `v2.14.5 <https://github.com/eProsima/ShapesDemo/releases/tag/v2.14.5>`__
             * - `Discovery Server <https://github.com/eProsima/Discovery-Server/>`__
               - `v1.2.2 <https://github.com/eProsima/Discovery-Server/releases/tag/v1.2.2>`__
 
-    .. group-tab:: 2.10.x
-
-        .. list-table::
-            :header-rows: 1
-
-            * - Product
-              - Related version
-            * - `Fast DDS Gen <https://github.com/eProsima/Fast-DDS-Gen/>`__
-              - `v2.4.0 <https://github.com/eProsima/Fast-DDS-Gen/releases/tag/v2.4.0>`__
-            * - `Fast DDS Gen - IDL parser <https://github.com/eProsima/IDL-Parser/>`__
-              - `v1.5.0 <https://github.com/eProsima/IDL-Parser/releases/tag/v1.5.0>`__
-            * - `Fast DDS python <https://github.com/eProsima/Fast-DDS-python/>`__
-              - `v1.2.1 <https://github.com/eProsima/Fast-DDS-python/releases/tag/v1.2.1>`__
-            * - `Shapes Demo <https://github.com/eProsima/ShapesDemo/>`__
-              - `v2.10.4 <https://github.com/eProsima/ShapesDemo/releases/tag/v2.10.4>`__
-            * - `Discovery Server <https://github.com/eProsima/Discovery-Server/>`__
-              - `v1.2.1 <https://github.com/eProsima/Discovery-Server/releases/tag/v1.2.1>`__
-
-    .. group-tab:: 2.6.x (maintenance)
+    .. tab-item:: 2.6.x (maintenance)
+        :sync: 2.6.x
 
         .. list-table::
             :header-rows: 1
@@ -323,7 +581,7 @@ Fast DDS as the core middleware.
             * - `Fast DDS python <https://github.com/eProsima/Fast-DDS-python/>`__
               - `v1.0.2 <https://github.com/eProsima/Fast-DDS-python/releases/tag/v1.0.2>`__
             * - `Shapes Demo <https://github.com/eProsima/ShapesDemo/>`__
-              - `v2.6.9 <https://github.com/eProsima/ShapesDemo/releases/tag/v2.6.9>`__
+              - `v2.6.11 <https://github.com/eProsima/ShapesDemo/releases/tag/v2.6.11>`__
             * - `Discovery Server <https://github.com/eProsima/Discovery-Server/>`__
               - `v1.2.1 <https://github.com/eProsima/Discovery-Server/releases/tag/v1.2.1>`__
 

@@ -7,11 +7,6 @@ The instructions for installing *eProsima Fast DDS* in a Windows environment fro
 binaries are provided in this page.
 It is organized as follows:
 
-.. contents::
-    :local:
-    :backlinks: none
-    :depth: 2
-
 First of all, the :ref:`requirements_bw` detailed below need to be met.
 
 
@@ -53,8 +48,6 @@ version and architecture when prompted.
 
     By default, *eProsima Fast DDS* does not compile tests. To activate them, please refer to the
     :ref:`windows_sources` page.
-
-    To use the :ref:`cli_xml` validation tool, please refer to the :ref:`windows_sources` page.
 
 .. _contents_bw:
 
@@ -108,14 +101,14 @@ project using next mechanisms.
 
 2. Through the custom CMake variable `fastdds_SHARED_LIBS`.
 
-   .. code-block:: bash
+   .. code-block:: winbatch
 
        cmake -Dfastdds_SHARED_LIBS=ON .. # Load shared library target
        cmake -Dfastdds_SHARED_LIBS=OFF .. # Load static library target
 
 3. Through the built-in CMake variable `BUILD_SHARED_LIBS`.
 
-   .. code-block:: bash
+   .. code-block:: winbatch
 
        cmake -DBUILD_SHARED_LIBS=ON .. # Load shared library target
        cmake -DBUILD_SHARED_LIBS=OFF .. # Load static library target
@@ -125,10 +118,10 @@ project using next mechanisms.
 
 For example in order to build the examples dynamically linked to **Fast-DDS** do:
 
-   .. code-block:: console
+.. code-block:: winbatch
 
-    > cmake -Bbuildexample -DBUILD_SHARED_LIBS=ON .
-    > cmake --build buildexample --target install
+ cmake -Bbuildexample -DBUILD_SHARED_LIBS=ON .
+ cmake --build buildexample --target install
 
 
 .. _cli_bw:
@@ -141,10 +134,10 @@ sub-commands to perform, Fast DDS related, maintenance and configuration tasks.
 As an optional tool, its dependencies are not installed by default, but they can be installed by running the
 following command:
 
-.. code-block:: bash
+.. code-block:: winbatch
 
-    choco install python
-    python -m pip install --upgrade pywin32 xmlschema
+   choco install python
+   python -m pip install --upgrade psutil pywin32 xmlschema
 
 Python3 is required to run the CLI tool, and the `xmlschema <https://pypi.org/project/xmlschema/>`_ dependency is
 needed to use the :ref:`XML validation command<cli_xml>`.

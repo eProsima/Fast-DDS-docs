@@ -205,7 +205,7 @@ List of status data members:
   liveliness or a DataWriter that was considered not alive reasserts its
   liveliness.
   It decreases every time an active DataWriter becomes not alive, either
-  because it failed to asserts its liveliness or because it was deleted for any reason.
+  because it failed to assert its liveliness or because it was deleted for any reason.
 
 * |LivelinessChangedStatus::not_alive_count-api|:
   Total number of matched DataWriters
@@ -230,7 +230,7 @@ List of status data members:
 * |LivelinessChangedStatus::last_publication_handle-api|:
   Handle to the last DataWriter
   whose liveliness status was changed.
-  If no liveliness has ever changed, it will have value ``c_InstanceHandle_Unknown``.
+  If no liveliness has ever changed, it will have value |c_InstanceHandle_Unknown-api|.
 
 
 .. _dds_layer_core_status_requestedDeadlineMissedStatus:
@@ -268,7 +268,7 @@ List of status data members:
 
 * |DeadlineMissedStatus::last_instance_handle-api|:
   Handle to the last instance that missed the deadline.
-  If no deadline was ever missed, it will have value ``c_InstanceHandle_Unknown``.
+  If no deadline was ever missed, it will have value |c_InstanceHandle_Unknown-api|.
 
 .. _dds_layer_core_status_requestedIncompatibleQosStatus:
 
@@ -428,7 +428,7 @@ List of status data members:
 
 * |SampleRejectedStatus::last_instance_handle-api|:
   Handle to the last instance whose sample was rejected.
-  If no sample was ever rejected, it will have value ``c_InstanceHandle_Unknown``.
+  If no sample was ever rejected, it will have value |c_InstanceHandle_Unknown-api|.
 
 .. _dds_layer_core_status_sampleRejectedStatusKind:
 
@@ -575,7 +575,7 @@ List of status data members:
   Total cumulative count of missed deadlines for any instance written by the
   current DataWriter.
   As the deadline period applies to each instance of the Topic independently,
-  the count will will be incremented by one for each instance for which data
+  the count will be incremented by one for each instance for which data
   was not sent in the deadline period.
 
 * |DeadlineMissedStatus::total_count_change-api|:

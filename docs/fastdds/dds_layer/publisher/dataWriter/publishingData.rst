@@ -14,8 +14,8 @@ the :ref:`dds_layer_publisher_publisher` and the :ref:`dds_layer_domainParticipa
 
 The function takes two arguments:
 
- * A pointer to the data instance with the new values.
- * The handler to the instance.
+* A pointer to the data instance with the new values.
+* The handler to the instance.
 
 An empty (i.e., default constructed |InstanceHandle_t-api|) instance handler can be used for the argument handle.
 This indicates that the identity of the instance should be automatically deduced from the key of the
@@ -28,10 +28,10 @@ If the handle is not empty, then it must correspond to the value obtained with t
 Otherwise the write function will fail with ``RETCODE_PRECONDITION_NOT_MET``.
 
 .. literalinclude:: /../code/DDSCodeTester.cpp
-   :language: c++
-   :start-after: //DDS_DATAWRITER_WRITE
-   :end-before: //!
-   :dedent: 8
+    :language: c++
+    :start-after: //DDS_DATAWRITER_WRITE
+    :end-before: //!
+    :dedent: 8
 
 
 .. _dds_layer_publisher_write_blocking:
@@ -79,7 +79,40 @@ Otherwise the DataWriter may run out of samples.
 
 
 .. literalinclude:: /../code/DDSCodeTester.cpp
-   :language: c++
-   :start-after: //DDS_DATAWRITER_LOAN_SAMPLES
-   :end-before: //!
-   :dedent: 8
+    :language: c++
+    :start-after: //DDS_DATAWRITER_LOAN_SAMPLES
+    :end-before: //!
+    :dedent: 8
+
+.. _dds_layer_publisher_prefiltering:
+
+Prefiltering out DataReaders
+----------------------------
+
+The user can use an overload of the |DataWriter::write-api| method that allows providing a |WriteParams-api| structure.
+One of the members of this latter structure is the |WriteParams-UserWriteData-api| in which the user
+can store extra information to be used by the prefiltering mechanism and it can be set using the
+|WriteParams-user_write_data-api|.
+
+By implementing the |IContentFilter-api| and passing it to the DataWriter with |DataWriter::set_sample_prefilter|,
+user can prevent the DataWriter from sending samples to the matched DataReaders based on both
+the content of the sample (|SerializedPayload_t-api|) and/or the |FilteredSampleInfo::user_write_data-api| within
+|FilteredSampleInfo-api|.
+If the return value of |IContentFilter::evaluate-api| is ``false``, the sample will not be sent to the DataReader
+identified by its |Guid_t-api| in the method's input argument.
+It is strongly recommended that the |IContentFilter::evaluate-api| implementation neither performs any blocking
+operation nor uses the DataWriter, as this may lead to deadlocks or undesired behavior.
+
+.. warning::
+
+    Prefiltering is currently incompatible with :ref:`datasharingqospolicy`.
+    Hence, ensure that the |DataSharingQosPolicy::kind-api| is set to ``OFF`` or
+    if ``AUTO`` is used, :ref:`constraints<datasharing-delivery-constraints>` are not met.
+
+Next is an example of how to use the prefiltering mechanism:
+
+.. literalinclude:: /../code/DDSCodeTester.cpp
+    :language: c++
+    :start-after: //DDS_DATAWRITER_SAMPLE_PREFILTER
+    :end-before: //!
+    :dedent: 8

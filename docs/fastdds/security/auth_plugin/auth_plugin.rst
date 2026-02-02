@@ -24,7 +24,8 @@ The authentication plugin implemented in Fast DDS is referred to as "DDS:\Auth\:
 `DDS Security <https://www.omg.org/spec/DDS-SECURITY/1.1/>`_ specification.
 The DDS:\Auth\:PKI-DH plugin uses a trusted *Certificate Authority* (CA) and the ECDSA
 Digital Signature Algorithms to perform the mutual authentication.
-It also establishes a shared secret using Elliptic Curve Diffie-Hellman (ECDH) Key Agreement Methods.
+It also establishes a shared secret using either Elliptic Curve Diffie-Hellman (ECDH) or MODP-2048 Diffie-Hellman (DH)
+as Key Agreement protocol.
 This shared secret can be used by other security plugins as :ref:`crypto-aes-gcm-gmac`.
 
 The DDS:\Auth\:PKI-DH authentication plugin, can be activated setting the |DomainParticipantQos|
@@ -42,7 +43,7 @@ The following table outlines the properties used for the DDS:\Auth\:PKI-DH plugi
      - URI to the X.509 v3 certificate of the Identity CA in PEM format. |br|
        Supported URI schemes: file. |br|
    * - identity_certificate
-     - URI to an X.509 v3 certificate signed by the Identity CA in PEM format |br|
+     - URI to an X.509 v3 certificate signed by the Identity CA in PEM format
        containing the signed public key for the Participant. |br|
        Supported URI schemes: file.
    * - identity_crl *(optional)*
@@ -53,9 +54,19 @@ The following table outlines the properties used for the DDS:\Auth\:PKI-DH plugi
        Supported URI schemes: file, :ref:`PKCS#11 <pkcs11-support>`.
    * - password *(optional)*
      - A password used to decrypt the *private_key*.  |br|
-       If the *password* property is not present, then the value supplied in the |br|
+       If the *password* property is not present, then the value supplied in the
        *private_key* property must contain the decrypted private key. |br|
        The *password* property is ignored if the *private_key* is given in PKCS#11 scheme.
+   * - preferred_key_agreement *(optional)*
+     - The preferred algorithm to use for generating the session's shared secret
+       at the end of the authentication phase. Supported values are: |br|
+       a) ``DH``, ``DH+MODP-2048-256`` for  Diffie-Hellman Ephemeral with 2048-bit MODP Group parameters. |br|
+       b) ``ECDH``, ``ECDH+prime256v1-CEUM`` for Elliptic Curve Diffie-Hellman Ephemeral with the NIST P-256 curve. |br|
+       c) ``AUTO`` for selecting the key agreement based on the signature algorithm in the Identity CA's certificate. |br|
+       Will default to ``AUTO`` if the property is not present.
+   * - transmit_algorithms_as_legacy *(optional)*
+     - Whether to transmit algorithm identifiers in non-standard legacy format. |br|
+       Will default to ``false`` if the property is not present.
 
 .. note::
   All listed properties have "dds.sec.auth.builtin.PKI-DH." prefix.
@@ -64,23 +75,18 @@ The following table outlines the properties used for the DDS:\Auth\:PKI-DH plugi
 The following is an example of how to set the properties of DomainParticipantQoS for the DDS:\Auth\:PKI-DH plugin
 configuration.
 
-+----------------------------------------------------------------------------------------------------------------------+
-| **C++**                                                                                                              |
-+----------------------------------------------------------------------------------------------------------------------+
-| .. literalinclude:: /../code/DDSCodeTester.cpp                                                                       |
-|    :language: c++                                                                                                    |
-|    :start-after: // DDS_SECURITY_AUTH_PLUGIN                                                                         |
-|    :end-before: //!--                                                                                                |
-|    :dedent: 8                                                                                                        |
-+----------------------------------------------------------------------------------------------------------------------+
-| **XML**                                                                                                              |
-+----------------------------------------------------------------------------------------------------------------------+
-| .. literalinclude:: /../code/XMLTester.xml                                                                           |
-|    :language: xml                                                                                                    |
-|    :start-after: <!-->DDS_SECURITY_AUTH_PLUGIN<-->                                                                   |
-|    :end-before: <!--><-->                                                                                            |
-+----------------------------------------------------------------------------------------------------------------------+
+.. tab-set-code::
 
+    .. literalinclude:: /../code/DDSCodeTester.cpp
+        :language: c++
+        :start-after: // DDS_SECURITY_AUTH_PLUGIN
+        :end-before: //!--
+        :dedent: 8
+
+    .. literalinclude:: /../code/XMLTester.xml
+        :language: xml
+        :start-after: <!-->DDS_SECURITY_AUTH_PLUGIN<-->
+        :end-before: <!--><-->
 
 .. _generate_x509:
 
@@ -173,7 +179,7 @@ However, all other commands are only compatible with Linux OS.
     #default_keyfile = privkey.pem
     distinguished_name= req_distinguished_name
     #attributes = req_attributes
-    #x509_extensions = v3_ca # The extentions to add to the self signed cert
+    x509_extensions = root_ca_extensions # The extensions to add to the self signed cert
     string_mask = utf8only
 
     [ req_distinguished_name ]
@@ -183,6 +189,12 @@ However, all other commands are only compatible with Linux OS.
     0.organizationName = eProsima
     commonName = eProsima Main Test CA
     emailAddress = mainca@eprosima.com
+
+    [root_ca_extensions]
+    basicConstraints = critical, CA:true
+
+.. note::
+   For a self-signed **root CA**, the X.509 extension ``basicConstraints = CA:true`` is **required**. Without it, stacks might not recognize the certificate as a CA.
 
 After writing the configuration file, next commands generate the certificate using the
 Elliptic Curve Digital Signature Algorithm (ECDSA).

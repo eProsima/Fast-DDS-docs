@@ -54,22 +54,18 @@ Once this phase is over, the only announcements enforced are the standard ones b
 | period                    | It defines the specific period for initial announcements.   | |Duration_t-api| | 100ms   |
 +---------------------------+-------------------------------------------------------------+------------------+---------+
 
-+----------------------------------------------------------------------------------------------------------------------+
-| **C++**                                                                                                              |
-+----------------------------------------------------------------------------------------------------------------------+
-| .. literalinclude:: /../code/DDSCodeTester.cpp                                                                       |
-|    :language: c++                                                                                                    |
-|    :start-after: //DISCOVERY-CONFIG-INITIAL-ANNOUNCEMENT                                                             |
-|    :end-before: //!--                                                                                                |
-|    :dedent: 8                                                                                                        |
-+----------------------------------------------------------------------------------------------------------------------+
-| **XML**                                                                                                              |
-+----------------------------------------------------------------------------------------------------------------------+
-| .. literalinclude:: /../code/XMLTester.xml                                                                           |
-|    :language: xml                                                                                                    |
-|    :start-after: <!-->DISCOVERY-CONFIG-INITIAL-ANNOUNCEMENT<-->                                                      |
-|    :end-before: <!--><-->                                                                                            |
-+----------------------------------------------------------------------------------------------------------------------+
+.. tab-set-code::
+
+    .. literalinclude:: /../code/DDSCodeTester.cpp
+        :language: c++
+        :start-after: //DISCOVERY-CONFIG-INITIAL-ANNOUNCEMENT
+        :end-before: //!--
+        :dedent: 8
+
+    .. literalinclude:: /../code/XMLTester.xml
+        :language: xml
+        :start-after: <!-->DISCOVERY-CONFIG-INITIAL-ANNOUNCEMENT<-->
+        :end-before: <!--><-->
 
 .. _`Simple EDP Attributes`:
 
@@ -79,37 +75,33 @@ Simple EDP Attributes
 +-----------------------------+----------------------------------------------------------------+-------------+---------+
 | Name                        | Description                                                    | Type        | Default |
 +=============================+================================================================+=============+=========+
-| SIMPLE EDP                  | It defines the use of the SIMPLE protocol as a discovery |br|  | ``bool``    | true    |
-|                             | protocol for the EDP phase. A DomainParticipant may |br|       |             |         |
+| SIMPLE EDP                  | It defines the use of the SIMPLE protocol as a discovery       | ``bool``    | true    |
+|                             | protocol for the EDP phase. A DomainParticipant may            |             |         |
 |                             | create DataWriters, DataReaders, both or neither.              |             |         |
 +-----------------------------+----------------------------------------------------------------+-------------+---------+
-| Publication writer and |br| | It is intended for DomainParticipants that implement only |br| | ``bool``    | true    |
+| Publication writer and      | It is intended for DomainParticipants that implement only      | ``bool``    | true    |
 | Subscription reader         | one or more DataWriters, i.e. do not implement DataReaders.    |             |         |
-|                             | |br| It allows the creation of only DataReader discovery       |             |         |
+|                             | It allows the creation of only DataReader discovery            |             |         |
 |                             | related EDP endpoints.                                         |             |         |
 +-----------------------------+----------------------------------------------------------------+-------------+---------+
-| Publication reader and |br| | It is intended for DomainParticipants that implement only |br| | ``bool``    | true    |
+| Publication reader and      | It is intended for DomainParticipants that implement only      | ``bool``    | true    |
 | Subscription writer         | one or more DataReaders, i.e. do not implement DataWriters.    |             |         |
-|                             | |br| It allows the creation of only DataWriter discovery       |             |         |
-|                             | related |br| EDP endpoints.                                    |             |         |
+|                             | It allows the creation of only DataWriter discovery            |             |         |
+|                             | related  EDP endpoints.                                        |             |         |
 +-----------------------------+----------------------------------------------------------------+-------------+---------+
 
-+----------------------------------------------------------------------------------------------------------------------+
-| **C++**                                                                                                              |
-+----------------------------------------------------------------------------------------------------------------------+
-| .. literalinclude:: /../code/DDSCodeTester.cpp                                                                       |
-|    :language: c++                                                                                                    |
-|    :start-after: //CONF-QOS-DISCOVERY-EDP-ATTRIBUTES                                                                 |
-|    :end-before: //!--                                                                                                |
-|    :dedent: 8                                                                                                        |
-+----------------------------------------------------------------------------------------------------------------------+
-| **XML**                                                                                                              |
-+----------------------------------------------------------------------------------------------------------------------+
-| .. literalinclude:: /../code/XMLTester.xml                                                                           |
-|    :language: xml                                                                                                    |
-|    :start-after: <!-->CONF-QOS-DISCOVERY-EDP-ATTRIBUTES                                                              |
-|    :end-before: <!--><-->                                                                                            |
-+----------------------------------------------------------------------------------------------------------------------+
+.. tab-set-code::
+
+    .. literalinclude:: /../code/DDSCodeTester.cpp
+        :language: c++
+        :start-after: //CONF-QOS-DISCOVERY-EDP-ATTRIBUTES
+        :end-before: //!--
+        :dedent: 8
+
+    .. literalinclude:: /../code/XMLTester.xml
+        :language: xml
+        :start-after: <!-->CONF-QOS-DISCOVERY-EDP-ATTRIBUTES
+        :end-before: <!--><-->
 
 .. _`Simple Initial Peers`:
 
@@ -122,13 +114,13 @@ must listen for incoming Participant Discovery Protocol (PDP) discovery metatraf
 to a multicast address and another one linked to a unicast address.
 *Fast DDS* allows for the configuration of an initial peers list which contains one or more such IP-port address
 pairs corresponding to remote DomainParticipants PDP discovery listening resources, so that the local
-DomainParticipant will not only send its PDP traffic to the default multicast address-port specified by its domain,
-but also to all the IP-port address pairs specified in the initial peers list.
+DomainParticipant will only send its PDP traffic to the IP-port address pairs specified in the initial peers list.
 
 A DomainParticipant's initial peers list contains the list of IP-port address pairs of all other DomainParticipants
 with which it will communicate.
-It is a list of addresses that a DomainParticipant will use in the unicast discovery mechanism, together or as an
-alternative to multicast discovery.
+It is a list of addresses that a DomainParticipant will use in the PDP discovery mechanism, and can hold both multicast
+and unicast addresses.
+The default multicast address will be used if the list is empty.
 Therefore, this approach also applies to those scenarios in which multicast functionality is not available.
 
 According to the `RTPS standard <https://www.omg.org/spec/DDSI-RTPS/2.2/PDF>`_ (Section 9.6.1.1), the RTPSParticipants'
@@ -148,19 +140,15 @@ DomainParticipant ID 1 in domain 0.
    Consequently, setting this value to at least the maximum expected number of DomainParticipants will ensure discovery
    and communication.
 
-+----------------------------------------------------------------------------------------------------------------------+
-| **C++**                                                                                                              |
-+----------------------------------------------------------------------------------------------------------------------+
-| .. literalinclude:: /../code/DDSCodeTester.cpp                                                                       |
-|    :language: c++                                                                                                    |
-|    :start-after: //CONF_INITIAL_PEERS_BASIC                                                                          |
-|    :end-before: //!--                                                                                                |
-|    :dedent: 8                                                                                                        |
-+----------------------------------------------------------------------------------------------------------------------+
-| **XML**                                                                                                              |
-+----------------------------------------------------------------------------------------------------------------------+
-| .. literalinclude:: /../code/XMLTester.xml                                                                           |
-|    :language: xml                                                                                                    |
-|    :start-after: <!-->CONF_INITIAL_PEERS_BASIC<-->                                                                   |
-|    :end-before: <!--><-->                                                                                            |
-+----------------------------------------------------------------------------------------------------------------------+
+.. tab-set-code::
+
+    .. literalinclude:: /../code/DDSCodeTester.cpp
+        :language: c++
+        :start-after: //CONF_INITIAL_PEERS_BASIC
+        :end-before: //!--
+        :dedent: 8
+
+    .. literalinclude:: /../code/XMLTester.xml
+        :language: xml
+        :start-after: <!-->CONF_INITIAL_PEERS_BASIC<-->
+        :end-before: <!--><-->

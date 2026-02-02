@@ -18,10 +18,10 @@ cmake_minimum_required(VERSION 3.20)
 file(STRINGS
     ${CMAKE_SOURCE_DIR}/docs/conf.py
     LIB_VERSION_TMP
-    REGEX "^version = u'[0-9]+.[0-9]+.[0-9]+'"
+    REGEX "^version = \"[0-9]+.[0-9]+.[0-9]+\""
     )
 
-string(REGEX REPLACE "^version = u'([0-9]+.[0-9]+.[0-9]+)'"
+string(REGEX REPLACE "^version = \"([0-9]+.[0-9]+.[0-9]+)\""
     "\\1"
     LIB_VERSION_STR
     ${LIB_VERSION_TMP}
@@ -46,6 +46,20 @@ endif()
 find_package(fastdds REQUIRED)
 get_target_property(FAST_INCLUDE_DIR fastdds INTERFACE_INCLUDE_DIRECTORIES)
 
+# Default tweak to 0 in case the version is only X.Y or X.Y.Z
+set(_fastdds_pro FALSE)
+
+# If the version has a 4th component, capture it
+if(DEFINED fastdds_VERSION AND
+   fastdds_VERSION MATCHES "^([0-9]+)\\.([0-9]+)\\.([0-9]+)\\.([0-9]+)$")
+  # CMAKE_MATCH_4 is the tweak component
+  set(_fastdds_tweak "${CMAKE_MATCH_4}")
+  if(_fastdds_tweak GREATER 0)
+    set(_fastdds_pro TRUE)
+  endif()
+endif()
+
+message(STATUS "Found Fast DDS ${fastdds_VERSION} (pro: ${_fastdds_pro})")
 message(STATUS "Fast DDS include directories: ${FAST_INCLUDE_DIR}")
 file(GLOB_RECURSE HPP_FILES "${FAST_INCLUDE_DIR}/fastdds/**/*.h*")
 

@@ -36,17 +36,13 @@ plugin is configured through the properties and configuration files of the acces
 The following is an example of how to set the properties of DomainParticipantQoS for the DDS\:Crypto\:AES-GCM-GMAC
 configuration.
 
-.. tabs::
-
-  .. tab:: C++
+.. tab-set-code::
 
     .. literalinclude:: /../code/DDSCodeTester.cpp
         :language: c++
         :start-after: // DDS_SECURITY_CRYPTO_PLUGIN_DOMAINPARTICIPANT
         :end-before: //!--
         :dedent: 8
-
-  .. tab:: XML
 
     .. literalinclude:: /../code/XMLTester.xml
         :language: xml

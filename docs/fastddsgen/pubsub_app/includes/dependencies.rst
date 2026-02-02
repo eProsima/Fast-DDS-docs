@@ -24,29 +24,39 @@ Colcon installation
 ^^^^^^^^^^^^^^^^^^^
 
 If the Colcon installation has been followed, there are several ways to import the libraries.
-To make these accessible only from the current shell session, run one of the following two commands.
+To make these accessible only from the current shell session, run the following command.
 
-* On Linux:
+.. tab-set::
 
-.. code-block:: bash
+    .. tab-item:: Linux
+        :sync: linux
 
-    source <path/to/Fast-DDS/workspace>/install/setup.bash
+        .. code-block:: bash
 
-* On Windows:
+            source <path/to/Fast-DDS/workspace>/install/setup.bash
 
-.. code-block:: bash
+    .. tab-item:: Windows
+        :sync: windows
 
-    <path/to/Fast-DDS/workspace>/install/setup.bat
+        .. code-block:: bash
+
+            <path/to/Fast-DDS/workspace>/install/setup.bat
+
 
 However, to make these accessible from any session, add the *Fast DDS* installation directory to the ``$PATH``
 variable in the shell configuration files running the following command.
 
-* On Linux:
+.. tab-set::
 
-.. code-block:: bash
+    .. tab-item:: Linux
+        :sync: linux
 
-    echo 'source <path/to/Fast-DDS/workspace>/install/setup.bash' >> ~/.bashrc
+        .. code-block:: bash
 
-* On Windows: Open the `Edit the system environment variables` control panel and add
-  ``<path/to/Fast-DDS/workspace>/install/setup.bat`` to the ``PATH``.
+            echo 'source <path/to/Fast-DDS/workspace>/install/setup.bash' >> ~/.bashrc
 
+    .. tab-item:: Windows
+        :sync: windows
+
+        Open the `Edit the system environment variables` control panel and add
+        ``<path/to/Fast-DDS/workspace>/install/setup.bat`` to the ``PATH``.

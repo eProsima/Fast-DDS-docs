@@ -56,8 +56,8 @@ The following table describes the common data members for both UDPv4 and UDPv6.
    * - |SocketTransportDescriptor::interface_allowlist-api|
      - ``vector<pair<string, NetmaskFilterKind>>``
      - Empty vector
-     - List of allowed interfaces with |br|
-       netmask filter configuration. |br|
+     - List of allowed interfaces with
+       netmask filter configuration.
        See |interfaces_allowlist|.
    * - |SocketTransportDescriptor::interface_blocklist-api|
      - ``vector<string>``
@@ -142,20 +142,16 @@ create an instance of :ref:`transport_udp_v4transportDescriptor` (for UDPv4) or
 
 The examples below show this procedure in both C++ code and XML file.
 
-.. tabs::
+.. tab-set-code::
 
-   .. tab:: C++
+    .. literalinclude:: /../code/DDSCodeTester.cpp
+        :language: c++
+        :start-after: //CONF-UDP-TRANSPORT-SETTING
+        :end-before: //!--
+        :dedent: 8
 
-      .. literalinclude:: /../code/DDSCodeTester.cpp
-         :language: c++
-         :start-after: //CONF-UDP-TRANSPORT-SETTING
-         :end-before: //!--
-         :dedent: 8
-
-   .. tab:: XML
-
-      .. literalinclude:: /../code/XMLTester.xml
-         :language: xml
-         :start-after: <!-->CONF-UDP-TRANSPORT-SETTING
-         :end-before: <!--><-->
-         :lines: 2-4,6-37,39-40
+    .. literalinclude:: /../code/XMLTester.xml
+        :language: xml
+        :start-after: <!-->CONF-UDP-TRANSPORT-SETTING
+        :end-before: <!--><-->
+        :lines: 2-4,6-37,39-40

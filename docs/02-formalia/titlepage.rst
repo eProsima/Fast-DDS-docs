@@ -1,16 +1,8 @@
-.. raw:: html
 
-  <h1>
-    eProsima Fast DDS Documentation
-  </h1>
+What is *Fast DDS*?
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-.. TODO(eduponz): Remove this before releasing v3.0.0
-.. warning::
-
-    In preparation for v3.0.0, Fast DDS' master branch is undergoing major changes entailing **API breaks**.
-    Until Fast DDS v3.0.0 is released, it is strongly advisable to use the latest stable version, `2.14 <https://fast-dds.docs.eprosima.com/en/v2.14.1>`_.
-
-.. image:: /01-figures/logo.png
+.. image:: /_static/eprosima-logo.svg
   :height: 100px
   :width: 100px
   :align: left
@@ -24,16 +16,54 @@ The *eProsima Fast DDS* library provides both an Application Programming Interfa
 that deploy
 a Data-Centric Publisher-Subscriber (DCPS) model, with the purpose of establishing efficient and reliable
 information distribution among Real-Time Systems.
+
+Fast DDS |Pro|
+^^^^^^^^^^^^^^
+
+*Fast DDS Pro* is the commercial edition of *eProsima Fast DDS*, created for industrial and defense applications that
+require advanced networking capabilities.
+
+It extends the open-source version with premium features such as:
+
+* :ref:`Low Bandwidth Transports <low_bandwidth_transports>` |Pro| – optimized DDS communication for constrained or
+  unstable links.
+* :ref:`TSN Support <use-case-dds-tsn>` |Pro| – deterministic communication with guaranteed latency.
+* :ref:`IP Mobility <ip-mobility>` |Pro| – uninterrupted communication even when network conditions change.
+* Congestion Control |Pro| (coming soon) – adaptive traffic management in congested environments.
+
+.. |eprosima_fastdds_pro_website| raw:: html
+
+   <a href="https://forms.eprosima.com/reach/form/CommercialSupportRequest/formperma/Ac8GwewD7PTDadQZIV92qDEzNFfMlJnYmA029mSJtJ8" target="_blank" rel="noopener noreferrer">share your contact details</a>
+
+To discover all features and request a commercial license please |eprosima_fastdds_pro_website|.
+
+Commercial support
+^^^^^^^^^^^^^^^^^^
+
+.. |commercial_support_link| raw:: html
+
+   <a href="https://forms.eprosima.com/reach/form/CommercialSupportRequest/formperma/Ac8GwewD7PTDadQZIV92qDEzNFfMlJnYmA029mSJtJ8" target="_blank" rel="noopener noreferrer">share your details</a>
+
+Looking for commercial support? Please |commercial_support_link| so we can assist you.
+
+.. |eprosima_webpage_link| raw:: html
+
+   <a href="https://www.eprosima.com" target="_blank" rel="noopener noreferrer">eProsima’s webpage</a>
+
+Find more about us at |eprosima_webpage_link|.
+
+Key features
+^^^^^^^^^^^^
+
 *eProsima Fast DDS* is predictable, scalable, flexible, and efficient in resource handling.
 For meeting these requirements, it makes use of typed interfaces and hinges on a many-to-many
 distributed network paradigm that neatly allows separation of the publisher and subscriber sides of the communication.
 *eProsima Fast DDS* comprises:
 
-#.  The :ref:`DDS API <dds_layer>` implementation.
-#.  :ref:`Fast DDS-Gen <fastddsgen_intro>`, a generation tool for bridging typed interfaces with the middleware
-    implementation.
-#.  The underlying :ref:`RTPS <rtps_layer>` wire protocol implementation.
-
+* The :ref:`DDS API <dds_layer>` implementation.
+* :ref:`Fast DDS-Gen <fastddsgen_intro>`, a generation tool for bridging typed interfaces with the middleware
+  implementation.
+* The underlying :ref:`RTPS <rtps_layer>` wire protocol implementation.
 
 For all the above, *eProsima Fast DDS* has been chosen as the default middleware supported by the
 `Robot Operating System 2 (ROS 2) <https://index.ros.org/doc/ros2/>`__ in every long term (LTS) releases and most of the
@@ -191,16 +221,6 @@ Finally, there are some other *eProsima* products that use Fast DDS as a middlew
 Those that are strongly attached to each Fast DDS supported version are described in :ref:`this product compatibility
 table<dependencies_compatibilities_product_compatibility>`.
 
-Contacts and Commercial support
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-
-Find more about us at `eProsima's webpage <https://eprosima.com/>`__.
-
-Support available at:
-
-* Email: support@eprosima.com
-* Phone: +34 91 804 34 48
-
 Contributing to the documentation
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
@@ -218,3 +238,6 @@ This documentation is organized into the sections below.
 * :ref:`Fast DDS <getting_started>`
 * :ref:`Fast DDS-Gen <fastddsgen_intro>`
 * :ref:`Release Notes <release_notes>`
+
+The documentation includes a :ref:`Frequently Asked Questions (FAQ) <frequently_asked_questions>` section that can be
+consulted for a quick overview.

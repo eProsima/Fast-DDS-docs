@@ -72,7 +72,7 @@
             <lease_duration>
                 <sec>1</sec>
             </lease_duration>
-	    <kind>AUTOMATIC</kind>
+            <kind>AUTOMATIC</kind>
         </liveliness>
     </qos>
 </data_reader>
@@ -82,7 +82,7 @@
 <data_writer profile_name="writer_xml_conf_ownership_profile">
     <qos>
       <ownership>
-	    <kind>EXCLUSIVE</kind>
+        <kind>EXCLUSIVE</kind>
       </ownership>
     </qos>
 </data_writer>
@@ -90,7 +90,7 @@
 <data_reader profile_name="reader_xml_conf_ownership_profile">
     <qos>
         <ownership>
-	    <kind>EXCLUSIVE</kind>
+            <kind>EXCLUSIVE</kind>
         </ownership>
     </qos>
 </data_reader>
@@ -100,8 +100,16 @@
 <data_writer profile_name="writer_xml_conf_ownership_strength_profile">
     <qos>
         <ownershipStrength>
-	    <value>10</value>
+            <value>10</value>
         </ownershipStrength>
+    </qos>
+</data_writer>
+<!--><-->
+
+<!-->PUBSUB_API_CONF_PUBSUB_TRANSPORT_PRIORITY<-->
+<data_writer profile_name="writer_xml_conf_transport_priority_profile">
+    <qos>
+        <transport_priority>12</transport_priority>
     </qos>
 </data_writer>
 <!--><-->
@@ -836,6 +844,10 @@
                     </sender_thread>
                 </flow_controller_descriptor>
             </flow_controller_descriptor_list>
+
+            <builtin> <!-- Optional use of flow controller for participant's meta traffic-->
+                <flow_controller_name>example_flow_controller</flow_controller_name>
+            </builtin>
         </rtps>
     </participant>
 
@@ -2075,6 +2087,8 @@
         <value>50</value>
     </ownershipStrength>
 
+    <transport_priority>12</transport_priority>
+
     <partition>
         <names>
             <name>part1</name>
@@ -2646,6 +2660,11 @@
         <historyMemoryPolicy>DYNAMIC</historyMemoryPolicy>
     </data_writer>
 
+    <!-- Default subscriber profile -->
+    <data_reader profile_name="default subscriber profile" is_default_profile="true">
+        <historyMemoryPolicy>DYNAMIC</historyMemoryPolicy>
+    </data_reader>
+
     <!-- Publisher profile for topic helloworld -->
     <data_writer profile_name="helloworld">
         <qos>
@@ -3045,6 +3064,14 @@
                     <name>dds.sec.auth.builtin.PKI-DH.password</name>
                     <value>domainParticipantPassword</value>
                 </property>
+                <property>
+                    <name>dds.sec.auth.builtin.PKI-DH.preferred_key_agreement</name>
+                    <value>ECDH</value>
+                </property>
+                <property>
+                    <name>dds.sec.auth.builtin.PKI-DH.transmit_algorithms_as_legacy</name>
+                    <value>true</value>
+                </property>
             </properties>
         </propertiesPolicy>
     </rtps>
@@ -3096,6 +3123,10 @@
                 <property>
                     <name>dds.sec.access.builtin.Access-Permissions.permissions</name>
                     <value>file://permissions.smime</value>
+                </property>
+                <property>
+                    <name>dds.sec.access.builtin.Access-Permissions.transmit_algorithms_as_legacy</name>
+                    <value>true</value>
                 </property>
             </properties>
         </propertiesPolicy>
@@ -3260,7 +3291,31 @@
                     <properties>
                         <property>
                             <name>fastdds.type_propagation</name>
-                            <value>enable</value>
+                            <value>disabled</value>
+                        </property>
+                    </properties>
+                </propertiesPolicy>
+            </rtps>
+        </participant>
+<!--
+    </profiles>
+</dds>
+-->
+<!--><-->
+
+<!-->SERIALIZE_OPTIONAL_QOS_PROPERTY<-->
+<!--
+<?xml version="1.0" encoding="UTF-8" ?>
+<dds xmlns="http://www.eprosima.com">
+    <profiles>
+-->
+        <participant profile_name="serialize_optional_qos_domainparticipant_xml_profile">
+            <rtps>
+                <propertiesPolicy>
+                    <properties>
+                        <property>
+                            <name>fastdds.serialize_optional_qos</name>
+                            <value>true</value> <!-- true, True, TRUE, 1 -->
                         </property>
                     </properties>
                 </propertiesPolicy>
@@ -3369,7 +3424,7 @@
         </participant>
 
         <!-- Generic profile for a specific statistics DataWriters -->
-        <data_writer profile_name="HISTORY_LATENCY_WRITER">
+        <data_writer profile_name="HISTORY_LATENCY_TOPIC">
             <!-- Configure History QoS as KEEP_LAST 20 -->
             <!-- History depth depends on the user application constraints (publication rate for instance) -->
             <topic>
@@ -3616,7 +3671,7 @@
 <data_writer profile_name="writer_xml_conf_resource_limits_profile">
     <topic>
         <resourceLimitsQos>
-            <max_samples>200</max_samples>
+            <max_samples>2000</max_samples>
             <max_instances>20</max_instances>
             <max_samples_per_instance>100</max_samples_per_instance>
             <allocated_samples>50</allocated_samples>
@@ -3627,7 +3682,7 @@
 <data_reader profile_name="reader_xml_conf_resource_limits_profile">
     <topic>
         <resourceLimitsQos>
-            <max_samples>200</max_samples>
+            <max_samples>2000</max_samples>
             <max_instances>20</max_instances>
             <max_samples_per_instance>100</max_samples_per_instance>
             <allocated_samples>50</allocated_samples>
@@ -3793,6 +3848,8 @@
 <participant profile_name="UDP SERVER WP" is_default_profile="true">
     <rtps>
         <prefix>72.61.73.70.66.61.72.6d.74.65.73.74</prefix>
+        <participantID>11</participantID>
+        <easy_mode_ip>127.0.0.1</easy_mode_ip>
         <builtin>
             <discovery_config>
                 <discoveryProtocol>SERVER</discoveryProtocol>
@@ -3811,6 +3868,7 @@
                     <port>34567</port>
                 </udpv4>
             </metatraffic_external_unicast_locators>
+            <mutation_tries>300</mutation_tries>
         </builtin>
         <defaultUnicastLocatorList>
             <locator>
@@ -3987,6 +4045,26 @@
                 <port_queue_capacity>512</port_queue_capacity>
                 <healthy_check_timeout_ms>1000</healthy_check_timeout_ms>
                 <rtps_dump_file>rtsp_messages.log</rtps_dump_file>
+                <default_reception_threads>
+                    <scheduling_policy>-1</scheduling_policy>
+                    <priority>0</priority>
+                    <affinity>0</affinity>
+                    <stack_size>-1</stack_size>
+                </default_reception_threads>
+                <reception_threads>
+                    <reception_thread port="12345">
+                        <scheduling_policy>-1</scheduling_policy>
+                        <priority>0</priority>
+                        <affinity>0</affinity>
+                        <stack_size>-1</stack_size>
+                    </reception_thread>
+                </reception_threads>
+                <dump_thread>
+                    <scheduling_policy>-1</scheduling_policy>
+                    <priority>0</priority>
+                    <affinity>0</affinity>
+                    <stack_size>-1</stack_size>
+                </dump_thread>
             </transport_descriptor>
         </transport_descriptors>
 <!-->

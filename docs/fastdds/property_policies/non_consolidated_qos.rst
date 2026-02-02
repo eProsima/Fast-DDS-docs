@@ -44,24 +44,20 @@ See :ref:`tuning-heartbeat-period` for more details.
      - ``"true"``/``"false"``
      - ``"true"``
 
-+----------------------------------------------------------------------------------------------------------------------+
-| **C++**                                                                                                              |
-+----------------------------------------------------------------------------------------------------------------------+
-| .. literalinclude:: /../code/DDSCodeTester.cpp                                                                       |
-|    :language: c++                                                                                                    |
-|    :start-after: // PULL_MODE_DATAWRITER                                                                             |
-|    :end-before: //!--                                                                                                |
-|    :dedent: 8                                                                                                        |
-+----------------------------------------------------------------------------------------------------------------------+
-| **XML**                                                                                                              |
-+----------------------------------------------------------------------------------------------------------------------+
-| .. literalinclude:: /../code/XMLTester.xml                                                                           |
-|    :language: xml                                                                                                    |
-|    :start-after: <!-->PULL_MODE_DATAWRITER<-->                                                                       |
-|    :end-before: <!--><-->                                                                                            |
-|    :lines: 2-3,5-                                                                                                    |
-|    :append: </profiles>                                                                                              |
-+----------------------------------------------------------------------------------------------------------------------+
+.. tab-set-code::
+
+    .. literalinclude:: /../code/DDSCodeTester.cpp
+       :language: c++
+       :start-after: // PULL_MODE_DATAWRITER
+       :end-before: //!--
+       :dedent: 8
+
+    .. literalinclude:: /../code/XMLTester.xml
+       :language: xml
+       :start-after: <!-->PULL_MODE_DATAWRITER<-->
+       :end-before: <!--><-->
+       :lines: 2-3,5-
+       :append: </profiles>
 
 .. note::
     * Communication to readers running on the same process (:ref:`intraprocess-delivery`) will always use ``push mode``.
@@ -101,22 +97,18 @@ In this case, the property value is a semicolon separated list containing the
      - Semicolon separated list of :ref:`statistics topic name aliases<statistics_topic_names>`
      - ``""``
 
-+----------------------------------------------------------------------------------------------------------------------+
-| **C++**                                                                                                              |
-+----------------------------------------------------------------------------------------------------------------------+
-| .. literalinclude:: /../code/DDSCodeTester.cpp                                                                       |
-|    :language: c++                                                                                                    |
-|    :start-after: // FASTDDS_STATISTICS_MODULE                                                                        |
-|    :end-before: //!--                                                                                                |
-|    :dedent: 8                                                                                                        |
-+----------------------------------------------------------------------------------------------------------------------+
-| **XML**                                                                                                              |
-+----------------------------------------------------------------------------------------------------------------------+
-| .. literalinclude:: /../code/XMLTester.xml                                                                           |
-|    :language: xml                                                                                                    |
-|    :start-after: <!-->FASTDDS_STATISTICS_MODULE<-->                                                                  |
-|    :end-before: <!--><-->                                                                                            |
-+----------------------------------------------------------------------------------------------------------------------+
+.. tab-set-code::
+
+    .. literalinclude:: /../code/DDSCodeTester.cpp
+       :language: c++
+       :start-after: // FASTDDS_STATISTICS_MODULE
+       :end-before: //!--
+       :dedent: 8
+
+    .. literalinclude:: /../code/XMLTester.xml
+       :language: xml
+       :start-after: <!-->FASTDDS_STATISTICS_MODULE<-->
+       :end-before: <!--><-->
 
 .. _property_policies_physical_data:
 
@@ -133,10 +125,10 @@ This is done by setting the following properties within the :ref:`propertypolicy
 
    * - PropertyPolicyQos name
      - PropertyPolicyQos value
-     - Default value without |br| ``FASTDDS_STATISTICS``
-     - Default value with |br| ``FASTDDS_STATISTICS``
+     - Default value without  ``FASTDDS_STATISTICS``
+     - Default value with  ``FASTDDS_STATISTICS``
    * - ``"fastdds.physical_data.host"``
-     - Name of the host computer in which |br| the application runs
+     - Name of the host computer in which  the application runs
      - Not set
      - ``""``
    * - ``"fastdds.physical_data.user"``
@@ -182,23 +174,19 @@ In case ``FASTDDS_STATISTICS`` is defined, and the reporting of statistics over 
 the ``DISCOVERY_TOPIC`` (see :ref:`statistics_topic_names_physical`) whenever one |DomainParticipant-api| discovers
 another one.
 
-.. tabs::
-
-  .. tab:: C++
+.. tab-set-code::
 
     .. literalinclude:: /../code/DDSCodeTester.cpp
-       :language: c++
-       :start-after: // FASTDDS_PHYSICAL_PROPERTIES
-       :end-before: //!--
-       :dedent: 8
+        :language: c++
+        :start-after: // FASTDDS_PHYSICAL_PROPERTIES
+        :end-before: //!--
+        :dedent: 8
 
-  .. tab:: XML
-
-   .. literalinclude:: /../code/XMLTester.xml
-      :language: xml
-      :start-after: <!-->FASTDDS_PHYSICAL_PROPERTIES<-->
-      :end-before: <!--><-->
-      :lines: 2-4,6-25,27-28
+    .. literalinclude:: /../code/XMLTester.xml
+        :language: xml
+        :start-after: <!-->FASTDDS_PHYSICAL_PROPERTIES<-->
+        :end-before: <!--><-->
+        :lines: 2-4,6-25,27-28
 
 .. important::
 
@@ -240,22 +228,18 @@ to belong to.
      - Semicolon separated list of partition names
      - ``""``
 
-+----------------------------------------------------------------------------------------------------------------------+
-| **C++**                                                                                                              |
-+----------------------------------------------------------------------------------------------------------------------+
-| .. literalinclude:: /../code/DDSCodeTester.cpp                                                                       |
-|    :language: c++                                                                                                    |
-|    :start-after: // PARTITION-ON-ENDPOINT                                                                            |
-|    :end-before: //!--                                                                                                |
-|    :dedent: 8                                                                                                        |
-+----------------------------------------------------------------------------------------------------------------------+
-| **XML**                                                                                                              |
-+----------------------------------------------------------------------------------------------------------------------+
-| .. literalinclude:: /../code/XMLTester.xml                                                                           |
-|    :language: xml                                                                                                    |
-|    :start-after: <!-->XML-PARTITION                                                                                  |
-|    :end-before: <!--><-->                                                                                            |
-+----------------------------------------------------------------------------------------------------------------------+
+.. tab-set-code::
+
+    .. literalinclude:: /../code/DDSCodeTester.cpp
+       :language: c++
+       :start-after: // PARTITION-ON-ENDPOINT
+       :end-before: //!--
+       :dedent: 8
+
+    .. literalinclude:: /../code/XMLTester.xml
+       :language: xml
+       :start-after: <!-->XML-PARTITION
+       :end-before: <!--><-->
 
 .. _property_policies_edp_exchange_format:
 
@@ -277,26 +261,22 @@ Currently there are two different exchange formats which can be selected using t
      - Standard exchange format for Static Discovery.
      - ✅
    * - ``"v1_Reduced"``
-     - Format which reduces the necessary network bandwidth to transmit Static |br|
+     - Format which reduces the necessary network bandwidth to transmit Static
        Discovery's information in the Participant Discovery Phase (PDP).
      -
 
-.. tabs::
+.. tab-set-code::
 
-    .. tab:: C++
+    .. literalinclude:: /../code/DDSCodeTester.cpp
+        :language: c++
+        :start-after: //DDS-STATIC-DISCOVERY-FORMAT
+        :end-before: //!--
+        :dedent: 8
 
-        .. literalinclude:: /../code/DDSCodeTester.cpp
-           :language: c++
-           :start-after: //DDS-STATIC-DISCOVERY-FORMAT
-           :end-before: //!--
-           :dedent: 8
-
-    .. tab:: XML
-
-        .. literalinclude:: /../code/XMLTester.xml
-           :language: xml
-           :start-after: <!-->XML-STATIC-DISCOVERY-FORMAT
-           :end-before: <!--><-->
+    .. literalinclude:: /../code/XMLTester.xml
+        :language: xml
+        :start-after: <!-->XML-STATIC-DISCOVERY-FORMAT
+        :end-before: <!--><-->
 
 .. _property_policies_shm_enforce_metatraffic:
 
@@ -325,8 +305,8 @@ The behavior regarding this can be configured using the property ``fastdds.shm.e
      - Enable SHM transport unicast communications.
      -
    * - ``"all"``
-     - Enable SHM transport unicast and multicast communications. |br|
-       This will enable discovery between SHM only participants |br|
+     - Enable SHM transport unicast and multicast communications.
+       This will enable discovery between SHM only participants
        and participants having several transports.
      -
 
@@ -335,22 +315,18 @@ The behavior regarding this can be configured using the property ``fastdds.shm.e
   When SHM is the only transport configured for a participant, the setting of this property is ignored,
   and considered to be ``"all"``.
 
-.. tabs::
+.. tab-set-code::
 
-    .. tab:: C++
+    .. literalinclude:: /../code/DDSCodeTester.cpp
+        :language: c++
+        :start-after: //DDS-SHM-ENFORCE-META-TRAFFIC
+        :end-before: //!--
+        :dedent: 8
 
-        .. literalinclude:: /../code/DDSCodeTester.cpp
-           :language: c++
-           :start-after: //DDS-SHM-ENFORCE-META-TRAFFIC
-           :end-before: //!--
-           :dedent: 8
-
-    .. tab:: XML
-
-        .. literalinclude:: /../code/XMLTester.xml
-           :language: xml
-           :start-after: <!-->XML-SHM-ENFORCE-META-TRAFFIC
-           :end-before: <!--><-->
+    .. literalinclude:: /../code/XMLTester.xml
+        :language: xml
+        :start-after: <!-->XML-SHM-ENFORCE-META-TRAFFIC
+        :end-before: <!--><-->
 
 .. _property_max_message_size:
 
@@ -390,46 +366,38 @@ applications can achieve a lower sending limit while maintaining the ability to 
 Setting ``fastdds.max_message_size`` At Participant Level
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
-.. tabs::
+.. tab-set-code::
 
-    .. tab:: C++
+    .. literalinclude:: /../code/DDSCodeTester.cpp
+        :language: c++
+        :start-after: // MAX_MESSAGE_SIZE_PROPERTY_PARTICIPANT
+        :end-before: //!--
+        :dedent: 8
 
-        .. literalinclude:: /../code/DDSCodeTester.cpp
-            :language: c++
-            :start-after: // MAX_MESSAGE_SIZE_PROPERTY_PARTICIPANT
-            :end-before: //!--
-            :dedent: 8
-
-    .. tab:: XML
-
-        .. literalinclude:: /../code/XMLTester.xml
-            :language: xml
-            :start-after: <!-->MAX_MESSAGE_SIZE_PROPERTY_PARTICIPANT<-->
-            :end-before: <!--><-->
-            :lines: 2,4-16
+    .. literalinclude:: /../code/XMLTester.xml
+        :language: xml
+        :start-after: <!-->MAX_MESSAGE_SIZE_PROPERTY_PARTICIPANT<-->
+        :end-before: <!--><-->
+        :lines: 2,4-16
 
 .. _setting_max_message_size_writer:
 
 Setting ``fastdds.max_message_size`` At Writer Level
 """"""""""""""""""""""""""""""""""""""""""""""""""""
 
-.. tabs::
+.. tab-set-code::
 
-    .. tab:: C++
+    .. literalinclude:: /../code/DDSCodeTester.cpp
+        :language: c++
+        :start-after: // MAX_MESSAGE_SIZE_PROPERTY_WRITER
+        :end-before: //!--
+        :dedent: 8
 
-        .. literalinclude:: /../code/DDSCodeTester.cpp
-            :language: c++
-            :start-after: // MAX_MESSAGE_SIZE_PROPERTY_WRITER
-            :end-before: //!--
-            :dedent: 8
-
-    .. tab:: XML
-
-        .. literalinclude:: /../code/XMLTester.xml
-            :language: xml
-            :start-after: <!-->MAX_MESSAGE_SIZE_PROPERTY_WRITER<-->
-            :end-before: <!--><-->
-            :lines: 2,4-14
+    .. literalinclude:: /../code/XMLTester.xml
+        :language: xml
+        :start-after: <!-->MAX_MESSAGE_SIZE_PROPERTY_WRITER<-->
+        :end-before: <!--><-->
+        :lines: 2,4-14
 
 .. _property_type_propagation:
 
@@ -493,20 +461,85 @@ The different property values have the following effects on the local |DomainPar
      - IGNORED
      - DISABLED
 
-.. tabs::
+.. tab-set-code::
 
-    .. tab:: C++
+    .. literalinclude:: /../code/DDSCodeTester.cpp
+        :language: c++
+        :start-after: // TYPE_PROPAGATION_PROPERTY
+        :end-before: //!--
+        :dedent: 8
 
-        .. literalinclude:: /../code/DDSCodeTester.cpp
-            :language: c++
-            :start-after: // TYPE_PROPAGATION_PROPERTY
-            :end-before: //!--
-            :dedent: 8
+    .. literalinclude:: /../code/XMLTester.xml
+        :language: xml
+        :start-after: <!-->TYPE_PROPAGATION_PROPERTY<-->
+        :end-before: <!--><-->
+        :lines: 2-4,6-17,19-20
 
-    .. tab:: XML
+.. _property_serialize_optional_qos:
 
-        .. literalinclude:: /../code/XMLTester.xml
-            :language: xml
-            :start-after: <!-->TYPE_PROPAGATION_PROPERTY<-->
-            :end-before: <!--><-->
-            :lines: 2-4,6-16,18-19
+Adding optional QoS to Discovery data
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+During :ref:`discovery`, |DomainParticipants-api|, |DataWriters-api| and |DataReaders-api| acknowledge each other.
+This is performed in two phases, the Participant Discovery Phase (PDP) and the Endpoint Discovery Phase (EDP).
+To do that, the DomainParticipants share information about their DataWriters and DataReaders with each other,
+using the communication channels established during the PDP phase.
+This information contains all data required to match the endpoints, such as the |Topic-api|, data type, and
+certain :ref:`QoS Policies <dds_layer_core_policy>` that might affect matching.
+Specific compatibility rules can be found in each QoS section of :ref:`QoS Policies <dds_layer_core_policy>`.
+
+However, there are some QoS that are not mandatory for matching, but can be useful to have upon discovery.
+Property ``fastdds.serialize_optional_qos`` allows the user to include these optional QoS during discovery.
+This property is configured at the |DomainParticipant-api| level through the policy :ref:`propertypolicyqos`.
+Hence, the |DomainParticipant-api| and all its associated endpoints will send their optional QoS
+in the discovery messages.
+
+Optional QoS, like any other QoS, will only be serialized if they have non-default values.
+Not receiving information about a QoS in the EDP message means that it has a default value.
+Optional QoS will be serialized if the value of the property is set to ``TRUE``, ``True``, ``true`` or ``1``, any
+other value will be considered as not set or ``FALSE``.
+
+The following table lists all the optional QoS that can be serialized in the discovery messages:
+
+.. list-table::
+   :header-rows: 1
+   :align: left
+
+   * - PropertyPolicyQos
+     - Applies to:
+   * - |WireProtocolConfigQos-api|
+     - |DomainParticipant-api|.
+   * - |ResourceLimitsQosPolicy-api|
+     - |DataWriter-api| and |DataReaders-api|.
+   * - |TransportPriorityQosPolicy-api|
+     - |DataWriter-api|.
+   * - |WriterDataLifecycleQosPolicy-api|
+     - |DataWriter-api|.
+   * - |ReaderDataLifecycleQosPolicy-api|
+     - |DataReaders-api|.
+   * - |PublishModeQosPolicy-api|
+     - |DataWriter-api|.
+   * - |RTPSReliableWriterQos-api|
+     - |DataWriter-api|.
+   * - |RTPSReliableReaderQos-api|
+     - |DataReaders-api|.
+   * - |RTPSEndpointQos-api|
+     - |DataWriter-api| and |DataReaders-api|.
+   * - |WriterResourceLimitsQos-api|
+     - |DataWriter-api|.
+   * - |ReaderResourceLimitsQos-api|
+     - |DataReaders-api|.
+
+.. tab-set-code::
+
+    .. literalinclude:: /../code/DDSCodeTester.cpp
+        :language: c++
+        :start-after: // SERIALIZE_OPTIONAL_QOS_PROPERTY
+        :end-before: //!--
+        :dedent: 8
+
+    .. literalinclude:: /../code/XMLTester.xml
+        :language: xml
+        :start-after: <!-->SERIALIZE_OPTIONAL_QOS_PROPERTY<-->
+        :end-before: <!--><-->
+        :lines: 2-4,6-17,19-20

@@ -5,7 +5,7 @@ SWIG
 
 SWIG_ is a development tool that allows connecting programs written in C/C++ with a variety of
 other programming languages, among them Python.
-SWIG 4.0 is required in order to build Fast DDS Python bindings.
+SWIG version lower than 4.2 is required to build Fast DDS Python bindings.
 
 .. note::
 
@@ -20,6 +20,14 @@ For Ubuntu, please run:
 .. code-block:: bash
 
     sudo apt install swig
+
+.. warning::
+
+    For Ubuntu 24.04, SWIG_ must be installed using the following command:
+
+    .. code-block:: bash
+
+        sudo apt install swig4.1
 
 .. end-swig
 

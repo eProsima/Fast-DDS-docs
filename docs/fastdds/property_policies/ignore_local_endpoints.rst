@@ -28,23 +28,19 @@ endpoints through the following property:
      - ``"true"``/``"false"``
      - ``"false"``
 
-.. tabs::
+.. tab-set-code::
 
-    .. tab:: C++
+    .. literalinclude:: /../code/DDSCodeTester.cpp
+        :language: c++
+        :start-after: // IGNORE_LOCAL_ENDPOINTS_DOMAINPARTICIPANT
+        :end-before: //!--
+        :dedent: 8
 
-        .. literalinclude:: /../code/DDSCodeTester.cpp
-            :language: c++
-            :start-after: // IGNORE_LOCAL_ENDPOINTS_DOMAINPARTICIPANT
-            :end-before: //!--
-            :dedent: 8
-
-    .. tab:: XML
-
-        .. literalinclude:: /../code/XMLTester.xml
-            :language: xml
-            :start-after: <!-->IGNORE_LOCAL_ENDPOINTS_DOMAINPARTICIPANT<-->
-            :end-before: <!--><-->
-            :lines: 2-4,6-18,20-21
+    .. literalinclude:: /../code/XMLTester.xml
+        :language: xml
+        :start-after: <!-->IGNORE_LOCAL_ENDPOINTS_DOMAINPARTICIPANT<-->
+        :end-before: <!--><-->
+        :lines: 2-4,6-18,20-21
 
 .. note::
     An invalid value of ``fastdds.ignore_local_endpoints`` results in the default behaviour.

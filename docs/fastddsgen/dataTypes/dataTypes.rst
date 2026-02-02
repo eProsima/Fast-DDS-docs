@@ -9,12 +9,6 @@ Defining a data type via IDL
 This section describes the data types that can be defined using IDL files, as well as other mechanisms for building
 data types using IDL files.
 
-.. contents::
-    :local:
-    :backlinks: none
-    :depth: 2
-
-
 Supported IDL types
 -------------------
 
@@ -22,6 +16,11 @@ Be aware that *Fast DDS-Gen* is not case sensitive as it is specified in the
 `IDL specification <https://www.omg.org/spec/IDL/4.2/PDF>`_.
 To activate case sensitivity use option :code:`-cs` when running *Fast DDS-Gen* (see
 :ref:`fastddsgen_supported_options`).
+
+.. warning::
+
+  Note that IDL files created by ROS 2 are not necessarily compatible with Fast DDS applications, since they are processed in a different manner and can lead to incompatible type definitions.
+  For a detailed explanation on how to ensure compatibility between ROS 2 and Fast DDS applications, please refer to this `Vulcanexus tutorial <https://docs.vulcanexus.org/en/jazzy/rst/tutorials/core/deployment/dds2vulcanexus/dds2vulcanexus_ros2idl.html>`_.
 
 .. _idl_primitive_types:
 
@@ -362,6 +361,7 @@ The following IDL enumeration:
     {
         RED,
         GREEN,
+        @value(3)
         BLUE
     };
 
@@ -449,6 +449,23 @@ If *Fast DDS-Gen* does not find a C/C++ preprocessor in default system paths, th
 using parameter ``-ppPath``.
 The parameter ``-ppDisable`` can be used to disable the usage of the C/C++ preprocessor.
 
+The parameter ``-extrastg`` can also be used to apply custom templates to included IDL files.
+To enable this feature, the output file name passed to ``-extrastg`` must include the character ``@``, which will be
+replaced by the name of the included file to generate the output file.
+
+The following command will generate two custom templates, one for the main IDL file and another for the included one:
+
+- ``MainIDL_Custom.cpp``
+- ``IncludedIDL_Custom.cpp``
+
+Where ``IncludedIDL.idl`` is included in ``MainIDL.idl`` file.
+
+.. code-block:: bash
+
+    <path/to/Fast DDS-Gen>/scripts/fastddsgen MainIDL.idl -I <path/to/idls> -extrastg <path/to/template>/Custom.stg @_Custom.cpp
+
+Check :ref:`fastddsgen_supported_options` for more information about the ``-extrastg`` option.
+
 Annotations
 --------------
 
@@ -482,13 +499,13 @@ annotations might be applied without the need of defining them).
       - Shortcut for :code:`@extensibility(APPENDABLE)`.
       - ✅
     * - :code:`@autoid`
-      - Member ID algorithm configuration if there is no member ID explicitly set using :code:`@id` annotation. |br|
-        Possible values are :code:`SEQUENTIAL` (member ID is assigned sequentially. Default value) or |br|
-        :code:`HASH` (member ID is calculated with an algorithm involving hashing the member name). |br|
+      - Member ID algorithm configuration if there is no member ID explicitly set using :code:`@id` annotation.
+        Possible values are :code:`SEQUENTIAL` (member ID is assigned sequentially. Default value) or
+        :code:`HASH` (member ID is calculated with an algorithm involving hashing the member name).
         This annotation might be defined in module, structure or union declarations.
       - ✅
     * - :code:`@bit_bound`
-      - Set number of bits on `bitmasks`_ and `enumerations`_ underlying primitive type. |br|
+      - Set number of bits on `bitmasks`_ and `enumerations`_ underlying primitive type.
         Currently, :code:`@bit_bound` can only be applied to bitmask types.
       - ✅❌
     * - :code:`@data_representation`
@@ -505,7 +522,7 @@ annotations might be applied without the need of defining them).
       - ❌
     * - :code:`@extensibility`
       - Applicable to any constructed element.
-        Specify how the element is allowed to evolve. |br|
+        Specify how the element is allowed to evolve.
         Please, refer to Extensibility_ for more information.
       - ✅
     * - :code:`@external`
@@ -524,7 +541,7 @@ annotations might be applied without the need of defining them).
       - When checking evolved type compatibility, take or not into account member names.
       - ❌
     * - :code:`@key`
-      - Mark a structure member as part of the key. :code:`@Key` is also supported. |br|
+      - Mark a structure member as part of the key. :code:`@Key` is also supported.
         Please, refer to :ref:`dds_layer_topic_instances` for more information.
       - ✅
     * - :code:`@max`
@@ -560,11 +577,14 @@ annotations might be applied without the need of defining them).
     * - :code:`@service`
       - Interface is to be treated as a service.
       - ❌
+    * - :code:`@feed`
+      - Used in interface operations to indicate data streaming (see :ref:`fastddsgen_interfaces_definition`).
+      - ✅
     * - :code:`@topic`
       - Structure or union is meant to be used as Topic Data Type.
       - ❌
     * - :code:`@try_construct`
-      - When checking evolved type compatibility, configure the behavior for |br|
+      - When checking evolved type compatibility, configure the behavior for
         collection/aggregated types construction and what to do in case of failure.
       - ❌
     * - :code:`@unit`
@@ -572,7 +592,7 @@ annotations might be applied without the need of defining them).
       - ❌
     * - :code:`@value`
       - Set constant value to `enumerations`_ literal.
-      - ❌
+      - ✅
     * - :code:`@verbatim`
       - Add comment or text to the element.
       - ❌
@@ -607,23 +627,14 @@ IDL 4.2 aliases
 
 IDL 4.2 allows using the following names for primitive types:
 
-+------------------------+
-| int8                   |
-+------------------------+
-| uint8                  |
-+------------------------+
-| int16                  |
-+------------------------+
-| uint16                 |
-+------------------------+
-| int32                  |
-+------------------------+
-| uint32                 |
-+------------------------+
-| int64                  |
-+------------------------+
-| uint64                 |
-+------------------------+
+* ``int8``
+* ``uint8``
+* ``int16``
+* ``uint16``
+* ``int32``
+* ``uint32``
+* ``int64``
+* ``uint64``
 
 IDL 4.2 comments
 -----------------

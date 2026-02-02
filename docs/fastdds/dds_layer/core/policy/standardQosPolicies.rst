@@ -12,12 +12,6 @@ Standard QoS Policies
 
 This section explains each of the DDS standard QoS Policies:
 
-.. contents::
-    :local:
-    :backlinks: none
-    :depth: 1
-
-
 .. _deadlineqospolicy:
 
 DeadlineQosPolicy
@@ -70,18 +64,13 @@ period must be higher or equal to the minimum separation.
 Example
 """""""
 
-.. tabs::
-
-  .. tab:: C++
+.. tab-set-code::
 
     .. literalinclude:: /../code/DDSCodeTester.cpp
         :language: c++
         :dedent: 8
         :start-after: //DDS_CHANGE_DEADLINE_QOS_POLICY
         :end-before: //!
-
-
-  .. tab:: XML
 
     .. literalinclude:: /../code/XMLTester.xml
         :language: xml
@@ -211,8 +200,8 @@ There are four possible values (see |DurabilityQosPolicyKind-api|):
 * |TRANSIENT_LOCAL_DURABILITY_QOS-api|: When a new DataReader joins, its History is filled with past samples.
 * |TRANSIENT_DURABILITY_QOS-api|: When a new DataReader joins, its History is filled with past samples, which are stored
   on persistent storage (see :ref:`persistence_service`).
-* |PERSISTENT_DURABILITY_QOS-api|: (`Not Implemented`): All the samples are stored on a permanent storage, so that they
-  can outlive a system session.
+* |PERSISTENT_DURABILITY_QOS-api|: When a new DataReader joins, its History is filled with past samples,
+  which are stored on persistent storage (see :ref:`persistence_service`).
 
 .. _durability_compatibilityrule:
 
@@ -255,17 +244,13 @@ Table with the possible combinations:
 Example
 """""""
 
-.. tabs::
-
-  .. tab:: C++
+.. tab-set-code::
 
     .. literalinclude:: /../code/DDSCodeTester.cpp
         :language: c++
         :dedent: 8
         :start-after: //DDS_CHANGE_DURABILITY_QOS_POLICY
         :end-before: //!
-
-  .. tab:: XML
 
     .. literalinclude:: /../code/XMLTester.xml
         :language: xml
@@ -362,19 +347,19 @@ List of QoS Policy data members:
 Example
 """""""
 
-.. tabs::
+.. tab-set::
 
-  .. tab:: C++
+    .. tab-item:: C++
 
-    .. literalinclude:: /../code/DDSCodeTester.cpp
-        :language: c++
-        :dedent: 8
-        :start-after: //DDS_CHANGE_ENTITY_FACTORY_QOS_POLICY
-        :end-before: //!
+        .. literalinclude:: /../code/DDSCodeTester.cpp
+            :language: c++
+            :dedent: 8
+            :start-after: //DDS_CHANGE_ENTITY_FACTORY_QOS_POLICY
+            :end-before: //!
 
-  .. tab:: XML
+    .. tab-item:: XML
 
-    This QoS Policy cannot be configured using XML for the moment.
+        This QoS Policy cannot be configured using XML for the moment.
 
 .. _groupqospolicy:
 
@@ -404,22 +389,18 @@ List of QoS Policy data members:
 Example
 """""""
 
-.. tabs::
-
-  .. tab:: C++
+.. tab-set-code::
 
     .. literalinclude:: /../code/DDSCodeTester.cpp
-       :language: c++
-       :dedent: 8
-       :start-after: //DDS_CHANGE_GROUP_DATA_QOS_POLICY
-       :end-before: //!
-
-  .. tab:: XML
+        :language: c++
+        :dedent: 8
+        :start-after: //DDS_CHANGE_GROUP_DATA_QOS_POLICY
+        :end-before: //!
 
     .. literalinclude:: /../code/XMLTester.xml
-       :language: xml
-       :start-after: <!-->XML_CHANGE_GROUP_DATA_QOS_POLICY
-       :end-before: <!--><-->
+        :language: xml
+        :start-after: <!-->XML_CHANGE_GROUP_DATA_QOS_POLICY
+        :end-before: <!--><-->
 
 .. _historyqospolicy:
 
@@ -503,22 +484,18 @@ The HistoryQos must be set consistently with the :ref:`resourcelimitsqospolicy`,
 Example
 """""""
 
-.. tabs::
+.. tab-set-code::
 
-  .. tab:: C++
+    .. literalinclude:: /../code/DDSCodeTester.cpp
+        :language: c++
+        :dedent: 8
+        :start-after: //DDS_CHANGE_HISTORY_QOS_POLICY
+        :end-before: //!
 
-        .. literalinclude:: /../code/DDSCodeTester.cpp
-            :language: c++
-            :dedent: 8
-            :start-after: //DDS_CHANGE_HISTORY_QOS_POLICY
-            :end-before: //!
-
-  .. tab:: XML
-
-        .. literalinclude:: /../code/XMLTester.xml
-            :language: xml
-            :start-after: <!-->XML-HISTORY<-->
-            :end-before: <!--><-->
+    .. literalinclude:: /../code/XMLTester.xml
+        :language: xml
+        :start-after: <!-->XML-HISTORY<-->
+        :end-before: <!--><-->
 
 
 .. _latencybudgetqospolicy:
@@ -592,17 +569,13 @@ List of QoS Policy data members:
 Example
 """""""
 
-.. tabs::
-
-  .. tab:: C++
+.. tab-set-code::
 
     .. literalinclude:: /../code/DDSCodeTester.cpp
         :language: c++
         :dedent: 8
         :start-after: //DDS_CHANGE_LIFESPAN_QOS_POLICY
         :end-before: //!
-
-  .. tab:: XML
 
     .. literalinclude:: /../code/XMLTester.xml
         :language: xml
@@ -715,17 +688,13 @@ the |LivelinessQosPolicy::lease_duration-api| of the DataReader.
 Example
 """""""
 
-.. tabs::
-
-  .. tab:: C++
+.. tab-set-code::
 
     .. literalinclude:: /../code/DDSCodeTester.cpp
         :language: c++
         :dedent: 8
         :start-after: //DDS_CHANGE_LIVELINESS_QOS_POLICY
         :end-before: //!
-
-  .. tab:: XML
 
     .. literalinclude:: /../code/XMLTester.xml
         :language: xml
@@ -804,17 +773,13 @@ Table with the possible combinations:
 Example
 """""""
 
-.. tabs::
-
-  .. tab:: C++
+.. tab-set-code::
 
     .. literalinclude:: /../code/DDSCodeTester.cpp
         :language: c++
         :dedent: 8
         :start-after: //DDS_CHANGE_OWNERSHIP_QOS_POLICY
         :end-before: //!
-
-  .. tab:: XML
 
     .. literalinclude:: /../code/XMLTester.xml
         :language: xml
@@ -847,17 +812,13 @@ List of QoS Policy data members:
 Example
 """""""
 
-.. tabs::
-
-  .. tab:: C++
+.. tab-set-code::
 
     .. literalinclude:: /../code/DDSCodeTester.cpp
         :language: c++
         :dedent: 8
         :start-after: //DDS_CHANGE_OWNERSHIP_STRENGTH_QOS_POLICY
         :end-before: //!
-
-  .. tab:: XML
 
     .. literalinclude:: /../code/XMLTester.xml
         :language: xml
@@ -901,17 +862,13 @@ List of QoS Policy data members:
 Example
 """""""
 
-.. tabs::
-
-  .. tab:: C++
+.. tab-set-code::
 
     .. literalinclude:: /../code/DDSCodeTester.cpp
         :language: c++
         :dedent: 8
         :start-after: //DDS_CHANGE_PARTITION_QOS_POLICY
         :end-before: //!
-
-  .. tab:: XML
 
     .. literalinclude:: /../code/XMLTester.xml
         :language: xml
@@ -1171,17 +1128,13 @@ Table with the possible combinations:
 Example
 """""""
 
-.. tabs::
-
-  .. tab:: C++
+.. tab-set-code::
 
     .. literalinclude:: /../code/DDSCodeTester.cpp
         :language: c++
         :dedent: 8
         :start-after: //DDS_CHANGE_RELIABILITY_QOS_POLICY
         :end-before: //!
-
-  .. tab:: XML
 
     .. literalinclude:: /../code/XMLTester.xml
         :language: xml
@@ -1199,34 +1152,35 @@ See |ResourceLimitsQosPolicy-api|.
 
 List of QoS Policy data members:
 
-+----------------------------------------------------------------------------------------+-------------+---------------+
-| Data Member Name                                                                       | Type        | Default Value |
-+========================================================================================+=============+===============+
-| |ResourceLimitsQosPolicy::max_samples-api|                                             | ``int32_t`` | 5000          |
-+----------------------------------------------------------------------------------------+-------------+---------------+
-| |ResourceLimitsQosPolicy::max_instances-api|                                           | ``int32_t`` | 10            |
-+----------------------------------------------------------------------------------------+-------------+---------------+
-| |ResourceLimitsQosPolicy::max_samples_per_instance-api|                                | ``int32_t`` | 400           |
-+----------------------------------------------------------------------------------------+-------------+---------------+
-| |ResourceLimitsQosPolicy::allocated_samples-api|                                       | ``int32_t`` | 100           |
-+----------------------------------------------------------------------------------------+-------------+---------------+
-| |ResourceLimitsQosPolicy::extra_samples-api|                                           | ``int32_t`` | 1             |
-+----------------------------------------------------------------------------------------+-------------+---------------+
++----------------------------------------------------------------+-------------+-----------------------+
+| Data Member Name                                               | Type        | Default Value         |
++================================================================+=============+=======================+
+| |ResourceLimitsQosPolicy::max_samples-api|                     | ``int32_t`` | -1 (Length Unlimited) |
++----------------------------------------------------------------+-------------+-----------------------+
+| |ResourceLimitsQosPolicy::max_instances-api|                   | ``int32_t`` | -1 (Length Unlimited) |
++----------------------------------------------------------------+-------------+-----------------------+
+| |ResourceLimitsQosPolicy::max_samples_per_instance-api|        | ``int32_t`` | -1 (Length Unlimited) |
++----------------------------------------------------------------+-------------+-----------------------+
+| |ResourceLimitsQosPolicy::allocated_samples-api|               | ``int32_t`` | 100                   |
++----------------------------------------------------------------+-------------+-----------------------+
+| |ResourceLimitsQosPolicy::extra_samples-api|                   | ``int32_t`` | 1                     |
++----------------------------------------------------------------+-------------+-----------------------+
 
 * |ResourceLimitsQosPolicy::max_samples-api|: Controls the maximum number of samples that the DataWriter or DataReader
-  can manage across all the
-  instances associated with it.
+  can manage across all the instances associated with it.
   In other words, it represents the maximum samples that the middleware can store for a DataReader or DataWriter.
   **Value less or equal to 0 means infinite resources.**
 * |ResourceLimitsQosPolicy::max_instances-api|: Controls the maximum number of instances that a DataWriter or
   DataReader can manage.
+  It will be internally fixed to 1 for topics without keys.
   **Value less or equal to 0 means infinite resources.**
 * |ResourceLimitsQosPolicy::max_samples_per_instance-api|: Controls the maximum number of samples within an instance
-  that the DataWriter or
-  DataReader can manage.
+  that the DataWriter or DataReader can manage.
+  It will be ignored for topics without keys (|ResourceLimitsQosPolicy::max_samples-api| will be used instead).
   **Value less or equal to 0 means infinite resources.**
 * |ResourceLimitsQosPolicy::allocated_samples-api|: States the number of samples that will be allocated on
   initialization.
+  Will be limited by |ResourceLimitsQosPolicy::max_samples-api| (i.e. the minimum between both values will be used).
 * |ResourceLimitsQosPolicy::extra_samples-api|: States the number of extra samples that will be allocated on
   the pool, so the maximum number of samples on the pool will be
   |ResourceLimitsQosPolicy::max_samples-api| plus |ResourceLimitsQosPolicy::extra_samples-api|.
@@ -1255,17 +1209,13 @@ conditions:
 Example
 """""""
 
-.. tabs::
-
-  .. tab:: C++
+.. tab-set-code::
 
     .. literalinclude:: /../code/DDSCodeTester.cpp
         :language: c++
         :dedent: 8
         :start-after: //DDS_CHANGE_RESOURCE_LIMITS_QOS_POLICY
         :end-before: //!
-
-  .. tab:: XML
 
     .. literalinclude:: /../code/XMLTester.xml
         :language: xml
@@ -1329,17 +1279,13 @@ List of QoS Policy data members:
 Example
 """""""
 
-.. tabs::
-
-  .. tab:: C++
+.. tab-set-code::
 
     .. literalinclude:: /../code/DDSCodeTester.cpp
        :language: c++
        :dedent: 8
        :start-after: //DDS_CHANGE_TOPIC_DATA_QOS_POLICY
        :end-before: //!
-
-  .. tab:: XML
 
     .. literalinclude:: /../code/XMLTester.xml
        :language: xml
@@ -1350,9 +1296,6 @@ Example
 
 TransportPriorityQosPolicy
 ^^^^^^^^^^^^^^^^^^^^^^^^^^
-
-.. warning::
-    This QoS Policy will be implemented in future releases.
 
 The purpose of this QoS Policy is to allow the service to take advantage of those transports capable of sending
 messages with different priorities. It establishes the priority of the underlying transport used to send the data.
@@ -1365,13 +1308,29 @@ List of QoS Policy data members:
 +-------------------------------------------------------------------------------------+----------------+---------------+
 | Data Member Name                                                                    | Type           | Default Value |
 +=====================================================================================+================+===============+
-| |TransportPriorityQosPolicy::value-api|                                             | ``uint32_t``   | 0             |
+| |TransportPriorityQosPolicy::value-api|                                             | ``int32_t``    | 0             |
 +-------------------------------------------------------------------------------------+----------------+---------------+
 
 .. note::
      This QoS Policy applies to |Topic| and |DataWriter| entities.
      :raw-html:`<br />`
      It can be changed on enabled entities.
+
+Example
+"""""""
+
+.. tab-set-code::
+
+    .. literalinclude:: /../code/DDSCodeTester.cpp
+        :language: c++
+        :dedent: 8
+        :start-after: //DDS_CHANGE_TRANSPORT_PRIORITY_QOS_POLICY
+        :end-before: //!
+
+    .. literalinclude:: /../code/XMLTester.xml
+        :language: xml
+        :start-after: <!-->PUBSUB_API_CONF_PUBSUB_TRANSPORT_PRIORITY
+        :end-before: <!--><-->
 
 
 .. _userdataqospolicy:
@@ -1400,22 +1359,18 @@ List of QoS Policy data members:
 Example
 """""""
 
-.. tabs::
-
-  .. tab:: C++
+.. tab-set-code::
 
     .. literalinclude:: /../code/DDSCodeTester.cpp
-       :language: c++
-       :dedent: 8
-       :start-after: //DDS_CHANGE_USER_DATA_QOS_POLICY
-       :end-before: //!
-
-  .. tab:: XML
+        :language: c++
+        :dedent: 8
+        :start-after: //DDS_CHANGE_USER_DATA_QOS_POLICY
+        :end-before: //!
 
     .. literalinclude:: /../code/XMLTester.xml
-       :language: xml
-       :start-after: <!-->XML_CHANGE_USER_DATA_QOS_POLICY
-       :end-before: <!--><-->
+        :language: xml
+        :start-after: <!-->XML_CHANGE_USER_DATA_QOS_POLICY
+        :end-before: <!--><-->
 
 .. _writerdatalifecycleqospolicy:
 

@@ -19,45 +19,37 @@ have its |TCPTransportDescriptor::apply_security-api| data member set to ``true`
 |TCPTransportDescriptor-api|.
 The following is an example of configuration of TLS on the *TCP server*.
 
-.. tabs::
+.. tab-set-code::
 
-   .. tab:: C++
+    .. literalinclude:: /../code/DDSCodeTester.cpp
+        :language: c++
+        :start-after: //CONF-TCP-TLS-SERVER
+        :end-before: //!--
+        :dedent: 8
 
-      .. literalinclude:: /../code/DDSCodeTester.cpp
-         :language: c++
-         :start-after: //CONF-TCP-TLS-SERVER
-         :end-before: //!--
-         :dedent: 8
-
-   .. tab:: XML
-
-      .. literalinclude:: /../code/XMLTester.xml
-         :language: xml
-         :start-after: <!-->CONF-TCP-TLS-SERVER
-         :end-before: <!--><-->
-         :lines: 2-3,5-
-         :append: </profiles>
+    .. literalinclude:: /../code/XMLTester.xml
+        :language: xml
+        :start-after: <!-->CONF-TCP-TLS-SERVER
+        :end-before: <!--><-->
+        :lines: 2-3,5-
+        :append: </profiles>
 
 The corresponding configuration on the *TCP client* is shown in the following example.
 
-.. tabs::
+.. tab-set-code::
 
-   .. tab:: C++
+    .. literalinclude:: /../code/DDSCodeTester.cpp
+        :language: c++
+        :start-after: //CONF-TCP-TLS-CLIENT
+        :end-before: //!--
+        :dedent: 8
 
-      .. literalinclude:: /../code/DDSCodeTester.cpp
-         :language: c++
-         :start-after: //CONF-TCP-TLS-CLIENT
-         :end-before: //!--
-         :dedent: 8
-
-   .. tab:: XML
-
-      .. literalinclude:: /../code/XMLTester.xml
-         :language: xml
-         :start-after: <!-->CONF-TCP-TLS-CLIENT
-         :end-before: <!--><-->
-         :lines: 2-3,5-
-         :append: </profiles>
+    .. literalinclude:: /../code/XMLTester.xml
+        :language: xml
+        :start-after: <!-->CONF-TCP-TLS-CLIENT
+        :end-before: <!--><-->
+        :lines: 2-3,5-
+        :append: </profiles>
 
 The following table describes the data members that are configurable on |TCPTransportDescriptor::TLSConfig-api|.
 
@@ -79,7 +71,7 @@ The following table describes the data members that are configurable on |TCPTran
    * - |TCPTransportDescriptor::TLSConfig::password-api|
      - ``string``
      - ``""``
-     - Password of the |TCPTransportDescriptor::TLSConfig::private_key_file-api| or |br|
+     - Password of the |TCPTransportDescriptor::TLSConfig::private_key_file-api| or
        |TCPTransportDescriptor::TLSConfig::rsa_private_key_file-api|.
    * - |TCPTransportDescriptor::TLSConfig::private_key_file-api|
      - ``string``
@@ -104,12 +96,12 @@ The following table describes the data members that are configurable on |TCPTran
    * - |TCPTransportDescriptor::TLSConfig::verify_mode-api|
      - |TCPTransportDescriptor::TLSConfig::TLSVerifyMode-api|
      - |TCPTransportDescriptor::TLSConfig::TLSVerifyMode::UNUSED-api|
-     - Establishes the verification mode mask. |br|
+     - Establishes the verification mode mask.
        See |TLSVerifyMode|.
    * - |TCPTransportDescriptor::TLSConfig::options-api|
      - |TCPTransportDescriptor::TLSConfig::TLSOptions-api|
      - |TCPTransportDescriptor::TLSConfig::TLSOptions::NONE-api|
-     - Establishes the SSL Context options mask. |br|
+     - Establishes the SSL Context options mask.
        See |TLSOptions|.
    * - |TCPTransportDescriptor::TLSConfig::verify_paths-api|
      - ``vector<string>``
@@ -118,7 +110,7 @@ The following table describes the data members that are configurable on |TCPTran
    * - |TCPTransportDescriptor::TLSConfig::verify_depth-api|
      - ``int32_t``
      - -1
-     - Maximum allowed depth for verifying intermediate |br|
+     - Maximum allowed depth for verifying intermediate
        certificates.
    * - |TCPTransportDescriptor::TLSConfig::default_verify_path-api|
      - ``bool``
@@ -127,12 +119,12 @@ The following table describes the data members that are configurable on |TCPTran
    * - |TCPTransportDescriptor::TLSConfig::handshake_role-api|
      - |TCPTransportDescriptor::TLSConfig::TLSHandShakeRole-api|
      - |TCPTransportDescriptor::TLSConfig::TLSHandShakeRole::DEFAULT-api|
-     - Role that the transport will take on handshaking. |br|
+     - Role that the transport will take on handshaking.
        See |TLSRole|.
    * - |TCPTransportDescriptor::TLSConfig::server_name-api|
      - ``string``
      - ``""``
-     - Server name or host name required in case |br|
+     - Server name or host name required in case
        Server Name Indication (SNI) is used.
 
 .. note::

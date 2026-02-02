@@ -88,9 +88,9 @@ Internally it contains the following |QosPolicy-api| objects:
     This entails that applications willing to further modify the |DomainParticipantQos-api| after
     |DomainParticipant-api| creation should:
 
-         1. Retrieve the internal |DomainParticipantQos-api| by the means of |DomainParticipant::get_qos-api|.
-         2. Perform the desired modifications.
-         3. Update the |DomainParticipantQos-api| by the means of |DomainParticipant::set_qos-api|.
+    1. Retrieve the internal |DomainParticipantQos-api| by the means of |DomainParticipant::get_qos-api|.
+    2. Perform the desired modifications.
+    3. Update the |DomainParticipantQos-api| by the means of |DomainParticipant::set_qos-api|.
 
 Refer to the detailed description of each QosPolicy class for more information about their usage and
 default values.
@@ -117,7 +117,7 @@ Default DomainParticipantQos
 The default DomainParticipantQos refers to the value returned by the
 |DomainParticipantFactory::get_default_participant_qos-api| member function on the
 :ref:`dds_layer_domainParticipantFactory` singleton.
-The special value ``PARTICIPANT_QOS_DEFAULT`` can be used as QoS argument on
+The special value :code:`PARTICIPANT_QOS_DEFAULT` can be used as QoS argument on
 |DomainParticipantFactory::create_participant-api|
 or |DomainParticipant::set_qos-api| member functions to indicate that the current default
 DomainParticipantQos should be used.
@@ -137,7 +137,7 @@ DomainParticipant instances.
    :dedent: 8
 
 |DomainParticipantFactory::set_default_participant_qos-api|
-member function also accepts the value ``PARTICIPANT_QOS_DEFAULT``
+member function also accepts the value :code:`PARTICIPANT_QOS_DEFAULT`
 as input argument.
 This will reset the current default DomainParticipantQos to the default constructed value
 |DomainParticipantQos::DomainParticipantQos-api|.
@@ -149,7 +149,7 @@ This will reset the current default DomainParticipantQos to the default construc
    :dedent: 8
 
 .. note::
-   The value ``PARTICIPANT_QOS_DEFAULT`` has different meaning depending on where it is used:
+   The value :code:`PARTICIPANT_QOS_DEFAULT` has different meaning depending on where it is used:
 
    * On |DomainParticipantFactory::create_participant-api| and |DomainParticipant::set_qos-api| it refers to the
      default DomainParticipantQos as returned by |DomainParticipantFactory::get_default_participant_qos-api|.
@@ -178,3 +178,7 @@ the |DomainParticipant-api| from |DomainParticipantQos-api|.
    :start-after: //DDS_CHANGE_DOMAINPARTICIPANTEXTENDEDQOS
    :end-before: //!
    :dedent: 8
+
+It is also possible to fill a |DomainParticipantExtendedQos-api| object directly from a raw XML string without the need
+to previously load any profile.
+Please refer to :ref:`loading_raw_xml_profiles` section for more information.

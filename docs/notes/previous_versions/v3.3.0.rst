@@ -1,5 +1,5 @@
-`Version 3.3.0 <https://fast-dds.docs.eprosima.com/en/v3.3.0/index.html>`_
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+`Version 3.3.0 (EOL) <https://fast-dds.docs.eprosima.com/en/v3.3.0/index.html>`_
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 This minor release includes the following **features**:
 

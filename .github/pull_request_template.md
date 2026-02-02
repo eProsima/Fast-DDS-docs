@@ -19,7 +19,11 @@
     In case of bug fixes, please provide the list of supported branches where this fix should be also merged.
     Please uncomment following line, adjusting the corresponding target branches for the backport.
 -->
+<<<<<<< HEAD
 <!-- @Mergifyio backport 3.3.x 3.2.x 2.14.x -->
+=======
+<!-- @Mergifyio backport 3.4.x 3.2.x 2.14.x -->
+>>>>>>> 145ca57 (Updates after 3.3.1 EOL (#1195))
 
 <!-- If an issue is already opened, please uncomment next line with the corresponding issue number. -->
 <!-- Fixes #(issue) -->

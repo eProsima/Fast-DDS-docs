@@ -3,8 +3,8 @@
 
 .. _request_reply_api_intro:
 
-RPC over DDS Request-Reply API overview
----------------------------------------
+RPC over DDS Request-Reply API overview |Pro|
+---------------------------------------------
 
 *Fast DDS* |DomainParticipant| provides a high-level Request-Reply API
 to create all the DDS entities required for RPC over DDS communication.

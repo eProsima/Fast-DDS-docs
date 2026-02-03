@@ -3,8 +3,8 @@
 
 .. _rpc_exceptions:
 
-Exceptions
-----------
+Exceptions |Pro|
+----------------
 
 *Fast DDS* provides a |RpcException-api| base class for all the exceptions that can be thrown by the RPC API.
 It also provides some builtin exceptions, described in the following table:

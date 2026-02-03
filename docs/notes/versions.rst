@@ -384,7 +384,7 @@ The following table shows the corresponding versions of the Fast DDS library dep
             * - `Fast CDR <https://github.com/eProsima/Fast-CDR/>`__
               - `v2.3.5 <https://github.com/eProsima/Fast-CDR/releases/tag/v2.3.5>`__
             * - `Foonathan Memory Vendor <https://github.com/eProsima/foonathan_memory_vendor/>`__
-              - `v1.3.1 <https://github.com/eProsima/foonathan_memory_vendor/releases/tag/v1.3.1>`__
+              - `v1.3.2 <https://github.com/eProsima/foonathan_memory_vendor/releases/tag/v1.3.2>`__
             * - `Asio <https://github.com/chriskohlhoff/asio>`__
               - `v1.34.2 <https://github.com/chriskohlhoff/asio/tree/asio-1-34-2>`__
             * - `TinyXML2 <https://github.com/leethomason/tinyxml2>`__
@@ -403,7 +403,7 @@ The following table shows the corresponding versions of the Fast DDS library dep
             * - `Fast CDR <https://github.com/eProsima/Fast-CDR/>`__
               - `v2.3.2 <https://github.com/eProsima/Fast-CDR/releases/tag/v2.3.2>`__
             * - `Foonathan Memory Vendor <https://github.com/eProsima/foonathan_memory_vendor/>`__
-              - `v1.3.2 <https://github.com/eProsima/foonathan_memory_vendor/releases/tag/v1.3.2>`__
+              - `v1.3.1 <https://github.com/eProsima/foonathan_memory_vendor/releases/tag/v1.3.1>`__
             * - `Asio <https://github.com/chriskohlhoff/asio>`__
               - `v1.34.2 <https://github.com/chriskohlhoff/asio/tree/asio-1-34-2>`__
             * - `TinyXML2 <https://github.com/leethomason/tinyxml2>`__

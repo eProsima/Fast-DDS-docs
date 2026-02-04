@@ -356,8 +356,8 @@ Client side setup
 
 .. _DS_security:
 
-Security
-^^^^^^^^
+Security |Pro|
+^^^^^^^^^^^^^^
 
 Configuring :ref:`security` on *servers* and *clients* is done the same way as for any other participant.
 This section depicts the limitations imposed by the security enforcement on the communication between
@@ -382,4 +382,4 @@ still go through the PKI (Public Key Infrastructure) exchange in order to have a
 
 .. important::
 
-  Security support for Discovery Server is only supported from Fast DDS v2.10.0 onward.
+  Security support for Discovery Server is only supported in Fast DDS Pro.

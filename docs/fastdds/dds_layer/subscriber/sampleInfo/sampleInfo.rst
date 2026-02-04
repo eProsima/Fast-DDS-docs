@@ -43,8 +43,8 @@ sample_state
 been read previously.
 It can take one of these values:
 
-* **READ**: This is the first time this data sample has been retrieved.
-* **NOT_READ**: The data sample has already been *read* or *taken* previously.
+* **READ**: The data sample has already been *read* or *taken* previously.
+* **NOT_READ**: This is the first time this data sample has been retrieved.
 
 .. _dds_layer_subscriber_sampleInfo_viewstate:
 

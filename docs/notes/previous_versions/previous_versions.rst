@@ -1,6 +1,12 @@
 Previous end-of-life versions
 =============================
 
+Version 3.3 (EOL)
+-----------------
+
+.. include:: v3.3.1.rst
+.. include:: v3.3.0.rst
+
 Version 3.1 (EOL)
 -----------------
 

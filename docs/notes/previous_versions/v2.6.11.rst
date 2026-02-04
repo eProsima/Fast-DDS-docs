@@ -1,0 +1,32 @@
+`Version 2.6.11 (maintenance) <https://fast-dds.docs.eprosima.com/en/v2.6.11/index.html>`_
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. important::
+  According to our
+  `release support guidelines <https://github.com/eProsima/Fast-DDS/blob/master/RELEASE_SUPPORT.md>`_
+  the v2.6 minor will only receive patches for critical issues and security fixes.
+
+This release includes the following **critical fixes**:
+
+#. Fix `CVE-2025-62599 <https://www.cve.org/CVERecord?id=CVE-2025-62599>`_
+#. Fix `CVE-2025-62600 <https://www.cve.org/CVERecord?id=CVE-2025-62600>`_
+#. Fix `CVE-2025-62601 <https://www.cve.org/CVERecord?id=CVE-2025-62601>`_
+#. Fix `CVE-2025-62602 <https://www.cve.org/CVERecord?id=CVE-2025-62602>`_
+#. Fix `CVE-2025-62603 <https://www.cve.org/CVERecord?id=CVE-2025-62603>`_
+#. Fix `CVE-2025-64098 <https://www.cve.org/CVERecord?id=CVE-2025-64098>`_
+#. Fix `CVE-2025-62799 <https://www.cve.org/CVERecord?id=CVE-2025-62799>`_
+#. Fix `CVE-2025-64438 <https://www.cve.org/CVERecord?id=CVE-2025-64438>`_
+#. Fix `CVE-2025-65016 <https://www.cve.org/CVERecord?id=CVE-2025-65016>`_
+
+This release includes the following **improvements**:
+
+#. Verify Safe DDS signature
+#. Improvements in message receiver
+#. Regenerate types with Fast DDS Gen 2.1.4
+#. Upgrade to Fast CDR v1.0.29
+
+This release includes the following **ci management updates**:
+
+#. Add ``uncrustify`` to Github CI
+#. Remove deprecated windows 2019 from CI in favor of 2022
+#. Upgrade to macOS Sequoia

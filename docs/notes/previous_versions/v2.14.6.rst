@@ -1,0 +1,27 @@
+`Version 2.14.6 (latest) <https://fast-dds.docs.eprosima.com/en/v2.14.6/index.html>`_
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. important::
+
+    Fast DDS v2.14 is the last minor version of Fast DDS v2, the major release Fast DDS
+    v3 is already out! Check out all the new features and improvements in <https://fast-dds.docs.eprosima.com/en/latest/>
+
+This patch release includes the following **features**:
+
+
+This patch release includes the following **security fixes**:
+
+
+This patch release includes the following **improvements**:
+
+
+This patch release includes the following **fixes**:
+
+
+
+This patch release includes the following **CI improvements**:
+
+.. note::
+
+    When upgrading to version 2.14.6 it is **advisable** to regenerate generated source from IDL files
+    using `Fast DDS-Gen v3.3.2 <https://github.com/eProsima/Fast-DDS-Gen/releases/tag/v3.3.2>`_.

@@ -21,6 +21,12 @@ with distributed systems:
   If the network interfaces are expected to change while the application is running, *Fast DDS Pro* provides an
   automatic way of re-scanning the available interfaces and including them.
 
++ :ref:`TCP Keep Alive <tcp-keep-alive>` |Pro|.
+  In the same line as :ref:`IP mobility <ip-mobility>`, TCP Keep Alive feature allows to automatically detect
+  broken TCP connections by sending periodic keep-alive messages at application level when the connection is idle.
+  This feature is essential in TCP scenarios with dynamic IP changes or unstable network conditions,
+  ensuring that stale connections are identified and re-established promptly.
+
 + :ref:`use-case-tcp`.
   Describes how to configure *Fast DDS* to use the ``LARGE_DATA`` builtin transports mode.
   This mode enables efficient utilization of TCP transport without the need for constant reconfiguration

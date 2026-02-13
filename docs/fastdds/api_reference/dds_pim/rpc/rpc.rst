@@ -1,5 +1,5 @@
-RPC over DDS
-============
+RPC over DDS |Pro|
+==================
 
 .. toctree::
     :titlesonly:

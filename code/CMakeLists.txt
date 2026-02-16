@@ -45,11 +45,12 @@ endif()
 # Compile examples
 ####################################################################################################
 add_subdirectory(Examples/C++/DDSHelloWorld)
-add_subdirectory(Examples/C++/RpcClientServerBasic)
 # Add Pro features only when Fast DDS Pro is being used
 if(_fastdds_pro)
+    add_subdirectory(Examples/C++/RpcClientServerBasic)
     add_subdirectory(Examples/C++/RpcClientServerFeed)
 else()
+    message(STATUS "Skipping RpcClientServerBasic example because Fast DDS Pro is not being used")
     message(STATUS "Skipping RpcClientServerFeed example because Fast DDS Pro is not being used")
 endif()
 
@@ -115,12 +116,11 @@ configure_file(${CMAKE_CURRENT_SOURCE_DIR}/StaticTester.xml
 configure_file(${CMAKE_CURRENT_SOURCE_DIR}/helloworld_test.py
     ${CMAKE_CURRENT_BINARY_DIR}/helloworld_test.py COPYONLY)
 
-configure_file(${CMAKE_CURRENT_SOURCE_DIR}/rpc_calculator_basic_test.py
-${CMAKE_CURRENT_BINARY_DIR}/rpc_calculator_basic_test.py COPYONLY)
-
 if(_fastdds_pro)
-  configure_file(${CMAKE_CURRENT_SOURCE_DIR}/rpc_calculator_feed_test.py
-  ${CMAKE_CURRENT_BINARY_DIR}/rpc_calculator_feed_test.py COPYONLY)
+    configure_file(${CMAKE_CURRENT_SOURCE_DIR}/rpc_calculator_basic_test.py
+    ${CMAKE_CURRENT_BINARY_DIR}/rpc_calculator_basic_test.py COPYONLY)
+    configure_file(${CMAKE_CURRENT_SOURCE_DIR}/rpc_calculator_feed_test.py
+    ${CMAKE_CURRENT_BINARY_DIR}/rpc_calculator_feed_test.py COPYONLY)
 endif()
 
 configure_file(${CMAKE_CURRENT_SOURCE_DIR}/grep.py
@@ -172,18 +172,18 @@ if(${Python3_FOUND} AND (${Python3_VERSION} VERSION_GREATER "3.6"))
     set_property(TEST helloworld
         APPEND PROPERTY ENVIRONMENT "HELLOWORLD_SUB_TEST_BIN=$<TARGET_FILE:DDSHelloWorldSubscriber>")
 
-    add_test(NAME calculator_basic COMMAND ${Python3_EXECUTABLE} rpc_calculator_basic_test.py)
-    set_property(TEST calculator_basic
-        APPEND PROPERTY ENVIRONMENT "CLIENT_TEST_BIN=$<TARGET_FILE:basic_client>")
-    set_property(TEST calculator_basic
-        APPEND PROPERTY ENVIRONMENT "SERVER_TEST_BIN=$<TARGET_FILE:basic_server>")
-
     if(_fastdds_pro)
+        add_test(NAME calculator_basic COMMAND ${Python3_EXECUTABLE} rpc_calculator_basic_test.py)
+        set_property(TEST calculator_basic
+            APPEND PROPERTY ENVIRONMENT "CLIENT_TEST_BIN=$<TARGET_FILE:basic_client>")
+        set_property(TEST calculator_basic
+            APPEND PROPERTY ENVIRONMENT "SERVER_TEST_BIN=$<TARGET_FILE:basic_server>")
+
         add_test(NAME calculator_feed COMMAND ${Python3_EXECUTABLE} rpc_calculator_feed_test.py)
-        set_property(TEST calculator_feed
-            APPEND PROPERTY ENVIRONMENT "CLIENT_TEST_BIN=$<TARGET_FILE:feed_client>")
-        set_property(TEST calculator_feed
-            APPEND PROPERTY ENVIRONMENT "SERVER_TEST_BIN=$<TARGET_FILE:feed_server>")
+            set_property(TEST calculator_feed
+                APPEND PROPERTY ENVIRONMENT "CLIENT_TEST_BIN=$<TARGET_FILE:feed_client>")
+            set_property(TEST calculator_feed
+                APPEND PROPERTY ENVIRONMENT "SERVER_TEST_BIN=$<TARGET_FILE:feed_server>")
     endif()
 endif()
 

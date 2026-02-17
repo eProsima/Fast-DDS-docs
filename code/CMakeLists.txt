@@ -50,8 +50,7 @@ if(_fastdds_pro)
     add_subdirectory(Examples/C++/RpcClientServerBasic)
     add_subdirectory(Examples/C++/RpcClientServerFeed)
 else()
-    message(STATUS "Skipping RpcClientServerBasic example because Fast DDS Pro is not being used")
-    message(STATUS "Skipping RpcClientServerFeed example because Fast DDS Pro is not being used")
+    message(STATUS "Skipping RPC examples because Fast DDS Pro is not being used")
 endif()
 
 ####################################################################################################

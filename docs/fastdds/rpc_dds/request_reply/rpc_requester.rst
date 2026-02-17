@@ -138,7 +138,7 @@ Example
 
 The following code snippet shows how to use a Requester instance:
 
-.. literalinclude:: /../code/DDSCodeTester.cpp
+.. literalinclude:: /../code/ProDDSCodeTester.cpp
       :language: c++
       :start-after: //!--RPC_REQUESTER_EXAMPLE
       :end-before: //!--

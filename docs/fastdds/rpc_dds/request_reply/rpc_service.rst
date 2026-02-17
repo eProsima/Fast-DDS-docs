@@ -124,7 +124,7 @@ Example
 
 The following code snippet shows how to create and delete a Service instance:
 
-.. literalinclude:: /../code/DDSCodeTester.cpp
+.. literalinclude:: /../code/ProDDSCodeTester.cpp
       :language: c++
       :start-after: //!--CREATE_DELETE_SERVICE_EXAMPLE
       :end-before: //!--

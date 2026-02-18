@@ -216,7 +216,6 @@ add_test(NAME docs.code_block_check.xml
 add_test(NAME docs.spell_check
     COMMAND
     ${SPHINX_EXECUTABLE} -Q -W --keep-going
-    -D breathe_projects.FastDDS=${DOXYGEN_OUTPUT_DIR}/xml
     -b spelling
     -d "${PROJECT_BINARY_DIR}/doctrees"
     ${CMAKE_SOURCE_DIR}/docs

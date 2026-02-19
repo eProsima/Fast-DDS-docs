@@ -1,3 +1,5 @@
+.. include:: aliases-pro-api.include
+
 .. |ContentFilteredTopic-api| replace:: :cpp:class:`ContentFilteredTopic <eprosima::fastdds::dds::ContentFilteredTopic>`
 .. |ContentFilteredTopic::get_related_topic-api| replace:: :cpp:func:`get_related_topic()<eprosima::fastdds::dds::ContentFilteredTopic::get_related_topic>`
 .. |ContentFilteredTopic::get_filter_expression-api| replace:: :cpp:func:`get_filter_expression()<eprosima::fastdds::dds::ContentFilteredTopic::get_filter_expression>`

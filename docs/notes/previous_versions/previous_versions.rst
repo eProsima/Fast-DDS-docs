@@ -1,3 +1,6 @@
+.. include:: ../../03-exports/aliases-api.include
+.. include:: ../../03-exports/aliases.include
+
 Previous end-of-life versions
 =============================
 

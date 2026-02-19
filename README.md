@@ -238,7 +238,7 @@ The [docs](docs) directory contains:
 All new documentation must fall into one of these directories, with the exception of those contributions which are not related to any of the given descriptions.
 Keep in mind that this is an Sphinx based project, and as such, all the documentation is written in `reStructuredText`.
 
-All unrecognized words must be added to the [spelling_wordlist.txt](docs/spelling_wordlist.txt) dictionary in alphabetical order, with exception of the ones coming from the API reference documentation, which must be added to [docs/fastdds/api_reference/spelling_wordlist.txt](docs/fastdds/api_reference/spelling_wordlist.txt).
+All unrecognized words must be added to the [spelling_wordlist.txt](docs/spelling_wordlist.txt) dictionary in alphabetical order, with exception of the ones coming from the API reference documentation, which must be added to [api_spelling_wordlist.txt](docs/api_spelling_wordlist.txt).
 
 ### `code` directory
 

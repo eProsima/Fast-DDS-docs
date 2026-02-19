@@ -453,10 +453,9 @@ try:
 
     extensions.append("sphinxcontrib.spelling")
 
-    # spelling_word_list_filename = 'spelling_wordlist.txt'
     spelling_word_list_filename = [
         "spelling_wordlist.txt",
-        "fastdds/api_reference/spelling_wordlist.txt",
+        "api_spelling_wordlist.txt",
     ]
 
     from sphinxcontrib.spelling.filters import ContractionFilter

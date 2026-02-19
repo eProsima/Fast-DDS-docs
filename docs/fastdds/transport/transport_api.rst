@@ -210,7 +210,7 @@ IPv6.
     +--------------------------------------------------------------------+
                                   16 bytes
 
-Check how to manipulate the WAN address in the :ref:`TCP IPv4 transport descriptor api <api_tcpv4_transport_descriptor>`
+Check how to manipulate the WAN address in the |api_tcpv4_transport_descriptor|
 section.
 
 .. _transport_transportApi_ipLocator:

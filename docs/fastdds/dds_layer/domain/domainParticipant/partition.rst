@@ -33,7 +33,7 @@ In this sense, partitions represent a light mechanism to provide data separation
 
 .. |partition| replace:: :cpp:func:`partition<eprosima::fastdds::dds::SubscriberQos::partition>`
 
-The Partition membership of an endpoint can be configured on the :ref:`api_pim_partitionqospolicy`
+The Partition membership of an endpoint can be configured on the |api_pim_partitionqospolicy|
 data member of the :ref:`dds_layer_publisher_publisherQos` or :ref:`dds_layer_subscriber_subscriberQos` objects.
 This member holds a list of Partition name strings.
 If no Partition is defined for an entity, it will be automatically included in the default nameless Partition.

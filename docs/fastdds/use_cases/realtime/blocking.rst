@@ -7,7 +7,7 @@ Non-blocking calls
    As OSX does not support necessary POSIX Real-time features, this feature is not fully supported on OSX.
    In that case, the feature is limited by the implementation of `std::timed_mutex` and `std::condition_variable_any`.
 
-Several functions on the :ref:`Fast DDS API<api_reference>` can be blocked
+Several functions on the |api_reference| can be blocked
 for an undefined period of time when operations compete for the control of a resource.
 The blocked function cannot continue until the operation that gained the control finishes, thus blocking
 the calling thread.

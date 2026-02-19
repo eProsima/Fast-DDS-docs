@@ -9,7 +9,7 @@ Statistics Topic names
 
 Data collected by the *Fast DDS Statistics module* is published in one of the topics listed below.
 In order to simplify its use, the API provides aliases for the different statistics topics (see
-:ref:`api_statistics_topic_names`).
+|api_statistics_topic_names|).
 The following table shows the correlation between the topic name and the corresponding alias.
 
 +-------------------------------------------------+--------------------------------------------------------------------+

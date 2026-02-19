@@ -13,6 +13,7 @@ At least one of these properties should be set in order for the congestion contr
 
 * Property ``fastdds.congestion.plugin`` is used to set the congestion control plugin to be used.
   If the property is not present, it will be set to ``basic``.
+  See :ref:`congestion control plugins <congestion-control-plugins>` for more information about the available plugins.
 
 * Property ``fastdds.congestion.period`` is used to set the interval in milliseconds for checking whether the bandwidth
   to certain destinations should be updated.

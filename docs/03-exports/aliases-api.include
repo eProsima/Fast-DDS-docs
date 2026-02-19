@@ -1,4 +1,5 @@
-.. include:: aliases-pro-api.include
+.. include:: /03-exports/aliases-pro-api.include
+
 
 .. |ContentFilteredTopic-api| replace:: :cpp:class:`ContentFilteredTopic <eprosima::fastdds::dds::ContentFilteredTopic>`
 .. |ContentFilteredTopic::get_related_topic-api| replace:: :cpp:func:`get_related_topic()<eprosima::fastdds::dds::ContentFilteredTopic::get_related_topic>`
@@ -375,14 +376,11 @@
 .. |RPCEntity::is_enabled-api| replace:: :cpp:func:`is_enabled()<eprosima::fastdds::dds::rpc::RPCEntity::is_enabled>`
 .. |RequestInfo-api| replace:: :cpp:type:`RequestInfo<eprosima::fastdds::dds::rpc::RequestInfo>`
 .. |ServiceTypeSupport-api| replace:: :cpp:class:`ServiceTypeSupport<eprosima::fastdds::dds::rpc::ServiceTypeSupport>`
-.. |RpcRequest-api| replace:: :cpp:class:`RpcRequest<eprosima::fastdds::dds::rpc::RpcRequest>`
 .. |RpcRequest::get_client_id-api| replace:: :cpp:func:`get_client_id()<eprosima::fastdds::dds::rpc::RpcRequest::get_client_id>`
 .. |RpcRequest::get_client_locators-api| replace:: :cpp:func:`get_client_locators()<eprosima::fastdds::dds::rpc::RpcRequest::get_client_locators>`
-.. |RpcServer-api| replace:: :cpp:class:`RpcServer<eprosima::fastdds::dds::rpc::RpcServer>`
 .. |RpcServer::run-api| replace:: :cpp:func:`run()<eprosima::fastdds::dds::rpc::RpcServer::run>`
 .. |RpcServer::stop-api| replace:: :cpp:func:`stop()<eprosima::fastdds::dds::rpc::RpcServer::stop>`
 .. |RpcServer::execute_request-api| replace:: :cpp:func:`execute_request()<eprosima::fastdds::dds::rpc::RpcServer::execute_request>`
-.. |RpcServerSchedulingStrategy-api| replace:: :cpp:class:`RpcServerSchedulingStrategy<eprosima::fastdds::dds::rpc::RpcServerSchedulingStrategy>`
 .. |RpcServerSchedulingStrategy::schedule_request-api| replace:: :cpp:func:`schedule_request()<eprosima::fastdds::dds::rpc::RpcServerSchedulingStrategy::schedule_request>`
 .. |RpcServerSchedulingStrategy::server_stopped-api| replace:: :cpp:func:`server_stopped()<eprosima::fastdds::dds::rpc::RpcServerSchedulingStrategy::server_stopped>`
 .. |RpcServerWriter-api| replace:: :cpp:class:`RpcServerWriter<eprosima::fastdds::dds::rpc::RpcServerWriter>`
@@ -395,18 +393,6 @@
 .. |RpcClientWriter::finish-api| replace:: :cpp:func:`finish()<eprosima::fastdds::dds::rpc::RpcClientWriter::finish>`
 .. |RpcServerReader-api| replace:: :cpp:class:`RpcServerReader<eprosima::fastdds::dds::rpc::RpcServerReader>`
 .. |RpcServerReader::read-api| replace:: :cpp:func:`read()<eprosima::fastdds::dds::rpc::RpcServerReader::read>`
-.. |RpcStatusCode-api| replace:: :cpp:type:`RpcStatusCode<eprosima::fastdds::dds::rpc::RpcStatusCode>`
-.. |RemoteInvalidArgumentError-api| replace:: :cpp:class:`RemoteInvalidArgumentError<eprosima::fastdds::dds::rpc::RemoteInvalidArgumentError>`
-.. |RemoteOutOfResourcesError-api| replace:: :cpp:class:`RemoteOutOfResourcesError<eprosima::fastdds::dds::rpc::RemoteOutOfResourcesError>`
-.. |RemoteUnknownExceptionError-api| replace:: :cpp:class:`RemoteUnknownExceptionError<eprosima::fastdds::dds::rpc::RemoteUnknownExceptionError>`
-.. |RemoteUnknownOperationError-api| replace:: :cpp:class:`RemoteUnknownOperationError<eprosima::fastdds::dds::rpc::RemoteUnknownOperationError>`
-.. |RemoteUnsupportedError-api| replace:: :cpp:class:`RemoteUnsupportedError<eprosima::fastdds::dds::rpc::RemoteUnsupportedError>`
-.. |RpcBrokenPipeException-api| replace:: :cpp:class:`RpcBrokenPipeException<eprosima::fastdds::dds::rpc::RpcBrokenPipeException>`
-.. |RpcException-api| replace:: :cpp:class:`RpcException<eprosima::fastdds::dds::rpc::RpcException>`
-.. |RpcFeedCancelledException-api| replace:: :cpp:class:`RpcFeedCancelledException<eprosima::fastdds::dds::rpc::RpcFeedCancelledException>`
-.. |RpcOperationError-api| replace:: :cpp:class:`RpcOperationError<eprosima::fastdds::dds::rpc::RpcOperationError>`
-.. |RpcRemoteException-api| replace:: :cpp:class:`RpcRemoteException<eprosima::fastdds::dds::rpc::RpcRemoteException>`
-.. |RpcTimeoutException-api| replace:: :cpp:class:`RpcTimeoutException<eprosima::fastdds::dds::rpc::RpcTimeoutException>`
 .. |RemoteExceptionCode_t-api| replace:: :cpp:enum:`RemoteExceptionCode_t<eprosima::fastdds::dds::rpc::RemoteExceptionCode_t>`
 
 .. |DestinationOrderQosPolicyKind-api| replace:: :cpp:enum:`DestinationOrderQosPolicyKind<eprosima::fastdds::dds::DestinationOrderQosPolicyKind>`

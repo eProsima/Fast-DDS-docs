@@ -25,8 +25,6 @@
 #include <fastdds/dds/publisher/PublisherListener.hpp>
 #include <fastdds/dds/publisher/qos/DataWriterQos.hpp>
 #include <fastdds/dds/publisher/qos/PublisherQos.hpp>
-#include <fastdds/dds/rpc/exceptions.hpp>
-#include <fastdds/dds/rpc/interfaces.hpp>
 #include <fastdds/dds/rpc/RemoteExceptionCode_t.hpp>
 #include <fastdds/dds/rpc/Replier.hpp>
 #include <fastdds/dds/rpc/Requester.hpp>

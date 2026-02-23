@@ -533,6 +533,26 @@ exclude_patterns = [
     "*/api-reference/*"
 ]
 
+# References that cause error on basic after API removal
+nitpick_ignore = [
+    ('ref', 'api_pim_condition'),
+    ('ref', 'api_pim_guardcondition'),
+    ('ref', 'api_pim_statuscondition'),
+    ('ref', 'api_pim_readcondition'),
+    ('ref', 'api_pim_waitset'),
+    ('ref', 'api_pim_dds_dcps_pim'),
+    ('ref', 'api_pim_partitionqospolicy'),
+    ('ref', 'api_statistics_topic_names'),
+    ('ref', 'api_tcpv4_transport_descriptor'),
+    ('ref', 'api_reference'),
+    ('ref', 'dynamic_language_binding_api'),
+    ('ref', 'api_rtps_builtin_data_participantbuiltintopicdata'),
+    ('ref', 'api_pim_datawriter'),
+    ('ref', 'api_pim_publishmodeqospolicy'),
+    ('ref', 'api_pim_sampleinfo'),
+    ('ref', 'api_pim_datareader'),
+]
+
 # The reST default role (used for this markup: `text`) to use for all
 # documents.
 #

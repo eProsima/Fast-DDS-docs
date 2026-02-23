@@ -83,14 +83,6 @@ A more detailed explanation of each of these elements can be found in :ref:`comm
      - Public WAN address when using TCPv4 transports. This field is optional if the transport doesn't need to define a WAN address (TCPv4 only).
      - ``string``
      -
-   * - ``<keep_alive_frequency_ms>``
-     - Frequency in milliseconds for sending :ref:`RTCP <rtcpdefinition>` keep-alive requests (TCP only).
-     - ``uint32_t``
-     - ``50000``
-   * - ``<keep_alive_timeout_ms>``
-     - Time in milliseconds since the last keep-alive request was sent to consider a connection as broken (TCP only).
-     - ``uint32_t``
-     - ``10000``
    * - ``<max_logical_port>``
      - The maximum number of logical ports to try during :ref:`RTCP <rtcpdefinition>` negotiations (TCP only).
      - ``uint16_t``

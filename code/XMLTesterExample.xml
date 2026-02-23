@@ -25,8 +25,6 @@
                     <interface>lo</interface>
                 </interfaceWhiteList>
                 <wan_addr>80.80.55.44</wan_addr>
-                <keep_alive_frequency_ms>5000</keep_alive_frequency_ms>
-                <keep_alive_timeout_ms>25000</keep_alive_timeout_ms>
                 <max_logical_port>200</max_logical_port>
                 <logical_port_range>20</logical_port_range>
                 <logical_port_increment>2</logical_port_increment>

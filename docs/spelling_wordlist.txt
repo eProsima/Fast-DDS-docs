@@ -270,6 +270,7 @@ representable
 requesters
 RETCODE_OK
 retransmission
+retransmissions
 rnd
 roadmap
 rosbag

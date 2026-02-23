@@ -11,7 +11,8 @@ a different bandwidth limitation on each DataReader according to the network con
 This feature can be customized through :ref:`congestion control plugins <congestion-control-plugins>`, which define
 the algorithm used to adjust the bandwidth based on the detected congestion.
 
-To enable congestion control, the DomainParticipant must be configured with the :ref:`appropriate properties <property_policies_congestion_control>`.
+To enable congestion control, the DomainParticipant must be configured with the
+:ref:`appropriate properties <property_policies_congestion_control>`.
 
 .. _congestion-control-plugins:
 
@@ -63,8 +64,8 @@ At the end of each period, the algorithm evaluates each tracked remote DataReade
 independently resulting in three possible cases:
 
 - **Decrease**: If the DataWriter had to retransmit data to the reader during the period
-  (signalling packet loss or network congestion), the current bandwidth limit is multiplied
-  by the ``decrease_factor``. Note that the first repair attemptfor a given sequence number
+  (signaling packet loss or network congestion), the current bandwidth limit is multiplied
+  by the ``decrease_factor``. Note that the first repair attempt for a given sequence number
   is not counted to avoid overreacting to isolated packet losses.
 
   .. note::

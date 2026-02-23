@@ -11,7 +11,7 @@ a different bandwidth limitation on each DataReader according to the network con
 This feature can be customized through :ref:`congestion control plugins <congestion-control-plugins>`, which define
 the algorithm used to adjust the bandwidth based on the detected congestion.
 
-To enable congestion control, the DomainParticipant must be configured with the :ref:`appropriate properties <_property_policies_congestion_control-control-properties>`.
+To enable congestion control, the DomainParticipant must be configured with the :ref:`appropriate properties <property_policies_congestion_control>`.
 
 .. _congestion-control-plugins:
 
@@ -24,7 +24,7 @@ adjust the bandwidth associated to each DataReader. At the moment, only the ``ba
 .. _basic-congestion-control-plugin:
 
 The ``basic`` Congestion Control
-""""""""""""""""""""""""""""""""
+................................
 
 The ``basic`` congestion control plugin dynamically adjusts the sending rate to each
 remote DataReader based on observed network feedback. It operates independently per
@@ -47,8 +47,8 @@ writers are unaffected.
     **overridden** by the congestion control's internal flow controller.
 
 
-The ``basic`` congestion control algorithm is governed by these four properties, that are f
-urther detailed :ref:`here<_property_policies_congestion_control>``:
+The ``basic`` congestion control algorithm is governed by these four properties, that are
+further detailed :ref:`here <property_policies_congestion_control>`:
 
 - **Period** (``period_duration_ms``): Time interval, in milliseconds, at which the
   algorithm evaluates and adjusts the bandwidth limit for each reader.

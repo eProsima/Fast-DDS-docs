@@ -963,7 +963,6 @@ void dds_domain_examples()
         // DDS_CONGESTION_CONTROL_PROPS
         DomainParticipantQos participant_qos;
 
-        // Avoid local matching of this participant's endpoints
         participant_qos.properties().properties().emplace_back(
             "fastdds.congestion.plugin",
             "basic");

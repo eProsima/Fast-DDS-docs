@@ -562,7 +562,6 @@ suppress_warnings = [
     "cpp.duplicate_declaration",
     "cpp.parse_function_declaration",
     "config.cache",
-    "ref.any",
 ]
 
 # Check if we are checking the spelling. In this case...

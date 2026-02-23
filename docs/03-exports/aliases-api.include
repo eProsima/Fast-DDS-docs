@@ -1,11 +1,11 @@
-.. |api_pim_condition| replace:: :ref:`api_pim_condition`
-.. |api_pim_guardcondition| replace:: :ref:`api_pim_guardcondition`
-.. |api_pim_statuscondition| replace:: :ref:`api_pim_statuscondition`
-.. |api_pim_readcondition| replace:: :ref:`api_pim_readcondition`
-.. |api_pim_waitset| replace:: :ref:`api_pim_waitset`
-.. |api_pim_dds_dcps_pim| replace:: :ref:`api_pim_dds_dcps_pim`
-.. |api_pim_partitionqospolicy| replace:: :ref:`api_pim_partitionqospolicy`
-.. |api_statistics_topic_names| replace:: :ref:`api_statistics_topic_names`
+.. |api_pim_condition| replace:: :ref:`Condition <api_pim_condition>`
+.. |api_pim_guardcondition| replace:: :ref:`GuardCondition <api_pim_guardcondition>`
+.. |api_pim_statuscondition| replace:: :ref:`StatusCondition <api_pim_statuscondition>`
+.. |api_pim_readcondition| replace:: :ref:`ReadCondition <api_pim_readcondition>`
+.. |api_pim_waitset| replace:: :ref:`Wait-set <api_pim_waitset>`
+.. |api_pim_dds_dcps_pim| replace:: :ref:`DDS DCPS PIM <api_pim_dds_dcps_pim>`
+.. |api_pim_partitionqospolicy| replace:: :ref:`PartitionQosPolicy <api_pim_partitionqospolicy>`
+.. |api_statistics_topic_names| replace:: :ref:`Statistics topic names <api_statistics_topic_names>`
 .. |api_tcpv4_transport_descriptor| replace:: :ref:`TCP IPv4 transport descriptor api <api_tcpv4_transport_descriptor>`
 .. |api_reference| replace:: :ref:`Fast DDS API<api_reference>`
 .. |dynamic_language_binding_api| replace:: :ref:`API reference<dynamic_language_binding_api>`

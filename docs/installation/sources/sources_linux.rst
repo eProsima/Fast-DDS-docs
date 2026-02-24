@@ -602,11 +602,11 @@ Gradle is an open-source build automation tool which requires a Java version to 
 .. important::
 
     Even though earlier versions of Gradle support Java 11, *Fast DDS-Gen* stopped supporting Java versions previous to
-    Java 17 since release v3.5.0.
+    Java 17 since release v4.3.0.
 
 .. important::
 
-    *Fast DDS-Gen* introduced support for Gradle 9 in release v3.5.0.
+    *Fast DDS-Gen* introduced support for Gradle 9 in release v4.3.0.
 
 .. seealso::
 

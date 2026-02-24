@@ -6,20 +6,72 @@
     Fast DDS v2.14 is the last minor version of Fast DDS v2, the major release Fast DDS
     v3 is already out! Check out all the new features and improvements in <https://fast-dds.docs.eprosima.com/en/latest/>
 
-This patch release includes the following **features**:
+# Fast DDS v2.14.6
 
+This patch release includes the following security fixes:
 
-This patch release includes the following **security fixes**:
+- [Fix CVE-2025-62599](https://www.cve.org/CVERecord?id=CVE-2025-62599)
+- [Fix CVE-2025-62600](https://www.cve.org/CVERecord?id=CVE-2025-62600)
+- [Fix CVE-2025-62601](https://www.cve.org/CVERecord?id=CVE-2025-62601)
+- [Fix CVE-2025-62602](https://www.cve.org/CVERecord?id=CVE-2025-62602)
+- [Fix CVE-2025-62603](https://www.cve.org/CVERecord?id=CVE-2025-62603)
+- [Fix CVE-2025-62799](https://www.cve.org/CVERecord?id=CVE-2025-62799)
+- [Fix CVE-2025-64098](https://www.cve.org/CVERecord?id=CVE-2025-64098)
+- [Fix CVE-2025-64438](https://www.cve.org/CVERecord?id=CVE-2025-64438)
+- [Fix CVE-2025-65016](https://www.cve.org/CVERecord?id=CVE-2025-65016)
+- [Fix CVE-2026-22590](https://www.cve.org/CVERecord?id=CVE-2026-22590)
 
+This patch release includes the following improvements:
 
-This patch release includes the following **improvements**:
+- Allow to send empty payloads in dispose/unregister ops
+- Reset irrelevant sequence numbers interval in proxy readers
+- Improve Open SSL includes
+- Verify Safe DDS signature
+- Replace logWarning with EPROSIMA_LOG_WARNING
+- Improvements on compute_key generated code
+- Improvements in message receiver
+- Improve some tests
+- Protect PDPStatelessWriter attributes
+- Avoid casting GUID_t into InstanceHandle_t
+- Protect DataReaderInstance alive_writers attribute
+- Avoid `PROJECT_SOURCE_DIR` and `make_unique` when building blackbox tests
+- Fix wrong namespace when indicating CDR version
+- Allow empty partition list to match against `"*"`
+- Apply Uncrustify to 2.14.x
+- Avoid sending duplicated ACKs in DataSharing
+- Send heartbeat when wait_for_all_acked is called
+- Handle maximum deadline misses case
+- Solve TCP disconnect while incomplete read deadlock
+- Remote writers considered volatile by default
+- Change non_blocking_send threshold to sendBufferSize
+- Regenerated types using fastddsgen 3.3.1
+- Use binary search in `find_change_nts`
+- Support aliases in Content Filtered Topic
+- Update fallback branches to use environment variables
+- Add missing field to xsd
+- Avoid setting thread affinity of 0 in mac
+- Revert "Return sample notifying changes on instance state"
+- Regenerate types with Fast DDS Gen 3.3.2
+- Update fastcdr submodule to point to v2.2.7
 
+This patch release includes the following fixes:
 
-This patch release includes the following **fixes**:
+- Release change while authentication fails
+- Fix DataReader history enforcement to respect max_samples_per_instance
+- Fix wrong update of default locators
+- Fix build in GCC 15
+- Fix GAP messages are not sent when there is no Reader requesting the DATA
 
+This patch release includes the following CI improvements:
 
+- Upgrade Linters CI runner image to `ubuntu-24.04`
+- Free disk space in Ubuntu runners
+- Single line for ctest_args in Mac CI
+- Upgrade to macOS Sequoia
+- Reduce disk usage in TSAN job
+- Allow CI to run tests with manual dispatch
+- Split Mac CI build and testing phases
 
-This patch release includes the following **CI improvements**:
 
 .. note::
 

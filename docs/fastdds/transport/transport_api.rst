@@ -1,6 +1,7 @@
 .. include:: ../../03-exports/aliases.include
 .. include:: ../../03-exports/aliases-api.include
 .. include:: ../../03-exports/roles.include
+.. include:: ../../03-exports/pro-only-refs.include
 
 .. _transport_transportApi:
 

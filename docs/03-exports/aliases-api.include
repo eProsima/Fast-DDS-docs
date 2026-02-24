@@ -1,20 +1,3 @@
-.. |api_pim_condition| replace:: :ref:`Condition <api_pim_condition>`
-.. |api_pim_guardcondition| replace:: :ref:`GuardCondition <api_pim_guardcondition>`
-.. |api_pim_statuscondition| replace:: :ref:`StatusCondition <api_pim_statuscondition>`
-.. |api_pim_readcondition| replace:: :ref:`ReadCondition <api_pim_readcondition>`
-.. |api_pim_waitset| replace:: :ref:`Wait-set <api_pim_waitset>`
-.. |api_pim_dds_dcps_pim| replace:: :ref:`DDS DCPS PIM <api_pim_dds_dcps_pim>`
-.. |api_pim_partitionqospolicy| replace:: :ref:`PartitionQosPolicy <api_pim_partitionqospolicy>`
-.. |api_statistics_topic_names| replace:: :ref:`Statistics topic names <api_statistics_topic_names>`
-.. |api_tcpv4_transport_descriptor| replace:: :ref:`TCP IPv4 transport descriptor api <api_tcpv4_transport_descriptor>`
-.. |api_reference| replace:: :ref:`Fast DDS API<api_reference>`
-.. |dynamic_language_binding_api| replace:: :ref:`API reference<dynamic_language_binding_api>`
-.. |api_rtps_builtin_data_participantbuiltintopicdata| replace:: :ref:`Participant discovery structures <api_rtps_builtin_data_participantbuiltintopicdata>`
-.. |api_pim_datawriter| replace:: :ref:`DataWriter <api_pim_datawriter>`
-.. |api_pim_publishmodeqospolicy| replace:: :ref:`New flow controller API <api_pim_publishmodeqospolicy>`
-.. |api_pim_sampleinfo| replace:: :ref:`Added reception timestamp to SampleInfo <api_pim_sampleinfo>`
-.. |api_pim_datareader| replace:: :ref:`Exposing get_unread_count on DataReader <api_pim_datareader>`
-
 .. |ContentFilteredTopic-api| replace:: :cpp:class:`ContentFilteredTopic <eprosima::fastdds::dds::ContentFilteredTopic>`
 .. |ContentFilteredTopic::get_related_topic-api| replace:: :cpp:func:`get_related_topic()<eprosima::fastdds::dds::ContentFilteredTopic::get_related_topic>`
 .. |ContentFilteredTopic::get_filter_expression-api| replace:: :cpp:func:`get_filter_expression()<eprosima::fastdds::dds::ContentFilteredTopic::get_filter_expression>`

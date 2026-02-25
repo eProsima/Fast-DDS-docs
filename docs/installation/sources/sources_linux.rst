@@ -601,13 +601,12 @@ Gradle is an open-source build automation tool which requires a Java version to 
 
 .. important::
 
-    Even though earlier versions of Gradle support Java 8, *Fast DDS-Gen* stopped supporting Java versions previous to
-    Java 11 since release v2.4.0.
+    Even though earlier versions of Gradle support Java 11, *Fast DDS-Gen* stopped supporting Java versions previous to
+    Java 17 since release v4.3.0.
 
 .. important::
 
-    *Fast DDS-Gen* introduced support for Gradle 7 in release v2.2.0.
-    Gradle 8 is not yet supported.
+    *Fast DDS-Gen* introduced support for Gradle 9 in release v4.3.0.
 
 .. seealso::
 
@@ -621,15 +620,14 @@ Java JDK
 
 The JDK is a development environment for building applications and components using the Java language.
 There are several versions of Java available.
-For instance, to install Java 11 JDK, run the following command:
+For instance, to install Java 17 JDK, run the following command:
 
 .. code-block:: bash
 
-    sudo apt install openjdk-11-jdk
-
+    sudo apt install openjdk-17-jdk
 .. note::
 
-    *Fast DDS-Gen* supports Java versions from 11 to 19.
+    *Fast DDS-Gen* supports Java versions from 17 to 21.
 
 Compiling Fast DDS-Gen
 ----------------------

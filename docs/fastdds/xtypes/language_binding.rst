@@ -1,6 +1,7 @@
 .. include:: ../../03-exports/aliases.include
 .. include:: ../../03-exports/aliases-api.include
 .. include:: ../../03-exports/roles.include
+.. include:: ../../03-exports/pro-only-refs.include
 
 .. _xtypes_language_binding:
 
@@ -23,7 +24,7 @@ Dynamic Language Binding Interfaces
 
 This section briefly presents the Dynamic Language Binding API.
 For more information, please refer both to the `DDS-XTypes specification <https://www.omg.org/spec/DDS-XTypes/1.3>`__
-and the :ref:`API reference<dynamic_language_binding_api>`.
+and the |dynamic_language_binding_api|.
 
 TypeDescriptor
 ^^^^^^^^^^^^^^

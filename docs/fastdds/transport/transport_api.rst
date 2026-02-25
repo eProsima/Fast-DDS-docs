@@ -1,6 +1,7 @@
 .. include:: ../../03-exports/aliases.include
 .. include:: ../../03-exports/aliases-api.include
 .. include:: ../../03-exports/roles.include
+.. include:: ../../03-exports/pro-only-refs.include
 
 .. _transport_transportApi:
 
@@ -210,7 +211,7 @@ IPv6.
     +--------------------------------------------------------------------+
                                   16 bytes
 
-Check how to manipulate the WAN address in the :ref:`TCP IPv4 transport descriptor api <api_tcpv4_transport_descriptor>`
+Check how to manipulate the WAN address in the |api_tcpv4_transport_descriptor|
 section.
 
 .. _transport_transportApi_ipLocator:

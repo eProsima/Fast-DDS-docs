@@ -13,7 +13,7 @@ This release includes the following **API breaks**:
 #. Make all public headers .hpp.
 #. :ref:`dynamic-types` refactor.
 #. :ref:`IPayloadPool<rtps_layer_ipayload_pool_interface>` refactor.
-#. :ref:`Participant discovery structures <api_rtps_builtin_data_participantbuiltintopicdata>` refactor.
+#. |api_rtps_builtin_data_participantbuiltintopicdata| refactor.
 #. GUIDLess :ref:`Discovery Server<discovery_server>`.
 #. Gather-send implementation.
 #. ``const`` qualify all data related inputs in DataWriter APIs.

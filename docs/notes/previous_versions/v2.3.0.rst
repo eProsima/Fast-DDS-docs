@@ -17,10 +17,10 @@ This release adds the following **features**:
 * :ref:`Unique network flows <use-case-unique-flows>`
 * :ref:`Discovery super-client <ros2-discovery-server-introspection>`
 * :ref:`Statistics module API <statistics>`
-* :ref:`New flow controller API <api_pim_publishmodeqospolicy>`
+* |api_pim_publishmodeqospolicy|
 * :ref:`Static discovery configuration from raw string <static_xml_load>`
-* :ref:`Added reception timestamp to SampleInfo <api_pim_sampleinfo>`
-* :ref:`Exposing get_unread_count on DataReader <api_pim_datareader>`
+* |api_pim_sampleinfo|
+* |api_pim_datareader|
 
 It also includes the following **improvements**:
 

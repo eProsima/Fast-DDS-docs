@@ -1,5 +1,6 @@
 .. include:: ../../03-exports/aliases.include
 .. include:: ../../03-exports/aliases-api.include
+.. include:: ../../03-exports/pro-only-refs.include
 
 .. _dds_layer:
 
@@ -8,7 +9,7 @@ DDS Layer
 
 *eProsima Fast DDS* exposes two different APIs to interact with the communication service at different levels.
 The main API is the Data Distribution Service (DDS) Data-Centric Publish-Subscribe (DCPS) Platform Independent Model
-(PIM) API, or :ref:`api_pim_dds_dcps_pim` for short, which is defined by the
+(PIM) API, or |api_pim_dds_dcps_pim| for short, which is defined by the
 `Data Distribution Service (DDS) version 1.4 specification <https://www.omg.org/spec/DDS/1.4>`_, to which *Fast DDS*
 complies.
 This section is devoted to explain the main characteristics and modes-of-use of this API under *Fast DDS*, providing an

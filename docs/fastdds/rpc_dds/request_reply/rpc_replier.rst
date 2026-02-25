@@ -141,7 +141,7 @@ Example
 
 The following code snippet shows how to use a Replier instance:
 
-.. literalinclude:: /../code/DDSCodeTester.cpp
+.. literalinclude:: /../code/ProDDSCodeTester.cpp
       :language: c++
       :start-after: //!--RPC_REPLIER_EXAMPLE
       :end-before: //!--

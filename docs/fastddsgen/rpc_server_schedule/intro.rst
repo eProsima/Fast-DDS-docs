@@ -30,7 +30,7 @@ Example
 
 The following code snippet shows two examples of custom RPC server scheduling strategies:
 
-.. literalinclude:: /../code/DDSCodeTester.cpp
+.. literalinclude:: /../code/ProDDSCodeTester.cpp
       :language: c++
       :start-after: //!--RPC_CUSTOM_SCHEDULING_EXAMPLES
       :end-before: //!--

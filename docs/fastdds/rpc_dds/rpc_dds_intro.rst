@@ -4,8 +4,8 @@
 
 .. _rpc_dds_intro:
 
-RPC over DDS
-============
+RPC over DDS |Pro|
+==================
 
 .. _RPC over DDS specification: https://www.omg.org/spec/DDS-RPC/1.0/PDF
 

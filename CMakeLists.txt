@@ -148,7 +148,6 @@ if (BUILD_DOCUMENTATION)
         $<$<BOOL:${CMAKE_COMPILE_WARNING_AS_ERROR}>:-W>
         -b ${FASTDDS_DOCS_BUILDER}
         # Tell Breathe where to find the Doxygen output
-        -D breathe_projects.FastDDS=${DOXYGEN_OUTPUT_DIR}/xml
         ${PYTHON_EXTRA_FLAG}
         -d "${PROJECT_BINARY_DIR}/doctrees"
         ${SPHINX_SOURCE}

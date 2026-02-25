@@ -15,6 +15,8 @@ allocator
 amd
 ament
 ami
+api
+API
 appendable
 ASan
 asio

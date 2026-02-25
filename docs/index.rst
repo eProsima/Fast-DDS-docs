@@ -55,8 +55,6 @@
    /fastdds/rpc_dds/rpc_dds_intro
    /fastdds/troubleshooting/troubleshooting
    /fastdds/faq/faq
-   /fastdds/api_reference/api_reference
-   /fastdds/python_api_reference/python_api_reference
 
 .. _index_gen:
 

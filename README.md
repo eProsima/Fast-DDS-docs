@@ -202,7 +202,6 @@ cd <path_to_docs_repo>/fastdds-docs
 rm -rf build
 READTHEDOCS=True FASTDDS_BRANCH=<branch> FASTDDS_PYTHON_BRANCH=<branch> sphinx-build \
     -b html \
-    -D breathe_projects.FastDDS=<abs_path_to_docs_repo>/fastdds-docs/build/doxygen/xml \
     -d <abs_path_to_docs_repo>/fastdds-docs/build/doctrees \
     docs <abs_path_to_docs_repo>/fastdds-docs/build/html
 ```

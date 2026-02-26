@@ -42,11 +42,13 @@ bitset
 bitsets
 blackbox
 BNF
-Bzip
+Branchout
+branchout
 boolean
 booleans
 Bugfix
 bugfixes
+Bzip
 calculatorCdrAux
 calculatorClient
 calculatorPubSubTypes
@@ -326,6 +328,8 @@ typesupport
 uint
 UInt
 uncheck
+uncrustify
+Uncrustify
 unhandled
 unicast
 unidimensional

@@ -1,0 +1,35 @@
+`Version 3.5.0 <https://fast-dds.docs.eprosima.com/en/v3.5.0/index.html>`_
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+This release includes the following **improvements**:
+
+1. Update Qt version to 6.8.3 in CI
+2. Verify Safe DDS signature
+3. Open ``RTPSParticipantImpl`` for extension
+4. Use new sample rejection value
+5. Make ``DomainParticipant::get_instance_handle`` return by value
+6. Discovery Server clients always behave as super clients
+7. Enhance filtering logic for virtual and external endpoints
+8. Refactor Secure Discovery Server
+9. Update ``foonathan.net`` links
+10. Apply uncrustify to all source files
+11. Remove unused ``keep_alive`` logic
+12. RPC refactor
+13. Bump version to 3.5.0
+14. Extend ``DomainParticipant`` API to include return codes
+15. Regenerate types with Fast DDS Gen 4.3.0
+16. Update CMake minimum required and Tier1
+
+This release includes the following **fixes**:
+
+1. Fix compilation on PDPTests
+2. Force history QoS consistency and change resource limits default values
+3. Fix wrong update of default locators
+4. Fix ABI compliance
+
+This release includes the following **CI improvements**:
+
+1. Branchout 3.5.x
+2. Updates after v3.3.1 EOL
+3. Run ``xtypes`` test cases in parallel
+

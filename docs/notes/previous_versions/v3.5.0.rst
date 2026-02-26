@@ -12,7 +12,7 @@ This release includes the following **improvements**:
 7. Enhance filtering logic for virtual and external endpoints
 8. Refactor Secure Discovery Server
 9. Update ``foonathan.net`` links
-10. Apply uncrustify to all source files
+10. Apply ``uncrustify`` to all source files
 11. Remove unused ``keep_alive`` logic
 12. RPC refactor
 13. Bump version to 3.5.0

@@ -3243,6 +3243,42 @@
 -->
 <!--><-->
 
+<!-->DDS_CONGESTION_CONTROL_PROPS<-->
+<!--
+<?xml version="1.0" encoding="UTF-8" ?>
+<dds xmlns="http://www.eprosima.com">
+    <profiles>
+-->
+        <participant profile_name="congestion_control_domainparticipant_xml_profile">
+            <rtps>
+                <propertiesPolicy>
+                    <properties>
+                        <property>
+                            <name>fastdds.congestion.plugin</name>
+                            <value>basic</value>
+                        </property>
+                        <property>
+                            <name>fastdds.congestion.period</name>
+                            <value>10000</value>
+                        </property>
+                        <property>
+                            <name>fastdds.congestion.initial_bandwidth</name>
+                            <value>1000</value>
+                        </property>
+                        <property>
+                            <name>fastdds.congestion.increase_multiplier</name>
+                            <value>1.2</value>
+                        </property>
+                        <property>
+                            <name>fastdds.congestion.decrease_multiplier</name>
+                            <value>0.75</value>
+                        </property>
+                    </properties>
+                </propertiesPolicy>
+            </rtps>
+        </participant>
+<!--><-->
+
 <!-->MAX_MESSAGE_SIZE_PROPERTY_PARTICIPANT<-->
 <!--
 <?xml version="1.0" encoding="UTF-8" ?>

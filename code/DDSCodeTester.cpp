@@ -960,6 +960,28 @@ void dds_domain_examples()
     }
 
     {
+        // DDS_CONGESTION_CONTROL_PROPS
+        DomainParticipantQos participant_qos;
+
+        participant_qos.properties().properties().emplace_back(
+            "fastdds.congestion.plugin",
+            "basic");
+        participant_qos.properties().properties().emplace_back(
+            "fastdds.congestion.period",
+            "10000");
+        participant_qos.properties().properties().emplace_back(
+            "fastdds.congestion.initial_bandwidth",
+            "100");
+        participant_qos.properties().properties().emplace_back(
+            "fastdds.congestion.increase_multiplier",
+            "1.2");
+        participant_qos.properties().properties().emplace_back(
+            "fastdds.congestion.decrease_multiplier",
+            "0.75");
+        //!--
+    }
+
+    {
         //DDS-SHM-ENFORCE-META-TRAFFIC
         DomainParticipantQos participant_qos;
 

@@ -22,8 +22,7 @@ At least one of these properties should be set in order for the congestion contr
 
 * Property ``fastdds.congestion.initial_bandwidth`` is used to set the bandwidth that will be initially assigned to
   new destinations, in bytes per second.
-  The user must provide a value greater than the bandwidth required to send one
-  message per second.
+  The user must provide a value greater than the bandwidth required to send one message per second.
   If the property is not present, it will be set to half the size of the socket send buffer or the size of a message,
   whichever is greater.
 
@@ -38,7 +37,6 @@ At least one of these properties should be set in order for the congestion contr
   If the property is not present, it will be set to ``0.75``.
 
 The following is an example of how to set the congestion control up using the properties of DomainParticipantQoS.
-
 
 .. tab-set-code::
 

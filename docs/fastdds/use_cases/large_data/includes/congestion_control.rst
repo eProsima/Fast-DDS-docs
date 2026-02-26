@@ -20,7 +20,8 @@ Congestion Control Plugins |Pro|
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 The congestion control mechanism in Fast DDS |Pro| can be customized through plugins that define the algorithm used to
-adjust the bandwidth associated to each DataReader. At the moment, only the ``basic`` plugin is available.
+adjust the bandwidth associated to each DataReader.
+At the moment, only the ``basic`` plugin is available.
 
 .. _basic-congestion-control-plugin:
 
@@ -28,18 +29,21 @@ The ``basic`` Congestion Control
 ................................
 
 The ``basic`` congestion control plugin dynamically adjusts the sending rate to each
-remote DataReader based on observed network feedback. It operates independently per
-remote DataReader and only applies to **reliable**, non-builtin DataWriters. Best-effort
+remote DataReader based on observed network feedback.
+It operates independently per
+remote DataReader and only applies to **reliable**, non-builtin DataWriters.
+Best-effort
 writers are unaffected.
 
 .. note::
 
-    Enabling congestion control forces all affected DataWriters into **asynchronous,
-    separate sending mode**: instead of sending a single batched or multicast packet to
+    Enabling congestion control forces all affected DataWriters into **asynchronous**:
+    instead of sending a single batched or multicast packet to
     all matched readers at once, a dedicated packet is sent to each reader individually.
     As a result, total network traffic scales with the number of matched DataReaders.
     In deployments with many readers on a multicast-capable network, this may **increase**
-    overall network load. Congestion control is therefore most effective in unicast or
+    overall network load.
+    Congestion control is therefore most effective in unicast or
     low-reader-count scenarios.
 
 .. note::
@@ -65,7 +69,8 @@ independently resulting in three possible cases:
 
 - **Decrease**: If the DataWriter had to retransmit data to the reader during the period
   (signaling packet loss or network congestion), the current bandwidth limit is multiplied
-  by the ``decrease_factor``. Note that the first repair attempt for a given sequence number
+  by the ``decrease_factor``.
+  Note that the first repair attempt for a given sequence number
   is not counted to avoid overreacting to isolated packet losses.
 
   .. note::
@@ -76,8 +81,10 @@ independently resulting in three possible cases:
 
 - **Increase**: If no retransmissions occurred and the reader's acknowledged throughput
   exceeded 80% of the current bandwidth limit, the limit is multiplied by the
-  ``increase_factor``. The 80% threshold allows the limit to grow before full saturation,
+  ``increase_factor``.
+  The 80% threshold allows the limit to grow before full saturation,
   preserving some space to absorb traffic bursts.
+
 - **No change**: If neither condition is met, the bandwidth limit remains unchanged.
 
 

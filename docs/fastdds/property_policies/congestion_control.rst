@@ -18,20 +18,23 @@ At least one of these properties should be set in order for the congestion contr
 * Property ``fastdds.congestion.period`` is used to set the interval in milliseconds for checking whether the bandwidth
   to certain destinations should be updated.
   If the property is not present, it will be set to ``10000`` (10 seconds).
-  The minimum valid value for this property is ``1500`` (0.15 seconds)
+  The minimum valid value for this property is ``1500`` (1.5 seconds)
 
 * Property ``fastdds.congestion.initial_bandwidth`` is used to set the bandwidth that will be initially assigned to
-  new destinations, in bytes per second. The user must provide a value greater than the bandwidth required to send one
+  new destinations, in bytes per second.
+  The user must provide a value greater than the bandwidth required to send one
   message per second.
   If the property is not present, it will be set to half the size of the socket send buffer or the size of a message,
   whichever is greater.
 
 * Property ``fastdds.congestion.increase_multiplier`` is used to set the multiplier that will be applied to increase
-  the bandwidth to a destination when no congestion is detected. Thus, it should be a value greater than 1.
+  the bandwidth to a destination when no congestion is detected.
+  Thus, it should be a value greater than 1.
   If the property is not present, it will be set to ``1.2``.
 
 * Property ``fastdds.congestion.decrease_multiplier`` is used to set the multiplier that will be applied to decrease
-  the bandwidth to a destination when congestion is detected. Thus, it should be a value between 0 and 1.
+  the bandwidth to a destination when congestion is detected.
+  Thus, it should be a value between 0 and 1.
   If the property is not present, it will be set to ``0.75``.
 
 The following is an example of how to set the congestion control up using the properties of DomainParticipantQoS.

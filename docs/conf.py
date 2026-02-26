@@ -364,7 +364,7 @@ if read_the_docs_build:
                 fastdds_python_branch, docs_branch
             )
         )
-        fastdds_python_branch = "origin/main"
+        fastdds_python_branch = "origin/master"
 
     # Actual checkout
     print('Checking out Fast DDS Python branch "{}"'.format(fastdds_python_branch))

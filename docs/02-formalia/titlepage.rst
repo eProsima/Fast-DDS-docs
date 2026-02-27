@@ -76,11 +76,9 @@ The following table contains a brief comparison between *Fast DDS* and *Fast DDS
          <th style="width:20%"></th>
          <th style="width:40%; text-align:center;">
            <img src="_static/fast-dds-pro-logo-large.png" alt="Fast DDS Pro" width="100px"/><br/>
-           Fast DDS Pro
          </th>
          <th style="width:40%; text-align:center;">
            <img src="_static/fast-dds-logo-large.png" alt="Fast DDS" width="100px"/><br/>
-           Fast DDS
          </th>
        </tr>
      </thead>
@@ -105,8 +103,8 @@ The following table contains a brief comparison between *Fast DDS* and *Fast DDS
        </tr>
        <tr>
          <td>DDS Pub/Sub &amp; QoS</td>
-         <td>✅ with extended features</td>
-         <td>✅ with extended features</td>
+         <td>✅ With extended features</td>
+         <td>✅ With extended features</td>
        </tr>
        <tr>
          <td>TSN over DDS</td>
@@ -115,7 +113,7 @@ The following table contains a brief comparison between *Fast DDS* and *Fast DDS
        </tr>
        <tr>
          <td>RPC over DDS</td>
-         <td>✅ including RPC streaming</td>
+         <td>✅ Including RPC streaming</td>
          <td>❌</td>
        </tr>
        <tr>
@@ -135,11 +133,12 @@ The following table contains a brief comparison between *Fast DDS* and *Fast DDS
        </tr>
        <tr>
          <td>Discovery Server</td>
-         <td>✅ with enhanced matching algorithm</td>
-         <td>⚠️ basic functionality</td>
+         <td>✅ With enhanced matching algorithm</td>
+         <td>⚠️ Basic functionality</td>
        </tr>
      </tbody>
    </table>
+
 
 .. |eprosima_fastdds_pro_website| raw:: html
 

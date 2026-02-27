@@ -36,16 +36,50 @@ The following table contains a brief comparison between *Fast DDS* and *Fast DDS
 
 .. raw:: html
 
-   <table border="1" style="width:100%; border-collapse: collapse; text-align: center;">
+   <style>
+     .md-table {
+       width: 100%;
+       border-collapse: collapse;
+       font-family: sans-serif;
+       font-size: 0.95em;
+     }
+     .md-table th, .md-table td {
+       border: 1px solid #dfe2e5;
+       padding: 10px 16px;
+       text-align: left;
+     }
+     .md-table thead tr {
+       background-color: #f6f8fa;
+       font-weight: bold;
+       text-align: center;
+     }
+     .md-table tbody tr:nth-child(even) {
+       background-color: #f6f8fa;
+     }
+     .md-table tbody tr:hover {
+       background-color: #eef2f5;
+     }
+     .md-table .section-header {
+       background-color: #e8ecef;
+       font-weight: bold;
+       text-align: center;
+       color: #444;
+       letter-spacing: 0.05em;
+       text-transform: uppercase;
+       font-size: 0.85em;
+     }
+   </style>
+
+   <table class="md-table">
      <thead>
        <tr>
          <th style="width:20%"></th>
-         <th style="width:40%">
-           <img src="../_static/fast-dds-pro-logo-large.png" alt="Fast DDS Pro" width="100px"/><br/>
+         <th style="width:40%; text-align:center;">
+           <img src="_static/fast-dds-pro-logo-large.png" alt="Fast DDS Pro" width="100px"/><br/>
            Fast DDS Pro
          </th>
-         <th style="width:40%">
-           <img src="../_static/fast-dds-logo-large.png" alt="Fast DDS" width="100px"/><br/>
+         <th style="width:40%; text-align:center;">
+           <img src="_static/fast-dds-logo-large.png" alt="Fast DDS" width="100px"/><br/>
            Fast DDS
          </th>
        </tr>
@@ -67,12 +101,12 @@ The following table contains a brief comparison between *Fast DDS* and *Fast DDS
          <td>Open Source</td>
        </tr>
        <tr>
-         <td colspan="3" style="font-weight: bold; background-color: #f0f0f0;">Feature Set</td>
+         <td colspan="3" class="section-header">Feature Set</td>
        </tr>
        <tr>
          <td>DDS Pub/Sub &amp; QoS</td>
-         <td>✅ With extended features</td>
-         <td>✅ With extended features</td>
+         <td>✅ with extended features</td>
+         <td>✅ with extended features</td>
        </tr>
        <tr>
          <td>TSN over DDS</td>
@@ -81,7 +115,7 @@ The following table contains a brief comparison between *Fast DDS* and *Fast DDS
        </tr>
        <tr>
          <td>RPC over DDS</td>
-         <td>✅ Including RPC streaming</td>
+         <td>✅ including RPC streaming</td>
          <td>❌</td>
        </tr>
        <tr>
@@ -101,8 +135,8 @@ The following table contains a brief comparison between *Fast DDS* and *Fast DDS
        </tr>
        <tr>
          <td>Discovery Server</td>
-         <td>✅ With enhanced matching algorithm</td>
-         <td>⚠️ Just basic functionality</td>
+         <td>✅ with enhanced matching algorithm</td>
+         <td>⚠️ basic functionality</td>
        </tr>
      </tbody>
    </table>

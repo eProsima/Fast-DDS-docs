@@ -34,52 +34,78 @@ It extends the open-source version with premium features such as:
 
 The following table contains a brief comparison between *Fast DDS* and *Fast DDS Pro*:
 
-.. list-table::
-   :header-rows: 1
-   :widths: 20 40 40
+.. raw:: html
 
-   * - Attribute
-     - Fast DDS Pro
-     - Fast DDS
-   * - Uses
-     - Industrial & Defense
-     - R&D
-   * - Platform
-     - Non-Embedded
-     - Non-Embedded
-   * - OS
-     - POSIX compliant
-     - POSIX compliant
-   * - License
-     - Commercial
-     - Open Source
-   * - Safety
-     - N.A.
-     - N.A.
-   * - **Feature Set**
-     -
-     -
-   * - DDS Pub/Sub & QoS
-     - Yes (with extended features)
-     - Yes (with extended features)
-   * - TSN over DDS
-     - Yes
-     - No
-   * - RPC over DDS
-     - Yes
-     - No
-   * - IP Mobility
-     - Yes
-     - No
-   * - Low Bandwidth Transports
-     - Yes
-     - No
-   * - Adaptive Congestion Control
-     - Yes
-     - Yes
-   * - Discovery Server
-     - Yes (with enhanced matching algorithm)
-     - Yes (basic functionality)
+   <table border="1" style="width:100%; border-collapse: collapse; text-align: center;">
+     <thead>
+       <tr>
+         <th style="width:20%"></th>
+         <th style="width:40%">
+           <img src="../_static/fast-dds-pro-logo-large.png" alt="Fast DDS Pro" width="100px"/><br/>
+           Fast DDS Pro
+         </th>
+         <th style="width:40%">
+           <img src="../_static/fast-dds-logo-large.png" alt="Fast DDS" width="100px"/><br/>
+           Fast DDS
+         </th>
+       </tr>
+     </thead>
+     <tbody>
+       <tr>
+         <td>Uses</td>
+         <td>Industrial &amp; Defense</td>
+         <td>R&amp;D</td>
+       </tr>
+       <tr>
+         <td>OS</td>
+         <td>POSIX compliant (Linux, Windows, MacOS)</td>
+         <td>POSIX compliant (Linux, Windows, MacOS)</td>
+       </tr>
+       <tr>
+         <td>License</td>
+         <td>Commercial</td>
+         <td>Open Source</td>
+       </tr>
+       <tr>
+         <td colspan="3" style="font-weight: bold; background-color: #f0f0f0;">Feature Set</td>
+       </tr>
+       <tr>
+         <td>DDS Pub/Sub &amp; QoS</td>
+         <td>✅ With extended features</td>
+         <td>✅ With extended features</td>
+       </tr>
+       <tr>
+         <td>TSN over DDS</td>
+         <td>✅</td>
+         <td>❌</td>
+       </tr>
+       <tr>
+         <td>RPC over DDS</td>
+         <td>✅ Including RPC streaming</td>
+         <td>❌</td>
+       </tr>
+       <tr>
+         <td>IP Mobility</td>
+         <td>✅</td>
+         <td>❌</td>
+       </tr>
+       <tr>
+         <td>Low Bandwidth Transports</td>
+         <td>✅</td>
+         <td>❌</td>
+       </tr>
+       <tr>
+         <td>Adaptive Congestion Control</td>
+         <td>✅</td>
+         <td>❌</td>
+       </tr>
+       <tr>
+         <td>Discovery Server</td>
+         <td>✅ With enhanced matching algorithm</td>
+         <td>⚠️ Just basic functionality</td>
+       </tr>
+     </tbody>
+   </table>
 
 .. |eprosima_fastdds_pro_website| raw:: html
 

@@ -44,26 +44,28 @@ The following table contains a brief comparison between *Fast DDS* and *Fast DDS
        font-size: 0.95em;
      }
      .md-table th, .md-table td {
-       border: 1px solid #dfe2e5;
+       border: 1px solid var(--color-background-border, #dfe2e5);
        padding: 10px 16px;
        text-align: left;
+       color: var(--color-foreground-primary, inherit);
+       background-color: var(--color-background-primary, transparent);
      }
      .md-table thead tr {
-       background-color: #f6f8fa;
+       background-color: var(--color-background-secondary, #f6f8fa) !important;
        font-weight: bold;
        text-align: center;
      }
-     .md-table tbody tr:nth-child(even) {
-       background-color: #f6f8fa;
+     .md-table tbody tr:nth-child(even) td {
+       background-color: var(--color-background-secondary, #f6f8fa);
      }
-     .md-table tbody tr:hover {
-       background-color: #eef2f5;
+     .md-table tbody tr:hover td {
+       background-color: var(--color-background-hover, #eef2f5);
      }
      .md-table .section-header {
-       background-color: #e8ecef;
+       background-color: var(--color-background-secondary, #e8ecef) !important;
        font-weight: bold;
        text-align: center;
-       color: #444;
+       color: var(--color-foreground-secondary, #444);
        letter-spacing: 0.05em;
        text-transform: uppercase;
        font-size: 0.85em;

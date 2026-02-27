@@ -32,6 +32,55 @@ It extends the open-source version with premium features such as:
 * :ref:`RPC over DDS <rpc_dds_intro>` |Pro| – seamless integration of remote procedure calls with DDS communication.
 * :ref:`Congestion Control <congestion-control>` |Pro| – adaptive traffic management in congested environments.
 
+The following table contains a brief comparison between *Fast DDS* and *Fast DDS Pro*:
+
+.. list-table::
+   :header-rows: 1
+   :widths: 20 40 40
+
+   * - Attribute
+     - Fast DDS Pro
+     - Fast DDS
+   * - Uses
+     - Industrial & Defense
+     - R&D
+   * - Platform
+     - Non-Embedded
+     - Non-Embedded
+   * - OS
+     - POSIX compliant
+     - POSIX compliant
+   * - License
+     - Commercial
+     - Open Source
+   * - Safety
+     - N.A.
+     - N.A.
+   * - **Feature Set**
+     -
+     -
+   * - DDS Pub/Sub & QoS
+     - Yes (with extended features)
+     - Yes (with extended features)
+   * - TSN over DDS
+     - Yes
+     - No
+   * - RPC over DDS
+     - Yes
+     - No
+   * - IP Mobility
+     - Yes
+     - No
+   * - Low Bandwidth Transports
+     - Yes
+     - No
+   * - Adaptive Congestion Control
+     - Yes
+     - Yes
+   * - Discovery Server
+     - Yes (with enhanced matching algorithm)
+     - Yes (basic functionality)
+
 .. |eprosima_fastdds_pro_website| raw:: html
 
    <a href="https://forms.eprosima.com/reach/form/CommercialSupportRequest/formperma/Ac8GwewD7PTDadQZIV92qDEzNFfMlJnYmA029mSJtJ8" target="_blank" rel="noopener noreferrer">share your contact details</a>

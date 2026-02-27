@@ -3,8 +3,8 @@
 
 .. _fastddsgen_interfaces_introduction:
 
-IDL interfaces
-==============
+IDL interfaces |Pro|
+====================
 
 *eProsima FastDDS-Gen* tool allows the generation of source code for a :ref:`RPC over DDS <rpc_dds_intro>` application
 from an IDL file. The IDL file must contain the operation that can be called on both the client and server sides,

@@ -54,9 +54,9 @@ The following table shows the currently supported versions of Fast DDS and their
     * - 2.14
       - `2.14.x <https://github.com/eProsima/Fast-DDS/tree/2.14.x>`__
       - `v2.14.6 <https://github.com/eProsima/Fast-DDS/releases/tag/v2.14.6>`__
-      - February 2026
-      - February 2027 (*)
-      - February 2027 (*)
+      - March 2026
+      - March 2027 (*)
+      - March 2027 (*)
     * - 2.6 (maintenance)
       - `2.6.x <https://github.com/eProsima/Fast-DDS/tree/2.6.x>`__
       - `v2.6.11 <https://github.com/eProsima/Fast-DDS/releases/tag/v2.6.11>`__
@@ -216,7 +216,7 @@ The following table shows the corresponding versions of the Fast DDS library dep
             * - Product
               - Related version
             * - `Fast CDR <https://github.com/eProsima/Fast-CDR/>`__
-              - `v2.2.5 <https://github.com/eProsima/Fast-CDR/releases/tag/v2.2.5>`__
+              - `v2.2.7 <https://github.com/eProsima/Fast-CDR/releases/tag/v2.2.7>`__
             * - `Foonathan Memory Vendor <https://github.com/eProsima/foonathan_memory_vendor/>`__
               - `v1.3.1 <https://github.com/eProsima/foonathan_memory_vendor/releases/tag/v1.3.1>`__
             * - `Asio <https://github.com/chriskohlhoff/asio>`__

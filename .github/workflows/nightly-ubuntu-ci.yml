@@ -15,7 +15,7 @@ jobs:
       label: 'nightly-ubuntu-ci-master'
       fastdds-docs-branch: 'master'
       fastdds-branch: 'master'
-      fastdds-python-branch: 'main'
+      fastdds-python-branch: 'master'
       run-build: true
       run-tests: true
       use-ccache: false

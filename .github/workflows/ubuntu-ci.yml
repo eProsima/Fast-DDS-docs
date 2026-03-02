@@ -68,7 +68,7 @@ jobs:
       ctest-args: ${{ inputs.ctest-args }}
       fastdds-docs-branch: ${{ inputs.fastdds-docs-branch || github.ref }}
       fastdds-branch: ${{ inputs.fastdds-branch || 'master' }}
-      fastdds-python-branch: ${{ inputs.fastdds-python-branch || 'main' }}
+      fastdds-python-branch: ${{ inputs.fastdds-python-branch || 'master' }}
       run-build: ${{ !(github.event_name == 'pull_request') || !contains(github.event.pull_request.labels.*.name, 'skip-ci') }}
       run-tests: ${{ (inputs.run-tests == true) || ((github.event_name == 'pull_request') && (!contains(github.event.pull_request.labels.*.name, 'no-test'))) }}
       use-ccache: ${{ inputs.use-ccache || false }}

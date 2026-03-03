@@ -75,13 +75,13 @@ The following table contains a brief comparison between *Fast DDS* and *Fast DDS
    <table class="md-table">
      <thead>
        <tr>
-         <th style="width:20%"></th>
-         <th style="width:40%; text-align:center;">
-           <img src="_static/fast-dds-pro-logo-large.png" alt="Fast DDS Pro" width="100px"/><br/>
-         </th>
-         <th style="width:40%; text-align:center;">
-           <img src="_static/fast-dds-logo-large.png" alt="Fast DDS" width="100px"/><br/>
-         </th>
+          <th style="width:20%"></th>
+          <th style="width:40%; text-align:center; vertical-align:bottom;">
+            <img src="_static/fast-dds-pro-logo-large.png" alt="Fast DDS Pro" width="300px"><br>
+          </th>
+          <th style="width:40%; text-align:center; vertical-align:bottom;">
+            <img src="_static/fast-dds-logo-large.png" alt="Fast DDS" width="250px"><br>
+          </th>
        </tr>
      </thead>
      <tbody>

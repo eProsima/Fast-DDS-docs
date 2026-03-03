@@ -36,110 +36,110 @@ The following table contains a brief comparison between *Fast DDS* and *Fast DDS
 
 .. raw:: html
 
-   <style>
-     .md-table {
-       width: 100%;
-       border-collapse: collapse;
-       font-family: sans-serif;
-       font-size: 0.95em;
-     }
-     .md-table th, .md-table td {
-       border: 1px solid var(--color-background-border, #dfe2e5);
-       padding: 10px 16px;
-       text-align: left;
-       color: var(--color-foreground-primary, inherit);
-       background-color: var(--color-background-primary, transparent);
-     }
-     .md-table thead tr {
-       background-color: var(--color-background-secondary, #f6f8fa) !important;
-       font-weight: bold;
-       text-align: center;
-     }
-     .md-table tbody tr:nth-child(even) td {
-       background-color: var(--color-background-secondary, #f6f8fa);
-     }
-     .md-table tbody tr:hover td {
-       background-color: var(--color-background-hover, #eef2f5);
-     }
-     .md-table .section-header {
-       background-color: var(--color-background-secondary, #e8ecef) !important;
-       font-weight: bold;
-       text-align: center;
-       color: var(--color-foreground-secondary, #444);
-       letter-spacing: 0.05em;
-       text-transform: uppercase;
-       font-size: 0.85em;
-     }
-   </style>
+  <style>
+    .md-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-family: sans-serif;
+      font-size: 0.95em;
+    }
+    .md-table th, .md-table td {
+      border: 1px solid var(--color-background-border, #dfe2e5);
+      padding: 10px 16px;
+      text-align: left;
+      color: var(--color-foreground-primary, inherit);
+      background-color: var(--color-background-primary, transparent);
+    }
+    .md-table thead tr {
+      background-color: var(--color-background-secondary, #f6f8fa) !important;
+      font-weight: bold;
+      text-align: center;
+    }
+    .md-table tbody tr:nth-child(even) td {
+      background-color: var(--color-background-secondary, #f6f8fa);
+    }
+    .md-table tbody tr:hover td {
+      background-color: var(--color-background-hover, #eef2f5);
+    }
+    .md-table .section-header {
+      background-color: var(--color-background-secondary, #e8ecef) !important;
+      font-weight: bold;
+      text-align: center;
+      color: var(--color-foreground-secondary, #444);
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      font-size: 0.85em;
+    }
+  </style>
 
-   <table class="md-table">
-     <thead>
-       <tr>
-          <th style="width:20%"></th>
-          <th style="width:40%; text-align:center; vertical-align:bottom;">
-            <img src="_static/fast-dds-pro-logo-large.png" alt="Fast DDS Pro" width="300px"><br>
-          </th>
-          <th style="width:40%; text-align:center; vertical-align:bottom;">
-            <img src="_static/fast-dds-logo-large.png" alt="Fast DDS" width="250px"><br>
-          </th>
-       </tr>
-     </thead>
-     <tbody>
-       <tr>
-         <td>Uses</td>
-         <td>Industrial &amp; Defense</td>
-         <td>R&amp;D</td>
-       </tr>
-       <tr>
-         <td>OS</td>
-         <td>POSIX compliant (Linux, Windows, MacOS)</td>
-         <td>POSIX compliant (Linux, Windows, MacOS)</td>
-       </tr>
-       <tr>
-         <td>License</td>
-         <td>Commercial</td>
-         <td>Open Source</td>
-       </tr>
-       <tr>
-         <td colspan="3" class="section-header">Feature Set</td>
-       </tr>
-       <tr>
-         <td>DDS Pub/Sub &amp; QoS</td>
-         <td>✅ With extended features</td>
-         <td>✅ With extended features</td>
-       </tr>
-       <tr>
-         <td>TSN over DDS</td>
-         <td>✅</td>
-         <td>❌</td>
-       </tr>
-       <tr>
-         <td>RPC over DDS</td>
-         <td>✅ Including RPC streaming</td>
-         <td>❌</td>
-       </tr>
-       <tr>
-         <td>IP Mobility</td>
-         <td>✅</td>
-         <td>❌</td>
-       </tr>
-       <tr>
-         <td>Low Bandwidth Transports</td>
-         <td>✅</td>
-         <td>❌</td>
-       </tr>
-       <tr>
-         <td>Adaptive Congestion Control</td>
-         <td>✅</td>
-         <td>❌</td>
-       </tr>
-       <tr>
-         <td>Discovery Server</td>
-         <td>✅ With enhanced matching algorithm</td>
-         <td>⚠️ Basic functionality</td>
-       </tr>
-     </tbody>
-   </table>
+  <table class="md-table">
+    <thead>
+      <tr>
+        <th style="width:20%"></th>
+        <th style="width:40%; text-align:center; vertical-align:bottom;">
+          <img src="_static/fast-dds-pro-logo-large.png" alt="Fast DDS Pro" width="300px"><br>
+        </th>
+        <th style="width:40%; text-align:center; vertical-align:bottom;">
+          <img src="_static/fast-dds-logo-large.png" alt="Fast DDS" width="250px"><br>
+        </th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>Uses</td>
+        <td>Industrial &amp; Defense</td>
+        <td>R&amp;D</td>
+      </tr>
+      <tr>
+        <td>OS</td>
+        <td>POSIX compliant (Linux, Windows, MacOS)</td>
+        <td>POSIX compliant (Linux, Windows, MacOS)</td>
+      </tr>
+      <tr>
+        <td>License</td>
+        <td>Commercial</td>
+        <td>Open Source</td>
+      </tr>
+      <tr>
+        <td colspan="3" class="section-header">Feature Set</td>
+      </tr>
+      <tr>
+        <td>DDS Pub/Sub &amp; QoS</td>
+        <td>✅ With extended features</td>
+        <td>✅ With extended features</td>
+      </tr>
+      <tr>
+        <td>TSN over DDS</td>
+        <td>✅</td>
+        <td>❌</td>
+      </tr>
+      <tr>
+        <td>RPC over DDS</td>
+        <td>✅ Including RPC streaming</td>
+        <td>❌</td>
+      </tr>
+      <tr>
+        <td>IP Mobility</td>
+        <td>✅</td>
+        <td>❌</td>
+      </tr>
+      <tr>
+        <td>Low Bandwidth Transports</td>
+        <td>✅</td>
+        <td>❌</td>
+      </tr>
+      <tr>
+        <td>Adaptive Congestion Control</td>
+        <td>✅</td>
+        <td>❌</td>
+      </tr>
+      <tr>
+        <td>Discovery Server</td>
+        <td>✅ With enhanced matching algorithm</td>
+        <td>⚠️ Basic functionality</td>
+      </tr>
+    </tbody>
+  </table>
 
 
 .. |eprosima_fastdds_pro_website| raw:: html

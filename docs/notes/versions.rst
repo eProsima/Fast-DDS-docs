@@ -53,7 +53,7 @@ The following table shows the currently supported versions of Fast DDS and their
       - March 2026 (*)
     * - 2.14
       - `2.14.x <https://github.com/eProsima/Fast-DDS/tree/2.14.x>`__
-      - `v2.14.5 <https://github.com/eProsima/Fast-DDS/releases/tag/v2.14.5>`__
+      - `v2.14.6 <https://github.com/eProsima/Fast-DDS/releases/tag/v2.14.6>`__
       - March 2024
       - March 2025 (*)
       - March 2025 (*)
@@ -216,7 +216,7 @@ The following table shows the corresponding versions of the Fast DDS library dep
             * - Product
               - Related version
             * - `Fast CDR <https://github.com/eProsima/Fast-CDR/>`__
-              - `v2.2.5 <https://github.com/eProsima/Fast-CDR/releases/tag/v2.2.5>`__
+              - `v2.2.7 <https://github.com/eProsima/Fast-CDR/releases/tag/v2.2.7>`__
             * - `Foonathan Memory Vendor <https://github.com/eProsima/foonathan_memory_vendor/>`__
               - `v1.3.1 <https://github.com/eProsima/foonathan_memory_vendor/releases/tag/v1.3.1>`__
             * - `Asio <https://github.com/chriskohlhoff/asio>`__
@@ -268,13 +268,13 @@ Fast DDS as the core middleware.
             * - Product
               - Related version
             * - `Fast DDS Gen <https://github.com/eProsima/Fast-DDS-Gen/>`__
-              - `v3.3.1 <https://github.com/eProsima/Fast-DDS-Gen/releases/tag/v3.3.1>`__
+              - `v3.3.2 <https://github.com/eProsima/Fast-DDS-Gen/releases/tag/v3.3.2>`__
             * - `Fast DDS Gen - IDL parser <https://github.com/eProsima/IDL-Parser/>`__
               - `v3.0.1 <https://github.com/eProsima/IDL-Parser/releases/tag/v3.0.1>`__
             * - `Fast DDS python <https://github.com/eProsima/Fast-DDS-python/>`__
-              - `v1.4.3 <https://github.com/eProsima/Fast-DDS-python/releases/tag/v1.4.3>`__
+              - `v1.4.4 <https://github.com/eProsima/Fast-DDS-python/releases/tag/v1.4.4>`__
             * - `Shapes Demo <https://github.com/eProsima/ShapesDemo/>`__
-              - `v2.14.5 <https://github.com/eProsima/ShapesDemo/releases/tag/v2.14.5>`__
+              - `v2.14.6 <https://github.com/eProsima/ShapesDemo/releases/tag/v2.14.6>`__
             * - `Discovery Server <https://github.com/eProsima/Discovery-Server/>`__
               - `v1.2.2 <https://github.com/eProsima/Discovery-Server/releases/tag/v1.2.2>`__
 

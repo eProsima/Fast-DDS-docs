@@ -544,12 +544,11 @@ The following table lists all the optional QoS that can be serialized in the dis
         :end-before: <!--><-->
         :lines: 2-4,6-17,19-20
 
-.. _properties_sql_filter_factory:
+.. _properties_sql_filter_expression_limits:
 
-SQL Filter Factory settings
-^^^^^^^^^^^^^^^^^^^^^^^^^^^
+SQL Filter Expression limits
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-The SQL Filter Factory is a component of *Fast DDS* that allows users to define custom filters for content-based filtering.
 When creating a participant, some limits on the SQL expressions used for content-based filtering can be set using the following properties:
 
 .. list-table::

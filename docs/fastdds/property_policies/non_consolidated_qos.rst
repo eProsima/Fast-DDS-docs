@@ -549,7 +549,8 @@ The following table lists all the optional QoS that can be serialized in the dis
 SQL Filter Expression limits
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-When creating a participant, some limits on the SQL expressions used for content-based filtering can be set using the following properties:
+When creating a participant, some limits on the SQL expressions used for content-based filtering can be set using the
+following properties:
 
 .. list-table::
    :header-rows: 1
@@ -566,7 +567,8 @@ When creating a participant, some limits on the SQL expressions used for content
      - ``256``
 
 Creating content-filtered topics with expressions exceeding any of these limits will fail.
-Expressions received in discovery messages exceeding any of these limits will be ignored, and filtering will happen in the reader side.
+Expressions received in discovery messages exceeding any of these limits will be ignored, and filtering will happen
+in the reader side.
 
 .. tab-set-code::
 

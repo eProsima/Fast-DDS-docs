@@ -543,3 +543,28 @@ The following table lists all the optional QoS that can be serialized in the dis
         :start-after: <!-->SERIALIZE_OPTIONAL_QOS_PROPERTY<-->
         :end-before: <!--><-->
         :lines: 2-4,6-17,19-20
+
+.. _properties_sql_filter_factory:
+
+SQL Filter Factory settings
+^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+The SQL Filter Factory is a component of *Fast DDS* that allows users to define custom filters for content-based filtering.
+When creating a participant, some limits on the SQL expressions used for content-based filtering can be set using the following properties:
+
+.. list-table::
+   :header-rows: 1
+   :align: left
+
+   * - PropertyPolicyQos name
+     - PropertyPolicyQos value
+     - Default value
+   * - ``"dds.sql.expression.max_expression_length"``
+     - Maximum length of the SQL expression, in characters.
+     - ``16384``
+   * - ``"dds.sql.expression.max_subexpressions"``
+     - Maximum number of sub-expressions in the SQL expression.
+     - ``256``
+
+Creating content-filtered topics with expressions exceeding any of these limits will fail.
+Expressions received in discovery messages exceeding any of these limits will be ignored, and filtering will happen in the reader side.

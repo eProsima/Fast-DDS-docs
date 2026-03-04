@@ -568,3 +568,17 @@ When creating a participant, some limits on the SQL expressions used for content
 
 Creating content-filtered topics with expressions exceeding any of these limits will fail.
 Expressions received in discovery messages exceeding any of these limits will be ignored, and filtering will happen in the reader side.
+
+.. tab-set-code::
+
+    .. literalinclude:: /../code/DDSCodeTester.cpp
+        :language: c++
+        :start-after: // DDS_SQL_LIMITS_PROPERTY
+        :end-before: //!--
+        :dedent: 8
+
+    .. literalinclude:: /../code/XMLTester.xml
+        :language: xml
+        :start-after: <!-->DDS_SQL_LIMITS_PROPERTY<-->
+        :end-before: <!--><-->
+        :lines: 2-4,6-21,23-24

@@ -93,12 +93,12 @@ The following table describes the common data members for both TCPv4 and TCPv6.
     - List of ports to listen as *server*. If a port is set to 0, an available port will be automatically assigned.
   * - |TCPTransportDescriptor::keep_alive_frequency_ms-api|
     - ``uint32_t``
-    - 5000
-    - Frequency of RTCP keep alive requests (in ms).
+    - 0
+    - |Pro| Frequency of RTCP keep alive requests (in ms).
   * - |TCPTransportDescriptor::keep_alive_timeout_ms-api|
     - ``uint32_t``
-    - 15000
-    - Time since sending the last keep alive request to consider a connection as broken (in ms).
+    - 0
+    - |Pro| Time since sending the last keep alive request to consider a connection as broken (in ms).
   * - |TCPTransportDescriptor::max_logical_port-api|
     - ``uint16_t``
     - 100

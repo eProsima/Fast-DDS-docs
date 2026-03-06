@@ -52,7 +52,7 @@ Please refer to :ref:`dds_layer_domainParticipantQos` for more information about
 .. _tcp-keep-alive:
 
 TCP Keep Alive |Pro|
-====================
+--------------------
 
 Fast DDS Pro additionally provides a TCP keep-alive mechanism to detect stalled TCP connections and recover
 from link failures more reliably.

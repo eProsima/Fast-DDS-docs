@@ -463,6 +463,9 @@ The HistoryQos must be set consistently with the :ref:`resourcelimitsqospolicy`,
   |ResourceLimitsQosPolicy::max_samples_per_instance-api|.
   Also, |ResourceLimitsQosPolicy::max_samples-api| must be equal or higher than the product of
   |ResourceLimitsQosPolicy::max_samples_per_instance-api| times |ResourceLimitsQosPolicy::max_instances-api|.
+* When |HistoryQosPolicy::depth-api| is set higher than
+  |ResourceLimitsQosPolicy::max_samples_per_instance-api|, the effective depth used
+  will be limited by |ResourceLimitsQosPolicy::max_samples_per_instance-api|.
 * The |HistoryQosPolicy::depth-api| cannot be lower or equal than zero.
   If an unlimited depth is required, please consider using |HistoryQosPolicy::kind-api| as |KEEP_ALL_HISTORY_QOS-api|.
 * Setting the |HistoryQosPolicy::kind-api| as |KEEP_ALL_HISTORY_QOS-api| entails that limits are set by the
@@ -1167,19 +1170,19 @@ List of QoS Policy data members:
 +----------------------------------------------------------------------------------------+-------------+---------------+
 
 * |ResourceLimitsQosPolicy::max_samples-api|: Controls the maximum number of samples that the DataWriter or DataReader
-  can manage across all the
-  instances associated with it.
+  can manage across all the instances associated with it.
   In other words, it represents the maximum samples that the middleware can store for a DataReader or DataWriter.
   **Value less or equal to 0 means infinite resources.**
 * |ResourceLimitsQosPolicy::max_instances-api|: Controls the maximum number of instances that a DataWriter or
   DataReader can manage.
   **Value less or equal to 0 means infinite resources.**
 * |ResourceLimitsQosPolicy::max_samples_per_instance-api|: Controls the maximum number of samples within an instance
-  that the DataWriter or
-  DataReader can manage.
+  that the DataWriter or DataReader can manage.
+  It will be ignored for topics without keys (|ResourceLimitsQosPolicy::max_samples-api| will be used instead).
   **Value less or equal to 0 means infinite resources.**
 * |ResourceLimitsQosPolicy::allocated_samples-api|: States the number of samples that will be allocated on
   initialization.
+  Will be limited by |ResourceLimitsQosPolicy::max_samples-api| (i.e. the minimum between both values will be used).
 * |ResourceLimitsQosPolicy::extra_samples-api|: States the number of extra samples that will be allocated on
   the pool, so the maximum number of samples on the pool will be
   |ResourceLimitsQosPolicy::max_samples-api| plus |ResourceLimitsQosPolicy::extra_samples-api|.
@@ -1201,8 +1204,9 @@ conditions:
 * The value of |ResourceLimitsQosPolicy::max_samples-api| must be higher or equal to the value of
   |ResourceLimitsQosPolicy::max_samples_per_instance-api|.
 * The value established for the :ref:`historyqospolicy` |HistoryQosPolicy::depth-api| must be lower or equal to the
-  value stated for
-  |ResourceLimitsQosPolicy::max_samples_per_instance-api|.
+  value stated for |ResourceLimitsQosPolicy::max_samples_per_instance-api|.
+  If the depth is configured higher, |ResourceLimitsQosPolicy::max_samples_per_instance-api|
+  will take precedence as the effective depth.
 
 
 Example

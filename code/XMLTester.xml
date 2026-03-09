@@ -3323,6 +3323,85 @@
 </data_writer>
 <!--><-->
 
+<<<<<<< HEAD
+=======
+<!-->TYPE_PROPAGATION_PROPERTY<-->
+<!--
+<?xml version="1.0" encoding="UTF-8" ?>
+<dds xmlns="http://www.eprosima.com">
+    <profiles>
+-->
+        <participant profile_name="type_propagation_domainparticipant_xml_profile">
+            <rtps>
+                <propertiesPolicy>
+                    <properties>
+                        <property>
+                            <name>fastdds.type_propagation</name>
+                            <value>disabled</value>
+                        </property>
+                    </properties>
+                </propertiesPolicy>
+            </rtps>
+        </participant>
+<!--
+    </profiles>
+</dds>
+-->
+<!--><-->
+
+<!-->SERIALIZE_OPTIONAL_QOS_PROPERTY<-->
+<!--
+<?xml version="1.0" encoding="UTF-8" ?>
+<dds xmlns="http://www.eprosima.com">
+    <profiles>
+-->
+        <participant profile_name="serialize_optional_qos_domainparticipant_xml_profile">
+            <rtps>
+                <propertiesPolicy>
+                    <properties>
+                        <property>
+                            <name>fastdds.serialize_optional_qos</name>
+                            <value>true</value> <!-- true, True, TRUE, 1 -->
+                        </property>
+                    </properties>
+                </propertiesPolicy>
+            </rtps>
+        </participant>
+<!--
+    </profiles>
+</dds>
+-->
+<!--><-->
+
+<!-->DDS_SQL_LIMITS_PROPERTY<-->
+<!--
+<?xml version="1.0" encoding="UTF-8" ?>
+<dds xmlns="http://www.eprosima.com">
+    <profiles>
+-->
+        <participant profile_name="custom_sql_limits_domainparticipant_xml_profile">
+            <rtps>
+                <propertiesPolicy>
+                    <properties>
+                        <property>
+                            <name>dds.sql.expression.max_expression_length</name>
+                            <value>20000</value>
+                        </property>
+                        <property>
+                            <name>dds.sql.expression.max_subexpressions</name>
+                            <value>10</value>
+                        </property>
+                    </properties>
+                </propertiesPolicy>
+            </rtps>
+        </participant>
+<!--
+    </profiles>
+</dds>
+-->
+<!--><-->
+
+>>>>>>> 7bb4e28 (Add documentation for SQL filter expression limits (#1224))
 <!-->FASTDDS_STATISTICS_MODULE<-->
 <participant profile_name="statistics_domainparticipant_conf_xml_profile">
     <rtps>

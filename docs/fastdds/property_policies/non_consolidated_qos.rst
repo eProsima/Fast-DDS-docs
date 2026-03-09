@@ -549,8 +549,11 @@ The following table lists all the optional QoS that can be serialized in the dis
 SQL Filter Expression limits
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-When creating a participant, some limits on the SQL expressions used for content-based filtering can be set using the
-following properties:
+When creating content-filtered topics using the
+:ref:`default SQL-like filter <dds_layer_topic_contentFilteredTopic_default_filter>`, some restrictions apply to the
+SQL expressions that can be used for content-based filtering.
+The default limits are set to values that should be enough for most use cases, but they can be customized using the
+following properties when a participant is created:
 
 .. list-table::
    :header-rows: 1

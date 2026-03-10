@@ -2941,25 +2941,6 @@
     </participant>
 <!--><-->
 
-<!-->CONF-SERVER-PROCESS-PERIOD<-->
-<!--
-<?xml version="1.0" encoding="UTF-8" ?>
-<profiles xmlns="http://www.eprosima.com">
--->
-    <participant profile_name="participant_profile_process_period" >
-        <rtps>
-            <builtin>
-                <discovery_config>
-                    <serverProcessPeriod>
-                        <!-- change default to 100 ms -->
-                        <nanosec>100000000</nanosec>
-                    </serverProcessPeriod>
-                </discovery_config>
-            </builtin>
-        </rtps>
-    </participant>
-<!--><-->
-
 <participant profile_name="part_ds_dns_locators">
     <rtps>
         <builtin>

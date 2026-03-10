@@ -230,21 +230,6 @@ server computing the resulting propagation.
 A longer processing interval reduces CPU overhead on servers handling many clients.
 The default value is 200 ms.
 
-.. tab-set-code::
-
-    .. literalinclude:: /../code/DDSCodeTester.cpp
-        :language: c++
-        :start-after: //CONF_SERVER_PROCESS_PERIOD
-        :end-before: //!--
-        :dedent: 8
-
-    .. literalinclude:: /../code/XMLTester.xml
-        :language: xml
-        :start-after: <!-->CONF-SERVER-PROCESS-PERIOD<-->
-        :end-before: <!--><-->
-        :lines: 2-3,5-16
-        :append: </profiles>
-
 .. _DS_guidPrefix:
 
 The GuidPrefix as an optional server unique identifier

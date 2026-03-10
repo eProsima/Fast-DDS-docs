@@ -217,8 +217,8 @@ The default value for both is 450 ms.
 
 .. _DS_process_period:
 
-Fine tuning the server processing interval
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+Fine tuning the server processing interval |Pro|
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 The *server* periodically processes incoming discovery data: it ingests queued announcements,
 updates the DiscoveryDataBase, and computes which changes need to be propagated to each participant.

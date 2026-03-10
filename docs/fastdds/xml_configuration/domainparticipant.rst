@@ -418,7 +418,7 @@ configurable settings.
 | ``<clientAnnouncementPeriod>``  | The period for the DomainParticipant to        | :ref:`DurationType` | 450 ms      |
 |                                 | send its Discovery Messages.                   |                     |             |
 +---------------------------------+------------------------------------------------+---------------------+-------------+
-| ``<serverProcessPeriod>``       | The period for the server to process incoming  | :ref:`DurationType` | 200 ms      |
+| ``<serverProcessPeriod>`` |Pro| | The period for the server to process incoming  | :ref:`DurationType` | 200 ms      |
 |                                 | discovery data and update the                  |                     |             |
 |                                 | DiscoveryDataBase. Independent from            |                     |             |
 |                                 | ``<clientAnnouncementPeriod>``.                |                     |             |

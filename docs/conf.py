@@ -307,7 +307,7 @@ if read_the_docs_build:
     # - Fast DDS
     print("Cloning Fast DDS")
     fastdds = git.Repo.clone_from(
-        "https://github.com/eProsima/Fast-DDS-Pro.git",
+        "https://github.com/eProsima/Fast-DDS.git",
         fastdds_repo_name,
     )
 
@@ -320,7 +320,7 @@ if read_the_docs_build:
 
     # First try to checkout to ${FASTDDS_BRANCH}
     # Else try with current documentation branch
-    # Else checkout to main
+    # Else checkout to master
     if fastdds_branch and fastdds.refs.__contains__("origin/{}".format(fastdds_branch)):
         fastdds_branch = "origin/{}".format(fastdds_branch)
     elif docs_branch and fastdds.refs.__contains__("origin/{}".format(docs_branch)):
@@ -331,7 +331,7 @@ if read_the_docs_build:
                 fastdds_branch, docs_branch
             )
         )
-        fastdds_branch = "origin/main"
+        fastdds_branch = "origin/master"
 
     # Actual checkout
     print('Checking out Fast DDS branch "{}"'.format(fastdds_branch))
@@ -340,7 +340,7 @@ if read_the_docs_build:
     # - Fast DDS Python Bindings
     print("Cloning Fast DDS Python Bindings")
     fastdds_python = git.Repo.clone_from(
-        "https://github.com/eProsima/Fast-DDS-Pro-Python.git",
+        "https://github.com/eProsima/Fast-DDS-python.git",
         fastdds_python_repo_name,
     )
 
@@ -349,7 +349,7 @@ if read_the_docs_build:
 
     # First try to checkout to ${FASTDDS_PYTHON_BRANCH}
     # Else try with current documentation branch
-    # Else checkout to main
+    # Else checkout to master
     if fastdds_python_branch and fastdds_python.refs.__contains__(
         "origin/{}".format(fastdds_python_branch)
     ):
@@ -364,7 +364,7 @@ if read_the_docs_build:
                 fastdds_python_branch, docs_branch
             )
         )
-        fastdds_python_branch = "origin/main"
+        fastdds_python_branch = "origin/master"
 
     # Actual checkout
     print('Checking out Fast DDS Python branch "{}"'.format(fastdds_python_branch))

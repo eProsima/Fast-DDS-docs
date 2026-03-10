@@ -186,11 +186,19 @@ regular intervals until it is connected to the same amount of servers that has b
 Fine tuning discovery server handshake
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-As explained :ref:`above <DS_key_concepts>` the *clients* send discovery messages to the *servers* at regular
-intervals (ping period) until they receive as many message reception acknowledgement as remote locators
-(server addresses) were specified.
-Mind that this period also applies for those *servers* which connect to other *servers*.
-The default value for this period is 450 ms, but it can be configured to a different value.
+The ``discoveryServer_client_syncperiod`` parameter (XML: ``<clientAnnouncementPeriod>``) controls
+two related but distinct behaviours:
+
+- **Client side**: how often a *client*  sends its participant announcement (``DATA(p)``) to
+  its configured *servers*. This continues until the *server* has acknowledged the announcement.
+
+- **Server side**: how often the *server* flushes accumulated discovery information to its connected
+  *clients* and peer *servers*.
+  A longer period causes the *server* to batch more changes together before sending, which reduces
+  network traffic when many participants join at the same time but increases the time until each
+  participant learns about the others.
+
+The default value for both is 450 ms.
 
 .. tab-set-code::
 
@@ -203,6 +211,36 @@ The default value for this period is 450 ms, but it can be configured to a diffe
     .. literalinclude:: /../code/XMLTester.xml
         :language: xml
         :start-after: <!-->CONF-SERVER-CLIENT-PING<-->
+        :end-before: <!--><-->
+        :lines: 2-3,5-16
+        :append: </profiles>
+
+.. _DS_process_period:
+
+Fine tuning the server processing interval
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+The *server* periodically processes incoming discovery data: it ingests queued announcements,
+updates the DiscoveryDataBase, and computes which changes need to be propagated to each participant.
+This processing interval is independent from the send interval configured by
+:ref:`clientAnnouncementPeriod <DS_ping_period>`.
+
+A shorter processing interval reduces the latency between a client announcement arriving and the
+server computing the resulting propagation.
+A longer processing interval reduces CPU overhead on servers handling many clients.
+The default value is 200 ms.
+
+.. tab-set-code::
+
+    .. literalinclude:: /../code/DDSCodeTester.cpp
+        :language: c++
+        :start-after: //CONF_SERVER_PROCESS_PERIOD
+        :end-before: //!--
+        :dedent: 8
+
+    .. literalinclude:: /../code/XMLTester.xml
+        :language: xml
+        :start-after: <!-->CONF-SERVER-PROCESS-PERIOD<-->
         :end-before: <!--><-->
         :lines: 2-3,5-16
         :append: </profiles>

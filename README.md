@@ -185,7 +185,7 @@ When this variable is set to `True`, [conf.py](docs/conf.py) will clone Fast DDS
 
 1. Try to checkout to the branch specified by environment variable `FASTDDS_BRANCH`.
 1. If the variable is not set, or the branch does not exist, try to checkout to a branch with the same name as the current branch on this repository.
-1. If the previous fails, fallback to `master`.
+1. If the previous fails, fallback to `main`.
 
 Also Fast DDS Python bindings is cloned and follows a similar criteria:
 

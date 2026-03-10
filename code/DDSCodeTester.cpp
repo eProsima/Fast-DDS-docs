@@ -1577,6 +1577,14 @@ void dds_discovery_examples()
     }
 
     {
+        //CONF_SERVER_PROCESS_PERIOD
+        DomainParticipantQos participant_qos;
+        participant_qos.wire_protocol().builtin.discovery_config.discoveryServer_process_period =
+                Duration_t(0, 100000000);
+        //!--
+    }
+
+    {
         DomainParticipant* client_or_server =
                 DomainParticipantFactory::get_instance()->create_participant(0, PARTICIPANT_QOS_DEFAULT);
         //CONF_SERVER_ADD_SERVERS

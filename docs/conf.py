@@ -323,7 +323,7 @@ if read_the_docs_build:
 
     # First try to checkout to ${FASTDDS_BRANCH}
     # Else try with current documentation branch
-    # Else checkout to master
+    # Else checkout to 3.2.x
     if fastdds_branch and fastdds.refs.__contains__("origin/{}".format(fastdds_branch)):
         fastdds_branch = "origin/{}".format(fastdds_branch)
     elif docs_branch and fastdds.refs.__contains__("origin/{}".format(docs_branch)):
@@ -334,7 +334,7 @@ if read_the_docs_build:
                 fastdds_branch, docs_branch
             )
         )
-        fastdds_branch = "origin/master"
+        fastdds_branch = "origin/3.2.x"
 
     # Actual checkout
     print('Checking out Fast DDS branch "{}"'.format(fastdds_branch))
@@ -352,7 +352,7 @@ if read_the_docs_build:
 
     # First try to checkout to ${FASTDDS_PYTHON_BRANCH}
     # Else try with current documentation branch
-    # Else checkout to master
+    # Else checkout to 2.2.x
     if fastdds_python_branch and fastdds_python.refs.__contains__(
         "origin/{}".format(fastdds_python_branch)
     ):
@@ -367,7 +367,7 @@ if read_the_docs_build:
                 fastdds_python_branch, docs_branch
             )
         )
-        fastdds_python_branch = "origin/main"
+        fastdds_python_branch = "origin/2.2.x"
 
     # Actual checkout
     print('Checking out Fast DDS Python branch "{}"'.format(fastdds_python_branch))

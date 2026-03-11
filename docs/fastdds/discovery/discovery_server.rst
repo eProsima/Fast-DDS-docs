@@ -194,17 +194,14 @@ values. It controls two related but distinct behaviours:
   configured *servers*. This repeats until the *server* has acknowledged the announcement.
   The same period applies when a *server* connects to another *server*.
 
-- **Server side**: the period of the server's combined discovery routine, which processes incoming
-  announcements, updates the DiscoveryDataBase, and sends the resulting changes to all connected
-  participants, all in one step.
-  When a new client announcement arrives the server runs the routine **immediately**, regardless of
-  the configured period. Once the immediate run completes, the next run is scheduled at
-  ``<clientAnnouncementPeriod>`` from that point. Any further announcements that arrive before
-  that deadline each trigger another immediate run, so no discovery event is ever delayed.
-  The period therefore governs the fallback re-check rate (e.g. waiting for outstanding
-  acknowledgements) and, in high-load scenarios where many participants join simultaneously,
-  naturally controls how much batching occurs: a longer period means more changes can accumulate
-  before the next run and are all sent together, reducing the number of partial sends.
+- **Server side**: the server runs its combined discovery routine (process incoming announcements,
+  update the DiscoveryDataBase, and send the resulting changes) **immediately** whenever a new
+  announcement arrives. After each such run, the next re-check is scheduled at
+  ``<clientAnnouncementPeriod>`` from that point. That re-check handles pending acknowledgements
+  and retransmissions: it calls into the writer histories and may trigger heartbeats or re-sends
+  to clients that have not yet acknowledged. A longer period therefore reduces the frequency of
+  those re-send operations, which is the primary source of traffic reduction when many clients
+  are connected.
 
 The default value is 450 ms.
 
@@ -212,11 +209,10 @@ The default value is 450 ms.
 
    |Pro| *eProsima Fast DDS Pro* splits the server's combined routine into two independent timers
    with separate periods: a *process timer* (``<serverProcessPeriod>``, default 200 ms) and a
-   *send timer* (``<clientAnnouncementPeriod>``). The send timer becomes a true rate limiter:
+   *send timer* (``<clientAnnouncementPeriod>``).  The send timer becomes a true rate limiter:
    even if many clients announce rapidly the server batches their changes and flushes them at most
    once per ``<clientAnnouncementPeriod>``, giving stronger and more predictable traffic control
    than is possible with a single combined timer.
-   See the *Fast DDS Pro* documentation for details.
 
 .. tab-set-code::
 

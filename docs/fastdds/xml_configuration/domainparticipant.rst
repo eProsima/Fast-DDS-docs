@@ -416,7 +416,14 @@ configurable settings.
 |                                 | See :ref:`Initial Announcements`.              |                     |             |
 +---------------------------------+------------------------------------------------+---------------------+-------------+
 | ``<clientAnnouncementPeriod>``  | The period for the DomainParticipant to        | :ref:`DurationType` | 450 ms      |
-|                                 | send its Discovery Messages.                   |                     |             |
+|                                 | send its Discovery Messages to its servers     |                     |             |
+|                                 | and check for EDP endpoint matching.           |                     |             |
+|                                 | On the server side, controls the fallback      |                     |             |
+|                                 | re-check rate of the combined                  |                     |             |
+|                                 | process-and-send routine. |Pro| Acts as a      |                     |             |
+|                                 | true send rate limiter independent of client   |                     |             |
+|                                 | announce rates.                                |                     |             |
+|                                 | (see :ref:`DS_ping_period`).                   |                     |             |
 +---------------------------------+------------------------------------------------+---------------------+-------------+
 | ``<serverProcessPeriod>`` |Pro| | The period for the server to process incoming  | :ref:`DurationType` | 200 ms      |
 |                                 | discovery data and update the                  |                     |             |

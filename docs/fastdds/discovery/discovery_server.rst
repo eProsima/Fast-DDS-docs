@@ -186,19 +186,37 @@ regular intervals until it is connected to the same amount of servers that has b
 Fine tuning discovery server handshake
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-The ``discoveryServer_client_syncperiod`` parameter (XML: ``<clientAnnouncementPeriod>``) controls
-two related but distinct behaviours:
+The ``discoveryServer_client_syncperiod`` parameter (XML: ``<clientAnnouncementPeriod>``) can be
+configured independently on each participant, so the *server* and each *client* can have different
+values. It controls two related but distinct behaviours:
 
-- **Client side**: how often a *client*  sends its participant announcement (``DATA(p)``) to
-  its configured *servers*. This continues until the *server* has acknowledged the announcement.
+- **Client side**: how often a *client* sends its participant announcement (``DATA(p)``) to its
+  configured *servers*. This repeats until the *server* has acknowledged the announcement.
+  The same period applies when a *server* connects to another *server*.
 
-- **Server side**: how often the *server* flushes accumulated discovery information to its connected
-  *clients* and peer *servers*.
-  A longer period causes the *server* to batch more changes together before sending, which reduces
-  network traffic when many participants join at the same time but increases the time until each
-  participant learns about the others.
+- **Server side**: the period of the server's combined discovery routine, which processes incoming
+  announcements, updates the DiscoveryDataBase, and sends the resulting changes to all connected
+  participants, all in one step.
+  When a new client announcement arrives the server runs the routine **immediately**, regardless of
+  the configured period. Once the immediate run completes, the next run is scheduled at
+  ``<clientAnnouncementPeriod>`` from that point. Any further announcements that arrive before
+  that deadline each trigger another immediate run, so no discovery event is ever delayed.
+  The period therefore governs the fallback re-check rate (e.g. waiting for outstanding
+  acknowledgements) and, in high-load scenarios where many participants join simultaneously,
+  naturally controls how much batching occurs: a longer period means more changes can accumulate
+  before the next run and are all sent together, reducing the number of partial sends.
 
-The default value for both is 450 ms.
+The default value is 450 ms.
+
+.. note::
+
+   |Pro| *eProsima Fast DDS Pro* splits the server's combined routine into two independent timers
+   with separate periods: a *process timer* (``<serverProcessPeriod>``, default 200 ms) and a
+   *send timer* (``<clientAnnouncementPeriod>``). The send timer becomes a true rate limiter:
+   even if many clients announce rapidly the server batches their changes and flushes them at most
+   once per ``<clientAnnouncementPeriod>``, giving stronger and more predictable traffic control
+   than is possible with a single combined timer.
+   See the *Fast DDS Pro* documentation for details.
 
 .. tab-set-code::
 

@@ -1,0 +1,55 @@
+`Version 3.2.4 (latest) <https://fast-dds.docs.eprosima.com/en/v3.2.4/index.html>`_
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+This patch release includes the following security fixes:
+
+- `Fix CVE-2025-62599 <https://www.cve.org/CVERecord?id=CVE-2025-62599>`_
+- `Fix CVE-2025-62600 <https://www.cve.org/CVERecord?id=CVE-2025-62600>`_
+- `Fix CVE-2025-62601 <https://www.cve.org/CVERecord?id=CVE-2025-62601>`_
+- `Fix CVE-2025-62602 <https://www.cve.org/CVERecord?id=CVE-2025-62602>`_
+- `Fix CVE-2025-62603 <https://www.cve.org/CVERecord?id=CVE-2025-62603>`_
+- `Fix CVE-2025-62799 <https://www.cve.org/CVERecord?id=CVE-2025-62799>`_
+- `Fix CVE-2025-64098 <https://www.cve.org/CVERecord?id=CVE-2025-64098>`_
+- `Fix CVE-2025-64438 <https://www.cve.org/CVERecord?id=CVE-2025-64438>`_
+- `Fix CVE-2025-65016 <https://www.cve.org/CVERecord?id=CVE-2025-65016>`_
+- `Fix CVE-2026-22590 <https://www.cve.org/CVERecord?id=CVE-2026-22590>`_
+
+This patch release includes the following improvements:
+
+#. Protect DataReaderInstance ``alive_writers`` attribute
+#. Avoid casting ``GUID_t`` into ``InstanceHandle_t``
+#. Replace ``logWarning`` with ``EPROSIMA_LOG_WARNING``
+#. Improve some tests
+#. Improvements in message receiver
+#. Improvements on ``compute_key`` generated code
+#. Verify Safe DDS signature
+#. Improve Open SSL includes
+#. Run ``xtypes`` test cases in parallel
+#. Protect PDPStatelessWriter attributes
+#. Allow to send empty payloads in dispose/unregister operations
+#. Update to Fast CDR v2.3.5
+#. Regenerate types with Fast DDS Gen 4.0.6
+
+This patch release includes the following fixes:
+
+#. Fix usage of invalid interator in dynamic types
+#. Fix DataReader history enforcement to respect ``max_samples_per_instance``
+#. Fix wrong update of default locators
+#. Fix build in GCC 15
+#. Fix GAP messages are not sent when there is no Reader requesting the DATA
+
+This release includes the following **CI and release management updates**:
+
+#. Allow CI to run tests with manual dispatch
+#. Reduce disk usage in TSAN job
+#. Upgrade to macOS Sequoia
+#. Single line for ``ctest_args`` in Mac CI
+#. Free disk space in Ubuntu runners
+#. Upgrade ``Linters`` CI runner image to ``ubuntu-24.04``
+
+
+.. important::
+
+    When upgrading to version 3.2.4 it is **highly recommended** to regenerate generated source from IDL files
+    using at least `Fast DDS-Gen v4.0.6 <https://github.com/eProsima/Fast-DDS-Gen/releases/tag/v4.0.6>`_.
+    But it is advisable to regenerate them using the latest patch version of ``Fast DDS-Gen v4.0.x``.

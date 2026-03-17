@@ -420,9 +420,7 @@ configurable settings.
 |                                 | and check for EDP endpoint matching.           |                     |             |
 |                                 | On the server side, controls the fallback      |                     |             |
 |                                 | re-check rate of the discovery routine.        |                     |             |
-|                                 | |Pro| adds a separate ``<serverSendPeriod>``   |                     |             |
-|                                 | for true send rate limiting                    |                     |             |
-|                                 | (see :ref:`DS_send_period`).                   |                     |             |
+|                                 | (see :ref:`DS_ping_period`).                   |                     |             |
 +---------------------------------+------------------------------------------------+---------------------+-------------+
 | ``<serverSendPeriod>`` |Pro|    | Minimum interval between consecutive flushes   | :ref:`DurationType` | 0 (disabled)|
 |                                 | of accumulated discovery changes to writer     |                     |             |

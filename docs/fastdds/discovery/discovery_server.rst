@@ -237,9 +237,9 @@ Fine tuning the server send rate limiter |Pro|
 The ``discoveryServer_send_period`` parameter (XML: ``<serverSendPeriod>``) controls the minimum
 interval between consecutive flushes of accumulated discovery changes to the writer histories.
 When set to a positive value, the server still processes incoming data immediately (via the
-combined routine triggered by ``<clientAnnouncementPeriod>``), but defers the send step
-(``process_to_send_lists()``) until at least ``<serverSendPeriod>`` has elapsed since the last
-flush. All changes that accumulate in that window are sent together in one batch.
+combined routine triggered by ``<clientAnnouncementPeriod>``), but defers the send step until at
+least ``<serverSendPeriod>`` has elapsed since the last flush.
+All changes that accumulate in that window are sent together in one batch.
 
 This is useful in large-scale scenarios where many participants join simultaneously: a longer
 send period lets changes accumulate and reduces writer starvation without slowing down the

@@ -241,9 +241,11 @@ combined routine triggered by ``<clientAnnouncementPeriod>``), but defers the se
 least ``<serverSendPeriod>`` has elapsed since the last flush.
 All changes that accumulate in that window are sent together in one batch.
 
-This is useful in large-scale scenarios where many participants join simultaneously: a longer
-send period lets changes accumulate and reduces writer starvation without slowing down the
-processing of incoming announcements.
+This is useful in large-scale scenarios where many participants join simultaneously: without
+rate limiting, the server sends partial discovery data before all endpoints of a participant
+have been received, requiring redundant retransmissions once the remaining data arrives.
+A longer send period lets changes accumulate so that sends contain more complete information,
+reducing overall traffic.
 
 The default value is 0 (disabled: sends happen every routine iteration, original behaviour).
 

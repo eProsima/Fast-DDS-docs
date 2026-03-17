@@ -419,16 +419,16 @@ configurable settings.
 |                                 | send its Discovery Messages to its servers     |                     |             |
 |                                 | and check for EDP endpoint matching.           |                     |             |
 |                                 | On the server side, controls the fallback      |                     |             |
-|                                 | re-check rate of the combined                  |                     |             |
-|                                 | process-and-send routine. |Pro| Acts as a      |                     |             |
-|                                 | true send rate limiter independent of client   |                     |             |
-|                                 | announce rates.                                |                     |             |
-|                                 | (see :ref:`DS_ping_period`).                   |                     |             |
+|                                 | re-check rate of the discovery routine.        |                     |             |
+|                                 | |Pro| adds a separate ``<serverSendPeriod>``   |                     |             |
+|                                 | for true send rate limiting                    |                     |             |
+|                                 | (see :ref:`DS_send_period`).                   |                     |             |
 +---------------------------------+------------------------------------------------+---------------------+-------------+
-| ``<serverProcessPeriod>`` |Pro| | The period for the server to process incoming  | :ref:`DurationType` | 200 ms      |
-|                                 | discovery data and update the                  |                     |             |
-|                                 | DiscoveryDataBase. Independent from            |                     |             |
-|                                 | ``<clientAnnouncementPeriod>``.                |                     |             |
+| ``<serverSendPeriod>`` |Pro|    | Minimum interval between consecutive flushes   | :ref:`DurationType` | 0 (disabled)|
+|                                 | of accumulated discovery changes to writer     |                     |             |
+|                                 | histories. When set to a positive value, sends |                     |             |
+|                                 | are rate-limited independently from the        |                     |             |
+|                                 | routine period (see :ref:`DS_send_period`).    |                     |             |
 +---------------------------------+------------------------------------------------+---------------------+-------------+
 | ``<static_edp_xml_config>``     | The XML filename(s) with the static EDP        | ``List <string>``   |             |
 |                                 | configuration. Only necessary if               |                     |             |

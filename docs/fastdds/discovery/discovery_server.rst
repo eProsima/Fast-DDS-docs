@@ -207,12 +207,12 @@ The default value is 450 ms.
 
 .. note::
 
-   |Pro| *eProsima Fast DDS Pro* splits the server's combined routine into two independent timers
-   with separate periods: a *process timer* (``<serverProcessPeriod>``, default 200 ms) and a
-   *send timer* (``<clientAnnouncementPeriod>``).  The send timer becomes a true rate limiter:
-   even if many clients announce rapidly the server batches their changes and flushes them at most
-   once per ``<clientAnnouncementPeriod>``, giving stronger and more predictable traffic control
-   than is possible with a single combined timer.
+   |Pro| *eProsima Fast DDS Pro* adds a ``<serverSendPeriod>`` parameter that acts as a true
+   send rate limiter on the server. When configured, the server still processes incoming data
+   on every routine iteration, but defers flushing changes to writer histories until at least
+   ``<serverSendPeriod>`` has elapsed since the last flush. This gives stronger and more
+   predictable traffic control than is possible by tuning ``<clientAnnouncementPeriod>`` alone.
+   See :ref:`DS_send_period`.
 
 .. tab-set-code::
 
@@ -229,7 +229,23 @@ The default value is 450 ms.
         :lines: 2-3,5-16
         :append: </profiles>
 
-.. _DS_process_period:
+... _DS_send_period:
+
+Fine tuning the server send rate limiter |Pro|
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+The ``discoveryServer_send_period`` parameter (XML: ``<serverSendPeriod>``) controls the minimum
+interval between consecutive flushes of accumulated discovery changes to the writer histories.
+When set to a positive value, the server still processes incoming data immediately (via the
+combined routine triggered by ``<clientAnnouncementPeriod>``), but defers the send step
+(``process_to_send_lists()``) until at least ``<serverSendPeriod>`` has elapsed since the last
+flush. All changes that accumulate in that window are sent together in one batch.
+
+This is useful in large-scale scenarios where many participants join simultaneously: a longer
+send period lets changes accumulate and reduces writer starvation without slowing down the
+processing of incoming announcements.
+
+The default value is 0 (disabled: sends happen every routine iteration, original behaviour).
 
 Fine tuning the server processing interval |Pro|
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^

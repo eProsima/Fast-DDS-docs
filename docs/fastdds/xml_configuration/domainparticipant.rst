@@ -421,12 +421,8 @@ configurable settings.
 |                                 | On the server side, controls the fallback      |                     |             |
 |                                 | re-check rate of the discovery routine.        |                     |             |
 |                                 | (see :ref:`DS_ping_period`).                   |                     |             |
-+---------------------------------+------------------------------------------------+---------------------+-------------+
-| ``<serverSendPeriod>`` |Pro|    | Minimum interval between consecutive flushes   | :ref:`DurationType` | 0 (disabled)|
-|                                 | of accumulated discovery changes to writer     |                     |             |
-|                                 | histories. When set to a positive value, sends |                     |             |
-|                                 | are rate-limited independently from the        |                     |             |
-|                                 | routine period (see :ref:`DS_send_period`).    |                     |             |
+|                                 | |Pro| adds a property for true send rate       |                     |             |
+|                                 | limiting (see :ref:`DS_send_period`).          |                     |             |
 +---------------------------------+------------------------------------------------+---------------------+-------------+
 | ``<static_edp_xml_config>``     | The XML filename(s) with the static EDP        | ``List <string>``   |             |
 |                                 | configuration. Only necessary if               |                     |             |

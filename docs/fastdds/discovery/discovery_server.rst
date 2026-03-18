@@ -207,12 +207,12 @@ The default value is 450 ms.
 
 .. note::
 
-   |Pro| *eProsima Fast DDS Pro* adds a ``<serverSendPeriod>`` parameter that acts as a true
-   send rate limiter on the server. When configured, the server still processes incoming data
-   on every routine iteration, but defers flushing changes to writer histories until at least
-   ``<serverSendPeriod>`` has elapsed since the last flush. This gives stronger and more
-   predictable traffic control than is possible by tuning ``<clientAnnouncementPeriod>`` alone.
-   See :ref:`DS_send_period`.
+   |Pro| adds a ``fastdds.discovery_server.send_period`` property that acts as a true send rate
+   limiter on the server.  When set to a positive value (integer milliseconds), the server still
+   processes incoming data on every routine iteration, but defers flushing changes to writer
+   histories until at least that interval has elapsed since the last flush.  This gives stronger
+   and more predictable traffic control than is possible by tuning ``<clientAnnouncementPeriod>``
+   alone.  See :ref:`DS_send_period`.
 
 .. tab-set-code::
 
@@ -234,33 +234,19 @@ The default value is 450 ms.
 Fine tuning the server send rate limiter |Pro|
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-The ``discoveryServer_send_period`` parameter (XML: ``<serverSendPeriod>``) controls the minimum
-interval between consecutive flushes of accumulated discovery changes to the writer histories.
-When set to a positive value, the server still processes incoming data immediately (via the
-combined routine triggered by ``<clientAnnouncementPeriod>``), but defers the send step until at
-least ``<serverSendPeriod>`` has elapsed since the last flush.
-All changes that accumulate in that window are sent together in one batch.
+The ``fastdds.discovery_server.send_period`` property controls the minimum interval (in
+milliseconds) between consecutive flushes of accumulated discovery changes to the writer
+histories. When set to a positive integer value (e.g. ``"1000"`` for one second), the server
+still processes incoming data on every routine iteration (triggered by
+``<clientAnnouncementPeriod>``), but defers the send step until at least that many milliseconds
+have elapsed since the last flush. All changes that accumulate in that window are sent together
+in one batch.
 
 This is useful in large-scale scenarios where many participants join simultaneously: without
 rate limiting, the server sends partial discovery data before all endpoints of a participant
 have been received, requiring redundant retransmissions once the remaining data arrives.
 A longer send period lets changes accumulate so that sends contain more complete information,
 reducing overall traffic.
-
-The default value is 0 (disabled: sends happen every routine iteration, original behaviour).
-
-Fine tuning the server processing interval |Pro|
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-
-The *server* periodically processes incoming discovery data: it ingests queued announcements,
-updates the DiscoveryDataBase, and computes which changes need to be propagated to each participant.
-This processing interval is independent from the send interval configured by
-:ref:`clientAnnouncementPeriod <DS_ping_period>`.
-
-A shorter processing interval reduces the latency between a client announcement arriving and the
-server computing the resulting propagation.
-A longer processing interval reduces CPU overhead on servers handling many clients.
-The default value is 200 ms.
 
 .. _DS_guidPrefix:
 

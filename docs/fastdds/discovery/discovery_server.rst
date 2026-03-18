@@ -186,33 +186,11 @@ regular intervals until it is connected to the same amount of servers that has b
 Fine tuning discovery server handshake
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-The ``discoveryServer_client_syncperiod`` parameter (XML: ``<clientAnnouncementPeriod>``) can be
-configured independently on each participant, so the *server* and each *client* can have different
-values. It controls two related but distinct behaviours:
-
-- **Client side**: how often a *client* sends its participant announcement (``DATA(p)``) to its
-  configured *servers*. This repeats until the *server* has acknowledged the announcement.
-  The same period applies when a *server* connects to another *server*.
-
-- **Server side**: the server runs its combined discovery routine (process incoming announcements,
-  update the DiscoveryDataBase, and send the resulting changes) **immediately** whenever a new
-  announcement arrives. After each such run, the next re-check is scheduled at
-  ``<clientAnnouncementPeriod>`` from that point. That re-check handles pending acknowledgements
-  and retransmissions: it calls into the writer histories and may trigger heartbeats or re-sends
-  to clients that have not yet acknowledged. A longer period therefore reduces the frequency of
-  those re-send operations, which is the primary source of traffic reduction when many clients
-  are connected.
-
-The default value is 450 ms.
-
-.. note::
-
-   |Pro| adds a ``fastdds.discovery_server.send_period`` property that acts as a true send rate
-   limiter on the server.  When set to a positive value (integer milliseconds), the server still
-   processes incoming data on every routine iteration, but defers flushing changes to writer
-   histories until at least that interval has elapsed since the last flush.  This gives stronger
-   and more predictable traffic control than is possible by tuning ``<clientAnnouncementPeriod>``
-   alone.  See :ref:`DS_send_period`.
+As explained :ref:`above <DS_key_concepts>` the *clients* send discovery messages to the *servers* at regular
+intervals (ping period) until they receive as many message reception acknowledgement as remote locators
+(server addresses) were specified.
+Mind that this period also applies for those *servers* which connect to other *servers*.
+The default value for this period is 450 ms, but it can be configured to a different value.
 
 .. tab-set-code::
 

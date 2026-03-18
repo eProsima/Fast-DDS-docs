@@ -207,7 +207,7 @@ The default value for this period is 450 ms, but it can be configured to a diffe
         :lines: 2-3,5-16
         :append: </profiles>
 
-... _DS_send_period:
+.. _DS_send_period:
 
 Fine tuning the server send rate limiter |Pro|
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^

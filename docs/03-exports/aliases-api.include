@@ -205,6 +205,7 @@
 .. |DomainParticipantListener::on_data_reader_discovery-api| replace:: :cpp:func:`on_data_reader_discovery()<eprosima::fastdds::dds::DomainParticipantListener::on_data_reader_discovery>`
 .. |DomainParticipantListener::on_data_writer_discovery-api| replace:: :cpp:func:`on_data_writer_discovery()<eprosima::fastdds::dds::DomainParticipantListener::on_data_writer_discovery>`
 .. |DomainParticipantListener::onParticipantAuthentication-api| replace:: :cpp:func:`onParticipantAuthentication()<eprosima::fastdds::dds::DomainParticipantListener::onParticipantAuthentication>`
+.. |DomainParticipantListener::should_endpoints_match-api| replace:: :cpp:func:`should_endpoints_match()<eprosima::fastdds::dds::DomainParticipantListener::should_endpoints_match>`
 
 .. |DomainParticipantQos-api| replace:: :cpp:class:`DomainParticipantQos<eprosima::fastdds::dds::DomainParticipantQos>`
 .. |DomainParticipantQos::allocation-api| replace:: :cpp:func:`allocation()<eprosima::fastdds::dds::DomainParticipantQos::allocation>`

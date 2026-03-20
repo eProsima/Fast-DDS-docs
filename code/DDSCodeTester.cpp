@@ -289,6 +289,18 @@ public:
         }
     }
 
+    bool should_endpoints_match(
+            const DomainParticipant* participant,
+            const eprosima::fastdds::rtps::SubscriptionBuiltinTopicData& reader_info,
+            const eprosima::fastdds::dds::PublicationBuiltinTopicData& writer_info) override
+    {
+        static_cast<void>(participant);
+        // For example, only allow matching between endpoints belonging to different participants.
+        // This prevents intra-participant communication while still allowing
+        // cross-participant communication for endpoints that pass standard QoS checks.
+        return reader_info.participant_guid != writer_info.participant_guid;
+    }
+
 };
 //!--
 

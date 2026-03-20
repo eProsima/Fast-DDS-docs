@@ -151,4 +151,30 @@ value |DataWriterQos::DataWriterQos-api|.
      |DataWriterQos::DataWriterQos-api|.
 
 
+.. _dds_layer_publisher_dataWriter_type_support_context:
+
+Type support context
+--------------------
+
+A DataWriter can be configured with a :ref:`type support context <dds_layer_topic_type_support_context>`
+that is forwarded to the |TopicDataType-api| callbacks on every write operation.
+This allows the type implementation to rely on per-writer information (e.g., bounded sizes)
+
+The context must be set **before** enabling the DataWriter using
+|DataWriter::set_type_support_context-api|.
+Calling this method on an already-enabled DataWriter returns ``RETCODE_ILLEGAL_OPERATION``.
+
+.. code-block:: c++
+
+   // Create a context carrying per-writer configuration.
+   auto context = std::make_shared<MyContext>();
+   context->string_max_length = 512;
+
+   // Set it before enabling the DataWriter.
+   ReturnCode_t ret = writer->set_type_support_context(context);
+   assert(ret == RETCODE_OK);
+
+   // Enable the writer (e.g., by enabling its DomainParticipant).
+
+
 

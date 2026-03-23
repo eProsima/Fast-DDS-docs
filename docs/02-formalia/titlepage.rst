@@ -77,66 +77,73 @@ The following table contains a brief comparison between *Fast DDS* and *Fast DDS
       <tr>
         <th style="width:20%"></th>
         <th style="width:40%; text-align:center; vertical-align:bottom;">
-          <img src="_static/fast-dds-pro-logo-large.png" alt="Fast DDS Pro" width="300px"><br>
+          <img src="pathto('_static/fast-dds-pro-logo-large.png', 1)" alt="Fast DDS Pro" width="300px"><br>
         </th>
         <th style="width:40%; text-align:center; vertical-align:bottom;">
-          <img src="_static/fast-dds-logo-large.png" alt="Fast DDS" width="250px"><br>
+          <img src="pathto('_static/fast-dds-logo-large.png', 1)" alt="Fast DDS (Community)" width="250px"><br>
         </th>
       </tr>
     </thead>
     <tbody>
       <tr>
-        <td>Uses</td>
-        <td>Industrial &amp; Defense</td>
-        <td>R&amp;D</td>
+        <th>Target usage</th>
+        <td>Production systems, industrial, robotics, defense</td>
+        <td>Evaluation, prototyping, early development, research</td>
       </tr>
       <tr>
-        <td>OS</td>
-        <td>POSIX compliant (Linux, Windows, MacOS)</td>
-        <td>POSIX compliant (Linux, Windows, MacOS)</td>
-      </tr>
-      <tr>
-        <td>License</td>
+        <th>License</th>
         <td>Commercial</td>
-        <td>Open Source</td>
+        <td>Open Source (Apache 2.0)</td>
       </tr>
       <tr>
-        <td colspan="3" class="section-header">Feature Set</td>
+        <th>Support</th>
+        <td>✅ Direct engineering support (unlimited)</td>
+        <td>❌ Community-based</td>
       </tr>
       <tr>
-        <td>DDS Pub/Sub &amp; QoS</td>
-        <td>✅ With extended features</td>
-        <td>✅ With extended features</td>
+        <th>Maintenance / LTS</th>
+        <td>✅ Long-term support (~24 months, backports)</td>
+        <td>❌ No guaranteed maintenance</td>
       </tr>
       <tr>
-        <td>TSN over DDS</td>
+        <th>Predictability</th>
+        <td>✅ Controlled releases &amp; fixes</td>
+        <td>⚠️ Best-effort evolution</td>
+      </tr>
+      <tr>
+        <th>DDS Pub/Sub &amp; QoS</th>
+        <td>✅ Full</td>
+        <td>✅ Full</td>
+      </tr>
+      <tr>
+        <th>TSN over DDS</th>
         <td>✅</td>
         <td>❌</td>
       </tr>
       <tr>
-        <td>RPC over DDS</td>
-        <td>✅ Including RPC streaming</td>
+        <th>RPC over DDS</th>
+        <td>✅ (incl. streaming)</td>
         <td>❌</td>
       </tr>
       <tr>
-        <td>IP Mobility</td>
+        <th>IP Mobility</th>
         <td>✅</td>
         <td>❌</td>
       </tr>
       <tr>
-        <td>Low Bandwidth Transports</td>
+        <th>Low Bandwidth Transports</th>
         <td>✅</td>
         <td>❌</td>
       </tr>
       <tr>
-        <td>Adaptive Congestion Control</td>
+        <th>Adaptive Congestion Control</th>
         <td>✅</td>
         <td>❌</td>
       </tr>
       <tr>
-        <td>Discovery Server</td>
-        <td>✅ With enhanced matching algorithm</td>
-        <td>⚠️ Basic functionality</td>
+        <th>Discovery Server</th>
+        <td>✅ Advanced / optimized matching</td>
+        <td>⚠️ Standard functionality</td>
       </tr>
     </tbody>
   </table>

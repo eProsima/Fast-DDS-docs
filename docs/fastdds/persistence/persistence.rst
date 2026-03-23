@@ -92,7 +92,7 @@ These properties are summarized in the following table:
 
 .. important::
     The plugin set in the PropertyPolicyQos of DomainParticipant only applies if that of the
-    DataWriter/DataReader does no exist or is invalid.
+    DataWriter/DataReader does not exist or is invalid.
 
 
 .. _persistence_example:

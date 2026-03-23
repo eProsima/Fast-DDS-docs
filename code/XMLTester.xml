@@ -3577,6 +3577,7 @@
             </propertiesPolicy>
         </data_writer>
 
+        <!-- DataReader configuration -->
         <data_reader profile_name="persistence_service_data_reader">
             <qos>
                 <!-- Set durability to TRANSIENT_DURABILITY_QOS -->

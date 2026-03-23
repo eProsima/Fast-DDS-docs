@@ -18,11 +18,14 @@
 #
 # import sys
 # sys.path.insert(0, os.path.abspath('.'))
+from docutils import nodes
 import git
 import json
 import os
 import os.path
 import pathlib
+import posixpath
+import re
 import requests
 import shutil
 import subprocess
@@ -32,6 +35,47 @@ import sys
 def setup(app):
     # Add property to avoid warning.
     app.add_config_value("skip_python", None, "")
+    app.connect("doctree-resolved", replace_pathto_in_raw_html)
+
+
+_PATHTO_RE = re.compile(
+    r"""pathto\(\s*(['"])(?P<target>[^'"]+)\1(?:\s*,\s*(?P<resource>\d+))?\s*\)"""
+)
+
+
+def replace_pathto_in_raw_html(app, doctree, docname):
+    """
+    Replace pathto(...) usages inside raw HTML nodes.
+
+    Sphinx only expands ``pathto`` in Jinja templates, not in reStructuredText
+    document bodies. Some pages embed raw HTML and expect ``pathto('_static/...', 1)``
+    to resolve to the correct relative asset path. Convert those calls after the
+    doctree has been resolved so included documents are rewritten using the final
+    output page path.
+    """
+
+    if app.builder.format != "html":
+        return
+
+    depth = docname.count("/")
+    prefix = "../" * depth
+
+    def repl(match):
+        target = match.group("target").lstrip("/")
+        if "://" in target or target.startswith(("#", "mailto:", "javascript:")):
+            return target
+        return posixpath.normpath(prefix + target)
+
+    for node in doctree.findall():
+        if node.tagname != "raw":
+            continue
+        if "html" not in node.get("format", "").split():
+            continue
+        updated = _PATHTO_RE.sub(repl, node.astext())
+        if updated == node.astext():
+            continue
+        node.rawsource = updated
+        node.children = [nodes.Text(updated)]
 
 
 def download_json():

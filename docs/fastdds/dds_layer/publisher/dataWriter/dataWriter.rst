@@ -166,7 +166,7 @@ Calling this method on an already-enabled DataWriter returns ``RETCODE_ILLEGAL_O
 
 .. literalinclude:: /../code/DDSCodeTester.cpp
    :language: c++
-   :start-after: //DDS_SET_TYPE_SUPPORT_CONTEXT
+   :start-after: //DDS_SET_TYPE_SUPPORT_CONTEXT_DW
    :end-before: //!
    :dedent: 8
 

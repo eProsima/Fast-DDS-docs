@@ -175,15 +175,8 @@ The context must be set **before** enabling the DataReader using
 |DataReader::set_type_support_context-api|.
 Calling this method on an already-enabled DataReader returns ``RETCODE_ILLEGAL_OPERATION``.
 
-.. code-block:: c++
-
-   // Create a context carrying per-reader configuration.
-   auto context = std::make_shared<MyContext>();
-   context->string_max_length = 512;
-
-   // Set it before enabling the DataReader.
-   ReturnCode_t ret = reader->set_type_support_context(context);
-   assert(ret == RETCODE_OK);
-
-   // Enable the reader (e.g., by enabling its DomainParticipant).
-
+.. literalinclude:: /../code/DDSCodeTester.cpp
+   :language: c++
+   :start-after: //DDS_SET_TYPE_SUPPORT_CONTEXT_DR
+   :end-before: //!
+   :dedent: 8

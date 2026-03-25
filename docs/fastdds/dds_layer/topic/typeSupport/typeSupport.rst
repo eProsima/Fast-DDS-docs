@@ -97,13 +97,11 @@ serialization, deserialization, and related operations without needing global st
 The context is represented by the |TopicDataType::Context-api| interface.
 Users subclass it to carry whatever per-endpoint information their type requires:
 
-.. code-block:: c++
-
-   struct MyContext : eprosima::fastdds::dds::TopicDataType::Context
-   {
-       uint32_t string_max_length = 256;
-       uint32_t sequence_max_length = 1024;
-   };
+.. literalinclude:: /../code/DDSCodeTester.cpp
+   :language: c++
+   :start-after: //DDS_TYPE_SUPPORT_CONTEXT_DEF
+   :end-before: //!
+   :dedent: 8
 
 The context-aware virtual methods of |TopicDataType-api| all follow the same pattern: they receive a
 ``const std::shared_ptr<TopicDataType::Context>&`` as their first argument, and their default

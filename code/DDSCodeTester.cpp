@@ -3174,6 +3174,30 @@ void dds_dataWriter_examples()
     }
 
     {
+        //DDS_SET_TYPE_SUPPORT_CONTEXT
+        // User-defined context struct carrying per-writer configuration.
+        struct MyContext : public TopicDataType::Context
+        {
+            uint32_t string_max_length = 0;
+        };
+
+        // Create a DataWriter (initially disabled, e.g. via participant QoS).
+        DataWriterQos writer_qos = DATAWRITER_QOS_DEFAULT;
+        DataWriter* writer = publisher->create_datawriter(topic, writer_qos);
+
+        // Create a context carrying per-writer configuration.
+        auto context = std::make_shared<MyContext>();
+        context->string_max_length = 512;
+
+        // Set it before enabling the DataWriter.
+        ReturnCode_t ret = writer->set_type_support_context(context);
+        assert(ret == RETCODE_OK);
+
+        // Then enable the writer (e.g., by enabling its DomainParticipant).
+        //!--
+    }
+
+    {
         //DDS_DELETE_DATAWRITER
         // Create a DataWriter
         DataWriter* data_writer =

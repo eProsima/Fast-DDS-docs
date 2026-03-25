@@ -164,17 +164,9 @@ The context must be set **before** enabling the DataWriter using
 |DataWriter::set_type_support_context-api|.
 Calling this method on an already-enabled DataWriter returns ``RETCODE_ILLEGAL_OPERATION``.
 
-.. code-block:: c++
-
-   // Create a context carrying per-writer configuration.
-   auto context = std::make_shared<MyContext>();
-   context->string_max_length = 512;
-
-   // Set it before enabling the DataWriter.
-   ReturnCode_t ret = writer->set_type_support_context(context);
-   assert(ret == RETCODE_OK);
-
-   // Enable the writer (e.g., by enabling its DomainParticipant).
-
-
+.. literalinclude:: /../code/DDSCodeTester.cpp
+   :language: c++
+   :start-after: //DDS_SET_TYPE_SUPPORT_CONTEXT
+   :end-before: //!
+   :dedent: 8
 

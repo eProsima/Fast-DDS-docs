@@ -49,10 +49,10 @@ Additionally, DomainParticipantListener adds the following non-standard callback
   of a remote DomainParticipant (either on failure or success).
 
 * |DomainParticipantListener::should_endpoints_match-api|: Called after standard QoS matching rules have been
-  evaluated for a pair of local and remote endpoints (a :ref:`dds_layer_subscriber_dataReader` and a
+  evaluated for a pair of endpoints (a :ref:`dds_layer_subscriber_dataReader` and a
   :ref:`dds_layer_publisher_dataWriter` on the same topic with compatible QoS).
   It allows the application to apply custom matching logic as an additional filter on top of the standard rules.
-  The callback receives the |DomainParticipant-api| that discovered the remote endpoint, a
+  The callback receives the |DomainParticipant-api| calling the listener, a
   ``SubscriptionBuiltinTopicData`` with the reader information, and a ``PublicationBuiltinTopicData`` with the
   writer information.
   Returning ``true`` allows the match to proceed; returning ``false`` prevents it.

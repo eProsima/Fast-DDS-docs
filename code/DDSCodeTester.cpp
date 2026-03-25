@@ -298,7 +298,7 @@ public:
         // For example, only allow matching between endpoints belonging to different participants.
         // This prevents intra-participant communication while still allowing
         // cross-participant communication for endpoints that pass standard QoS checks.
-        return reader_info.participant_guid != writer_info.participant_guid;
+        return reader_info.participant_guid.guidPrefix != writer_info.participant_guid.guidPrefix;
     }
 
 };

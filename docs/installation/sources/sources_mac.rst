@@ -165,11 +165,11 @@ This section explains how to use it to compile *eProsima Fast DDS* and its depen
 #. Create a :code:`Fast-DDS` directory and download the repos file that will be used to install
    *eProsima Fast DDS* and its dependencies:
 
-   .. code-block:: bash
+   .. substitution-code-block:: bash
 
        mkdir ~/Fast-DDS
        cd ~/Fast-DDS
-       wget https://raw.githubusercontent.com/eProsima/Fast-DDS/master/fastdds.repos
+       wget https://raw.githubusercontent.com/eProsima/Fast-DDS/|FastDDSBranch|/fastdds.repos
        mkdir src
        vcs import src < fastdds.repos
 

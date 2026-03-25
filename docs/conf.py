@@ -575,7 +575,7 @@ release = "3.6.0"
 
 # Branch used for all Fast-DDS / Fast-DDS-docs / Fast-DDS-Gen links.
 # Change this when branching for a release (e.g. "3.2.x", "3.2.0").
-fastdds_fallback_branch = "master"
+fastdds_fallback_branch = "main"
 
 # Branch used for Fast-DDS-python links (default branch is "main").
 fastdds_python_branch = "main"

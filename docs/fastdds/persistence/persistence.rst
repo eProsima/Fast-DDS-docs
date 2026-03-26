@@ -29,6 +29,14 @@ in which they were when the shutdown occurred.
     This means that they will resume operation where they left, but they will not have the previous information, since
     that was already notified to the application.
 
+.. note::
+    It may be necessary to configure the history depth of the DataWriter and DataReader to a value large enough to
+    guarantee that all the changes stored in the database are enough for a correct recovery of the application
+
+.. note::
+    RELIABLE reliability is required to allow a full recovery, since it guarantees that all the changes are stored in
+    the database and that they will be available for the DataWriter/DataReader upon restart.
+
 
 .. _persistence_service_conf:
 
@@ -87,13 +95,12 @@ These properties are summarized in the following table:
        Default value: ``persistence.db``
 
 .. note::
-    To avoid undesired delays caused by concurrent access to the SQLite3 database, it is advisable to specify a
-    different database file for each DataWriter and DataReader.
+    To avoid undesired delays caused by concurrent access to the SQLite3 database, it is strongly recommended to
+    specify a different database file for each DataWriter and DataReader.
 
 .. important::
     The plugin set in the PropertyPolicyQos of DomainParticipant only applies if that of the
     DataWriter/DataReader does not exist or is invalid.
-
 
 .. _persistence_example:
 

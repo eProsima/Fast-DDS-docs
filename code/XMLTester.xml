@@ -3560,7 +3560,18 @@
 
         <!-- DataWriter configuration -->
         <data_writer profile_name="persistence_service_data_writer">
+            <topic>
+                <!-- History depth should be large enough to guarantee correct retransmissions -->
+                <historyQos>
+                    <kind>KEEP_LAST</kind>
+                    <depth>20</depth>
+                </historyQos>
+            </topic>
             <qos>
+                <!-- RELIABLE reliability is required to allow a full recovery -->
+                <reliability>
+                    <kind>RELIABLE</kind>
+                </reliability>
                 <!-- Set durability to TRANSIENT_DURABILITY_QOS -->
                 <durability>
                     <kind>TRANSIENT</kind>
@@ -3579,7 +3590,18 @@
 
         <!-- DataReader configuration -->
         <data_reader profile_name="persistence_service_data_reader">
+            <topic>
+                <!-- History depth should be large enough to guarantee correct retransmissions -->
+                <historyQos>
+                    <kind>KEEP_LAST</kind>
+                    <depth>20</depth>
+                </historyQos>
+            </topic>
             <qos>
+                <!-- RELIABLE reliability is required to allow a full recovery -->
+                <reliability>
+                    <kind>RELIABLE</kind>
+                </reliability>
                 <!-- Set durability to TRANSIENT_DURABILITY_QOS -->
                 <durability>
                     <kind>TRANSIENT</kind>

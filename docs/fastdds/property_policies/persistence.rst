@@ -29,7 +29,8 @@ When using the :ref:`persistence_service`, specific properties must be set on th
   If this property is not set, the durability behaviour falls back to
   |TRANSIENT_LOCAL_DURABILITY_QOS-api|.
 
-The following example shows how to configure the persistence service properties:
+The following example shows how to configure the persistence service properties along with the
+required QoS settings for a correct operation of the service (see :ref:`persistence_example`).
 
 .. tab-set-code::
 

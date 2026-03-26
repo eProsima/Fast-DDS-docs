@@ -276,6 +276,21 @@ def get_git_branch():
     return None
 
 
+def resolve_fallback_branch(env_var, docs_branch, default="main"):
+    """
+    Resolve the branch to use for GitHub links.
+
+    Priority:
+      1. Environment variable ``env_var`` (e.g. FASTDDS_BRANCH)
+      2. Current documentation branch (``docs_branch``)
+      3. Hard-coded ``default``
+
+    This mirrors the checkout logic used in the ReadTheDocs clone block so
+    that extlinks and the actual checkout always point at the same branch.
+    """
+    return os.environ.get(env_var) or docs_branch or default
+
+
 def configure_doxyfile(
     doxyfile_in,
     doxyfile_out,
@@ -323,6 +338,10 @@ doxyfile_out = os.path.abspath("{}/doxygen-config".format(project_binary_dir))
 # Header files
 input_dir = os.path.abspath("{}/fastdds/include/fastdds".format(project_binary_dir))
 
+# Current branch of the documentation repository — resolved once, used everywhere.
+docs_branch = get_git_branch()
+print('Current documentation branch is "{}"'.format(docs_branch))
+
 # Check if we're running on Read the Docs' servers
 read_the_docs_build = os.environ.get("READTHEDOCS", None) == "True"
 if read_the_docs_build:
@@ -355,24 +374,15 @@ if read_the_docs_build:
         fastdds_repo_name,
     )
 
-    # Documentation repository branch
-    docs_branch = get_git_branch()
-    print('Current documentation branch is "{}"'.format(docs_branch))
-
-    # User specified Fast DDS branch
-    fastdds_branch = os.environ.get("FASTDDS_BRANCH", None)
-
-    # First try to checkout to ${FASTDDS_BRANCH}
-    # Else try with current documentation branch
-    # Else checkout to master
-    if fastdds_branch and fastdds.refs.__contains__("origin/{}".format(fastdds_branch)):
+    # Resolve desired branch (env var → current docs branch → main) then verify
+    # it actually exists in the cloned remote, falling back to main if not.
+    fastdds_branch = resolve_fallback_branch("FASTDDS_BRANCH", docs_branch, "main")
+    if fastdds.refs.__contains__("origin/{}".format(fastdds_branch)):
         fastdds_branch = "origin/{}".format(fastdds_branch)
-    elif docs_branch and fastdds.refs.__contains__("origin/{}".format(docs_branch)):
-        fastdds_branch = "origin/{}".format(docs_branch)
     else:
         print(
-            'Fast DDS does not have either "{}" or "{}" branches'.format(
-                fastdds_branch, docs_branch
+            'Fast DDS does not have branch "{}"; falling back to main'.format(
+                fastdds_branch
             )
         )
         fastdds_branch = "origin/master"
@@ -388,24 +398,15 @@ if read_the_docs_build:
         fastdds_python_repo_name,
     )
 
-    # User specified Fast DDS branch
-    fastdds_python_branch = os.environ.get("FASTDDS_PYTHON_BRANCH", None)
-
-    # First try to checkout to ${FASTDDS_PYTHON_BRANCH}
-    # Else try with current documentation branch
-    # Else checkout to master
-    if fastdds_python_branch and fastdds_python.refs.__contains__(
-        "origin/{}".format(fastdds_python_branch)
-    ):
+    # Resolve desired branch (env var → current docs branch → main) then verify
+    # it actually exists in the cloned remote, falling back to main if not.
+    fastdds_python_branch = resolve_fallback_branch("FASTDDS_PYTHON_BRANCH", docs_branch, "main")
+    if fastdds_python.refs.__contains__("origin/{}".format(fastdds_python_branch)):
         fastdds_python_branch = "origin/{}".format(fastdds_python_branch)
-    elif docs_branch and fastdds_python.refs.__contains__(
-        "origin/{}".format(docs_branch)
-    ):
-        fastdds_python_branch = "origin/{}".format(docs_branch)
     else:
         print(
-            'Fast DDS Python does not have either "{}" or "{}" branches'.format(
-                fastdds_python_branch, docs_branch
+            'Fast DDS Python does not have branch "{}"; falling back to main'.format(
+                fastdds_python_branch
             )
         )
         fastdds_python_branch = "origin/master"
@@ -484,6 +485,19 @@ extensions = [
     "sphinx_substitution_extensions",
     "sphinx_toolbox.collapse",
 ]
+
+# Resolve GitHub link branches using the same priority as the ReadTheDocs
+# checkout logic: env var → branch with same name as current docs branch → master/main
+fastdds_fallback_branch = resolve_fallback_branch("FASTDDS_BRANCH", docs_branch, "main")
+fastdds_docs_fallback_branch = docs_branch
+fastdds_python_fallback_branch = resolve_fallback_branch("FASTDDS_PYTHON_BRANCH", docs_branch, "main")
+fastdds_gen_fallback_branch = resolve_fallback_branch("FASTDDS_GEN_BRANCH", docs_branch, "master")
+
+print("Fallback branches for GitHub links:")
+print('  Fast-DDS:        "{}"'.format(fastdds_fallback_branch))
+print('  Fast-DDS-docs:   "{}"'.format(fastdds_docs_fallback_branch))
+print('  Fast-DDS-Python: "{}"'.format(fastdds_python_fallback_branch))
+print('  Fast-DDS-Gen:    "{}"'.format(fastdds_gen_fallback_branch))
 
 extlinks = {
     # Fast-DDS repo (tree = directory, blob = file)
@@ -572,15 +586,6 @@ author = "eProsima"
 version = "3.6.0"
 # The full version, including alpha/beta/rc tags.
 release = "3.6.0"
-
-# Branch used for all Fast-DDS / Fast-DDS-docs / Fast-DDS-Gen links.
-# Change this when branching for a release (e.g. "3.2.x", "3.2.0").
-fastdds_fallback_branch = "main"
-fastdds_docs_fallback_branch = fastdds_fallback_branch
-# Branch used for Fast-DDS-python links (default branch is "main").
-fastdds_python_fallback_branch = "main"
-# Branch used for Fast-DDS-Gen links (default branch is "master").
-fastdds_gen_fallback_branch = "master"
 
 # The language for content autogenerated by Sphinx. Refer to documentation
 # for a list of supported languages.

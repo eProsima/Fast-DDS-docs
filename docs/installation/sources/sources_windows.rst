@@ -267,7 +267,8 @@ This section explains how to use it to compile *eProsima Fast DDS* and its depen
 #. Create a :code:`Fast-DDS` directory and download the repos file that will be used to install
    *eProsima Fast DDS* and its dependencies:
 
-   .. substitution-code-block:: winbatch
+   .. code-block:: winbatch
+      :substitutions:
 
        mkdir ~\Fast-DDS
        cd ~\Fast-DDS
@@ -464,7 +465,8 @@ This section explains how to use it to compile *Fast DDS Python bindings* and it
 #. Create a :code:`Fast-DDS-python` directory and download the repos file that will be used to install
    *Fast DDS Python bindings* and its dependencies:
 
-   .. substitution-code-block:: winbatch
+   .. code-block:: winbatch
+      :substitutions:
 
        mkdir ~\Fast-DDS-python
        cd ~\Fast-DDS-python

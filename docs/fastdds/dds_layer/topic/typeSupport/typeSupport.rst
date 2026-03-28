@@ -83,3 +83,45 @@ from different sub-flows.
 The middleware keeps these sub-flows separated, but all will be restricted to the same QoS values of
 the Topic.
 If no key is provided, the data set associated with the Topic is restricted to a single flow.
+
+
+.. _dds_layer_topic_type_support_context:
+
+Type support context
+--------------------
+
+Fast DDS allows passing a user-defined *context* object to the type support callbacks, enabling
+type-specific information (e.g., upper bounds for strings and sequences) to be available during
+serialization, deserialization, and related operations without needing global state.
+
+The context is represented by the |TopicDataType::Context-api| interface.
+Users subclass it to carry whatever per-endpoint information their type requires:
+
+.. literalinclude:: /../code/DDSCodeTester.cpp
+   :language: c++
+   :start-after: //DDS_TYPE_SUPPORT_CONTEXT_DEF
+   :end-before: //!
+   :dedent: 8
+
+The context-aware virtual methods of |TopicDataType-api| all follow the same pattern: they receive a
+``const std::shared_ptr<TopicDataType::Context>&`` as their first argument, and their default
+implementation ignores the context and delegates to the corresponding context-free method.
+Users may override any subset of the following methods:
+
+- |TopicDataType::serialize_ctx-api| — serialize a sample using the context.
+- |TopicDataType::deserialize_ctx-api| — deserialize a payload using the context.
+- |TopicDataType::calculate_serialized_size_ctx-api| — compute the serialized size with the context.
+- |TopicDataType::create_data_ctx-api| — allocate a new sample using the context.
+- |TopicDataType::delete_data_ctx-api| — deallocate a sample using the context.
+- |TopicDataType::compute_key_ctx-api| — extract the key using the context.
+- |TopicDataType::is_bounded_ctx-api| — check whether the type is bounded with this context.
+- |TopicDataType::is_plain_ctx-api| — check whether the type is plain with this context.
+- |TopicDataType::construct_sample_ctx-api| — in-place construct a sample using the context.
+- |TopicDataType::get_max_serialized_size_ctx-api| — return the maximum serialized size with this context.
+
+The context is attached to a :ref:`dds_layer_publisher_dataWriter` or
+:ref:`dds_layer_subscriber_dataReader` **before enabling** the entity, using
+|DataWriter::set_type_support_context-api| or |DataReader::set_type_support_context-api|
+respectively.
+Because the context is set before the entity is enabled, it is guaranteed to be available for every
+write or read operation performed during the entity's lifetime.

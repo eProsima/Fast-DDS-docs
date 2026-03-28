@@ -2162,6 +2162,16 @@ void dds_topic_examples()
     }
 
     {
+        //DDS_TYPE_SUPPORT_CONTEXT_DEF
+        struct MyContext : eprosima::fastdds::dds::TopicDataType::Context
+        {
+            uint32_t string_max_length = 256;
+            uint32_t sequence_max_length = 1024;
+        };
+        //!--
+    }
+
+    {
         //DDS_DYNAMIC_TYPES_IDL_PARSING_CREATE_TYPE
         // Create a DomainParticipant in the desired domain
         DomainParticipant* participant =
@@ -3174,6 +3184,32 @@ void dds_dataWriter_examples()
     }
 
     {
+        //DDS_SET_TYPE_SUPPORT_CONTEXT_DW
+        // User-defined context struct carrying per-writer configuration.
+        struct MyContext : public TopicDataType::Context
+        {
+            uint32_t string_max_length = 0;
+            uint32_t sequence_max_length = 0;
+        };
+
+        // Create a DataWriter (initially disabled, e.g. via participant QoS).
+        DataWriterQos writer_qos = DATAWRITER_QOS_DEFAULT;
+        DataWriter* writer = publisher->create_datawriter(topic, writer_qos);
+
+        // Create a context carrying per-writer configuration.
+        auto context = std::make_shared<MyContext>();
+        context->string_max_length = 512;
+        context->sequence_max_length = 1024;
+
+        // Set it before enabling the DataWriter.
+        ReturnCode_t ret = writer->set_type_support_context(context);
+        assert(ret == RETCODE_OK);
+
+        // Then enable the writer (e.g., by enabling its DomainParticipant).
+        //!--
+    }
+
+    {
         //DDS_DELETE_DATAWRITER
         // Create a DataWriter
         DataWriter* data_writer =
@@ -4050,6 +4086,32 @@ void dds_dataReader_examples()
             // Error
             return;
         }
+        //!--
+    }
+
+    {
+        //DDS_SET_TYPE_SUPPORT_CONTEXT_DR
+        // User-defined context struct carrying per-reader configuration.
+        struct MyContext : public TopicDataType::Context
+        {
+            uint32_t string_max_length = 0;
+            uint32_t sequence_max_length = 0;
+        };
+
+        // Create a DataReader (initially disabled, e.g. via participant QoS).
+        DataReaderQos reader_qos = DATAREADER_QOS_DEFAULT;
+        DataReader* reader = subscriber->create_datareader(topic, reader_qos);
+
+        // Create a context carrying per-reader configuration.
+        auto context = std::make_shared<MyContext>();
+        context->string_max_length = 512;
+        context->sequence_max_length = 1024;
+
+        // Set it before enabling the DataReader.
+        ReturnCode_t ret = reader->set_type_support_context(context);
+        assert(ret == RETCODE_OK);
+
+        // Then enable the reader (e.g., by enabling its DomainParticipant).
         //!--
     }
 

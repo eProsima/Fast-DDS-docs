@@ -248,7 +248,25 @@ def static_relative(path):
 
 
 def get_git_branch():
-    """Get the git branch this repository is currently on."""
+    """Get the git branch this repository is currently on.
+
+    On Read the Docs the repo is checked out in detached-HEAD mode, so
+    ``git name-rev`` returns synthetic names like ``remotes/origin/external-1234``
+    instead of the real branch.  RTD always exports a human-readable version
+    name in ``READTHEDOCS_VERSION``: the branch name for branch builds, the tag
+    name for tag builds, and the PR number for PR preview builds.  All of these
+    are more useful than the synthetic git name; PR numbers simply won't match
+    any remote branch and resolve_fallback_branch will fall back to the default.
+    """
+    # On RTD, READTHEDOCS_VERSION is the human-readable version name:
+    # a branch name for branch builds, a tag name for tag builds, and
+    # the PR number for external (PR preview) builds.  All of these are
+    # better than the synthetic "external-1234" that git name-rev returns.
+    # For PR builds the number won't match any Fast-DDS branch, so
+    # resolve_fallback_branch will simply fall through to its default.
+    if os.environ.get("READTHEDOCS") == "True":
+        return os.environ.get("READTHEDOCS_VERSION")
+
     path_to_here = os.path.abspath(os.path.dirname(__file__))
 
     # Invoke git to get the current branch which we use to get the theme
@@ -341,6 +359,11 @@ input_dir = os.path.abspath("{}/fastdds/include/fastdds".format(project_binary_d
 # Current branch of the documentation repository — resolved once, used everywhere.
 docs_branch = get_git_branch()
 print('Current documentation branch is "{}"'.format(docs_branch))
+print('READTHEDOCS_VERSION="{}" READTHEDOCS_VERSION_TYPE="{}" READTHEDOCS_GIT_IDENTIFIER="{}"'.format(
+    os.environ.get("READTHEDOCS_VERSION", ""),
+    os.environ.get("READTHEDOCS_VERSION_TYPE", ""),
+    os.environ.get("READTHEDOCS_GIT_IDENTIFIER", ""),
+))
 
 # Check if we're running on Read the Docs' servers
 read_the_docs_build = os.environ.get("READTHEDOCS", None) == "True"

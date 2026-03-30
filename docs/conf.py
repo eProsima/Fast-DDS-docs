@@ -502,18 +502,18 @@ print('  Fast-DDS-Gen:    "{}"'.format(fastdds_gen_fallback_branch))
 extlinks = {
     # Fast-DDS repo (tree = directory, blob = file)
     "fastdds-tree": (
-        f"https://github.com/eProsima/Fast-DDS-Pro/tree/{fastdds_fallback_branch}/%s", "%s"
+        f"https://github.com/eProsima/Fast-DDS/tree/{fastdds_fallback_branch}/%s", "%s"
     ),
     "fastdds-blob": (
-        f"https://github.com/eProsima/Fast-DDS-Pro/blob/{fastdds_fallback_branch}/%s", "%s"
+        f"https://github.com/eProsima/Fast-DDS/blob/{fastdds_fallback_branch}/%s", "%s"
     ),
     # Fast-DDS-python repo
     "fastdds-python-tree": (
-        f"https://github.com/eProsima/Fast-DDS-Pro-Python/tree/{fastdds_python_fallback_branch}/%s", "%s"
+        f"https://github.com/eProsima/Fast-DDS-Python/tree/{fastdds_python_fallback_branch}/%s", "%s"
     ),
     # Fast-DDS-docs repo (code examples embedded in the docs repo)
     "fastdds-docs-tree": (
-        f"https://github.com/eProsima/Fast-DDS-Pro-docs/tree/{fastdds_docs_fallback_branch}/%s", "%s"
+        f"https://github.com/eProsima/Fast-DDS-docs/tree/{fastdds_docs_fallback_branch}/%s", "%s"
     ),
     # Fast-DDS-Gen raw files
     "fastddsgen-raw": (

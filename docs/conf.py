@@ -252,20 +252,20 @@ def get_git_branch():
 
     On Read the Docs the repo is checked out in detached-HEAD mode, so
     ``git name-rev`` returns synthetic names like ``remotes/origin/external-1234``
-    instead of the real branch.  RTD always exports a human-readable version
-    name in ``READTHEDOCS_VERSION``: the branch name for branch builds, the tag
-    name for tag builds, and the PR number for PR preview builds.  All of these
-    are more useful than the synthetic git name; PR numbers simply won't match
-    any remote branch and resolve_fallback_branch will fall back to the default.
+    instead of the real branch.  A workaround is provided using
+    ``READTHEDOCS_VERSION_TYPE`` and ``READTHEDOCS_VERSION`` according to the build type:
+    - ``"branch"`` builds: READTHEDOCS_VERSION is the branch name (e.g. ``"3.6.x"``) → use it.
+    - ``"tag"`` builds: READTHEDOCS_VERSION is the tag name (e.g. ``"v3.6.0"``) → use it.
+    - ``"external"`` (PR preview) builds: READTHEDOCS_VERSION is the PR number (e.g. ``"1241"``)
+      which is not a valid git ref. In this case we return None so resolve_fallback_branch falls
+      back to its default instead of generating broken GitHub URLs.
+    - Local builds: READTHEDOCS_VERSION_TYPE is unset → fall back to git name-rev.
     """
-    # On RTD, READTHEDOCS_VERSION is the human-readable version name:
-    # a branch name for branch builds, a tag name for tag builds, and
-    # the PR number for external (PR preview) builds.  All of these are
-    # better than the synthetic "external-1234" that git name-rev returns.
-    # For PR builds the number won't match any Fast-DDS branch, so
-    # resolve_fallback_branch will simply fall through to its default.
-    if os.environ.get("READTHEDOCS") == "True":
+    rtd_type = os.environ.get("READTHEDOCS_VERSION_TYPE")
+    if rtd_type in ("branch", "tag"):
         return os.environ.get("READTHEDOCS_VERSION")
+    if rtd_type == "external":
+        return None
 
     path_to_here = os.path.abspath(os.path.dirname(__file__))
 
@@ -288,6 +288,7 @@ def get_git_branch():
         return p.communicate()[0].decode().rstrip()
 
     except Exception:
+        # Local build without git or some error occurred
         print("Could not get the branch")
 
     # Couldn't figure out the branch probably due to an error
@@ -358,12 +359,24 @@ input_dir = os.path.abspath("{}/fastdds/include/fastdds".format(project_binary_d
 
 # Current branch of the documentation repository — resolved once, used everywhere.
 docs_branch = get_git_branch()
-print('Current documentation branch is "{}"'.format(docs_branch))
-print('READTHEDOCS_VERSION="{}" READTHEDOCS_VERSION_TYPE="{}" READTHEDOCS_GIT_IDENTIFIER="{}"'.format(
-    os.environ.get("READTHEDOCS_VERSION", ""),
-    os.environ.get("READTHEDOCS_VERSION_TYPE", ""),
-    os.environ.get("READTHEDOCS_GIT_IDENTIFIER", ""),
-))
+if docs_branch:
+    print('Current documentation branch is "{}"'.format(docs_branch))
+else:
+    print("Current documentation branch could not be determined; " \
+    "GitHub links will point to default branches instead of the corresponding branch.")
+
+# Resolve GitHub link branches: env var → current docs branch → default.
+# Computed here so they are available both in the ReadTheDocs clone block and in extlinks.
+fastdds_fallback_branch = resolve_fallback_branch("FASTDDS_BRANCH", docs_branch, "master")
+fastdds_docs_fallback_branch = docs_branch
+fastdds_python_fallback_branch = resolve_fallback_branch("FASTDDS_PYTHON_BRANCH", docs_branch, "master")
+fastdds_gen_fallback_branch = resolve_fallback_branch("FASTDDS_GEN_BRANCH", docs_branch, "master")
+
+print("Fallback branches for GitHub links:")
+print('  Fast-DDS:        "{}"'.format(fastdds_fallback_branch))
+print('  Fast-DDS-docs:   "{}"'.format(fastdds_docs_fallback_branch))
+print('  Fast-DDS-Python: "{}"'.format(fastdds_python_fallback_branch))
+print('  Fast-DDS-Gen:    "{}"'.format(fastdds_gen_fallback_branch))
 
 # Check if we're running on Read the Docs' servers
 read_the_docs_build = os.environ.get("READTHEDOCS", None) == "True"
@@ -397,14 +410,13 @@ if read_the_docs_build:
         fastdds_repo_name,
     )
 
-    # Resolve desired branch (env var → current docs branch → main) then verify
-    # it actually exists in the cloned remote, falling back to main if not.
-    fastdds_branch = resolve_fallback_branch("FASTDDS_BRANCH", docs_branch, "main")
+    # Verify the desired branch actually exists in the cloned remote, falling back to master if not.
+    fastdds_branch = fastdds_fallback_branch
     if fastdds.refs.__contains__("origin/{}".format(fastdds_branch)):
         fastdds_branch = "origin/{}".format(fastdds_branch)
     else:
         print(
-            'Fast DDS does not have branch "{}"; falling back to main'.format(
+            'Fast DDS does not have branch "{}"; falling back to master'.format(
                 fastdds_branch
             )
         )
@@ -421,14 +433,13 @@ if read_the_docs_build:
         fastdds_python_repo_name,
     )
 
-    # Resolve desired branch (env var → current docs branch → main) then verify
-    # it actually exists in the cloned remote, falling back to main if not.
-    fastdds_python_branch = resolve_fallback_branch("FASTDDS_PYTHON_BRANCH", docs_branch, "main")
+    # Verify the desired branch actually exists in the cloned remote, falling back to master if not.
+    fastdds_python_branch = fastdds_python_fallback_branch
     if fastdds_python.refs.__contains__("origin/{}".format(fastdds_python_branch)):
         fastdds_python_branch = "origin/{}".format(fastdds_python_branch)
     else:
         print(
-            'Fast DDS Python does not have branch "{}"; falling back to main'.format(
+            'Fast DDS Python does not have branch "{}"; falling back to master'.format(
                 fastdds_python_branch
             )
         )
@@ -508,13 +519,6 @@ extensions = [
     "sphinx_substitution_extensions",
     "sphinx_toolbox.collapse",
 ]
-
-# Resolve GitHub link branches using the same priority as the ReadTheDocs
-# checkout logic: env var → branch with same name as current docs branch → master/main
-fastdds_fallback_branch = resolve_fallback_branch("FASTDDS_BRANCH", docs_branch, "main")
-fastdds_docs_fallback_branch = docs_branch
-fastdds_python_fallback_branch = resolve_fallback_branch("FASTDDS_PYTHON_BRANCH", docs_branch, "main")
-fastdds_gen_fallback_branch = resolve_fallback_branch("FASTDDS_GEN_BRANCH", docs_branch, "master")
 
 print("Fallback branches for GitHub links:")
 print('  Fast-DDS:        "{}"'.format(fastdds_fallback_branch))

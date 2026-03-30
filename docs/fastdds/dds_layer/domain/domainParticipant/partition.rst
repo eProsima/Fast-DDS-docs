@@ -36,9 +36,12 @@ In this sense, partitions represent a light mechanism to provide data separation
 The Partition membership of an endpoint can be configured on the :ref:`api_pim_partitionqospolicy`
 data member of the :ref:`dds_layer_publisher_publisherQos` or :ref:`dds_layer_subscriber_subscriberQos` objects.
 This member holds a list of Partition name strings.
-If no Partition is defined for an entity, it will be automatically included in the default nameless Partition.
-Therefore, a Publisher and a Subscriber that specify no Partition will still
-be able to communicate through the default nameless Partition.
+In DDS, the default Partition name is the empty string ``""``.
+Therefore, an empty list (``{}``) is equivalent to a list containing only the empty string (``{""}``).
+As a result, a Publisher and a Subscriber that specify no Partition can still communicate through the default
+Partition, and explicitly configuring ``""`` has the same behavior.
+If ``""`` is included together with additional names, the endpoint belongs to the default Partition and to those
+additional Partitions.
 
 .. warning::
 
@@ -68,7 +71,8 @@ For example, consider the following configuration:
 Even though ``partition*`` does not match ``part*``, these Publisher and Subscriber
 will communicate between them because ``part*`` matches ``partition*``.
 
-Note that a Partition with name ``*`` will match any other partition **except the default Partition**.
+Note that a Partition with name ``*`` will match any other partition,
+including the default Partition ``""``.
 
 Full example
 ------------
@@ -80,7 +84,7 @@ Given a system with the following Partition configuration:
 +                +---------+--------------------------------+
 |                | Pub_12  | {"*"}                          |
 +----------------+---------+--------------------------------+
-| Participant_2  | Pub_21  | {}                             |
+| Participant_2  | Pub_21  | {default} ≡ {""} ≡ {}          |
 +                +---------+--------------------------------+
 |                | Pub_22  | {"Partition*"}                 |
 +----------------+---------+--------------------------------+
@@ -90,11 +94,10 @@ Given a system with the following Partition configuration:
 +                +---------+--------------------------------+
 |                | Subs_33 | {"Partition_3"}                |
 +                +---------+--------------------------------+
-|                | Subs_34 | {}                             |
+|                | Subs_34 | {default} ≡ {""} ≡ {}          |
 +----------------+---------+--------------------------------+
 
 The endpoints will finally match the Partitions depicted on the following table.
-Note that ``Pub_12`` does not match the default Partition.
 
 +--------------+-------------------+-------------------+---------------------------------------+
 |              | Participant_1     | Participant_2     | Participant_3                         |
@@ -107,7 +110,7 @@ Note that ``Pub_12`` does not match the default Partition.
 +--------------+---------+---------+---------+---------+---------+---------+---------+---------+
 | Partition_3  |    ✕    |    ✓    |    ✕    |    ✓    |    ✕    |    ✕    |    ✓    |    ✕    |
 +--------------+---------+---------+---------+---------+---------+---------+---------+---------+
-| {default}    |    ✕    |    ✕    |    ✓    |    ✕    |    ✕    |    ✕    |    ✕    |    ✓    |
+| {default}    |    ✕    |    ✓    |    ✓    |    ✕    |    ✕    |    ✕    |    ✕    |    ✓    |
 +--------------+---------+---------+---------+---------+---------+---------+---------+---------+
 
 The following table provides the communication matrix for the given example:
@@ -123,7 +126,7 @@ The following table provides the communication matrix for the given example:
 +                +---------+---------+---------+---------+---------+
 |                | Subs_33 |    ✕    |    ✓    |    ✕    |    ✓    |
 +                +---------+---------+---------+---------+---------+
-|                | Subs_34 |    ✕    |    ✕    |    ✓    |    ✕    |
+|                | Subs_34 |    ✕    |    ✓    |    ✓    |    ✕    |
 +----------------+---------+---------+---------+---------+---------+
 
 The following piece of code shows the set of parameters needed for the use case depicted in this example.

@@ -1,8 +1,6 @@
 `Version 3.6.0 (latest) <https://fast-dds.docs.eprosima.com/en/v3.6.0/index.html>`_
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-# Fast DDS v3.6.0
-
 This release includes the following **security fixes**:
 
 1. `CVE-2026-22591 <https://www.cve.org/CVERecord?id=CVE-2026-22591>`__

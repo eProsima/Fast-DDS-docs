@@ -1,0 +1,20 @@
+`Version 3.6.0 (latest) <https://fast-dds.docs.eprosima.com/en/v3.6.0/index.html>`_
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+# Fast DDS v3.6.0
+
+This release includes the following **security fixes**:
+
+1. `CVE-2026-22591 <https://www.cve.org/CVERecord?id=CVE-2026-22591>`__
+
+This release includes the following **improvements**:
+
+1. Update `RELEASE_SUPPORT.md` with `2.14.6` (#6313)
+2. Add should_endpoints_match callback in `DomainParticipant` and `RTPSParticipant` (#6336)
+3. Add context to type support operations (#6320)
+
+This release includes the following **fixes**:
+
+1. Change default python branch from 'main' to 'master' (#6325)
+2. Fix ABI break in `register_service_type` (#6327)
+3. Fix `TinyXML2` library resolution in tests (#6329)

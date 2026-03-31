@@ -29,7 +29,7 @@ The following table shows the currently supported versions of Fast DDS and their
       - EOL date
     * - 3.6
       - `3.6.x <https://github.com/eProsima/Fast-DDS/tree/3.6.x>`__
-      - Not yet released
+      - `v3.6.0 <https://github.com/eProsima/Fast-DDS/releases/tag/v3.6.0>`__
       - April 2026
       - April 2027 (*)
       - April 2027 (*)

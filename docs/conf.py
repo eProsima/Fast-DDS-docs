@@ -295,7 +295,7 @@ def get_git_branch():
     return None
 
 
-def resolve_fallback_branch(env_var, docs_branch, default="main"):
+def resolve_fallback_branch(env_var, docs_branch, default="master"):
     """
     Resolve the branch to use for GitHub links.
 
@@ -368,7 +368,7 @@ else:
 # Resolve GitHub link branches: env var → current docs branch → default.
 # Computed here so they are available both in the ReadTheDocs clone block and in extlinks.
 fastdds_fallback_branch = resolve_fallback_branch("FASTDDS_BRANCH", docs_branch, "master")
-fastdds_docs_fallback_branch = docs_branch
+fastdds_docs_fallback_branch = resolve_fallback_branch("FASTDDS_DOCS_BRANCH", docs_branch, "master")
 fastdds_python_fallback_branch = resolve_fallback_branch("FASTDDS_PYTHON_BRANCH", docs_branch, "master")
 fastdds_gen_fallback_branch = resolve_fallback_branch("FASTDDS_GEN_BRANCH", docs_branch, "master")
 
@@ -519,12 +519,6 @@ extensions = [
     "sphinx_substitution_extensions",
     "sphinx_toolbox.collapse",
 ]
-
-print("Fallback branches for GitHub links:")
-print('  Fast-DDS:        "{}"'.format(fastdds_fallback_branch))
-print('  Fast-DDS-docs:   "{}"'.format(fastdds_docs_fallback_branch))
-print('  Fast-DDS-Python: "{}"'.format(fastdds_python_fallback_branch))
-print('  Fast-DDS-Gen:    "{}"'.format(fastdds_gen_fallback_branch))
 
 extlinks = {
     # Fast-DDS repo (tree = directory, blob = file)

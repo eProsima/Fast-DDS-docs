@@ -425,8 +425,196 @@ Setting ``fastdds.max_message_size`` At Writer Level
 
     .. tab:: XML
 
+<<<<<<< HEAD
         .. literalinclude:: /../code/XMLTester.xml
             :language: xml
             :start-after: <!-->MAX_MESSAGE_SIZE_PROPERTY_WRITER<-->
             :end-before: <!--><-->
             :lines: 2,4-14
+=======
+Type Propagation
+^^^^^^^^^^^^^^^^
+
+By default, *Fast DDS* leverages :ref:`xtypes_discovery_matching` both to discover remote types and to propagate local
+ones.
+Type propagation entails both adding meta-information to the EDP messages (see :ref:`disc_phases`) and using a
+dedicated set of builtin endpoints to transmit type definitions between the different |DomainParticipants| in the
+network.
+
+Depending on the application design and deployment, it might be desirable to change the default type propagation
+behavior to save bandwidth and/or resources.
+For this reason, *Fast DDS* |DomainParticipants| can be configured with a property ``fastdds.type_propagation``
+that controls how type information is propagated.
+
+.. list-table::
+   :header-rows: 1
+   :align: left
+
+   * - PropertyPolicyQos name
+     - PropertyPolicyQos value
+     - Default value
+   * - ``"fastdds.type_propagation"``
+     - ``"disabled"`` |br|
+       ``"enabled"`` |br|
+       ``"minimal_bandwidth"`` |br|
+       ``"registration_only"``
+     - ``"enabled"``
+
+The different property values have the following effects on the local |DomainParticipant|:
+
+.. list-table::
+   :header-rows: 1
+   :align: left
+
+   * - Value
+     - ``TypeObject`` registration
+     - Send type information on EDP
+     - Receive type information on EDP
+     - Type lookup service replies
+   * - ``"disabled"``
+     - NO
+     - NO
+     - IGNORED
+     - DISABLED
+   * - ``"enabled"``
+     - COMPLETE and MINIMAL
+     - COMPLETE and MINIMAL
+     - PROCESSED
+     - ENABLED
+   * - ``"minimal_bandwidth"``
+     - MINIMAL only
+     - MINIMAL only
+     - Only MINIMAL PROCESSED
+     - ENABLED
+   * - ``"registration_only"``
+     - COMPLETE and MINIMAL
+     - COMPLETE and MINIMAL
+     - IGNORED
+     - DISABLED
+
+.. tab-set-code::
+
+    .. literalinclude:: /../code/DDSCodeTester.cpp
+        :language: c++
+        :start-after: // TYPE_PROPAGATION_PROPERTY
+        :end-before: //!--
+        :dedent: 8
+
+    .. literalinclude:: /../code/XMLTester.xml
+        :language: xml
+        :start-after: <!-->TYPE_PROPAGATION_PROPERTY<-->
+        :end-before: <!--><-->
+        :lines: 2-4,6-17,19-20
+
+.. _property_serialize_optional_qos:
+
+Adding optional QoS to Discovery data
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+During :ref:`discovery`, |DomainParticipants-api|, |DataWriters-api| and |DataReaders-api| acknowledge each other.
+This is performed in two phases, the Participant Discovery Phase (PDP) and the Endpoint Discovery Phase (EDP).
+To do that, the DomainParticipants share information about their DataWriters and DataReaders with each other,
+using the communication channels established during the PDP phase.
+This information contains all data required to match the endpoints, such as the |Topic-api|, data type, and
+certain :ref:`QoS Policies <dds_layer_core_policy>` that might affect matching.
+Specific compatibility rules can be found in each QoS section of :ref:`QoS Policies <dds_layer_core_policy>`.
+
+However, there are some QoS that are not mandatory for matching, but can be useful to have upon discovery.
+Property ``fastdds.serialize_optional_qos`` allows the user to include these optional QoS during discovery.
+This property is configured at the |DomainParticipant-api| level through the policy :ref:`propertypolicyqos`.
+Hence, the |DomainParticipant-api| and all its associated endpoints will send their optional QoS
+in the discovery messages.
+
+Optional QoS, like any other QoS, will only be serialized if they have non-default values.
+Not receiving information about a QoS in the EDP message means that it has a default value.
+Optional QoS will be serialized if the value of the property is set to ``TRUE``, ``True``, ``true`` or ``1``, any
+other value will be considered as not set or ``FALSE``.
+
+The following table lists all the optional QoS that can be serialized in the discovery messages:
+
+.. list-table::
+   :header-rows: 1
+   :align: left
+
+   * - PropertyPolicyQos
+     - Applies to:
+   * - |WireProtocolConfigQos-api|
+     - |DomainParticipant-api|.
+   * - |ResourceLimitsQosPolicy-api|
+     - |DataWriter-api| and |DataReaders-api|.
+   * - |TransportPriorityQosPolicy-api|
+     - |DataWriter-api|.
+   * - |WriterDataLifecycleQosPolicy-api|
+     - |DataWriter-api|.
+   * - |ReaderDataLifecycleQosPolicy-api|
+     - |DataReaders-api|.
+   * - |PublishModeQosPolicy-api|
+     - |DataWriter-api|.
+   * - |RTPSReliableWriterQos-api|
+     - |DataWriter-api|.
+   * - |RTPSReliableReaderQos-api|
+     - |DataReaders-api|.
+   * - |RTPSEndpointQos-api|
+     - |DataWriter-api| and |DataReaders-api|.
+   * - |WriterResourceLimitsQos-api|
+     - |DataWriter-api|.
+   * - |ReaderResourceLimitsQos-api|
+     - |DataReaders-api|.
+
+.. tab-set-code::
+
+    .. literalinclude:: /../code/DDSCodeTester.cpp
+        :language: c++
+        :start-after: // SERIALIZE_OPTIONAL_QOS_PROPERTY
+        :end-before: //!--
+        :dedent: 8
+
+    .. literalinclude:: /../code/XMLTester.xml
+        :language: xml
+        :start-after: <!-->SERIALIZE_OPTIONAL_QOS_PROPERTY<-->
+        :end-before: <!--><-->
+        :lines: 2-4,6-17,19-20
+
+.. _properties_sql_filter_expression_limits:
+
+SQL Filter Expression limits
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+When creating content-filtered topics using the
+:ref:`default SQL-like filter <dds_layer_topic_contentFilteredTopic_default_filter>`, some restrictions apply to the
+SQL expressions that can be used for content-based filtering.
+The default limits are set to values that should be enough for most use cases, but they can be customized using the
+following properties when a participant is created:
+
+.. list-table::
+   :header-rows: 1
+   :align: left
+
+   * - PropertyPolicyQos name
+     - PropertyPolicyQos value
+     - Default value
+   * - ``"dds.sql.expression.max_expression_length"``
+     - Maximum length of the SQL expression, in characters.
+     - ``16384``
+   * - ``"dds.sql.expression.max_subexpressions"``
+     - Maximum number of sub-expressions in the SQL expression.
+     - ``256``
+
+Creating content-filtered topics with expressions exceeding any of these limits will fail.
+Expressions received in discovery messages exceeding any of these limits will be ignored, and filtering will happen
+in the reader side.
+
+.. tab-set-code::
+
+    .. literalinclude:: /../code/DDSCodeTester.cpp
+        :language: c++
+        :start-after: // DDS_SQL_LIMITS_PROPERTY
+        :end-before: //!--
+        :dedent: 8
+
+    .. literalinclude:: /../code/XMLTester.xml
+        :language: xml
+        :start-after: <!-->DDS_SQL_LIMITS_PROPERTY<-->
+        :end-before: <!--><-->
+        :lines: 2-4,6-21,23-24
+>>>>>>> 7bb4e28 (Add documentation for SQL filter expression limits (#1224))

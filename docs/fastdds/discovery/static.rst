@@ -67,7 +67,11 @@ and DataReaders) must be statically specified, which is done using dedicated XML
 A |DomainParticipant| may load several of such configuration files so that the information about different entities can
 be contained in one file, or split into different files to keep it more organized.
 *Fast DDS*  provides a
+<<<<<<< HEAD
 `Static Discovery example <https://github.com/eProsima/Fast-DDS/blob/2.x/examples/cpp/dds/StaticHelloWorldExample>`_
+=======
+:fastdds-blob:`Static Discovery example <examples/cpp/dds/StaticHelloWorldExample>`
+>>>>>>> 60e9c7d (Add fallback branch for master links  (#1241))
 that implements this EDP discovery protocol.
 
 The following table describes all the possible elements of a STATIC EDP XML configuration file.

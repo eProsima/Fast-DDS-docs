@@ -79,8 +79,15 @@ Where the option choices are:
    * - -extrastg <template> <output>
      - Specifies a custom template used for generating source code. |br|
        This option expects the location of the template and the location of the file where source code output will be
+<<<<<<< HEAD
        stored. |br|
        A custom template example can be found in this `link <https://raw.githubusercontent.com/eProsima/Fast-DDS-Gen/3.x/resources/Custom.stg>`_
+=======
+       stored.
+       A custom template example can be found in this :fastddsgen-raw:`link <resources/Custom.stg>`
+   * - -flat-output-dir
+     - Ignores input files relative paths and place all generated files in the specified output directory.
+>>>>>>> 60e9c7d (Add fallback branch for master links  (#1241))
    * - -help
      - Shows the help information
    * - -I <directory>

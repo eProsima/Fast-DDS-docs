@@ -9,4 +9,8 @@ Next steps
 
 In the *eProsima Fast DDS* Github repository you will find more complex examples that implement DDS communication for
 a multitude of use cases and scenarios. You can find them
+<<<<<<< HEAD
 `here <https://github.com/eProsima/Fast-DDS-python/tree/main/fastdds_python_examples>`_.
+=======
+:fastdds-python-tree:`here <fastdds_python_examples>`.
+>>>>>>> 60e9c7d (Add fallback branch for master links  (#1241))

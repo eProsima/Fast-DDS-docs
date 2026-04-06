@@ -352,8 +352,14 @@ Full example
 ^^^^^^^^^^^^
 
 The following constitutes a full example on how to configure *server* and *client* both programmatically and using XML.
+<<<<<<< HEAD
 You may also have a look at the *eProsima Fast DDS* Github repository, which contains `an example <https://github.com/eProsima/Fast-DDS/tree/2.x/examples/cpp/dds/DiscoveryServerExample>`_
 similar to the one discussed in this section, as well as multiple other examples for different use cases.
+=======
+You may also have a look at the *eProsima Fast DDS* Github repository, which contains
+:fastdds-tree:`an example <examples/cpp/discovery_server>` similar to the one discussed in this section, as well as
+multiple other examples for different use cases.
+>>>>>>> 60e9c7d (Add fallback branch for master links  (#1241))
 
 Server side setup
 """""""""""""""""

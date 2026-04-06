@@ -40,9 +40,14 @@ explaining the new features it presents.
 
 We recommend you to look at the two examples describing how to use the RTPS layer that come with the distribution
 while reading this section.
+<<<<<<< HEAD
 They are located in
 `examples/cpp/rtps/AsSocket <https://github.com/eProsima/Fast-DDS/tree/2.x/examples/cpp/rtps/AsSocket>`_ and
 `examples/cpp/rtps/Registered <https://github.com/eProsima/Fast-DDS/tree/2.x/examples/cpp/rtps/Registered>`_
+=======
+It is located in
+:fastdds-tree:`examples/cpp/rtps <examples/cpp/rtps>`.
+>>>>>>> 60e9c7d (Add fallback branch for master links  (#1241))
 
 Managing the Participant
 ^^^^^^^^^^^^^^^^^^^^^^^^

@@ -43,7 +43,11 @@ another application should be configured to subscribe to those topics.
 This application is a DDS standard application where the statistics DataReaders should be created.
 In order to create these statistics DataReaders, the user should follow the next steps:
 
+<<<<<<< HEAD
 * Using the `statistics IDL <https://github.com/eProsima/Fast-DDS/blob/2.x/include/fastdds/statistics/types.idl>`_
+=======
+* Using the :fastdds-blob:`statistics IDL <include/fastdds/statistics/types.idl>`
+>>>>>>> 60e9c7d (Add fallback branch for master links  (#1241))
   provided in the public API, generate the |TopicDataTypes-api| with :ref:`Fast DDS-Gen <fastddsgen_usage>`.
 
 * Create the |DomainParticipant-api| and register the |TopicDataTypes-api| and the corresponding statistics

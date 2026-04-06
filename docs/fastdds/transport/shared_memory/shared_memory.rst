@@ -276,6 +276,13 @@ The examples below show this procedure in both C++ code and XML file.
 HelloWorldExampleSharedMem
 --------------------------
 
+<<<<<<< HEAD
 A Shared Memory version of helloworld example can be found in the
 `HelloWorldExampleSharedMem folder <https://github.com/eProsima/Fast-DDS/tree/2.x/examples/cpp/dds/HelloWorldExampleSharedMem>`_.
 It shows a publisher and a subscriber that communicate through Shared Memory.
+=======
+A hello world example suitable for supported delivery mechanisms can be found in the
+:fastdds-tree:`delivery_mechanisms folder <examples/cpp/delivery_mechanisms>`.
+It shows a publisher and a subscriber that communicate through the desired delivery mechanism (which can be set to
+shared memory only).
+>>>>>>> 60e9c7d (Add fallback branch for master links  (#1241))

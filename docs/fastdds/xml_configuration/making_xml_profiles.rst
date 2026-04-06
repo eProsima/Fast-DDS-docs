@@ -38,7 +38,11 @@ The following sections will show implementation examples for each of these profi
     The :ref:`examplexml` section shows an XML file with all the possible configurations and profile types.
     This example is useful as a quick reference to look for a particular property and how to use it.
     The
+<<<<<<< HEAD
     `Fast DDS XSD scheme <https://github.com/eProsima/Fast-DDS/blob/2.x/resources/xsd/fastRTPS_profiles.xsd>`_
+=======
+    :fastdds-blob:`Fast DDS XSD scheme <resources/xsd/fastdds_profiles.xsd>`
+>>>>>>> 60e9c7d (Add fallback branch for master links  (#1241))
     can be used as a quick reference too.
 
 .. _loadingapplyingprofiles:
@@ -157,6 +161,10 @@ It also gives the participant a name that mixes literal text with the content fr
 
 .. warning::
 
+<<<<<<< HEAD
     The `Fast DDS XSD schema <https://github.com/eProsima/Fast-DDS/blob/2.x/resources/xsd/fastRTPS_profiles.xsd>`_
+=======
+    The :fastdds-blob:`Fast DDS XSD schema <resources/xsd/fastdds_profiles.xsd>`
+>>>>>>> 60e9c7d (Add fallback branch for master links  (#1241))
     does not support the environment variables expansion feature, so validation of an XML file with environment
     variables expansion expressions will fail.

@@ -167,6 +167,13 @@ it has some constraints:
 Next steps
 ----------
 
+<<<<<<< HEAD
 The *eProsima Fast DDS* Github repository contains the complete example discussed in this section, as well as
 multiple other examples for different use cases. The example implementing Zero-Copy transfers can be found
 `here <https://github.com/eProsima/Fast-DDS/tree/2.x/examples/cpp/dds/ZeroCopyExample>`_.
+=======
+A hello world example suitable for supported delivery mechanisms can be found in the
+:fastdds-tree:`delivery_mechanisms folder <examples/cpp/delivery_mechanisms>`.
+It shows a publisher and a subscriber that communicate through the desired delivery mechanism.
+As long as it is zero-copy compatible, both intra-process and data-sharing delivery mechanisms are zero-copy if used.
+>>>>>>> 60e9c7d (Add fallback branch for master links  (#1241))

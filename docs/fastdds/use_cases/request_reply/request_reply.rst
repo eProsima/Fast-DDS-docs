@@ -54,7 +54,7 @@ The DDS communication schema will be:
 The key for making *Request-Reply* work is relating the Request with the Reply in the client's side.
 *Fast DDS* API provides |SampleIdentity-api| to achieve this.
 
-A full example can be found in `Fast DDS repository`_.
+A full example can be found in the :fastdds-tree:`Fast DDS repository <examples/cpp/request_reply>`.
 
 Getting started
 ---------------
@@ -152,4 +152,7 @@ For this the client application has to compare the stored |SampleIdentity-api| w
    :start-after: //REQUEST_REPLY_EXAMPLE_CLIENT_RECEIVE_REPLY
    :end-before: //!
 
+<<<<<<< HEAD
 .. _Fast DDS repository: https://github.com/eProsima/Fast-DDS/tree/2.x/examples/cpp/dds/RequestReplyExample
+=======
+>>>>>>> 60e9c7d (Add fallback branch for master links  (#1241))

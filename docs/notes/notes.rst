@@ -3,7 +3,7 @@
 .. _release_notes:
 
 Information about the release lifecycle can be found
-`here <https://github.com/eProsima/Fast-DDS/blob/master/RELEASE_SUPPORT.md>`_.
+:fastdds-blob:`here <RELEASE_SUPPORT.md>`.
 
 .. include:: previous_versions/v2.14.6.rst
 

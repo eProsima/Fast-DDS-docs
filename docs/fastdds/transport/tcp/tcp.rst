@@ -450,7 +450,14 @@ with the **public** IP address and |TCPTransportDescriptor::listening_ports-api|
 HelloWorldExampleTCP
 --------------------
 
+<<<<<<< HEAD
 A TCP version of helloworld example can be found in the
 `HelloWorldExampleTCP folder <https://github.com/eProsima/Fast-DDS/tree/2.x/examples/cpp/dds/HelloWorldExampleTCP>`_.
 It shows a publisher and a subscriber that communicate through TCP.
 The publisher is configured as *TCP server* while the Subscriber is acting as *TCP client*.
+=======
+A hello world example suitable for supported delivery mechanisms can be found in the
+:fastdds-tree:`delivery_mechanisms folder <examples/cpp/delivery_mechanisms>`.
+It shows a publisher and a subscriber that communicate through the desired delivery mechanism (which can be set to TCP
+only).
+>>>>>>> 60e9c7d (Add fallback branch for master links  (#1241))

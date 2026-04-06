@@ -27,8 +27,7 @@ Client application
 
 The client application extends the functionality of the basic example by adding the new operations
 defined in the IDL file. Create a ``CalculatorClient.cpp`` file with this
-`content <https://github.com/eProsima/Fast-DDS-docs/tree/master/code/Examples/
-C++/RpcClientServerFeed/src/CalculatorClient.cpp>`_:
+:fastdds-docs-tree:`content <code/Examples/C++/RpcClientServerFeed/src/CalculatorClient.cpp>`:
 
 Examining the code
 """"""""""""""""""

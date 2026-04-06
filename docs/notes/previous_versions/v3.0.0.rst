@@ -3,7 +3,7 @@
 
 Fast DDS v3.0.0 is a mayor release that entails some **API breaks** and new features.
 This version is **not backwards compatible** with previous versions.
-Refer to the `migration guide <https://github.com/eProsima/Fast-DDS/blob/master/UPGRADING.md>`__ for hints moving to Fast DDS v3.0.0.
+Refer to the :fastdds-blob:`migration guide <UPGRADING.md>` for hints moving to Fast DDS v3.0.0.
 
 This release includes the following **API breaks**:
 
@@ -27,7 +27,7 @@ This release includes the following **API breaks**:
 #. Move ``DataReader::TypeConsistencyEnforcement`` and ``DataReader::DataRepresentation`` from ``TypeConsistency`` to ``DataReaderQos``.
 #. Migrate ``BuiltinEndpoints`` defines to variables.
 #. Remove ``string_convert`` header and source.
-#. `Examples <https://github.com/eProsima/Fast-DDS/blob/master/examples/cpp/hello_world/README.md>`__ refactor.
+#. :fastdds-blob:`Examples <examples/cpp/hello_world/README.md>` refactor.
 #. Update Fast DDS docs QoS examples.
 #. Link SHM locator kind with Fast DDS major version.
 #. Discard local SHM locators that cannot be opened.
@@ -56,7 +56,7 @@ This release includes the following **improvements**:
 #. Setting ``vendor_id`` on received ``CacheChange_t``.
 #. Builtin data related improvements.
 #. GitHub repository management.
-#. `Migration guide <https://github.com/eProsima/Fast-DDS/blob/master/UPGRADING.md>`__.
+#. :fastdds-blob:`Migration guide <UPGRADING.md>`.
 #. Update fastcdr thirdparty.
 #. Documentation updates due to major version change.
 

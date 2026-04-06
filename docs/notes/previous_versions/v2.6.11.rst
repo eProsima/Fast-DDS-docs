@@ -3,7 +3,7 @@
 
 .. important::
   According to our
-  `release support guidelines <https://github.com/eProsima/Fast-DDS/blob/master/RELEASE_SUPPORT.md>`_
+  :fastdds-blob:`release support guidelines <RELEASE_SUPPORT.md>`
   the v2.6 minor will only receive patches for critical issues and security fixes.
 
 This release includes the following **critical fixes**:

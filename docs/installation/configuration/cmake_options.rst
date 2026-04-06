@@ -86,10 +86,17 @@ dependency on other options.
         - ``ON`` ``OFF``
         - ``ON``
     *   - :class:`COMPILE_EXAMPLES`
+<<<<<<< HEAD
         - Builds the *Fast DDS* examples. It is set to ``ON`` if :class:`EPROSIMA_BUILD` is ``ON`` and |br|
           :class:`EPROSIMA_INSTALLER` is ``OFF``. These examples can be found in the |br|
           `eProsima Fast DDS <https://github.com/eProsima/Fast-DDS/tree/master/examples>`_
           `GitHub repository <https://github.com/eProsima/Fast-DDS/tree/master/examples>`_.
+=======
+        - Builds the *Fast DDS* examples. It is set to ``ON`` if :class:`EPROSIMA_BUILD` is ``ON`` and
+          :class:`EPROSIMA_INSTALLER` is ``OFF``. These examples can be found in the
+          :fastdds-tree:`eProsima Fast DDS <examples>`
+          :fastdds-tree:`GitHub repository <examples>`.
+>>>>>>> 60e9c7d (Add fallback branch for master links  (#1241))
         - ``ON`` ``OFF``
         - ``OFF``
     *   - :class:`INSTALL_EXAMPLES`

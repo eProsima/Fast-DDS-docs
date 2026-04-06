@@ -207,7 +207,25 @@ def select_css(html_css_dir):
 
 
 def get_git_branch():
-    """Get the git branch this repository is currently on."""
+    """Get the git branch this repository is currently on.
+
+    On Read the Docs the repo is checked out in detached-HEAD mode, so
+    ``git name-rev`` returns synthetic names like ``remotes/origin/external-1234``
+    instead of the real branch.  A workaround is provided using
+    ``READTHEDOCS_VERSION_TYPE`` and ``READTHEDOCS_VERSION`` according to the build type:
+    - ``"branch"`` builds: READTHEDOCS_VERSION is the branch name (e.g. ``"3.6.x"``) → use it.
+    - ``"tag"`` builds: READTHEDOCS_VERSION is the tag name (e.g. ``"v3.6.0"``) → use it.
+    - ``"external"`` (PR preview) builds: READTHEDOCS_VERSION is the PR number (e.g. ``"1241"``)
+      which is not a valid git ref. In this case we return None so resolve_fallback_branch falls
+      back to its default instead of generating broken GitHub URLs.
+    - Local builds: READTHEDOCS_VERSION_TYPE is unset → fall back to git name-rev.
+    """
+    rtd_type = os.environ.get("READTHEDOCS_VERSION_TYPE")
+    if rtd_type in ("branch", "tag"):
+        return os.environ.get("READTHEDOCS_VERSION")
+    if rtd_type == "external":
+        return None
+
     path_to_here = os.path.abspath(os.path.dirname(__file__))
 
     # Invoke git to get the current branch which we use to get the theme
@@ -229,10 +247,26 @@ def get_git_branch():
         return p.communicate()[0].decode().rstrip()
 
     except Exception:
+        # Local build without git or some error occurred
         print("Could not get the branch")
 
     # Couldn't figure out the branch probably due to an error
     return None
+
+
+def resolve_fallback_branch(env_var, docs_branch, default="master"):
+    """
+    Resolve the branch to use for GitHub links.
+
+    Priority:
+      1. Environment variable ``env_var`` (e.g. FASTDDS_BRANCH)
+      2. Current documentation branch (``docs_branch``)
+      3. Hard-coded ``default``
+
+    This mirrors the checkout logic used in the ReadTheDocs clone block so
+    that extlinks and the actual checkout always point at the same branch.
+    """
+    return os.environ.get(env_var) or docs_branch or default
 
 
 def configure_doxyfile(
@@ -282,6 +316,27 @@ doxyfile_out = os.path.abspath("{}/doxygen-config".format(project_binary_dir))
 # Header files
 input_dir = os.path.abspath("{}/fastdds/include/fastdds".format(project_binary_dir))
 
+# Current branch of the documentation repository — resolved once, used everywhere.
+docs_branch = get_git_branch()
+if docs_branch:
+    print('Current documentation branch is "{}"'.format(docs_branch))
+else:
+    print("Current documentation branch could not be determined; " \
+    "GitHub links will point to default branches instead of the corresponding branch.")
+
+# Resolve GitHub link branches: env var → current docs branch → default.
+# Computed here so they are available both in the ReadTheDocs clone block and in extlinks.
+fastdds_fallback_branch = resolve_fallback_branch("FASTDDS_BRANCH", docs_branch, "master")
+fastdds_docs_fallback_branch = resolve_fallback_branch("FASTDDS_DOCS_BRANCH", docs_branch, "master")
+fastdds_python_fallback_branch = resolve_fallback_branch("FASTDDS_PYTHON_BRANCH", docs_branch, "master")
+fastdds_gen_fallback_branch = resolve_fallback_branch("FASTDDS_GEN_BRANCH", docs_branch, "master")
+
+print("Fallback branches for GitHub links:")
+print('  Fast-DDS:        "{}"'.format(fastdds_fallback_branch))
+print('  Fast-DDS-docs:   "{}"'.format(fastdds_docs_fallback_branch))
+print('  Fast-DDS-Python: "{}"'.format(fastdds_python_fallback_branch))
+print('  Fast-DDS-Gen:    "{}"'.format(fastdds_gen_fallback_branch))
+
 # Check if we're running on Read the Docs' servers
 read_the_docs_build = os.environ.get("READTHEDOCS", None) == "True"
 if read_the_docs_build:
@@ -314,6 +369,7 @@ if read_the_docs_build:
         fastdds_repo_name,
     )
 
+<<<<<<< HEAD
     # Documentation repository branch
     docs_branch = get_git_branch()
     print('Current documentation branch is "{}"'.format(docs_branch))
@@ -325,13 +381,16 @@ if read_the_docs_build:
     # Else try with current documentation branch
     # Else checkout to 3.2.x
     if fastdds_branch and fastdds.refs.__contains__("origin/{}".format(fastdds_branch)):
+=======
+    # Verify the desired branch actually exists in the cloned remote, falling back to master if not.
+    fastdds_branch = fastdds_fallback_branch
+    if fastdds.refs.__contains__("origin/{}".format(fastdds_branch)):
+>>>>>>> 60e9c7d (Add fallback branch for master links  (#1241))
         fastdds_branch = "origin/{}".format(fastdds_branch)
-    elif docs_branch and fastdds.refs.__contains__("origin/{}".format(docs_branch)):
-        fastdds_branch = "origin/{}".format(docs_branch)
     else:
         print(
-            'Fast DDS does not have either "{}" or "{}" branches'.format(
-                fastdds_branch, docs_branch
+            'Fast DDS does not have branch "{}"; falling back to master'.format(
+                fastdds_branch
             )
         )
         fastdds_branch = "origin/3.2.x"
@@ -347,6 +406,7 @@ if read_the_docs_build:
         fastdds_python_repo_name,
     )
 
+<<<<<<< HEAD
     # User specified Fast DDS branch
     fastdds_python_branch = os.environ.get("FASTDDS_PYTHON_BRANCH", None)
 
@@ -356,15 +416,16 @@ if read_the_docs_build:
     if fastdds_python_branch and fastdds_python.refs.__contains__(
         "origin/{}".format(fastdds_python_branch)
     ):
+=======
+    # Verify the desired branch actually exists in the cloned remote, falling back to master if not.
+    fastdds_python_branch = fastdds_python_fallback_branch
+    if fastdds_python.refs.__contains__("origin/{}".format(fastdds_python_branch)):
+>>>>>>> 60e9c7d (Add fallback branch for master links  (#1241))
         fastdds_python_branch = "origin/{}".format(fastdds_python_branch)
-    elif docs_branch and fastdds_python.refs.__contains__(
-        "origin/{}".format(docs_branch)
-    ):
-        fastdds_python_branch = "origin/{}".format(docs_branch)
     else:
         print(
-            'Fast DDS Python does not have either "{}" or "{}" branches'.format(
-                fastdds_python_branch, docs_branch
+            'Fast DDS Python does not have branch "{}"; falling back to master'.format(
+                fastdds_python_branch
             )
         )
         fastdds_python_branch = "origin/2.2.x"
@@ -444,8 +505,36 @@ extensions = [
     "sphinx_copybutton",
     "sphinx_design",
     "sphinx.ext.autodoc",  # Document Pydoc documentation from Python bindings.
+<<<<<<< HEAD
+=======
+    "sphinx.ext.extlinks",
+    "sphinx_substitution_extensions",
+>>>>>>> 60e9c7d (Add fallback branch for master links  (#1241))
     "sphinx_toolbox.collapse",
 ]
+
+extlinks = {
+    # Fast-DDS repo (tree = directory, blob = file)
+    "fastdds-tree": (
+        f"https://github.com/eProsima/Fast-DDS/tree/{fastdds_fallback_branch}/%s", "%s"
+    ),
+    "fastdds-blob": (
+        f"https://github.com/eProsima/Fast-DDS/blob/{fastdds_fallback_branch}/%s", "%s"
+    ),
+    # Fast-DDS-python repo
+    "fastdds-python-tree": (
+        f"https://github.com/eProsima/Fast-DDS-Python/tree/{fastdds_python_fallback_branch}/%s", "%s"
+    ),
+    # Fast-DDS-docs repo (code examples embedded in the docs repo)
+    "fastdds-docs-tree": (
+        f"https://github.com/eProsima/Fast-DDS-docs/tree/{fastdds_docs_fallback_branch}/%s", "%s"
+    ),
+    # Fast-DDS-Gen raw files
+    "fastddsgen-raw": (
+        f"https://raw.githubusercontent.com/eProsima/Fast-DDS-Gen/{fastdds_gen_fallback_branch}/%s",
+        "%s",
+    ),
+}
 
 sphinx_tabs_disable_css_loading = False
 sphinx_tabs_disable_tab_closing = True
@@ -611,7 +700,46 @@ html_theme_options.update(download_json())
 
 html_use_smartypants = True
 
+<<<<<<< HEAD
 html_css_files = [select_css(script_path)]
+=======
+# The CSS files referenced here should have a path relative to the _static folder.
+# We use static_relative(download_file(...)) to ensure the resulting paths are relative to "_static".
+html_css_files = [
+    static_relative(
+        download_file(
+            "https://raw.githubusercontent.com/eProsima/all-docs/master/source/_static/css/eprosima-furo.css",
+            "{}/_static/css/eprosima-furo.css".format(script_path),
+        )
+    ),
+    static_relative(
+        download_file(
+            "https://raw.githubusercontent.com/eProsima/all-docs/master/source/_static/css/pro-badge.css",
+            "{}/_static/css/pro-badge.css".format(script_path),
+        )
+    ),
+]
+
+# Custom substitutions that are included at the beginning of every source file.
+# |Pro|: badge with PRO text. Place it after titles where needed as follows:
+#    Title |Pro|
+#    ===========
+# rst_prolog = r"""
+# .. |Pro| replace:: :bdg-primary-line:`Pro`
+# """
+rst_prolog = f"""
+.. |Pro| raw:: html
+
+    <span class="sd-badge sd-outline-primary sd-text-primary" title="Exclusive to Fast DDS Pro">Pro</span>
+
+.. |ProjectVersion| replace:: {version}
+
+.. |FastDDSBranch| replace:: {fastdds_fallback_branch}
+
+.. |FastDDSPythonBranch| replace:: {fastdds_python_fallback_branch}
+"""
+
+>>>>>>> 60e9c7d (Add fallback branch for master links  (#1241))
 
 # Add any paths that contain custom themes here, relative to this directory.
 # html_theme_path = []

@@ -18,7 +18,7 @@ This section extends the previously discussed example of a calculator service
 * **filter**: Returns a feed of results with the received values that match an input filter.
 
 The entire example source code is available in this
-`link <https://github.com/eProsima/Fast-DDS-docs/tree/master/code/Examples/C++/RpcClientServerFeed>`_
+:fastdds-docs-tree:`link <code/Examples/C++/RpcClientServerFeed>`
 
 .. include:: includes/background.rst
 .. include:: includes/workspace.rst

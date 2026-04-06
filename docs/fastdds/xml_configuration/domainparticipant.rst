@@ -418,6 +418,8 @@ configurable settings.
 | ``<clientAnnouncementPeriod>``  | The period for the DomainParticipant to        | :ref:`DurationType` | 450 ms      |
 |                                 | send its Discovery Message to its servers      |                     |             |
 |                                 | and check for EDP endpoints matching.          |                     |             |
+|                                 | |Pro| adds a property for true send rate       |                     |             |
+|                                 | limiting (see :ref:`DS_send_period`).          |                     |             |
 +---------------------------------+------------------------------------------------+---------------------+-------------+
 | ``<static_edp_xml_config>``     | The XML filename(s) with the static EDP        | ``List <string>``   |             |
 |                                 | configuration. Only necessary if               |                     |             |

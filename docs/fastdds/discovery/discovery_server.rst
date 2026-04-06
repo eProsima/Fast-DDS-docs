@@ -207,6 +207,24 @@ The default value for this period is 450 ms, but it can be configured to a diffe
         :lines: 2-3,5-16
         :append: </profiles>
 
+.. _DS_send_period:
+
+Fine tuning the server send rate limiter |Pro|
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+The ``fastdds.discovery_server.send_period`` property controls the minimum interval (in
+milliseconds) between consecutive flushes of accumulated discovery changes to the writer
+histories. When set to a positive integer value (e.g. ``"1000"`` for one second), the server
+still processes incoming data on every routine iteration (triggered by ``<clientAnnouncementPeriod>``),
+but defers the send step until at least that many milliseconds have elapsed since the last flush.
+All changes that accumulate in that window are sent together in one batch.
+
+This is useful in large-scale scenarios where many participants join simultaneously: without
+rate limiting, the server sends partial discovery data before all endpoints of a participant
+have been received, requiring redundant retransmissions once the remaining data arrives.
+A longer send period lets changes accumulate so that sends contain more complete information,
+reducing overall traffic.
+
 .. _DS_guidPrefix:
 
 The GuidPrefix as an optional server unique identifier

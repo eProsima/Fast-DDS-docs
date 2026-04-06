@@ -422,7 +422,7 @@ The following table shows the minimum version required of the Fast DDS build sys
 
         .. important::
           According to our
-          `release support guidelines <https://github.com/eProsima/Fast-DDS/blob/master/RELEASE_SUPPORT.md>`_
+          :fastdds-blob:`release support guidelines <RELEASE_SUPPORT.md>`
           Fast DDS v2.6.9 will be the last patch version receiving backported features and bugfixes.
           From now on, the v2.6 minor will only receive patches for critical issues and security fixes.
 
@@ -552,7 +552,7 @@ The following table shows the corresponding versions of the Fast DDS library dep
 
         .. important::
           According to our
-          `release support guidelines <https://github.com/eProsima/Fast-DDS/blob/master/RELEASE_SUPPORT.md>`_
+          :fastdds-blob:`release support guidelines <RELEASE_SUPPORT.md>`
           Fast DDS v2.6.9 will be the last patch version receiving backported features and bugfixes.
           From now on, the v2.6 minor will only receive patches for critical issues and security fixes.
 
@@ -678,6 +678,6 @@ Fast DDS as the core middleware.
 
         .. important::
           According to our
-          `release support guidelines <https://github.com/eProsima/Fast-DDS/blob/master/RELEASE_SUPPORT.md>`_
+          :fastdds-blob:`release support guidelines <RELEASE_SUPPORT.md>`
           Fast DDS v2.6.9 will be the last patch version receiving backported features and bugfixes.
           From now on, the v2.6 minor will only receive patches for critical issues and security fixes.

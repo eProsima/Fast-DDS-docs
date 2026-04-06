@@ -88,8 +88,8 @@ dependency on other options.
     *   - :class:`COMPILE_EXAMPLES`
         - Builds the *Fast DDS* examples. It is set to ``ON`` if :class:`EPROSIMA_BUILD` is ``ON`` and
           :class:`EPROSIMA_INSTALLER` is ``OFF``. These examples can be found in the
-          `eProsima Fast DDS <https://github.com/eProsima/Fast-DDS/tree/master/examples>`_
-          `GitHub repository <https://github.com/eProsima/Fast-DDS/tree/master/examples>`_.
+          :fastdds-tree:`eProsima Fast DDS <examples>`
+          :fastdds-tree:`GitHub repository <examples>`.
         - ``ON`` ``OFF``
         - ``OFF``
     *   - :class:`INSTALL_EXAMPLES`

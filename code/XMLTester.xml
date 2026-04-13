@@ -3538,7 +3538,7 @@
 <dds xmlns="http://www.eprosima.com">
     <profiles>
 -->
-        <!-- DomainParticipant configuration -->
+<!-- DomainParticipant configuration -->
         <participant profile_name="persistence_service_participant">
             <rtps>
                 <propertiesPolicy>
@@ -3548,10 +3548,10 @@
                             <name>dds.persistence.plugin</name>
                             <value>builtin.SQLITE3</value>
                         </property>
-                        <!-- Database file name -->
+                        <!-- Filename will only be used if endpoint does not define its own -->
                         <property>
                             <name>dds.persistence.sqlite3.filename</name>
-                            <value>persistence_service.db</value>
+                            <value>part_persistence_service.db</value>
                         </property>
                     </properties>
                 </propertiesPolicy>
@@ -3561,14 +3561,12 @@
         <!-- DataWriter configuration -->
         <data_writer profile_name="persistence_service_data_writer">
             <topic>
-                <!-- History depth should be large enough to guarantee correct retransmissions -->
                 <historyQos>
                     <kind>KEEP_LAST</kind>
                     <depth>20</depth>
                 </historyQos>
             </topic>
             <qos>
-                <!-- RELIABLE reliability is required to allow a full recovery -->
                 <reliability>
                     <kind>RELIABLE</kind>
                 </reliability>
@@ -3579,26 +3577,32 @@
             </qos>
             <propertiesPolicy>
                 <properties>
+                    <property>
+                        <name>dds.persistence.plugin</name>
+                        <value>builtin.SQLITE3</value>
+                    </property>
                     <!-- Persistence GUID -->
                     <property>
                         <name>dds.persistence.guid</name>
-                        <value>77.72.69.74.65.72.5f.70.65.72.73.5f|67.75.69.64</value>
+                        <value>77.72.69.74.65.72.5f.71.65.72.73.5f|67.75.69.64</value>
+                    </property>
+                    <property>
+                        <name>dds.persistence.sqlite3.filename</name>
+                        <value>dw_persistence_service.db</value>
                     </property>
                 </properties>
             </propertiesPolicy>
+
         </data_writer>
 
-        <!-- DataReader configuration -->
         <data_reader profile_name="persistence_service_data_reader">
             <topic>
-                <!-- History depth should be large enough to guarantee correct retransmissions -->
                 <historyQos>
                     <kind>KEEP_LAST</kind>
                     <depth>20</depth>
                 </historyQos>
             </topic>
             <qos>
-                <!-- RELIABLE reliability is required to allow a full recovery -->
                 <reliability>
                     <kind>RELIABLE</kind>
                 </reliability>
@@ -3609,10 +3613,18 @@
             </qos>
             <propertiesPolicy>
                 <properties>
+                    <property>
+                        <name>dds.persistence.plugin</name>
+                        <value>builtin.SQLITE3</value>
+                    </property>
                     <!-- Persistence GUID -->
                     <property>
                         <name>dds.persistence.guid</name>
-                        <value>72.65.61.64.65.72.5f.70.65.72.73.5f|67.75.69.64</value>
+                        <value>72.65.61.64.65.72.5f.70.65.72.73.5f|67.75.69.65</value>
+                    </property>
+                    <property>
+                        <name>dds.persistence.sqlite3.filename</name>
+                        <value>dr_persistence_service.db</value>
                     </property>
                 </properties>
             </propertiesPolicy>

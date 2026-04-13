@@ -25,7 +25,7 @@ When using the :ref:`persistence_service`, the following properties must be set 
   It can be set on the |DomainParticipant-api|, a |DataWriter-api|, or a |DataReader-api|.
   If this property is absent at the endpoint level, both ``dds.persistence.plugin`` and
   ``dds.persistence.sqlite3.filename`` are taken from the |DomainParticipant-api| instead.
-  Setting it at the endpoint level is recommended.
+  Setting it at the endpoint level is strongly recommended.
   At the moment, the only valid value is ``builtin.SQLITE3``
   (see :ref:`persistence_sqlite3_builtin_plugin`).
 
@@ -58,4 +58,4 @@ required QoS settings for a correct operation of the service (see :ref:`persiste
        :language: xml
        :start-after: <!-->CONF-PERSISTENCE-SERVICE-SQLITE3-EXAMPLE<-->
        :end-before: <!--><-->
-       :lines: 2-4, 6-61, 63-64
+       :lines: 2-4, 6-61, 63-96

@@ -31,10 +31,10 @@ in which they were when the shutdown occurred.
 
 .. note::
     It may be necessary to configure the history depth of the DataWriter and DataReader to a value large enough to
-    guarantee that all the changes stored in the database are enough for a correct recovery of the application
+    guarantee that all the changes stored in the database are enough for a correct recovery of the application.
 
 .. note::
-    RELIABLE reliability is required to allow a full recovery, since it guarantees that all the changes are stored in
+    |RELIABLE_RELIABILITY_QOS-api| reliability is required to allow a full recovery, since it guarantees that all the changes are stored in
     the database and that they will be available for the DataWriter/DataReader upon restart.
 
 
@@ -131,7 +131,7 @@ from C++ and using *eProsima Fast DDS* XML profile files (see :ref:`xml_profiles
        :language: xml
        :start-after: <!-->CONF-PERSISTENCE-SERVICE-SQLITE3-EXAMPLE<-->
        :end-before: <!--><-->
-       :lines: 2-4, 6-61, 63-64
+       :lines: 2-4, 6-61, 63-96
 
 .. note::
     For instructions on how to create DomainParticipants, DataReaders, and DataWriters, please refer to

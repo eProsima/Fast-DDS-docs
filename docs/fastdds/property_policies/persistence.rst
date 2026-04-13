@@ -58,4 +58,4 @@ required QoS settings for a correct operation of the service (see :ref:`persiste
        :language: xml
        :start-after: <!-->CONF-PERSISTENCE-SERVICE-SQLITE3-EXAMPLE<-->
        :end-before: <!--><-->
-       :lines: 2-4, 6-61, 63-96
+       :lines: 2-4, 6-61, 63-96, 98-99

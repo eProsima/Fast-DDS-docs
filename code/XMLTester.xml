@@ -3595,6 +3595,7 @@
 
         </data_writer>
 
+        <!-- DataReader configuration -->
         <data_reader profile_name="persistence_service_data_reader">
             <topic>
                 <historyQos>

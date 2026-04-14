@@ -131,7 +131,7 @@ from C++ and using *eProsima Fast DDS* XML profile files (see :ref:`xml_profiles
        :language: xml
        :start-after: <!-->CONF-PERSISTENCE-SERVICE-SQLITE3-EXAMPLE<-->
        :end-before: <!--><-->
-       :lines: 2-4, 6-61, 63-96, 98-99
+       :lines: 2-4, 6-61, 63-97, 99-100
 
 .. note::
     For instructions on how to create DomainParticipants, DataReaders, and DataWriters, please refer to

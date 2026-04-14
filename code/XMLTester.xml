@@ -3592,7 +3592,6 @@
                     </property>
                 </properties>
             </propertiesPolicy>
-
         </data_writer>
 
         <!-- DataReader configuration -->

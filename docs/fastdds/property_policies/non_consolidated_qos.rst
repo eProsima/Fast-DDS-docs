@@ -69,12 +69,32 @@ See :ref:`tuning-heartbeat-period` for more details.
     * It is inconsistent to enable the ``pull mode`` and also set the |WriterTimes::heartbeat_period-api| to
       |c_TimeInfinite-api|.
 
+.. _unique_network_flows_qos_policy:
 
 Unique network flows QoS Policy
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-.. warning::
-    This section is still under work.
+This QoS Policy allows a |DataReader-api| to be created with a unique network flow, i.e. listening on a
+port that is not shared with any other endpoint of the same |DomainParticipant-api|.
+This is useful when the application needs to apply specific Network QoS parameters (for example, through 3GPP/5QI
+configuration on the underlying networking equipment) to the traffic of a particular topic.
+
+The feature is enabled by adding the property ``"fastdds.unique_network_flows"`` to the
+:ref:`propertypolicyqos` of the |DataReader-api|.
+
+.. list-table::
+   :header-rows: 1
+   :align: left
+
+   * - PropertyPolicyQos name
+     - PropertyPolicyQos value
+     - Default value
+   * - ``"fastdds.unique_network_flows"``
+     - ``""``
+     - Not set
+
+For a complete description of network flows in *Fast DDS*, the APIs used to inspect them, and a usage example,
+see :ref:`use-case-unique-flows`.
 
 .. _property_policies_statistics:
 

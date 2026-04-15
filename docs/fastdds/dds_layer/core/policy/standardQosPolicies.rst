@@ -471,8 +471,10 @@ The HistoryQos must be set consistently with the :ref:`resourcelimitsqospolicy`,
 * In the case of the :ref:`reliabilityqospolicy` |ReliabilityQosPolicyKind-api| being set to
   |RELIABLE_RELIABILITY_QOS-api| and the :ref:`historyqospolicy` |HistoryQosPolicy::kind-api| being set to
   |KEEP_ALL_HISTORY_QOS-api|, when the resource limits are reached the DataWriter |DataWriter::write-api| call will
-  block (up to |ReliabilityQosPolicy::max_blocking_time-api|) until the oldest sample has been acknowledged by all readers and can be removed.
-  If |ReliabilityQosPolicy::max_blocking_time-api| is reached, the |DataWriter::write-api| call will return with a timeout error.
+  block (up to |ReliabilityQosPolicy::max_blocking_time-api|) until the oldest sample has been acknowledged by all
+  readers and can be removed.
+  If |ReliabilityQosPolicy::max_blocking_time-api| is reached, the |DataWriter::write-api| call will return with a
+  timeout error.
 
 Example
 """""""

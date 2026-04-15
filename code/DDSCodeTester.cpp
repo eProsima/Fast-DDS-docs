@@ -7358,7 +7358,7 @@ void dds_persistence_examples()
     // Configure persistence service plugin for DomainParticipant
     DomainParticipantQos pqos;
     pqos.properties().properties().emplace_back("dds.persistence.plugin", "builtin.SQLITE3");
-    pqos.properties().properties().emplace_back("dds.persistence.sqlite3.filename", "persistence.db");
+    pqos.properties().properties().emplace_back("dds.persistence.sqlite3.filename", "part_persistence_service.db");
     DomainParticipant* participant = DomainParticipantFactory::get_instance()->create_participant(0, pqos);
 
     /********************************************************************************************************
@@ -7415,16 +7415,26 @@ void dds_persistence_examples()
 
     // Configure DataWriter's durability and persistence GUID so it can use the persistence service
     DataWriterQos dwqos = DATAWRITER_QOS_DEFAULT;
+    dwqos.history().kind = KEEP_LAST_HISTORY_QOS;
+    dwqos.history().depth = 20;
+    dwqos.reliability().kind = RELIABLE_RELIABILITY_QOS;
     dwqos.durability().kind = TRANSIENT_DURABILITY_QOS;
+    dwqos.properties().properties().emplace_back("dds.persistence.plugin", "builtin.SQLITE3");
     dwqos.properties().properties().emplace_back("dds.persistence.guid",
-            "77.72.69.74.65.72.5f.70.65.72.73.5f|67.75.69.64");
+            "77.72.69.74.65.72.5f.71.65.72.73.5f|67.75.69.64");
+    dwqos.properties().properties().emplace_back("dds.persistence.sqlite3.filename", "dw_persistence_service.db");
     DataWriter* writer = publisher->create_datawriter(topic, dwqos);
 
     // Configure DataReaders's durability and persistence GUID so it can use the persistence service
     DataReaderQos drqos = DATAREADER_QOS_DEFAULT;
+    drqos.history().kind = KEEP_LAST_HISTORY_QOS;
+    drqos.history().depth = 20;
+    drqos.reliability().kind = RELIABLE_RELIABILITY_QOS;
     drqos.durability().kind = TRANSIENT_DURABILITY_QOS;
+    drqos.properties().properties().emplace_back("dds.persistence.plugin", "builtin.SQLITE3");
     drqos.properties().properties().emplace_back("dds.persistence.guid",
-            "72.65.61.64.65.72.5f.70.65.72.73.5f|67.75.69.64");
+            "77.72.69.74.65.72.5f.71.65.72.73.5f|67.75.69.65");
+    drqos.properties().properties().emplace_back("dds.persistence.sqlite3.filename", "dr_persistence_service.db");
     DataReader* reader = subscriber->create_datareader(topic, drqos);
     //!--
 }

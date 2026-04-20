@@ -1,5 +1,5 @@
-`Version 3.6.0 (latest) <https://fast-dds.docs.eprosima.com/en/v3.6.0/index.html>`_
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+`Version 3.6.0 <https://fast-dds.docs.eprosima.com/en/v3.6.0/index.html>`_
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 This release includes the following **security fixes**:
 

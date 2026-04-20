@@ -1,0 +1,8 @@
+`Version 3.6.1 (latest) <https://fast-dds.docs.eprosima.com/en/v3.6.1/index.html>`_
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+This release includes the following **fixes**:
+
+1. Apply `sqlite3`` patch to eliminate `const` issue
+2. Remove deprecated doxygen warnings
+3. Fix compilation warnings and errors in Ubuntu Focal

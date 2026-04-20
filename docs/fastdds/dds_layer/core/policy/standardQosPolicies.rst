@@ -470,16 +470,11 @@ The HistoryQos must be set consistently with the :ref:`resourcelimitsqospolicy`,
   |ResourceLimitsQosPolicy::max_samples-api|).
 * In the case of the :ref:`reliabilityqospolicy` |ReliabilityQosPolicyKind-api| being set to
   |RELIABLE_RELIABILITY_QOS-api| and the :ref:`historyqospolicy` |HistoryQosPolicy::kind-api| being set to
-  |KEEP_ALL_HISTORY_QOS-api|, when the resource limits are reached, the behavior of the service is depends on the
-  :ref:`durabilityqospolicy`:
-
-  * If the :ref:`durabilityqospolicy` |DurabilityQosPolicy::kind-api| is configured as |VOLATILE_DURABILITY_QOS-api|,
-    the DataWriter |DataWriter::write-api| call will discard the oldest sample in the history.
-    Note that the removed sample may belong to different :ref:`instances<dds_layer_topic_instances>` than the newly
-    written one.
-  * If the :ref:`durabilityqospolicy` |DurabilityQosPolicy::kind-api| is configured as
-    |TRANSIENT_LOCAL_DURABILITY_QOS-api| or |TRANSIENT_DURABILITY_QOS-api|, the DataWriter |DataWriter::write-api| call
-    will be blocked until the history has space for the new sample.
+  |KEEP_ALL_HISTORY_QOS-api|, when the resource limits are reached the DataWriter |DataWriter::write-api| call will
+  block (up to |ReliabilityQosPolicy::max_blocking_time-api|) until the oldest sample has been acknowledged by all
+  readers and can be removed.
+  If |ReliabilityQosPolicy::max_blocking_time-api| is reached, the |DataWriter::write-api| call will return with a
+  timeout error.
 
 Example
 """""""

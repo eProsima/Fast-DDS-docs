@@ -3,6 +3,6 @@
 
 This release includes the following **fixes**:
 
-1. Apply `sqlite3`` patch to eliminate `const` issue
+1. Apply ``sqlite3`` patch to eliminate ``const`` issue
 2. Remove deprecated doxygen warnings
 3. Fix compilation warnings and errors in Ubuntu Focal

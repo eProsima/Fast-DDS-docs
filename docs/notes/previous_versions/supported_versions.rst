@@ -6,6 +6,7 @@ Supported versions
 Version 3.6
 -----------
 
+.. include:: v3.6.1.rst
 .. include:: v3.6.0.rst
 
 Version 3.5

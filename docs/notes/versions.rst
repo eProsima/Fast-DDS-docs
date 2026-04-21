@@ -29,7 +29,7 @@ The following table shows the currently supported versions of Fast DDS and their
       - EOL date
     * - 3.6
       - `3.6.x <https://github.com/eProsima/Fast-DDS/tree/3.6.x>`__
-      - `v3.6.0 <https://github.com/eProsima/Fast-DDS/releases/tag/v3.6.0>`__
+      - `v3.6.1 <https://github.com/eProsima/Fast-DDS/releases/tag/v3.6.1>`__
       - April 2026
       - April 2027 (*)
       - April 2027 (*)
@@ -579,9 +579,9 @@ Fast DDS as the core middleware.
             * - `Fast DDS Gen - IDL parser <https://github.com/eProsima/IDL-Parser/>`__
               - `v4.3.0 <https://github.com/eProsima/IDL-Parser/releases/tag/v4.3.0>`__
             * - `Fast DDS Python <https://github.com/eProsima/Fast-DDS-python/>`__
-              - `v2.6.0 <https://github.com/eProsima/Fast-DDS-python/releases/tag/v2.6.0>`__
+              - `v2.6.1 <https://github.com/eProsima/Fast-DDS-python/releases/tag/v2.6.1>`__
             * - `Shapes Demo <https://github.com/eProsima/ShapesDemo/>`__
-              - `v3.6.0 <https://github.com/eProsima/ShapesDemo/releases/tag/v3.6.0>`__
+              - `v3.6.1 <https://github.com/eProsima/ShapesDemo/releases/tag/v3.6.1>`__
 
     .. tab-item:: 3.5.x
         :sync: 3.5.x

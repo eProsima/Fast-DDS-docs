@@ -445,6 +445,7 @@ if read_the_docs_build:
         fastdds_branch = "origin/{}".format(fastdds_branch)
     elif fastdds.tags.__contains__(fastdds_branch):
         # GitPython exposes tags by bare name, e.g. "v3.6.1".
+        pass
     else:
         print(
             'Fast DDS does not have branch or tag "{}"; falling back to master'.format(

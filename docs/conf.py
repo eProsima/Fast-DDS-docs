@@ -443,8 +443,8 @@ if read_the_docs_build:
     fastdds_branch = fastdds_fallback_branch
     if fastdds.refs.__contains__("origin/{}".format(fastdds_branch)):
         fastdds_branch = "origin/{}".format(fastdds_branch)
-    elif fastdds.refs.__contains__("tags/{}".format(fastdds_branch)):
-        fastdds_branch = "tags/{}".format(fastdds_branch)
+    elif fastdds.tags.__contains__(fastdds_branch):
+        # GitPython exposes tags by bare name, e.g. "v3.6.1".
     else:
         print(
             'Fast DDS does not have branch or tag "{}"; falling back to master'.format(
@@ -468,8 +468,9 @@ if read_the_docs_build:
     fastdds_python_branch = fastdds_python_fallback_branch
     if fastdds_python.refs.__contains__("origin/{}".format(fastdds_python_branch)):
         fastdds_python_branch = "origin/{}".format(fastdds_python_branch)
-    elif fastdds_python.refs.__contains__("tags/{}".format(fastdds_python_branch)):
-        fastdds_python_branch = "tags/{}".format(fastdds_python_branch)
+    elif fastdds_python.tags.__contains__(fastdds_python_branch):
+        # GitPython exposes tags by bare name, e.g. "v3.6.1".
+        pass
     else:
         print(
             'Fast DDS Python does not have branch or tag "{}"; falling back to master'.format(

@@ -255,6 +255,11 @@ def get_git_branch():
     instead of the real branch.  A workaround is provided using
     ``READTHEDOCS_VERSION_TYPE`` and ``READTHEDOCS_VERSION`` according to the build type:
     - ``"branch"`` builds: READTHEDOCS_VERSION is the branch name (e.g. ``"3.6.x"``) → use it.
+      Exception: RTD pseudo-name ``"latest"`` is not a real git branch; return None so
+      resolve_fallback_branch falls back to master/main.
+      Exception: RTD pseudo-name ``"stable"`` is not a real git branch either; instead we
+      query ``git describe --tags --abbrev=0 HEAD`` to get the nearest ancestor tag (e.g.
+      ``"v3.6.1"``), which works whether HEAD is exactly at the tag or has moved past it.
     - ``"tag"`` builds: READTHEDOCS_VERSION is the tag name (e.g. ``"v3.6.0"``) → use it.
     - ``"external"`` (PR preview) builds: READTHEDOCS_VERSION is the PR number (e.g. ``"1241"``)
       which is not a valid git ref. In this case we return None so resolve_fallback_branch falls
@@ -263,7 +268,31 @@ def get_git_branch():
     """
     rtd_type = os.environ.get("READTHEDOCS_VERSION_TYPE")
     if rtd_type in ("branch", "tag"):
-        return os.environ.get("READTHEDOCS_VERSION")
+        version_name = os.environ.get("READTHEDOCS_VERSION")
+        if version_name == "latest":
+            # "latest" is an RTD pseudo-name, not a real branch → fall back to master.
+            return None
+        if version_name == "stable":
+            # "stable" is an RTD pseudo-name. Find the latest vX.Y.Z tag in the repo.
+            # Release tags live on dedicated branches (not main), so we scan all tags
+            # rather than restricting to those reachable from HEAD.
+            path_to_here = os.path.abspath(os.path.dirname(__file__))
+            try:
+                p = subprocess.Popen(
+                    ["git", "tag", "--sort=-version:refname"],
+                    stdout=subprocess.PIPE,
+                    stderr=subprocess.PIPE,
+                    cwd=path_to_here,
+                )
+                tags = p.communicate()[0].decode().splitlines()
+                release_tag_re = re.compile(r'^v\d+\.\d+\.\d+$')
+                for tag in tags:
+                    if release_tag_re.match(tag.strip()):
+                        return tag.strip()
+            except Exception:
+                pass
+            return None
+        return version_name
     if rtd_type == "external":
         return None
 
@@ -410,13 +439,16 @@ if read_the_docs_build:
         fastdds_repo_name,
     )
 
-    # Verify the desired branch actually exists in the cloned remote, falling back to master if not.
+    # Verify the desired branch/tag actually exists in the cloned remote, falling back to master if not.
     fastdds_branch = fastdds_fallback_branch
     if fastdds.refs.__contains__("origin/{}".format(fastdds_branch)):
         fastdds_branch = "origin/{}".format(fastdds_branch)
+    elif fastdds.tags.__contains__(fastdds_branch):
+        # GitPython exposes tags by bare name, e.g. "v3.6.1".
+        pass
     else:
         print(
-            'Fast DDS does not have branch "{}"; falling back to master'.format(
+            'Fast DDS does not have branch or tag "{}"; falling back to master'.format(
                 fastdds_branch
             )
         )
@@ -433,13 +465,16 @@ if read_the_docs_build:
         fastdds_python_repo_name,
     )
 
-    # Verify the desired branch actually exists in the cloned remote, falling back to master if not.
+    # Verify the desired branch/tag actually exists in the cloned remote, falling back to master if not.
     fastdds_python_branch = fastdds_python_fallback_branch
     if fastdds_python.refs.__contains__("origin/{}".format(fastdds_python_branch)):
         fastdds_python_branch = "origin/{}".format(fastdds_python_branch)
+    elif fastdds_python.tags.__contains__(fastdds_python_branch):
+        # GitPython exposes tags by bare name, e.g. "v3.6.1".
+        pass
     else:
         print(
-            'Fast DDS Python does not have branch "{}"; falling back to master'.format(
+            'Fast DDS Python does not have branch or tag "{}"; falling back to master'.format(
                 fastdds_python_branch
             )
         )

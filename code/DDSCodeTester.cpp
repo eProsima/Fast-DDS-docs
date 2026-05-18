@@ -8126,6 +8126,10 @@ bool dds_permissions_test(
         "dds.sec.access.builtin.Access-Permissions.permissions",
         permissions_file);
 
+    // Activate Crypto:AES-GCM-GMAC plugin (all three security plugins must be configured together)
+    pqos.properties().properties().emplace_back("dds.sec.crypto.plugin",
+            "builtin.AES-GCM-GMAC");
+
     DomainParticipant* domain_participant =
             DomainParticipantFactory::get_instance()->create_participant(1, pqos);
     if (nullptr != domain_participant)

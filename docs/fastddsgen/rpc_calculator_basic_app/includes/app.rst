@@ -91,8 +91,7 @@ by specifying the operation name and through the CLI, and the results
 will be printed on the screen after receiving the reply from the server.
 
 Create a ``CalculatorClient.cpp`` file with this
-`content <https://github.com/eProsima/Fast-DDS-docs/tree/master/code/Examples/
-C++/RpcClientServerBasic/src/CalculatorClient.cpp>`_:
+:fastdds-docs-tree:`content <code/Examples/C++/RpcClientServerBasic/src/CalculatorClient.cpp>`:
 
 Examining the code
 """"""""""""""""""

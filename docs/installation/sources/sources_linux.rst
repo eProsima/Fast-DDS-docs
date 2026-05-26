@@ -215,10 +215,11 @@ This section explains how to use it to compile *eProsima Fast DDS* and its depen
    *eProsima Fast DDS* and its dependencies:
 
    .. code-block:: bash
+      :substitutions:
 
        mkdir ~/Fast-DDS
        cd ~/Fast-DDS
-       wget https://raw.githubusercontent.com/eProsima/Fast-DDS/master/fastdds.repos
+       wget https://raw.githubusercontent.com/eProsima/Fast-DDS/|FastDDSBranch|/fastdds.repos
        mkdir src
        vcs import src < fastdds.repos
 
@@ -433,10 +434,11 @@ This section explains how to use it to compile *Fast DDS Python bindings* and it
    *Fast DDS Python bindings* and its dependencies:
 
    .. code-block:: bash
+      :substitutions:
 
        mkdir ~/Fast-DDS-python
        cd ~/Fast-DDS-python
-       wget https://raw.githubusercontent.com/eProsima/Fast-DDS-python/main/fastdds_python.repos
+       wget https://raw.githubusercontent.com/eProsima/Fast-DDS-python/|FastDDSPythonBranch|/fastdds_python.repos
        mkdir src
        vcs import src < fastdds_python.repos
 

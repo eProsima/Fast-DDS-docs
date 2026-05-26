@@ -164,6 +164,6 @@ Next steps
 ----------
 
 A hello world example suitable for supported delivery mechanisms can be found in the
-`delivery_mechanisms folder <https://github.com/eProsima/Fast-DDS/tree/master/examples/cpp/delivery_mechanisms>`_.
+:fastdds-tree:`delivery_mechanisms folder <examples/cpp/delivery_mechanisms>`.
 It shows a publisher and a subscriber that communicate through the desired delivery mechanism.
 As long as it is zero-copy compatible, both intra-process and data-sharing delivery mechanisms are zero-copy if used.

@@ -20,7 +20,7 @@ to call asynchronously the following operations:
 * **representation_limits**: Returns the minimum and maximum representable values for a 32-bit integer.
 
 The entire example source code is available in this
-`link <https://github.com/eProsima/Fast-DDS-docs/tree/master/code/Examples/C++/RpcClientServerBasic>`_
+:fastdds-docs-tree:`link <code/Examples/C++/RpcClientServerBasic>`
 
 .. include:: includes/background.rst
 .. include:: includes/prerequisites.rst

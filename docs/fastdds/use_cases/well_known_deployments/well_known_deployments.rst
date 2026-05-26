@@ -48,7 +48,7 @@ each other, so they can start sharing user data right away, avoiding the EDP pha
 
 A complete description of the feature can be found at :ref:`discovery_static`.
 There is also a fully functional hello world example implementing STATIC EDP in the
-`examples/cpp/static_edp_discovery <https://github.com/eProsima/Fast-DDS/tree/master/examples/cpp/static_edp_discovery>`_
+:fastdds-tree:`examples/cpp/static_edp_discovery <examples/cpp/static_edp_discovery>`
 folder.
 
 The following subsections present an example configuration where a Publisher in

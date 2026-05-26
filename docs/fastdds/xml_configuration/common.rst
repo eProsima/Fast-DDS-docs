@@ -126,6 +126,11 @@ An infinite value can be specified by using the values :cpp:concept:`DURATION_IN
 | ``<nanosec>``         | Number of nanoseconds.                                  | ``uint32_t``      | 0              |
 +-----------------------+---------------------------------------------------------+-------------------+----------------+
 
+.. note::
+
+    It is inconsistent to specify a negative value for the ``<sec>`` element, or
+    a ``<nanosec>`` value greater than or equal to 1 second (i.e., 1,000,000,000 nanoseconds).
+
 **Example**
 
 .. literalinclude:: /../code/XMLTester.xml

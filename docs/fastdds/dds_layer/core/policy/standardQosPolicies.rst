@@ -1113,6 +1113,9 @@ List of QoS Policy data members:
      :raw-html:`<br />`
      It cannot be changed on enabled entities.
 
+.. note::
+     It is inconsistent to set an infinite |ReliabilityQosPolicy::max_blocking_time-api|.
+
 .. important::
     Setting this QoS Policy to |BEST_EFFORT_RELIABILITY_QOS-api| affects to the :ref:`durabilityqospolicy`, making the
     endpoints behave as |VOLATILE_DURABILITY_QOS-api|.

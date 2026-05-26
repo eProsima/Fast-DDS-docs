@@ -146,6 +146,7 @@ jobs:
         with:
           remote_repository: eProsima/Fast-DDS-python
           fallback_branch: ${{ inputs.fastdds-python-branch }}
+          skip_base: 'true'
 
       - name: Obtain deduced Fast DDS Python repository content
         uses: eProsima/eProsima-CI/external/checkout@v0

@@ -162,6 +162,14 @@ jobs:
           ref: ${{ steps.get_fastdds_python_branch.outputs.deduced_branch }}
           path: ${{ github.workspace }}/src/fastdds_python
 
+      - name: Audit API reference wrappers
+        run: |
+          python3 src/fastdds-docs/utils/scripts/audit_api_reference.py \
+            --fastdds-dir src/fastdds \
+            --report compare \
+            --show 1000 \
+            --fail-on-findings
+
       - name: Fetch Fast DDS Docs CI dependencies
         if: ${{ inputs.run-tests == true }}
         uses: eProsima/eProsima-CI/multiplatform/vcs_import@v0

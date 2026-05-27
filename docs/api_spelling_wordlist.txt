@@ -87,6 +87,7 @@ DataWriterQos
 datawriters
 DeadlineQosPolicy
 deserialized
+deserializing
 destinated
 DestinationOrderQosPolicy
 Destructor
@@ -228,6 +229,7 @@ QosPolicyCount
 rdata
 ReadCondition
 ReceiverResource
+reimplemented
 ReliabilityQosPolicy
 ReplyPubSubType
 ReplyTypeSupport

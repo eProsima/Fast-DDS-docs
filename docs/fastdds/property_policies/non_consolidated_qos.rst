@@ -543,3 +543,46 @@ The following table lists all the optional QoS that can be serialized in the dis
         :start-after: <!-->SERIALIZE_OPTIONAL_QOS_PROPERTY<-->
         :end-before: <!--><-->
         :lines: 2-4,6-17,19-20
+
+.. _properties_sql_filter_expression_limits:
+
+SQL Filter Expression limits
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+When creating content-filtered topics using the
+:ref:`default SQL-like filter <dds_layer_topic_contentFilteredTopic_default_filter>`, some restrictions apply to the
+SQL expressions that can be used for content-based filtering.
+The default limits are set to values that should be enough for most use cases, but they can be customized using the
+following properties when a participant is created:
+
+.. list-table::
+   :header-rows: 1
+   :align: left
+
+   * - PropertyPolicyQos name
+     - PropertyPolicyQos value
+     - Default value
+   * - ``"dds.sql.expression.max_expression_length"``
+     - Maximum length of the SQL expression, in characters.
+     - ``16384``
+   * - ``"dds.sql.expression.max_subexpressions"``
+     - Maximum number of sub-expressions in the SQL expression.
+     - ``256``
+
+Creating content-filtered topics with expressions exceeding any of these limits will fail.
+Expressions received in discovery messages exceeding any of these limits will be ignored, and filtering will happen
+in the reader side.
+
+.. tab-set-code::
+
+    .. literalinclude:: /../code/DDSCodeTester.cpp
+        :language: c++
+        :start-after: // DDS_SQL_LIMITS_PROPERTY
+        :end-before: //!--
+        :dedent: 8
+
+    .. literalinclude:: /../code/XMLTester.xml
+        :language: xml
+        :start-after: <!-->DDS_SQL_LIMITS_PROPERTY<-->
+        :end-before: <!--><-->
+        :lines: 2-4,6-21,23-24

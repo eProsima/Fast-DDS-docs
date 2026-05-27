@@ -1013,6 +1013,19 @@ void dds_domain_examples()
             "true"); // true or True or TRUE or 1
         //!--
     }
+
+    {
+        // DDS_SQL_LIMITS_PROPERTY
+        DomainParticipantQos pqos;
+
+        pqos.properties().properties().emplace_back(
+            "dds.sql.expression.max_expression_length",
+            "20000");
+        pqos.properties().properties().emplace_back(
+            "dds.sql.expression.max_subexpressions",
+            "10");
+        //!--
+    }
 }
 
 //DOMAINPARTICIPANTLISTENER-DISCOVERY-CALLBACKS

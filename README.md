@@ -202,6 +202,7 @@ cd <path_to_docs_repo>/fastdds-docs
 rm -rf build
 READTHEDOCS=True FASTDDS_BRANCH=<branch> FASTDDS_PYTHON_BRANCH=<branch> sphinx-build \
     -b html \
+    -D breathe_projects.FastDDS=<abs_path_to_docs_repo>/fastdds-docs/build/doxygen/xml \
     -d <abs_path_to_docs_repo>/fastdds-docs/build/doctrees \
     docs <abs_path_to_docs_repo>/fastdds-docs/build/html
 ```
@@ -211,6 +212,23 @@ READTHEDOCS=True FASTDDS_BRANCH=<branch> FASTDDS_PYTHON_BRANCH=<branch> sphinx-b
 Using either CMake or colcon, the documentation is built using Sphinx's `html` builder.
 However, Sphinx supports several other building formats, which are enabled through [Sphinx builders](https://www.sphinx-doc.org/en/master/usage/builders/index.html).
 Once a builder is selected, the documentation can be built using the [Simulating Read the Docs](#simulating-read-the-docs) approach, specifying the appropriate builder with the `-b` CLI option
+
+### Auditing API reference wrappers
+
+The repository includes an audit helper that compares the manually maintained
+API reference wrapper files with the public Fast DDS API exported by a Fast DDS checkout.
+This is also run in Ubuntu CI.
+
+```bash
+python3 utils/scripts/audit_api_reference.py \
+    --fastdds-dir <path_to_fastdds_repo> \
+    --report compare \
+    --show 1000 \
+    --fail-on-findings
+```
+
+The `compare` report only shows discrepancies: extra wrapper files, wrapper files
+that need updates, and missing public API targets.
 
 ## Project structure
 

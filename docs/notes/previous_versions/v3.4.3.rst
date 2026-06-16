@@ -3,15 +3,15 @@
 
 This release includes the following **critical fixes**:
 
-#. Fix `CVE-2026-22591 <https://www.cve.org/CVERecord?id=CVE-2026-45097>`__
-#. Fix `CVE-2026-45094 <https://www.cve.org/CVERecord?id=CVE-2026-45092>`__
-#. Fix `CVE-2026-45095 <https://www.cve.org/CVERecord?id=CVE-2026-45093>`__
-#. Fix `CVE-2026-45096 <https://www.cve.org/CVERecord?id=CVE-2025-65865>`__
+#. Fix `CVE-2026-22591 <https://www.cve.org/CVERecord?id=CVE-2026-22591>`__
+#. Fix `CVE-2026-45094 <https://www.cve.org/CVERecord?id=CVE-2026-45094>`__
+#. Fix `CVE-2026-45095 <https://www.cve.org/CVERecord?id=CVE-2026-45095>`__
+#. Fix `CVE-2026-45096 <https://www.cve.org/CVERecord?id=CVE-2026-45096>`__
 #. Fix `CVE-2025-63829 <https://www.cve.org/CVERecord?id=CVE-2025-63829>`__
-#. Fix `CVE-2025-65865 <https://www.cve.org/CVERecord?id=CVE-2026-45096>`__
-#. Fix `CVE-2026-45093 <https://www.cve.org/CVERecord?id=CVE-2026-45095>`__
-#. Fix `CVE-2026-45092 <https://www.cve.org/CVERecord?id=CVE-2026-45094>`__
-#. Fix `CVE-2026-45097 <https://www.cve.org/CVERecord?id=CVE-2026-22591>`__
+#. Fix `CVE-2025-65865 <https://www.cve.org/CVERecord?id=CVE-2025-65865>`__
+#. Fix `CVE-2026-45093 <https://www.cve.org/CVERecord?id=CVE-2026-45093>`__
+#. Fix `CVE-2026-45092 <https://www.cve.org/CVERecord?id=CVE-2026-45092>`__
+#. Fix `CVE-2026-45097 <https://www.cve.org/CVERecord?id=CVE-2026-45097>`__
 
 This release includes the following **fixes**:
 

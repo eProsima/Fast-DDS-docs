@@ -323,10 +323,10 @@ else:
 
 # Resolve GitHub link branches: env var → current docs branch → default.
 # Computed here so they are available both in the ReadTheDocs clone block and in extlinks.
-fastdds_fallback_branch = resolve_fallback_branch("FASTDDS_BRANCH", docs_branch, "master")
-fastdds_docs_fallback_branch = resolve_fallback_branch("FASTDDS_DOCS_BRANCH", docs_branch, "master")
-fastdds_python_fallback_branch = resolve_fallback_branch("FASTDDS_PYTHON_BRANCH", docs_branch, "master")
-fastdds_gen_fallback_branch = resolve_fallback_branch("FASTDDS_GEN_BRANCH", docs_branch, "master")
+fastdds_fallback_branch = resolve_fallback_branch("FASTDDS_BRANCH", docs_branch, "3.4.x")
+fastdds_docs_fallback_branch = resolve_fallback_branch("FASTDDS_DOCS_BRANCH", docs_branch, "3.4.x")
+fastdds_python_fallback_branch = resolve_fallback_branch("FASTDDS_PYTHON_BRANCH", docs_branch, "2.4.x")
+fastdds_gen_fallback_branch = resolve_fallback_branch("FASTDDS_GEN_BRANCH", docs_branch, "4.2.x")
 
 print("Fallback branches for GitHub links:")
 print('  Fast-DDS:        "{}"'.format(fastdds_fallback_branch))
@@ -376,7 +376,7 @@ if read_the_docs_build:
                 fastdds_branch
             )
         )
-        fastdds_branch = "origin/master"
+        fastdds_branch = "origin/3.4.x"
 
     # Actual checkout
     print('Checking out Fast DDS branch "{}"'.format(fastdds_branch))
@@ -399,7 +399,7 @@ if read_the_docs_build:
                 fastdds_python_branch
             )
         )
-        fastdds_python_branch = "origin/main"
+        fastdds_python_branch = "origin/2.4.x"
 
     # Actual checkout
     print('Checking out Fast DDS Python branch "{}"'.format(fastdds_python_branch))

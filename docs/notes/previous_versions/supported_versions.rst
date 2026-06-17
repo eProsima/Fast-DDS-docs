@@ -3,9 +3,10 @@
 Supported versions
 ==================
 
-Version 3.4
------------
+Version 3.4 (EOL)
+-----------------
 
+.. include:: v3.4.3.rst
 .. include:: v3.4.2.rst
 .. include:: v3.4.1.rst
 .. include:: v3.4.0.rst

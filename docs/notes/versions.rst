@@ -320,7 +320,7 @@ The following table shows the corresponding versions of the Fast DDS library dep
             * - Product
               - Related version
             * - `Fast CDR <https://github.com/eProsima/Fast-CDR/>`__
-              - `v2.3.6 <https://github.com/eProsima/Fast-CDR/releases/tag/v2.3.5>`__
+              - `v2.3.6 <https://github.com/eProsima/Fast-CDR/releases/tag/v2.3.6>`__
             * - `Foonathan Memory Vendor <https://github.com/eProsima/foonathan_memory_vendor/>`__
               - `v1.4.1 <https://github.com/eProsima/foonathan_memory_vendor/releases/tag/v1.4.0>`__
             * - `Asio <https://github.com/chriskohlhoff/asio>`__

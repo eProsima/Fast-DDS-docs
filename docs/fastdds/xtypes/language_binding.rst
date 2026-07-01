@@ -600,7 +600,6 @@ This behavior is the same as setting the :code:`@default` and :code:`@id`
 
   Currently, Dynamic Language Binding API implementation does not support the following builtin annotations:
 
-  * :code:`@optional`
   * :code:`@must_understand`
   * :code:`@external`
   * :code:`@try_construct`
@@ -687,7 +686,6 @@ This behavior is the same as setting the :code:`@default` and :code:`@id`
 
   Currently, Dynamic Language Binding API implementation does not support the following builtin annotations:
 
-  * :code:`@optional`
   * :code:`@must_understand`
   * :code:`@external`
   * :code:`@try_construct`
@@ -930,7 +928,7 @@ Please, refer to :ref:`builtin annotations <builtin_annotations>` for the comple
       - ✅
     * - :code:`@optional`
       - |MemberDescriptor-api| :code:`is_optional` property.
-      - ❌
+      - ✅ |Pro|
       - ❌
       - ✅
     * - :code:`@position`

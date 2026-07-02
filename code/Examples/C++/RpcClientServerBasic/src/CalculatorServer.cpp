@@ -12,8 +12,9 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
+#include <atomic>
+#include <chrono>
 #include <csignal>
-#include <functional>
 #include <iostream>
 #include <memory>
 #include <string>
@@ -143,12 +144,13 @@ protected:
 //!--
 };
 
-std::function<void(int)> stop_handler;
+volatile std::sig_atomic_t stop_requested = 0;
 
 void signal_handler(
         int signum)
 {
-    stop_handler(signum);
+    (void)signum;
+    stop_requested = 1;
 }
 
 //!--MAIN
@@ -163,12 +165,6 @@ int main(
 
     std::thread thread(&Server::run, server);
 
-    stop_handler = [&](int signum)
-    {
-        std::cout << "Signal received, stopping execution." << std::endl;
-        server->stop();
-    };
-
         signal(SIGINT, signal_handler);
         signal(SIGTERM, signal_handler);
     #ifndef _WIN32
@@ -178,8 +174,12 @@ int main(
 
     std::cout << "Server running. Please press Ctrl+C to stop the server at any time." << std::endl;
 
+    while (!stop_requested)
+    {
+        std::this_thread::sleep_for(std::chrono::milliseconds(100));
+    }
+    std::cout << "Signal received, stopping execution." << std::endl;
+    server->stop();
     thread.join();
-
-    return 0;
 }
 //!--

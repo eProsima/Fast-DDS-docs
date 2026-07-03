@@ -369,23 +369,9 @@ if read_the_docs_build:
         fastdds_repo_name,
     )
 
-<<<<<<< HEAD
-    # Documentation repository branch
-    docs_branch = get_git_branch()
-    print('Current documentation branch is "{}"'.format(docs_branch))
-
-    # User specified Fast DDS branch
-    fastdds_branch = os.environ.get("FASTDDS_BRANCH", None)
-
-    # First try to checkout to ${FASTDDS_BRANCH}
-    # Else try with current documentation branch
-    # Else checkout to 3.2.x
-    if fastdds_branch and fastdds.refs.__contains__("origin/{}".format(fastdds_branch)):
-=======
     # Verify the desired branch actually exists in the cloned remote, falling back to master if not.
     fastdds_branch = fastdds_fallback_branch
     if fastdds.refs.__contains__("origin/{}".format(fastdds_branch)):
->>>>>>> 60e9c7d (Add fallback branch for master links  (#1241))
         fastdds_branch = "origin/{}".format(fastdds_branch)
     else:
         print(
@@ -406,21 +392,9 @@ if read_the_docs_build:
         fastdds_python_repo_name,
     )
 
-<<<<<<< HEAD
-    # User specified Fast DDS branch
-    fastdds_python_branch = os.environ.get("FASTDDS_PYTHON_BRANCH", None)
-
-    # First try to checkout to ${FASTDDS_PYTHON_BRANCH}
-    # Else try with current documentation branch
-    # Else checkout to 2.2.x
-    if fastdds_python_branch and fastdds_python.refs.__contains__(
-        "origin/{}".format(fastdds_python_branch)
-    ):
-=======
     # Verify the desired branch actually exists in the cloned remote, falling back to master if not.
     fastdds_python_branch = fastdds_python_fallback_branch
     if fastdds_python.refs.__contains__("origin/{}".format(fastdds_python_branch)):
->>>>>>> 60e9c7d (Add fallback branch for master links  (#1241))
         fastdds_python_branch = "origin/{}".format(fastdds_python_branch)
     else:
         print(
@@ -505,11 +479,8 @@ extensions = [
     "sphinx_copybutton",
     "sphinx_design",
     "sphinx.ext.autodoc",  # Document Pydoc documentation from Python bindings.
-<<<<<<< HEAD
-=======
     "sphinx.ext.extlinks",
     "sphinx_substitution_extensions",
->>>>>>> 60e9c7d (Add fallback branch for master links  (#1241))
     "sphinx_toolbox.collapse",
 ]
 
@@ -700,9 +671,6 @@ html_theme_options.update(download_json())
 
 html_use_smartypants = True
 
-<<<<<<< HEAD
-html_css_files = [select_css(script_path)]
-=======
 # The CSS files referenced here should have a path relative to the _static folder.
 # We use static_relative(download_file(...)) to ensure the resulting paths are relative to "_static".
 html_css_files = [
@@ -739,7 +707,6 @@ rst_prolog = f"""
 .. |FastDDSPythonBranch| replace:: {fastdds_python_fallback_branch}
 """
 
->>>>>>> 60e9c7d (Add fallback branch for master links  (#1241))
 
 # Add any paths that contain custom themes here, relative to this directory.
 # html_theme_path = []

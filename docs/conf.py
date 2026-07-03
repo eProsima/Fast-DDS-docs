@@ -128,12 +128,8 @@ def get_git_branch():
         return p.communicate()[0].decode().rstrip()
 
     except Exception:
-<<<<<<< HEAD
-        print('Could not get the branch')
-=======
         # Local build without git or some error occurred
         print("Could not get the branch")
->>>>>>> 60e9c7d (Add fallback branch for master links  (#1241))
 
     # Couldn't figure out the branch probably due to an error
     return None
@@ -267,23 +263,6 @@ if read_the_docs_build:
         fastdds_repo_name,
     )
 
-<<<<<<< HEAD
-    # Documentation repository branch
-    docs_branch = get_git_branch()
-    print('Current documentation branch is "{}"'.format(docs_branch))
-
-    # User specified Fast DDS branch
-    fastdds_branch = os.environ.get('FASTDDS_BRANCH', None)
-
-    # First try to checkout to ${FASTDDS_BRANCH}
-    # Else checkout to 2.14.x
-    if (fastdds_branch and
-            fastdds.refs.__contains__('origin/{}'.format(fastdds_branch))):
-        fastdds_branch = 'origin/{}'.format(fastdds_branch)
-    else:
-        fastdds_branch = 'origin/2.14.x'
-        print(f'Fast DDS branch is not set by env var. Using "{fastdds_branch}"')
-=======
     # Verify the desired branch actually exists in the cloned remote, falling back to master if not.
     fastdds_branch = fastdds_fallback_branch
     if fastdds.refs.__contains__("origin/{}".format(fastdds_branch)):
@@ -295,7 +274,6 @@ if read_the_docs_build:
             )
         )
         fastdds_branch = "origin/master"
->>>>>>> 60e9c7d (Add fallback branch for master links  (#1241))
 
     # Actual checkout
     print('Checking out Fast DDS branch "{}"'.format(fastdds_branch))
@@ -308,20 +286,6 @@ if read_the_docs_build:
         fastdds_python_repo_name,
     )
 
-<<<<<<< HEAD
-    # User specified Fast DDS branch
-    fastdds_python_branch = os.environ.get('FASTDDS_PYTHON_BRANCH', None)
-
-    # First try to checkout to ${FASTDDS_PYTHON_BRANCH}
-    # Else checkout to 1.4.x
-    if (fastdds_python_branch and
-            fastdds_python.refs.__contains__(
-                'origin/{}'.format(fastdds_python_branch))):
-        fastdds_python_branch = 'origin/{}'.format(fastdds_python_branch)
-    else:
-        fastdds_python_branch = 'origin/1.4.x'
-        print(f'Fast DDS Python branch is not set by env var. Using "{fastdds_python_branch}"')
-=======
     # Verify the desired branch actually exists in the cloned remote, falling back to master if not.
     fastdds_python_branch = fastdds_python_fallback_branch
     if fastdds_python.refs.__contains__("origin/{}".format(fastdds_python_branch)):
@@ -333,7 +297,6 @@ if read_the_docs_build:
             )
         )
         fastdds_python_branch = "origin/master"
->>>>>>> 60e9c7d (Add fallback branch for master links  (#1241))
 
     # Actual checkout
     print('Checking out Fast DDS Python branch "{}"'.format(
@@ -402,12 +365,6 @@ if fastdds_python_imported_location:
 # extensions coming with Sphinx (named 'sphinx.ext.*') or your custom
 # ones.
 extensions = [
-<<<<<<< HEAD
-    'breathe',
-    'sphinxcontrib.plantuml',
-    'sphinx.ext.autodoc',  # Document Pydoc documentation from Python bindings.
-    'sphinx_tabs.tabs'
-=======
     "breathe",
     "sphinxcontrib.plantuml",
     "sphinx_copybutton",
@@ -416,7 +373,6 @@ extensions = [
     "sphinx.ext.extlinks",
     "sphinx_substitution_extensions",
     "sphinx_toolbox.collapse",
->>>>>>> 60e9c7d (Add fallback branch for master links  (#1241))
 ]
 
 extlinks = {
@@ -583,9 +539,6 @@ html_theme = 'sphinx_rtd_theme'
 # further.  For a list of options available for each theme, see the
 # documentation.
 #
-<<<<<<< HEAD
-# html_theme_options = {}
-=======
 html_theme_options = {}
 html_theme_options.update(download_json())
 
@@ -627,7 +580,6 @@ rst_prolog = f"""
 .. |FastDDSPythonBranch| replace:: {fastdds_python_fallback_branch}
 """
 
->>>>>>> 60e9c7d (Add fallback branch for master links  (#1241))
 
 # Add any paths that contain custom themes here, relative to this directory.
 # html_theme_path = []

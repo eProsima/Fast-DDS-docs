@@ -673,40 +673,7 @@ html_use_smartypants = True
 
 # The CSS files referenced here should have a path relative to the _static folder.
 # We use static_relative(download_file(...)) to ensure the resulting paths are relative to "_static".
-html_css_files = [
-    static_relative(
-        download_file(
-            "https://raw.githubusercontent.com/eProsima/all-docs/master/source/_static/css/eprosima-furo.css",
-            "{}/_static/css/eprosima-furo.css".format(script_path),
-        )
-    ),
-    static_relative(
-        download_file(
-            "https://raw.githubusercontent.com/eProsima/all-docs/master/source/_static/css/pro-badge.css",
-            "{}/_static/css/pro-badge.css".format(script_path),
-        )
-    ),
-]
-
-# Custom substitutions that are included at the beginning of every source file.
-# |Pro|: badge with PRO text. Place it after titles where needed as follows:
-#    Title |Pro|
-#    ===========
-# rst_prolog = r"""
-# .. |Pro| replace:: :bdg-primary-line:`Pro`
-# """
-rst_prolog = f"""
-.. |Pro| raw:: html
-
-    <span class="sd-badge sd-outline-primary sd-text-primary" title="Exclusive to Fast DDS Pro">Pro</span>
-
-.. |ProjectVersion| replace:: {version}
-
-.. |FastDDSBranch| replace:: {fastdds_fallback_branch}
-
-.. |FastDDSPythonBranch| replace:: {fastdds_python_fallback_branch}
-"""
-
+html_css_files = [select_css(script_path)]
 
 # Add any paths that contain custom themes here, relative to this directory.
 # html_theme_path = []

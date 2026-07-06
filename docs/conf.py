@@ -386,7 +386,7 @@ if read_the_docs_build:
 
     # Actual checkout
     print('Checking out Fast DDS branch "{}"'.format(fastdds_branch))
-    fastdds.refs[fastdds_branch].checkout()
+    fastdds.git.checkout(fastdds_branch)
 
     # - Fast DDS Python Bindings
     print("Cloning Fast DDS Python Bindings")
@@ -412,7 +412,7 @@ if read_the_docs_build:
 
     # Actual checkout
     print('Checking out Fast DDS Python branch "{}"'.format(fastdds_python_branch))
-    fastdds_python.refs[fastdds_python_branch].checkout()
+    fastdds_python.git.checkout(fastdds_python_branch)
 
     os.makedirs(os.path.dirname(output_dir), exist_ok=True)
     os.makedirs(os.path.dirname(doxygen_html), exist_ok=True)

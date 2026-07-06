@@ -328,7 +328,7 @@ else:
 # Computed here so they are available both in the ReadTheDocs clone block and in extlinks.
 fastdds_fallback_branch = resolve_fallback_branch("FASTDDS_BRANCH", docs_branch, "3.2.x")
 fastdds_docs_fallback_branch = resolve_fallback_branch("FASTDDS_DOCS_BRANCH", docs_branch, "3.2.x")
-fastdds_python_fallback_branch = resolve_fallback_branch("FASTDDS_PYTHON_BRANCH", docs_branch, "2.3.x")
+fastdds_python_fallback_branch = resolve_fallback_branch("FASTDDS_PYTHON_BRANCH", docs_branch, "2.2.x")
 fastdds_gen_fallback_branch = resolve_fallback_branch("FASTDDS_GEN_BRANCH", docs_branch, "4.0.x")
 
 print("Fallback branches for GitHub links:")

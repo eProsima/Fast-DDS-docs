@@ -369,13 +369,16 @@ if read_the_docs_build:
         fastdds_repo_name,
     )
 
-    # Verify the desired branch actually exists in the cloned remote, falling back to master if not.
+    # Verify the desired branch/tag actually exists in the cloned remote, falling back to master if not.
     fastdds_branch = fastdds_fallback_branch
     if fastdds.refs.__contains__("origin/{}".format(fastdds_branch)):
         fastdds_branch = "origin/{}".format(fastdds_branch)
+    elif fastdds.tags.__contains__(fastdds_branch):
+        # GitPython exposes tags by bare name, e.g. "v3.6.2".
+        pass
     else:
         print(
-            'Fast DDS does not have branch "{}"; falling back to master'.format(
+            'Fast DDS does not have branch or tag "{}"; falling back to master'.format(
                 fastdds_branch
             )
         )
@@ -392,13 +395,16 @@ if read_the_docs_build:
         fastdds_python_repo_name,
     )
 
-    # Verify the desired branch actually exists in the cloned remote, falling back to master if not.
+    # Verify the desired branch/tag actually exists in the cloned remote, falling back to master if not.
     fastdds_python_branch = fastdds_python_fallback_branch
     if fastdds_python.refs.__contains__("origin/{}".format(fastdds_python_branch)):
         fastdds_python_branch = "origin/{}".format(fastdds_python_branch)
+    elif fastdds_python.tags.__contains__(fastdds_python_branch):
+        # GitPython exposes tags by bare name, e.g. "v3.6.1".
+        pass
     else:
         print(
-            'Fast DDS Python does not have branch "{}"; falling back to master'.format(
+            'Fast DDS Python does not have branch or tag "{}"; falling back to master'.format(
                 fastdds_python_branch
             )
         )

@@ -396,13 +396,14 @@ if fastdds_python_imported_location:
 # ones.
 extensions = [
     "breathe",
-    "sphinxcontrib.plantuml",
     "sphinx_copybutton",
     "sphinx_design",
+    "sphinx_substitution_extensions",
+    "sphinx_tabs.tabs",
+    "sphinx_toolbox.collapse",
     "sphinx.ext.autodoc",  # Document Pydoc documentation from Python bindings.
     "sphinx.ext.extlinks",
-    "sphinx_substitution_extensions",
-    "sphinx_toolbox.collapse",
+    "sphinxcontrib.plantuml",
 ]
 
 extlinks = {

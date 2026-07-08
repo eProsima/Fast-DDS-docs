@@ -227,11 +227,7 @@ doxyfile_in = os.path.abspath(
 doxyfile_out = os.path.abspath('{}/doxygen-config'.format(project_binary_dir))
 
 # Header files
-input_dir = os.path.abspath(
-    '{}/fastdds/include/fastdds'.format(
-        project_binary_dir
-    )
-)
+input_dir = os.path.abspath("{}/fastdds/include/fastdds".format(project_binary_dir))
 
 # Current branch of the documentation repository — resolved once, used everywhere.
 docs_branch = get_git_branch()
@@ -293,13 +289,16 @@ if read_the_docs_build:
         fastdds_repo_name,
     )
 
-    # Verify the desired branch actually exists in the cloned remote, falling back to 2.14.x if not.
+    # Verify the desired branch/tag actually exists in the cloned remote, falling back to master if not.
     fastdds_branch = fastdds_fallback_branch
     if fastdds.refs.__contains__("origin/{}".format(fastdds_branch)):
         fastdds_branch = "origin/{}".format(fastdds_branch)
+    elif fastdds.tags.__contains__(fastdds_branch):
+        # GitPython exposes tags by bare name, e.g. "v3.6.2".
+        pass
     else:
         print(
-            'Fast DDS does not have branch "{}"; falling back to 2.14.x'.format(
+            'Fast DDS does not have branch or tag "{}"; falling back to 2.14.x'.format(
                 fastdds_branch
             )
         )
@@ -307,7 +306,7 @@ if read_the_docs_build:
 
     # Actual checkout
     print('Checking out Fast DDS branch "{}"'.format(fastdds_branch))
-    fastdds.refs[fastdds_branch].checkout()
+    fastdds.git.checkout(fastdds_branch)
 
     # - Fast DDS Python Bindings
     print('Cloning Fast DDS Python Bindings')
@@ -316,22 +315,25 @@ if read_the_docs_build:
         fastdds_python_repo_name,
     )
 
-    # Verify the desired branch actually exists in the cloned remote, falling back to 2.14.x if not.
+    # Verify the desired branch/tag actually exists in the cloned remote, falling back to 1.4.x if not.
     fastdds_python_branch = fastdds_python_fallback_branch
     if fastdds_python.refs.__contains__("origin/{}".format(fastdds_python_branch)):
         fastdds_python_branch = "origin/{}".format(fastdds_python_branch)
+    elif fastdds_python.tags.__contains__(fastdds_python_branch):
+        # GitPython exposes tags by bare name, e.g. "v3.6.2".
+        pass
     else:
         print(
-            'Fast DDS Python does not have branch "{}"; falling back to 2.14.x'.format(
+            'Fast DDS Python does not have branch or tag "{}"; falling back to 1.4.x'.format(
                 fastdds_python_branch
             )
         )
-        fastdds_python_branch = "origin/2.14.x"
+        fastdds_python_branch = "origin/1.4.x"
 
     # Actual checkout
     print('Checking out Fast DDS Python branch "{}"'.format(
         fastdds_python_branch))
-    fastdds_python.refs[fastdds_python_branch].checkout()
+    fastdds_python.git.checkout(fastdds_python_branch)
 
     os.makedirs(os.path.dirname(output_dir), exist_ok=True)
     os.makedirs(os.path.dirname(doxygen_html), exist_ok=True)

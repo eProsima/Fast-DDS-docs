@@ -18,20 +18,50 @@
 #
 # import sys
 # sys.path.insert(0, os.path.abspath('.'))
+
+import git
+import json
 import os
 import pathlib
+import requests
 import shutil
 import subprocess
 import sys
-
-import git
-
-import requests
 
 
 def setup(app):
     # Add property to avoid warning.
     app.add_config_value('skip_python', None, '')
+
+
+def download_json():
+    """
+    Download the common theme options of eProsima readthedocs documentation.
+
+    The theme options are defined in a JSON file that is hosted in the eProsima GitHub
+    repository with the index of all eProsima product documentation
+    (https://github.com/eProsima/all-docs).
+
+    :return: dictionary.
+    """
+    url = "https://raw.githubusercontent.com/eProsima/all-docs/master/source/_static/json/eprosima-furo.json"
+    ret = dict()
+    try:
+        req = requests.get(url, allow_redirects=True, timeout=10)
+    except requests.RequestException as e:
+        print(
+            "Failed to download the JSON with the eProsima theme."
+            "Request Error: {}".format(e)
+        )
+        return ret
+    if req.status_code != 200:
+        print(
+            "Failed to download the JSON with the eProsima theme."
+            "Return code: {}".format(req.status_code)
+        )
+        return ret
+    ret = json.loads(req.content)
+    return ret
 
 
 def download_css(html_css_dir):
@@ -544,42 +574,7 @@ html_theme_options.update(download_json())
 
 html_use_smartypants = True
 
-# The CSS files referenced here should have a path relative to the _static folder.
-# We use static_relative(download_file(...)) to ensure the resulting paths are relative to "_static".
-html_css_files = [
-    static_relative(
-        download_file(
-            "https://raw.githubusercontent.com/eProsima/all-docs/master/source/_static/css/eprosima-furo.css",
-            "{}/_static/css/eprosima-furo.css".format(script_path),
-        )
-    ),
-    static_relative(
-        download_file(
-            "https://raw.githubusercontent.com/eProsima/all-docs/master/source/_static/css/pro-badge.css",
-            "{}/_static/css/pro-badge.css".format(script_path),
-        )
-    ),
-]
-
-# Custom substitutions that are included at the beginning of every source file.
-# |Pro|: badge with PRO text. Place it after titles where needed as follows:
-#    Title |Pro|
-#    ===========
-# rst_prolog = r"""
-# .. |Pro| replace:: :bdg-primary-line:`Pro`
-# """
-rst_prolog = f"""
-.. |Pro| raw:: html
-
-    <span class="sd-badge sd-outline-primary sd-text-primary" title="Exclusive to Fast DDS Pro">Pro</span>
-
-.. |ProjectVersion| replace:: {version}
-
-.. |FastDDSBranch| replace:: {fastdds_fallback_branch}
-
-.. |FastDDSPythonBranch| replace:: {fastdds_python_fallback_branch}
-"""
-
+html_css_files = [select_css(script_path)]
 
 # Add any paths that contain custom themes here, relative to this directory.
 # html_theme_path = []

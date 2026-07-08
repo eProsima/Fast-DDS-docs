@@ -243,10 +243,10 @@ else:
 
 # Resolve GitHub link branches: env var → current docs branch → default.
 # Computed here so they are available both in the ReadTheDocs clone block and in extlinks.
-fastdds_fallback_branch = resolve_fallback_branch("FASTDDS_BRANCH", docs_branch, "master")
-fastdds_docs_fallback_branch = resolve_fallback_branch("FASTDDS_DOCS_BRANCH", docs_branch, "master")
-fastdds_python_fallback_branch = resolve_fallback_branch("FASTDDS_PYTHON_BRANCH", docs_branch, "master")
-fastdds_gen_fallback_branch = resolve_fallback_branch("FASTDDS_GEN_BRANCH", docs_branch, "master")
+fastdds_fallback_branch = resolve_fallback_branch("FASTDDS_BRANCH", docs_branch, "2.14.x")
+fastdds_docs_fallback_branch = resolve_fallback_branch("FASTDDS_DOCS_BRANCH", docs_branch, "2.14.x")
+fastdds_python_fallback_branch = resolve_fallback_branch("FASTDDS_PYTHON_BRANCH", docs_branch, "1.4.x")
+fastdds_gen_fallback_branch = resolve_fallback_branch("FASTDDS_GEN_BRANCH", docs_branch, "3.3.x")
 
 print("Fallback branches for GitHub links:")
 print('  Fast-DDS:        "{}"'.format(fastdds_fallback_branch))
@@ -293,17 +293,17 @@ if read_the_docs_build:
         fastdds_repo_name,
     )
 
-    # Verify the desired branch actually exists in the cloned remote, falling back to master if not.
+    # Verify the desired branch actually exists in the cloned remote, falling back to 2.14.x if not.
     fastdds_branch = fastdds_fallback_branch
     if fastdds.refs.__contains__("origin/{}".format(fastdds_branch)):
         fastdds_branch = "origin/{}".format(fastdds_branch)
     else:
         print(
-            'Fast DDS does not have branch "{}"; falling back to master'.format(
+            'Fast DDS does not have branch "{}"; falling back to 2.14.x'.format(
                 fastdds_branch
             )
         )
-        fastdds_branch = "origin/master"
+        fastdds_branch = "origin/2.14.x"
 
     # Actual checkout
     print('Checking out Fast DDS branch "{}"'.format(fastdds_branch))
@@ -316,17 +316,17 @@ if read_the_docs_build:
         fastdds_python_repo_name,
     )
 
-    # Verify the desired branch actually exists in the cloned remote, falling back to master if not.
+    # Verify the desired branch actually exists in the cloned remote, falling back to 2.14.x if not.
     fastdds_python_branch = fastdds_python_fallback_branch
     if fastdds_python.refs.__contains__("origin/{}".format(fastdds_python_branch)):
         fastdds_python_branch = "origin/{}".format(fastdds_python_branch)
     else:
         print(
-            'Fast DDS Python does not have branch "{}"; falling back to master'.format(
+            'Fast DDS Python does not have branch "{}"; falling back to 2.14.x'.format(
                 fastdds_python_branch
             )
         )
-        fastdds_python_branch = "origin/master"
+        fastdds_python_branch = "origin/2.14.x"
 
     # Actual checkout
     print('Checking out Fast DDS Python branch "{}"'.format(

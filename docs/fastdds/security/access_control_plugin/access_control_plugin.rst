@@ -110,15 +110,9 @@ The following is an example of the Domain Governance XML file contents.
    :end-before: <!--><-->
    :linenos:
 
-<<<<<<< HEAD
-The `Governance XSD file <https://github.com/eProsima/Fast-DDS/blob/2.x/resources/xsd/governance.xsd>`_ and
-the
-`Governance XML example <https://github.com/eProsima/Fast-DDS/blob/2.x/examples/cpp/dds/SecureHelloWorldExample/certs/governance.xml>`_
-=======
 The :fastdds-blob:`Governance XSD file <resources/xsd/governance.xsd>` and
 the
 :fastdds-blob:`Governance XML example <examples/cpp/dds/SecureHelloWorldExample/certs/governance.xml>`
->>>>>>> 60e9c7d (Add fallback branch for master links  (#1241))
 can also be downloaded from the `eProsima Fast DDS Github repository <https://github.com/eProsima/Fast-DDS>`_.
 
 Domain Rules
@@ -453,15 +447,8 @@ The following is an example of the DomainParticipant Permissions XML file conten
    :end-before: <!--><-->
    :linenos:
 
-<<<<<<< HEAD
-The `Permissions XSD file <https://github.com/eProsima/Fast-DDS/blob/2.x/resources/xsd/governance.xsd>`_ and
-the
-`Permissions XML example <https://github.com/eProsima/Fast-DDS/blob/2.x/examples/cpp/dds/SecureHelloWorldExample/certs/governance.xml>`_
-=======
 The :fastdds-blob:`Permissions XSD file <resources/xsd/governance.xsd>` and
-the
-:fastdds-blob:`Permissions XML example <examples/cpp/dds/SecureHelloWorldExample/certs/governance.xml>`
->>>>>>> 60e9c7d (Add fallback branch for master links  (#1241))
+the :fastdds-blob:`Permissions XML example <examples/cpp/dds/SecureHelloWorldExample/certs/governance.xml>`
 can also be downloaded from the `eProsima Fast DDS Github repository <https://github.com/eProsima/Fast-DDS>`_.
 
 Grant Section

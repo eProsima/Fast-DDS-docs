@@ -171,10 +171,11 @@ This section explains how to use it to compile *eProsima Fast DDS* and its depen
    *eProsima Fast DDS* and its dependencies:
 
    .. code-block:: bash
+      :substitutions:
 
        mkdir ~/Fast-DDS
        cd ~/Fast-DDS
-       wget https://raw.githubusercontent.com/eProsima/Fast-DDS/2.x/fastrtps.repos
+       wget https://raw.githubusercontent.com/eProsima/Fast-DDS/|FastDDSBranch|/fastdds.repos
        mkdir src
        vcs import src < fastrtps.repos
 

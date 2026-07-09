@@ -41,8 +41,7 @@ explaining the new features it presents.
 We recommend you to look at the two examples describing how to use the RTPS layer that come with the distribution
 while reading this section.
 They are located in
-`examples/cpp/rtps/AsSocket <https://github.com/eProsima/Fast-DDS/tree/2.x/examples/cpp/rtps/AsSocket>`_ and
-`examples/cpp/rtps/Registered <https://github.com/eProsima/Fast-DDS/tree/2.x/examples/cpp/rtps/Registered>`_
+:fastdds-tree:`examples/cpp/rtps <examples/cpp/rtps>`.
 
 Managing the Participant
 ^^^^^^^^^^^^^^^^^^^^^^^^

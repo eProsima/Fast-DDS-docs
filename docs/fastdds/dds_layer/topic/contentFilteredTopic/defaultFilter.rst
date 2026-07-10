@@ -9,6 +9,9 @@ The default SQL-like filter
 Filter expressions used by :ref:`dds_layer_topic_contentFilteredTopic` API may use a subset of SQL syntax, extended with
 the possibility to use program variables in the SQL expression.
 This section shows this default SQL-like syntax and how to use it.
+Apart from the syntax described in this section, certain restrictions apply to the allowed SQL expressions.
+These restrictions can be relaxed or tightened by the user, as explained in
+:ref:`properties_sql_filter_expression_limits`.
 
 * :ref:`default_sql_filter_grammar`
 * :ref:`default_sql_filter_like`

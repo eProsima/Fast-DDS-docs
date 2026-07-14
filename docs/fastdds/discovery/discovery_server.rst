@@ -65,15 +65,19 @@ In this architecture there are several key concepts to understand:
   * It is important to note that the discovery times will be negatively affected when using this type of *server*,
     since periodically writing to a file is an expensive operation.
 
-- A |CLIENT| is a participant that connects to one or more *servers* from which it receives only the discovery
+- A |CLIENT| |Pro| is a participant that connects to one or more *servers* from which it receives only the discovery
   information they require to establish communication with matching endpoints.
 
   * *Clients* require prior knowledge of the *servers* to which they want to link.
     Basically, it consists of a list of locators where the *servers* are listening, namely, an IP address and a port.
     These locators also define the transport protocol (UDP or TCP) the client will use to contact the *server*.
+  * **Efficient Discovery Filterning** |Pro| : The optimized topic matching algorithm that enables *clients* to
+    receive only relevant discovery information is available exclusively in *Fast DDS Pro*. In the open-source
+    Fast DDS distribution, *clients* operate with the same discovery behavior as *super clients*, receiving all
+    discovery information from the server.
 
 - A |SUPER_CLIENT| is a *client* that receives the discovery information known by the *server*, in opposition to
-  *clients*, which only receive the information they need.
+  Pro *clients*, which only receive the information they need.
 
   .. note::
 
@@ -81,6 +85,7 @@ In this architecture there are several key concepts to understand:
       which it is connected.
       It will not connect to other servers, and it will not redistribute the information it receives.
       Any DomainParticipant discovered by the *Server* with no endpoints will not be known by the |SUPER_CLIENT|.
+      In the open-source Fast DDS distribution, all *clients* function as *super clients* by default.
 
 - *Servers* do not require any prior knowledge of their *clients*, but they must listen in the address specified
   by the locator provided to the *clients*.

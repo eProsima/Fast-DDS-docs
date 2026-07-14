@@ -188,5 +188,6 @@ enum MyBitMask : uint8_t
    // INCLUDE_MORE_IDL_FILES
  #include "OtherFile.idl"
  #include <AnotherFile.idl>
+ #include <IncludedIDL.idl>
    //!
    /**/

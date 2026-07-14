@@ -49,3 +49,33 @@ issues.
   In consequence, discovery traffic can be increased during start up.
   If you are experiencing high load during discovery, try disabling the new feature.
   Please refer to :ref:`disable type propagation<property_type_propagation>` to learn how to do it.
+
+* Applications that load **libunwind** at runtime (e.g., through profiling tools such as
+  ``gperftools``, ``heaptrack``, or sanitizer runtimes) may experience segmentation faults during
+  C++ exception handling within Fast DDS. This is caused by a symbol conflict between ``libunwind``
+  and ``libgcc_s``: both export ``_Unwind_*`` symbols with incompatible internal layouts, and if
+  ``libunwind`` is resolved first, it interferes with the GCC exception-handling ABI. The crash
+  typically manifests as a ``SIGABRT`` or ``SIGSEGV`` inside the ``_Unwind_RaiseException`` call
+  chain. This is especially common in Docker containers where ``libunwind`` is pulled in
+  transitively by GStreamer or other multimedia frameworks.
+
+  **Workaround**: ensure ``libgcc_s`` is loaded before ``libunwind`` by preloading it:
+
+  .. code-block:: bash
+
+      # Shell
+      export LD_PRELOAD=/usr/lib/x86_64-linux-gnu/libgcc_s.so.1
+
+      # Dockerfile
+      ENV LD_PRELOAD=/lib/x86_64-linux-gnu/libgcc_s.so.1
+
+  On ``aarch64`` systems, adjust the library path accordingly
+  (e.g., ``/usr/lib/aarch64-linux-gnu/libgcc_s.so.1``).
+
+  .. note::
+
+      This is not a Fast DDS bug but a known Linux ecosystem issue affecting any C++ application
+      that uses exceptions when both unwinder implementations are loaded. See
+      `Ubuntu bug #1960005 <https://bugs.launchpad.net/ubuntu/+source/libunwind/+bug/1960005>`__
+      and `LLVM issue #90041 <https://github.com/llvm/llvm-project/issues/90041>`__ for upstream
+      discussions.

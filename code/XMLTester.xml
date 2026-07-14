@@ -4108,6 +4108,21 @@
 </participant>
 <!--><-->
 
+<!-->XML-SHM-ONLY-HOST-ID-ON-LOCATORS<-->
+<participant profile_name="participant_xml_conf_shm_only_host_id_on_locators_profile">
+    <rtps>
+        <propertiesPolicy>
+            <properties>
+                <property>
+                    <name>fastdds.shm.only_host_id_on_locators</name>
+                    <value>true</value>
+                </property>
+            </properties>
+        </propertiesPolicy>
+    </rtps>
+</participant>
+<!--><-->
+
 <!--XML_PROFILES_SECTION-->
 
 <!--XML_PROFILES_TRANSPORT_DESCRIPTORS-->

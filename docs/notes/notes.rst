@@ -27,10 +27,6 @@ This release includes the following **security fixes**:
 - `Fix CVE-2026-53588 <https://www.cve.org/CVERecord?id=CVE-2026-53588>`_
 - `Fix CVE-2026-53590 <https://www.cve.org/CVERecord?id=CVE-2026-53590>`_
 
-This release includes the following **improvements**:
-
-#. None
-
 This release includes the following **fixes**:
 
 #. Several fixes in ``TopicPayloadPool``

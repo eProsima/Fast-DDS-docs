@@ -3,47 +3,49 @@
 Information about the release lifecycle can be found
 `here <https://github.com/eProsima/Fast-DDS/blob/master/RELEASE_SUPPORT.md>`_.
 
-Version 2.6.11 (maintenance)
+Version 2.6.12 (maintenance)
 ============================
 
-.. important::
-  According to our
-  `release support guidelines <https://github.com/eProsima/Fast-DDS/blob/master/RELEASE_SUPPORT.md>`_
-  the v2.6 minor will only receive patches for critical issues and security fixes.
+This release includes the following **security fixes**:
 
-This release includes the following **critical fixes**:
-
-#. Fix `CVE-2025-62599 <https://www.cve.org/CVERecord?id=CVE-2025-62599>`_
-#. Fix `CVE-2025-62600 <https://www.cve.org/CVERecord?id=CVE-2025-62600>`_
-#. Fix `CVE-2025-62601 <https://www.cve.org/CVERecord?id=CVE-2025-62601>`_
-#. Fix `CVE-2025-62602 <https://www.cve.org/CVERecord?id=CVE-2025-62602>`_
-#. Fix `CVE-2025-62603 <https://www.cve.org/CVERecord?id=CVE-2025-62603>`_
-#. Fix `CVE-2025-64098 <https://www.cve.org/CVERecord?id=CVE-2025-64098>`_
-#. Fix `CVE-2025-62799 <https://www.cve.org/CVERecord?id=CVE-2025-62799>`_
-#. Fix `CVE-2025-64438 <https://www.cve.org/CVERecord?id=CVE-2025-64438>`_
-#. Fix `CVE-2025-65016 <https://www.cve.org/CVERecord?id=CVE-2025-65016>`_
+- `Fix CVE-2026-22590 <https://www.cve.org/CVERecord?id=CVE-2026-22590>`_
+- `Fix CVE-2026-22591 <https://www.cve.org/CVERecord?id=CVE-2026-22591>`_
+- `Fix CVE-2026-45094 <https://www.cve.org/CVERecord?id=CVE-2026-45094>`_
+- `Fix CVE-2026-45095 <https://www.cve.org/CVERecord?id=CVE-2026-45095>`_
+- `Fix CVE-2026-45096 <https://www.cve.org/CVERecord?id=CVE-2026-45096>`_
+- `Fix CVE-2025-63829 <https://www.cve.org/CVERecord?id=CVE-2025-63829>`_
+- `Fix CVE-2025-65865 <https://www.cve.org/CVERecord?id=CVE-2025-65865>`_
+- `Fix CVE-2026-45093 <https://www.cve.org/CVERecord?id=CVE-2026-45093>`_
+- `Fix CVE-2026-45092 <https://www.cve.org/CVERecord?id=CVE-2026-45092>`_
+- `Fix CVE-2025-67108 <https://www.cve.org/CVERecord?id=CVE-2025-67108>`_
+- `Fix CVE-2026-49861 <https://www.cve.org/CVERecord?id=CVE-2026-49861>`_
+- `Fix CVE-2026-53589 <https://www.cve.org/CVERecord?id=CVE-2026-53589>`_
+- `Fix CVE-2026-45098 <https://www.cve.org/CVERecord?id=CVE-2026-45098>`_
+- `Fix CVE-2026-49862 <https://www.cve.org/CVERecord?id=CVE-2026-49862>`_
+- `Fix CVE-2026-55063 <https://www.cve.org/CVERecord?id=CVE-2026-55063>`_
+- `Fix CVE-2026-49863 <https://www.cve.org/CVERecord?id=CVE-2026-49863>`_
+- `Fix CVE-2026-53588 <https://www.cve.org/CVERecord?id=CVE-2026-53588>`_
+- `Fix CVE-2026-53590 <https://www.cve.org/CVERecord?id=CVE-2026-53590>`_
 
 This release includes the following **improvements**:
 
-#. Verify Safe DDS signature
-#. Improvements in message receiver
-#. Regenerate types with Fast DDS Gen 2.1.4
-#. Upgrade to Fast CDR v1.0.29
+#. None
 
-This release includes the following **ci management updates**:
+This release includes the following **fixes**:
 
-#. Add ``uncrustify`` to Github CI
-#. Remove deprecated windows 2019 from CI in favor of 2022
-#. Upgrade to macOS Sequoia
+#. Several fixes in ``TopicPayloadPool``
+#. Fix lock order inversion in ``StatefulWriter``
+#. Fix ``StatefulReader`` iterator invalidation during listener callback
+#. Check endianness of ``TCPControlMsgHeader`` & ``TCPHeader``
 
-.. note::
-  If you are upgrading from a version older than 1.7.0, it is **required** to regenerate generated source from IDL
-  files using *fastddsgen*.
-  If you are upgrading from any older version, regenerating the code is *highly recommended*.
+This release includes the following **CI improvements**:
+
+#. Upgrade Linters CI runner image to ``ubuntu-24.04``
 
 Previous versions
 =================
 
+.. include:: previous_versions/v2.6.11.rst
 .. include:: previous_versions/v2.6.10.rst
 .. include:: previous_versions/v2.6.9.rst
 .. include:: previous_versions/v2.6.8.rst

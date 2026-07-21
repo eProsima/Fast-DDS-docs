@@ -1,9 +1,10 @@
 #include <cstdint>
 
 #include <fastdds/dds/domain/qos/DomainParticipantQos.hpp>
+#include <fastdds/dds/publisher/qos/DataWriterQos.hpp>
 #include <fastdds/rtps/transport/ethernet/EthernetTransportDescriptor.hpp>
-#include <fastdds/rtps/transport/low-bandwidth/PayloadCompressionTransportDescriptor.hpp>
 #include <fastdds/rtps/transport/low-bandwidth/HeaderReductionTransportDescriptor.hpp>
+#include <fastdds/rtps/transport/low-bandwidth/PayloadCompressionTransportDescriptor.hpp>
 #include <fastdds/rtps/transport/udp_tsn/TSN_UDPv4TransportDescriptor.hpp>
 #include <fastdds/rtps/transport/udp_tsn/UDPPriorityMappings.hpp>
 
@@ -450,4 +451,18 @@ void rpcdds_custom_scheduling_examples()
         }
     };
     //!--
+}
+
+void dds_domain_examples_pro()
+{
+    {
+        // CONTENT_FILTERING_ON_LATE_JOINERS_PROPERTY
+        DataWriterQos wqos;
+
+        // Enable content filtering on late joiners for this DataWriter
+        wqos.properties().properties().emplace_back(
+            "fastdds.content_filtering_on_late_joiners",
+            "true");
+        //!--
+    }
 }

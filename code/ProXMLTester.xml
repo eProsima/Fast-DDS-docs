@@ -222,5 +222,28 @@
 <-->
 <!--><-->
 
+<!-->CONTENT_FILTERING_ON_LATE_JOINERS_PROPERTY<-->
+<!--
+<?xml version="1.0" encoding="UTF-8" ?>
+<dds>
+    <profiles xmlns="http://www.eprosima.com">
+-->
+        <data_writer profile_name="cft_on_late_joiners_xml_profile">
+            <propertiesPolicy>
+                <properties>
+                    <!-- Enable content filtering on late joiners -->
+                    <property>
+                        <name>fastdds.content_filtering_on_late_joiners</name>
+                        <value>true</value>
+                    </property>
+                </properties>
+            </propertiesPolicy>
+        </data_writer>
+<!-->
+    </profiles>
+</dds>
+<-->
+<!--><-->
+
     </profiles>
 </dds>

@@ -13,6 +13,8 @@ Version 3.6
 Version 3.2
 -----------
 
+.. include:: v3.2.5.rst
+.. include:: v3.2.4.rst
 .. include:: v3.2.3.rst
 .. include:: v3.2.2.rst
 .. include:: v3.2.1.rst

@@ -6,6 +6,11 @@ Information about the release lifecycle can be found
 Version 2.6.12 (maintenance)
 ============================
 
+.. important::
+  According to our
+  `release support guidelines <https://github.com/eProsima/Fast-DDS/blob/master/RELEASE_SUPPORT.md>`_
+  the v2.6 minor will only receive patches for critical issues and security fixes.
+
 This release includes the following **security fixes**:
 
 - `Fix CVE-2026-22590 <https://www.cve.org/CVERecord?id=CVE-2026-22590>`_

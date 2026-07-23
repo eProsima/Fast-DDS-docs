@@ -434,6 +434,7 @@ if read_the_docs_build:
 
     # - Fast DDS
     print("Cloning Fast DDS")
+    # This seems to be very slow
     fastdds = git.Repo.clone_from(
         "https://github.com/eProsima/Fast-DDS.git",
         fastdds_repo_name,

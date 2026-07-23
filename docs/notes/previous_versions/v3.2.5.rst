@@ -1,0 +1,47 @@
+`Version 3.2.5 <https://fast-dds.docs.eprosima.com/en/v3.2.5/index.html>`_
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+This release includes the following **security fixes**:
+
+- `Fix CVE-2025-63829 <https://www.cve.org/CVERecord?id=CVE-2025-63829>`_
+- `Fix CVE-2025-65865 <https://www.cve.org/CVERecord?id=CVE-2025-65865>`_
+- `Fix CVE-2025-67108 <https://www.cve.org/CVERecord?id=CVE-2025-67108>`_
+- `Fix CVE-2026-22591 <https://www.cve.org/CVERecord?id=CVE-2026-22591>`_
+- `Fix CVE-2026-45092 <https://www.cve.org/CVERecord?id=CVE-2026-45092>`_
+- `Fix CVE-2026-45093 <https://www.cve.org/CVERecord?id=CVE-2026-45093>`_
+- `Fix CVE-2026-45094 <https://www.cve.org/CVERecord?id=CVE-2026-45094>`_
+- `Fix CVE-2026-45095 <https://www.cve.org/CVERecord?id=CVE-2026-45095>`_
+- `Fix CVE-2026-45096 <https://www.cve.org/CVERecord?id=CVE-2026-45096>`_
+- `Fix CVE-2026-45097 <https://www.cve.org/CVERecord?id=CVE-2026-45097>`_
+- `Fix CVE-2026-45098 <https://www.cve.org/CVERecord?id=CVE-2026-45098>`_
+- `Fix CVE-2026-49861 <https://www.cve.org/CVERecord?id=CVE-2026-49861>`_
+- `Fix CVE-2026-49862 <https://www.cve.org/CVERecord?id=CVE-2026-49862>`_
+- `Fix CVE-2026-49863 <https://www.cve.org/CVERecord?id=CVE-2026-49863>`_
+- `Fix CVE-2026-53588 <https://www.cve.org/CVERecord?id=CVE-2026-53588>`_
+- `Fix CVE-2026-53589 <https://www.cve.org/CVERecord?id=CVE-2026-53589>`_
+- `Fix CVE-2026-53590 <https://www.cve.org/CVERecord?id=CVE-2026-53590>`_
+- `Fix CVE-2026-55063 <https://www.cve.org/CVERecord?id=CVE-2026-55063>`_
+
+This release includes the following **improvements**:
+
+#. Update RELEASE_SUPPORT.md to only have link to master version
+#. Fix several warnings on several GCC versions
+
+This release includes the following **fixes**:
+
+#. Fix ``RTPSParticipantAttributes`` internal data races
+#. Catch exception when constructing a payload pool Node
+#. Fix null-dereference build
+#. Implement payload release in move assignment
+#. Make ``on_xxx_matched`` thread-safe
+#. Fix dereference error of 'shared_secret_handle'
+#. Assert liveliness with periodic heartbeats in secure participants
+#. Fix data races on ``DataWriterImpl`` qos access
+#. Remove stale TCP channels
+
+This release includes the following **CI improvements**:
+
+#. Make ``skip-ci`` label report required statuses as pass
+#. Improve windows tests
+#. Update security tests to use governance-based encryption configuration
+#. Add ``UBSan`` workflow and solve its errors

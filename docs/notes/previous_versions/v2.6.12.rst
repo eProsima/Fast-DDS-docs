@@ -1,0 +1,34 @@
+`Version 2.6.12 (maintenance) <https://fast-dds.docs.eprosima.com/en/v2.6.12/index.html>`_
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+This release includes the following **security fixes**:
+
+- `Fix CVE-2026-22590 <https://www.cve.org/CVERecord?id=CVE-2026-22590>`_
+- `Fix CVE-2026-22591 <https://www.cve.org/CVERecord?id=CVE-2026-22591>`_
+- `Fix CVE-2026-45094 <https://www.cve.org/CVERecord?id=CVE-2026-45094>`_
+- `Fix CVE-2026-45095 <https://www.cve.org/CVERecord?id=CVE-2026-45095>`_
+- `Fix CVE-2026-45096 <https://www.cve.org/CVERecord?id=CVE-2026-45096>`_
+- `Fix CVE-2025-63829 <https://www.cve.org/CVERecord?id=CVE-2025-63829>`_
+- `Fix CVE-2025-65865 <https://www.cve.org/CVERecord?id=CVE-2025-65865>`_
+- `Fix CVE-2026-45093 <https://www.cve.org/CVERecord?id=CVE-2026-45093>`_
+- `Fix CVE-2026-45092 <https://www.cve.org/CVERecord?id=CVE-2026-45092>`_
+- `Fix CVE-2025-67108 <https://www.cve.org/CVERecord?id=CVE-2025-67108>`_
+- `Fix CVE-2026-49861 <https://www.cve.org/CVERecord?id=CVE-2026-49861>`_
+- `Fix CVE-2026-53589 <https://www.cve.org/CVERecord?id=CVE-2026-53589>`_
+- `Fix CVE-2026-45098 <https://www.cve.org/CVERecord?id=CVE-2026-45098>`_
+- `Fix CVE-2026-49862 <https://www.cve.org/CVERecord?id=CVE-2026-49862>`_
+- `Fix CVE-2026-55063 <https://www.cve.org/CVERecord?id=CVE-2026-55063>`_
+- `Fix CVE-2026-49863 <https://www.cve.org/CVERecord?id=CVE-2026-49863>`_
+- `Fix CVE-2026-53588 <https://www.cve.org/CVERecord?id=CVE-2026-53588>`_
+- `Fix CVE-2026-53590 <https://www.cve.org/CVERecord?id=CVE-2026-53590>`_
+
+This release includes the following **fixes**:
+
+#. Several fixes in ``TopicPayloadPool``
+#. Fix lock order inversion in ``StatefulWriter``
+#. Fix ``StatefulReader`` iterator invalidation during listener callback
+#. Check endianness of ``TCPControlMsgHeader`` & ``TCPHeader``
+
+This release includes the following **CI improvements**:
+
+#. Upgrade Linters CI runner image to ``ubuntu-24.04``

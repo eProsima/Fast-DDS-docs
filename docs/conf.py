@@ -150,15 +150,15 @@ def configure_doxyfile(
 
 script_path = os.path.abspath(pathlib.Path(__file__).parent.absolute())
 # Project directories
-project_source_dir = os.path.abspath('{}/../code'.format(script_path))
-project_binary_dir = os.path.abspath('{}/../build'.format(script_path))
+project_source_dir = os.path.abspath('{}/..'.format(script_path))
+project_binary_dir = os.path.abspath('{}/build'.format(project_source_dir))
 output_dir = os.path.abspath('{}/doxygen'.format(project_binary_dir))
 doxygen_html = os.path.abspath('{}/html/doxygen'.format(project_binary_dir))
 fastdds_python_imported_location = None
 
 # Doxyfile
 doxyfile_in = os.path.abspath(
-    '{}/doxygen-config.in'.format(project_source_dir)
+    '{}/code/doxygen-config.in'.format(project_source_dir)
 )
 doxyfile_out = os.path.abspath('{}/doxygen-config'.format(project_binary_dir))
 

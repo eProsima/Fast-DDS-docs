@@ -240,7 +240,7 @@ if read_the_docs_build:
         'https://github.com/eProsima/Fast-DDS-python.git',
         fastdds_python_repo_name,
         os.environ.get('FASTDDS_PYTHON_BRANCH', None),
-        '1.1.x',
+        '1.0.x',
     )
 
     os.makedirs(os.path.dirname(output_dir), exist_ok=True)

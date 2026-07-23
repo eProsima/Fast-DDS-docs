@@ -22,11 +22,7 @@ import builtins
 import functools
 import os
 import pathlib
-import shutil
-import subprocess
 import sys
-
-import git
 
 import requests
 
@@ -98,191 +94,23 @@ def select_css(html_css_dir):
     return ret
 
 
-def get_git_branch():
-    """Get the git branch this repository is currently on."""
-    path_to_here = os.path.abspath(os.path.dirname(__file__))
-
-    # Invoke git to get the current branch which we use to get the theme
-    try:
-        p = subprocess.Popen(
-            ['git', 'rev-parse', '--abbrev-ref', 'HEAD'],
-            stdout=subprocess.PIPE,
-            cwd=path_to_here
-        )
-
-        return p.communicate()[0].decode().rstrip()
-
-    except Exception:
-        print('Could not get the branch')
-
-    # Couldn't figure out the branch probably due to an error
-    return None
-
-
-def configure_doxyfile(
-    doxyfile_in,
-    doxyfile_out,
-    input_dir,
-    output_dir,
-    project_binary_dir,
-    project_source_dir
-):
-    """
-    Configure Doxyfile in the CMake style.
-
-    :param doxyfile_in: Path to input Doxygen configuration file
-    :param doxyfile_out: Path to output Doxygen configuration file
-    :param input_dir: CMakeLists.txt value of DOXYGEN_INPUT_DIR
-    :param output_dir: CMakeLists.txt value of DOXYGEN_OUTPUT_DIR
-    :param project_binary_dir: CMakeLists.txt value of PROJECT_BINARY_DIR
-    :param project_source_dir: CMakeLists.txt value of PROJECT_SOURCE_DIR
-    """
-    print('Configuring Doxyfile')
-    with open(doxyfile_in, 'r') as file:
-        filedata = file.read()
-
-    filedata = filedata.replace('@DOXYGEN_INPUT_DIR@', input_dir)
-    filedata = filedata.replace('@DOXYGEN_OUTPUT_DIR@', output_dir)
-    filedata = filedata.replace('@PROJECT_BINARY_DIR@', project_binary_dir)
-    filedata = filedata.replace('@PROJECT_SOURCE_DIR@', project_source_dir)
-
-    os.makedirs(os.path.dirname(doxyfile_out), exist_ok=True)
-    with open(doxyfile_out, 'w') as file:
-        file.write(filedata)
-
-
 script_path = os.path.abspath(pathlib.Path(__file__).parent.absolute())
 # Project directories
-project_source_dir = os.path.abspath('{}/../code'.format(script_path))
 project_binary_dir = os.path.abspath('{}/../build'.format(script_path))
 output_dir = os.path.abspath('{}/doxygen'.format(project_binary_dir))
-doxygen_html = os.path.abspath('{}/html/doxygen'.format(project_binary_dir))
 fastdds_python_imported_location = None
 
-# Doxyfile
-doxyfile_in = os.path.abspath(
-    '{}/doxygen-config.in'.format(project_source_dir)
-)
-doxyfile_out = os.path.abspath('{}/doxygen-config'.format(project_binary_dir))
-
-# Header files
-input_dir = os.path.abspath(
-    '{}/fastdds/include/fastdds'.format(
-        project_binary_dir
-    )
-)
-
-# Check if we're running on Read the Docs' servers
-read_the_docs_build = os.environ.get('READTHEDOCS', None) == 'True'
-if read_the_docs_build:
-    print('Read the Docs environment detected!')
-
-    fastdds_repo_name = os.path.abspath(
-        '{}/fastdds'.format(
-            project_binary_dir
-        )
-    )
-
-    fastdds_python_repo_name = os.path.abspath(
-        '{}/fastdds_python'.format(
-            project_binary_dir
-        )
-    )
-
-    # Remove repository if exists
-    if os.path.isdir(fastdds_repo_name):
-        print('Removing existing repository in {}'.format(fastdds_repo_name))
-        shutil.rmtree(fastdds_repo_name)
-    if os.path.isdir(fastdds_python_repo_name):
-        print('Removing existing repository in {}'.format(
-            fastdds_python_repo_name))
-        shutil.rmtree(fastdds_python_repo_name)
-
-    # Create necessary directory path
-    os.makedirs(os.path.dirname(fastdds_repo_name), exist_ok=True)
-    os.makedirs(os.path.dirname(fastdds_python_repo_name), exist_ok=True)
-
-    # Clone repositories
-    def shallow_clone(url, path, requested_branch, default_branch):
-        """Shallow clone a git repository, only one branch and the latest commit."""
-        branch = requested_branch or default_branch
-        try:
-            print('Cloning "{}" branch "{}" of repo "{}"'.format(url, branch, path))
-            return git.Repo.clone_from(
-                url,
-                path,
-                multi_options=['--depth=1', '--single-branch'],
-                branch=branch,
-            )
-        except git.GitCommandError:
-            print('Branch "{}" not found. Using "{}"'.format(
-                branch, default_branch))
-            return git.Repo.clone_from(
-                url,
-                path,
-                multi_options=['--depth=1', '--single-branch'],
-                branch=default_branch,
-            )
-
-    # - Fast DDS
-    fastdds = shallow_clone(
-        'https://github.com/eProsima/Fast-DDS.git',
-        fastdds_repo_name,
-        os.environ.get('FASTDDS_BRANCH', None),
-        '2.6.x',
-    )
-
-    # Documentation repository branch
-    docs_branch = get_git_branch()
-    print('Current documentation branch is "{}"'.format(docs_branch))
-
-
-
-    # - Fast DDS Python Bindings
-    fastdds_python = shallow_clone(
-        'https://github.com/eProsima/Fast-DDS-python.git',
-        fastdds_python_repo_name,
-        os.environ.get('FASTDDS_PYTHON_BRANCH', None),
-        '1.1.x',
-    )
-
-    os.makedirs(os.path.dirname(output_dir), exist_ok=True)
-    os.makedirs(os.path.dirname(doxygen_html), exist_ok=True)
-
-    # Configure Doxyfile
-    configure_doxyfile(
-        doxyfile_in,
-        doxyfile_out,
-        input_dir,
-        output_dir,
-        project_binary_dir,
-        project_source_dir
-    )
-    # Generate doxygen documentation
-    doxygen_ret = subprocess.call('doxygen {}'.format(doxyfile_out), shell=True)
-    if doxygen_ret != 0:
-        print('Doxygen failed with return code {}'.format(doxygen_ret))
-        sys.exit(doxygen_ret)
-
-    # Generate SWIG code.
-    swig_ret = subprocess.call('swig -python -doxygen -I{}/include \
-            -outdir {}/fastdds_python/src/swig -c++ -interface \
-            _fastdds_python -o \
-            {}/fastdds_python/src/swig/fastddsPYTHON_wrap.cxx \
-            {}/fastdds_python/src/swig/fastdds.i'.format(
-                fastdds_repo_name,
-                fastdds_python_repo_name,
-                fastdds_python_repo_name,
-                fastdds_python_repo_name
-                ), shell=True)
-    if swig_ret != 0:
-        print('SWIG failed with return code {}'.format(swig_ret))
-        sys.exit(swig_ret)
-
-    fastdds_python_imported_location = '{}/fastdds_python/src/swig'.format(
-            fastdds_python_repo_name)
-    autodoc_mock_imports = ["_fastdds_python"]
-
+# The C++ (doxygen XML) and Python (SWIG) API reference sources are generated
+# by docs/rtd_prepare.py, run as a Read the Docs `pre_build` job (see
+# readthedocs.yaml). Running it there - instead of here - keeps the expensive
+# clone + doxygen + swig steps out of every sphinx-build invocation (html, and
+# then latex for the PDF) and gives them their own, individually timed and
+# logged build step. Here we only wire sphinx up to whatever was generated.
+swig_output_dir = os.path.abspath(
+    '{}/fastdds_python/src/swig'.format(project_binary_dir))
+if os.path.isdir(swig_output_dir):
+    fastdds_python_imported_location = swig_output_dir
+    autodoc_mock_imports = ['_fastdds_python']
 
 breathe_projects = {
     'FastDDS': os.path.abspath('{}/xml'.format(output_dir))

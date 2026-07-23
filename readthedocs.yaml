@@ -13,8 +13,12 @@ build:
     - plantuml
     - swig
   jobs:
+    # Generate the API reference sources (clone + doxygen + swig) ONCE, as a
+    # dedicated, individually-logged build step, instead of on every
+    # sphinx-build invocation from conf.py. `-u` keeps output unbuffered so
+    # progress is visible in the raw log even if the build later times out.
     pre_build:
-      - export PYTHONUNBUFFERED=1
+      - python -u docs/rtd_prepare.py
 
 # Build documentation in the docs/ directory with Sphinx
 sphinx:

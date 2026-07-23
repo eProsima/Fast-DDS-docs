@@ -18,6 +18,8 @@
 #
 # import sys
 # sys.path.insert(0, os.path.abspath('.'))
+import builtins
+import functools
 import os
 import pathlib
 import shutil
@@ -28,6 +30,7 @@ import git
 
 import requests
 
+print = functools.partial(builtins.print, flush=True)
 
 def setup(app):
     # Add property to avoid warning.

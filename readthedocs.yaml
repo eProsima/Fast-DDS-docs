@@ -12,6 +12,9 @@ build:
   apt_packages:
     - plantuml
     - swig
+  jobs:
+    pre_build:
+      - export PYTHONUNBUFFERED=1
 
 # Build documentation in the docs/ directory with Sphinx
 sphinx:

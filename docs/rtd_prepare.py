@@ -77,12 +77,17 @@ def main():
     total_start = time.monotonic()
 
     script_path = os.path.abspath(os.path.dirname(__file__))
-    project_source_dir = os.path.abspath('{}/../code'.format(script_path))
-    project_binary_dir = os.path.abspath('{}/../build'.format(script_path))
+    # Repo root. `@PROJECT_SOURCE_DIR@` in doxygen-config.in expands to
+    # "<root>/code" (EXAMPLE_PATH, where the example sources live), matching
+    # what CMake's PROJECT_SOURCE_DIR resolves to. It must be the root, NOT
+    # "<root>/code", otherwise EXAMPLE_PATH becomes "<root>/code/code" and
+    # doxygen (>=1.9, treated as error via WARN_AS_ERROR) aborts.
+    project_source_dir = os.path.abspath('{}/..'.format(script_path))
+    project_binary_dir = os.path.abspath('{}/build'.format(project_source_dir))
     output_dir = os.path.abspath('{}/doxygen'.format(project_binary_dir))
     doxygen_html = os.path.abspath('{}/html/doxygen'.format(project_binary_dir))
     doxyfile_in = os.path.abspath(
-        '{}/doxygen-config.in'.format(project_source_dir))
+        '{}/code/doxygen-config.in'.format(project_source_dir))
     doxyfile_out = os.path.abspath(
         '{}/doxygen-config'.format(project_binary_dir))
     input_dir = os.path.abspath(

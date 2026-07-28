@@ -105,6 +105,10 @@ Where the options are:
      - Sets a specific directory as a temporary directory.
    * - -typeros2
      - Generates type naming compatible with ROS 2.
+   * - -license <license_text_file> |Pro|
+     - Specifies file with custom license text to be prepended to every generated file.
+       Every line of the license text file will be prepended with appropriate comment syntax
+       (i.e. ``//`` for C++ files, ``#`` for CMake files, etc.) to be compatible with the generated file type.
    * - -version
      - Shows the current version of eProsima *Fast DDS-Gen*.
 

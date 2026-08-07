@@ -431,58 +431,49 @@ if read_the_docs_build:
     os.makedirs(os.path.dirname(fastdds_python_repo_name), exist_ok=True)
 
     # Clone repositories
+    def shallow_clone(url, path, requested_branch, default_branch="master"):
+        """Shallow clone a git repo: single branch, latest commit only.
+
+        Tries ``requested_branch`` first. Because ``git clone --branch`` accepts
+        both branch names and tags, this also works for tag refs (e.g. "v3.6.1").
+        If the ref does not exist on the remote, the clone raises GitCommandError
+        and we fall back to ``default_branch``. This keeps the previous fallback
+        behaviour without fetching the whole repository.
+        """
+        def _clone(branch):
+            print('Cloning "{}" ref "{}" into "{}"'.format(url, branch, path))
+            return git.Repo.clone_from(
+                url,
+                path,
+                multi_options=["--depth=1", "--single-branch"],
+                branch=branch,
+            )
+
+        branch = requested_branch or default_branch
+        try:
+            return _clone(branch)
+        except git.GitCommandError:
+            print('Ref "{}" not found on remote; falling back to "{}"'.format(
+                branch, default_branch))
+            # A failed clone can leave a partial directory behind; remove it so
+            # the fallback clone starts from a clean path (also on Windows/Mac).
+            if os.path.isdir(path):
+                shutil.rmtree(path, ignore_errors=True)
+            return _clone(default_branch)
 
     # - Fast DDS
-    print("Cloning Fast DDS")
-    fastdds = git.Repo.clone_from(
+    fastdds = shallow_clone(
         "https://github.com/eProsima/Fast-DDS.git",
         fastdds_repo_name,
+        fastdds_fallback_branch,
     )
-
-    # Verify the desired branch/tag actually exists in the cloned remote, falling back to master if not.
-    fastdds_branch = fastdds_fallback_branch
-    if fastdds.refs.__contains__("origin/{}".format(fastdds_branch)):
-        fastdds_branch = "origin/{}".format(fastdds_branch)
-    elif fastdds.tags.__contains__(fastdds_branch):
-        # GitPython exposes tags by bare name, e.g. "v3.6.1".
-        pass
-    else:
-        print(
-            'Fast DDS does not have branch or tag "{}"; falling back to master'.format(
-                fastdds_branch
-            )
-        )
-        fastdds_branch = "origin/master"
-
-    # Actual checkout
-    print('Checking out Fast DDS branch "{}"'.format(fastdds_branch))
-    fastdds.git.checkout(fastdds_branch)
 
     # - Fast DDS Python Bindings
-    print("Cloning Fast DDS Python Bindings")
-    fastdds_python = git.Repo.clone_from(
+    fastdds_python = shallow_clone(
         "https://github.com/eProsima/Fast-DDS-python.git",
         fastdds_python_repo_name,
+        fastdds_python_fallback_branch,
     )
-
-    # Verify the desired branch/tag actually exists in the cloned remote, falling back to master if not.
-    fastdds_python_branch = fastdds_python_fallback_branch
-    if fastdds_python.refs.__contains__("origin/{}".format(fastdds_python_branch)):
-        fastdds_python_branch = "origin/{}".format(fastdds_python_branch)
-    elif fastdds_python.tags.__contains__(fastdds_python_branch):
-        # GitPython exposes tags by bare name, e.g. "v3.6.1".
-        pass
-    else:
-        print(
-            'Fast DDS Python does not have branch or tag "{}"; falling back to master'.format(
-                fastdds_python_branch
-            )
-        )
-        fastdds_python_branch = "origin/master"
-
-    # Actual checkout
-    print('Checking out Fast DDS Python branch "{}"'.format(fastdds_python_branch))
-    fastdds_python.git.checkout(fastdds_python_branch)
 
     os.makedirs(os.path.dirname(output_dir), exist_ok=True)
     os.makedirs(os.path.dirname(doxygen_html), exist_ok=True)

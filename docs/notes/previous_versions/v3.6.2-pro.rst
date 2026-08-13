@@ -1,0 +1,51 @@
+`Version 3.6.2.1 <https://github.com/eProsima/Fast-DDS-Pro/releases/tag/v3.6.2.1>`__ |Pro|
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+This release includes the following **security fixes (CVEs)**:
+
+1. `CVE-2025-63829 <https://www.cve.org/CVERecord?id=CVE-2025-63829>`__
+2. `CVE-2025-65865 <https://www.cve.org/CVERecord?id=CVE-2025-65865>`__
+3. `CVE-2026-45092 <https://www.cve.org/CVERecord?id=CVE-2026-45092>`__
+4. `CVE-2026-45093 <https://www.cve.org/CVERecord?id=CVE-2026-45093>`__
+5. `CVE-2026-45094 <https://www.cve.org/CVERecord?id=CVE-2026-45094>`__
+6. `CVE-2026-45095 <https://www.cve.org/CVERecord?id=CVE-2026-45095>`__
+7. `CVE-2026-45096 <https://www.cve.org/CVERecord?id=CVE-2026-45096>`__
+8. `CVE-2026-45097 <https://www.cve.org/CVERecord?id=CVE-2026-45097>`__
+9. `CVE-2026-45098 <https://www.cve.org/CVERecord?id=CVE-2026-45098>`__
+10. `CVE-2026-49861 <https://www.cve.org/CVERecord?id=CVE-2026-49861>`__
+11. `CVE-2026-49862 <https://www.cve.org/CVERecord?id=CVE-2026-49862>`__
+12. `CVE-2026-49863 <https://www.cve.org/CVERecord?id=CVE-2026-49863>`__
+13. `CVE-2026-53588 <https://www.cve.org/CVERecord?id=CVE-2026-53588>`__
+14. `CVE-2026-53589 <https://www.cve.org/CVERecord?id=CVE-2026-53589>`__
+15. `CVE-2026-53590 <https://www.cve.org/CVERecord?id=CVE-2026-53590>`__
+16. `CVE-2026-55063 <https://www.cve.org/CVERecord?id=CVE-2026-55063>`__
+
+This release includes the following **fixes**:
+
+1. Fix failure setting default locator in empty multicast locator list
+2. Make ``on_xxx_matched`` callbacks thread-safe
+3. Fix ``RTPSParticipantAttributes`` internal data races
+4. Fix TCP reconnection with listening port
+5. Fix QCC 12 compilation on ARM
+6. Fix unused variable on ``GCC 16``
+7. Fix null-dereference build
+8. Fix dereference error of ``shared_secret_handle``
+9. Remove stale unbound channel resources
+10. Fix ``TypeObjectRegistry`` null pass to a callee
+11. Assert liveliness with periodic heartbeats in secure participants
+12. Make ``DataWriter``'s ``set_qos`` and ``enable`` methods thread-safe
+
+This release includes the following **improvements**:
+
+1. Writer-side content filtering on late joiners
+2. Remove Safe DDS signature checks
+3. Improve search of ``ZLIB`` and ``BZip2``
+4. Fix spelling error in ``DataWriter`` documentation
+
+This release includes the following **CI improvements**:
+
+1. Update security tests to use governance-based encryption configuration
+2. Bring to life Fast DDS ``ASan`` CI
+3. Fetch Fast-DDS-Gen-Pro before importing dependencies
+4. Add mirror path to avoid workspace pollution
+5. Add ``UBSan`` workflow and solve its errors

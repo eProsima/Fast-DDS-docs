@@ -20,6 +20,7 @@ The following table shows the currently supported versions of Fast DDS and their
 
 .. list-table::
     :header-rows: 1
+    :widths: 16 16 14 14 15 18
 
     * - Version
       - Version Branch
@@ -322,7 +323,7 @@ The following table shows the corresponding versions of the Fast DDS library dep
             * - `Fast CDR <https://github.com/eProsima/Fast-CDR/>`__
               - `v2.3.6 <https://github.com/eProsima/Fast-CDR/releases/tag/v2.3.6>`__
             * - `Foonathan Memory Vendor <https://github.com/eProsima/foonathan_memory_vendor/>`__
-              - `v1.4.1 <https://github.com/eProsima/foonathan_memory_vendor/releases/tag/v1.4.0>`__
+              - `v1.4.1 <https://github.com/eProsima/foonathan_memory_vendor/releases/tag/v1.4.1>`__
             * - `Asio <https://github.com/chriskohlhoff/asio>`__
               - `v1.34.2 <https://github.com/chriskohlhoff/asio/tree/asio-1-34-2>`__
             * - `TinyXML2 <https://github.com/leethomason/tinyxml2>`__

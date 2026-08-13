@@ -419,6 +419,16 @@ Fast DDS as the core middleware.
               - `v2.6.2 <https://github.com/eProsima/Fast-DDS-python/releases/tag/v2.6.2>`__
             * - `Shapes Demo <https://github.com/eProsima/ShapesDemo/>`__
               - `v3.6.2 <https://github.com/eProsima/ShapesDemo/releases/tag/v3.6.2>`__
+            * - `DDS Monitor <https://github.com/eProsima/DDS-Monitor/>`__
+              - `v4.2.0 <https://github.com/eProsima/DDS-Monitor/releases/tag/v4.2.0>`__
+            * - `Fast DDS Spy <https://github.com/eProsima/Fast-DDS-spy/>`__
+              - `v1.5.1 <https://github.com/eProsima/Fast-DDS-spy/releases/tag/v1.5.1>`__
+            * - `DDS Record & Replay <https://github.com/eProsima/DDS-Record-Replay/>`__
+              - `v1.5.1 <https://github.com/eProsima/DDS-Record-Replay/releases/tag/v1.5.1>`__
+            * - `DDS Router <https://github.com/eProsima/DDS-Router/>`__
+              - `v3.5.1 <https://github.com/eProsima/DDS-Router/releases/tag/v3.5.1>`__
+            * - `DDS Enabler <https://github.com/eProsima/DDS-Enabler/>`__
+              - `v1.2.0 <https://github.com/eProsima/DDS-Enabler/releases/tag/v1.2.0>`__
 
     .. tab-item:: 3.2.x
         :sync: 3.2.x
@@ -438,6 +448,14 @@ Fast DDS as the core middleware.
               - `v3.2.5 <https://github.com/eProsima/ShapesDemo/releases/tag/v3.2.5>`__
             * - `Discovery Server <https://github.com/eProsima/Discovery-Server/>`__
               - `v2.0.3 <https://github.com/eProsima/Discovery-Server/releases/tag/v2.0.3>`__
+            * - `DDS Monitor <https://github.com/eProsima/DDS-Monitor/>`__
+              - `v3.2.0 <https://github.com/eProsima/DDS-Monitor/releases/tag/v3.2.0>`__
+            * - `Fast DDS Spy <https://github.com/eProsima/Fast-DDS-spy/>`__
+              - `v1.2.0 <https://github.com/eProsima/Fast-DDS-spy/releases/tag/v1.2.0>`__
+            * - `DDS Record & Replay <https://github.com/eProsima/DDS-Record-Replay/>`__
+              - `v1.2.0 <https://github.com/eProsima/DDS-Record-Replay/releases/tag/v1.2.0>`__
+            * - `DDS Router <https://github.com/eProsima/DDS-Router/>`__
+              - `v3.2.0 <https://github.com/eProsima/DDS-Router/releases/tag/v3.2.0>`__
 
     .. tab-item:: 2.14.x
         :sync: 2.14.x
@@ -457,6 +475,10 @@ Fast DDS as the core middleware.
               - `v2.14.6 <https://github.com/eProsima/ShapesDemo/releases/tag/v2.14.6>`__
             * - `Discovery Server <https://github.com/eProsima/Discovery-Server/>`__
               - `v1.2.2 <https://github.com/eProsima/Discovery-Server/releases/tag/v1.2.2>`__
+            * - `DDS Monitor <https://github.com/eProsima/DDS-Monitor/>`__
+              - `v2.1.0 <https://github.com/eProsima/DDS-Monitor/releases/tag/v2.1.0>`__
+            * - `DDS Router <https://github.com/eProsima/DDS-Router/>`__
+              - `v2.2.0 <https://github.com/eProsima/DDS-Router/releases/tag/v2.2.0>`__
 
     .. tab-item:: 2.6.x (maintenance)
         :sync: 2.6.x

@@ -92,6 +92,58 @@ The following table shows the minimum version required of the Fast DDS build sys
 
 .. tab-set::
 
+    .. tab-item:: 3.7.x
+        :sync: 3.7.x
+
+        .. list-table::
+
+            * - **CMake**
+              - 3.20
+
+        .. list-table::
+            :header-rows: 1
+
+            * - OS \ Architecture
+              - amd64
+              - amd32
+              - arm64
+            * - Ubuntu Noble (24.04)
+              - Tier 3: GCC 11.4
+              - **───**
+              - Tier 3: GCC 11.4
+            * - Ubuntu Jammy (22.04)
+              - Tier 1: GCC 11.4
+              - **───**
+              - Tier 1: GCC 11.4
+            * - MacOS Sequoia (15)
+              - Tier 1: Clang 16
+              - **───**
+              - **───**
+            * - Windows 10
+              - Tier 1: MSVC v142 (Visual Studio 2019)
+              - Tier 3: MSVC v142 (Visual Studio 2019)
+              - **───**
+            * - Windows 11
+              - Tier 1: MSVC v142 (Visual Studio 2019)
+              - Tier 3: MSVC v142 (Visual Studio 2019)
+              - **───**
+            * - Debian Buster (10)
+              - Tier 3: GCC 8
+              - **───**
+              - Tier 3: GCC 8
+            * - Android 12
+              - Tier 3: SDK 31
+              - **───**
+              - Tier 3: SDK 31
+            * - Android 13
+              - Tier 3: SDK 33
+              - **───**
+              - Tier 3: SDK 33
+            * - QNX 7.1
+              - Tier 3: QCC (over GCC 8.3)
+              - **───**
+              - Tier 3: QCC (over GCC 8.3)
+
     .. tab-item:: 3.6.x
         :sync: 3.6.x
 
@@ -312,6 +364,25 @@ The following table shows the corresponding versions of the Fast DDS library dep
 
 .. tab-set::
 
+    .. tab-item:: 3.7.x
+        :sync: 3.7.x
+
+        .. list-table::
+            :header-rows: 1
+
+            * - Product
+              - Related version
+            * - `Fast CDR <https://github.com/eProsima/Fast-CDR/>`__
+              - `v2.4.0 <https://github.com/eProsima/Fast-CDR/releases/tag/v2.4.0>`__
+            * - `Foonathan Memory Vendor <https://github.com/eProsima/foonathan_memory_vendor/>`__
+              - `v1.4.1 <https://github.com/eProsima/foonathan_memory_vendor/releases/tag/v1.4.1>`__
+            * - `Asio <https://github.com/chriskohlhoff/asio>`__
+              - `v1.34.2 <https://github.com/chriskohlhoff/asio/tree/asio-1-34-2>`__
+            * - `TinyXML2 <https://github.com/leethomason/tinyxml2>`__
+              - `v6.0.0 <https://github.com/leethomason/tinyxml2/tree/6.0.0>`__
+            * - `OpenSSL <https://github.com/openssl/openssl>`__
+              - `v3.3.6 (Windows) <https://github.com/openssl/openssl/releases/tag/openssl-3.3.6>`__, default installation in Ubuntu distributions
+
     .. tab-item:: 3.6.x
         :sync: 3.6.x
 
@@ -403,6 +474,33 @@ The following table shows the compatibility between the different versions of th
 Fast DDS as the core middleware.
 
 .. tab-set::
+
+    .. tab-item:: 3.7.x
+        :sync: 3.7.x
+
+        .. list-table::
+            :header-rows: 1
+
+            * - Product
+              - Related version
+            * - `Fast DDS Gen <https://github.com/eProsima/Fast-DDS-Gen/>`__
+              - `v4.3.0 <https://github.com/eProsima/Fast-DDS-Gen/releases/tag/v4.3.0>`__
+            * - `Fast DDS Gen - IDL parser <https://github.com/eProsima/IDL-Parser/>`__
+              - `v4.4.0 <https://github.com/eProsima/IDL-Parser/releases/tag/v4.4.0>`__
+            * - `Fast DDS Python <https://github.com/eProsima/Fast-DDS-python/>`__
+              - `v2.6.2 <https://github.com/eProsima/Fast-DDS-python/releases/tag/v2.6.2>`__
+            * - `Shapes Demo <https://github.com/eProsima/ShapesDemo/>`__
+              - `v3.6.2 <https://github.com/eProsima/ShapesDemo/releases/tag/v3.6.2>`__
+            * - `DDS Monitor <https://github.com/eProsima/DDS-Monitor/>`__
+              - `v4.2.0 <https://github.com/eProsima/DDS-Monitor/releases/tag/v4.2.0>`__
+            * - `Fast DDS Spy <https://github.com/eProsima/Fast-DDS-spy/>`__
+              - `v1.5.1 <https://github.com/eProsima/Fast-DDS-spy/releases/tag/v1.5.1>`__
+            * - `DDS Record & Replay <https://github.com/eProsima/DDS-Record-Replay/>`__
+              - `v1.5.1 <https://github.com/eProsima/DDS-Record-Replay/releases/tag/v1.5.1>`__
+            * - `DDS Router <https://github.com/eProsima/DDS-Router/>`__
+              - `v3.5.1 <https://github.com/eProsima/DDS-Router/releases/tag/v3.5.1>`__
+            * - `DDS Enabler <https://github.com/eProsima/DDS-Enabler/>`__
+              - `v1.2.0 <https://github.com/eProsima/DDS-Enabler/releases/tag/v1.2.0>`__
 
     .. tab-item:: 3.6.x
         :sync: 3.6.x

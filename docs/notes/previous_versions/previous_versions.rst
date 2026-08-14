@@ -2,16 +2,27 @@
 .. include:: ../../03-exports/aliases.include
 .. include:: ../../03-exports/pro-only-refs.include
 
-Previous end-of-life versions
-=============================
+EOL versions
+============
+
+Fast DDS |Pro|
+--------------
 
 Version 3.5 (EOL)
------------------
+"""""""""""""""""
+
+.. include:: v3.5.0-pro.rst
+
+Fast DDS
+--------
+
+Version 3.5 (EOL)
+"""""""""""""""""
 
 .. include:: v3.5.0.rst
 
 Version 3.4 (EOL)
------------------
+"""""""""""""""""
 
 .. include:: v3.4.3.rst
 .. include:: v3.4.2.rst
@@ -19,13 +30,13 @@ Version 3.4 (EOL)
 .. include:: v3.4.0.rst
 
 Version 3.3 (EOL)
------------------
+"""""""""""""""""
 
 .. include:: v3.3.1.rst
 .. include:: v3.3.0.rst
 
 Version 3.1 (EOL)
------------------
+"""""""""""""""""
 
 .. include:: v3.1.3.rst
 .. include:: v3.1.2.rst
@@ -33,14 +44,14 @@ Version 3.1 (EOL)
 .. include:: v3.1.0.rst
 
 Version 3.0 (EOL)
------------------
+"""""""""""""""""
 
 .. include:: v3.0.2.rst
 .. include:: v3.0.1.rst
 .. include:: v3.0.0.rst
 
 Version 2.13 (EOL)
-------------------
+""""""""""""""""""
 
 .. include:: v2.13.6.rst
 .. include:: v2.13.5.rst
@@ -51,14 +62,14 @@ Version 2.13 (EOL)
 .. include:: v2.13.0.rst
 
 Version 2.12 (EOL)
-------------------
+""""""""""""""""""
 
 .. include:: v2.12.2.rst
 .. include:: v2.12.1.rst
 .. include:: v2.12.0.rst
 
 Version 2.11 (EOL)
-------------------
+""""""""""""""""""
 
 .. include:: v2.11.3.rst
 .. include:: v2.11.2.rst
@@ -66,7 +77,7 @@ Version 2.11 (EOL)
 .. include:: v2.11.0.rst
 
 Version 2.10 (EOL)
-------------------
+""""""""""""""""""
 
 .. include:: v2.10.7.rst
 .. include:: v2.10.6.rst
@@ -78,42 +89,42 @@ Version 2.10 (EOL)
 .. include:: v2.10.0.rst
 
 Version 2.9 (EOL)
------------------
+"""""""""""""""""
 
 .. include:: v2.9.2.rst
 .. include:: v2.9.1.rst
 .. include:: v2.9.0.rst
 
 Version 2.8 (EOL)
------------------
+"""""""""""""""""
 
 .. include:: v2.8.2.rst
 .. include:: v2.8.1.rst
 .. include:: v2.8.0.rst
 
 Version 2.7 (EOL)
------------------
+"""""""""""""""""
 
 .. include:: v2.7.2.rst
 .. include:: v2.7.1.rst
 .. include:: v2.7.0.rst
 
 Version 2.5 (EOL)
------------------
+"""""""""""""""""
 
 .. include:: v2.5.2.rst
 .. include:: v2.5.1.rst
 .. include:: v2.5.0.rst
 
 Version 2.4 (EOL)
------------------
+"""""""""""""""""
 
 .. include:: v2.4.2.rst
 .. include:: v2.4.1.rst
 .. include:: v2.4.0.rst
 
 Version 2.3 (EOL)
------------------
+"""""""""""""""""
 
 .. include:: v2.3.6.rst
 .. include:: v2.3.5.rst
@@ -124,13 +135,13 @@ Version 2.3 (EOL)
 .. include:: v2.3.0.rst
 
 Version 2.2 (EOL)
------------------
+"""""""""""""""""
 
 .. include:: v2.2.1.rst
 .. include:: v2.2.0.rst
 
 Version 2.1 (EOL)
------------------
+"""""""""""""""""
 
 .. include:: v2.1.4.rst
 .. include:: v2.1.3.rst
@@ -139,7 +150,7 @@ Version 2.1 (EOL)
 .. include:: v2.1.0.rst
 
 Version 2.0 (EOL)
------------------
+"""""""""""""""""
 
 .. include:: v2.0.3.rst
 .. include:: v2.0.2.rst
@@ -147,13 +158,13 @@ Version 2.0 (EOL)
 .. include:: v2.0.0.rst
 
 Version 1.10 (EOL)
-------------------
+""""""""""""""""""
 
 .. include:: v1.10.1.rst
 .. include:: v1.10.0.rst
 
 Version 1.9 (EOL)
------------------
+"""""""""""""""""
 
 .. include:: v1.9.5.rst
 .. include:: v1.9.4.rst
@@ -163,7 +174,7 @@ Version 1.9 (EOL)
 .. include:: v1.9.0.rst
 
 Version 1.8 (EOL)
------------------
+"""""""""""""""""
 
 .. include:: v1.8.5.rst
 .. include:: v1.8.4.rst
@@ -173,7 +184,7 @@ Version 1.8 (EOL)
 .. include:: v1.8.0.rst
 
 Version 1.7 (EOL)
------------------
+"""""""""""""""""
 
 .. include:: v1.7.3.rst
 .. include:: v1.7.2.rst
@@ -181,27 +192,27 @@ Version 1.7 (EOL)
 .. include:: v1.7.0.rst
 
 Version 1.6 (EOL)
------------------
+"""""""""""""""""
 
 .. include:: v1.6.0.rst
 
 Version 1.5 (EOL)
------------------
+"""""""""""""""""
 
 .. include:: v1.5.0.rst
 
 Version 1.4 (EOL)
------------------
+"""""""""""""""""
 
 .. include:: v1.4.0.rst
 
 Version 1.3 (EOL)
------------------
+"""""""""""""""""
 
 .. include:: v1.3.1.rst
 .. include:: v1.3.0.rst
 
 Version 1.2 (EOL)
------------------
+"""""""""""""""""
 
 .. include:: v1.2.0.rst

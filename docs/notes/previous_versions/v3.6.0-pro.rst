@@ -1,0 +1,27 @@
+`Version 3.6.0.1 <https://github.com/eProsima/Fast-DDS-Pro/releases/tag/v3.6.0.1>`__ |Pro|
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+This release includes the following **security fixes (CVEs)**:
+
+1. `CVE-2026-22591 <https://www.cve.org/CVERecord?id=CVE-2026-22591>`__
+
+This release includes the following **fixes**:
+
+1. Fixed all-acked low-mark handling in ``StatefulWriter`` and added regression test
+2. Added SWIG macro to fix Fast DDS Python build
+
+This release includes the following **improvements**:
+
+1. TCP Keep Alive implementation
+2. Add ``should_endpoints_match_callback`` in ``DomainParticipant`` and ``RTPSParticipant``
+3. Add context to type support operations
+4. Add send rate limiter to ``PDPServer`` discovery routine
+5. Improve performance in ``GUID``, ``GUIDPrefix`` and ``EntityId`` comparison operators
+
+This release includes the following **CI improvements**:
+
+1. Enable Docker-outside-Docker for CI
+2. Fix on Windows CI yaml
+3. Detect ABI breaks in Fast DDS Pro
+4. Using eProsima-CI instead of local ones
+5. Fix Ubuntu tests

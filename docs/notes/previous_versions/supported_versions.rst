@@ -3,15 +3,26 @@
 Supported versions
 ==================
 
-Version 3.6
------------
+Fast DDS |Pro|
+--------------
 
-.. include:: v3.6.2.rst
+Version 3.6
+"""""""""""
+
+.. include:: v3.6.1-pro.rst
+.. include:: v3.6.0-pro.rst
+
+Fast DDS
+--------
+
+Version 3.6
+"""""""""""
+
 .. include:: v3.6.1.rst
 .. include:: v3.6.0.rst
 
 Version 3.2
------------
+"""""""""""
 
 .. include:: v3.2.5.rst
 .. include:: v3.2.4.rst
@@ -21,7 +32,7 @@ Version 3.2
 .. include:: v3.2.0.rst
 
 Version 2.14
-------------
+""""""""""""
 
 .. include:: v2.14.6.rst
 .. include:: v2.14.5.rst
@@ -32,7 +43,7 @@ Version 2.14
 .. include:: v2.14.0.rst
 
 Version 2.6 (maintenance)
--------------------------
+"""""""""""""""""""""""""
 
 .. include:: v2.6.12.rst
 .. include:: v2.6.11.rst

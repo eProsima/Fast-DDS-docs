@@ -3,8 +3,8 @@
 Supported versions
 ==================
 
-Fast DDS Pro
-------------
+Fast DDS |Pro|
+--------------
 
 Version 3.6
 """""""""""

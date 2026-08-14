@@ -5,8 +5,8 @@
 EOL versions
 ============
 
-Fast DDS Pro
-------------
+Fast DDS |Pro|
+--------------
 
 Version 3.5 (EOL)
 """""""""""""""""

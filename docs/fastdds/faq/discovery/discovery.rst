@@ -74,14 +74,18 @@ Discovery Frequently Asked Questions
 
 .. collapse::  What is a client in this context?
 
-    |br| A ``CLIENT`` is a participant that connects to one or more servers from which it receives only the discovery information they require to establish communication with matching endpoints.
+    |br| A ``CLIENT`` is a participant that connects to one or more servers from which it receives discovery information to establish communication with matching endpoints.
+    With Fast DDS Pro, clients benefit from an optimized matching algorithm that filters discovery data, delivering only the information necessary for communication with relevant endpoints.
+    In the open-source Fast DDS distribution, clients operate with the same discovery behavior as super clients, receiving all discovery information from the server.
     For further information, refer to :ref:`discovery_server`.
 
 ----------
 
 .. collapse::  What is the difference between a CLIENT and a SUPER_CLIENT?
 
-    |br| A ``SUPER_CLIENT`` is a client that receives the discovery information known by the server, in opposition to clients, which only receive the information they need.
+    |br| A ``SUPER_CLIENT`` is a client that receives all discovery information known by the server.
+    In Fast DDS Pro, standard clients receive only filtered, relevant discovery information through an optimized matching algorithm, improving efficiency and reducing network overhead.
+    In the open-source Fast DDS distribution, all clients operate as super clients by default.
     For further information, refer to :ref:`discovery_server`.
 
 ----------

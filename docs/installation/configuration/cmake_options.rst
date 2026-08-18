@@ -348,3 +348,25 @@ The building and execution of these tests is specified by the *Fast DDS* CMake o
           use for installing and running the tests.
         - ``Valid Unix filesystem path string``
         - ``""``
+
+Python-Binding
+^^^^^^^^^^^^^^
+
+The *Fast DDS Python-Binding* CMake options are shown below, together with their description and values.
+
+.. list-table::
+    :header-rows: 1
+
+    *   - Option
+        - Description
+        - Possible values
+        - Default
+    *   - :class:`USE_PYTHON_STABLE_ABI`
+        - Enables building a Python extension module using the Stable ABI (Application Binary Interface),
+          allowing the resulting binary to be used across multiple Python 3 minor versions without recompilation.
+
+          When is enabled, the extension is compatible with all newer (>= 3.9) Python 3.x interpreters
+          (e.g.: A module built for Python 3.13 will work unmodified on 3.12, 3.11, etc.)
+
+        - ``ON`` ``OFF``
+        - ``OFF``

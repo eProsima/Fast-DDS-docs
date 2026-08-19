@@ -89,6 +89,8 @@ Where the options are:
        Enabled automatically if -no-typesupport argument is used.
    * - -no-dependencies
      - Avoids processing the dependent IDL files.
+   * - -disable-buffers
+     - Avoids generating custom buffers for unbounded octet sequences.
    * - -ppDisable
      - Disables the preprocessor.
    * - -ppPath

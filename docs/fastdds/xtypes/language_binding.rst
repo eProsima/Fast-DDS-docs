@@ -875,6 +875,11 @@ Please, refer to :ref:`builtin annotations <builtin_annotations>` for the comple
       - ✅
       - ❌
       - ✅
+    * - :code:`@autoid`
+      - |MemberDescriptor-api| :code:`id` property (automatic assignment).
+      - ❌
+      - ❌
+      - ✅ |Pro|
     * - :code:`@bit_bound`
       - |TypeDescriptor-api| :code:`bound` property for :ref:`xtypes_supportedtypes_bitset`. |br|
         |TypeDescriptor-api| :code:`literal_type` property for :ref:`xtypes_supportedtypes_enumeration`.
@@ -906,6 +911,11 @@ Please, refer to :ref:`builtin annotations <builtin_annotations>` for the comple
       - ✅
       - ❌
       - ✅
+    * - :code:`@hashid`
+      - |MemberDescriptor-api| :code:`id` property (hash-derived).
+      - ❌
+      - ❌
+      - ✅ |Pro|
     * - :code:`@id`
       - |MemberDescriptor-api| :code:`id` property.
       - ✅

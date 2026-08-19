@@ -32,6 +32,7 @@ For further information about the supported |DynamicTypes|, please, refer to :re
 * Union/struct forward declarations
 * Modules/scoped types
 * :ref:`xtypes_builtin_annotations`
+* Member ID
 
 The following types are currently not supported by the IDL parsing feature:
 
@@ -40,7 +41,6 @@ The following types are currently not supported by the IDL parsing feature:
 * :ref:`xtypes_supportedtypes_bitset`
 * :ref:`xtypes_custom_annotations`
 * Inheritance
-* Member ID
 
 Create a Dynamic Type from a IDL file
 -------------------------------------

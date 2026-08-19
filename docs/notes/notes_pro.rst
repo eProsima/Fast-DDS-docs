@@ -2,7 +2,7 @@
 
 .. _release_notes_pro:
 
-.. include:: previous_versions/v3.6.2-pro.rst
+.. include:: previous_versions/v3.7.0.1-pro.rst
 
 .. seealso::
 

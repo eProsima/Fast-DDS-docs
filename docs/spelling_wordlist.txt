@@ -1,4 +1,5 @@
 aarch
+abi
 acceptor
 acceptors
 accessor
@@ -61,6 +62,7 @@ Cardinality
 CCache
 cdr
 CDR
+CVEs
 centric
 Centric
 cerr
@@ -94,6 +96,7 @@ datareaders
 datasharing
 Datasharing
 DDSEntityStatus
+DDSSQLFilterTests
 de
 deallocate
 deallocated
@@ -111,6 +114,7 @@ deserializer
 deserializes
 destructor
 destructors
+desync
 diffie
 dir
 DNS
@@ -119,6 +123,7 @@ domainparticipant
 downcasted
 doxygen
 DurabilityKind
+DynamicTypes
 eClock
 endian
 endianness
@@ -277,6 +282,7 @@ retransmissions
 rnd
 roadmap
 rosbag
+rosidl
 rtps
 runtime
 sanitizers

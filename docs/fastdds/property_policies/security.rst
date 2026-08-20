@@ -16,7 +16,7 @@ Authentication plugin settings
 The :ref:`DDS\:Auth\:PKI-DH <auth-pki-dh>` authentication plugin, can be activated setting the |DomainParticipantQos|
 |DomainParticipantQos::properties-api|
 ``dds.sec.auth.plugin`` with the value ``builtin.PKI-DH``.
-Note that since Fast DDS ``v3.7.0``, secure participants must configure the authentication, access control, and
+Note that since Fast DDS Pro ``v3.7.0``, secure participants must configure the authentication, access control, and
 cryptography plugins together.
 
 The following table outlines the properties used for the :ref:`DDS\:Auth\:PKI-DH <auth-pki-dh>` plugin configuration.
@@ -133,7 +133,7 @@ Cryptographic plugin settings
 The :ref:`DDS\:Crypto\:AES-GCM-GMAC <crypto-aes-gcm-gmac>` authentication plugin,
 can be activated setting the |DomainParticipantQos| |DomainParticipantQos::properties-api|
 ``dds.sec.crypto.plugin`` with the value ``builtin.AES-GCM-GMAC``.
-Note that since Fast DDS ``v3.7.0``, secure participants must configure the authentication, access control, and
+Note that since Fast DDS Pro ``v3.7.0``, secure participants must configure the authentication, access control, and
 cryptography plugins together.
 
 Moreover, this plugin needs the activation of the :ref:`auth-pki-dh`.

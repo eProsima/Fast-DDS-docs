@@ -38,7 +38,7 @@ A |Property-api| is defined by its name (:class:`std::string`)
 and its value (:class:`std::string`).
 
 .. important::
-  Since version v3.7.0, Fast DDS enforces to configure the three main security plugins
+  Since version v3.7.0, Fast DDS Pro enforces to configure the three main security plugins
   (authentication, access control and cryptography) to enable secure communication.
   A laxer configuration can be achieved by configuring the access control plugin to be
   permissive, but it is still mandatory to configure the authentication and cryptography plugins.

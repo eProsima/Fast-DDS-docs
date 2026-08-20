@@ -31,7 +31,7 @@ This shared secret can be used by other security plugins as :ref:`crypto-aes-gcm
 The DDS:\Auth\:PKI-DH authentication plugin, can be activated setting the |DomainParticipantQos|
 |DomainParticipantQos::properties-api|
 ``dds.sec.auth.plugin`` with the value ``builtin.PKI-DH``.
-Note that since Fast DDS ``v3.7.0``, secure participants must configure the authentication, access control, and
+Note that since Fast DDS Pro ``v3.7.0``, secure participants must configure the authentication, access control, and
 cryptography plugins together.
 
 The following table outlines the properties used for the DDS:\Auth\:PKI-DH plugin configuration.
@@ -92,7 +92,7 @@ configuration.
         :end-before: <!--><-->
 
 .. important::
-  Since version v3.7.0, Fast DDS enforces to configure the three main security plugins
+  Since version v3.7.0, Fast DDS Pro enforces to configure the three main security plugins
   (authentication, access control and cryptography) to enable secure communication.
   The previous example focuses only on the authentication plugin, but all three plugins must be configured.
 

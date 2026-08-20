@@ -1005,17 +1005,6 @@ void dds_domain_examples()
     }
 
     {
-        //DDS-SHM-ONLY-HOST-ID-ON-LOCATORS
-        DomainParticipantQos participant_qos;
-
-        // SHM transport will use only the IP-based host ID part of the locator
-        participant_qos.properties().properties().emplace_back(
-            "fastdds.shm.only_host_id_on_locators",
-            "true");
-        //!--
-    }
-
-    {
         // MAX_MESSAGE_SIZE_PROPERTY_PARTICIPANT
         DomainParticipantQos pqos;
 

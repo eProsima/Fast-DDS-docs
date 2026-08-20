@@ -350,8 +350,8 @@ The behavior regarding this can be configured using the property ``fastdds.shm.e
 
 .. _property_policies_shm_host_id_only:
 
-SHM transport locators format
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+SHM transport locators format |Pro|
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 Prior to version 3.7.0 of *Fast DDS*, the locators format for SHM transport included a two byte ID
 based on the IP addresses of the host, which was used to identify the host in which the participant
@@ -371,19 +371,6 @@ therefore not being able to communicate.
 In order to avoid this situation, the property ``fastdds.shm.only_host_id_on_locators`` can be set
 to ``true`` to force the SHM transport to use only the IP-based host ID part of the locator, both
 in the announced locators and when processing the locators of remote participants.
-
-.. tab-set-code::
-
-    .. literalinclude:: /../code/DDSCodeTester.cpp
-        :language: c++
-        :start-after: //DDS-SHM-ONLY-HOST-ID-ON-LOCATORS
-        :end-before: //!--
-        :dedent: 8
-
-    .. literalinclude:: /../code/XMLTester.xml
-        :language: xml
-        :start-after: <!-->XML-SHM-ONLY-HOST-ID-ON-LOCATORS
-        :end-before: <!--><-->
 
 .. _property_max_message_size:
 

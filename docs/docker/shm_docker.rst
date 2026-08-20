@@ -27,7 +27,7 @@ command, those are:
   A more advanced user could set the flag to `shared`, thus sharing the shared memory mechanism of one of the container
   with the others.
 
-Starting with Fast DDS 3.7.0, the participant property ``fastdds.shm.only_host_id_on_locators`` shall also be set
+Starting with Fast DDS Pro 3.7.0, the participant property ``fastdds.shm.only_host_id_on_locators`` shall also be set
 to ``true`` to force the SHM transport to not consider the machine ID on the locators, since the machine ID would
 probably be different for each container, and therefore the SHM transport would not be able to find the other
 participants.

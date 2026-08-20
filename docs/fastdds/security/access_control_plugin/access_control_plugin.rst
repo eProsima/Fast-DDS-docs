@@ -37,6 +37,9 @@ in detail below.
 The DDS\:Access\:Permissions authentication plugin, can be activated setting the |DomainParticipantQos|
 |DomainParticipantQos::properties-api|
 ``dds.sec.access.plugin`` with the value ``builtin.Access-Permissions``.
+Note that since Fast DDS Pro ``v3.7.0``, secure participants must configure the authentication, access control, and
+cryptography plugins together.
+
 The following table outlines the properties used for the DDS\:Access\:Permissions plugin configuration.
 
 .. list-table::
@@ -79,6 +82,11 @@ configuration.
         :language: xml
         :start-after: <!-->DDS_SECURITY_ACCESS_CONTROL_PLUGIN<-->
         :end-before: <!--><-->
+
+.. important::
+  Since version v3.7.0, Fast DDS Pro enforces to configure the three main security plugins
+  (authentication, access control and cryptography) to enable secure communication.
+  The previous example focuses only on the access control plugin, but all three plugins must be configured.
 
 .. _permissions_ca_cert:
 

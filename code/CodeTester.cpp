@@ -323,6 +323,7 @@ bool permissions_test(
     part_attr.properties.properties().emplace_back(
         "dds.sec.access.builtin.Access-Permissions.permissions",
         permissions_file);
+
     RTPSParticipant* participant = RTPSDomain::createParticipant(0, part_attr);
     if (participant != nullptr)
     {

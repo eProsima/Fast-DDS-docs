@@ -281,7 +281,7 @@ which will try to connect to another Discovery Server located in the host ``10.0
     export ROS2_EASY_MODE=10.0.0.1
 
 The port of the Discovery Server is calculated using the rules explained in the :ref:`listening_locators_defaultPorts`.
-The transports configured in this new mode include :ref:`UDP<transport_udp_udp>` unicast for discovery and
+The transports configured in this new mode include :ref:`TCP<transport_tcp_tcp>` unicast for discovery and
 :ref:`TCP<transport_tcp_tcp>` and :ref:`Shared Memory<transport_sharedMemory_sharedMemory>` for user data.
 
 A detailed tutorial can be found in the

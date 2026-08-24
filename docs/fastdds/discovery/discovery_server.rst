@@ -21,7 +21,7 @@ Fast DDS, is available to ease Discovery Server setup and testing.
 
 .. figure:: /01-figures/fast_dds/discovery/discovery-server.svg
     :align: center
-    :width: 50%
+    :width: 70%
 
     Comparison of Discovery Server and Simple discovery mechanisms
 

@@ -4,8 +4,8 @@
 
 .. _discovery_static:
 
-STATIC Discovery Settings
--------------------------
+STATIC Discovery
+----------------
 
 *Fast DDS* allows for the substitution of the SEDP protocol for the EDP phase with a static version that completely
 eliminates EDP meta traffic.

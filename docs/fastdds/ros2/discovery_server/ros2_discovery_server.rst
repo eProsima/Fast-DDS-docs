@@ -35,8 +35,8 @@ redundancy over the network and avoid having a *Single-Point-Of-Failure*.
 .. _ros2_discovery_server_versions:
 .. _ros2_discovery_server_v2:
 
-Discovery Server in Fast DDS open source and Fast DDS Pro
----------------------------------------------------------
+Discovery Server in Fast DDS and Fast DDS Pro
+----------------------------------------------
 
 The Discovery Server is available both in the open-source version of *Fast DDS* and in *Fast DDS Pro*.
 The client-server architecture described above, and therefore the removal of the *Multicasting* requirement, is

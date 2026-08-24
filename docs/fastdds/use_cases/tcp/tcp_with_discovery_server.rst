@@ -8,7 +8,7 @@ TCP Communication with Discovery Server
 
 *Fast DDS* :ref:`discovery-server-use-case` consists on a client-server discovery mechanism, in which a server
 |DomainParticipant| operates as the central point of communication. It collects and processes the metatraffic
-sent by the client DomainParticipants, and then distributes the appropriate information among the rest of
+sent by the client DomainParticipants, and then distributes it among the rest of
 the clients. An extended description of the feature can be found at :ref:`discovery_server`.
 
 To use TCP communication along with Discovery Server, both the server participant and the client participant

@@ -14,7 +14,7 @@ DomainParticipants, so that matching between entities of the same topic can occu
 *Fast DDS* provides a client-server discovery mechanism, in which a server DomainParticipant operates
 as the central point of communication.
 It collects and processes the metatraffic sent by the client DomainParticipants,
-and then distributes the appropriate information among the rest of the clients.
+and then distributes it among the rest of the clients.
 
 A complete description of the feature can be found at :ref:`discovery_server`.
 The following subsections present configurations for different discovery server use cases.

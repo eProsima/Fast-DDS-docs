@@ -11,8 +11,8 @@ This mechanism is based on a client-server discovery paradigm, i.e. the metatraf
 |DomainParticipants| to identify each other) is managed by one or several server DomainParticipants (left figure), as
 opposed to simple discovery (right figure), where metatraffic is exchanged using a message broadcast mechanism like an
 IP multicast protocol.
-A `Discovery-Server <https://eprosima-discovery-server.readthedocs.io/en/latest/index.html>`_ tool is available to
-ease Discovery Server setup and testing.
+The :ref:`fastdds discovery <cli_discovery>` command of the :ref:`Fast DDS CLI <ffastddscli_cli>`, which ships with
+Fast DDS, is available to ease Discovery Server setup and testing.
 
 .. note::
 
@@ -51,10 +51,12 @@ In this architecture there are several key concepts to understand:
     or from another *server* that is redirecting the discovery data from **its** *clients*.
   * Known *servers* will receive all the information from the **direct** *clients* known by the *server* and the
     participant information of other *servers* (to announce a new server).
-  * Known *clients* will only receive the information they need to establish communication, i.e. the information
+  * |Pro| Known *clients* will only receive the information they need to establish communication, i.e. the information
     about the DomainParticipants, DataWriters, and DataReaders to which they match.
     This means that the *server* runs a "matching" algorithm to sort out which information is required by which
     *client*.
+    This optimized behavior is exclusive to Fast DDS Pro: the open-source version does not implement the "matching"
+    algorithm, so *clients* receive all the discovery information known by the *server*.
 
 - A |BACKUP| *server* is a *server* that persists its discovery database into a file.
 
@@ -65,15 +67,22 @@ In this architecture there are several key concepts to understand:
   * It is important to note that the discovery times will be negatively affected when using this type of *server*,
     since periodically writing to a file is an expensive operation.
 
-- A |CLIENT| is a participant that connects to one or more *servers* from which it receives only the discovery
-  information they require to establish communication with matching endpoints.
+- A |CLIENT| is a participant that connects to one or more *servers* from which it receives the discovery information
+  it needs to establish communication with matching endpoints.
 
+  * |Pro| *Clients* receive only the discovery information they require to establish communication with matching
+    endpoints.
+    Since the open-source version does not implement the *server* "matching" algorithm, every *client* receives all the
+    discovery information known by the *server*, thus behaving as a |SUPER_CLIENT|.
   * *Clients* require prior knowledge of the *servers* to which they want to link.
     Basically, it consists of a list of locators where the *servers* are listening, namely, an IP address and a port.
     These locators also define the transport protocol (UDP or TCP) the client will use to contact the *server*.
 
-- A |SUPER_CLIENT| is a *client* that receives the discovery information known by the *server*, in opposition to
+- A |SUPER_CLIENT| is a *client* that receives all the discovery information known by the *server*, in opposition to
   *clients*, which only receive the information they need.
+  This distinction only applies to Fast DDS Pro, the version implementing the *server* "matching" algorithm.
+  In the open-source version every *client* already receives all the discovery information known by the *server*, and
+  therefore behaves as a |SUPER_CLIENT|.
 
   .. note::
 

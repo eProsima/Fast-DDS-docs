@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg xmlns="http://www.w3.org/2000/svg" version="1.1" width="893px" height="330px" viewBox="0 0 893 330">
+  <defs>
+    <marker id="dsp-green" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="5" markerHeight="5" orient="auto-start-reverse">
+      <path d="M0,0 L10,5 L0,10 z" fill="#88CE28"/>
+    </marker>
+    <marker id="dsp-blue" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="5" markerHeight="5" orient="auto-start-reverse">
+      <path d="M0,0 L10,5 L0,10 z" fill="#1A91D4"/>
+    </marker>
+    <style type="text/css">
+      .dsp-panel { fill: #FFFFFF; stroke: #E3E7EC; stroke-width: 2; }
+      .dsp-node { fill: #EAF4FE; stroke: #2AA1E3; stroke-width: 2; }
+      .dsp-server { fill: #1A91D4; stroke: #1A91D4; stroke-width: 2; }
+      .dsp-label { font-family: Helvetica, Arial, sans-serif; font-size: 17px; fill: #1F2937; text-anchor: middle; }
+      .dsp-server-label { font-family: Helvetica, Arial, sans-serif; font-size: 17px; font-weight: bold; fill: #FFFFFF; text-anchor: middle; }
+      .dsp-legend { font-family: Helvetica, Arial, sans-serif; font-size: 15px; font-weight: bold; text-anchor: middle; }
+      .dsp-discovery { stroke: #88CE28; stroke-width: 3; fill: none; marker-start: url(#dsp-green); marker-end: url(#dsp-green); }
+      .dsp-data { stroke: #1A91D4; stroke-width: 4; fill: none; marker-start: url(#dsp-blue); marker-end: url(#dsp-blue); }
+    </style>
+  </defs>
+
+  <rect class="dsp-panel" x="18" y="20" width="857" height="292" rx="16"/>
+
+  <!-- server -->
+  <rect class="dsp-server" x="371" y="56" width="150" height="44" rx="22"/>
+  <text class="dsp-server-label" x="446" y="84">Server</text>
+
+  <!-- participants -->
+  <rect class="dsp-node" x="62" y="168" width="176" height="46" rx="23"/>
+  <text class="dsp-label" x="150" y="197">Participant A</text>
+
+  <rect class="dsp-node" x="655" y="168" width="176" height="46" rx="23"/>
+  <text class="dsp-label" x="743" y="197">Participant B</text>
+
+  <!-- discovery (metatraffic) -->
+  <line class="dsp-discovery" x1="208" y1="164" x2="366" y2="104"/>
+  <line class="dsp-discovery" x1="685" y1="164" x2="527" y2="104"/>
+  <text class="dsp-legend" x="253" y="115" fill="#5E8F16">discovery</text>
+  <text class="dsp-legend" x="641" y="115" fill="#5E8F16">discovery</text>
+
+  <!-- user data (peer to peer) -->
+  <path class="dsp-data" d="M 150 222 L 150 254 L 743 254 L 743 222"/>
+  <text class="dsp-legend" x="446" y="284" fill="#1A6FA8">user data (peer-to-peer, never through the server)</text>
+</svg>

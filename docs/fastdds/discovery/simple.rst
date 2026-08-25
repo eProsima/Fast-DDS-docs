@@ -4,8 +4,8 @@
 
 .. _simple_disc_settings:
 
-SIMPLE Discovery Settings
--------------------------
+SIMPLE Discovery
+----------------
 
 The SIMPLE discovery protocol resolves the establishment of the end-to-end connection between various DDS Entities.
 *eProsima Fast DDS* implements the SIMPLE discovery protocol to provide compatibility with the

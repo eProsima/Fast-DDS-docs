@@ -32,29 +32,61 @@ This means that the network traffic is highly reduced in big systems, and it doe
 These **Discovery Servers** can be independent, duplicated or connected with each other in order to create
 redundancy over the network and avoid having a *Single-Point-Of-Failure*.
 
+.. _ros2_discovery_server_versions:
 .. _ros2_discovery_server_v2:
 
-Discovery Server v2
--------------------
+Discovery Server in Fast DDS and Fast DDS Pro
+----------------------------------------------
 
-The new version **v2** of Discovery Server, available from *Fast DDS* v2.0.2, implements a new filter feature
-that allows to further reduce the number of discovery messages sent.
-This version uses the *topic* of the different nodes to decide if two nodes must be connected, or they
-could be left unmatched.
-The following schema represents the decrease of the discovery packages:
+The Discovery Server is available both in the open-source version of *Fast DDS* and in *Fast DDS Pro*.
+The client-server architecture described above, and therefore the removal of the *Multicasting* requirement, is
+common to both of them.
+What changes is how much discovery information the *server* sends to each of its *clients*:
+
+.. list-table::
+    :header-rows: 1
+    :align: left
+    :widths: 25 37 38
+
+    *   -
+        - Fast DDS (open source)
+        - Fast DDS Pro |Pro|
+    *   - Discovery information received by a *client*
+        - All the information known by the *server*.
+          Every *client* behaves as a |SUPER_CLIENT| (see :ref:`DS_key_concepts`).
+        - Only the information the *client* actually needs.
+          The *server* runs a "matching" algorithm that uses the *topic* of the different nodes to decide if two
+          nodes must be connected, or they could be left unmatched.
+    *   - Discovery traffic
+        - Highly reduced with respect to :ref:`Simple Discovery <simple_disc_settings>`, as nodes no longer announce
+          themselves to, and wait for a response from, every other node in the network.
+        - Further reduced, as the discovery data of nodes that do not share a topic is never sent.
+          This is especially relevant in large systems, where each node typically matches only a small subset of
+          the nodes in the network.
+    *   - ROS 2 introspection tools
+        - Receive the whole node graph as soon as they join the *server* network.
+        - Need to be configured as **Super Client** to receive the whole node graph
+          (see :ref:`ros2-discovery-server-introspection`).
+
+The following schema represents the decrease of the discovery packages achieved by the *Fast DDS Pro* filtering:
 
 .. image:: /01-figures/fast_dds/discovery/ds1vs2.svg
     :align: center
 
-This architecture reduces the number of packages sent between the server and the different clients dramatically.
+This reduces the number of packages sent between the server and the different clients dramatically.
 In the following graph, the reduction in traffic network over the discovery phase for a
 RMF Clinic demo use case, is shown:
 
 .. image:: /01-figures/fast_dds/discovery/discovery_server_v2_performance.svg
     :align: center
 
+.. note::
 
-In order to use this functionality, **Fast-DDS Discovery Server** can be set using
+    This tutorial uses the open-source version of *Fast DDS*, which is the one distributed with ROS 2.
+    Everything explained from this point on applies to it, and no *Fast DDS Pro* feature is required to follow it.
+
+
+In order to use it, the **Fast-DDS Discovery Server** can be set using
 the XML configuration for Participants.
 Furthermore, Fast DDS provides an easier way to set a **Discovery Server** communication using
 the ``fastdds`` :ref:`CLI tool <ffastddscli_cli>` and an :ref:`environment variable <env_vars>`,
@@ -317,14 +349,12 @@ execution.
 These features (i.e. `rosbag`, `topic list`, etc.) are very helpful to understand a ROS 2 working network.
 
 Most of these features use the DDS capability to share any topic information with every exiting participant.
-However, the new :ref:`ros2_discovery_server_v2` implements a traffic network reduction
-that limits the discovery data between nodes that do not share a topic.
-This means that not every node will receive every topic data unless it has a reader in that topic.
+However, when using the Discovery Server there are no multicast announcements to rely on, so these tools must join
+the *server* network in order to be aware of the nodes running in it.
 As most of ROS 2 CLI Introspection is executed by adding a node into the network (some of them use ROS 2 Daemon,
-and some create their own nodes), using Discovery Server v2 we will find that most of these functionalities are
-limited and do not have all the information.
+and some create their own nodes), those nodes must be configured to connect to the **Server**.
 
-The Discovery Server v2 functionality allows every node running as a |SUPER_CLIENT|, a kind of **Client** that
+The Discovery Server allows every node running as a |SUPER_CLIENT|, a kind of **Client** that
 connects to a |SERVER|, from which it receives all the available discovery information (instead of just what it needs).
 In this sense, ROS 2 introspection tools can be configured as **Super Client**, thus being able to discover every entity
 that is using the Discovery Server protocol within the network.
@@ -478,8 +508,5 @@ This creates a huge amount of traffic in large architectures.
 This reduction from this method increases with the number of Nodes, making this architecture more scalable than the
 simple one.
 
-Since *Fast DDS* v2.0.2 the new Discovery Server v2 is available, substituting the old Discovery Server.
-In this new version, those nodes that do not share topics will not know each other, saving the whole discovery data
-required to connect them and their endpoints.
-Notice that this is not this example case, but even though the massive reduction could be appreciate
-due to the hidden architecture topics of ROS 2 nodes.
+This reduction can be appreciated even in a small example like this one, due to the hidden architecture topics of
+ROS 2 nodes.

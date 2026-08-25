@@ -52,8 +52,10 @@ The possible values are:
 |                     |                     | and distributing discovery information.                                  |
 |                     +---------------------+--------------------------------------------------------------------------+
 |                     | |CLIENT|            | The DomainParticipant acts as a client for discovery traffic.            |
-|                     |                     | It sends its discovery information to the server, and it receives        |
-|                     |                     | only the information that is relevant to it.                             |
+|                     |                     | It sends its discovery information to the server.                        |
+|                     |                     | |Pro| It receives only the information that is relevant to it; in the    |
+|                     |                     | open-source version it receives all the discovery information, thus      |
+|                     |                     | behaving as a |SUPER_CLIENT|.                                            |
 |                     +---------------------+--------------------------------------------------------------------------+
 |                     | |SUPER_CLIENT|      | The DomainParticipant acts as a client for discovery traffic.            |
 |                     |                     | It sends its discovery information to the server, and it receives        |

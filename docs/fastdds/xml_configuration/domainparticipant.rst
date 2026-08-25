@@ -378,10 +378,9 @@ configurable settings.
 |                                 |                                                +---------------------+             |
 |                                 |                                                | |NONE|              |             |
 +---------------------------------+------------------------------------------------+---------------------+-------------+
-| ``<discoveryServersList>``      | Describes locators of servers from which       | ``<locator>``       |             |
-|                                 | it receives only the discovery information     |                     |             |
-|                                 | they require to establish communication        |                     |             |
-|                                 | with matching endpoints.                       |                     |             |
+| ``<discoveryServersList>``      | Describes locators of the servers from which   | ``<locator>``       |             |
+|                                 | the DomainParticipant receives discovery       |                     |             |
+|                                 | information.                                   |                     |             |
 |                                 | It expects a :ref:`LocatorListType`.           |                     |             |
 +---------------------------------+------------------------------------------------+---------------------+-------------+
 | ``<ignoreParticipantFlags>``    | Restricts metatraffic using several            | :ref:`partfiltering`| |NO_FILTER| |

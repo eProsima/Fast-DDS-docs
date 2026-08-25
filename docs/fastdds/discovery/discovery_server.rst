@@ -18,6 +18,54 @@ IP multicast protocol.
 
     Comparison of Discovery Server and Simple discovery mechanisms
 
+.. _DS_pro_comparison:
+
+Discovery Server and Discovery Server Pro
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+The client-server mechanism described in this page is available in the open-source version of *Fast DDS*.
+*Fast DDS Pro* uses the same architecture and adds a filtering stage in the *server*, which cuts down the discovery
+traffic that each *client* receives.
+The following table summarizes the differences:
+
+.. list-table::
+    :header-rows: 1
+    :align: left
+    :widths: 26 37 37
+
+    *   -
+        - Discovery Server
+        - Discovery Server |Pro|
+    *   - Client-server discovery, without multicast
+        - Yes
+        - Yes
+    *   - Deployment topologies (single, redundant, backup, partitioned, TCP/WAN)
+        - Yes
+        - Yes
+    *   - Discovery information delivered to a |CLIENT|
+        - All the information known by the *server*
+        - Only the information the *client* needs to match its own endpoints
+    *   - Topic-based filtering ("matching" algorithm)
+        - Not available
+        - The *server* uses the *topics* of each *client* to decide which discovery data it must forward, and leaves
+          unmatched the DomainParticipants that do not share a topic
+    *   - Discovery traffic received by each *client*
+        - Grows with the total number of endpoints in the network
+        - Grows with the endpoints that the *client* actually matches
+    *   - Difference between a |CLIENT| and a |SUPER_CLIENT|
+        - None in practice, as every *client* already receives everything the *server* knows
+        - A |CLIENT| receives filtered discovery information, while a |SUPER_CLIENT| receives all of it
+    *   - :ref:`Server send rate limiter <DS_send_period>`
+        - Not available
+        - Batches the accumulated discovery changes, avoiding redundant retransmissions when many DomainParticipants
+          join at the same time
+    *   - :ref:`Secure discovery <DS_security>`
+        - Not available
+        - Yes
+
+The rest of this page describes the behavior that is common to both versions.
+The sections and items that are exclusive to *Fast DDS Pro* are marked with the |Pro| badge.
+
 .. _DS_why:
 
 Why use a Discovery Server

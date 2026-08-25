@@ -21,17 +21,17 @@ IP multicast protocol.
 .. _DS_pro_comparison:
 
 Discovery Server and Discovery Server Pro
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 The client-server mechanism described in this page is available in the open-source version of *Fast DDS*.
-*Fast DDS Pro* uses the same architecture and adds a filtering stage in the *server*, which cuts down the discovery
-traffic that each *client* receives.
+*Fast DDS Pro* uses the same architecture and adds a filtering stage in the *server*, together with further traffic
+and scalability optimizations, which cut down the discovery traffic that each *client* receives and the time it takes
+to discover large deployments.
 The following table summarizes the differences:
 
 .. list-table::
     :header-rows: 1
-    :align: left
-    :widths: 26 37 37
+    :widths: 23 35 35
 
     *   -
         - Discovery Server
@@ -52,13 +52,21 @@ The following table summarizes the differences:
     *   - Discovery traffic received by each *client*
         - Grows with the total number of endpoints in the network
         - Grows with the endpoints that the *client* actually matches
-    *   - Difference between a |CLIENT| and a |SUPER_CLIENT|
-        - None in practice, as every *client* already receives everything the *server* knows
-        - A |CLIENT| receives filtered discovery information, while a |SUPER_CLIENT| receives all of it
+    *   - Discovery traffic optimizations
+        - Baseline discovery data exchange
+        - Additional optimizations of the discovery data exchange that reduce the number and the size of the messages
+          sent by the *server*
+    *   - Scalability of the internal matching routines
+        - Baseline implementation
+        - The *server* discovery database and its matching routines are optimized to keep the discovery time and the
+          *server* CPU load low as the number of DomainParticipants and endpoints grows
     *   - :ref:`Server send rate limiter <DS_send_period>`
         - Not available
         - Batches the accumulated discovery changes, avoiding redundant retransmissions when many DomainParticipants
           join at the same time
+    *   - Difference between a |CLIENT| and a |SUPER_CLIENT|
+        - None in practice, as every *client* already receives everything the *server* knows
+        - A |CLIENT| receives filtered discovery information, while a |SUPER_CLIENT| receives all of it
     *   - :ref:`Secure discovery <DS_security>`
         - Not available
         - Yes
@@ -96,7 +104,7 @@ Why use a Discovery Server
 .. _DS_user_data:
 
 Does the user data go through the server?
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 **No.**
 The *server* only mediates the discovery phase.

@@ -202,7 +202,8 @@ def download_file(url, output_path):
 
     :param url: The URL of the file to download.
     :param output_path: The local path where the file will be saved.
-    :return: The path to the file if downloaded successfully, or the path to an empty file otherwise.
+    :return: The path to the file if downloaded successfully, the path to a previously downloaded copy of it if the
+        download fails, or the path to an empty file otherwise. An empty string is returned if no file could be used.
     """
 
     # Normalize path to avoid problems in Windows.
@@ -218,6 +219,12 @@ def download_file(url, output_path):
         print(f"Failed to download the file from {url}. Request Error: {e}")
     except OSError as e:
         print(f"Failed to create the file at {output_path}. OS Error: {e}")
+
+    # Reuse a previously downloaded copy of the file if there is one. This keeps the build working when the file
+    # cannot be written, for instance when it was created by a build run as another user.
+    if os.path.isfile(output_path):
+        print(f"Using the file already available at {output_path}")
+        return output_path
 
     # Create an empty file if the download fails
     try:
@@ -815,19 +822,25 @@ html_use_smartypants = True
 
 # The CSS files referenced here should have a path relative to the _static folder.
 # We use static_relative(download_file(...)) to ensure the resulting paths are relative to "_static".
+# Empty entries are discarded: an unavailable file would otherwise be resolved to the "_static" directory itself,
+# making the theme fail to render with "IsADirectoryError".
 html_css_files = [
-    static_relative(
-        download_file(
-            "https://raw.githubusercontent.com/eProsima/all-docs/master/source/_static/css/eprosima-furo.css",
-            "{}/_static/css/eprosima-furo.css".format(script_path),
-        )
-    ),
-    static_relative(
-        download_file(
-            "https://raw.githubusercontent.com/eProsima/all-docs/master/source/_static/css/pro-badge.css",
-            "{}/_static/css/pro-badge.css".format(script_path),
-        )
-    ),
+    css_file
+    for css_file in [
+        static_relative(
+            download_file(
+                "https://raw.githubusercontent.com/eProsima/all-docs/master/source/_static/css/eprosima-furo.css",
+                "{}/_static/css/eprosima-furo.css".format(script_path),
+            )
+        ),
+        static_relative(
+            download_file(
+                "https://raw.githubusercontent.com/eProsima/all-docs/master/source/_static/css/pro-badge.css",
+                "{}/_static/css/pro-badge.css".format(script_path),
+            )
+        ),
+    ]
+    if css_file
 ]
 
 # Preserves the left sidebar's scroll position across page navigations.

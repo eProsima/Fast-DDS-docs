@@ -29,6 +29,8 @@ and scalability optimizations, which cut down the discovery traffic that each *c
 to discover large deployments.
 The following table summarizes the differences:
 
+.. rst-class:: api-ref
+
 .. list-table::
     :header-rows: 1
     :widths: 23 35 35
@@ -54,16 +56,14 @@ The following table summarizes the differences:
         - Grows with the endpoints that the *client* actually matches
     *   - Discovery traffic optimizations
         - Baseline discovery data exchange
-        - Additional optimizations of the discovery data exchange that reduce the number and the size of the messages
-          sent by the *server*
+        - Additional optimizations of the discovery data exchange by the *server*
     *   - Scalability of the internal matching routines
         - Baseline implementation
-        - The *server* discovery database and its matching routines are optimized to keep the discovery time and the
-          *server* CPU load low as the number of DomainParticipants and endpoints grows
+        - The *server* matching routines are optimized to keep the discovery time and the
+          *server* CPU load low as the number of endpoints grows
     *   - :ref:`Server send rate limiter <DS_send_period>`
         - Not available
-        - Batches the accumulated discovery changes, avoiding redundant retransmissions when many DomainParticipants
-          join at the same time
+        - Batches the accumulated discovery changes
     *   - Difference between a |CLIENT| and a |SUPER_CLIENT|
         - None in practice, as every *client* already receives everything the *server* knows
         - A |CLIENT| receives filtered discovery information, while a |SUPER_CLIENT| receives all of it

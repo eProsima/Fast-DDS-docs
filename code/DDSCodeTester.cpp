@@ -914,28 +914,6 @@ void dds_domain_examples()
             "1200");
         //!--
     }
-<<<<<<< HEAD
-=======
-
-    {
-        // TYPE_PROPAGATION_PROPERTY
-        DomainParticipantQos pqos;
-
-        pqos.properties().properties().emplace_back(
-            "fastdds.type_propagation",
-            "disabled");
-        //!--
-    }
-
-    {
-        // SERIALIZE_OPTIONAL_QOS_PROPERTY
-        DomainParticipantQos pqos;
-
-        pqos.properties().properties().emplace_back(
-            "fastdds.serialize_optional_qos",
-            "true"); // true or True or TRUE or 1
-        //!--
-    }
 
     {
         // DDS_SQL_LIMITS_PROPERTY
@@ -949,7 +927,6 @@ void dds_domain_examples()
             "10");
         //!--
     }
->>>>>>> 7bb4e28 (Add documentation for SQL filter expression limits (#1224))
 }
 
 //DOMAINPARTICIPANTLISTENER-DISCOVERY-CALLBACKS

@@ -12,6 +12,15 @@ build:
   apt_packages:
     - plantuml
     - swig
+  jobs:
+    build:
+      # By default Read the Docs builds the downloadable documentation with an extra
+      # `sphinx-build -b singlehtml` run, which means building the whole documentation a second time (over 8
+      # minutes). The `html` format is built first and its output is already the complete documentation, so
+      # the downloadable file is simply that output compressed, which takes about a second.
+      htmlzip:
+        - mkdir -p $READTHEDOCS_OUTPUT/htmlzip
+        - python -m zipfile -c $READTHEDOCS_OUTPUT/htmlzip/fast-dds-docs.zip $READTHEDOCS_OUTPUT/html
 
 # Build documentation in the docs/ directory with Sphinx
 sphinx:
@@ -23,7 +32,8 @@ sphinx:
 
 # Read the Docs builds each additional format with its own `sphinx-build` invocation, so every one of them
 # re-runs the whole documentation build. Only `htmlzip` is kept, as it provides the downloadable
-# documentation for offline reading; `pdf` and `epub` are not built.
+# documentation for offline reading, and it is generated from the already built HTML (see `build.jobs`
+# above) instead of running Sphinx again; `pdf` and `epub` are not built.
 formats:
   - htmlzip
 

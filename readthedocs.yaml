@@ -21,10 +21,11 @@ sphinx:
 #mkdocs:
 #  configuration: mkdocs.yml
 
-# Additional formats (htmlzip, pdf, epub) are deliberately disabled: Read the Docs builds each one with its
-# own `sphinx-build` invocation, so every extra format re-runs the whole documentation build (including the
-# Fast DDS clone, doxygen and SWIG steps performed in conf.py). Enabling all of them tripled the build time.
-formats: []
+# Read the Docs builds each additional format with its own `sphinx-build` invocation, so every one of them
+# re-runs the whole documentation build. Only `htmlzip` is kept, as it provides the downloadable
+# documentation for offline reading; `pdf` and `epub` are not built.
+formats:
+  - htmlzip
 
 # Optionally set the version of Python and requirements required to build your docs
 python:

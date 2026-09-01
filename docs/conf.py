@@ -429,42 +429,92 @@ def configure_doxyfile(
         file.write(filedata)
 
 
-def clone_repo_at_ref(url, path, preferred_ref, display_name):
+def resolve_remote_ref(url, preferred_ref, display_name):
     """
-    Clone a repository at a given branch or tag, downloading as little as possible.
+    Resolve the branch or tag a repository must be checked out at, without downloading it.
 
-    The existence of ``preferred_ref`` is checked with ``git ls-remote`` before cloning, so falling back to
-    master does not require downloading anything first. Only the tip of the resulting ref is fetched
-    (``--depth 1``), which is all that doxygen and SWIG need: the full history of Fast DDS is over 100 MB and
-    none of it is used.
+    ``git ls-remote`` is used so that falling back to master, when the remote does not have
+    ``preferred_ref``, does not require cloning anything first.
 
-    :param url: URL of the repository to clone.
-    :param path: Local path where the repository will be cloned.
-    :param preferred_ref: Branch or tag to check out if the remote has it.
+    :param url: URL of the repository.
+    :param preferred_ref: Branch or tag to use if the remote has it.
     :param display_name: Repository name, used for logging.
-    :return: The cloned repository.
+    :return: Tuple with the branch or tag to use and the commit it points to. The commit is ``None`` if the
+        remote could not be queried.
     """
     ref = preferred_ref
     try:
-        remote_refs = git.cmd.Git().ls_remote("--heads", "--tags", url, ref)
+        remote_refs = git.cmd.Git().ls_remote("--heads", "--tags", url, ref, "master")
     except git.GitCommandError as e:
         print("Failed to list the refs of {}. Git Error: {}".format(display_name, e))
-        remote_refs = ""
+        return ref, None
 
     # ``git ls-remote`` matches the pattern against the tail of the ref path, so asking for "master" also
     # matches a branch named "feature/some-work/master". Require an exact branch or tag match, otherwise the
-    # clone below would be attempted with a ref that does not exist and fail instead of falling back.
-    wanted_refs = ("refs/heads/{}".format(ref), "refs/tags/{}".format(ref))
-    if not any(
-        line.split("\t")[-1] in wanted_refs for line in remote_refs.splitlines()
-    ):
+    # clone would be attempted with a ref that does not exist and fail instead of falling back.
+    commits = {}
+    for line in remote_refs.splitlines():
+        commit, _, ref_path = line.partition("\t")
+        commits[ref_path] = commit
+
+    for candidate in (ref, "master"):
+        for ref_path in (
+            "refs/heads/{}".format(candidate),
+            "refs/tags/{}".format(candidate),
+        ):
+            if ref_path in commits:
+                return candidate, commits[ref_path]
         print(
             '{} does not have branch or tag "{}"; falling back to master'.format(
-                display_name, ref
+                display_name, candidate
             )
         )
-        ref = "master"
 
+    return "master", None
+
+
+def repo_is_at_commit(path, commit, display_name):
+    """
+    Check whether an already cloned repository is checked out at a given commit.
+
+    :param path: Local path of the repository.
+    :param commit: Commit that the repository is expected to be checked out at.
+    :param display_name: Repository name, used for logging.
+    :return: True only if the repository exists and its HEAD is that commit.
+    """
+    if not commit or not os.path.isdir(path):
+        return False
+
+    try:
+        head_commit = git.Repo(path).head.commit.hexsha
+    except Exception as e:
+        print("Could not read the HEAD of {}. Error: {}".format(display_name, e))
+        return False
+
+    if head_commit != commit:
+        print(
+            "{} is checked out at {} instead of {}".format(
+                display_name, head_commit[:10], commit[:10]
+            )
+        )
+        return False
+
+    return True
+
+
+def clone_repo_at_ref(url, path, ref, display_name):
+    """
+    Clone a repository at a given branch or tag, downloading as little as possible.
+
+    Only the tip of the ref is fetched (``--depth 1``), which is all that doxygen and SWIG need: the full
+    history of Fast DDS is over 100 MB and none of it is used.
+
+    :param url: URL of the repository to clone.
+    :param path: Local path where the repository will be cloned.
+    :param ref: Branch or tag to check out, as resolved by ``resolve_remote_ref``.
+    :param display_name: Repository name, used for logging.
+    :return: The cloned repository.
+    """
     print('Cloning {} at "{}"'.format(display_name, ref))
     return git.Repo.clone_from(url, path, branch=ref, depth=1, single_branch=True)
 
@@ -515,17 +565,32 @@ read_the_docs_build = os.environ.get("READTHEDOCS", None) == "True"
 if read_the_docs_build:
     print("Read the Docs environment detected!")
 
+    fastdds_url = "https://github.com/eProsima/Fast-DDS.git"
+    fastdds_python_url = "https://github.com/eProsima/Fast-DDS-python.git"
+
     doxygen_index = os.path.join(output_dir, "xml", "index.xml")
     swig_output = os.path.join(
         fastdds_python_repo_name, "fastdds_python", "src", "swig", "fastddsPYTHON_wrap.cxx"
     )
 
+    # Branch or tag, and the commit it currently points to, that each repository must be checked out at
+    fastdds_ref, fastdds_commit = resolve_remote_ref(
+        fastdds_url, fastdds_fallback_branch, "Fast DDS"
+    )
+    fastdds_python_ref, fastdds_python_commit = resolve_remote_ref(
+        fastdds_python_url, fastdds_python_fallback_branch, "Fast DDS Python Bindings"
+    )
+
     # Read the Docs runs a separate sphinx-build, which imports this file again, for every enabled output
     # format. Cloning the repositories and running doxygen and SWIG once per format would repeat several
     # minutes of work, so the preparation is skipped when a previous run of this build already completed it.
+    # The repositories must be checked out at the expected commit, and not merely exist, for their doxygen
+    # documentation and SWIG code to be the ones this build needs.
     if (
-        os.path.isdir(fastdds_repo_name)
-        and os.path.isdir(fastdds_python_repo_name)
+        repo_is_at_commit(fastdds_repo_name, fastdds_commit, "Fast DDS")
+        and repo_is_at_commit(
+            fastdds_python_repo_name, fastdds_python_commit, "Fast DDS Python Bindings"
+        )
         and os.path.isfile(doxygen_index)
         and os.path.isfile(swig_output)
     ):
@@ -548,16 +613,11 @@ if read_the_docs_build:
         os.makedirs(os.path.dirname(fastdds_python_repo_name), exist_ok=True)
 
         # Clone repositories at the branch or tag this documentation is being built from
+        clone_repo_at_ref(fastdds_url, fastdds_repo_name, fastdds_ref, "Fast DDS")
         clone_repo_at_ref(
-            "https://github.com/eProsima/Fast-DDS.git",
-            fastdds_repo_name,
-            fastdds_fallback_branch,
-            "Fast DDS",
-        )
-        clone_repo_at_ref(
-            "https://github.com/eProsima/Fast-DDS-python.git",
+            fastdds_python_url,
             fastdds_python_repo_name,
-            fastdds_python_fallback_branch,
+            fastdds_python_ref,
             "Fast DDS Python Bindings",
         )
 

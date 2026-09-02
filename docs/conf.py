@@ -141,9 +141,6 @@ def get_git_branch():
     """
     rtd_type = os.environ.get("READTHEDOCS_VERSION_TYPE")
     if rtd_type in ("branch", "tag"):
-<<<<<<< HEAD
-        return os.environ.get("READTHEDOCS_VERSION")
-=======
         version_name = os.environ.get("READTHEDOCS_VERSION")
         if version_name in ("latest", "stable"):
             # "latest" and "stable" are RTD pseudo-names, but RTD also exposes the git ref it actually
@@ -154,31 +151,7 @@ def get_git_branch():
             git_identifier = os.environ.get("READTHEDOCS_GIT_IDENTIFIER")
             if git_identifier and git_identifier not in ("latest", "stable"):
                 return git_identifier
-        if version_name == "latest":
-            # "latest" is an RTD pseudo-name, not a real branch → fall back to master.
-            return None
-        if version_name == "stable":
-            # "stable" is an RTD pseudo-name. Find the latest vX.Y.Z tag in the repo.
-            # Release tags live on dedicated branches (not main), so we scan all tags
-            # rather than restricting to those reachable from HEAD.
-            path_to_here = os.path.abspath(os.path.dirname(__file__))
-            try:
-                p = subprocess.Popen(
-                    ["git", "tag", "--sort=-version:refname"],
-                    stdout=subprocess.PIPE,
-                    stderr=subprocess.PIPE,
-                    cwd=path_to_here,
-                )
-                tags = p.communicate()[0].decode().splitlines()
-                release_tag_re = re.compile(r'^v\d+\.\d+\.\d+$')
-                for tag in tags:
-                    if release_tag_re.match(tag.strip()):
-                        return tag.strip()
-            except Exception:
-                pass
-            return None
         return version_name
->>>>>>> 3fee709 (Reduce Read the Docs build time and fix version branch resolution (#1306))
     if rtd_type == "external":
         return None
 
@@ -377,92 +350,23 @@ print('  Fast-DDS-docs:   "{}"'.format(fastdds_docs_fallback_branch))
 print('  Fast-DDS-Python: "{}"'.format(fastdds_python_fallback_branch))
 print('  Fast-DDS-Gen:    "{}"'.format(fastdds_gen_fallback_branch))
 
+fastdds_repo_name = os.path.abspath(
+    '{}/fastdds'.format(
+        project_binary_dir
+    )
+)
+
+fastdds_python_repo_name = os.path.abspath(
+    '{}/fastdds_python'.format(
+        project_binary_dir
+    )
+)
+
 # Check if we're running on Read the Docs' servers
 read_the_docs_build = os.environ.get('READTHEDOCS', None) == 'True'
 if read_the_docs_build:
     print('Read the Docs environment detected!')
 
-    fastdds_repo_name = os.path.abspath(
-        '{}/fastdds'.format(
-            project_binary_dir
-        )
-    )
-
-    fastdds_python_repo_name = os.path.abspath(
-        '{}/fastdds_python'.format(
-            project_binary_dir
-        )
-    )
-
-<<<<<<< HEAD
-    # Remove repository if exists
-    if os.path.isdir(fastdds_repo_name):
-        print('Removing existing repository in {}'.format(fastdds_repo_name))
-        shutil.rmtree(fastdds_repo_name)
-    if os.path.isdir(fastdds_python_repo_name):
-        print('Removing existing repository in {}'.format(
-            fastdds_python_repo_name))
-        shutil.rmtree(fastdds_python_repo_name)
-
-    # Create necessary directory path
-    os.makedirs(os.path.dirname(fastdds_repo_name), exist_ok=True)
-    os.makedirs(os.path.dirname(fastdds_python_repo_name), exist_ok=True)
-
-    # Clone repositories
-
-    # - Fast DDS
-    print('Cloning Fast DDS')
-    fastdds = git.Repo.clone_from(
-        'https://github.com/eProsima/Fast-DDS.git',
-        fastdds_repo_name,
-    )
-
-    # Verify the desired branch/tag actually exists in the cloned remote, falling back to master if not.
-    fastdds_branch = fastdds_fallback_branch
-    if fastdds.refs.__contains__("origin/{}".format(fastdds_branch)):
-        fastdds_branch = "origin/{}".format(fastdds_branch)
-    elif fastdds.tags.__contains__(fastdds_branch):
-        # GitPython exposes tags by bare name, e.g. "v3.6.2".
-        pass
-    else:
-        print(
-            'Fast DDS does not have branch or tag "{}"; falling back to 2.14.x'.format(
-                fastdds_branch
-            )
-        )
-        fastdds_branch = "origin/2.14.x"
-
-    # Actual checkout
-    print('Checking out Fast DDS branch "{}"'.format(fastdds_branch))
-    fastdds.git.checkout(fastdds_branch)
-
-    # - Fast DDS Python Bindings
-    print('Cloning Fast DDS Python Bindings')
-    fastdds_python = git.Repo.clone_from(
-        'https://github.com/eProsima/Fast-DDS-python.git',
-        fastdds_python_repo_name,
-    )
-
-    # Verify the desired branch/tag actually exists in the cloned remote, falling back to 1.4.x if not.
-    fastdds_python_branch = fastdds_python_fallback_branch
-    if fastdds_python.refs.__contains__("origin/{}".format(fastdds_python_branch)):
-        fastdds_python_branch = "origin/{}".format(fastdds_python_branch)
-    elif fastdds_python.tags.__contains__(fastdds_python_branch):
-        # GitPython exposes tags by bare name, e.g. "v3.6.2".
-        pass
-    else:
-        print(
-            'Fast DDS Python does not have branch or tag "{}"; falling back to 1.4.x'.format(
-                fastdds_python_branch
-            )
-        )
-        fastdds_python_branch = "origin/1.4.x"
-
-    # Actual checkout
-    print('Checking out Fast DDS Python branch "{}"'.format(
-        fastdds_python_branch))
-    fastdds_python.git.checkout(fastdds_python_branch)
-=======
     fastdds_url = "https://github.com/eProsima/Fast-DDS.git"
     fastdds_python_url = "https://github.com/eProsima/Fast-DDS-python.git"
 
@@ -521,7 +425,6 @@ if read_the_docs_build:
 
         os.makedirs(os.path.dirname(output_dir), exist_ok=True)
         os.makedirs(os.path.dirname(doxygen_html), exist_ok=True)
->>>>>>> 3fee709 (Reduce Read the Docs build time and fix version branch resolution (#1306))
 
         # Configure Doxyfile
         configure_doxyfile(
@@ -538,41 +441,6 @@ if read_the_docs_build:
             print("Doxygen failed with return code {}".format(doxygen_ret))
             sys.exit(doxygen_ret)
 
-<<<<<<< HEAD
-    os.makedirs("{}/include/fastcdr".format(fastdds_repo_name), exist_ok=True)
-    with open("{}/include/fastcdr/config.h".format(fastdds_repo_name), "w") as config_file:
-        config_file.write("#define FASTCDR_VERSION_MAJOR 1")
-
-    # Configure Doxyfile
-    configure_doxyfile(
-        doxyfile_in,
-        doxyfile_out,
-        input_dir,
-        output_dir,
-        project_binary_dir,
-        project_source_dir
-    )
-    # Generate doxygen documentation
-    doxygen_ret = subprocess.call('doxygen {}'.format(doxyfile_out), shell=True)
-    if doxygen_ret != 0:
-        print('Doxygen failed with return code {}'.format(doxygen_ret))
-        sys.exit(doxygen_ret)
-
-    # Generate SWIG code.
-    swig_ret = subprocess.call('swig -python -doxygen -I{}/include \
-            -outdir {}/fastdds_python/src/swig -c++ -interface \
-            _fastdds_python -o \
-            {}/fastdds_python/src/swig/fastddsPYTHON_wrap.cxx \
-            {}/fastdds_python/src/swig/fastdds.i'.format(
-                fastdds_repo_name,
-                fastdds_python_repo_name,
-                fastdds_python_repo_name,
-                fastdds_python_repo_name
-                ), shell=True)
-    if swig_ret != 0:
-        print('SWIG failed with return code {}'.format(swig_ret))
-        sys.exit(swig_ret)
-=======
         # Generate SWIG code.
         swig_ret = subprocess.call(
             "swig \
@@ -596,7 +464,6 @@ if read_the_docs_build:
         if swig_ret != 0:
             print("SWIG failed with return code {}".format(swig_ret))
             sys.exit(swig_ret)
->>>>>>> 3fee709 (Reduce Read the Docs build time and fix version branch resolution (#1306))
 
     fastdds_python_imported_location = '{}/fastdds_python/src/swig'.format(
             fastdds_python_repo_name)

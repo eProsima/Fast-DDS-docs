@@ -125,6 +125,15 @@ def select_css(html_css_dir):
     return ret
 
 
+def get_rtd_version_type():
+    """Get the type of the Read the Docs build being run.
+
+    :return: ``"branch"`` or ``"tag"`` for the builds of a version (the nightly builds among
+        them), ``"external"`` for pull request previews, and ``None`` for local builds.
+    """
+    return os.environ.get("READTHEDOCS_VERSION_TYPE")
+
+
 def get_git_branch():
     """Get the git branch this repository is currently on.
 
@@ -139,7 +148,7 @@ def get_git_branch():
       back to its default instead of generating broken GitHub URLs.
     - Local builds: READTHEDOCS_VERSION_TYPE is unset → fall back to git name-rev.
     """
-    rtd_type = os.environ.get("READTHEDOCS_VERSION_TYPE")
+    rtd_type = get_rtd_version_type()
     if rtd_type in ("branch", "tag"):
         version_name = os.environ.get("READTHEDOCS_VERSION")
         if version_name in ("latest", "stable"):
@@ -181,12 +190,18 @@ def resolve_fallback_branch(env_var, docs_branch, default="master"):
 
     Priority:
       1. Environment variable ``env_var`` (e.g. FASTDDS_BRANCH)
-      2. Current documentation branch (``docs_branch``)
-      3. Hard-coded ``default``
+      2. Hard-coded ``default`` only on the non-PR ReadTheDocs builds of a documentation version (the
+         nightly ones among them). The documentation branch is deliberately ignored there
+         because the versioning of the other repositories does not necessarily follow the Fast DDS
+         Docs one, like Fast DDS Python.
+      3. Current documentation branch (``docs_branch``)
+      4. Hard-coded ``default``
 
     This mirrors the checkout logic used in the ReadTheDocs clone block so
     that extlinks and the actual checkout always point at the same branch.
     """
+    if get_rtd_version_type() in ("branch", "tag"):
+        return os.environ.get(env_var) or default
     return os.environ.get(env_var) or docs_branch or default
 
 

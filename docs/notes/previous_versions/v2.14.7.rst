@@ -45,3 +45,4 @@ This release includes the following **CI improvements**:
 #. Update security tests to use governance-based encryption configuration
 #. Add ``UBSan`` workflow and solve its errors
 #. Make ``skip-ci`` label report required statuses as pass
+#. Fix Docs after HTML zip refactor

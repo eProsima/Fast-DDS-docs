@@ -1212,8 +1212,10 @@ IGNORE_PREFIX          =
 
 # If the GENERATE_HTML tag is set to YES, doxygen will generate HTML output
 # The default value is: YES.
+# Disabled: the API Reference is rendered by breathe from the XML output below, and this standalone HTML
+# documentation is never published (it is neither installed by CMakeLists.txt nor added to html_extra_path).
 
-GENERATE_HTML          = YES
+GENERATE_HTML          = NO
 
 # The HTML_OUTPUT tag is used to specify where the HTML docs will be put. If a
 # relative path is entered the value of OUTPUT_DIRECTORY will be put in front of
@@ -1713,8 +1715,9 @@ MATHJAX_CODEFILE       =
 # option.
 # The default value is: YES.
 # This tag requires that the tag GENERATE_HTML is set to YES.
+# Disabled along with GENERATE_HTML.
 
-SEARCHENGINE           = YES
+SEARCHENGINE           = NO
 
 # When the SERVER_BASED_SEARCH tag is enabled the search engine will be
 # implemented using a web server instead of a web client using JavaScript. There
@@ -2110,8 +2113,10 @@ XML_OUTPUT             = xml
 # of the XML output.
 # The default value is: YES.
 # This tag requires that the tag GENERATE_XML is set to YES.
+# Disabled: the program listings account for a third of the XML that breathe has to parse on every build, and
+# none of the doxygen directives used in the API Reference renders them.
 
-XML_PROGRAMLISTING     = YES
+XML_PROGRAMLISTING     = NO
 
 # If the XML_NS_MEMB_FILE_SCOPE tag is set to YES, doxygen will include
 # namespace members in file scope as well, matching the HTML output.

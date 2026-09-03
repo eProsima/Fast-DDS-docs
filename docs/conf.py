@@ -125,6 +125,15 @@ def select_css(html_css_dir):
     return ret
 
 
+def get_rtd_version_type():
+    """Get the type of the Read the Docs build being run.
+
+    :return: ``"branch"`` or ``"tag"`` for the builds of a version (the nightly builds among
+        them), ``"external"`` for pull request previews, and ``None`` for local builds.
+    """
+    return os.environ.get("READTHEDOCS_VERSION_TYPE")
+
+
 def get_git_branch():
     """Get the git branch this repository is currently on.
 
@@ -139,9 +148,19 @@ def get_git_branch():
       back to its default instead of generating broken GitHub URLs.
     - Local builds: READTHEDOCS_VERSION_TYPE is unset → fall back to git name-rev.
     """
-    rtd_type = os.environ.get("READTHEDOCS_VERSION_TYPE")
+    rtd_type = get_rtd_version_type()
     if rtd_type in ("branch", "tag"):
-        return os.environ.get("READTHEDOCS_VERSION")
+        version_name = os.environ.get("READTHEDOCS_VERSION")
+        if version_name in ("latest", "stable"):
+            # "latest" and "stable" are RTD pseudo-names, but RTD also exposes the git ref it actually
+            # checked out for them (e.g. "3.6.x" or "v3.6.1"). Preferring it keeps the API Reference and the
+            # GitHub links on the branch the documentation is really being built from instead of master.
+            # The ref is validated against the remote before being used for the checkout, so an unexpected
+            # value simply falls back to master as before.
+            git_identifier = os.environ.get("READTHEDOCS_GIT_IDENTIFIER")
+            if git_identifier and git_identifier not in ("latest", "stable"):
+                return git_identifier
+        return version_name
     if rtd_type == "external":
         return None
 
@@ -171,12 +190,18 @@ def resolve_fallback_branch(env_var, docs_branch, default="master"):
 
     Priority:
       1. Environment variable ``env_var`` (e.g. FASTDDS_BRANCH)
-      2. Current documentation branch (``docs_branch``)
-      3. Hard-coded ``default``
+      2. Hard-coded ``default`` only on the non-PR ReadTheDocs builds of a documentation version (the
+         nightly ones among them). The documentation branch is deliberately ignored there
+         because the versioning of the other repositories does not necessarily follow the Fast DDS
+         Docs one, like Fast DDS Python.
+      3. Current documentation branch (``docs_branch``)
+      4. Hard-coded ``default``
 
     This mirrors the checkout logic used in the ReadTheDocs clone block so
     that extlinks and the actual checkout always point at the same branch.
     """
+    if get_rtd_version_type() in ("branch", "tag"):
+        return os.environ.get(env_var) or default
     return os.environ.get(env_var) or docs_branch or default
 
 
@@ -210,6 +235,96 @@ def configure_doxyfile(
     os.makedirs(os.path.dirname(doxyfile_out), exist_ok=True)
     with open(doxyfile_out, 'w') as file:
         file.write(filedata)
+
+
+def resolve_remote_ref(url, preferred_ref, display_name):
+    """
+    Resolve the branch or tag a repository must be checked out at, without downloading it.
+
+    ``git ls-remote`` is used so that falling back to master, when the remote does not have
+    ``preferred_ref``, does not require cloning anything first.
+
+    :param url: URL of the repository.
+    :param preferred_ref: Branch or tag to use if the remote has it.
+    :param display_name: Repository name, used for logging.
+    :return: Tuple with the branch or tag to use and the commit it points to. The commit is ``None`` if the
+        remote could not be queried.
+    """
+    ref = preferred_ref
+    try:
+        remote_refs = git.cmd.Git().ls_remote("--heads", "--tags", url, ref, "master")
+    except git.GitCommandError as e:
+        print("Failed to list the refs of {}. Git Error: {}".format(display_name, e))
+        return ref, None
+
+    # ``git ls-remote`` matches the pattern against the tail of the ref path, so asking for "master" also
+    # matches a branch named "feature/some-work/master". Require an exact branch or tag match, otherwise the
+    # clone would be attempted with a ref that does not exist and fail instead of falling back.
+    commits = {}
+    for line in remote_refs.splitlines():
+        commit, _, ref_path = line.partition("\t")
+        commits[ref_path] = commit
+
+    for candidate in (ref, "master"):
+        for ref_path in (
+            "refs/heads/{}".format(candidate),
+            "refs/tags/{}".format(candidate),
+        ):
+            if ref_path in commits:
+                return candidate, commits[ref_path]
+        print(
+            '{} does not have branch or tag "{}"; falling back to master'.format(
+                display_name, candidate
+            )
+        )
+
+    return "master", None
+
+
+def repo_is_at_commit(path, commit, display_name):
+    """
+    Check whether an already cloned repository is checked out at a given commit.
+
+    :param path: Local path of the repository.
+    :param commit: Commit that the repository is expected to be checked out at.
+    :param display_name: Repository name, used for logging.
+    :return: True only if the repository exists and its HEAD is that commit.
+    """
+    if not commit or not os.path.isdir(path):
+        return False
+
+    try:
+        head_commit = git.Repo(path).head.commit.hexsha
+    except Exception as e:
+        print("Could not read the HEAD of {}. Error: {}".format(display_name, e))
+        return False
+
+    if head_commit != commit:
+        print(
+            "{} is checked out at {} instead of {}".format(
+                display_name, head_commit[:10], commit[:10]
+            )
+        )
+        return False
+
+    return True
+
+
+def clone_repo_at_ref(url, path, ref, display_name):
+    """
+    Clone a repository at a given branch or tag, downloading as little as possible.
+
+    Only the tip of the ref is fetched (``--depth 1``), which is all that doxygen and SWIG need: the full
+    history of Fast DDS is over 100 MB and none of it is used.
+
+    :param url: URL of the repository to clone.
+    :param path: Local path where the repository will be cloned.
+    :param ref: Branch or tag to check out, as resolved by ``resolve_remote_ref``.
+    :param display_name: Repository name, used for logging.
+    :return: The cloned repository.
+    """
+    print('Cloning {} at "{}"'.format(display_name, ref))
+    return git.Repo.clone_from(url, path, branch=ref, depth=1, single_branch=True)
 
 
 script_path = os.path.abspath(pathlib.Path(__file__).parent.absolute())
@@ -250,127 +365,124 @@ print('  Fast-DDS-docs:   "{}"'.format(fastdds_docs_fallback_branch))
 print('  Fast-DDS-Python: "{}"'.format(fastdds_python_fallback_branch))
 print('  Fast-DDS-Gen:    "{}"'.format(fastdds_gen_fallback_branch))
 
+fastdds_repo_name = os.path.abspath(
+    '{}/fastdds'.format(
+        project_binary_dir
+    )
+)
+
+fastdds_python_repo_name = os.path.abspath(
+    '{}/fastdds_python'.format(
+        project_binary_dir
+    )
+)
+
 # Check if we're running on Read the Docs' servers
 read_the_docs_build = os.environ.get('READTHEDOCS', None) == 'True'
 if read_the_docs_build:
     print('Read the Docs environment detected!')
 
-    fastdds_repo_name = os.path.abspath(
-        '{}/fastdds'.format(
-            project_binary_dir
+    fastdds_url = "https://github.com/eProsima/Fast-DDS.git"
+    fastdds_python_url = "https://github.com/eProsima/Fast-DDS-python.git"
+
+    doxygen_index = os.path.join(output_dir, "xml", "index.xml")
+    swig_output = os.path.join(
+        fastdds_python_repo_name, "fastdds_python", "src", "swig", "fastddsPYTHON_wrap.cxx"
+    )
+
+    # Branch or tag, and the commit it currently points to, that each repository must be checked out at
+    fastdds_ref, fastdds_commit = resolve_remote_ref(
+        fastdds_url, fastdds_fallback_branch, "Fast DDS"
+    )
+    fastdds_python_ref, fastdds_python_commit = resolve_remote_ref(
+        fastdds_python_url, fastdds_python_fallback_branch, "Fast DDS Python Bindings"
+    )
+
+    # Read the Docs runs a separate sphinx-build, which imports this file again, for every enabled output
+    # format. Cloning the repositories and running doxygen and SWIG once per format would repeat several
+    # minutes of work, so the preparation is skipped when a previous run of this build already completed it.
+    # The repositories must be checked out at the expected commit, and not merely exist, for their doxygen
+    # documentation and SWIG code to be the ones this build needs.
+    if (
+        repo_is_at_commit(fastdds_repo_name, fastdds_commit, "Fast DDS")
+        and repo_is_at_commit(
+            fastdds_python_repo_name, fastdds_python_commit, "Fast DDS Python Bindings"
         )
-    )
-
-    fastdds_python_repo_name = os.path.abspath(
-        '{}/fastdds_python'.format(
-            project_binary_dir
-        )
-    )
-
-    # Remove repository if exists
-    if os.path.isdir(fastdds_repo_name):
-        print('Removing existing repository in {}'.format(fastdds_repo_name))
-        shutil.rmtree(fastdds_repo_name)
-    if os.path.isdir(fastdds_python_repo_name):
-        print('Removing existing repository in {}'.format(
-            fastdds_python_repo_name))
-        shutil.rmtree(fastdds_python_repo_name)
-
-    # Create necessary directory path
-    os.makedirs(os.path.dirname(fastdds_repo_name), exist_ok=True)
-    os.makedirs(os.path.dirname(fastdds_python_repo_name), exist_ok=True)
-
-    # Clone repositories
-
-    # - Fast DDS
-    print('Cloning Fast DDS')
-    fastdds = git.Repo.clone_from(
-        'https://github.com/eProsima/Fast-DDS.git',
-        fastdds_repo_name,
-    )
-
-    # Verify the desired branch/tag actually exists in the cloned remote, falling back to master if not.
-    fastdds_branch = fastdds_fallback_branch
-    if fastdds.refs.__contains__("origin/{}".format(fastdds_branch)):
-        fastdds_branch = "origin/{}".format(fastdds_branch)
-    elif fastdds.tags.__contains__(fastdds_branch):
-        # GitPython exposes tags by bare name, e.g. "v3.6.2".
-        pass
-    else:
+        and os.path.isfile(doxygen_index)
+        and os.path.isfile(swig_output)
+    ):
         print(
-            'Fast DDS does not have branch or tag "{}"; falling back to 2.14.x'.format(
-                fastdds_branch
+            "Reusing the repositories, doxygen documentation and SWIG code already generated in {}".format(
+                project_binary_dir
             )
         )
-        fastdds_branch = "origin/2.14.x"
-
-    # Actual checkout
-    print('Checking out Fast DDS branch "{}"'.format(fastdds_branch))
-    fastdds.git.checkout(fastdds_branch)
-
-    # - Fast DDS Python Bindings
-    print('Cloning Fast DDS Python Bindings')
-    fastdds_python = git.Repo.clone_from(
-        'https://github.com/eProsima/Fast-DDS-python.git',
-        fastdds_python_repo_name,
-    )
-
-    # Verify the desired branch/tag actually exists in the cloned remote, falling back to 1.4.x if not.
-    fastdds_python_branch = fastdds_python_fallback_branch
-    if fastdds_python.refs.__contains__("origin/{}".format(fastdds_python_branch)):
-        fastdds_python_branch = "origin/{}".format(fastdds_python_branch)
-    elif fastdds_python.tags.__contains__(fastdds_python_branch):
-        # GitPython exposes tags by bare name, e.g. "v3.6.2".
-        pass
     else:
-        print(
-            'Fast DDS Python does not have branch or tag "{}"; falling back to 1.4.x'.format(
-                fastdds_python_branch
-            )
+        # Remove the repositories left behind by an incomplete attempt, as cloning needs an empty directory
+        if os.path.isdir(fastdds_repo_name):
+            print("Removing existing repository in {}".format(fastdds_repo_name))
+            shutil.rmtree(fastdds_repo_name)
+        if os.path.isdir(fastdds_python_repo_name):
+            print("Removing existing repository in {}".format(fastdds_python_repo_name))
+            shutil.rmtree(fastdds_python_repo_name)
+
+        # Create necessary directory path
+        os.makedirs(os.path.dirname(fastdds_repo_name), exist_ok=True)
+        os.makedirs(os.path.dirname(fastdds_python_repo_name), exist_ok=True)
+
+        # Clone repositories at the branch or tag this documentation is being built from
+        clone_repo_at_ref(fastdds_url, fastdds_repo_name, fastdds_ref, "Fast DDS")
+        clone_repo_at_ref(
+            fastdds_python_url,
+            fastdds_python_repo_name,
+            fastdds_python_ref,
+            "Fast DDS Python Bindings",
         )
-        fastdds_python_branch = "origin/1.4.x"
 
-    # Actual checkout
-    print('Checking out Fast DDS Python branch "{}"'.format(
-        fastdds_python_branch))
-    fastdds_python.git.checkout(fastdds_python_branch)
+        os.makedirs(os.path.dirname(output_dir), exist_ok=True)
+        os.makedirs(os.path.dirname(doxygen_html), exist_ok=True)
 
-    os.makedirs(os.path.dirname(output_dir), exist_ok=True)
-    os.makedirs(os.path.dirname(doxygen_html), exist_ok=True)
+        os.makedirs("{}/include/fastcdr".format(fastdds_repo_name), exist_ok=True)
+        with open("{}/include/fastcdr/config.h".format(fastdds_repo_name), "w") as config_file:
+            config_file.write("#define FASTCDR_VERSION_MAJOR 1")
 
-    os.makedirs("{}/include/fastcdr".format(fastdds_repo_name), exist_ok=True)
-    with open("{}/include/fastcdr/config.h".format(fastdds_repo_name), "w") as config_file:
-        config_file.write("#define FASTCDR_VERSION_MAJOR 1")
+        # Configure Doxyfile
+        configure_doxyfile(
+            doxyfile_in,
+            doxyfile_out,
+            input_dir,
+            output_dir,
+            project_binary_dir,
+            project_source_dir,
+        )
+        # Generate doxygen documentation
+        doxygen_ret = subprocess.call("doxygen {}".format(doxyfile_out), shell=True)
+        if doxygen_ret != 0:
+            print("Doxygen failed with return code {}".format(doxygen_ret))
+            sys.exit(doxygen_ret)
 
-    # Configure Doxyfile
-    configure_doxyfile(
-        doxyfile_in,
-        doxyfile_out,
-        input_dir,
-        output_dir,
-        project_binary_dir,
-        project_source_dir
-    )
-    # Generate doxygen documentation
-    doxygen_ret = subprocess.call('doxygen {}'.format(doxyfile_out), shell=True)
-    if doxygen_ret != 0:
-        print('Doxygen failed with return code {}'.format(doxygen_ret))
-        sys.exit(doxygen_ret)
-
-    # Generate SWIG code.
-    swig_ret = subprocess.call('swig -python -doxygen -I{}/include \
-            -outdir {}/fastdds_python/src/swig -c++ -interface \
-            _fastdds_python -o \
-            {}/fastdds_python/src/swig/fastddsPYTHON_wrap.cxx \
-            {}/fastdds_python/src/swig/fastdds.i'.format(
+        # Generate SWIG code.
+        swig_ret = subprocess.call(
+            "swig \
+            -python \
+            -doxygen \
+            -I{}/include \
+            -DFASTDDS_DOCS_BUILD \
+            -outdir {}/fastdds_python/src/swig \
+            -c++ \
+            -interface _fastdds_python \
+            -o {}/fastdds_python/src/swig/fastddsPYTHON_wrap.cxx \
+            {}/fastdds_python/src/swig/fastdds.i".format(
                 fastdds_repo_name,
                 fastdds_python_repo_name,
                 fastdds_python_repo_name,
-                fastdds_python_repo_name
-                ), shell=True)
-    if swig_ret != 0:
-        print('SWIG failed with return code {}'.format(swig_ret))
-        sys.exit(swig_ret)
+                fastdds_python_repo_name,
+            ),
+            shell=True,
+        )
+
+        if swig_ret != 0:
+            print("SWIG failed with return code {}".format(swig_ret))
+            sys.exit(swig_ret)
 
     fastdds_python_imported_location = '{}/fastdds_python/src/swig'.format(
             fastdds_python_repo_name)

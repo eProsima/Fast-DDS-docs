@@ -20,6 +20,7 @@ This release includes the following **security fixes**:
 - `Fix CVE-2026-49863 <https://www.cve.org/CVERecord?id=CVE-2026-49863>`_
 - `Fix CVE-2026-53588 <https://www.cve.org/CVERecord?id=CVE-2026-53588>`_
 - `Fix CVE-2026-53590 <https://www.cve.org/CVERecord?id=CVE-2026-53590>`_
+- `Fix GHSA-8g7x-c9fg-g6mh <https://github.com/eProsima/Fast-DDS/security/advisories/GHSA-8g7x-c9fg-g6mh>`_
 
 This release includes the following **improvements**:
 

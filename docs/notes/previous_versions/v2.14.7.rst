@@ -1,0 +1,49 @@
+`Version 2.14.7 (latest) <https://fast-dds.docs.eprosima.com/en/v2.14.7/index.html>`_
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+This release includes the following **security fixes**:
+
+- `Fix CVE-2026-22591 <https://www.cve.org/CVERecord?id=CVE-2026-22591>`_
+- `Fix CVE-2026-45094 <https://www.cve.org/CVERecord?id=CVE-2026-45094>`_
+- `Fix CVE-2026-45095 <https://www.cve.org/CVERecord?id=CVE-2026-45095>`_
+- `Fix CVE-2026-45096 <https://www.cve.org/CVERecord?id=CVE-2026-45096>`_
+- `Fix CVE-2025-63829 <https://www.cve.org/CVERecord?id=CVE-2025-63829>`_
+- `Fix CVE-2025-65865 <https://www.cve.org/CVERecord?id=CVE-2025-65865>`_
+- `Fix CVE-2026-45093 <https://www.cve.org/CVERecord?id=CVE-2026-45093>`_
+- `Fix CVE-2026-45092 <https://www.cve.org/CVERecord?id=CVE-2026-45092>`_
+- `Fix CVE-2025-67108 <https://www.cve.org/CVERecord?id=CVE-2025-67108>`_
+- `Fix CVE-2026-49861 <https://www.cve.org/CVERecord?id=CVE-2026-49861>`_
+- `Fix CVE-2026-53589 <https://www.cve.org/CVERecord?id=CVE-2026-53589>`_
+- `Fix CVE-2026-45098 <https://www.cve.org/CVERecord?id=CVE-2026-45098>`_
+- `Fix CVE-2026-49862 <https://www.cve.org/CVERecord?id=CVE-2026-49862>`_
+- `Fix CVE-2026-55063 <https://www.cve.org/CVERecord?id=CVE-2026-55063>`_
+- `Fix CVE-2026-49863 <https://www.cve.org/CVERecord?id=CVE-2026-49863>`_
+- `Fix CVE-2026-53588 <https://www.cve.org/CVERecord?id=CVE-2026-53588>`_
+- `Fix CVE-2026-53590 <https://www.cve.org/CVERecord?id=CVE-2026-53590>`_
+- `Fix GHSA-8g7x-c9fg-g6mh <https://github.com/eProsima/Fast-DDS/security/advisories/GHSA-8g7x-c9fg-g6mh>`_
+
+This release includes the following **improvements**:
+
+#. Regenerate types with Fast DDS Gen 3.3.3
+#. Update Fast CDR submodule
+
+This release includes the following **fixes**:
+
+#. Fix ``RTPSParticipantAttributes`` internal data races
+#. Catch exception when constructing a payload pool Node
+#. Fix dereference error of 'shared_secret_handle'
+#. Assert liveliness with periodic heartbeats in secure participants
+#. Make ``on_xxx_matched`` thread-safe
+#. Fix data races on ``DataWriterImpl`` ``QoS`` access
+#. Remove stale tcp channels
+#. Fix unused variable on GCC 16
+#. Fix datasharing infinite loop
+#. Fix shared-memory segment crash on port open
+
+This release includes the following **CI improvements**:
+
+#. Improve windows tests
+#. Update security tests to use governance-based encryption configuration
+#. Add ``UBSan`` workflow and solve its errors
+#. Make ``skip-ci`` label report required statuses as pass
+#. Fix Docs after HTML zip refactor

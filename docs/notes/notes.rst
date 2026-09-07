@@ -5,7 +5,7 @@
 Information about the release lifecycle can be found
 :fastdds-blob:`here <RELEASE_SUPPORT.md>`.
 
-.. include:: previous_versions/v2.14.6.rst
+.. include:: previous_versions/v2.14.7.rst
 
 .. seealso::
 

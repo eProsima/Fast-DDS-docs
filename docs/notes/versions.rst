@@ -270,7 +270,7 @@ Fast DDS as the core middleware.
             * - `Fast DDS Gen <https://github.com/eProsima/Fast-DDS-Gen/>`__
               - `v3.3.3 <https://github.com/eProsima/Fast-DDS-Gen/releases/tag/v3.3.3>`__
             * - `Fast DDS Gen - IDL parser <https://github.com/eProsima/IDL-Parser/>`__
-              - `v3.0.1 <https://github.com/eProsima/IDL-Parser/releases/tag/v3.0.1>`__
+              - `v3.0.2 <https://github.com/eProsima/IDL-Parser/releases/tag/v3.0.2>`__
             * - `Fast DDS python <https://github.com/eProsima/Fast-DDS-python/>`__
               - `v1.4.5 <https://github.com/eProsima/Fast-DDS-python/releases/tag/v1.4.5>`__
             * - `Shapes Demo <https://github.com/eProsima/ShapesDemo/>`__

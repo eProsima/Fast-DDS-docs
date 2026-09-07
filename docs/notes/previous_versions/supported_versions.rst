@@ -1,9 +1,10 @@
 Supported versions
 ==================
 
-Version 2.14
-------------
+Version 2.14 (maintenance)
+--------------------------
 
+.. include:: v2.14.7.rst
 .. include:: v2.14.6.rst
 .. include:: v2.14.5.rst
 .. include:: v2.14.4.rst

@@ -41,7 +41,7 @@ This release includes the following **fixes**:
 #. Assert liveliness with periodic heartbeats in secure participants
 #. Make ``on_xxx_matched`` thread-safe
 #. Fix data races on ``DataWriterImpl`` ``QoS`` access
-#. Remove stale tcp channels
+#. Remove stale TCP channels
 #. Fix unused variable on GCC 16
 #. Fix datasharing infinite loop
 #. Fix shared-memory segment crash on port open

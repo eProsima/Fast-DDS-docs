@@ -32,19 +32,19 @@ The following table shows the currently supported versions of Fast DDS and their
       - `3.6.x <https://github.com/eProsima/Fast-DDS/tree/3.6.x>`__
       - `v3.6.2 <https://github.com/eProsima/Fast-DDS/releases/tag/v3.6.2>`__
       - April 2026
-      - April 2027 (*)
-      - April 2027 (*)
+      - March 2028 (*)
+      - May 2031 (*)
     * - 3.2
       - `3.2.x <https://github.com/eProsima/Fast-DDS/tree/3.2.x>`__ (LTS)
       - `v3.2.5 <https://github.com/eProsima/Fast-DDS/releases/tag/v3.2.5>`__
       - March 2025
       - March 2026 (*)
       - December 2026 (*)
-    * - 2.14
+    * - 2.14 (maintenance)
       - `2.14.x <https://github.com/eProsima/Fast-DDS/tree/2.14.x>`__
-      - `v2.14.6 <https://github.com/eProsima/Fast-DDS/releases/tag/v2.14.6>`__
+      - `v2.14.7 <https://github.com/eProsima/Fast-DDS/releases/tag/v2.14.7>`__
       - March 2024
-      - May 2026 (*)
+      - September 2026
       - May 2029 (*)
     * - 2.6 (maintenance)
       - `2.6.x <https://github.com/eProsima/Fast-DDS/tree/2.6.x>`__
@@ -257,7 +257,7 @@ The following table shows the minimum version required of the Fast DDS build sys
               - **───**
               - Tier 3: QCC (over GCC 8.3)
 
-    .. tab-item:: 2.14.x
+    .. tab-item:: 2.14.x (maintenance)
         :sync: 2.14.x
 
         .. list-table::
@@ -421,7 +421,7 @@ The following table shows the corresponding versions of the Fast DDS library dep
             * - `OpenSSL <https://github.com/openssl/openssl>`__
               - `v3.1.1 <https://github.com/openssl/openssl/releases/tag/openssl-3.1.1>`__
 
-    .. tab-item:: 2.14.x
+    .. tab-item:: 2.14.x (maintenance)
         :sync: 2.14.x
 
         .. list-table::
@@ -430,7 +430,7 @@ The following table shows the corresponding versions of the Fast DDS library dep
             * - Product
               - Related version
             * - `Fast CDR <https://github.com/eProsima/Fast-CDR/>`__
-              - `v2.2.7 <https://github.com/eProsima/Fast-CDR/releases/tag/v2.2.7>`__
+              - `v2.2.8 <https://github.com/eProsima/Fast-CDR/releases/tag/v2.2.8>`__
             * - `Foonathan Memory Vendor <https://github.com/eProsima/foonathan_memory_vendor/>`__
               - `v1.3.1 <https://github.com/eProsima/foonathan_memory_vendor/releases/tag/v1.3.1>`__
             * - `Asio <https://github.com/chriskohlhoff/asio>`__
@@ -556,7 +556,7 @@ Fast DDS as the core middleware.
             * - `DDS Router <https://github.com/eProsima/DDS-Router/>`__
               - `v3.2.0 <https://github.com/eProsima/DDS-Router/releases/tag/v3.2.0>`__
 
-    .. tab-item:: 2.14.x
+    .. tab-item:: 2.14.x (maintenance)
         :sync: 2.14.x
 
         .. list-table::
@@ -565,15 +565,15 @@ Fast DDS as the core middleware.
             * - Product
               - Related version
             * - `Fast DDS Gen <https://github.com/eProsima/Fast-DDS-Gen/>`__
-              - `v3.3.2 <https://github.com/eProsima/Fast-DDS-Gen/releases/tag/v3.3.2>`__
+              - `v3.3.3 <https://github.com/eProsima/Fast-DDS-Gen/releases/tag/v3.3.3>`__
             * - `Fast DDS Gen - IDL parser <https://github.com/eProsima/IDL-Parser/>`__
-              - `v3.0.1 <https://github.com/eProsima/IDL-Parser/releases/tag/v3.0.1>`__
+              - `v3.0.2 <https://github.com/eProsima/IDL-Parser/releases/tag/v3.0.2>`__
             * - `Fast DDS Python <https://github.com/eProsima/Fast-DDS-python/>`__
-              - `v1.4.4 <https://github.com/eProsima/Fast-DDS-python/releases/tag/v1.4.4>`__
+              - `v1.4.5 <https://github.com/eProsima/Fast-DDS-python/releases/tag/v1.4.5>`__
             * - `Shapes Demo <https://github.com/eProsima/ShapesDemo/>`__
-              - `v2.14.6 <https://github.com/eProsima/ShapesDemo/releases/tag/v2.14.6>`__
+              - `v2.14.8 <https://github.com/eProsima/ShapesDemo/releases/tag/v2.14.8>`__
             * - `Discovery Server <https://github.com/eProsima/Discovery-Server/>`__
-              - `v1.2.2 <https://github.com/eProsima/Discovery-Server/releases/tag/v1.2.2>`__
+              - `v1.2.3 <https://github.com/eProsima/Discovery-Server/releases/tag/v1.2.3>`__
             * - `DDS Monitor <https://github.com/eProsima/DDS-Monitor/>`__
               - `v2.1.0 <https://github.com/eProsima/DDS-Monitor/releases/tag/v2.1.0>`__
             * - `DDS Router <https://github.com/eProsima/DDS-Router/>`__

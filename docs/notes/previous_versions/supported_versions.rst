@@ -32,9 +32,10 @@ Version 3.2
 .. include:: v3.2.1.rst
 .. include:: v3.2.0.rst
 
-Version 2.14
-""""""""""""
+Version 2.14 (maintenance)
+""""""""""""""""""""""""""
 
+.. include:: v2.14.7.rst
 .. include:: v2.14.6.rst
 .. include:: v2.14.5.rst
 .. include:: v2.14.4.rst

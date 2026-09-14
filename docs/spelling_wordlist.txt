@@ -43,10 +43,10 @@ bitset
 bitsets
 blackbox
 BNF
-Branchout
-branchout
 boolean
 booleans
+branchout
+Branchout
 Bugfix
 bugfixes
 Bzip
@@ -62,7 +62,6 @@ Cardinality
 CCache
 cdr
 CDR
-CVEs
 centric
 Centric
 cerr
@@ -88,6 +87,7 @@ cryptosystem
 ctest
 Ctrl
 Customizable
+CVEs
 datagram
 datagrams
 datarace
@@ -271,6 +271,7 @@ reconfigurations
 reconnection
 RecursiveTimedMutex
 redistributable
+Replayer
 replier
 repliers
 repos

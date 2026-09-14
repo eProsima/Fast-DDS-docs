@@ -28,6 +28,12 @@ The following table shows the currently supported versions of Fast DDS and their
       - Release date
       - End of Standard Support date
       - EOL date
+    * - 3.7 |Pro|
+      - ``3.7.x`` |Pro|
+      - ``v3.7.0`` |Pro|
+      - August 2026
+      - Defined per customer
+      - Defined per customer
     * - 3.6
       - `3.6.x <https://github.com/eProsima/Fast-DDS/tree/3.6.x>`__
       - `v3.6.2 <https://github.com/eProsima/Fast-DDS/releases/tag/v3.6.2>`__
@@ -92,7 +98,7 @@ The following table shows the minimum version required of the Fast DDS build sys
 
 .. tab-set::
 
-    .. tab-item:: 3.7.x
+    .. tab-item:: 3.7.x |Pro|
         :sync: 3.7.x
 
         .. list-table::
@@ -364,7 +370,7 @@ The following table shows the corresponding versions of the Fast DDS library dep
 
 .. tab-set::
 
-    .. tab-item:: 3.7.x
+    .. tab-item:: 3.7.x |Pro|
         :sync: 3.7.x
 
         .. list-table::
@@ -475,7 +481,7 @@ Fast DDS as the core middleware.
 
 .. tab-set::
 
-    .. tab-item:: 3.7.x
+    .. tab-item:: 3.7.x |Pro|
         :sync: 3.7.x
 
         .. list-table::

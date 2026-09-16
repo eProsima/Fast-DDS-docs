@@ -45,7 +45,8 @@ class ReaderListener(fastdds.DataReaderListener):
         data = HelloWorld.HelloWorld()
         reader.take_next_sample(data, info)
 
-        print("Received {message} : {index}".format(message=data.message(), index=data.index()))
+        if info.valid_data:
+            print("Received {message} : {index}".format(message=data.message(), index=data.index()))
 
 
 class Reader:

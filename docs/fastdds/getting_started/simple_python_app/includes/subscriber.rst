@@ -45,25 +45,25 @@ The next line defines the :class:`Reader` class that implements a subscriber.
 
 .. literalinclude:: /../code/Examples/Python/HelloWorld/HelloWorldSubscriber.py
     :language: python
-    :lines: 51
+    :lines: 52
 
 Next comes the subscriber initialization public member function.
 This is the same as the initialization public member function defined for the :class:`Writer`.
 
 .. literalinclude:: /../code/Examples/Python/HelloWorld/HelloWorldSubscriber.py
     :language: python
-    :lines: 54-76
+    :lines: 55-77
     :dedent: 4
 
 The public member function :func:`run` ensures that the subscriber runs until the user press *Ctrl+C*.
 
 .. literalinclude:: /../code/Examples/Python/HelloWorld/HelloWorldSubscriber.py
     :language: python
-    :lines: 85-89
+    :lines: 86-90
     :dedent: 4
 
 Finally, the participant that implements a subscriber is initialized and run in main.
 
 .. literalinclude:: /../code/Examples/Python/HelloWorld/HelloWorldSubscriber.py
     :language: python
-    :lines: 92-96
+    :lines: 93-97

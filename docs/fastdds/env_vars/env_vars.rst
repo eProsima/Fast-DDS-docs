@@ -78,7 +78,7 @@ All existing values, along with a brief description, are shown below:
 |                            | when possible.                                                               |
 +----------------------------+------------------------------------------------------------------------------+
 | ``DEFAULTv6``              | UDPv6 and SHM transports will be instantiated. SHM transport has priority    |
-|                            | over the UDPv4  transport. Meaning that SHM will always be used              |
+|                            | over the UDPv6 transport. Meaning that SHM will always be used               |
 |                            | when possible.                                                               |
 +----------------------------+------------------------------------------------------------------------------+
 | ``SHM``                    | Only a SHM transport will be instantiated.                                   |

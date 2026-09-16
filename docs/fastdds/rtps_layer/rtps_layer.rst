@@ -150,7 +150,11 @@ instantiated.
 |                            | when possible.                                                               |
 +----------------------------+------------------------------------------------------------------------------+
 | ``DEFAULTv6``              | UDPv6 and SHM transports will be instantiated. SHM transport has priority    |
+<<<<<<< HEAD
 |                            | over the UDPv4 |br| transport. Meaning that SHM will always be used          |
+=======
+|                            | over the UDPv6 transport. Meaning that SHM will always be used               |
+>>>>>>> fa99fd0 (Fix minor typo (#1307))
 |                            | when possible.                                                               |
 +----------------------------+------------------------------------------------------------------------------+
 | ``SHM``                    | Only a SHM transport will be instantiated.                                   |

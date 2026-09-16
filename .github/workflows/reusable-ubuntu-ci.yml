@@ -86,7 +86,7 @@ jobs:
           path: src/fastdds-docs
           ref: ${{ inputs.fastdds-docs-branch }}
 
-      - name: Install Fix Python version
+      - name: Install Fixed Python version
         uses: eProsima/eProsima-CI/external/setup-python@v0
         with:
           python-version: '3.11'

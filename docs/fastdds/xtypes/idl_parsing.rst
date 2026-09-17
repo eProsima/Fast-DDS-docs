@@ -28,15 +28,15 @@ For further information about the supported |DynamicTypes|, please, refer to :re
 * :ref:`xtypes_supportedtypes_sequence`
 * :ref:`xtypes_supportedtypes_union`
 * :ref:`xtypes_supportedtypes_enumeration`
+* :ref:`xtypes_supportedtypes_bitmask` |Pro|
 * Arithmetic expressions
 * Union/struct forward declarations
 * Modules/scoped types
 * :ref:`xtypes_builtin_annotations`
-* Member ID
+* Member ID |Pro|
 
 The following types are currently not supported by the IDL parsing feature:
 
-* :ref:`xtypes_supportedtypes_bitmask`
 * :ref:`xtypes_supportedtypes_map`
 * :ref:`xtypes_supportedtypes_bitset`
 * :ref:`xtypes_custom_annotations`

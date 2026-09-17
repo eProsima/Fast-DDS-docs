@@ -881,11 +881,12 @@ Please, refer to :ref:`builtin annotations <builtin_annotations>` for the comple
       - ❌
       - ✅ |Pro|
     * - :code:`@bit_bound`
-      - |TypeDescriptor-api| :code:`bound` property for :ref:`xtypes_supportedtypes_bitset`. |br|
+      - |TypeDescriptor-api| :code:`bound` property for :ref:`xtypes_supportedtypes_bitset` and
+        :ref:`xtypes_supportedtypes_bitmask`. |br|
         |TypeDescriptor-api| :code:`literal_type` property for :ref:`xtypes_supportedtypes_enumeration`.
       - ✅
       - ✅❌ (`Enumeration types`_ not configurable).
-      - ✅
+      - ✅ (|Pro| for :ref:`xtypes_supportedtypes_bitmask`).
     * - :code:`@default`
       - |MemberDescriptor-api| :code:`default_value` property.
       - ✅
@@ -920,7 +921,7 @@ Please, refer to :ref:`builtin annotations <builtin_annotations>` for the comple
       - |MemberDescriptor-api| :code:`id` property.
       - ✅
       - ❌
-      - ✅
+      - ✅ |Pro|
     * - :code:`@key` / :code:`@Key`
       - |MemberDescriptor-api| :code:`is_key` property.
       - ✅
@@ -945,7 +946,7 @@ Please, refer to :ref:`builtin annotations <builtin_annotations>` for the comple
       - |MemberDescriptor-api| :code:`position` property.
       - ✅
       - ✅
-      - ✅
+      - ✅ |Pro|
     * - :code:`@try_construct`
       - |MemberDescriptor-api| :code:`try_construct_kind` property.
       - ❌

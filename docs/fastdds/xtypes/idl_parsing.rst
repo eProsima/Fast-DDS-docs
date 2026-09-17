@@ -34,13 +34,13 @@ For further information about the supported |DynamicTypes|, please, refer to :re
 * Modules/scoped types
 * :ref:`xtypes_builtin_annotations`
 * Member ID |Pro|
+* :ref:`xtypes_supportedtypes_inheritance` |Pro|
 
 The following types are currently not supported by the IDL parsing feature:
 
 * :ref:`xtypes_supportedtypes_map`
 * :ref:`xtypes_supportedtypes_bitset`
 * :ref:`xtypes_custom_annotations`
-* Inheritance
 
 Create a Dynamic Type from a IDL file
 -------------------------------------

@@ -5891,6 +5891,48 @@ void dynamictypes_examples()
     }
 
     {
+        //!--CPP_STRUCT_INHERITANCE
+        // Create the base struct type
+        TypeDescriptor::_ref_type base_type_descriptor {traits<TypeDescriptor>::make_shared()};
+        base_type_descriptor->kind(TK_STRUCTURE);
+        base_type_descriptor->name("BaseStruct");
+        DynamicTypeBuilder::_ref_type base_builder {DynamicTypeBuilderFactory::get_instance()->
+                                                            create_type(base_type_descriptor)};
+        // Add members to the base struct type
+        MemberDescriptor::_ref_type base_member {traits<MemberDescriptor>::make_shared()};
+        base_member->name("first");
+        base_member->type(DynamicTypeBuilderFactory::get_instance()->get_primitive_type(TK_FLOAT32));
+        base_builder->add_member(base_member);
+        base_member = traits<MemberDescriptor>::make_shared();
+        base_member->name("second");
+        base_member->type(DynamicTypeBuilderFactory::get_instance()->get_primitive_type(TK_INT64));
+        base_builder->add_member(base_member);
+        DynamicType::_ref_type base_type {base_builder->build()};
+
+        // Create the derived struct type, extending the base struct type
+        TypeDescriptor::_ref_type derived_type_descriptor {traits<TypeDescriptor>::make_shared()};
+        derived_type_descriptor->kind(TK_STRUCTURE);
+        derived_type_descriptor->name("DerivedStruct");
+        derived_type_descriptor->base_type(base_type);
+        DynamicTypeBuilder::_ref_type derived_builder {DynamicTypeBuilderFactory::get_instance()->
+                                                               create_type(derived_type_descriptor)};
+        // Add its own member; the base struct's members are inherited automatically
+        MemberDescriptor::_ref_type derived_member {traits<MemberDescriptor>::make_shared()};
+        derived_member->name("third");
+        derived_member->type(DynamicTypeBuilderFactory::get_instance()->get_primitive_type(TK_INT32));
+        derived_builder->add_member(derived_member);
+        DynamicType::_ref_type derived_type {derived_builder->build()};
+
+        // Create dynamic data based on the derived struct type
+        DynamicData::_ref_type data {DynamicDataFactory::get_instance()->create_data(derived_type)};
+
+        // Inherited and own members are both accessible through the derived type
+        data->set_int64_value(data->get_member_id_by_name("second"), 42);
+        data->set_int32_value(data->get_member_id_by_name("third"), 7);
+        //!--
+    }
+
+    {
         // Skipped this type creation: same as primitives struct created in previous section.
         DynamicType::_ref_type struct_type;
 

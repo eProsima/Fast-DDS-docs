@@ -155,6 +155,19 @@ struct ComplexStruct : ParentStruct
 };
 //!--
 
+//!--IDL_STRUCT_INHERITANCE
+struct BaseStruct
+{
+    float first;
+    long long second;
+};
+
+struct DerivedStruct : BaseStruct
+{
+    long third;
+};
+//!--
+
 //!--IDL_UNION
 union InnerUnion switch (short)
 {

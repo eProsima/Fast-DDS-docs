@@ -4601,6 +4601,18 @@
 </struct> -->
 <!--><-->
 
+<!-->XML_STRUCT_INHERITANCE<-->
+<struct name="BaseStruct">
+    <member name="first" type="float32"/>
+    <member name="second" type="int64"/>
+</struct>
+
+<!-- TODO(XTypes: Fix inheritance loading from XML profile) Fast DDS#4626 -->
+<!--<struct name="DerivedStruct" baseType="BaseStruct">
+    <member name="third" type="int32"/>
+</struct>-->
+<!--><-->
+
 <!-->XML_UNION<-->
 <union name="InnerUnion">
     <discriminator type="int16"/>

@@ -629,6 +629,33 @@ For managing complex type members, please refer to :ref:`xtypes_complextypes`.
 For a detailed explanation about the XML definition of this type, please refer to
 :ref:`XML Structure Types<xmldynamictypes_struct>`.
 
+.. _xtypes_supportedtypes_inheritance:
+
+Inheritance
+"""""""""""
+
+A structure type can also extend another structure type, inheriting all its members.
+The example below shows :code:`DerivedStruct` extending :code:`BaseStruct`: :code:`second` is inherited from
+:code:`BaseStruct`, while :code:`third` is declared by :code:`DerivedStruct` itself.
+
+.. tab-set-code::
+
+    .. literalinclude:: /../code/DynamicTypesIDLExamples.idl
+        :language: omg-idl
+        :start-after: //!--IDL_STRUCT_INHERITANCE
+        :end-before: //!--
+
+    .. literalinclude:: /../code/XMLTester.xml
+        :language: xml
+        :start-after: <!-->XML_STRUCT_INHERITANCE<-->
+        :end-before: <!--><-->
+
+    .. literalinclude:: /../code/DDSCodeTester.cpp
+        :language: c++
+        :start-after: //!--CPP_STRUCT_INHERITANCE
+        :end-before: //!--
+        :dedent: 8
+
 .. _xtypes_supportedtypes_union:
 
 Union Types

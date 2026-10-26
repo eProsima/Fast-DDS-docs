@@ -32,6 +32,8 @@ The following table shows the currently supported versions of Fast DDS and their
       - ``3.7.x`` |Pro|
       - :ref:`v3.7.0 <release_notes>` |Pro|
       - August 2026
+      - Defined per customer
+      - Defined per customer
     * - 3.6 |Pro|
       - ``3.6.x`` |Pro|
       - :ref:`v3.6.2.2 <release_notes_v3.6.2.2>` |Pro|

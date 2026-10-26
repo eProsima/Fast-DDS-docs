@@ -1,0 +1,67 @@
+|Pro| Version 3.6.2.2
+^^^^^^^^^^^^^^^^^^^^^
+
+This release includes the following **security fixes**:
+
+- `Fix GHSA-w92j-25c7-68qx <https://github.com/eProsima/Fast-DDS/security/advisories/GHSA-w92j-25c7-68qx>`_
+- `Fix GHSA-33xc-m88x-3cp8 <https://github.com/eProsima/Fast-DDS/security/advisories/GHSA-33xc-m88x-3cp8>`_
+- `Fix GHSA-f5r6-qvhq-mx93 <https://github.com/eProsima/Fast-DDS/security/advisories/GHSA-f5r6-qvhq-mx93>`_
+- `Fix GHSA-wfcj-cv96-9wj9 <https://github.com/eProsima/Fast-DDS/security/advisories/GHSA-wfcj-cv96-9wj9>`_
+- `Fix GHSA-g355-8h7f-6w8v <https://github.com/eProsima/Fast-DDS/security/advisories/GHSA-g355-8h7f-6w8v>`_
+- `Fix GHSA-6pwr-vh77-2x8m <https://github.com/eProsima/Fast-DDS/security/advisories/GHSA-6pwr-vh77-2x8m>`_
+- `Fix GHSA-58x7-8g6g-mpp8 <https://github.com/eProsima/Fast-DDS/security/advisories/GHSA-58x7-8g6g-mpp8>`_
+- `Fix GHSA-f6cw-h682-xw3p <https://github.com/eProsima/Fast-DDS/security/advisories/GHSA-f6cw-h682-xw3p>`_
+- `Fix GHSA-mg54-9fm8-xvf3 <https://github.com/eProsima/Fast-DDS/security/advisories/GHSA-mg54-9fm8-xvf3>`_
+- `Fix GHSA-j4xc-fjx8-wfg4 <https://github.com/eProsima/Fast-DDS/security/advisories/GHSA-j4xc-fjx8-wfg4>`_
+- `Fix GHSA-57rp-jm6r-xjw5 <https://github.com/eProsima/Fast-DDS/security/advisories/GHSA-57rp-jm6r-xjw5>`_
+- `Fix GHSA-f4hw-9j9g-j8xj <https://github.com/eProsima/Fast-DDS/security/advisories/GHSA-f4hw-9j9g-j8xj>`_
+- `Fix GHSA-6m2p-wjv5-386v <https://github.com/eProsima/Fast-DDS/security/advisories/GHSA-6m2p-wjv5-386v>`_
+- `Fix GHSA-5fgv-8wxq-3f69 <https://github.com/eProsima/Fast-DDS/security/advisories/GHSA-5fgv-8wxq-3f69>`_
+- `Fix GHSA-4r2x-mjm7-r285 <https://github.com/eProsima/Fast-DDS/security/advisories/GHSA-4r2x-mjm7-r285>`_
+- `Fix GHSA-vx4x-38rc-27w8 <https://github.com/eProsima/Fast-DDS/security/advisories/GHSA-vx4x-38rc-27w8>`_
+- `Fix GHSA-w75r-338m-pc5x <https://github.com/eProsima/Fast-DDS/security/advisories/GHSA-w75r-338m-pc5x>`_
+
+This release includes the following **improvements**:
+
+#. Reduce extra send in Data(p) traffic for discovery server
+#. Support member id in IDL parser
+#. Fix IDL generation script
+#. Support Bitmask on IDL parser
+#. Remove Read the Docs related ``CMake`` instructions
+#. Regenerate types with Fast DDS Gen 4.3.1.1
+
+This release includes the following **fixes**:
+
+#. Fix volatile reader desynchronization after initial positioning GAP and ``FlowController`` not updating
+   reader locators after reaching maximum limitation
+#. Fix verification for Identity Certificate Validation
+#. Tests and fixes for type support context-aware operations
+#. Account for padding when protecting payloads with GMAC only
+#. Fix datasharing infinite loop
+#. Catch exception when constructing a payload pool Node
+#. Fix integer overflow in ``PartitionQosPolicy`` CDR deserialization
+#. Fix deadlock when toggling the internet interface that stops the monitor functioning
+#. Improve validation of EDP static properties
+#. Solve potential deadlock in ``GrainedFlowController``
+#. Fix leak in UDP when opening input channels
+#. Set max ASIO buffers based on ``IOV_MAX``
+#. Select ``IPv6`` multicast interface by index instead of scope id
+#. Fix minor data races
+#. Fix default history depth in examples
+#. Avoid RTPS statistics submessage mismatch
+#. Fix ``IPMonitor`` shutdown delay
+#. Fix IDL parsing minor failures
+
+This release includes the following **CI improvements**:
+
+#. Single test for ``DDSSQLFilterTests``
+#. Fix CI docker access
+#. Fix flaky tests
+#. Delete 'repos' directory in ABI checker
+#. Fix SEGV in latency test
+#. Fix execution of profiling tests alternative build
+#. Fix pass of ``use-ccache`` when running with dispatch
+#. Bring Discovery Server testing framework to Fast DDS Pro
+#. Improve ``UBSan`` and ``ASan`` CI jobs: merge jobs and not generate artifacts
+#. Add ``TSan`` workflow to Fast DDS Pro
+#. Fix deduced Gen branch

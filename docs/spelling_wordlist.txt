@@ -115,6 +115,7 @@ deserializes
 destructor
 destructors
 desync
+desynchronization
 diffie
 dir
 DNS

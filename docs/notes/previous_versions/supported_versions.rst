@@ -9,6 +9,9 @@ Fast DDS |Pro|
 Version 3.6
 """""""""""
 
+.. _release_notes_v3.6.2.2:
+
+.. include:: v3.6.2.2-pro.rst
 .. include:: v3.6.2-pro.rst
 .. include:: v3.6.1-pro.rst
 .. include:: v3.6.0-pro.rst

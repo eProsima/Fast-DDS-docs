@@ -1,5 +1,5 @@
-`Version 3.5.0.1 <https://github.com/eProsima/Fast-DDS-Pro/releases/tag/v3.5.0.1>`__ |Pro|
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+Version 3.5.0.1 |Pro|
+^^^^^^^^^^^^^^^^^^^^^
 
 This release includes the following **improvements**:
 

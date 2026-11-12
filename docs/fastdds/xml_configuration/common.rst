@@ -430,6 +430,9 @@ Please refer to the :ref:`dds_layer_core_policy` section for more information on
   * - Name
     - Description
     - Values
+  * - ``<data_representation>``
+    - See :ref:`datarepresentationqospolicy`.
+    - :ref:`xml_datarepresentation`
   * - ``<data_sharing>``
     - See :ref:`datasharingqospolicy`
     - :ref:`xml_datasharing`
@@ -490,6 +493,45 @@ Please refer to the :ref:`dds_layer_core_policy` section for more information on
 .. literalinclude:: /../code/XMLTester.xml
     :language: xml
     :start-after: <!-->XML-QOS<-->
+    :end-before: <!--><-->
+
+.. _xml_datarepresentation:
+
+Data Representation
+"""""""""""""""""""
+
+.. list-table::
+   :header-rows: 1
+   :align: left
+
+   * - Name
+     - Description
+     - Values
+     - Default
+   * - ``<value>``
+     - Data representation offered by the DataWriter or requested by the DataReader.
+       This element can be repeated to define a list of data representations, which is kept in the order given.
+       See :ref:`datarepresentationid`.
+     - ``XCDR`` |br|
+       ``XCDR2``
+     - Empty list
+
+``XCDR`` corresponds to |XCDR_DATA_REPRESENTATION-api| and ``XCDR2`` to |XCDR2_DATA_REPRESENTATION-api|.
+At least one ``<value>`` is required, and a value cannot be repeated within the list.
+See :ref:`datarepresentationqospolicy` for how an empty list is interpreted.
+
+.. note::
+
+    A |DataWriter| offers a single data representation, so only the first ``<value>`` of the list is taken into
+    account. The remaining ones are ignored both when encoding the data and when matching with a |DataReader|.
+    Defining more than one ``<value>`` is therefore only meaningful for |DataReaders|, which request every data
+    representation they accept.
+
+**Example**
+
+.. literalinclude:: /../code/XMLTester.xml
+    :language: xml
+    :start-after: <!-->PUBSUB_API_CONF_PUBSUB_DATA_REPRESENTATION_QOS<-->
     :end-before: <!--><-->
 
 .. _xml_datasharing:

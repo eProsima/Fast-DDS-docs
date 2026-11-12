@@ -33,15 +33,26 @@ List of QoS Policy data members:
    * - Data Member Name
      - Type
      - Default Value
-     - DataReader default value
-     - DataWriter default value
-     - Topic default value
    * - |DataRepresentationQosPolicy::m_value-api|
      - std::vector<:ref:`datarepresentationid`>
-     - Empty vector
-     - [|XCDR_DATA_REPRESENTATION-api|, |br| |XCDR2_DATA_REPRESENTATION-api|]
-     - [|XCDR2_DATA_REPRESENTATION-api|]
-     - [|XCDR_DATA_REPRESENTATION-api|]
+     - Empty list
+
+An empty list is interpreted differently depending on the entity:
+
+* |DataWriter|: it is equivalent to a list containing only |XCDR_DATA_REPRESENTATION-api|.
+  The DataWriter offers, and encodes the data with, the first version of the `Extended CDR Representation`.
+* |DataReader|: it is equivalent to a list containing only |XCDR_DATA_REPRESENTATION-api|.
+  The DataReader only matches DataWriters offering |XCDR_DATA_REPRESENTATION-api|.
+  In order to match a DataWriter offering |XCDR2_DATA_REPRESENTATION-api|, this value must be explicitly included in
+  the list of the DataReader.
+* |Topic|: no data representation is defined.
+  The value set on a Topic has no effect on its own.
+  It is only applied to the DataWriters and DataReaders whose QoS are built from the QoS of the Topic using
+  ``copy_from_topic_qos()``, in which case an empty list is interpreted as explained above.
+
+.. note::
+     A DataWriter offers a single data representation, so only the first element of its list is taken into account.
+     The remaining ones are ignored both when encoding the data and when matching with a DataReader.
 
 .. note::
      This QoS Policy applies to |Topic|, |DataReader| and |DataWriter| entities.
@@ -62,20 +73,28 @@ There are three possible values (see |DataRepresentationId-api|):
 * |XCDR2_DATA_REPRESENTATION-api|:
   This option corresponds to the second version of the `Extended CDR Representation` encoding.
 
+.. warning::
+    |XML_DATA_REPRESENTATION-api| is not supported.
+    A DataWriter offering it does not match any DataReader, and including it in the list of a DataReader has no
+    effect.
+
 Example
 """""""
 
-C++
-***
-.. literalinclude:: ../../../../../code/DDSCodeTester.cpp
-   :language: c++
-   :dedent: 8
-   :start-after: //DDS_CHANGE_DATA_REPRESENTATION_QOS
-   :end-before: //!
+.. tab-set-code::
 
-XML
-***
-This QoS Policy cannot be configured using XML for the moment.
+    .. literalinclude:: /../code/DDSCodeTester.cpp
+        :language: c++
+        :dedent: 8
+        :start-after: //DDS_CHANGE_DATA_REPRESENTATION_QOS
+        :end-before: //!
+
+    .. literalinclude:: /../code/XMLTester.xml
+        :language: xml
+        :start-after: <!-->PUBSUB_API_CONF_PUBSUB_DATA_REPRESENTATION_QOS<-->
+        :end-before: <!--><-->
+
+See :ref:`xml_datarepresentation` for the description of the XML elements.
 
 .. _typeconsistencyenforcementqospolicy:
 

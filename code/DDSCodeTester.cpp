@@ -5063,16 +5063,18 @@ void dds_qos_examples()
 
     {
         //DDS_CHANGE_DATA_REPRESENTATION_QOS
-        // This example uses a DataWriter, but it can also be applied to Topic entities.
-        // DataRepresentationQosPolicy of DataReaders is contained in the TypeConsistencyQos
-        // (for further details see TypeConsistencyQos section).
+        // The DataWriter offers XCDR version 2 (only the first element of the list is taken into account)
         DataWriterQos writer_qos;
-        // Add XCDR v1 data representation to the list of valid representations
-        writer_qos.representation().m_value.push_back(DataRepresentationId_t::XCDR_DATA_REPRESENTATION);
-        // Add XML data representation to the list of valid representations
-        writer_qos.representation().m_value.push_back(DataRepresentationId_t::XML_DATA_REPRESENTATION);
+        writer_qos.representation().m_value.push_back(DataRepresentationId_t::XCDR2_DATA_REPRESENTATION);
         // Use modified QoS in the creation of the corresponding entity
         writer_ = publisher_->create_datawriter(topic_, writer_qos);
+
+        // The DataReader accepts XCDR version 2 and XCDR version 1
+        DataReaderQos reader_qos;
+        reader_qos.representation().m_value.push_back(DataRepresentationId_t::XCDR2_DATA_REPRESENTATION);
+        reader_qos.representation().m_value.push_back(DataRepresentationId_t::XCDR_DATA_REPRESENTATION);
+        // Use modified QoS in the creation of the corresponding entity
+        reader_ = subscriber_->create_datareader(topic_, reader_qos);
         //!--
     }
 

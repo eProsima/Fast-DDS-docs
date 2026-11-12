@@ -106,6 +106,27 @@
 </data_writer>
 <!--><-->
 
+<!-->PUBSUB_API_CONF_PUBSUB_DATA_REPRESENTATION_QOS<-->
+<data_writer profile_name="writer_xml_conf_data_representation_profile">
+    <qos>
+        <!-- The DataWriter offers XCDR version 2 -->
+        <data_representation>
+            <value>XCDR2</value>
+        </data_representation>
+    </qos>
+</data_writer>
+
+<data_reader profile_name="reader_xml_conf_data_representation_profile">
+    <qos>
+        <!-- The DataReader accepts XCDR version 2 and XCDR version 1 -->
+        <data_representation>
+            <value>XCDR2</value>
+            <value>XCDR</value>
+        </data_representation>
+    </qos>
+</data_reader>
+<!--><-->
+
 <!-->PUBSUB_API_CONF_PUBSUB_TRANSPORT_PRIORITY<-->
 <data_writer profile_name="writer_xml_conf_transport_priority_profile">
     <qos>
@@ -2034,6 +2055,10 @@
 <!-->XML-QOS<-->
 <data_writer profile_name="pub_topic_qos">
 <qos> <!-- writerQosPoliciesType -->
+    <data_representation>
+        <value>XCDR2</value>
+    </data_representation>
+
     <data_sharing>
         <kind>AUTOMATIC</kind>
         <shared_dir>/home</shared_dir>

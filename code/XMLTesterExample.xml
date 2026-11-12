@@ -520,6 +520,9 @@
                 </resourceLimitsQos>
             </topic>
             <qos> <!-- dataWriterQosPoliciesType -->
+                <data_representation>
+                    <value>XCDR2</value>
+                </data_representation>
                 <data_sharing>
                     <kind>AUTOMATIC</kind>
                     <shared_dir>/home</shared_dir>
@@ -713,6 +716,10 @@
                 </resourceLimitsQos>
             </topic>
             <qos> <!-- dataReaderQosPoliciesType -->
+                <data_representation>
+                    <value>XCDR2</value>
+                    <value>XCDR</value>
+                </data_representation>
                 <data_sharing>
                     <kind>AUTOMATIC</kind>
                     <shared_dir>/home</shared_dir>

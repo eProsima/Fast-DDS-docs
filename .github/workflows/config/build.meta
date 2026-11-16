@@ -2,6 +2,7 @@ names:
     fastdds-docs:
         cmake-args:
             - "-DBUILD_DOCUMENTATION=ON"
+            - "-DCMAKE_COMPILE_WARNING_AS_ERROR=ON"
     fastdds:
         cmake-args:
             - "-DBUILD_DOCUMENTATION=ON"

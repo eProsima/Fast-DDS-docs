@@ -205,7 +205,7 @@ List of status data members:
   liveliness or a DataWriter that was considered not alive reasserts its
   liveliness.
   It decreases every time an active DataWriter becomes not alive, either
-  because it failed to asserts its liveliness or because it was deleted for any reason.
+  because it failed to assert its liveliness or because it was deleted for any reason.
 
 * |LivelinessChangedStatus::not_alive_count-api|:
   Total number of matched DataWriters
@@ -575,7 +575,7 @@ List of status data members:
   Total cumulative count of missed deadlines for any instance written by the
   current DataWriter.
   As the deadline period applies to each instance of the Topic independently,
-  the count will will be incremented by one for each instance for which data
+  the count will be incremented by one for each instance for which data
   was not sent in the deadline period.
 
 * |DeadlineMissedStatus::total_count_change-api|:

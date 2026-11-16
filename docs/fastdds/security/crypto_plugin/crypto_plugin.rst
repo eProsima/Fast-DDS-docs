@@ -29,6 +29,9 @@ It may also provide additional DataReader-specific Message Authentication Codes 
 The DDS\:Crypto\:AES-GCM-GMAC authentication plugin, can be activated setting the |DomainParticipantQos|
 |DomainParticipantQos::properties-api|
 ``dds.sec.crypto.plugin`` with the value ``builtin.AES-GCM-GMAC``.
+Note that since Fast DDS Pro ``v3.7.0``, secure participants must configure the authentication, access control, and
+cryptography plugins together.
+
 Moreover, this plugin needs the activation of the :ref:`auth-pki-dh`.
 The DDS\:Crypto\:\AES-GCM-GMAC plugin is configured using the :ref:`access-permissions`, i.e the cryptography
 plugin is configured through the properties and configuration files of the access control plugin.
@@ -48,3 +51,8 @@ configuration.
         :language: xml
         :start-after: <!-->DDS_SECURITY_CRYPTO_PLUGIN_DOMAINPARTICIPANT<-->
         :end-before: <!--><-->
+
+.. important::
+  Since version v3.7.0, Fast DDS Pro enforces to configure the three main security plugins
+  (authentication, access control and cryptography) to enable secure communication.
+  The previous example focuses only on the authentication plugin, but all three plugins must be configured.

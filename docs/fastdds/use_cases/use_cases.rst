@@ -1,7 +1,7 @@
-.. _typical_use_cases:
+.. _use_cases:
 
-Typical Use-Cases
-=================
+Use-Cases
+=========
 
 .. _OSRF: https://www.openrobotics.org/
 .. _Robot Operation System 2 (ROS 2): https://index.ros.org/doc/ros2/
@@ -10,11 +10,29 @@ Typical Use-Cases
 This section provides configuration examples for the following typical use cases when dealing
 with distributed systems:
 
++ :ref:`DDS-TSN <use-case-dds-tsn>` |Pro|.
+  Describes how to configure *Fast DDS* to use DDS over Time-Sensitive Networking (TSN).
+  This configuration leverages IEEE 802.1 standards to provide deterministic, real-time data delivery
+  over Ethernet.
+  It ensures predictable latency and high reliability for critical applications by mapping DDS QoS policies
+  to TSN capabilities and supporting both UDP/IP and raw Ethernet transports.
+
++ :ref:`IP mobility <ip-mobility>` |Pro|.
+  If the network interfaces are expected to change while the application is running, *Fast DDS Pro* provides an
+  automatic way of re-scanning the available interfaces and including them.
+
++ :ref:`TCP Keep Alive <tcp-keep-alive>` |Pro|.
+  In the same line as :ref:`IP mobility <ip-mobility>`, TCP Keep Alive feature allows to automatically detect
+  broken TCP connections by sending periodic keep-alive messages at application level when the connection is idle.
+  This feature is essential in TCP scenarios with dynamic IP changes or unstable network conditions,
+  ensuring that stale connections are identified and re-established promptly.
+
 + :ref:`use-case-tcp`.
-  Describes how to configure *Fast DDS* to use the ``LARGE_DATA`` builtin transports mode. This mode enables
-  efficient utilization of TCP transport without the need for constant reconfiguration during deployment changes. It
-  optimizes communication performance for large data samples over lossy networks by employing a combination of UDP and
-  TCP/SHM transports.
+  Describes how to configure *Fast DDS* to use the ``LARGE_DATA`` builtin transports mode.
+  This mode enables efficient utilization of TCP transport without the need for constant reconfiguration
+  during deployment changes.
+  It optimizes communication performance for large data samples over lossy networks by employing a combination
+  of UDP and TCP/SHM transports.
 
 + :ref:`use-case-fast-rtps-over-wifi`.
   Presents a case where :ref:`discovery` through multicast communication is a challenge.
@@ -75,10 +93,6 @@ with distributed systems:
   This use case illustrates the APIs that allow for the request of unique network flows, and for the identification
   of those in use.
 
-+ :ref:`dynamic-network-interfaces`.
-  If the network interfaces are expected to change while the application is running, *Fast DDS* provides an easy way
-  of re-scanning the available interfaces and including them.
-
 + :ref:`statistics_module`.
   This use case explains how to enable the Statistics module within the monitored application, and how to create a
   statistics monitoring application.
@@ -106,6 +120,7 @@ with distributed systems:
     :maxdepth: 2
     :hidden:
 
+    /fastdds/use_cases/tsn/tsn.rst
     /fastdds/use_cases/tcp/tcp_use_case.rst
     /fastdds/use_cases/wifi/wifi.rst
     /fastdds/use_cases/well_known_deployments/well_known_deployments.rst
@@ -116,7 +131,7 @@ with distributed systems:
     /fastdds/use_cases/zero_copy/zero_copy.rst
     /fastdds/use_cases/unique_network_flows/unique_network_flows.rst
     /fastdds/use_cases/statistics_module/statistics_module.rst
-    /fastdds/use_cases/dynamic_network_interfaces/dynamic_network_interfaces.rst
+    /fastdds/use_cases/ip_mobility/ip_mobility.rst
     /fastdds/use_cases/dds_record_and_replay/dds_record_and_replay.rst
     /fastdds/use_cases/request_reply/request_reply.rst
     /fastdds/use_cases/remote_type_discovery_matching/remote_type_discovery_matching.rst

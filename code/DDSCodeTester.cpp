@@ -4,6 +4,7 @@
 #include <thread>
 
 #include <fastcdr/Cdr.h>
+#include <fastcdr/xcdr/optional.hpp>
 
 #include <fastdds/dds/builtin/topic/ParticipantBuiltinTopicData.hpp>
 #include <fastdds/dds/core/condition/GuardCondition.hpp>
@@ -12,6 +13,8 @@
 #include <fastdds/dds/domain/DomainParticipantFactory.hpp>
 #include <fastdds/dds/domain/DomainParticipantListener.hpp>
 #include <fastdds/dds/domain/qos/DomainParticipantQos.hpp>
+#include <fastdds/dds/domain/qos/ReplierQos.hpp>
+#include <fastdds/dds/domain/qos/RequesterQos.hpp>
 #include <fastdds/dds/log/FileConsumer.hpp>
 #include <fastdds/dds/log/Log.hpp>
 #include <fastdds/dds/log/OStreamConsumer.hpp>
@@ -22,6 +25,12 @@
 #include <fastdds/dds/publisher/PublisherListener.hpp>
 #include <fastdds/dds/publisher/qos/DataWriterQos.hpp>
 #include <fastdds/dds/publisher/qos/PublisherQos.hpp>
+#include <fastdds/dds/rpc/RemoteExceptionCode_t.hpp>
+#include <fastdds/dds/rpc/Replier.hpp>
+#include <fastdds/dds/rpc/Requester.hpp>
+#include <fastdds/dds/rpc/RequestInfo.hpp>
+#include <fastdds/dds/rpc/Service.hpp>
+#include <fastdds/dds/rpc/ServiceTypeSupport.hpp>
 #include <fastdds/dds/subscriber/DataReader.hpp>
 #include <fastdds/dds/subscriber/DataReaderListener.hpp>
 #include <fastdds/dds/subscriber/qos/DataReaderQos.hpp>
@@ -49,19 +58,20 @@
 #include <fastdds/rtps/transport/network/AllowedNetworkInterface.hpp>
 #include <fastdds/rtps/transport/network/BlockedNetworkInterface.hpp>
 #include <fastdds/rtps/transport/network/NetmaskFilterKind.hpp>
+#include <fastdds/rtps/transport/NetworkBuffer.hpp>
 #include <fastdds/rtps/transport/shared_mem/SharedMemTransportDescriptor.hpp>
 #include <fastdds/rtps/transport/TCPTransportDescriptor.hpp>
 #include <fastdds/rtps/transport/TCPv4TransportDescriptor.hpp>
 #include <fastdds/rtps/transport/TCPv6TransportDescriptor.hpp>
 #include <fastdds/rtps/transport/UDPv4TransportDescriptor.hpp>
 #include <fastdds/rtps/transport/UDPv6TransportDescriptor.hpp>
-#include <fastdds/rtps/transport/NetworkBuffer.hpp>
 #include <fastdds/statistics/dds/domain/DomainParticipant.hpp>
 #include <fastdds/statistics/dds/publisher/qos/DataWriterQos.hpp>
 #include <fastdds/statistics/topic_names.hpp>
 #include <fastdds/utils/IPLocator.hpp>
 
 using namespace eprosima::fastdds::dds;
+using namespace eprosima::fastdds::dds::rpc;
 
 class CustomChainingTransportDescriptor : public eprosima::fastdds::rtps::ChainingTransportDescriptor
 {
@@ -124,7 +134,25 @@ public:
 
         // Call low level transport
         return low_sender_resource->send(buffers, total_bytes, destination_locators_begin,
-                       destination_locators_end, timeout);
+                       destination_locators_end, timeout, 0);
+    }
+
+    bool send_w_priority(
+            eprosima::fastdds::rtps::SenderResource* low_sender_resource,
+            const std::vector<eprosima::fastdds::rtps::NetworkBuffer>& buffers,
+            uint32_t total_bytes,
+            eprosima::fastdds::rtps::LocatorsIterator* destination_locators_begin,
+            eprosima::fastdds::rtps::LocatorsIterator* destination_locators_end,
+            const std::chrono::steady_clock::time_point& timeout,
+            int32_t transport_priority) override
+    {
+        //
+        // Preprocess outcoming buffer.
+        //
+
+        // Call low level transport
+        return low_sender_resource->send(buffers, total_bytes, destination_locators_begin,
+                       destination_locators_end, timeout, transport_priority);
     }
 
     void receive(
@@ -259,6 +287,18 @@ public:
         {
             std::cout << "Datawriter lost" << std::endl;
         }
+    }
+
+    bool should_endpoints_match(
+            const DomainParticipant* participant,
+            const eprosima::fastdds::rtps::SubscriptionBuiltinTopicData& reader_info,
+            const eprosima::fastdds::dds::PublicationBuiltinTopicData& writer_info) override
+    {
+        static_cast<void>(participant);
+        // For example, only allow matching between endpoints belonging to different participants.
+        // This prevents intra-participant communication while still allowing
+        // cross-participant communication for endpoints that pass standard QoS checks.
+        return reader_info.participant_guid.guidPrefix != writer_info.participant_guid.guidPrefix;
     }
 
 };
@@ -932,6 +972,28 @@ void dds_domain_examples()
     }
 
     {
+        // DDS_CONGESTION_CONTROL_PROPS
+        DomainParticipantQos participant_qos;
+
+        participant_qos.properties().properties().emplace_back(
+            "fastdds.congestion.plugin",
+            "basic");
+        participant_qos.properties().properties().emplace_back(
+            "fastdds.congestion.period",
+            "10000");
+        participant_qos.properties().properties().emplace_back(
+            "fastdds.congestion.initial_bandwidth",
+            "100");
+        participant_qos.properties().properties().emplace_back(
+            "fastdds.congestion.increase_multiplier",
+            "1.2");
+        participant_qos.properties().properties().emplace_back(
+            "fastdds.congestion.decrease_multiplier",
+            "0.75");
+        //!--
+    }
+
+    {
         //DDS-SHM-ENFORCE-META-TRAFFIC
         DomainParticipantQos participant_qos;
 
@@ -971,6 +1033,29 @@ void dds_domain_examples()
         pqos.properties().properties().emplace_back(
             "fastdds.type_propagation",
             "disabled");
+        //!--
+    }
+
+    {
+        // SERIALIZE_OPTIONAL_QOS_PROPERTY
+        DomainParticipantQos pqos;
+
+        pqos.properties().properties().emplace_back(
+            "fastdds.serialize_optional_qos",
+            "true"); // true or True or TRUE or 1
+        //!--
+    }
+
+    {
+        // DDS_SQL_LIMITS_PROPERTY
+        DomainParticipantQos pqos;
+
+        pqos.properties().properties().emplace_back(
+            "dds.sql.expression.max_expression_length",
+            "20000");
+        pqos.properties().properties().emplace_back(
+            "dds.sql.expression.max_subexpressions",
+            "10");
         //!--
     }
 }
@@ -1217,7 +1302,11 @@ class TypeIntrospectionSubscriber : public DomainParticipantListener
 
         // Serialize DynamicType into its IDL representation
         std::stringstream idl;
-        idl_serialize(remote_type, idl);
+        if (RETCODE_OK != idl_serialize(remote_type, idl))
+        {
+            // Error
+            return;
+        }
 
         // Print IDL representation
         std::cout << "Type discovered:\n" << idl.str() << std::endl;
@@ -1233,8 +1322,8 @@ class TypeIntrospectionSubscriber : public DomainParticipantListener
         // Get remote type information
         xtypes::TypeObject remote_type_object;
         if (RETCODE_OK != DomainParticipantFactory::get_instance()->type_object_registry().get_type_object(
-                    info.type_information.type_information.complete().typeid_with_size().type_id(),
-                    remote_type_object))
+                info.type_information.type_information.complete().typeid_with_size().type_id(),
+                remote_type_object))
         {
             // Error
             return;
@@ -1246,7 +1335,11 @@ class TypeIntrospectionSubscriber : public DomainParticipantListener
 
         // Serialize DynamicType into its IDL representation
         std::stringstream idl;
-        idl_serialize(remote_type, idl);
+        if (RETCODE_OK != idl_serialize(remote_type, idl))
+        {
+            // Error
+            return;
+        }
 
         // Print IDL representation
         std::cout << "Type discovered:\n" << idl.str() << std::endl;
@@ -1258,25 +1351,59 @@ class TypeIntrospectionSubscriber : public DomainParticipantListener
     void on_data_available(
             DataReader* reader)
     {
-        // Dynamic DataType
+        // Create data using the DynamicType created from discovered TypeObject or through Dynamic Language Binding API
         DynamicData::_ref_type new_data =
-                DynamicDataFactory::get_instance()->create_data(dyn_type_);
+                DynamicDataFactory::get_instance()->create_data(dyn_type_serialization_);
 
         SampleInfo info;
-
         while ((RETCODE_OK == reader->take_next_sample(&new_data, &info)))
         {
             std::stringstream output;
             output << std::setw(4);
 
             // Serialize DynamicData into JSON string format
-            json_serialize(new_data, DynamicDataJsonFormat::EPROSIMA, output);
+            if (RETCODE_OK != json_serialize(
+                    new_data,
+                    DynamicDataJsonFormat::EPROSIMA,
+                    output))
+            {
+                // Error
+                return;
+            }
+
+            // Print JSON representation
             std::cout << "Message received:\n" << output.str() << std::endl;
         }
     }
 
-    // DynamicType created in discovery callback
-    DynamicType::_ref_type dyn_type_;
+    // DynamicType corresponding to received data
+    DynamicType::_ref_type dyn_type_serialization_;
+    //!--
+
+    //!--
+
+    //!--JSON_DYNDATA_DESERIALIZATION
+    void json_to_data(
+            const std::string& json_data)
+    {
+        // Deserialize JSON string into DynamicData
+        // The required DynamicType can be created from discovered TypeObject or through Dynamic Language Binding API
+        DynamicData::_ref_type new_data;
+        if (RETCODE_OK != json_deserialize(
+                json_data,
+                dyn_type_deserialization_,
+                DynamicDataJsonFormat::EPROSIMA,
+                new_data))
+        {
+            // Error
+            return;
+        }
+
+        // Process the new data
+    }
+
+    // DynamicType corresponding to JSON data to be deserialized into DynamicData
+    DynamicType::_ref_type dyn_type_deserialization_;
     //!--
 };
 //!--
@@ -1462,7 +1589,8 @@ void dds_discovery_examples()
     }
 
     {
-        DomainParticipant* client_or_server;
+        DomainParticipant* client_or_server =
+                DomainParticipantFactory::get_instance()->create_participant(0, PARTICIPANT_QOS_DEFAULT);
         //CONF_SERVER_ADD_SERVERS
         // Get existing QoS for the server or client
         DomainParticipantQos client_or_server_qos;
@@ -2030,6 +2158,85 @@ void dds_topic_examples()
             // Error
             return;
         }
+        //!--
+    }
+
+    {
+        //DDS_TYPE_SUPPORT_CONTEXT_DEF
+        struct MyContext : eprosima::fastdds::dds::TopicDataType::Context
+        {
+            uint32_t string_max_length = 256;
+            uint32_t sequence_max_length = 1024;
+        };
+        //!--
+    }
+
+    {
+        //DDS_DYNAMIC_TYPES_IDL_PARSING_CREATE_TYPE
+        // Create a DomainParticipant in the desired domain
+        DomainParticipant* participant =
+                DomainParticipantFactory::get_instance()->create_participant(0, PARTICIPANT_QOS_DEFAULT);
+        if (nullptr == participant)
+        {
+            // Error
+            return;
+        }
+
+        // Optional: Set the preprocessor to be executed before parsing the IDL
+        DynamicTypeBuilderFactory::get_instance()->set_preprocessor("<optional_path_to_your_preprocessor_executable>");
+
+        // Load the IDL file
+        std::string idl_file = "<path_to_idl>.idl";
+        std::string type_name = "YourType";
+        std::vector<std::string> include_paths;
+        include_paths.push_back("<path/to/folder/containing/included/idl/files>");
+
+        // Retrieve the instance of the desired type
+        DynamicTypeBuilder::_ref_type dyn_type_builder =
+                DynamicTypeBuilderFactory::get_instance()->create_type_w_uri(idl_file, type_name, include_paths);
+
+        // Register dynamic type
+        TypeSupport dyn_type_support(new DynamicPubSubType(dyn_type_builder->build()));
+        dyn_type_support.register_type(participant, nullptr);
+
+        // Create a Topic with the registered type.
+        Topic* topic =
+                participant->create_topic("topic_name", dyn_type_support.get_type_name(), TOPIC_QOS_DEFAULT);
+        if (nullptr == topic)
+        {
+            // Error
+            return;
+        }
+        //!--
+    }
+
+    {
+        //DDS_DYNAMIC_TYPES_IDL_PARSING_ITERATE_OVER_TYPES
+        // Optional: Set the preprocessor to be executed before parsing the IDL
+        DynamicTypeBuilderFactory::get_instance()->set_preprocessor("<optional_path_to_your_preprocessor_executable>");
+
+        // Load the IDL file
+        std::string idl_file = "<path_to_idl>.idl";
+        std::vector<std::string> include_paths;
+        include_paths.push_back("<path/to/folder/containing/included/idl/files>");
+
+        // Vector to store the names of the parsed types
+        std::vector<std::string> parsed_types;
+
+        // Define the function callback to be executed for each aggregated type parsed in the IDL file
+        auto callback = [&parsed_types](traits<DynamicTypeBuilder>::ref_type builder)
+        {
+            if (builder)
+            {
+                parsed_types.emplace_back(builder->get_name().to_string());
+            }
+
+            return true; // continue parsing
+        };
+
+        // Store the names of the parsed types in the vector
+        DynamicTypeBuilderFactory::get_instance()->for_each_type_w_uri(idl_file, include_paths, callback);
+
         //!--
     }
 }
@@ -2864,7 +3071,8 @@ void dds_dataWriter_examples()
         // Create a DataWriter with default QoS and a custom TopicQos.
         // The value DATAWRITER_QOS_USE_TOPIC_QOS is used to denote the default QoS
         // and to override the TopicQos.
-        Topic* topic;
+        Topic* topic =
+                participant->create_topic("", "", TOPIC_QOS_DEFAULT);
         DataWriter* data_writer_with_default_qos_and_custom_topic_qos =
                 publisher->create_datawriter(topic, DATAWRITER_QOS_USE_TOPIC_QOS);
         if (nullptr == data_writer_with_default_qos_and_custom_topic_qos)
@@ -2972,6 +3180,32 @@ void dds_dataWriter_examples()
             // Error
             return;
         }
+        //!--
+    }
+
+    {
+        //DDS_SET_TYPE_SUPPORT_CONTEXT_DW
+        // User-defined context struct carrying per-writer configuration.
+        struct MyContext : public TopicDataType::Context
+        {
+            uint32_t string_max_length = 0;
+            uint32_t sequence_max_length = 0;
+        };
+
+        // Create a DataWriter (initially disabled, e.g. via participant QoS).
+        DataWriterQos writer_qos = DATAWRITER_QOS_DEFAULT;
+        DataWriter* writer = publisher->create_datawriter(topic, writer_qos);
+
+        // Create a context carrying per-writer configuration.
+        auto context = std::make_shared<MyContext>();
+        context->string_max_length = 512;
+        context->sequence_max_length = 1024;
+
+        // Set it before enabling the DataWriter.
+        ReturnCode_t ret = writer->set_type_support_context(context);
+        assert(ret == RETCODE_OK);
+
+        // Then enable the writer (e.g., by enabling its DomainParticipant).
         //!--
     }
 
@@ -3129,10 +3363,6 @@ void dds_dataWriter_examples()
                     return;
                 }
             }
-
-            // The data instance can be reused to publish new values,
-            // but delete it at the end to avoid leaks
-            custom_type_support->delete_data(data);
             //!--
         }
 
@@ -3227,6 +3457,85 @@ void dds_dataWriter_examples()
             data_writer->dispose(&second_flight_position, HANDLE_NIL);
             //!
         }
+    }
+
+    {
+        //DDS_DATAWRITER_SAMPLE_PREFILTER
+        struct CustomUserWriteData : public eprosima::fastdds::rtps::WriteParams::UserWriteData
+        {
+            CustomUserWriteData(
+                    const eprosima::fastdds::rtps::GuidPrefix_t& prefix)
+                : filtered_out_prefix(prefix)
+            {
+            }
+
+            eprosima::fastdds::rtps::GuidPrefix_t filtered_out_prefix;
+        };
+
+        struct CustomPreFilter : public eprosima::fastdds::dds::IContentFilter
+        {
+            // Custom evaluation
+            bool evaluate(
+                    const SerializedPayload& payload,
+                    const FilterSampleInfo& filter_sample_info,
+                    const eprosima::fastdds::rtps::GUID_t& reader_guid) const override
+            {
+                static_cast<void>(payload);
+                static_cast<void>(filter_sample_info);
+
+                bool sample_should_be_sent = true;
+
+                auto custom_write_data =
+                        std::static_pointer_cast<CustomUserWriteData>(
+                            filter_sample_info.user_write_data);
+
+                // If the reader is the one to filter out, do not send the sample
+                if (custom_write_data->filtered_out_prefix == reader_guid.guidPrefix)
+                {
+                    sample_should_be_sent = false;
+                }
+                return sample_should_be_sent;
+            }
+
+        };
+
+        // Create a DataWriter
+        DataWriter* data_writer =
+                publisher->create_datawriter(topic, DATAWRITER_QOS_DEFAULT);
+        if (nullptr == data_writer)
+        {
+            // Error
+            return;
+        }
+
+        // Set a prefilter on the filtered reader
+        eprosima::fastdds::dds::ReturnCode_t ret = data_writer->set_sample_prefilter(
+                    std::make_shared<CustomPreFilter>());
+
+        if (ret != eprosima::fastdds::dds::RETCODE_OK)
+        {
+            // Error
+            return;
+        }
+
+        // Create a custom user write data
+        eprosima::fastdds::rtps::GuidPrefix_t filtered_out_prefix;
+        std::istringstream("44.53.00.5f.45.60.52.4f.53.49.7c.41") >> filtered_out_prefix;
+
+        std::shared_ptr<CustomUserWriteData> custom_write_data =
+                std::make_shared<CustomUserWriteData>(filtered_out_prefix);
+
+        // Set the custom user write data
+        eprosima::fastdds::rtps::WriteParams write_params;
+        write_params.user_write_data(custom_write_data);
+
+        HelloWorld sample;     //Auto-generated container class for topic data from Fast DDS-Gen
+        sample.msg("Hello there!");     // Add contents to the message
+
+        // Write a sample with the custom user write data
+        data_writer->write(&sample, write_params);
+
+        //!--
     }
 }
 
@@ -3669,7 +3978,8 @@ void dds_dataReader_examples()
         // Create a DataReader with default QoS and a custom TopicQos.
         // The value DATAREADER_QOS_USE_TOPIC_QOS is used to denote the default QoS
         // and to override the TopicQos.
-        Topic* topic;
+        Topic* topic =
+                participant->create_topic("", "", TOPIC_QOS_DEFAULT);
         DataReader* data_reader_with_default_qos_and_custom_topic_qos =
                 subscriber->create_datareader(topic, DATAREADER_QOS_USE_TOPIC_QOS);
         if (nullptr == data_reader_with_default_qos_and_custom_topic_qos)
@@ -3776,6 +4086,32 @@ void dds_dataReader_examples()
             // Error
             return;
         }
+        //!--
+    }
+
+    {
+        //DDS_SET_TYPE_SUPPORT_CONTEXT_DR
+        // User-defined context struct carrying per-reader configuration.
+        struct MyContext : public TopicDataType::Context
+        {
+            uint32_t string_max_length = 0;
+            uint32_t sequence_max_length = 0;
+        };
+
+        // Create a DataReader (initially disabled, e.g. via participant QoS).
+        DataReaderQos reader_qos = DATAREADER_QOS_DEFAULT;
+        DataReader* reader = subscriber->create_datareader(topic, reader_qos);
+
+        // Create a context carrying per-reader configuration.
+        auto context = std::make_shared<MyContext>();
+        context->string_max_length = 512;
+        context->sequence_max_length = 1024;
+
+        // Set it before enabling the DataReader.
+        ReturnCode_t ret = reader->set_type_support_context(context);
+        assert(ret == RETCODE_OK);
+
+        // Then enable the reader (e.g., by enabling its DomainParticipant).
         //!--
     }
 
@@ -4250,6 +4586,23 @@ void dds_qos_examples()
     }
 
     {
+        //DDS_CHANGE_TRANSPORT_PRIORITY_QOS_POLICY
+        // This example only applies to DataWriter entities
+        DataWriterQos writer_qos;
+        // The TransportPriorityQosPolicy is constructed with value 0 by default
+        // Change the value to 12
+        writer_qos.transport_priority().value = 12;
+        // Use modified QoS in the creation of the corresponding DataWriter
+        writer_ = publisher_->create_datawriter(topic_, writer_qos);
+
+        // Change the TransportPriorityQosPolicy at runtime
+        writer_qos.transport_priority().value = 23;
+        // Update the QoS in the corresponding entity
+        writer_->set_qos(writer_qos);
+        //!--
+    }
+
+    {
         //DDS_CHANGE_PARTITION_QOS_POLICY
         // This example uses a Publisher, but it can also be applied to Subscriber entities
         PublisherQos publisher_qos;
@@ -4296,13 +4649,13 @@ void dds_qos_examples()
         //DDS_CHANGE_RESOURCE_LIMITS_QOS_POLICY
         // This example uses a DataWriter, but it can also be applied to DataReader and Topic entities
         DataWriterQos writer_qos;
-        // The ResourceLimitsQosPolicy is constructed with max_samples = 5000 by default
+        // The ResourceLimitsQosPolicy is constructed with max_samples = LENGTH_UNLIMITED by default
         // Change max_samples to 2000
         writer_qos.resource_limits().max_samples = 2000;
-        // The ResourceLimitsQosPolicy is constructed with max_instances = 10 by default
+        // The ResourceLimitsQosPolicy is constructed with max_instances = LENGTH_UNLIMITED by default
         // Change max_instances to 20
         writer_qos.resource_limits().max_instances = 20;
-        // The ResourceLimitsQosPolicy is constructed with max_samples_per_instance = 400 by default
+        // The ResourceLimitsQosPolicy is constructed with max_samples_per_instance = LENGTH_UNLIMITED by default
         // Change max_samples_per_instance to 100
         writer_qos.resource_limits().max_samples_per_instance = 100;
         // The ResourceLimitsQosPolicy is constructed with allocated_samples = 100 by default
@@ -4697,8 +5050,12 @@ void dds_qos_examples()
         participant_qos.wire_protocol().default_external_unicast_locators[1][0].push_back(external_locator);
         // Drop non matching locators
         participant_qos.wire_protocol().ignore_non_matching_locators = true;
+        // Configure the ROS 2 Easy Mode master Discovery Server IP
+        participant_qos.wire_protocol().easy_mode("127.0.0.1");
         // Increase mutation tries
         participant_qos.wire_protocol().builtin.mutation_tries = 300u;
+        // Use a specific flow controller to control the builtin writers
+        participant_qos.wire_protocol().builtin.flow_controller_name = "AlreadyExistingFlowController";
         // Use modified QoS in the creation of the DomainParticipant entity
         participant_ = factory_->create_participant(domain, participant_qos);
         //!--
@@ -5159,7 +5516,7 @@ void dynamictypes_examples()
         MemberDescriptor::_ref_type bitfield_member_descriptor {traits<MemberDescriptor>::make_shared()};
         bitfield_member_descriptor->type(DynamicTypeBuilderFactory::get_instance()->get_primitive_type(TK_BOOLEAN));
         bitfield_member_descriptor->name("flag0");
-        bitfield_member_descriptor->id(0);
+        bitfield_member_descriptor->position(0);
         bitmask_builder->add_member(bitfield_member_descriptor);
         bitfield_member_descriptor = traits<MemberDescriptor>::make_shared();
         bitfield_member_descriptor->type(DynamicTypeBuilderFactory::get_instance()->get_primitive_type(TK_BOOLEAN));
@@ -5172,7 +5529,7 @@ void dynamictypes_examples()
         bitfield_member_descriptor = traits<MemberDescriptor>::make_shared();
         bitfield_member_descriptor->type(DynamicTypeBuilderFactory::get_instance()->get_primitive_type(TK_BOOLEAN));
         bitfield_member_descriptor->name("flag5");
-        bitfield_member_descriptor->id(5);
+        bitfield_member_descriptor->position(5);
         bitmask_builder->add_member(bitfield_member_descriptor);
         // Build the bitmask type
         DynamicType::_ref_type bitmask_type =  bitmask_builder->build();
@@ -6239,6 +6596,23 @@ void dds_transport_examples ()
     }
 
     {
+        //CONF-TCP-KEEP-ALIVE
+        DomainParticipantQos qos;
+
+        // Create a descriptor for the new transport.
+        auto tcp_transport = std::make_shared<TCPv4TransportDescriptor>();
+
+        // Configure keep alive options
+        tcp_transport->keep_alive_frequency_ms = 5000;  // Send a keep-alive message every 5 seconds when connection is idle
+        tcp_transport->keep_alive_timeout_ms = 2000;  // Consider connection lost if no response is received within 2 seconds
+        tcp_transport->keep_alive_thread = eprosima::fastdds::rtps::ThreadSettings{-1, 0, 0, -1};  // Configure thread settings
+
+        // Link the Transport Layer to the Participant.
+        qos.transport().user_transports.push_back(tcp_transport);
+        //!--
+    }
+
+    {
         //TRANSPORT-DESCRIPTORS
         DomainParticipantQos qos;
 
@@ -6693,6 +7067,9 @@ void dds_usecase_examples()
         DomainParticipantQos participant_qos;
         participant_qos.flow_controllers().push_back(flow_control_300k_per_sec);
 
+        // [OPTIONAL] Link builtin writers to any of the registered flow controllers
+        participant_qos.wire_protocol().builtin.flow_controller_name = "example_flow_controller";
+
         // .... create participant and publisher
 
         // Link writer to the registered flow controller.
@@ -6849,15 +7226,15 @@ void dds_usecase_examples()
         //CONF-MEMORY-QOS-PUBSUB
         ResourceLimitsQosPolicy resource_limits;
 
-        // The ResourceLimitsQosPolicy is constructed with max_samples = 5000 by default
+        // The ResourceLimitsQosPolicy is constructed with max_samples = LENGTH_UNLIMITED by default
         // Change max_samples to the minimum
         resource_limits.max_samples = 1;
 
-        // The ResourceLimitsQosPolicy is constructed with max_instances = 10 by default
+        // The ResourceLimitsQosPolicy is constructed with max_instances = LENGTH_UNLIMITED by default
         // Change max_instances to the minimum
         resource_limits.max_instances = 1;
 
-        // The ResourceLimitsQosPolicy is constructed with max_samples_per_instance = 400 by default
+        // The ResourceLimitsQosPolicy is constructed with max_samples_per_instance = LENGTH_UNLIMITED by default
         // Change max_samples_per_instance to the minimum
         resource_limits.max_samples_per_instance = 1;
 
@@ -6981,7 +7358,7 @@ void dds_persistence_examples()
     // Configure persistence service plugin for DomainParticipant
     DomainParticipantQos pqos;
     pqos.properties().properties().emplace_back("dds.persistence.plugin", "builtin.SQLITE3");
-    pqos.properties().properties().emplace_back("dds.persistence.sqlite3.filename", "persistence.db");
+    pqos.properties().properties().emplace_back("dds.persistence.sqlite3.filename", "part_persistence_service.db");
     DomainParticipant* participant = DomainParticipantFactory::get_instance()->create_participant(0, pqos);
 
     /********************************************************************************************************
@@ -7038,16 +7415,26 @@ void dds_persistence_examples()
 
     // Configure DataWriter's durability and persistence GUID so it can use the persistence service
     DataWriterQos dwqos = DATAWRITER_QOS_DEFAULT;
+    dwqos.history().kind = KEEP_LAST_HISTORY_QOS;
+    dwqos.history().depth = 20;
+    dwqos.reliability().kind = RELIABLE_RELIABILITY_QOS;
     dwqos.durability().kind = TRANSIENT_DURABILITY_QOS;
+    dwqos.properties().properties().emplace_back("dds.persistence.plugin", "builtin.SQLITE3");
     dwqos.properties().properties().emplace_back("dds.persistence.guid",
-            "77.72.69.74.65.72.5f.70.65.72.73.5f|67.75.69.64");
+            "77.72.69.74.65.72.5f.71.65.72.73.5f|67.75.69.64");
+    dwqos.properties().properties().emplace_back("dds.persistence.sqlite3.filename", "dw_persistence_service.db");
     DataWriter* writer = publisher->create_datawriter(topic, dwqos);
 
     // Configure DataReaders's durability and persistence GUID so it can use the persistence service
     DataReaderQos drqos = DATAREADER_QOS_DEFAULT;
+    drqos.history().kind = KEEP_LAST_HISTORY_QOS;
+    drqos.history().depth = 20;
+    drqos.reliability().kind = RELIABLE_RELIABILITY_QOS;
     drqos.durability().kind = TRANSIENT_DURABILITY_QOS;
+    drqos.properties().properties().emplace_back("dds.persistence.plugin", "builtin.SQLITE3");
     drqos.properties().properties().emplace_back("dds.persistence.guid",
-            "72.65.61.64.65.72.5f.70.65.72.73.5f|67.75.69.64");
+            "77.72.69.74.65.72.5f.71.65.72.73.5f|67.75.69.65");
+    drqos.properties().properties().emplace_back("dds.persistence.sqlite3.filename", "dr_persistence_service.db");
     DataReader* reader = subscriber->create_datareader(topic, drqos);
     //!--
 }

@@ -1,0 +1,26 @@
+`Version 3.2.2 <https://fast-dds.docs.eprosima.com/en/v3.2.2/index.html>`_
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+This release includes the following **fixes**:
+
+#. Fix ``related_sample_identity`` handling in RPC for ROS 2 request messages
+#. Fix compilation in Windows using MinGW compiler
+#. Fix a crash error in ``XMLDynamicParser.cpp`` due to ``wstring_builder`` being created as ``nullptr``
+
+This release includes the following **improvements**:
+
+#. Add support for sequence types in ``IDLParser``
+#. Improve efficiency of Discovery Server routines
+#. Always copy ``type_information`` in ``ReaderProxyData`` and ``WriterProxyData`` copy constructors
+#. Add Fast DDS v2.6.10 to supported releases
+
+This release includes the following **ci management updates**:
+
+#. Force using asio from thirdparty in MacOS CI
+#. Update 2.6.x weekly Ubuntu image to Ubuntu 22.04
+
+.. important::
+
+    When upgrading to version 3.2.2 it is **highly recommended** to regenerate generated source from IDL files
+    using at least `Fast DDS-Gen v4.0.4 <https://github.com/eProsima/Fast-DDS-Gen/releases/tag/v4.0.4>`_.
+    But it is advisable to regenerate them using the latest patch version of ``Fast DDS-Gen v4.0.x``.

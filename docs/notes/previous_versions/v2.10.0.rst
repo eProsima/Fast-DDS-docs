@@ -1,5 +1,5 @@
-`Version 2.10.0 <https://fast-dds.docs.eprosima.com/en/v2.10.0/index.html>`_
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+`Version 2.10.0 (EOL) <https://fast-dds.docs.eprosima.com/en/v2.10.0/index.html>`_
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 This minor release includes several new features, improvements and bugfixes.
 
@@ -50,7 +50,7 @@ This release includes the following **improvements**:
 6. **Fast DDS CLI**
     1. Handle ``SIGTERM`` signal.
 7. **Community supported platforms**
-    1. :ref:`QNX 7.1 build infrastructure <qnx_sources>`.
+    1. QNX 7.1.
 
 This release includes the following **fixes**:
 

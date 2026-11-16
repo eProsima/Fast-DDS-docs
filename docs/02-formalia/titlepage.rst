@@ -17,16 +17,158 @@ that deploy
 a Data-Centric Publisher-Subscriber (DCPS) model, with the purpose of establishing efficient and reliable
 information distribution among Real-Time Systems.
 
+Fast DDS |Pro|
+^^^^^^^^^^^^^^
+
+*Fast DDS Pro* is the commercial edition of *eProsima Fast DDS*, created for industrial and defense applications that
+require advanced networking capabilities.
+
+It extends the open-source version with premium features such as:
+
+* :ref:`Low Bandwidth Transports <low_bandwidth_transports>` |Pro| – optimized DDS communication for constrained or
+  unstable links.
+* :ref:`TSN Support <use-case-dds-tsn>` |Pro| – deterministic communication with guaranteed latency.
+* :ref:`IP Mobility <ip-mobility>` |Pro| – uninterrupted communication even when network conditions change.
+* :ref:`RPC over DDS <rpc_dds_intro>` |Pro| – seamless integration of remote procedure calls with DDS communication.
+* :ref:`Congestion Control <congestion-control>` |Pro| – adaptive traffic management in congested environments.
+
+The following table contains a brief comparison between *Fast DDS* and *Fast DDS Pro*:
+
 .. raw:: html
 
-    <br/>
+  <style>
+    .md-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-family: sans-serif;
+      font-size: 0.95em;
+    }
+    .md-table th, .md-table td {
+      border: 1px solid var(--color-background-border, #dfe2e5);
+      padding: 10px 16px;
+      text-align: left;
+      color: var(--color-foreground-primary, inherit);
+      background-color: var(--color-background-primary, transparent);
+    }
+    .md-table thead tr {
+      background-color: var(--color-background-secondary, #f6f8fa) !important;
+      font-weight: bold;
+      text-align: center;
+    }
+    .md-table tbody tr:nth-child(even) td {
+      background-color: var(--color-background-secondary, #f6f8fa);
+    }
+    .md-table tbody tr:hover td {
+      background-color: var(--color-background-hover, #eef2f5);
+    }
+    .md-table .section-header {
+      background-color: var(--color-background-secondary, #e8ecef) !important;
+      font-weight: bold;
+      text-align: center;
+      color: var(--color-foreground-secondary, #444);
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      font-size: 0.85em;
+    }
+  </style>
+
+  <table class="md-table">
+    <thead>
+      <tr>
+        <th style="width:20%"></th>
+        <th style="width:40%; text-align:center; vertical-align:bottom;">
+          <img src="pathto('_static/fast-dds-pro-logo-large.png', 1)" alt="Fast DDS Pro" width="300px"><br>
+        </th>
+        <th style="width:40%; text-align:center; vertical-align:bottom;">
+          <img src="pathto('_static/fast-dds-logo-large.png', 1)" alt="Fast DDS (Community)" width="250px"><br>
+        </th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <th>Target usage</th>
+        <td>Production systems, industrial, robotics, defense</td>
+        <td>Evaluation, prototyping, early development, research</td>
+      </tr>
+      <tr>
+        <th>License</th>
+        <td>Commercial</td>
+        <td>Open Source (Apache 2.0)</td>
+      </tr>
+      <tr>
+        <th>Support</th>
+        <td>✅ Direct engineering support (unlimited)</td>
+        <td>❌ Community-based</td>
+      </tr>
+      <tr>
+        <th>Maintenance / LTS</th>
+        <td>✅ Long-term support (~24 months, backports)</td>
+        <td>❌ No guaranteed maintenance</td>
+      </tr>
+      <tr>
+        <th>Predictability</th>
+        <td>✅ Controlled releases &amp; fixes</td>
+        <td>⚠️ Best-effort evolution</td>
+      </tr>
+      <tr>
+        <th>DDS Pub/Sub &amp; QoS</th>
+        <td>✅ Full</td>
+        <td>✅ Full</td>
+      </tr>
+      <tr>
+        <th>TSN over DDS</th>
+        <td>✅</td>
+        <td>❌</td>
+      </tr>
+      <tr>
+        <th>RPC over DDS</th>
+        <td>✅ (incl. streaming)</td>
+        <td>❌</td>
+      </tr>
+      <tr>
+        <th>IP Mobility</th>
+        <td>✅</td>
+        <td>❌</td>
+      </tr>
+      <tr>
+        <th>Low Bandwidth Transports</th>
+        <td>✅</td>
+        <td>❌</td>
+      </tr>
+      <tr>
+        <th>Adaptive Congestion Control</th>
+        <td>✅</td>
+        <td>❌</td>
+      </tr>
+      <tr>
+        <th>Discovery Server</th>
+        <td>✅ Advanced / optimized matching</td>
+        <td>⚠️ Standard functionality</td>
+      </tr>
+    </tbody>
+  </table>
+
+
+.. |eprosima_fastdds_pro_website| raw:: html
+
+   <a href="https://forms.eprosima.com/reach/form/CommercialSupportRequest/formperma/Ac8GwewD7PTDadQZIV92qDEzNFfMlJnYmA029mSJtJ8" target="_blank" rel="noopener noreferrer">share your contact details</a>
+
+To discover all features and request a commercial license please |eprosima_fastdds_pro_website|.
 
 Commercial support
 ^^^^^^^^^^^^^^^^^^
 
-Looking for commercial support? Write us to info@eprosima.com
+.. |commercial_support_link| raw:: html
 
-Find more about us at `eProsima's webpage <https://eprosima.com/>`__.
+   <a href="https://forms.eprosima.com/reach/form/CommercialSupportRequest/formperma/Ac8GwewD7PTDadQZIV92qDEzNFfMlJnYmA029mSJtJ8" target="_blank" rel="noopener noreferrer">share your details</a>
+
+Looking for commercial support? Please |commercial_support_link| so we can assist you.
+
+.. |eprosima_webpage_link| raw:: html
+
+   <a href="https://www.eprosima.com" target="_blank" rel="noopener noreferrer">eProsima’s webpage</a>
+
+Find more about us at |eprosima_webpage_link|.
 
 Key features
 ^^^^^^^^^^^^

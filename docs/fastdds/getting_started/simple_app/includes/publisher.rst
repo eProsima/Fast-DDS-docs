@@ -26,7 +26,7 @@ the file.
     :lines: 15-18
 
 Below are the includes of the C++ headers.
-The first one includes the HelloWorldPubSubTypes.h file with the serialization and deserialization functions of the
+The first one includes the HelloWorldPubSubTypes.hpp file with the serialization and deserialization functions of the
 data type that we have defined in the previous section.
 
 .. literalinclude:: /../code/Examples/C++/DDSHelloWorld/src/HelloWorldPublisher.cpp

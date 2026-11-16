@@ -70,8 +70,8 @@ The following table describes the common data members for both TCPv4 and TCPv6.
   * - |SocketTransportDescriptor::interface_allowlist-api|
     - ``vector<pair<string, NetmaskFilterKind>>``
     - Empty vector
-    - List of allowed interfaces with |br|
-      netmask filter configuration. |br|
+    - List of allowed interfaces with
+      netmask filter configuration.
       See |interfaces_allowlist|.
   * - |SocketTransportDescriptor::interface_blocklist-api|
     - ``vector<string>``
@@ -93,12 +93,12 @@ The following table describes the common data members for both TCPv4 and TCPv6.
     - List of ports to listen as *server*. If a port is set to 0, an available port will be automatically assigned.
   * - |TCPTransportDescriptor::keep_alive_frequency_ms-api|
     - ``uint32_t``
-    - 5000
-    - Frequency of RTCP keep alive requests (in ms).
+    - 0
+    - |Pro| Frequency of RTCP keep alive requests (in ms).
   * - |TCPTransportDescriptor::keep_alive_timeout_ms-api|
     - ``uint32_t``
-    - 15000
-    - Time since sending the last keep alive request to consider a connection as broken (in ms).
+    - 0
+    - |Pro| Time since sending the last keep alive request to consider a connection as broken (in ms).
   * - |TCPTransportDescriptor::max_logical_port-api|
     - ``uint16_t``
     - 100
@@ -461,6 +461,6 @@ Delivery Mechanisms example
 ---------------------------
 
 A hello world example suitable for supported delivery mechanisms can be found in the
-`delivery_mechanisms folder <https://github.com/eProsima/Fast-DDS/tree/master/examples/cpp/delivery_mechanisms>`_.
+:fastdds-tree:`delivery_mechanisms folder <examples/cpp/delivery_mechanisms>`.
 It shows a publisher and a subscriber that communicate through the desired delivery mechanism (which can be set to TCP
 only).

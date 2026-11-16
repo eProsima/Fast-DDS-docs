@@ -72,7 +72,7 @@
             <lease_duration>
                 <sec>1</sec>
             </lease_duration>
-	    <kind>AUTOMATIC</kind>
+            <kind>AUTOMATIC</kind>
         </liveliness>
     </qos>
 </data_reader>
@@ -82,7 +82,7 @@
 <data_writer profile_name="writer_xml_conf_ownership_profile">
     <qos>
       <ownership>
-	    <kind>EXCLUSIVE</kind>
+        <kind>EXCLUSIVE</kind>
       </ownership>
     </qos>
 </data_writer>
@@ -90,7 +90,7 @@
 <data_reader profile_name="reader_xml_conf_ownership_profile">
     <qos>
         <ownership>
-	    <kind>EXCLUSIVE</kind>
+            <kind>EXCLUSIVE</kind>
         </ownership>
     </qos>
 </data_reader>
@@ -100,8 +100,16 @@
 <data_writer profile_name="writer_xml_conf_ownership_strength_profile">
     <qos>
         <ownershipStrength>
-	    <value>10</value>
+            <value>10</value>
         </ownershipStrength>
+    </qos>
+</data_writer>
+<!--><-->
+
+<!-->PUBSUB_API_CONF_PUBSUB_TRANSPORT_PRIORITY<-->
+<data_writer profile_name="writer_xml_conf_transport_priority_profile">
+    <qos>
+        <transport_priority>12</transport_priority>
     </qos>
 </data_writer>
 <!--><-->
@@ -788,6 +796,21 @@
     </participant>
 <!--><-->
 
+<!-->CONF-TCP-KEEP-ALIVE<-->
+<!--
+<?xml version="1.0" encoding="UTF-8" ?>
+<profiles xmlns="http://www.eprosima.com">
+-->
+    <transport_descriptors>
+        <transport_descriptor>
+            <transport_id>keep_alive_transport</transport_id>
+            <type>TCPv4</type>
+            <keep_alive_frequency_ms>5000</keep_alive_frequency_ms>
+            <keep_alive_timeout_ms>25000</keep_alive_timeout_ms>
+        </transport_descriptor>
+    </transport_descriptors>
+<!--><-->
+
 <!-->CONF-DISABLE-MULTICAST<-->
 <!--
 <?xml version="1.0" encoding="UTF-8" ?>
@@ -836,6 +859,10 @@
                     </sender_thread>
                 </flow_controller_descriptor>
             </flow_controller_descriptor_list>
+
+            <builtin> <!-- Optional use of flow controller for participant's meta traffic-->
+                <flow_controller_name>example_flow_controller</flow_controller_name>
+            </builtin>
         </rtps>
     </participant>
 
@@ -2075,6 +2102,8 @@
         <value>50</value>
     </ownershipStrength>
 
+    <transport_priority>12</transport_priority>
+
     <partition>
         <names>
             <name>part1</name>
@@ -3229,6 +3258,42 @@
 -->
 <!--><-->
 
+<!-->DDS_CONGESTION_CONTROL_PROPS<-->
+<!--
+<?xml version="1.0" encoding="UTF-8" ?>
+<dds xmlns="http://www.eprosima.com">
+    <profiles>
+-->
+        <participant profile_name="congestion_control_domainparticipant_xml_profile">
+            <rtps>
+                <propertiesPolicy>
+                    <properties>
+                        <property>
+                            <name>fastdds.congestion.plugin</name>
+                            <value>basic</value>
+                        </property>
+                        <property>
+                            <name>fastdds.congestion.period</name>
+                            <value>10000</value>
+                        </property>
+                        <property>
+                            <name>fastdds.congestion.initial_bandwidth</name>
+                            <value>1000</value>
+                        </property>
+                        <property>
+                            <name>fastdds.congestion.increase_multiplier</name>
+                            <value>1.2</value>
+                        </property>
+                        <property>
+                            <name>fastdds.congestion.decrease_multiplier</name>
+                            <value>0.75</value>
+                        </property>
+                    </properties>
+                </propertiesPolicy>
+            </rtps>
+        </participant>
+<!--><-->
+
 <!-->MAX_MESSAGE_SIZE_PROPERTY_PARTICIPANT<-->
 <!--
 <?xml version="1.0" encoding="UTF-8" ?>
@@ -3278,6 +3343,58 @@
                         <property>
                             <name>fastdds.type_propagation</name>
                             <value>disabled</value>
+                        </property>
+                    </properties>
+                </propertiesPolicy>
+            </rtps>
+        </participant>
+<!--
+    </profiles>
+</dds>
+-->
+<!--><-->
+
+<!-->SERIALIZE_OPTIONAL_QOS_PROPERTY<-->
+<!--
+<?xml version="1.0" encoding="UTF-8" ?>
+<dds xmlns="http://www.eprosima.com">
+    <profiles>
+-->
+        <participant profile_name="serialize_optional_qos_domainparticipant_xml_profile">
+            <rtps>
+                <propertiesPolicy>
+                    <properties>
+                        <property>
+                            <name>fastdds.serialize_optional_qos</name>
+                            <value>true</value> <!-- true, True, TRUE, 1 -->
+                        </property>
+                    </properties>
+                </propertiesPolicy>
+            </rtps>
+        </participant>
+<!--
+    </profiles>
+</dds>
+-->
+<!--><-->
+
+<!-->DDS_SQL_LIMITS_PROPERTY<-->
+<!--
+<?xml version="1.0" encoding="UTF-8" ?>
+<dds xmlns="http://www.eprosima.com">
+    <profiles>
+-->
+        <participant profile_name="custom_sql_limits_domainparticipant_xml_profile">
+            <rtps>
+                <propertiesPolicy>
+                    <properties>
+                        <property>
+                            <name>dds.sql.expression.max_expression_length</name>
+                            <value>20000</value>
+                        </property>
+                        <property>
+                            <name>dds.sql.expression.max_subexpressions</name>
+                            <value>10</value>
                         </property>
                     </properties>
                 </propertiesPolicy>
@@ -3474,10 +3591,10 @@
                             <name>dds.persistence.plugin</name>
                             <value>builtin.SQLITE3</value>
                         </property>
-                        <!-- Database file name -->
+                        <!-- Filename will only be used if endpoint does not define its own -->
                         <property>
                             <name>dds.persistence.sqlite3.filename</name>
-                            <value>persistence_service.db</value>
+                            <value>part_persistence_service.db</value>
                         </property>
                     </properties>
                 </propertiesPolicy>
@@ -3486,7 +3603,16 @@
 
         <!-- DataWriter configuration -->
         <data_writer profile_name="persistence_service_data_writer">
+            <topic>
+                <historyQos>
+                    <kind>KEEP_LAST</kind>
+                    <depth>20</depth>
+                </historyQos>
+            </topic>
             <qos>
+                <reliability>
+                    <kind>RELIABLE</kind>
+                </reliability>
                 <!-- Set durability to TRANSIENT_DURABILITY_QOS -->
                 <durability>
                     <kind>TRANSIENT</kind>
@@ -3494,17 +3620,35 @@
             </qos>
             <propertiesPolicy>
                 <properties>
+                    <property>
+                        <name>dds.persistence.plugin</name>
+                        <value>builtin.SQLITE3</value>
+                    </property>
                     <!-- Persistence GUID -->
                     <property>
                         <name>dds.persistence.guid</name>
-                        <value>77.72.69.74.65.72.5f.70.65.72.73.5f|67.75.69.64</value>
+                        <value>77.72.69.74.65.72.5f.71.65.72.73.5f|67.75.69.64</value>
+                    </property>
+                    <property>
+                        <name>dds.persistence.sqlite3.filename</name>
+                        <value>dw_persistence_service.db</value>
                     </property>
                 </properties>
             </propertiesPolicy>
         </data_writer>
 
+        <!-- DataReader configuration -->
         <data_reader profile_name="persistence_service_data_reader">
+            <topic>
+                <historyQos>
+                    <kind>KEEP_LAST</kind>
+                    <depth>20</depth>
+                </historyQos>
+            </topic>
             <qos>
+                <reliability>
+                    <kind>RELIABLE</kind>
+                </reliability>
                 <!-- Set durability to TRANSIENT_DURABILITY_QOS -->
                 <durability>
                     <kind>TRANSIENT</kind>
@@ -3512,10 +3656,18 @@
             </qos>
             <propertiesPolicy>
                 <properties>
+                    <property>
+                        <name>dds.persistence.plugin</name>
+                        <value>builtin.SQLITE3</value>
+                    </property>
                     <!-- Persistence GUID -->
                     <property>
                         <name>dds.persistence.guid</name>
-                        <value>72.65.61.64.65.72.5f.70.65.72.73.5f|67.75.69.64</value>
+                        <value>77.72.69.74.65.72.5f.71.65.72.73.5f|67.75.69.65</value>
+                    </property>
+                    <property>
+                        <name>dds.persistence.sqlite3.filename</name>
+                        <value>dr_persistence_service.db</value>
                     </property>
                 </properties>
             </propertiesPolicy>
@@ -3811,6 +3963,7 @@
     <rtps>
         <prefix>72.61.73.70.66.61.72.6d.74.65.73.74</prefix>
         <participantID>11</participantID>
+        <easy_mode_ip>127.0.0.1</easy_mode_ip>
         <builtin>
             <discovery_config>
                 <discoveryProtocol>SERVER</discoveryProtocol>
@@ -4006,6 +4159,26 @@
                 <port_queue_capacity>512</port_queue_capacity>
                 <healthy_check_timeout_ms>1000</healthy_check_timeout_ms>
                 <rtps_dump_file>rtsp_messages.log</rtps_dump_file>
+                <default_reception_threads>
+                    <scheduling_policy>-1</scheduling_policy>
+                    <priority>0</priority>
+                    <affinity>0</affinity>
+                    <stack_size>-1</stack_size>
+                </default_reception_threads>
+                <reception_threads>
+                    <reception_thread port="12345">
+                        <scheduling_policy>-1</scheduling_policy>
+                        <priority>0</priority>
+                        <affinity>0</affinity>
+                        <stack_size>-1</stack_size>
+                    </reception_thread>
+                </reception_threads>
+                <dump_thread>
+                    <scheduling_policy>-1</scheduling_policy>
+                    <priority>0</priority>
+                    <affinity>0</affinity>
+                    <stack_size>-1</stack_size>
+                </dump_thread>
             </transport_descriptor>
         </transport_descriptors>
 <!-->

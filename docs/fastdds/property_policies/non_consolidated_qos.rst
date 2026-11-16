@@ -69,12 +69,32 @@ See :ref:`tuning-heartbeat-period` for more details.
     * It is inconsistent to enable the ``pull mode`` and also set the |WriterTimes::heartbeat_period-api| to
       |c_TimeInfinite-api|.
 
+.. _unique_network_flows_qos_policy:
 
 Unique network flows QoS Policy
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-.. warning::
-    This section is still under work.
+This QoS Policy allows a |DataReader-api| to be created with a unique network flow, i.e. listening on a
+port that is not shared with any other endpoint of the same |DomainParticipant-api|.
+This is useful when the application needs to apply specific Network QoS parameters (for example, through 3GPP/5QI
+configuration on the underlying networking equipment) to the traffic of a particular topic.
+
+The feature is enabled by adding the property ``"fastdds.unique_network_flows"`` to the
+:ref:`propertypolicyqos` of the |DataReader-api|.
+
+.. list-table::
+   :header-rows: 1
+   :align: left
+
+   * - PropertyPolicyQos name
+     - PropertyPolicyQos value
+     - Default value
+   * - ``"fastdds.unique_network_flows"``
+     - ``""``
+     - Not set
+
+For a complete description of network flows in *Fast DDS*, the APIs used to inspect them, and a usage example,
+see :ref:`use-case-unique-flows`.
 
 .. _property_policies_statistics:
 
@@ -125,10 +145,10 @@ This is done by setting the following properties within the :ref:`propertypolicy
 
    * - PropertyPolicyQos name
      - PropertyPolicyQos value
-     - Default value without |br| ``FASTDDS_STATISTICS``
-     - Default value with |br| ``FASTDDS_STATISTICS``
+     - Default value without  ``FASTDDS_STATISTICS``
+     - Default value with  ``FASTDDS_STATISTICS``
    * - ``"fastdds.physical_data.host"``
-     - Name of the host computer in which |br| the application runs
+     - Name of the host computer in which  the application runs
      - Not set
      - ``""``
    * - ``"fastdds.physical_data.user"``
@@ -261,7 +281,7 @@ Currently there are two different exchange formats which can be selected using t
      - Standard exchange format for Static Discovery.
      - ✅
    * - ``"v1_Reduced"``
-     - Format which reduces the necessary network bandwidth to transmit Static |br|
+     - Format which reduces the necessary network bandwidth to transmit Static
        Discovery's information in the Participant Discovery Phase (PDP).
      -
 
@@ -305,8 +325,8 @@ The behavior regarding this can be configured using the property ``fastdds.shm.e
      - Enable SHM transport unicast communications.
      -
    * - ``"all"``
-     - Enable SHM transport unicast and multicast communications. |br|
-       This will enable discovery between SHM only participants |br|
+     - Enable SHM transport unicast and multicast communications.
+       This will enable discovery between SHM only participants
        and participants having several transports.
      -
 
@@ -327,6 +347,30 @@ The behavior regarding this can be configured using the property ``fastdds.shm.e
         :language: xml
         :start-after: <!-->XML-SHM-ENFORCE-META-TRAFFIC
         :end-before: <!--><-->
+
+.. _property_policies_shm_host_id_only:
+
+SHM transport locators format |Pro|
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Prior to version 3.7.0 of *Fast DDS*, the locators format for SHM transport included a two byte ID
+based on the IP addresses of the host, which was used to identify the host in which the participant
+was running.
+Starting from version 3.7.0, the locators format for SHM transport has been changed to also include
+a 13-byte ID based on the machine ID of the host.
+
+When the machine ID part of the locator is set, it is used to identify the host in which a
+participant is running, and the IP-based host ID part of the locator is ignored.
+When the machine ID part of the locator is not set, the IP-based host ID part of the locator is
+used to identify the host in which a participant is running.
+
+In certain scenarios, where virtual machines are cloned or containers are created from the same
+image, the machine ID of the host may be the same for different hosts, which may lead to
+participants running in different hosts being considered to be running in the same host, and
+therefore not being able to communicate.
+In order to avoid this situation, the property ``fastdds.shm.only_host_id_on_locators`` can be set
+to ``true`` to force the SHM transport to use only the IP-based host ID part of the locator, both
+in the announced locators and when processing the locators of remote participants.
 
 .. _property_max_message_size:
 
@@ -474,3 +518,115 @@ The different property values have the following effects on the local |DomainPar
         :start-after: <!-->TYPE_PROPAGATION_PROPERTY<-->
         :end-before: <!--><-->
         :lines: 2-4,6-17,19-20
+
+.. _property_serialize_optional_qos:
+
+Adding optional QoS to Discovery data
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+During :ref:`discovery`, |DomainParticipants-api|, |DataWriters-api| and |DataReaders-api| acknowledge each other.
+This is performed in two phases, the Participant Discovery Phase (PDP) and the Endpoint Discovery Phase (EDP).
+To do that, the DomainParticipants share information about their DataWriters and DataReaders with each other,
+using the communication channels established during the PDP phase.
+This information contains all data required to match the endpoints, such as the |Topic-api|, data type, and
+certain :ref:`QoS Policies <dds_layer_core_policy>` that might affect matching.
+Specific compatibility rules can be found in each QoS section of :ref:`QoS Policies <dds_layer_core_policy>`.
+
+However, there are some QoS that are not mandatory for matching, but can be useful to have upon discovery.
+Property ``fastdds.serialize_optional_qos`` allows the user to include these optional QoS during discovery.
+This property is configured at the |DomainParticipant-api| level through the policy :ref:`propertypolicyqos`.
+Hence, the |DomainParticipant-api| and all its associated endpoints will send their optional QoS
+in the discovery messages.
+
+Optional QoS, like any other QoS, will only be serialized if they have non-default values.
+Not receiving information about a QoS in the EDP message means that it has a default value.
+Optional QoS will be serialized if the value of the property is set to ``TRUE``, ``True``, ``true`` or ``1``, any
+other value will be considered as not set or ``FALSE``.
+
+The following table lists all the optional QoS that can be serialized in the discovery messages:
+
+.. list-table::
+   :header-rows: 1
+   :align: left
+
+   * - PropertyPolicyQos
+     - Applies to:
+   * - |WireProtocolConfigQos-api|
+     - |DomainParticipant-api|.
+   * - |ResourceLimitsQosPolicy-api|
+     - |DataWriter-api| and |DataReaders-api|.
+   * - |TransportPriorityQosPolicy-api|
+     - |DataWriter-api|.
+   * - |WriterDataLifecycleQosPolicy-api|
+     - |DataWriter-api|.
+   * - |ReaderDataLifecycleQosPolicy-api|
+     - |DataReaders-api|.
+   * - |PublishModeQosPolicy-api|
+     - |DataWriter-api|.
+   * - |RTPSReliableWriterQos-api|
+     - |DataWriter-api|.
+   * - |RTPSReliableReaderQos-api|
+     - |DataReaders-api|.
+   * - |RTPSEndpointQos-api|
+     - |DataWriter-api| and |DataReaders-api|.
+   * - |WriterResourceLimitsQos-api|
+     - |DataWriter-api|.
+   * - |ReaderResourceLimitsQos-api|
+     - |DataReaders-api|.
+
+.. tab-set-code::
+
+    .. literalinclude:: /../code/DDSCodeTester.cpp
+        :language: c++
+        :start-after: // SERIALIZE_OPTIONAL_QOS_PROPERTY
+        :end-before: //!--
+        :dedent: 8
+
+    .. literalinclude:: /../code/XMLTester.xml
+        :language: xml
+        :start-after: <!-->SERIALIZE_OPTIONAL_QOS_PROPERTY<-->
+        :end-before: <!--><-->
+        :lines: 2-4,6-17,19-20
+
+.. _properties_sql_filter_expression_limits:
+
+SQL Filter Expression limits
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+When creating content-filtered topics using the
+:ref:`default SQL-like filter <dds_layer_topic_contentFilteredTopic_default_filter>`, some restrictions apply to the
+SQL expressions that can be used for content-based filtering.
+The default limits are set to values that should be enough for most use cases, but they can be customized using the
+following properties when a participant is created:
+
+.. list-table::
+   :header-rows: 1
+   :align: left
+
+   * - PropertyPolicyQos name
+     - PropertyPolicyQos value
+     - Default value
+   * - ``"dds.sql.expression.max_expression_length"``
+     - Maximum length of the SQL expression, in characters.
+     - ``16384``
+   * - ``"dds.sql.expression.max_subexpressions"``
+     - Maximum number of sub-expressions in the SQL expression.
+     - ``256``
+
+Creating content-filtered topics with expressions exceeding any of these limits will fail.
+Expressions received in discovery messages exceeding any of these limits will be ignored, and filtering will happen
+in the reader side.
+
+.. tab-set-code::
+
+    .. literalinclude:: /../code/DDSCodeTester.cpp
+        :language: c++
+        :start-after: // DDS_SQL_LIMITS_PROPERTY
+        :end-before: //!--
+        :dedent: 8
+
+    .. literalinclude:: /../code/XMLTester.xml
+        :language: xml
+        :start-after: <!-->DDS_SQL_LIMITS_PROPERTY<-->
+        :end-before: <!--><-->
+        :lines: 2-4,6-21,23-24

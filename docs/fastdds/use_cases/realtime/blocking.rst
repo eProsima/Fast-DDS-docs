@@ -1,3 +1,8 @@
+.. include:: ../../../03-exports/aliases.include
+.. include:: ../../../03-exports/aliases-api.include
+.. include:: ../../../03-exports/roles.include
+.. include:: ../../../03-exports/pro-only-refs.include
+
 .. _non-blocking-calls:
 
 Non-blocking calls
@@ -7,7 +12,7 @@ Non-blocking calls
    As OSX does not support necessary POSIX Real-time features, this feature is not fully supported on OSX.
    In that case, the feature is limited by the implementation of `std::timed_mutex` and `std::condition_variable_any`.
 
-Several functions on the :ref:`Fast DDS API<api_reference>` can be blocked
+Several functions on the |api_reference| can be blocked
 for an undefined period of time when operations compete for the control of a resource.
 The blocked function cannot continue until the operation that gained the control finishes, thus blocking
 the calling thread.
@@ -50,5 +55,4 @@ This configuration needs two steps:
    * - |wait|
      - The method accepts an argument with the maximum blocking time.
      -
-
 

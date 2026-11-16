@@ -1,10 +1,12 @@
 # eProsima Fast DDS Documentation
 
-[![Releases](https://img.shields.io/github/release/eProsima/Fast-DDS.svg)](https://github.com/eProsima/Fast-DDS/releases)
-[![License](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](https://opensource.org/licenses/Apache-2.0)
-[![Linux Build Status](http://jenkins.eprosima.com:8080/job/nightly_fastdds-docs_master/badge/icon?subject=CI%20testing%20)](http://jenkins.eprosima.com:8080/job/nightly_fastdds-docs_master/)
+<div class="badges" align="center">
+    <a href="https://opensource.org/licenses/Apache-2.0"><img alt="License" src="https://img.shields.io/github/license/eProsima/Fast-DDS.svg"/></a>
+    <a href="https://github.com/eProsima/Fast-DDS/releases"><img alt="Releases" src="https://img.shields.io/github/v/release/eProsima/Fast-DDS?sort=semver"/></a>
+    <a href="https://github.com/eProsima/Fast-DDS-docs/actions/workflows/nightly-ubuntu-ci.yml"><img alt="Fast DDS docs Ubuntu" src="https://github.com/eProsima/Fast-DDS-docs/actions/workflows/nightly-ubuntu-ci.yml/badge.svg"/></a>
+</div>
 
-<a href="http://www.eprosima.com"><img src="https://encrypted-tbn3.gstatic.com/images?q=tbn:ANd9GcSd0PDlVz1U_7MgdTe0FRIWD0Jc9_YH-gGi0ZpLkr-qgCI6ZEoJZ5GBqQ" align="left" hspace="8" vspace="2" width="100" height="100" ></a>
+<a href="http://www.eprosima.com"><img src="docs/_static/eprosima-logo.svg" align="left" hspace="8" vspace="2" width="100" height="100" ></a>
 
 *eprosima Fast DDS* (formerly Fast RTPS) is a C++ implementation of the DDS (Data Distribution Service) standard of the OMG (Object Management Group). eProsima Fast DDS implements the RTPS (Real Time Publish Subscribe) protocol, which provides publisher-subscriber communications over unreliable transports such as UDP,
 as defined and maintained by the Object Management Group (OMG) consortium. RTPS is also the wire interoperability protocol defined for the Data Distribution
@@ -32,7 +34,7 @@ system input/output channel combination for each deployment.
 
 *eProsima Fast DDS* has been adopted by multiple organizations in many sectors including these important cases:
 
-* Robotics: ROS (Robotic Operating System) as their default middleware for ROS2.
+* Robotics: ROS (Robot Operating System) as their default middleware for ROS 2.
 * EU R&D: FIWARE Incubated GE.
 
 You can find all the library's source code on our [GitHub repository](https://github.com/eProsima/Fast-DDS).
@@ -47,7 +49,7 @@ The online documentation generated with this project can be found in [Fast DDS d
 ## Installation Guide
 
 The following guide has been developed and tested in Ubuntu 24.04.
-It covers two mechanisms for build and testing the documentation (colcon and CMake), and one that just generates the HTML, which can be used to simulate the process followed in ReadTheDocs.
+It covers two mechanisms for building and testing the documentation (colcon and CMake), and one that just generates the HTML, which can be used to simulate the process followed in ReadTheDocs.
 Contributors are asked to not only generate the HTML, but to also build and test their changes locally following one of the two first methods.
 
 1. [Install common dependencies](#install-common-dependencies)
@@ -186,7 +188,7 @@ When this variable is set to `True`, [conf.py](docs/conf.py) will clone Fast DDS
 1. If the variable is not set, or the branch does not exist, try to checkout to a branch with the same name as the current branch on this repository.
 1. If the previous fails, fallback to `master`.
 
-Also Fast DDS Python bindings is cloned and follows a similar criteria:
+Also, Fast DDS Python bindings are cloned and follow a similar criteria:
 
 1. Try to checkout to the branch specified by environment variable `FASTDDS_PYTHON_BRANCH`.
 1. If the variable is not set, or the branch does not exist, try to checkout to a branch with the same name as the current branch on this repository.
@@ -210,7 +212,24 @@ READTHEDOCS=True FASTDDS_BRANCH=<branch> FASTDDS_PYTHON_BRANCH=<branch> sphinx-b
 
 Using either CMake or colcon, the documentation is built using Sphinx's `html` builder.
 However, Sphinx supports several other building formats, which are enabled through [Sphinx builders](https://www.sphinx-doc.org/en/master/usage/builders/index.html).
-Once a builder is selected, the documentation can be built using the [Simulating Read the Docs](#simulating-read-the-docs) approach, specifying the appropriate builder with the `-b` CLI option
+Once a builder is selected, the documentation can be built using the [Simulating Read the Docs](#simulating-read-the-docs) approach, specifying the appropriate builder with the `-b` CLI option.
+
+### Auditing API reference wrappers
+
+The repository includes an audit helper that compares the manually maintained
+API reference wrapper files with the public Fast DDS API exported by a Fast DDS checkout.
+This is also run in Ubuntu CI.
+
+```bash
+python3 utils/scripts/audit_api_reference.py \
+    --fastdds-dir <path_to_fastdds_repo> \
+    --report compare \
+    --show 1000 \
+    --fail-on-findings
+```
+
+The `compare` report only shows discrepancies: extra wrapper files, wrapper files
+that need updates, and missing public API targets.
 
 ## Project structure
 
@@ -220,7 +239,7 @@ The project is structured as follows:
 1. The [docs directory](#docs-directory) contains all documentation source code.
 1. Code snippets and testing code is located in the [code directory](#code-directory).
 
-### `doc` directory
+### `docs` directory
 
 The [docs](docs) directory contains:
 
@@ -237,7 +256,7 @@ The [docs](docs) directory contains:
 All new documentation must fall into one of these directories, with the exception of those contributions which are not related to any of the given descriptions.
 Keep in mind that this is an Sphinx based project, and as such, all the documentation is written in `reStructuredText`.
 
-All unrecognized words must be added to the [spelling_wordlist.txt](docs/spelling_wordlist.txt) dictionary in alphabetical order, with exception of the ones coming from the API reference documentation, which must be added to [docs/fastdds/api_reference/spelling_wordlist.txt](docs/fastdds/api_reference/spelling_wordlist.txt).
+All unrecognized words must be added to the [spelling_wordlist.txt](docs/spelling_wordlist.txt) dictionary in alphabetical order, with exception of the ones coming from the API reference documentation, which must be added to [api_spelling_wordlist.txt](docs/api_spelling_wordlist.txt).
 
 ### `code` directory
 

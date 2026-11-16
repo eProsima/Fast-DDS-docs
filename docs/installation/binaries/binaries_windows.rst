@@ -49,8 +49,6 @@ version and architecture when prompted.
     By default, *eProsima Fast DDS* does not compile tests. To activate them, please refer to the
     :ref:`windows_sources` page.
 
-    To use the :ref:`cli_xml` validation tool, please refer to the :ref:`windows_sources` page.
-
 .. _contents_bw:
 
 Contents
@@ -138,8 +136,8 @@ following command:
 
 .. code-block:: winbatch
 
-    choco install python
-    python -m pip install --upgrade pywin32 xmlschema
+   choco install python
+   python -m pip install --upgrade psutil pywin32 xmlschema
 
 Python3 is required to run the CLI tool, and the `xmlschema <https://pypi.org/project/xmlschema/>`_ dependency is
 needed to use the :ref:`XML validation command<cli_xml>`.

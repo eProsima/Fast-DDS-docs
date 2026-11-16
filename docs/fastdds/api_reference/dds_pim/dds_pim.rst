@@ -14,3 +14,4 @@ Data Distribution Service (DDS) Data-Centric Publish-Subscribe (DCPS) Platform I
    /fastdds/api_reference/dds_pim/subscriber/subscriber.rst
    /fastdds/api_reference/dds_pim/topic/topic.rst
    /fastdds/api_reference/dds_pim/xtypes/xtypes.rst
+   /fastdds/api_reference/dds_pim/rpc/rpc.rst

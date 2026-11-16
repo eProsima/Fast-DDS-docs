@@ -1,6 +1,7 @@
 .. include:: ../../03-exports/aliases.include
 .. include:: ../../03-exports/aliases-api.include
 .. include:: ../../03-exports/roles.include
+.. include:: ../../03-exports/pro-only-refs.include
 
 .. _transport_transportApi:
 
@@ -210,7 +211,7 @@ IPv6.
     +--------------------------------------------------------------------+
                                   16 bytes
 
-Check how to manipulate the WAN address in the :ref:`TCP IPv4 transport descriptor api <api_tcpv4_transport_descriptor>`
+Check how to manipulate the WAN address in the |api_tcpv4_transport_descriptor|
 section.
 
 .. _transport_transportApi_ipLocator:
@@ -305,6 +306,8 @@ The user can override the |ChainingTransport::send-api| function, pre-processing
 the associated ``low_level_transport_``.
 Also, when a incoming buffer arrives to the ``low_level_transport_``, this one calls the overridden
 |ChainingTransport::receive-api| function to allow to pre-process the buffer.
+
+.. _transport_transportApi_chaining_descriptor:
 
 ChainingTransportDescriptor
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^

@@ -41,7 +41,7 @@ explaining the new features it presents.
 We recommend you to look at the example describing how to use the RTPS layer that come with the distribution
 while reading this section.
 It is located in
-`examples/cpp/rtps <https://github.com/eProsima/Fast-DDS/tree/master/examples/cpp/rtps>`_.
+:fastdds-tree:`examples/cpp/rtps <examples/cpp/rtps>`.
 
 Managing the Participant
 ^^^^^^^^^^^^^^^^^^^^^^^^
@@ -94,9 +94,9 @@ Changes are always managed by the History.
 You can add a new :class:`CacheChange_t` to the History of the Writer to send data.
 The procedure is as follows:
 
-1. Request a :class:`CacheChange_t` from the Writer with |RTPSWriters::new_change-api|.
+1. Request a :class:`CacheChange_t` from the Writer History with |WriterHistory::create_change-api|.
    In order to allocate enough memory,
-   you need to provide a callback that returns the maximum number bytes in the payload.
+   you need to provide as argument the maximum number of bytes in the payload.
 2. Fill the :class:`CacheChange_t` with the data.
 3. Add it to the History with |WriterHistory::add_change-api|.
 
@@ -143,14 +143,14 @@ instantiated.
 | Builtin Transports Options | Description                                                                  |
 +============================+==============================================================================+
 | ``NONE``                   | No transport will be instantiated. Hence, the user must manually add         |
-|                            | the desired |br| transports. Otherwise, the participant creation will fail.  |
+|                            | the desired  transports. Otherwise, the participant creation will fail.      |
 +----------------------------+------------------------------------------------------------------------------+
 | ``DEFAULT``                | UDPv4 and SHM transports will be instantiated. SHM transport has priority    |
-|                            | over the UDPv4 |br| transport. Meaning that SHM will always be used          |
+|                            | over the UDPv4  transport. Meaning that SHM will always be used              |
 |                            | when possible.                                                               |
 +----------------------------+------------------------------------------------------------------------------+
 | ``DEFAULTv6``              | UDPv6 and SHM transports will be instantiated. SHM transport has priority    |
-|                            | over the UDPv4 |br| transport. Meaning that SHM will always be used          |
+|                            | over the UDPv6 transport. Meaning that SHM will always be used               |
 |                            | when possible.                                                               |
 +----------------------------+------------------------------------------------------------------------------+
 | ``SHM``                    | Only a SHM transport will be instantiated.                                   |
@@ -160,9 +160,9 @@ instantiated.
 | ``UDPv6``                  | Only a UDPv6 transport will be instantiated.                                 |
 +----------------------------+------------------------------------------------------------------------------+
 | ``LARGE_DATA``             | UDPv4, TCPv4, and SHM transports will be instantiated. However, UDP will     |
-|                            | only be used |br| for multicast announcements during the participant         |
-|                            | discovery phase (see :ref:`disc_phases`) |br| while the participant          |
-|                            | liveliness and the application data delivery occurs over TCP or SHM. |br|    |
+|                            | only be used  for multicast announcements during the participant             |
+|                            | discovery phase (see :ref:`disc_phases`)  while the participant              |
+|                            | liveliness and the application data delivery occurs over TCP or SHM.         |
 |                            | This configuration is useful when working with large data.(See               |
 |                            | :ref:`use-case-tcp`).                                                        |
 +----------------------------+------------------------------------------------------------------------------+

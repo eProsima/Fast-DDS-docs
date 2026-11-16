@@ -1,0 +1,16 @@
+.. |api_pim_condition| replace:: Condition
+.. |api_pim_guardcondition| replace:: GuardCondition
+.. |api_pim_statuscondition| replace:: StatusCondition
+.. |api_pim_readcondition| replace:: ReadCondition
+.. |api_pim_waitset| replace:: Wait-set
+.. |api_pim_dds_dcps_pim| replace:: DDS DCPS PIM
+.. |api_pim_partitionqospolicy| replace:: PartitionQosPolicy
+.. |api_statistics_topic_names| replace:: Statistics topic names
+.. |api_tcpv4_transport_descriptor| replace:: TCP IPv4 transport descriptor api
+.. |api_reference| replace:: Fast DDS API
+.. |dynamic_language_binding_api| replace:: API reference
+.. |api_rtps_builtin_data_participantbuiltintopicdata| replace:: Participant discovery structures
+.. |api_pim_datawriter| replace:: DataWriter
+.. |api_pim_publishmodeqospolicy| replace:: New flow controller API
+.. |api_pim_sampleinfo| replace:: Added reception timestamp to SampleInfo
+.. |api_pim_datareader| replace:: Exposing get_unread_count on DataReader

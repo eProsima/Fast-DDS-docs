@@ -1,0 +1,9 @@
+`Version 3.6.1.1 <https://github.com/eProsima/Fast-DDS-Pro/releases/tag/v3.6.1.1>`__ |Pro|
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+This release includes the following **fixes**:
+
+1. Apply ``sqlite3`` patch to eliminate const issue
+2. Fix compilation warnings and errors in Ubuntu Focal
+3. Remove deprecated doxygen warnings
+4. Fix windows tests

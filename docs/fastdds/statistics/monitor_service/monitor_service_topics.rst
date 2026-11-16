@@ -28,36 +28,42 @@ The possible values are described in the following table:
 
 .. _monitoring_statuses:
 
-+---------+-----------------------------+----------------------------------------------------+
-|**Value**|          **Name**           | **Description**                                    |
-+---------+-----------------------------+----------------------------------------------------+
-|  0      |     ``ProxyInfo``           | Collection of Parameters describing the            |
-|         |                             | ``Proxy Data`` of that entity                      |
-+---------+-----------------------------+----------------------------------------------------+
-|  1      |     ``ConnectionList``      | List of connections that this entity is            |
-|         |                             | using with its matched remote entities.            |
-+---------+-----------------------------+----------------------------------------------------+
-|  2      |  ``IncompatibleQoSInfo``    | Status of the Incompatible QoS                     |
-|         |                             | of that entity.                                    |
-+---------+-----------------------------+----------------------------------------------------+
-|  3      | ``InconsistentTopicInfo``   | Status of Inconsistent topics that the             |
-|         |                             | topic of that entity has.                          |
-+---------+-----------------------------+----------------------------------------------------+
-|  4      |   ``LivelinessLostInfo``    | Tracks the status of the number of times           |
-|         |                             | a writer lost liveliness.                          |
-+---------+-----------------------------+----------------------------------------------------+
-|  5      |   ``LivelinessChangedInfo`` | Tracks the status of the number of times           |
-|         |                             | the liveliness changed in a reader.                |
-+---------+-----------------------------+----------------------------------------------------+
-|  6      |  ``DeadlineMissedInfo``     | The Status of the number of deadlines              |
-|         |                             | missed of a sample for that entity.                |
-+---------+-----------------------------+----------------------------------------------------+
-|  7      |     ``SampleLostInfo``      | Tracks the status of the number of times           |
-|         |                             | this entity lost samples.                          |
-+---------+-----------------------------+----------------------------------------------------+
-|  8      | ``ExtendedIncompatibleQoS`` | Stores the list of remote incompatible ``GUIDs``   |
-|         |                             | and QoS policies for each local entity guid.       |
-+---------+-----------------------------+----------------------------------------------------+
++---------+-----------------------------+------------------------------------------------------+
+|**Value**|          **Name**           | **Description**                                      |
++---------+-----------------------------+------------------------------------------------------+
+|  0      |     ``ProxyInfo``           | Collection of Parameters describing the              |
+|         |                             | ``Proxy Data`` of that entity. Contains optional qos.|
++---------+-----------------------------+------------------------------------------------------+
+|  1      |     ``ConnectionList``      | List of connections that this entity is              |
+|         |                             | using with its matched remote entities.              |
++---------+-----------------------------+------------------------------------------------------+
+|  2      |  ``IncompatibleQoSInfo``    | Status of the Incompatible QoS                       |
+|         |                             | of that entity.                                      |
++---------+-----------------------------+------------------------------------------------------+
+|  3      | ``InconsistentTopicInfo``   | Status of Inconsistent topics that the               |
+|         |                             | topic of that entity has.                            |
++---------+-----------------------------+------------------------------------------------------+
+|  4      |   ``LivelinessLostInfo``    | Tracks the status of the number of times             |
+|         |                             | a writer lost liveliness.                            |
++---------+-----------------------------+------------------------------------------------------+
+|  5      |   ``LivelinessChangedInfo`` | Tracks the status of the number of times             |
+|         |                             | the liveliness changed in a reader.                  |
++---------+-----------------------------+------------------------------------------------------+
+|  6      |  ``DeadlineMissedInfo``     | The Status of the number of deadlines                |
+|         |                             | missed of a sample for that entity.                  |
++---------+-----------------------------+------------------------------------------------------+
+|  7      |     ``SampleLostInfo``      | Tracks the status of the number of times             |
+|         |                             | this entity lost samples.                            |
++---------+-----------------------------+------------------------------------------------------+
+|  8      | ``ExtendedIncompatibleQoS`` | Stores the list of remote incompatible ``GUIDs``     |
+|         |                             | and QoS policies for each local entity guid.         |
++---------+-----------------------------+------------------------------------------------------+
+
+.. note::
+
+    The ``ProxyInfo`` within the ``Monitor Service Status Topic``
+    always includes the :ref:`optional qos <property_serialize_optional_qos>` independently of the
+    ``fastdds.serialize_optional_qos`` property.
 
 .. note::
 

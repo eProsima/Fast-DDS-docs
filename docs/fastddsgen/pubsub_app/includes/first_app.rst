@@ -12,39 +12,43 @@ The ``-example`` option creates an example application, and the CMake files need
 In the workspace directory (*FastDDSGenHelloWorld* directory), execute one of the following commands according to the
 installation followed and the operating system.
 
-* On Linux:
+.. tab-set::
 
-  - For an **installation from binaries** or a **colcon installation**:
+    .. tab-item:: Linux
+        :sync: linux
 
-  .. code:: bash
+        - For an **installation from binaries** or a **colcon installation**:
 
-      <path-to-Fast-DDS-workspace>/src/fastddsgen/scripts/fastddsgen -example CMake HelloWorld.idl
+        .. code:: bash
 
-  - For a **stand-alone installation**, run:
+            <path-to-Fast-DDS-workspace>/src/fastddsgen/scripts/fastddsgen -example CMake HelloWorld.idl
 
-  .. code:: bash
+        - For a **stand-alone installation**, run:
 
-      <path-to-Fast-DDS-Gen>/scripts/fastddsgen -example CMake HelloWorld.idl
+        .. code:: bash
 
-* On Windows:
+            <path-to-Fast-DDS-Gen>/scripts/fastddsgen -example CMake HelloWorld.idl
 
-  - For a **colcon installation**:
+    .. tab-item:: Windows
+        :sync: windows
 
-  .. code:: winbatch
+        - For a **colcon installation**:
 
-      <path-to-Fast-DDS-workspace>/src/fastddsgen/scripts/fastddsgen.bat -example CMake HelloWorld.idl
+        .. code:: winbatch
 
-  - For a **stand-alone installation**, run:
+            <path-to-Fast-DDS-workspace>/src/fastddsgen/scripts/fastddsgen.bat -example CMake HelloWorld.idl
 
-  .. code:: winbatch
+        - For a **stand-alone installation**, run:
 
-      <path-to-Fast-DDS-Gen>/scripts/fastddsgen.bat -example CMake HelloWorld.idl
+        .. code:: winbatch
 
-  - For an **installation from binaries**, run:
+            <path-to-Fast-DDS-Gen>/scripts/fastddsgen.bat -example CMake HelloWorld.idl
 
-  .. code:: winbatch
+        - For an **installation from binaries**, run:
 
-      fastddsgen.bat -example CMake HelloWorld.idl
+        .. code:: winbatch
+
+            fastddsgen.bat -example CMake HelloWorld.idl
 
 .. warning::
 
@@ -62,40 +66,49 @@ Build the Fast DDS application
 
 Then, compile the generated code executing the following commands from the *FastDDSGenHelloWorld* directory.
 
-* On Linux:
+.. tab-set::
 
-.. code:: bash
+    .. tab-item:: Linux
+        :sync: linux
 
-    cd build
-    cmake ..
-    make
+        .. code:: bash
 
-* On Windows:
+            cd build
+            cmake ..
+            make
 
-.. code:: bash
+    .. tab-item:: Windows
+        :sync: windows
 
-    cd build
-    cmake -G "Visual Studio 15 2017 Win64" ..
-    cmake --build .
+        .. code-block:: bash
+
+            cd build
+            cmake -G "Visual Studio 16 2019" -A x64 ..
+            cmake --build .
+
 
 Run the Fast DDS application
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 The application build can be used to spawn any number of publishers and subscribers associated with the topic.
 
-* On Linux:
+.. tab-set::
 
-.. code:: bash
+    .. tab-item:: Linux
+        :sync: linux
 
-    ./HelloWorld publisher
-    ./HelloWorld subscriber
+        .. code:: bash
 
-* On Windows:
+            ./HelloWorld publisher
+            ./HelloWorld subscriber
 
-.. code:: bash
+    .. tab-item:: Windows
+        :sync: windows
 
-    HelloWorld.exe publisher
-    HelloWorld.exe subscriber
+        .. code-block:: bash
+
+            HelloWorld.exe publisher
+            HelloWorld.exe subscriber
 
 
 Each time <Enter\> is pressed on the Publisher, a new datagram is generated, sent over the network and received by

@@ -86,7 +86,7 @@ jobs:
           path: src/fastdds-docs
           ref: ${{ inputs.fastdds-docs-branch }}
 
-      - name: Install Fix Python version
+      - name: Install Fixed Python version
         uses: eProsima/eProsima-CI/external/setup-python@v0
         with:
           python-version: '3.11'
@@ -94,7 +94,7 @@ jobs:
       - name: Get minimum supported version of CMake
         uses: eProsima/eProsima-CI/external/get-cmake@v0
         with:
-          cmakeVersion: '3.22.6'
+          cmakeVersion: '3.24.4'
 
       - name: Remove default swig version
         run: sudo apt-get remove -y swig
@@ -161,6 +161,14 @@ jobs:
           repository: eProsima/Fast-DDS-python
           ref: ${{ steps.get_fastdds_python_branch.outputs.deduced_branch }}
           path: ${{ github.workspace }}/src/fastdds_python
+
+      - name: Audit API reference wrappers
+        run: |
+          python3 src/fastdds-docs/utils/scripts/audit_api_reference.py \
+            --fastdds-dir src/fastdds \
+            --report compare \
+            --show 1000 \
+            --fail-on-findings
 
       - name: Fetch Fast DDS Docs CI dependencies
         if: ${{ inputs.run-tests == true }}

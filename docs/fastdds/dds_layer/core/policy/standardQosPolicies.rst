@@ -470,16 +470,11 @@ The HistoryQos must be set consistently with the :ref:`resourcelimitsqospolicy`,
   |ResourceLimitsQosPolicy::max_samples-api|).
 * In the case of the :ref:`reliabilityqospolicy` |ReliabilityQosPolicyKind-api| being set to
   |RELIABLE_RELIABILITY_QOS-api| and the :ref:`historyqospolicy` |HistoryQosPolicy::kind-api| being set to
-  |KEEP_ALL_HISTORY_QOS-api|, when the resource limits are reached, the behavior of the service is depends on the
-  :ref:`durabilityqospolicy`:
-
-  * If the :ref:`durabilityqospolicy` |DurabilityQosPolicy::kind-api| is configured as |VOLATILE_DURABILITY_QOS-api|,
-    the DataWriter |DataWriter::write-api| call will discard the oldest sample in the history.
-    Note that the removed sample may belong to different :ref:`instances<dds_layer_topic_instances>` than the newly
-    written one.
-  * If the :ref:`durabilityqospolicy` |DurabilityQosPolicy::kind-api| is configured as
-    |TRANSIENT_LOCAL_DURABILITY_QOS-api| or |TRANSIENT_DURABILITY_QOS-api|, the DataWriter |DataWriter::write-api| call
-    will be blocked until the history has space for the new sample.
+  |KEEP_ALL_HISTORY_QOS-api|, when the resource limits are reached the DataWriter |DataWriter::write-api| call will
+  block (up to |ReliabilityQosPolicy::max_blocking_time-api|) until the oldest sample has been acknowledged by all
+  readers and can be removed.
+  If |ReliabilityQosPolicy::max_blocking_time-api| is reached, the |DataWriter::write-api| call will return with a
+  timeout error.
 
 Example
 """""""
@@ -1067,6 +1062,9 @@ List of QoS Policy data members:
      :raw-html:`<br />`
      It cannot be changed on enabled entities.
 
+.. note::
+     It is inconsistent to set an infinite |ReliabilityQosPolicy::max_blocking_time-api|.
+
 .. important::
     Setting this QoS Policy to |BEST_EFFORT_RELIABILITY_QOS-api| affects to the :ref:`durabilityqospolicy`, making the
     endpoints behave as |VOLATILE_DURABILITY_QOS-api|.
@@ -1152,34 +1150,35 @@ See |ResourceLimitsQosPolicy-api|.
 
 List of QoS Policy data members:
 
-+----------------------------------------------------------------------------------------+-------------+---------------+
-| Data Member Name                                                                       | Type        | Default Value |
-+========================================================================================+=============+===============+
-| |ResourceLimitsQosPolicy::max_samples-api|                                             | ``int32_t`` | 5000          |
-+----------------------------------------------------------------------------------------+-------------+---------------+
-| |ResourceLimitsQosPolicy::max_instances-api|                                           | ``int32_t`` | 10            |
-+----------------------------------------------------------------------------------------+-------------+---------------+
-| |ResourceLimitsQosPolicy::max_samples_per_instance-api|                                | ``int32_t`` | 400           |
-+----------------------------------------------------------------------------------------+-------------+---------------+
-| |ResourceLimitsQosPolicy::allocated_samples-api|                                       | ``int32_t`` | 100           |
-+----------------------------------------------------------------------------------------+-------------+---------------+
-| |ResourceLimitsQosPolicy::extra_samples-api|                                           | ``int32_t`` | 1             |
-+----------------------------------------------------------------------------------------+-------------+---------------+
++----------------------------------------------------------------+-------------+-----------------------+
+| Data Member Name                                               | Type        | Default Value         |
++================================================================+=============+=======================+
+| |ResourceLimitsQosPolicy::max_samples-api|                     | ``int32_t`` | -1 (Length Unlimited) |
++----------------------------------------------------------------+-------------+-----------------------+
+| |ResourceLimitsQosPolicy::max_instances-api|                   | ``int32_t`` | -1 (Length Unlimited) |
++----------------------------------------------------------------+-------------+-----------------------+
+| |ResourceLimitsQosPolicy::max_samples_per_instance-api|        | ``int32_t`` | -1 (Length Unlimited) |
++----------------------------------------------------------------+-------------+-----------------------+
+| |ResourceLimitsQosPolicy::allocated_samples-api|               | ``int32_t`` | 100                   |
++----------------------------------------------------------------+-------------+-----------------------+
+| |ResourceLimitsQosPolicy::extra_samples-api|                   | ``int32_t`` | 1                     |
++----------------------------------------------------------------+-------------+-----------------------+
 
 * |ResourceLimitsQosPolicy::max_samples-api|: Controls the maximum number of samples that the DataWriter or DataReader
-  can manage across all the
-  instances associated with it.
+  can manage across all the instances associated with it.
   In other words, it represents the maximum samples that the middleware can store for a DataReader or DataWriter.
   **Value less or equal to 0 means infinite resources.**
 * |ResourceLimitsQosPolicy::max_instances-api|: Controls the maximum number of instances that a DataWriter or
   DataReader can manage.
+  It will be internally fixed to 1 for topics without keys.
   **Value less or equal to 0 means infinite resources.**
 * |ResourceLimitsQosPolicy::max_samples_per_instance-api|: Controls the maximum number of samples within an instance
-  that the DataWriter or
-  DataReader can manage.
+  that the DataWriter or DataReader can manage.
+  It will be ignored for topics without keys (|ResourceLimitsQosPolicy::max_samples-api| will be used instead).
   **Value less or equal to 0 means infinite resources.**
 * |ResourceLimitsQosPolicy::allocated_samples-api|: States the number of samples that will be allocated on
   initialization.
+  Will be limited by |ResourceLimitsQosPolicy::max_samples-api| (i.e. the minimum between both values will be used).
 * |ResourceLimitsQosPolicy::extra_samples-api|: States the number of extra samples that will be allocated on
   the pool, so the maximum number of samples on the pool will be
   |ResourceLimitsQosPolicy::max_samples-api| plus |ResourceLimitsQosPolicy::extra_samples-api|.
@@ -1296,9 +1295,6 @@ Example
 TransportPriorityQosPolicy
 ^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-.. warning::
-    This QoS Policy will be implemented in future releases.
-
 The purpose of this QoS Policy is to allow the service to take advantage of those transports capable of sending
 messages with different priorities. It establishes the priority of the underlying transport used to send the data.
 See |TransportPriorityQosPolicy-api|
@@ -1310,13 +1306,29 @@ List of QoS Policy data members:
 +-------------------------------------------------------------------------------------+----------------+---------------+
 | Data Member Name                                                                    | Type           | Default Value |
 +=====================================================================================+================+===============+
-| |TransportPriorityQosPolicy::value-api|                                             | ``uint32_t``   | 0             |
+| |TransportPriorityQosPolicy::value-api|                                             | ``int32_t``    | 0             |
 +-------------------------------------------------------------------------------------+----------------+---------------+
 
 .. note::
      This QoS Policy applies to |Topic| and |DataWriter| entities.
      :raw-html:`<br />`
      It can be changed on enabled entities.
+
+Example
+"""""""
+
+.. tab-set-code::
+
+    .. literalinclude:: /../code/DDSCodeTester.cpp
+        :language: c++
+        :dedent: 8
+        :start-after: //DDS_CHANGE_TRANSPORT_PRIORITY_QOS_POLICY
+        :end-before: //!
+
+    .. literalinclude:: /../code/XMLTester.xml
+        :language: xml
+        :start-after: <!-->PUBSUB_API_CONF_PUBSUB_TRANSPORT_PRIORITY
+        :end-before: <!--><-->
 
 
 .. _userdataqospolicy:

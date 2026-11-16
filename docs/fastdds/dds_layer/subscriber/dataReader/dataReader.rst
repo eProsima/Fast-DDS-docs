@@ -160,3 +160,23 @@ value |DataReaderQos::DataReaderQos-api|.
    * On |Subscriber::set_default_datareader_qos-api| it refers
      to the default constructed |DataReaderQos::DataReaderQos-api|.
 
+
+.. _dds_layer_subscriber_dataReader_type_support_context:
+
+Type support context
+--------------------
+
+A DataReader can be configured with a :ref:`type support context <dds_layer_topic_type_support_context>`
+that is forwarded to the |TopicDataType-api| callbacks on every read operation.
+This allows the type implementation to rely on per-reader information (e.g., bounded sizes) without
+resorting to global state.
+
+The context must be set **before** enabling the DataReader using
+|DataReader::set_type_support_context-api|.
+Calling this method on an already-enabled DataReader returns ``RETCODE_ILLEGAL_OPERATION``.
+
+.. literalinclude:: /../code/DDSCodeTester.cpp
+   :language: c++
+   :start-after: //DDS_SET_TYPE_SUPPORT_CONTEXT_DR
+   :end-before: //!
+   :dedent: 8

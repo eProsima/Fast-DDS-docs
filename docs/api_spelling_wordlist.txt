@@ -87,6 +87,7 @@ DataWriterQos
 datawriters
 DeadlineQosPolicy
 deserialized
+deserializing
 destinated
 DestinationOrderQosPolicy
 Destructor
@@ -106,6 +107,7 @@ Endianness
 entityId
 Enum
 eprosima
+EthernetTransportDescriptor
 expects_inline_qos
 ExtendedAnnotationParameterValuePubSubType
 ExtendedTypeDefnPubSubType
@@ -122,6 +124,7 @@ guid
 GuidPrefix
 hashid
 Hashid
+HeaderReductionTransportDescriptor
 heartbeat_period
 heartbeat_response_delay
 HistoryQosPolicy
@@ -226,6 +229,7 @@ QosPolicyCount
 rdata
 ReadCondition
 ReceiverResource
+reimplemented
 ReliabilityQosPolicy
 ReplyPubSubType
 ReplyTypeSupport
@@ -236,6 +240,7 @@ RequestTypeSupport
 ResourceLimitsQosPolicy
 retransmit
 RTPSParticipantAllocationAttributes
+SampleInfo
 SampleLostStatus
 SampleRejectedStatus
 SBound
@@ -244,6 +249,7 @@ sequenceNumber
 serializedPaylaod
 SetVerbosity
 sn
+SourceTimestampTransportDescriptor
 StatefulReader
 StatefulWriter
 StatelessReader

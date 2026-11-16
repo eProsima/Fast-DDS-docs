@@ -31,6 +31,9 @@ This shared secret can be used by other security plugins as :ref:`crypto-aes-gcm
 The DDS:\Auth\:PKI-DH authentication plugin, can be activated setting the |DomainParticipantQos|
 |DomainParticipantQos::properties-api|
 ``dds.sec.auth.plugin`` with the value ``builtin.PKI-DH``.
+Note that since Fast DDS Pro ``v3.7.0``, secure participants must configure the authentication, access control, and
+cryptography plugins together.
+
 The following table outlines the properties used for the DDS:\Auth\:PKI-DH plugin configuration.
 
 .. list-table::
@@ -43,7 +46,7 @@ The following table outlines the properties used for the DDS:\Auth\:PKI-DH plugi
      - URI to the X.509 v3 certificate of the Identity CA in PEM format. |br|
        Supported URI schemes: file. |br|
    * - identity_certificate
-     - URI to an X.509 v3 certificate signed by the Identity CA in PEM format |br|
+     - URI to an X.509 v3 certificate signed by the Identity CA in PEM format
        containing the signed public key for the Participant. |br|
        Supported URI schemes: file.
    * - identity_crl *(optional)*
@@ -54,11 +57,11 @@ The following table outlines the properties used for the DDS:\Auth\:PKI-DH plugi
        Supported URI schemes: file, :ref:`PKCS#11 <pkcs11-support>`.
    * - password *(optional)*
      - A password used to decrypt the *private_key*.  |br|
-       If the *password* property is not present, then the value supplied in the |br|
+       If the *password* property is not present, then the value supplied in the
        *private_key* property must contain the decrypted private key. |br|
        The *password* property is ignored if the *private_key* is given in PKCS#11 scheme.
    * - preferred_key_agreement *(optional)*
-     - The preferred algorithm to use for generating the session's shared secret |br|
+     - The preferred algorithm to use for generating the session's shared secret
        at the end of the authentication phase. Supported values are: |br|
        a) ``DH``, ``DH+MODP-2048-256`` for  Diffie-Hellman Ephemeral with 2048-bit MODP Group parameters. |br|
        b) ``ECDH``, ``ECDH+prime256v1-CEUM`` for Elliptic Curve Diffie-Hellman Ephemeral with the NIST P-256 curve. |br|
@@ -87,6 +90,11 @@ configuration.
         :language: xml
         :start-after: <!-->DDS_SECURITY_AUTH_PLUGIN<-->
         :end-before: <!--><-->
+
+.. important::
+  Since version v3.7.0, Fast DDS Pro enforces to configure the three main security plugins
+  (authentication, access control and cryptography) to enable secure communication.
+  The previous example focuses only on the authentication plugin, but all three plugins must be configured.
 
 .. _generate_x509:
 
@@ -179,7 +187,7 @@ However, all other commands are only compatible with Linux OS.
     #default_keyfile = privkey.pem
     distinguished_name= req_distinguished_name
     #attributes = req_attributes
-    #x509_extensions = v3_ca # The extentions to add to the self signed cert
+    x509_extensions = root_ca_extensions # The extensions to add to the self signed cert
     string_mask = utf8only
 
     [ req_distinguished_name ]
@@ -189,6 +197,12 @@ However, all other commands are only compatible with Linux OS.
     0.organizationName = eProsima
     commonName = eProsima Main Test CA
     emailAddress = mainca@eprosima.com
+
+    [root_ca_extensions]
+    basicConstraints = critical, CA:true
+
+.. note::
+   For a self-signed **root CA**, the X.509 extension ``basicConstraints = CA:true`` is **required**. Without it, stacks might not recognize the certificate as a CA.
 
 After writing the configuration file, next commands generate the certificate using the
 Elliptic Curve Digital Signature Algorithm (ECDSA).

@@ -42,7 +42,7 @@ else()
 endif()
 
 ####################################################################################################
-# Compile getting started tutorial
+# Compile examples
 ####################################################################################################
 add_subdirectory(Examples/C++/DDSHelloWorld)
 
@@ -59,7 +59,8 @@ target_include_directories(doctest PRIVATE ${FAST_INCLUDE_DIR})
 target_link_libraries(doctest fastdds fastcdr)
 
 # DDSCodeTester utilizes Fast DDS API
-add_executable(dds-doctest DDSCodeTester.cpp FastDDSGenCodeTester.cpp)
+set(DDS_CODE_TEST_SRC DDSCodeTester.cpp FastDDSGenCodeTester.cpp)
+add_executable(dds-doctest ${DDS_CODE_TEST_SRC})
 target_include_directories(dds-doctest PRIVATE ${FAST_INCLUDE_DIR})
 target_link_libraries(dds-doctest fastdds fastcdr)
 
@@ -115,12 +116,12 @@ add_test(NAME xml.rtps_permissions_test
 
 # Check validity of XML profiles snippets
 add_test(NAME xml.profiles COMMAND dds-doctest XMLTester.xml)
+# Validate XML snippets doc against XSD schema
+add_test(NAME xml.profiles.validate COMMAND fastdds xml validate XMLTester.xml -x fastdds_profiles.xsd)
 # Check validity of XML full example
 add_test(NAME xml.example COMMAND dds-doctest XMLTesterExample.xml)
 # Validate XML full example against XSD schema
-add_test(NAME xml.validate COMMAND fastdds xml validate XMLTesterExample.xml -x fastdds_profiles.xsd)
-# Validate XML snippets doc against XSD schema
-add_test(NAME xml.snippets COMMAND fastdds xml validate XMLTester.xml -x fastdds_profiles.xsd)
+add_test(NAME xml.example.validate COMMAND fastdds xml validate XMLTesterExample.xml -x fastdds_profiles.xsd)
 # Check validity of Permissions and Governance XML files using Fast DDS API
 add_test(NAME xml.fastdds_permissions_test
     COMMAND dds-doctest
@@ -132,7 +133,7 @@ add_test(NAME xml.fastdds_permissions_test
 # Check validity of Static discovery XML file
 add_test(NAME xml.static_discovery COMMAND dds-doctest StaticTester.xml)
 
-# Check that the helloworld example runs as expected
+# Check that the helloworld and RPC calculator examples run as expected
 find_package(Python3 COMPONENTS Interpreter Development)
 if(${Python3_FOUND} AND (${Python3_VERSION} VERSION_GREATER "3.6"))
     add_test(NAME helloworld COMMAND ${Python3_EXECUTABLE} helloworld_test.py)

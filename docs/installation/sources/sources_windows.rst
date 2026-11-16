@@ -3,8 +3,8 @@
 Windows installation from sources
 =================================
 
-The instructions for installing both the :ref:`Fast DDS library <fastdds_lib_sl>`
-and the :ref:`Fast DDS-Gen <fastddsgen_sl>` generation tool from sources are provided in this page.
+The instructions for installing both the :ref:`Fast DDS library <fastdds_lib_sw>`
+and the :ref:`Fast DDS-Gen <fastddsgen_sw>` generation tool from sources are provided in this page.
 It is organized as follows:
 
 .. _fastdds_lib_sw:
@@ -136,16 +136,22 @@ asynchronous model.
 TinyXML2 is a simple, small and efficient C++ XML parser.
 They can be downloaded directly from the links below:
 
-* `Asio <https://github.com/ros2/choco-packages/releases/download/2020-02-24/asio.1.12.1.nupkg>`_
-* `TinyXML2 <https://github.com/ros2/choco-packages/releases/download/2020-02-24/tinyxml2.6.0.0.nupkg>`_
+* `Asio <https://www.nuget.org/api/v2/package/asio-cppp-latest/1.24.0>`_
+* `TinyXML2 <https://github.com/ros2/choco-packages/releases/download/2022-03-15/tinyxml2.6.0.0.nupkg>`_
 
 After downloading these packages, open an administrative shell with *PowerShell* and execute the following command:
 
 .. code-block:: winbatch
 
-    choco install -y -s <PATH_TO_DOWNLOADS> asio tinyxml2
+    choco install -y -s <PATH_TO_DOWNLOADS> asio-cppp-latest tinyxml2
 
 where :code:`<PATH_TO_DOWNLOADS>` is the folder into which the packages have been downloaded.
+
+Also include the path to the :code:`asio` and :code:`tinyxml2` libraries in the :code:`PATH` environment variable.
+
+.. code-block:: powershell
+
+    Set-Item -Force -Path "env:PATH" -Value "C:\ProgramData\chocolatey\lib\asio-cppp-latest\build\native;C:\ProgramData\chocolatey\lib\tinyxml2;C:\ProgramData\chocolatey\lib\tinyxml2\lib;$env:PATH"
 
 .. _openssl_sw:
 
@@ -262,10 +268,11 @@ This section explains how to use it to compile *eProsima Fast DDS* and its depen
    *eProsima Fast DDS* and its dependencies:
 
    .. code-block:: winbatch
+      :substitutions:
 
        mkdir ~\Fast-DDS
        cd ~\Fast-DDS
-       wget https://raw.githubusercontent.com/eProsima/Fast-DDS/master/fastdds.repos -output fastdds.repos
+       wget https://raw.githubusercontent.com/eProsima/Fast-DDS/|FastDDSBranch|/fastdds.repos -output fastdds.repos
        mkdir src
        vcs import src --input fastdds.repos
 
@@ -459,10 +466,11 @@ This section explains how to use it to compile *Fast DDS Python bindings* and it
    *Fast DDS Python bindings* and its dependencies:
 
    .. code-block:: winbatch
+      :substitutions:
 
        mkdir ~\Fast-DDS-python
        cd ~\Fast-DDS-python
-       wget https://raw.githubusercontent.com/eProsima/Fast-DDS-python/main/fastdds_python.repos
+       wget https://raw.githubusercontent.com/eProsima/Fast-DDS-python/|FastDDSPythonBranch|/fastdds_python.repos
        mkdir src
        vcs import src --input fastdds_python.repos
 

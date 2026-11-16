@@ -24,6 +24,7 @@ This specification defines the following concepts:
    /fastdds/xtypes/discovery_matching.rst
    /fastdds/xtypes/language_binding.rst
    /fastdds/xtypes/type_serializing.rst
+   /fastdds/xtypes/idl_parsing.rst
 
 .. note::
 

@@ -25,7 +25,6 @@
    /installation/sources/sources_linux
    /installation/sources/sources_windows
    /installation/sources/sources_mac
-   /installation/sources/sources_qnx
    /installation/configuration/cmake_options
 
 .. _index_fast_dds:
@@ -52,6 +51,7 @@
    /fastdds/xtypes/xtypes
    /fastdds/use_cases/use_cases
    /fastdds/ros2/ros2
+   /fastdds/rpc_dds/rpc_dds_intro
    /fastdds/troubleshooting/troubleshooting
    /fastdds/faq/faq
    /fastdds/api_reference/api_reference
@@ -70,6 +70,7 @@
    /fastddsgen/pubsub_app/pubsub_app
    /fastddsgen/python_bindings/python_bindings
    /fastddsgen/dataTypes/dataTypes
+   /fastddsgen/interfaces/introduction
 
 .. _index_cli:
 
@@ -100,6 +101,7 @@
 
    /notes/versions
    /notes/migration_guide
+   /notes/notes_pro
    /notes/notes
    /notes/previous_versions/supported_versions
    /notes/previous_versions/previous_versions

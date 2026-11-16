@@ -18,11 +18,14 @@
 #
 # import sys
 # sys.path.insert(0, os.path.abspath('.'))
+from docutils import nodes
 import git
 import json
 import os
 import os.path
 import pathlib
+import posixpath
+import re
 import requests
 import shutil
 import subprocess
@@ -32,6 +35,47 @@ import sys
 def setup(app):
     # Add property to avoid warning.
     app.add_config_value("skip_python", None, "")
+    app.connect("doctree-resolved", replace_pathto_in_raw_html)
+
+
+_PATHTO_RE = re.compile(
+    r"""pathto\(\s*(['"])(?P<target>[^'"]+)\1(?:\s*,\s*(?P<resource>\d+))?\s*\)"""
+)
+
+
+def replace_pathto_in_raw_html(app, doctree, docname):
+    """
+    Replace pathto(...) usages inside raw HTML nodes.
+
+    Sphinx only expands ``pathto`` in Jinja templates, not in reStructuredText
+    document bodies. Some pages embed raw HTML and expect ``pathto('_static/...', 1)``
+    to resolve to the correct relative asset path. Convert those calls after the
+    doctree has been resolved so included documents are rewritten using the final
+    output page path.
+    """
+
+    if app.builder.format != "html":
+        return
+
+    depth = docname.count("/")
+    prefix = "../" * depth
+
+    def repl(match):
+        target = match.group("target").lstrip("/")
+        if "://" in target or target.startswith(("#", "mailto:", "javascript:")):
+            return target
+        return posixpath.normpath(prefix + target)
+
+    for node in doctree.findall():
+        if node.tagname != "raw":
+            continue
+        if "html" not in node.get("format", "").split():
+            continue
+        updated = _PATHTO_RE.sub(repl, node.astext())
+        if updated == node.astext():
+            continue
+        node.rawsource = updated
+        node.children = [nodes.Text(updated)]
 
 
 def download_json():
@@ -152,62 +196,122 @@ def retrieve_custom_sidebar(root_dir):
     return ret
 
 
-def download_css(html_css_dir):
+def download_file(url, output_path):
     """
-    Download the common theme of eProsima readthedocs documentation.
+    Download a file from a URL to a local path.
 
-    The theme is defined in a CSS file that is hosted in the eProsima GitHub
-    repository with the index of all eProsima product documentation
-    (https://github.com/eProsima/all-docs).
-
-    :param html_css_dir: The directory to save the CSS stylesheet.
-    :return: True if the file was downloaded and generated successfully.
-        False if not.
+    :param url: The URL of the file to download.
+    :param output_path: The local path where the file will be saved.
+    :return: The path to the file if downloaded successfully, the path to a previously downloaded copy of it if the
+        download fails, or the path to an empty file otherwise. An empty string is returned if no file could be used.
     """
-    url = "https://raw.githubusercontent.com/eProsima/all-docs/master/source/_static/css/eprosima-furo.css"
+
+    # Normalize path to avoid problems in Windows.
+    output_path = os.path.normpath(output_path)
     try:
         req = requests.get(url, allow_redirects=True, timeout=10)
-    except requests.RequestException as e:
-        print(
-            "Failed to download the CSS with the eProsima rtd theme."
-            "Request Error: {}".format(e)
-        )
-        return False
-    if req.status_code != 200:
-        print(
-            "Failed to download the CSS with the eProsima rtd theme."
-            "Return code: {}".format(req.status_code)
-        )
-        return False
-    os.makedirs(os.path.dirname("{}/_static/css/".format(html_css_dir)), exist_ok=True)
-    theme_path = "{}/_static/css/eprosima-furo.css".format(html_css_dir)
-    with open(theme_path, "wb") as f:
-        try:
+        req.raise_for_status()  # Raise an error for bad responses
+        os.makedirs(os.path.dirname(output_path), exist_ok=True)
+        with open(output_path, "wb") as f:
             f.write(req.content)
-        except OSError:
-            print("Failed to create the file: {}".format(theme_path))
-            return False
-    return True
+        return output_path
+    except requests.RequestException as e:
+        print(f"Failed to download the file from {url}. Request Error: {e}")
+    except OSError as e:
+        print(f"Failed to create the file at {output_path}. OS Error: {e}")
+
+    # Reuse a previously downloaded copy of the file if there is one. This keeps the build working when the file
+    # cannot be written, for instance when it was created by a build run as another user.
+    if os.path.isfile(output_path):
+        print(f"Using the file already available at {output_path}")
+        return output_path
+
+    # Create an empty file if the download fails
+    try:
+        os.makedirs(os.path.dirname(output_path), exist_ok=True)
+        with open(output_path, "wb") as f:
+            pass  # Create an empty file
+        print(f"Created an empty file at {output_path}")
+        return output_path
+    except OSError as e:
+        print(f"Failed to create an empty file at {output_path}. OS Error: {e}")
+        return ""
 
 
-def select_css(html_css_dir):
+def static_relative(path):
     """
-    Select CSS file with the website's template.
-
-    :param html_css_dir: The directory to save the CSS stylesheet.
-    :return: Returns a list of CSS files to be imported.
+    Get the relative path after "_static" in a posix style.
+    :param path: The original path.
+    :return: The relative path after "_static" in a posix style.
     """
-    ret = ""
-    common_css = "css/eprosima-furo.css"
-    if download_css(html_css_dir):
-        print("Applying common CSS style file: {}".format(common_css))
-        ret = common_css
-
-    return ret
+    if not path:
+        return ""
+    parts = path.split(os.path.sep)
+    if "_static" in parts:
+        idx = len(parts) - 1 - parts[::-1].index("_static")
+        rel_parts = parts[idx + 1 :]
+        return "/".join(rel_parts) if rel_parts else ""
+    return path
 
 
 def get_git_branch():
-    """Get the git branch this repository is currently on."""
+    """Get the git branch this repository is currently on.
+
+    On Read the Docs the repo is checked out in detached-HEAD mode, so
+    ``git name-rev`` returns synthetic names like ``remotes/origin/external-1234``
+    instead of the real branch.  A workaround is provided using
+    ``READTHEDOCS_VERSION_TYPE`` and ``READTHEDOCS_VERSION`` according to the build type:
+    - ``"branch"`` builds: READTHEDOCS_VERSION is the branch name (e.g. ``"3.6.x"``) → use it.
+      Exception: RTD pseudo-name ``"latest"`` is not a real git branch; return None so
+      resolve_fallback_branch falls back to master/main.
+      Exception: RTD pseudo-name ``"stable"`` is not a real git branch either; instead we
+      query ``git describe --tags --abbrev=0 HEAD`` to get the nearest ancestor tag (e.g.
+      ``"v3.6.1"``), which works whether HEAD is exactly at the tag or has moved past it.
+    - ``"tag"`` builds: READTHEDOCS_VERSION is the tag name (e.g. ``"v3.6.0"``) → use it.
+    - ``"external"`` (PR preview) builds: READTHEDOCS_VERSION is the PR number (e.g. ``"1241"``)
+      which is not a valid git ref. In this case we return None so resolve_fallback_branch falls
+      back to its default instead of generating broken GitHub URLs.
+    - Local builds: READTHEDOCS_VERSION_TYPE is unset → fall back to git name-rev.
+    """
+    rtd_type = os.environ.get("READTHEDOCS_VERSION_TYPE")
+    if rtd_type in ("branch", "tag"):
+        version_name = os.environ.get("READTHEDOCS_VERSION")
+        if version_name in ("latest", "stable"):
+            # "latest" and "stable" are RTD pseudo-names, but RTD also exposes the git ref it actually
+            # checked out for them (e.g. "3.6.x" or "v3.6.1"). Preferring it keeps the API Reference and the
+            # GitHub links on the branch the documentation is really being built from instead of master.
+            # The ref is validated against the remote before being used for the checkout, so an unexpected
+            # value simply falls back to master as before.
+            git_identifier = os.environ.get("READTHEDOCS_GIT_IDENTIFIER")
+            if git_identifier and git_identifier not in ("latest", "stable"):
+                return git_identifier
+        if version_name == "latest":
+            # "latest" is an RTD pseudo-name, not a real branch → fall back to master.
+            return None
+        if version_name == "stable":
+            # "stable" is an RTD pseudo-name. Find the latest vX.Y.Z tag in the repo.
+            # Release tags live on dedicated branches (not main), so we scan all tags
+            # rather than restricting to those reachable from HEAD.
+            path_to_here = os.path.abspath(os.path.dirname(__file__))
+            try:
+                p = subprocess.Popen(
+                    ["git", "tag", "--sort=-version:refname"],
+                    stdout=subprocess.PIPE,
+                    stderr=subprocess.PIPE,
+                    cwd=path_to_here,
+                )
+                tags = p.communicate()[0].decode().splitlines()
+                release_tag_re = re.compile(r'^v\d+\.\d+\.\d+$')
+                for tag in tags:
+                    if release_tag_re.match(tag.strip()):
+                        return tag.strip()
+            except Exception:
+                pass
+            return None
+        return version_name
+    if rtd_type == "external":
+        return None
+
     path_to_here = os.path.abspath(os.path.dirname(__file__))
 
     # Invoke git to get the current branch which we use to get the theme
@@ -229,10 +333,68 @@ def get_git_branch():
         return p.communicate()[0].decode().rstrip()
 
     except Exception:
+        # Local build without git or some error occurred
         print("Could not get the branch")
 
     # Couldn't figure out the branch probably due to an error
     return None
+
+
+def resolve_fallback_branch(env_var, docs_branch, default="master"):
+    """
+    Resolve the branch to use for GitHub links.
+
+    Priority:
+      1. Environment variable ``env_var`` (e.g. FASTDDS_BRANCH)
+      2. Current documentation branch (``docs_branch``)
+      3. Hard-coded ``default``
+
+    This mirrors the checkout logic used in the ReadTheDocs clone block so
+    that extlinks and the actual checkout always point at the same branch.
+    """
+    return os.environ.get(env_var) or docs_branch or default
+
+
+_NOTES_INCLUDE_RE = re.compile(
+    r"""\.\.\s+include::\s+(?P<path>previous_versions/v[\d.]+(?:-pro)?\.rst)"""
+)
+_HEADING_VERSION_RE = re.compile(r"""Version\s+(?P<version>\d+(?:\.\d+){1,3})""")
+
+
+def parse_latest_version_from_notes(notes_rst_path, fallback):
+    """
+    Read the current latest version number straight out of notes.rst / notes_pro.rst.
+
+    Whoever ships a new Fast DDS (or Fast DDS Pro) release already has to add a
+    new `previous_versions/vX.Y.Z(.W)(-pro).rst` changelog fragment, write its
+    "Version X.Y.Z" heading, and point notes.rst / notes_pro.rst's
+    `.. include::` at it. Reading the version back out of that fragment's own
+    heading means the number shown under the logo always matches what the
+    docs actually say - no separate value to remember to bump, and no extra
+    sibling repository checkout required.
+    """
+    try:
+        with open(notes_rst_path, "r") as f:
+            content = f.read()
+    except OSError:
+        print('Could not read "{}"; falling back to "{}"'.format(notes_rst_path, fallback))
+        return fallback
+    include_match = _NOTES_INCLUDE_RE.search(content)
+    if not include_match:
+        print('No changelog fragment included in "{}"; falling back to "{}"'.format(notes_rst_path, fallback))
+        return fallback
+    fragment_path = os.path.join(os.path.dirname(notes_rst_path), include_match.group("path"))
+    try:
+        with open(fragment_path, "r") as f:
+            fragment_content = f.read()
+    except OSError:
+        print('Could not read "{}"; falling back to "{}"'.format(fragment_path, fallback))
+        return fallback
+    heading_match = _HEADING_VERSION_RE.search(fragment_content)
+    if not heading_match:
+        print('No "Version X.Y.Z" heading found in "{}"; falling back to "{}"'.format(fragment_path, fallback))
+        return fallback
+    return heading_match.group("version")
 
 
 def configure_doxyfile(
@@ -267,6 +429,96 @@ def configure_doxyfile(
         file.write(filedata)
 
 
+def resolve_remote_ref(url, preferred_ref, display_name):
+    """
+    Resolve the branch or tag a repository must be checked out at, without downloading it.
+
+    ``git ls-remote`` is used so that falling back to master, when the remote does not have
+    ``preferred_ref``, does not require cloning anything first.
+
+    :param url: URL of the repository.
+    :param preferred_ref: Branch or tag to use if the remote has it.
+    :param display_name: Repository name, used for logging.
+    :return: Tuple with the branch or tag to use and the commit it points to. The commit is ``None`` if the
+        remote could not be queried.
+    """
+    ref = preferred_ref
+    try:
+        remote_refs = git.cmd.Git().ls_remote("--heads", "--tags", url, ref, "master")
+    except git.GitCommandError as e:
+        print("Failed to list the refs of {}. Git Error: {}".format(display_name, e))
+        return ref, None
+
+    # ``git ls-remote`` matches the pattern against the tail of the ref path, so asking for "master" also
+    # matches a branch named "feature/some-work/master". Require an exact branch or tag match, otherwise the
+    # clone would be attempted with a ref that does not exist and fail instead of falling back.
+    commits = {}
+    for line in remote_refs.splitlines():
+        commit, _, ref_path = line.partition("\t")
+        commits[ref_path] = commit
+
+    for candidate in (ref, "master"):
+        for ref_path in (
+            "refs/heads/{}".format(candidate),
+            "refs/tags/{}".format(candidate),
+        ):
+            if ref_path in commits:
+                return candidate, commits[ref_path]
+        print(
+            '{} does not have branch or tag "{}"; falling back to master'.format(
+                display_name, candidate
+            )
+        )
+
+    return "master", None
+
+
+def repo_is_at_commit(path, commit, display_name):
+    """
+    Check whether an already cloned repository is checked out at a given commit.
+
+    :param path: Local path of the repository.
+    :param commit: Commit that the repository is expected to be checked out at.
+    :param display_name: Repository name, used for logging.
+    :return: True only if the repository exists and its HEAD is that commit.
+    """
+    if not commit or not os.path.isdir(path):
+        return False
+
+    try:
+        head_commit = git.Repo(path).head.commit.hexsha
+    except Exception as e:
+        print("Could not read the HEAD of {}. Error: {}".format(display_name, e))
+        return False
+
+    if head_commit != commit:
+        print(
+            "{} is checked out at {} instead of {}".format(
+                display_name, head_commit[:10], commit[:10]
+            )
+        )
+        return False
+
+    return True
+
+
+def clone_repo_at_ref(url, path, ref, display_name):
+    """
+    Clone a repository at a given branch or tag, downloading as little as possible.
+
+    Only the tip of the ref is fetched (``--depth 1``), which is all that doxygen and SWIG need: the full
+    history of Fast DDS is over 100 MB and none of it is used.
+
+    :param url: URL of the repository to clone.
+    :param path: Local path where the repository will be cloned.
+    :param ref: Branch or tag to check out, as resolved by ``resolve_remote_ref``.
+    :param display_name: Repository name, used for logging.
+    :return: The cloned repository.
+    """
+    print('Cloning {} at "{}"'.format(display_name, ref))
+    return git.Repo.clone_from(url, path, branch=ref, depth=1, single_branch=True)
+
+
 script_path = os.path.abspath(pathlib.Path(__file__).parent.absolute())
 # Project directories
 project_source_dir = os.path.abspath("{}/../code".format(script_path))
@@ -282,143 +534,148 @@ doxyfile_out = os.path.abspath("{}/doxygen-config".format(project_binary_dir))
 # Header files
 input_dir = os.path.abspath("{}/fastdds/include/fastdds".format(project_binary_dir))
 
+# Current branch of the documentation repository — resolved once, used everywhere.
+docs_branch = get_git_branch()
+if docs_branch:
+    print('Current documentation branch is "{}"'.format(docs_branch))
+else:
+    print("Current documentation branch could not be determined; " \
+    "GitHub links will point to default branches instead of the corresponding branch.")
+
+# Resolve GitHub link branches: env var → current docs branch → default.
+# Computed here so they are available both in the ReadTheDocs clone block and in extlinks.
+fastdds_fallback_branch = resolve_fallback_branch("FASTDDS_BRANCH", docs_branch, "master")
+fastdds_docs_fallback_branch = resolve_fallback_branch("FASTDDS_DOCS_BRANCH", docs_branch, "master")
+fastdds_python_fallback_branch = resolve_fallback_branch("FASTDDS_PYTHON_BRANCH", docs_branch, "master")
+fastdds_gen_fallback_branch = resolve_fallback_branch("FASTDDS_GEN_BRANCH", docs_branch, "master")
+
+print("Fallback branches for GitHub links:")
+print('  Fast-DDS:        "{}"'.format(fastdds_fallback_branch))
+print('  Fast-DDS-docs:   "{}"'.format(fastdds_docs_fallback_branch))
+print('  Fast-DDS-Python: "{}"'.format(fastdds_python_fallback_branch))
+print('  Fast-DDS-Gen:    "{}"'.format(fastdds_gen_fallback_branch))
+
+fastdds_repo_name = os.path.abspath("{}/fastdds".format(project_binary_dir))
+fastdds_python_repo_name = os.path.abspath(
+    "{}/fastdds_python".format(project_binary_dir)
+)
+
 # Check if we're running on Read the Docs' servers
 read_the_docs_build = os.environ.get("READTHEDOCS", None) == "True"
 if read_the_docs_build:
     print("Read the Docs environment detected!")
 
-    fastdds_repo_name = os.path.abspath("{}/fastdds".format(project_binary_dir))
+    fastdds_url = "https://github.com/eProsima/Fast-DDS.git"
+    fastdds_python_url = "https://github.com/eProsima/Fast-DDS-python.git"
 
-    fastdds_python_repo_name = os.path.abspath(
-        "{}/fastdds_python".format(project_binary_dir)
+    doxygen_index = os.path.join(output_dir, "xml", "index.xml")
+    swig_output = os.path.join(
+        fastdds_python_repo_name, "fastdds_python", "src", "swig", "fastddsPYTHON_wrap.cxx"
     )
 
-    # Remove repository if exists
-    if os.path.isdir(fastdds_repo_name):
-        print("Removing existing repository in {}".format(fastdds_repo_name))
-        shutil.rmtree(fastdds_repo_name)
-    if os.path.isdir(fastdds_python_repo_name):
-        print("Removing existing repository in {}".format(fastdds_python_repo_name))
-        shutil.rmtree(fastdds_python_repo_name)
-
-    # Create necessary directory path
-    os.makedirs(os.path.dirname(fastdds_repo_name), exist_ok=True)
-    os.makedirs(os.path.dirname(fastdds_python_repo_name), exist_ok=True)
-
-    # Clone repositories
-
-    # - Fast DDS
-    print("Cloning Fast DDS")
-    fastdds = git.Repo.clone_from(
-        "https://github.com/eProsima/Fast-DDS.git",
-        fastdds_repo_name,
+    # Branch or tag, and the commit it currently points to, that each repository must be checked out at
+    fastdds_ref, fastdds_commit = resolve_remote_ref(
+        fastdds_url, fastdds_fallback_branch, "Fast DDS"
+    )
+    fastdds_python_ref, fastdds_python_commit = resolve_remote_ref(
+        fastdds_python_url, fastdds_python_fallback_branch, "Fast DDS Python Bindings"
     )
 
-    # Documentation repository branch
-    docs_branch = get_git_branch()
-    print('Current documentation branch is "{}"'.format(docs_branch))
-
-    # User specified Fast DDS branch
-    fastdds_branch = os.environ.get("FASTDDS_BRANCH", None)
-
-    # First try to checkout to ${FASTDDS_BRANCH}
-    # Else try with current documentation branch
-    # Else checkout to master
-    if fastdds_branch and fastdds.refs.__contains__("origin/{}".format(fastdds_branch)):
-        fastdds_branch = "origin/{}".format(fastdds_branch)
-    elif docs_branch and fastdds.refs.__contains__("origin/{}".format(docs_branch)):
-        fastdds_branch = "origin/{}".format(docs_branch)
-    else:
+    # Read the Docs runs a separate sphinx-build, which imports this file again, for every enabled output
+    # format. Cloning the repositories and running doxygen and SWIG once per format would repeat several
+    # minutes of work, so the preparation is skipped when a previous run of this build already completed it.
+    # The repositories must be checked out at the expected commit, and not merely exist, for their doxygen
+    # documentation and SWIG code to be the ones this build needs.
+    if (
+        repo_is_at_commit(fastdds_repo_name, fastdds_commit, "Fast DDS")
+        and repo_is_at_commit(
+            fastdds_python_repo_name, fastdds_python_commit, "Fast DDS Python Bindings"
+        )
+        and os.path.isfile(doxygen_index)
+        and os.path.isfile(swig_output)
+    ):
         print(
-            'Fast DDS does not have either "{}" or "{}" branches'.format(
-                fastdds_branch, docs_branch
+            "Reusing the repositories, doxygen documentation and SWIG code already generated in {}".format(
+                project_binary_dir
             )
         )
-        fastdds_branch = "origin/master"
-
-    # Actual checkout
-    print('Checking out Fast DDS branch "{}"'.format(fastdds_branch))
-    fastdds.refs[fastdds_branch].checkout()
-
-    # - Fast DDS Python Bindings
-    print("Cloning Fast DDS Python Bindings")
-    fastdds_python = git.Repo.clone_from(
-        "https://github.com/eProsima/Fast-DDS-python.git",
-        fastdds_python_repo_name,
-    )
-
-    # User specified Fast DDS branch
-    fastdds_python_branch = os.environ.get("FASTDDS_PYTHON_BRANCH", None)
-
-    # First try to checkout to ${FASTDDS_PYTHON_BRANCH}
-    # Else try with current documentation branch
-    # Else checkout to master
-    if fastdds_python_branch and fastdds_python.refs.__contains__(
-        "origin/{}".format(fastdds_python_branch)
-    ):
-        fastdds_python_branch = "origin/{}".format(fastdds_python_branch)
-    elif docs_branch and fastdds_python.refs.__contains__(
-        "origin/{}".format(docs_branch)
-    ):
-        fastdds_python_branch = "origin/{}".format(docs_branch)
     else:
-        print(
-            'Fast DDS Python does not have either "{}" or "{}" branches'.format(
-                fastdds_python_branch, docs_branch
-            )
+        # Remove the repositories left behind by an incomplete attempt, as cloning needs an empty directory
+        if os.path.isdir(fastdds_repo_name):
+            print("Removing existing repository in {}".format(fastdds_repo_name))
+            shutil.rmtree(fastdds_repo_name)
+        if os.path.isdir(fastdds_python_repo_name):
+            print("Removing existing repository in {}".format(fastdds_python_repo_name))
+            shutil.rmtree(fastdds_python_repo_name)
+
+        # Create necessary directory path
+        os.makedirs(os.path.dirname(fastdds_repo_name), exist_ok=True)
+        os.makedirs(os.path.dirname(fastdds_python_repo_name), exist_ok=True)
+
+        # Clone repositories at the branch or tag this documentation is being built from
+        clone_repo_at_ref(fastdds_url, fastdds_repo_name, fastdds_ref, "Fast DDS")
+        clone_repo_at_ref(
+            fastdds_python_url,
+            fastdds_python_repo_name,
+            fastdds_python_ref,
+            "Fast DDS Python Bindings",
         )
-        fastdds_python_branch = "origin/main"
 
-    # Actual checkout
-    print('Checking out Fast DDS Python branch "{}"'.format(fastdds_python_branch))
-    fastdds_python.refs[fastdds_python_branch].checkout()
+        os.makedirs(os.path.dirname(output_dir), exist_ok=True)
+        os.makedirs(os.path.dirname(doxygen_html), exist_ok=True)
 
-    os.makedirs(os.path.dirname(output_dir), exist_ok=True)
-    os.makedirs(os.path.dirname(doxygen_html), exist_ok=True)
+        # Configure Doxyfile
+        configure_doxyfile(
+            doxyfile_in,
+            doxyfile_out,
+            input_dir,
+            output_dir,
+            project_binary_dir,
+            project_source_dir,
+        )
+        # Generate doxygen documentation
+        doxygen_ret = subprocess.call("doxygen {}".format(doxyfile_out), shell=True)
+        if doxygen_ret != 0:
+            print("Doxygen failed with return code {}".format(doxygen_ret))
+            sys.exit(doxygen_ret)
 
-    # Configure Doxyfile
-    configure_doxyfile(
-        doxyfile_in,
-        doxyfile_out,
-        input_dir,
-        output_dir,
-        project_binary_dir,
-        project_source_dir,
-    )
-    # Generate doxygen documentation
-    doxygen_ret = subprocess.call("doxygen {}".format(doxyfile_out), shell=True)
-    if doxygen_ret != 0:
-        print("Doxygen failed with return code {}".format(doxygen_ret))
-        sys.exit(doxygen_ret)
+        # Generate SWIG code.
+        swig_ret = subprocess.call(
+            "swig \
+            -python \
+            -doxygen \
+            -I{}/include \
+            -DFASTDDS_DOCS_BUILD \
+            -outdir {}/fastdds_python/src/swig \
+            -c++ \
+            -interface _fastdds_python \
+            -o {}/fastdds_python/src/swig/fastddsPYTHON_wrap.cxx \
+            {}/fastdds_python/src/swig/fastdds.i".format(
+                fastdds_repo_name,
+                fastdds_python_repo_name,
+                fastdds_python_repo_name,
+                fastdds_python_repo_name,
+            ),
+            shell=True,
+        )
 
-    # Generate SWIG code.
-    swig_ret = subprocess.call(
-        "swig \
-        -python \
-        -doxygen \
-        -I{}/include \
-        -DFASTDDS_DOCS_BUILD \
-        -outdir {}/fastdds_python/src/swig \
-        -c++ \
-        -interface _fastdds_python \
-        -o {}/fastdds_python/src/swig/fastddsPYTHON_wrap.cxx \
-        {}/fastdds_python/src/swig/fastdds.i".format(
-            fastdds_repo_name,
-            fastdds_python_repo_name,
-            fastdds_python_repo_name,
-            fastdds_python_repo_name,
-        ),
-        shell=True,
-    )
-
-    if swig_ret != 0:
-        print("SWIG failed with return code {}".format(swig_ret))
-        sys.exit(swig_ret)
+        if swig_ret != 0:
+            print("SWIG failed with return code {}".format(swig_ret))
+            sys.exit(swig_ret)
 
     fastdds_python_imported_location = "{}/fastdds_python/src/swig".format(
         fastdds_python_repo_name
     )
     autodoc_mock_imports = ["_fastdds_python"]
+
+# Resolve the Basic and Pro product versions from notes.rst / notes_pro.rst's
+# own `.. include::` line - see `parse_latest_version_from_notes` above.
+fastdds_version = parse_latest_version_from_notes(
+    os.path.join(script_path, "notes", "notes.rst"), fallback="3.6.2"
+)
+fastdds_pro_version = parse_latest_version_from_notes(
+    os.path.join(script_path, "notes", "notes_pro.rst"), fallback="3.6.2.1"
+)
 
 
 breathe_projects = {"FastDDS": os.path.abspath("{}/xml".format(output_dir))}
@@ -444,8 +701,33 @@ extensions = [
     "sphinx_copybutton",
     "sphinx_design",
     "sphinx.ext.autodoc",  # Document Pydoc documentation from Python bindings.
+    "sphinx.ext.extlinks",
+    "sphinx_substitution_extensions",
     "sphinx_toolbox.collapse",
 ]
+
+extlinks = {
+    # Fast-DDS repo (tree = directory, blob = file)
+    "fastdds-tree": (
+        f"https://github.com/eProsima/Fast-DDS/tree/{fastdds_fallback_branch}/%s", "%s"
+    ),
+    "fastdds-blob": (
+        f"https://github.com/eProsima/Fast-DDS/blob/{fastdds_fallback_branch}/%s", "%s"
+    ),
+    # Fast-DDS-python repo
+    "fastdds-python-tree": (
+        f"https://github.com/eProsima/Fast-DDS-Python/tree/{fastdds_python_fallback_branch}/%s", "%s"
+    ),
+    # Fast-DDS-docs repo (code examples embedded in the docs repo)
+    "fastdds-docs-tree": (
+        f"https://github.com/eProsima/Fast-DDS-docs/tree/{fastdds_docs_fallback_branch}/%s", "%s"
+    ),
+    # Fast-DDS-Gen raw files
+    "fastddsgen-raw": (
+        f"https://raw.githubusercontent.com/eProsima/Fast-DDS-Gen/{fastdds_gen_fallback_branch}/%s",
+        "%s",
+    ),
+}
 
 sphinx_tabs_disable_css_loading = False
 sphinx_tabs_disable_tab_closing = True
@@ -455,10 +737,9 @@ try:
 
     extensions.append("sphinxcontrib.spelling")
 
-    # spelling_word_list_filename = 'spelling_wordlist.txt'
     spelling_word_list_filename = [
         "spelling_wordlist.txt",
-        "fastdds/api_reference/spelling_wordlist.txt",
+        "api_spelling_wordlist.txt",
     ]
 
     from sphinxcontrib.spelling.filters import ContractionFilter
@@ -476,6 +757,11 @@ autodoc_default_options = {
 }
 
 plantuml = "/usr/bin/plantuml -Djava.awt.headless=true "
+if sys.platform.startswith("win"):
+    plantuml = (
+        "C:\\ProgramData\\chocolatey\\bin\\plantuml.exe -Djava.awt.headless=true "
+    )
+
 plantuml_output_format = "svg"
 
 # Add any paths that contain templates here, relative to this directory.
@@ -503,10 +789,17 @@ author = "eProsima"
 # |version| and |release|, also used in various other places throughout the
 # built documents.
 #
+# NOTE: the root CMakeLists.txt does a raw text scan of this exact line
+# (`^version = "X.Y.Z"`) to keep the CMake project version in sync with
+# Sphinx's, so this must stay a plain quoted literal - it cannot be replaced
+# with a computed value. Bump it by hand alongside each Basic release, same
+# as before. See `logo_version_html` below for the dynamically-resolved
+# Basic/Pro version display under the logo, which is independent of this.
+#
 # The short X.Y version.
-version = "3.2.0"
+version = "3.6.2"
 # The full version, including alpha/beta/rc tags.
-release = "3.2.0"
+release = "3.6.2"
 
 # The language for content autogenerated by Sphinx. Refer to documentation
 # for a list of supported languages.
@@ -532,6 +825,7 @@ exclude_patterns = [
     "*/*/includes/*.rst",
     "*/*/*/includes/*.rst",
     "*/*/*/*/includes/*.rst",
+    "notes/previous_versions/v*.rst",
 ]
 
 # The reST default role (used for this markup: `text`) to use for all
@@ -593,8 +887,12 @@ html_logo = "_static/fast-dds-logo.png"
 
 # The name for this set of Sphinx documents.
 # "<project> v<release> documentation" by default.
+# Repurposed here (like Fast-DDS-monitor's docs) to show the latest Basic and
+# Pro version numbers under the logo, since furo's stock `sidebar/brand.html`
+# renders `html_title` unescaped right below the logo image.
 #
-html_title = f"<center><i>{release}</i></center>"
+logo_version_html = f"<center><i>{fastdds_version} / {fastdds_pro_version} Pro</i></center>"
+html_title = logo_version_html
 
 # The name of an image file (relative to this directory) to use as a favicon of
 # the docs. This file should be a Windows icon file (.ico) being 16x16 or 32x32
@@ -611,7 +909,51 @@ html_theme_options.update(download_json())
 
 html_use_smartypants = True
 
-html_css_files = [select_css(script_path)]
+# The CSS files referenced here should have a path relative to the _static folder.
+# We use static_relative(download_file(...)) to ensure the resulting paths are relative to "_static".
+# Empty entries are discarded: an unavailable file would otherwise be resolved to the "_static" directory itself,
+# making the theme fail to render with "IsADirectoryError".
+html_css_files = [
+    css_file
+    for css_file in [
+        static_relative(
+            download_file(
+                "https://raw.githubusercontent.com/eProsima/all-docs/master/source/_static/css/eprosima-furo.css",
+                "{}/_static/css/eprosima-furo.css".format(script_path),
+            )
+        ),
+        static_relative(
+            download_file(
+                "https://raw.githubusercontent.com/eProsima/all-docs/master/source/_static/css/pro-badge.css",
+                "{}/_static/css/pro-badge.css".format(script_path),
+            )
+        ),
+    ]
+    if css_file
+]
+
+# Preserves the left sidebar's scroll position across page navigations.
+html_js_files = ["js/sidebar_scroll.js"]
+
+# Custom substitutions that are included at the beginning of every source file.
+# |Pro|: badge with PRO text. Place it after titles where needed as follows:
+#    Title |Pro|
+#    ===========
+# rst_prolog = r"""
+# .. |Pro| replace:: :bdg-primary-line:`Pro`
+# """
+rst_prolog = f"""
+.. |Pro| raw:: html
+
+    <span class="sd-badge sd-outline-primary sd-text-primary" title="Exclusive to Fast DDS Pro">Pro</span>
+
+.. |ProjectVersion| replace:: {version}
+
+.. |FastDDSBranch| replace:: {fastdds_fallback_branch}
+
+.. |FastDDSPythonBranch| replace:: {fastdds_python_fallback_branch}
+"""
+
 
 # Add any paths that contain custom themes here, relative to this directory.
 # html_theme_path = []

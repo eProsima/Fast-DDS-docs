@@ -1,0 +1,44 @@
+`Version 3.7.0.1 <https://github.com/eProsima/Fast-DDS-Pro/releases/tag/v3.7.0.1>`__ |Pro|
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+This release includes the following **features**:
+
+1. Add optional support on DynamicTypes API
+2. Support truncating large collections in json_serialize
+3. Make type support context inherit from Cdr context
+4. Support member id in idl parser
+5. Bring ``Buffer<T>`` from rosidl
+6. Use machine ID in SHM locators
+
+This release includes the following **improvements**:
+
+1. Require all security plugins to be configured
+2. Update fastcdr submodule to point to v2.4.0
+3. Regenerate types with Fast DDS Gen Pro v4.4.0 and include license
+4. Renaming Fast DDS Monitor to DDS Monitor
+
+This release includes the following **security fixes (CVEs)**:
+
+1. `CVE-2025-67108 <https://www.cve.org/CVERecord?id=CVE-2025-67108>`__
+
+This release includes the following **fixes**:
+
+1. Fix volatile reader desync after initial positioning GAP
+2. Fix FlowController not properly updating reader locators after reaching maximum limitation
+3. Catch exception when constructing a payload pool Node
+4. Disable Filewatch in QNX
+5. Fix compilation error with ``-DBUILD_SHARED_LIBS=OFF``
+6. Fix datasharing infinite loop
+7. Deadlock when toggling the internet interface that stops the monitor functioning
+8. Account for padding when protecting payloads with GMAC only
+9. Update license in package.xml
+10. Fix IDL parsing minor failures
+11. Fix integer overflow in PartitionQosPolicy CDR deserialization
+
+The **CI** includes the following changes:
+
+1. Fix execution of profiling tests alternative build
+2. Delete 'repos' directory in abi checker
+3. Fix CI docker access
+4. Fix Flaky tests
+5. Single test for DDSSQLFilterTests

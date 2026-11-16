@@ -49,3 +49,41 @@ Publications made after the updated discovery information is received will use t
 
 If some critical application considers this race condition issue unbearable, filtering on the writer side
 can be disabled by setting the maximum value on |WriterResourceLimitsQos::reader_filters_allocation-api| to 0.
+
+.. _dds_layer_topic_contentFilteredTopic_writer_side_late_joiners:
+
+Writer side filtering on late joiners |Pro|
+-------------------------------------------
+
+By default, when a late joiner DataReader is discovered (non-volatile durability scenario), the DataWriter will not
+apply the filter for that DataReader on historical samples.
+This means that the late joiner DataReader will receive all historical samples, even those that would not match its
+filter, which could cause performance degradation on resource-limited systems.
+
+It is possible however to configure a DataWriter to perform writer-side filtering on late joiners by setting the
+|DataWriterQos| property ``fastdds.content_filtering_on_late_joiners`` to ``true``.
+
+.. list-table::
+   :header-rows: 1
+   :align: left
+
+   * - PropertyPolicyQos name
+     - PropertyPolicyQos value
+     - Default value
+   * - ``"fastdds.content_filtering_on_late_joiners"``
+     - ``bool``
+     - ``false``
+
+.. tab-set-code::
+
+    .. literalinclude:: /../code/ProDDSCodeTester.cpp
+        :language: c++
+        :start-after: // CONTENT_FILTERING_ON_LATE_JOINERS_PROPERTY
+        :end-before: //!--
+        :dedent: 8
+
+    .. literalinclude:: /../code/ProXMLTester.xml
+        :language: xml
+        :start-after: <!-->CONTENT_FILTERING_ON_LATE_JOINERS_PROPERTY<-->
+        :end-before: <!--><-->
+        :lines: 2-4,6-16,18-19

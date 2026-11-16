@@ -1,0 +1,88 @@
+`Version 3.3.1 (EOL) <https://fast-dds.docs.eprosima.com/en/v3.3.1/index.html>`_
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+This patch release includes the following **critical fixes**:
+
+#. Fix `CVE-2025-62599 <https://www.cve.org/CVERecord?id=CVE-2025-62599>`_
+#. Fix `CVE-2025-62600 <https://www.cve.org/CVERecord?id=CVE-2025-62600>`_
+#. Fix `CVE-2025-62601 <https://www.cve.org/CVERecord?id=CVE-2025-62601>`_
+#. Fix `CVE-2025-62602 <https://www.cve.org/CVERecord?id=CVE-2025-62602>`_
+#. Fix `CVE-2025-62603 <https://www.cve.org/CVERecord?id=CVE-2025-62603>`_
+#. Fix `CVE-2025-64098 <https://www.cve.org/CVERecord?id=CVE-2025-64098>`_
+#. Fix `CVE-2025-62799 <https://www.cve.org/CVERecord?id=CVE-2025-62799>`_
+#. Fix `CVE-2025-64438 <https://www.cve.org/CVERecord?id=CVE-2025-64438>`_
+#. Fix `CVE-2025-65016 <https://www.cve.org/CVERecord?id=CVE-2025-65016>`_
+#. Fix `CVE-2026-22590 <https://www.cve.org/CVERecord?id=CVE-2026-22590>`_
+
+This patch release includes the following **improvements**:
+
+#. Update ``3.3.x`` to be a supported branch
+#. Avoid setting thread affinity of 0 in Mac
+#. Update Fast CDR version
+#. Improve signal handling in RPC example
+#. Change ``non_blocking_send`` threshold to ``sendBufferSize``
+#. Avoid sending duplicated ``ACKs`` in ``DataSharing``
+#. Use binary search in ``find_change_nts``
+#. Guard ``gnu::optimize`` with ``defined(__GNUC__)``
+#. Apply ``uncrustify``
+#. Do not export discovery server as ``cmake`` target
+#. Send ``heartbeat`` when ``wait_for_all_acked`` is called
+#. Update ``RELEASE_SUPPORT`` with release ``3.2.3``
+#. Protect ``DataReaderInstance`` alive_writers attribute
+#. Avoid casting ``GUID_t`` into ``InstanceHandle_t``
+#. Support aliases in Content Filtered Topic
+#. Allow empty partition list to match against ``*``
+#. Release change while authentication fails
+#. Improve latency tests
+#. Improvements in message receiver
+#. Improvements on ``compute_key`` generated code
+#. Protect ``PDPStatelessWriter`` attributes
+#. Verify Safe DDS signature
+#. Improve Open SSL includes
+#. Regenerate types with Fast DDS Gen ``v4.1.1``
+#. Allow to send empty payloads in dispose/unregister operations
+#. Reset irrelevant sequence numbers interval in proxy readers
+
+
+This patch release includes the following **fixes**:
+
+#. Fix socket buffer size handling
+#. Fix latency & throughput tests names
+#. Return sample notifying changes on instance state
+#. Fix doxygen documentation for ``iHandle2GUID``
+#. Set different content filter signatures for each requester
+#. Fix doxygen to avoid errors in python bindings
+#. Fix topic argument in Discovery Server example
+#. Add missing field to ``xsd``
+#. Fix duplicated transport when using specific XML with CLI
+#. Remote writers considered volatile by default
+#. Solve TCP disconnect while incomplete read deadlock
+#. Remove residual generated files
+#. Handle maximum deadline misses case
+#. Improve some tests
+#. Replace ``logWarning`` with ``EPROSIMA_LOG_WARNING`` in ``RTCPHeader.h``
+#. Avoid ``PROJECT_SOURCE_DIR`` and ``make_unique`` when building blackbox tests
+#. Fix ``GAP`` messages are not sent when there is no Reader requesting the ``DATA``
+#. Fix usage of invalid iterator in ``DynamicDataImpl::deserialize()``
+#. Fix build in ``GCC 15``
+
+
+This patch release includes the following **ci management updates**:
+
+#. Add ``--quiet`` to git submodule invocations
+#. Update fallback branches to use environment variables
+#. Split Mac CI build and testing phases
+#. Add missing IDL to code generator script
+#. Remove residual generated files
+#. Allow CI to run tests with manual dispatch
+#. Free disk space in CI runners
+#. Upgrade to ``macOS Sequoia``
+#. Single line for ``ctest_args`` in Mac CI
+#. Upgrade Linters CI runner image to ``ubuntu-24.04``
+
+
+.. important::
+
+    When upgrading to version 3.3.1 it is **highly recommended** to regenerate generated source from IDL files
+    using at least `Fast DDS-Gen v4.1.1 <https://github.com/eProsima/Fast-DDS-Gen/releases/tag/v4.1.1>`_.
+    But it is advisable to regenerate them using the latest patch version of ``Fast DDS-Gen v4.1.x``.

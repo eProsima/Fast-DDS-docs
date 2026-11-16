@@ -153,19 +153,19 @@ the TransportDescriptor for Shared Memory defines the following ones:
      - ``uint32_t``
      - ``512*1024``
      - |SharedMemTransportDescriptor::segment_size-api|
-     - Size of the shared memory segment |br|
+     - Size of the shared memory segment
        (in octets).
    * - ``port_queue_capacity_``
      - ``uint32_t``
      - ``512``
      - |SharedMemTransportDescriptor::port_queue_capacity-api|
-     - The size of the listening port |br|
+     - The size of the listening port
        (in messages).
    * - ``healthy_check_timeout_ms_``
      - ``uint32_t``
      - ``1000``
      - |SharedMemTransportDescriptor::healthy_check_timeout_ms-api|
-     - Timeout for the health check of ports |br|
+     - Timeout for the health check of ports
        (in milliseconds).
    * - ``rtps_dump_file_``
      - ``string``
@@ -269,6 +269,6 @@ Delivery Mechanisms example
 ---------------------------
 
 A hello world example suitable for supported delivery mechanisms can be found in the
-`delivery_mechanisms folder <https://github.com/eProsima/Fast-DDS/tree/master/examples/cpp/delivery_mechanisms>`_.
+:fastdds-tree:`delivery_mechanisms folder <examples/cpp/delivery_mechanisms>`.
 It shows a publisher and a subscriber that communicate through the desired delivery mechanism (which can be set to
 shared memory only).

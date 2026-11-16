@@ -29,6 +29,14 @@ in which they were when the shutdown occurred.
     This means that they will resume operation where they left, but they will not have the previous information, since
     that was already notified to the application.
 
+.. note::
+    It may be necessary to configure the history depth of the DataWriter and DataReader to a value large enough to
+    guarantee that all the changes stored in the database are enough for a correct recovery of the application.
+
+.. note::
+    |RELIABLE_RELIABILITY_QOS-api| reliability is required to allow a full recovery, since it guarantees that all the changes are stored in
+    the database and that they will be available for the DataWriter/DataReader upon restart.
+
 
 .. _persistence_service_conf:
 
@@ -42,7 +50,8 @@ or DataReader) |PropertyPolicyQos|.
 * For the :ref:`persistence_service` to have any effect, the |DurabilityQosPolicyKind-api| needs to be set to
   |TRANSIENT_DURABILITY_QOS-api| or |PERSISTENT_DURABILITY_QOS-api|.
 
-* A persistence identifier (|Guid_t-api|) must be set for the entity using the property ``dds.persistence.guid``.
+* A persistence identifier (|Guid_t-api|) must be set on the endpoint (|DataWriter-api| or
+  |DataReader-api|) using the property ``dds.persistence.guid``.
   This identifier is used to load the appropriate data from the database, and also to synchronize DataWriter and
   DataReader between restarts.
   The GUID consists of 16 bytes separated into two groups:
@@ -56,8 +65,9 @@ or DataReader) |PropertyPolicyQos|.
   For selecting an appropriate GUID for the DataReader and DataWriter, please refer to
   `RTPS standard <https://www.omg.org/spec/DDSI-RTPS/2.2/PDF>`_ (section *9.3.1 The Globally Unique Identifier (GUID)*).
 
-  If no ``dds.persistence.guid`` is specified,
-  the durability behavior will fallback to |TRANSIENT_LOCAL_DURABILITY_QOS-api|.
+  This property must be defined at the endpoint level.
+  If absent, the durability behaviour falls back to |TRANSIENT_LOCAL_DURABILITY_QOS-api|,
+  regardless of any plugin configuration.
 
 * A persistence plugin must be configured for managing the database using property ``dds.persistence.plugin`` (see
   :ref:`persistence_sqlite3_builtin_plugin`):
@@ -69,9 +79,9 @@ PERSISTENCE:SQLITE3 built-in plugin
 
 This plugin provides persistence through a local database file using *SQLite3* API.
 To activate the plugin, ``dds.persistence.plugin`` property must be added to the PropertyPolicyQos of the
-DomainParticipant, DataWriter, or DataReader with value ``builtin.SQLITE3``.
-Furthermore, ``dds.persistence.sqlite3.filename`` property must be added to the entities PropertyPolicyQos,
-specifying the database file name.
+DataWriter or DataReader with value ``builtin.SQLITE3``.
+Optionally, ``dds.persistence.sqlite3.filename`` property can be added to the entity's PropertyPolicyQos
+to specify the database file name; if omitted, the default value ``persistence.db`` is used.
 These properties are summarized in the following table:
 
 .. list-table:: **Persistence::SQLITE3 configuration properties**
@@ -87,13 +97,19 @@ These properties are summarized in the following table:
        Default value: ``persistence.db``
 
 .. note::
-    To avoid undesired delays caused by concurrent access to the SQLite3 database, it is advisable to specify a
-    different database file for each DataWriter and DataReader.
+    To avoid undesired delays caused by concurrent access to the SQLite3 database, it is strongly recommended to
+    specify a different database file for each DataWriter and DataReader.
 
 .. important::
-    The plugin set in the PropertyPolicyQos of DomainParticipant only applies if that of the
-    DataWriter/DataReader does no exist or is invalid.
-
+    ``dds.persistence.plugin`` and ``dds.persistence.sqlite3.filename`` are resolved as a pair:
+    if ``dds.persistence.plugin`` is not set at the endpoint (DataWriter/DataReader) level,
+    both properties are taken from the |DomainParticipant-api| instead; a
+    ``dds.persistence.sqlite3.filename`` defined at the endpoint without a
+    ``dds.persistence.plugin`` at the same level is ignored.
+    ``dds.persistence.guid`` must be defined at the endpoint level; if absent, the behaviour
+    falls back to |TRANSIENT_LOCAL_DURABILITY_QOS-api|, regardless of any plugin configuration.
+    It is strongly recommended to set all three properties directly on the endpoint for
+    predictable behaviour.
 
 .. _persistence_example:
 
@@ -115,7 +131,7 @@ from C++ and using *eProsima Fast DDS* XML profile files (see :ref:`xml_profiles
        :language: xml
        :start-after: <!-->CONF-PERSISTENCE-SERVICE-SQLITE3-EXAMPLE<-->
        :end-before: <!--><-->
-       :lines: 2-4, 6-61, 63-64
+       :lines: 2-4, 6-96, 98-99
 
 .. note::
     For instructions on how to create DomainParticipants, DataReaders, and DataWriters, please refer to

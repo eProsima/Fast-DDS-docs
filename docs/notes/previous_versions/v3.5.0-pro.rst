@@ -1,0 +1,14 @@
+`Version 3.5.0.1 <https://github.com/eProsima/Fast-DDS-Pro/releases/tag/v3.5.0.1>`__ |Pro|
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+This release includes the following **improvements**:
+
+1. ``GrainedFlowController``
+2. Regenerate types with Fast DDS Gen Pro v4.3.0.1
+3. Implement congestion control algorithm
+4. Apply ``uncrustify`` to all source files
+
+This release includes the following **CI improvements**:
+
+1. Migrate the CI to eProsima's own infrastructure
+2. Add ``ccache`` on Windows CI

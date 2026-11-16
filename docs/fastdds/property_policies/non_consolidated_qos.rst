@@ -519,6 +519,52 @@ The different property values have the following effects on the local |DomainPar
         :end-before: <!--><-->
         :lines: 2-4,6-17,19-20
 
+.. _property_type_lookup_request_timeout:
+
+TypeLookup Service Request Timeout
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+When a remote type cannot be resolved with the information received on the EDP messages (see :ref:`disc_phases`),
+the |DomainParticipant-api| requests it through the TypeLookup Service, and the matching of the endpoints using that
+type is deferred until the reply arrives.
+If the reply never arrives, because it was lost or because the remote |DomainParticipant-api| stopped answering
+without being removed from the network, those endpoints would remain unmatched forever.
+
+Property ``fastdds.type_lookup_request_timeout_ms`` configures the time a TypeLookup request is kept waiting for an
+answer before it is failed.
+The endpoints announced by the |DomainParticipant-api| that did not answer are discarded, and the ones announced by
+other |DomainParticipants-api| are requested again.
+
+.. list-table::
+   :header-rows: 1
+   :align: left
+
+   * - PropertyPolicyQos name
+     - PropertyPolicyQos value
+     - Default value
+   * - ``"fastdds.type_lookup_request_timeout_ms"``
+     - ``uint32_t`` |br|
+       ``"0"`` disables the check.
+     - ``"20000"``
+
+.. note::
+    An invalid value of ``fastdds.type_lookup_request_timeout_ms`` would log an error,
+    and the default value will be used. Units are in milliseconds.
+
+.. tab-set-code::
+
+    .. literalinclude:: /../code/DDSCodeTester.cpp
+        :language: c++
+        :start-after: // TYPE_LOOKUP_REQUEST_TIMEOUT_PROPERTY
+        :end-before: //!--
+        :dedent: 8
+
+    .. literalinclude:: /../code/XMLTester.xml
+        :language: xml
+        :start-after: <!-->TYPE_LOOKUP_REQUEST_TIMEOUT_PROPERTY<-->
+        :end-before: <!--><-->
+        :lines: 2-4,6-17,19-20
+
 .. _property_serialize_optional_qos:
 
 Adding optional QoS to Discovery data

@@ -987,6 +987,16 @@ void dds_domain_examples()
     }
 
     {
+        // TYPE_LOOKUP_REQUEST_TIMEOUT_PROPERTY
+        DomainParticipantQos pqos;
+
+        pqos.properties().properties().emplace_back(
+            "fastdds.type_lookup_request_timeout_ms",
+            "5000");
+        //!--
+    }
+
+    {
         // SERIALIZE_OPTIONAL_QOS_PROPERTY
         DomainParticipantQos pqos;
 

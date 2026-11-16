@@ -530,10 +530,11 @@ type is deferred until the reply arrives.
 If the reply never arrives, because it was lost or because the remote |DomainParticipant-api| stopped answering
 without being removed from the network, those endpoints would remain unmatched forever.
 
-Property ``fastdds.type_lookup_request_timeout_ms`` configures the time a TypeLookup request is kept waiting for an
-answer before it is failed.
-The endpoints announced by the |DomainParticipant-api| that did not answer are discarded, and the ones announced by
-other |DomainParticipants-api| are requested again.
+Property ``fastdds.type_lookup_request_timeout_ms`` configures the minimum time a TypeLookup request is kept waiting
+for an answer before it is failed.
+The endpoints announced by the |DomainParticipant-api| that did not answer are failed, so their matching relies on
+type name and topic name (see :ref:`xtypes_discovery_matching`), while
+the ones announced by other |DomainParticipants-api| are requested again.
 
 .. list-table::
    :header-rows: 1

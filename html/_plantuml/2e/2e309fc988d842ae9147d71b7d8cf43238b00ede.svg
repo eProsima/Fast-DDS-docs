@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" contentScriptType="application/ecmascript" contentStyleType="text/css" height="189px" preserveAspectRatio="none" style="width:190px;height:189px;" version="1.1" viewBox="0 0 190 189" width="190px" zoomAndPan="magnify"><defs><filter height="300%" id="f10awy45tx300e" width="300%" x="-1" y="-1"><feGaussianBlur result="blurOut" stdDeviation="2.0"/><feColorMatrix in="blurOut" result="blurOut2" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 .4 0"/><feOffset dx="4.0" dy="4.0" in="blurOut2" result="blurOut3"/><feBlend in="SourceGraphic" in2="blurOut3" mode="normal"/></filter></defs><g><!--MD5=[4a65e84059005d12693a083370a06717]
+entity client--><polygon fill="#FFFFFF" filter="url(#f10awy45tx300e)" points="8.5,18,18.5,8,165.5,8,165.5,44.2969,155.5,54.2969,8.5,54.2969,8.5,18" style="stroke: #000000; stroke-width: 1.5;"/><line style="stroke: #000000; stroke-width: 1.5;" x1="155.5" x2="164.5" y1="18" y2="9"/><line style="stroke: #000000; stroke-width: 1.5;" x1="8.5" x2="155.5" y1="18" y2="18"/><line style="stroke: #000000; stroke-width: 1.5;" x1="155.5" x2="155.5" y1="18" y2="54.2969"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacingAndGlyphs" textLength="117" x="23.5" y="40.9951">Client application</text><!--MD5=[dd82451e1dd92fe3da01853750f49ff6]
+entity server--><polygon fill="#FFFFFF" filter="url(#f10awy45tx300e)" points="6,141,16,131,168,131,168,167.2969,158,177.2969,6,177.2969,6,141" style="stroke: #000000; stroke-width: 1.5;"/><line style="stroke: #000000; stroke-width: 1.5;" x1="158" x2="167" y1="141" y2="132"/><line style="stroke: #000000; stroke-width: 1.5;" x1="6" x2="158" y1="141" y2="141"/><line style="stroke: #000000; stroke-width: 1.5;" x1="158" x2="158" y1="141" y2="177.2969"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacingAndGlyphs" textLength="122" x="21" y="163.9951">Server application</text><!--MD5=[6e668341980b2b6f3174a2b130bbe9df]
+link client to server--><path d="M58.35,54.22 C49.82,62.54 41.54,72.73 37,84 C30.74,99.54 39.81,114.84 51.87,127.07 " fill="none" id="client-&gt;server" style="stroke: #A80036; stroke-width: 1.0;"/><polygon fill="#A80036" points="55.69,130.76,51.9879,121.6334,52.0908,127.2893,46.4349,127.3922,55.69,130.76" style="stroke: #A80036; stroke-width: 1.0;"/><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="52" x="38" y="97.0669">Request</text><!--MD5=[709c8e59bb66e349e481c56c2feb03a9]
+link server to client--><path d="M91.72,130.98 C94.08,117.45 96.2,99.75 95,84 C94.39,76.01 93.26,67.39 92.03,59.5 " fill="none" id="server-&gt;client" style="stroke: #A80036; stroke-width: 1.0;"/><polygon fill="#A80036" points="91.18,54.18,88.6693,63.7035,91.9789,59.1158,96.5666,62.4253,91.18,54.18" style="stroke: #A80036; stroke-width: 1.0;"/><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="34" x="96" y="97.0669">Reply</text><!--MD5=[71e672099a652e767d03ec24c90e7b18]
+@startuml
+ node "Client application" as client {
+ }
+
+ node "Server application" as server {
+ }
+
+ client - -> server : Request
+ server - -> client : Reply
+
+@enduml
+
+PlantUML version 1.2020.02(Sun Mar 01 11:22:07 CET 2020)
+(GPL source distribution)
+Java Runtime: OpenJDK Runtime Environment
+JVM: OpenJDK 64-Bit Server VM
+Java Version: 21.0.12+8-1-24.04-Ubuntu
+Operating System: Linux
+Default Encoding: UTF-8
+Language: en
+Country: US
+--></g></svg>

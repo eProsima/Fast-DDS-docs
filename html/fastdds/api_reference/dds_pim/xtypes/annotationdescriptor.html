@@ -1,0 +1,1401 @@
+<!doctype html>
+<html class="no-js" lang="en" data-content_root="../../../../">
+  <head><meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width,initial-scale=1"/>
+    <meta name="color-scheme" content="light dark"><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+<link rel="alternate" type="text/markdown" href="annotationdescriptor.md" /><link rel="index" title="Index" href="../../../../genindex.html" /><link rel="search" title="Search" href="../../../../search.html" /><link rel="next" title="20.1.6.1.2. DynamicData" href="dynamicdata.html" /><link rel="prev" title="20.1.6.1. Dynamic Language Binding" href="dynamic_types.html" />
+        <link rel="canonical" href="https://fast-dds.docs.eprosima.com/en/latest/fastdds/api_reference/dds_pim/xtypes/annotationdescriptor.html" />
+
+    <link rel="shortcut icon" href="../../../../_static/eprosima-logo.svg"/><!-- Generated with Sphinx 8.1.3 and Furo 2024.08.06 -->
+        <title>20.1.6.1.1. AnnotationDescriptor - 3.6.2 / 3.7.0.1 Pro</title>
+      <link rel="stylesheet" type="text/css" href="../../../../_static/pygments.css?v=8f2a1f02" />
+    <link rel="stylesheet" type="text/css" href="../../../../_static/styles/furo.css?v=354aac6f" />
+    <link rel="stylesheet" type="text/css" href="../../../../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../../../../_static/sphinx-design.min.css?v=95c83b7e" />
+    <link rel="stylesheet" type="text/css" href="../../../../_static/styles/furo-extensions.css?v=302659d7" />
+    <link rel="stylesheet" type="text/css" href="../../../../_static/css/eprosima-furo.css?v=687b846e" />
+    <link rel="stylesheet" type="text/css" href="../../../../_static/css/pro-badge.css?v=08f7bcdb" />
+    
+    
+
+
+<style>
+  body {
+    --color-code-background: #f8f8f8;
+  --color-code-foreground: black;
+  --color-brand-primary: #0895CD;
+  --color-brand-content: #0895CD;
+  --sidebar-item-spacing-vertical: 5px;
+  
+  }
+  @media not print {
+    body[data-theme="dark"] {
+      --color-code-background: #202020;
+  --color-code-foreground: #d0d0d0;
+  --color-brand-primary: #0895CD;
+  --color-brand-content: #0895CD;
+  --sidebar-item-spacing-vertical: 5px;
+  
+    }
+    @media (prefers-color-scheme: dark) {
+      body:not([data-theme="light"]) {
+        --color-code-background: #202020;
+  --color-code-foreground: #d0d0d0;
+  --color-brand-primary: #0895CD;
+  --color-brand-content: #0895CD;
+  --sidebar-item-spacing-vertical: 5px;
+  
+      }
+    }
+  }
+</style></head>
+  <body>
+    
+    <script>
+      document.body.dataset.theme = localStorage.getItem("theme") || "auto";
+    </script>
+    
+
+<svg xmlns="http://www.w3.org/2000/svg" style="display: none;">
+  <symbol id="svg-toc" viewBox="0 0 24 24">
+    <title>Contents</title>
+    <svg stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 1024 1024">
+      <path d="M408 442h480c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8H408c-4.4 0-8 3.6-8 8v56c0 4.4 3.6 8 8 8zm-8 204c0 4.4 3.6 8 8 8h480c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8H408c-4.4 0-8 3.6-8 8v56zm504-486H120c-4.4 0-8 3.6-8 8v56c0 4.4 3.6 8 8 8h784c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8zm0 632H120c-4.4 0-8 3.6-8 8v56c0 4.4 3.6 8 8 8h784c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8zM115.4 518.9L271.7 642c5.8 4.6 14.4.5 14.4-6.9V388.9c0-7.4-8.5-11.5-14.4-6.9L115.4 505.1a8.74 8.74 0 0 0 0 13.8z"/>
+    </svg>
+  </symbol>
+  <symbol id="svg-menu" viewBox="0 0 24 24">
+    <title>Menu</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather-menu">
+      <line x1="3" y1="12" x2="21" y2="12"></line>
+      <line x1="3" y1="6" x2="21" y2="6"></line>
+      <line x1="3" y1="18" x2="21" y2="18"></line>
+    </svg>
+  </symbol>
+  <symbol id="svg-arrow-right" viewBox="0 0 24 24">
+    <title>Expand</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather-chevron-right">
+      <polyline points="9 18 15 12 9 6"></polyline>
+    </svg>
+  </symbol>
+  <symbol id="svg-sun" viewBox="0 0 24 24">
+    <title>Light mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1" stroke-linecap="round" stroke-linejoin="round" class="feather-sun">
+      <circle cx="12" cy="12" r="5"></circle>
+      <line x1="12" y1="1" x2="12" y2="3"></line>
+      <line x1="12" y1="21" x2="12" y2="23"></line>
+      <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+      <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+      <line x1="1" y1="12" x2="3" y2="12"></line>
+      <line x1="21" y1="12" x2="23" y2="12"></line>
+      <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+      <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+    </svg>
+  </symbol>
+  <symbol id="svg-moon" viewBox="0 0 24 24">
+    <title>Dark mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1" stroke-linecap="round" stroke-linejoin="round" class="icon-tabler-moon">
+      <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+      <path d="M12 3c.132 0 .263 0 .393 0a7.5 7.5 0 0 0 7.92 12.446a9 9 0 1 1 -8.313 -12.454z" />
+    </svg>
+  </symbol>
+  <symbol id="svg-sun-with-moon" viewBox="0 0 24 24">
+    <title>Auto light/dark, in light mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1" stroke-linecap="round" stroke-linejoin="round"
+      class="icon-custom-derived-from-feather-sun-and-tabler-moon">
+      <path style="opacity: 50%" d="M 5.411 14.504 C 5.471 14.504 5.532 14.504 5.591 14.504 C 3.639 16.319 4.383 19.569 6.931 20.352 C 7.693 20.586 8.512 20.551 9.25 20.252 C 8.023 23.207 4.056 23.725 2.11 21.184 C 0.166 18.642 1.702 14.949 4.874 14.536 C 5.051 14.512 5.231 14.5 5.411 14.5 L 5.411 14.504 Z"/>
+      <line x1="14.5" y1="3.25" x2="14.5" y2="1.25"/>
+      <line x1="14.5" y1="15.85" x2="14.5" y2="17.85"/>
+      <line x1="10.044" y1="5.094" x2="8.63" y2="3.68"/>
+      <line x1="19" y1="14.05" x2="20.414" y2="15.464"/>
+      <line x1="8.2" y1="9.55" x2="6.2" y2="9.55"/>
+      <line x1="20.8" y1="9.55" x2="22.8" y2="9.55"/>
+      <line x1="10.044" y1="14.006" x2="8.63" y2="15.42"/>
+      <line x1="19" y1="5.05" x2="20.414" y2="3.636"/>
+      <circle cx="14.5" cy="9.55" r="3.6"/>
+    </svg>
+  </symbol>
+  <symbol id="svg-moon-with-sun" viewBox="0 0 24 24">
+    <title>Auto light/dark, in dark mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1" stroke-linecap="round" stroke-linejoin="round"
+      class="icon-custom-derived-from-feather-sun-and-tabler-moon">
+      <path d="M 8.282 7.007 C 8.385 7.007 8.494 7.007 8.595 7.007 C 5.18 10.184 6.481 15.869 10.942 17.24 C 12.275 17.648 13.706 17.589 15 17.066 C 12.851 22.236 5.91 23.143 2.505 18.696 C -0.897 14.249 1.791 7.786 7.342 7.063 C 7.652 7.021 7.965 7 8.282 7 L 8.282 7.007 Z"/>
+      <line style="opacity: 50%" x1="18" y1="3.705" x2="18" y2="2.5"/>
+      <line style="opacity: 50%" x1="18" y1="11.295" x2="18" y2="12.5"/>
+      <line style="opacity: 50%" x1="15.316" y1="4.816" x2="14.464" y2="3.964"/>
+      <line style="opacity: 50%" x1="20.711" y1="10.212" x2="21.563" y2="11.063"/>
+      <line style="opacity: 50%" x1="14.205" y1="7.5" x2="13.001" y2="7.5"/>
+      <line style="opacity: 50%" x1="21.795" y1="7.5" x2="23" y2="7.5"/>
+      <line style="opacity: 50%" x1="15.316" y1="10.184" x2="14.464" y2="11.036"/>
+      <line style="opacity: 50%" x1="20.711" y1="4.789" x2="21.563" y2="3.937"/>
+      <circle style="opacity: 50%" cx="18" cy="7.5" r="2.169"/>
+    </svg>
+  </symbol>
+  <symbol id="svg-pencil" viewBox="0 0 24 24">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1" stroke-linecap="round" stroke-linejoin="round" class="icon-tabler-pencil-code">
+      <path d="M4 20h4l10.5 -10.5a2.828 2.828 0 1 0 -4 -4l-10.5 10.5v4" />
+      <path d="M13.5 6.5l4 4" />
+      <path d="M20 21l2 -2l-2 -2" />
+      <path d="M17 17l-2 2l2 2" />
+    </svg>
+  </symbol>
+  <symbol id="svg-eye" viewBox="0 0 24 24">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1" stroke-linecap="round" stroke-linejoin="round" class="icon-tabler-eye-code">
+      <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+      <path d="M10 12a2 2 0 1 0 4 0a2 2 0 0 0 -4 0" />
+      <path
+        d="M11.11 17.958c-3.209 -.307 -5.91 -2.293 -8.11 -5.958c2.4 -4 5.4 -6 9 -6c3.6 0 6.6 2 9 6c-.21 .352 -.427 .688 -.647 1.008" />
+      <path d="M20 21l2 -2l-2 -2" />
+      <path d="M17 17l-2 2l2 2" />
+    </svg>
+  </symbol>
+</svg>
+
+<input type="checkbox" class="sidebar-toggle" name="__navigation" id="__navigation">
+<input type="checkbox" class="sidebar-toggle" name="__toc" id="__toc">
+<label class="overlay sidebar-overlay" for="__navigation">
+  <div class="visually-hidden">Hide navigation sidebar</div>
+</label>
+<label class="overlay toc-overlay" for="__toc">
+  <div class="visually-hidden">Hide table of contents sidebar</div>
+</label>
+
+<a class="skip-to-content muted-link" href="#furo-main-content">Skip to content</a>
+
+
+
+<div class="page">
+  <header class="mobile-header">
+    <div class="header-left">
+      <label class="nav-overlay-icon" for="__navigation">
+        <div class="visually-hidden">Toggle site navigation sidebar</div>
+        <i class="icon"><svg><use href="#svg-menu"></use></svg></i>
+      </label>
+    </div>
+    <div class="header-center">
+      <a href="../../../../index.html"><div class="brand"><center><i>3.6.2 / 3.7.0.1 Pro</i></center></div></a>
+    </div>
+    <div class="header-right">
+      <div class="theme-toggle-container theme-toggle-header">
+        <button class="theme-toggle">
+          <div class="visually-hidden">Toggle Light / Dark / Auto color theme</div>
+          <svg class="theme-icon-when-auto-light"><use href="#svg-sun-with-moon"></use></svg>
+          <svg class="theme-icon-when-auto-dark"><use href="#svg-moon-with-sun"></use></svg>
+          <svg class="theme-icon-when-dark"><use href="#svg-moon"></use></svg>
+          <svg class="theme-icon-when-light"><use href="#svg-sun"></use></svg>
+        </button>
+      </div>
+      <label class="toc-overlay-icon toc-header-icon" for="__toc">
+        <div class="visually-hidden">Toggle table of contents sidebar</div>
+        <i class="icon"><svg><use href="#svg-toc"></use></svg></i>
+      </label>
+    </div>
+  </header>
+  <aside class="sidebar-drawer">
+    <div class="sidebar-container">
+      
+      <div class="sidebar-sticky"><a class="sidebar-brand" href="../../../../index.html">
+  
+  <div class="sidebar-logo-container">
+    <img class="sidebar-logo" src="../../../../_static/fast-dds-logo.png" alt="Logo"/>
+  </div>
+  
+  <span class="sidebar-brand-text"><center><i>3.6.2 / 3.7.0.1 Pro</i></center></span>
+  
+</a><a href="https://forms.eprosima.com/reach/form/CommercialSupportRequest/formperma/Ac8GwewD7PTDadQZIV92qDEzNFfMlJnYmA029mSJtJ8" target="_blank">
+    <button>
+        <div>
+            <img style="vertical-align:middle" src="../../../../_static/eprosima-logo-white.png" width="30" height="30">
+            <span style="">Commercial support</span>
+        </div>
+    </button>
+</a><form class="sidebar-search-container" method="get" action="../../../../search.html" role="search">
+  <input class="sidebar-search" placeholder="Search" name="q" aria-label="Search">
+  <input type="hidden" name="check_keywords" value="yes">
+  <input type="hidden" name="area" value="default">
+</form>
+<div id="searchbox"></div><div class="sidebar-scroll"><div class="sidebar-tree">
+  <p class="caption" role="heading"><span class="caption-text">Introduction</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../../02-formalia/titlepage.html">What is <em>Fast DDS</em>?</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../02-formalia/titlepage.html#fast-dds-pro">Fast DDS <span class="sd-badge sd-outline-primary sd-text-primary" title="Exclusive to Fast DDS Pro">Pro</span></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../02-formalia/titlepage.html#commercial-support">Commercial support</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../02-formalia/titlepage.html#key-features">Key features</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../02-formalia/titlepage.html#dds-api">DDS API</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../02-formalia/titlepage.html#fast-dds-gen">Fast DDS-Gen</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../02-formalia/titlepage.html#rtps-wire-protocol">RTPS Wire Protocol</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../02-formalia/titlepage.html#main-features">Main Features</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../02-formalia/titlepage.html#dependencies-and-compatibilities">Dependencies and compatibilities</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../02-formalia/titlepage.html#contributing-to-the-documentation">Contributing to the documentation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../02-formalia/titlepage.html#structure-of-the-documentation">Structure of the documentation</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Installation Manual</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../../installation/binaries/binaries_linux.html">1. Linux installation from binaries</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../installation/binaries/binaries_windows.html">2. Windows installation from binaries</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../installation/sources/sources_linux.html">3. Linux installation from sources</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../installation/sources/sources_windows.html">4. Windows installation from sources</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../installation/sources/sources_mac.html">5. Mac OS installation from sources</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../installation/configuration/cmake_options.html">6. CMake options</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Fast DDS</span></p>
+<ul class="current">
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../../getting_started/getting_started.html">1. Getting Started</a><input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" role="switch" type="checkbox"/><label for="toctree-checkbox-1"><div class="visually-hidden">Toggle navigation of 1. Getting Started</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../getting_started/definitions.html">1.1. What is DDS?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../getting_started/definitions.html#what-is-rtps">1.2. What is RTPS?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../getting_started/simple_app/simple_app.html">1.3. Writing a simple C++ publisher and subscriber application</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../getting_started/simple_python_app/simple_python_app.html">1.4. Writing a simple Python publisher and subscriber application</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../library_overview/library_overview.html">2. Library Overview</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../../dds_layer/dds_layer.html">3. DDS Layer</a><input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" role="switch" type="checkbox"/><label for="toctree-checkbox-2"><div class="visually-hidden">Toggle navigation of 3. DDS Layer</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../../dds_layer/core/core.html">3.1. Core</a><input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" role="switch" type="checkbox"/><label for="toctree-checkbox-3"><div class="visually-hidden">Toggle navigation of 3.1. Core</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../dds_layer/core/entity/entity.html">3.1.1. Entity</a></li>
+<li class="toctree-l3 has-children"><a class="reference internal" href="../../../dds_layer/core/policy/policy.html">3.1.2. Policy</a><input class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" role="switch" type="checkbox"/><label for="toctree-checkbox-4"><div class="visually-hidden">Toggle navigation of 3.1.2. Policy</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../dds_layer/core/policy/standardQosPolicies.html">3.1.2.1. Standard QoS Policies</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../dds_layer/core/policy/eprosimaExtensions.html">3.1.2.2. eProsima Extensions</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../dds_layer/core/policy/xtypesExtensions.html">3.1.2.3. XTypes Extensions</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../../dds_layer/core/status/status.html">3.1.3. Status</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../dds_layer/core/waitsets/waitsets.html">3.1.4. Conditions and Wait-sets</a></li>
+</ul>
+</li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../../dds_layer/domain/domain.html">3.2. Domain</a><input class="toctree-checkbox" id="toctree-checkbox-5" name="toctree-checkbox-5" role="switch" type="checkbox"/><label for="toctree-checkbox-5"><div class="visually-hidden">Toggle navigation of 3.2. Domain</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../dds_layer/domain/domainParticipant/domainParticipant.html">3.2.1. DomainParticipant</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../dds_layer/domain/domainParticipantListener/domainParticipantListener.html">3.2.2. DomainParticipantListener</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../dds_layer/domain/domainParticipantListener/congestion_control_listener.html">3.2.3. CongestionControlListener <span class="sd-badge sd-outline-primary sd-text-primary" title="Exclusive to Fast DDS Pro">Pro</span></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../dds_layer/domain/domainParticipantFactory/domainParticipantFactory.html">3.2.4. DomainParticipantFactory</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../dds_layer/domain/domainParticipant/createDomainParticipant.html">3.2.5. Creating a DomainParticipant</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../dds_layer/domain/domainParticipant/partition.html">3.2.6. Partitions</a></li>
+</ul>
+</li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../../dds_layer/publisher/publisher.html">3.3. Publisher</a><input class="toctree-checkbox" id="toctree-checkbox-6" name="toctree-checkbox-6" role="switch" type="checkbox"/><label for="toctree-checkbox-6"><div class="visually-hidden">Toggle navigation of 3.3. Publisher</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../dds_layer/publisher/publisher/publisher.html">3.3.1. Publisher</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../dds_layer/publisher/publisherListener/publisherListener.html">3.3.2. PublisherListener</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../dds_layer/publisher/publisher/createPublisher.html">3.3.3. Creating a Publisher</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../dds_layer/publisher/dataWriter/dataWriter.html">3.3.4. DataWriter</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../dds_layer/publisher/dataWriterListener/dataWriterListener.html">3.3.5. DataWriterListener</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../dds_layer/publisher/dataWriter/createDataWriter.html">3.3.6. Creating a DataWriter</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../dds_layer/publisher/dataWriter/publishingData.html">3.3.7. Publishing data</a></li>
+</ul>
+</li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../../dds_layer/subscriber/subscriber.html">3.4. Subscriber</a><input class="toctree-checkbox" id="toctree-checkbox-7" name="toctree-checkbox-7" role="switch" type="checkbox"/><label for="toctree-checkbox-7"><div class="visually-hidden">Toggle navigation of 3.4. Subscriber</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../dds_layer/subscriber/subscriber/subscriber.html">3.4.1. Subscriber</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../dds_layer/subscriber/subscriberListener/subscriberListener.html">3.4.2. SubscriberListener</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../dds_layer/subscriber/subscriber/createSubscriber.html">3.4.3. Creating a Subscriber</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../dds_layer/subscriber/dataReader/dataReader.html">3.4.4. DataReader</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../dds_layer/subscriber/dataReaderListener/dataReaderListener.html">3.4.5. DataReaderListener</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../dds_layer/subscriber/dataReader/createDataReader.html">3.4.6. Creating a DataReader</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../dds_layer/subscriber/sampleInfo/sampleInfo.html">3.4.7. SampleInfo</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../dds_layer/subscriber/dataReader/readingData.html">3.4.8. Accessing received data</a></li>
+</ul>
+</li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../../dds_layer/topic/topic.html">3.5. Topic</a><input class="toctree-checkbox" id="toctree-checkbox-8" name="toctree-checkbox-8" role="switch" type="checkbox"/><label for="toctree-checkbox-8"><div class="visually-hidden">Toggle navigation of 3.5. Topic</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../dds_layer/topic/instances.html">3.5.1. Topics, keys and instances</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../dds_layer/topic/topicDescription/topicDescription.html">3.5.2. TopicDescription</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../dds_layer/topic/topic/topic.html">3.5.3. Topic</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../dds_layer/topic/contentFilteredTopic/contentFilteredTopic.html">3.5.4. ContentFilteredTopic</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../dds_layer/topic/topicListener/topicListener.html">3.5.5. TopicListener</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../dds_layer/topic/typeSupport/typeSupport.html">3.5.6. Definition of data types</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../dds_layer/topic/topic/createTopic.html">3.5.7. Creating a Topic</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../dds_layer/topic/contentFilteredTopic/createContentFilteredTopic.html">3.5.8. Filtering data on a Topic</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../dds_layer/topic/contentFilteredTopic/defaultFilter.html">3.5.9. The default SQL-like filter</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../dds_layer/topic/contentFilteredTopic/customFilters.html">3.5.10. Using custom filters</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../dds_layer/topic/contentFilteredTopic/writerFiltering.html">3.5.11. Where is filtering applied: writer vs reader side</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../dds_layer/topic/fastddsgen/fastddsgen.html">3.5.12. Fast DDS-Gen for data types source code generation</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../rtps_layer/rtps_layer.html">4. RTPS Layer</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../../discovery/discovery.html">5. Discovery</a><input class="toctree-checkbox" id="toctree-checkbox-9" name="toctree-checkbox-9" role="switch" type="checkbox"/><label for="toctree-checkbox-9"><div class="visually-hidden">Toggle navigation of 5. Discovery</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../discovery/general_disc_settings.html">5.3.1. General Discovery Settings</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../discovery/simple.html">5.3.2. SIMPLE Discovery</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../discovery/static.html">5.3.3. STATIC Discovery</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../discovery/discovery_server.html">5.3.4. Discovery Server</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../discovery/pdp_relay.html">5.3.5. PDP Relay <span class="sd-badge sd-outline-primary sd-text-primary" title="Exclusive to Fast DDS Pro">Pro</span></a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../discovery/disc_callbacks.html">5.3.6. DomainParticipantListener Discovery Callbacks</a></li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../../transport/transport.html">6. Transport Layer</a><input class="toctree-checkbox" id="toctree-checkbox-10" name="toctree-checkbox-10" role="switch" type="checkbox"/><label for="toctree-checkbox-10"><div class="visually-hidden">Toggle navigation of 6. Transport Layer</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../transport/transport_api.html">6.1. Transport API</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../transport/udp/udp.html">6.2. UDP Transport</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../transport/tcp/tcp.html">6.3. TCP Transport</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../transport/shared_memory/shared_memory.html">6.4. Shared Memory Transport</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../transport/datasharing.html">6.5. Data-sharing delivery</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../transport/intraprocess.html">6.6. Intra-process delivery</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../transport/tcp/tls.html">6.7. TLS over TCP</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../transport/low-bandwidth-transports.html">6.8. Low Bandwidth Transports <span class="sd-badge sd-outline-primary sd-text-primary" title="Exclusive to Fast DDS Pro">Pro</span></a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../transport/listening_locators.html">6.9. Listening Locators</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../transport/announced_locators.html">6.10. Announced Locators</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../transport/whitelist.html">6.11. Interface Whitelist</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../transport/interfaces.html">6.12. Interfaces configuration</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../transport/disabling_multicast.html">6.13. Disabling all Multicast Traffic</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../persistence/persistence.html">7. Persistence Service</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../../security/security.html">8. Security</a><input class="toctree-checkbox" id="toctree-checkbox-11" name="toctree-checkbox-11" role="switch" type="checkbox"/><label for="toctree-checkbox-11"><div class="visually-hidden">Toggle navigation of 8. Security</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../security/auth_plugin/auth_plugin.html">8.1. Authentication plugin: DDS:Auth:PKI-DH</a></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../../security/access_control_plugin/access_control_plugin.html">8.2. Access control plugin: DDS:Access:Permissions</a><input class="toctree-checkbox" id="toctree-checkbox-12" name="toctree-checkbox-12" role="switch" type="checkbox"/><label for="toctree-checkbox-12"><div class="visually-hidden">Toggle navigation of 8.2. Access control plugin: DDS:Access:Permissions</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../security/access_control_plugin/governance.html">Domain Governance XSD</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../security/access_control_plugin/permissions.html">DomainParticipant Permissions XSD</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../security/crypto_plugin/crypto_plugin.html">8.3. Cryptographic plugin: DDS:Crypto:AES-GCM-GMAC</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../security/logging_plugin/logging_plugin.html">8.4. Logging plugin: DDS:Logging:DDS_LogTopic</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../security/pkcs11_support/pkcs11_support.html">8.5. PKCS#11 support</a></li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../../logging/intro.html">9. Logging</a><input class="toctree-checkbox" id="toctree-checkbox-13" name="toctree-checkbox-13" role="switch" type="checkbox"/><label for="toctree-checkbox-13"><div class="visually-hidden">Toggle navigation of 9. Logging</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../logging/logging_module.html">9.1. Module Structure</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../logging/logging_spec.html">9.2. Log Entry Specification</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../logging/logging_thread.html">9.3. Logging Thread</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../logging/logging_messages.html">9.4. Logging Messages</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../logging/logging_configuration.html">9.5. Module Configuration</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../logging/logging_filtering.html">9.6. Filters</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../logging/consumer.html">9.7. Consumers</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../logging/disable_module.html">9.8. Disable Logging Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../logging/disable_module.html#old-log-macros-disable">9.9. Old Log macros disable</a></li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../../xml_configuration/xml_configuration.html">10. XML profiles</a><input class="toctree-checkbox" id="toctree-checkbox-14" name="toctree-checkbox-14" role="switch" type="checkbox"/><label for="toctree-checkbox-14"><div class="visually-hidden">Toggle navigation of 10. XML profiles</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../xml_configuration/making_xml_profiles.html">10.1. Creating an XML profiles file</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../xml_configuration/domainparticipantfactory.html">10.2. DomainParticipantFactory profiles</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../xml_configuration/domainparticipant.html">10.3. DomainParticipant profiles</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../xml_configuration/datawriter.html">10.4. DataWriter profiles</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../xml_configuration/datareader.html">10.5. DataReader profiles</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../xml_configuration/topic.html">10.6. Topic profiles</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../xml_configuration/transports.html">10.7. Transport descriptors</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../xml_configuration/library_settings.html">10.8. Intra-process delivery profiles</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../xml_configuration/log.html">10.9. Log profiles</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../xml_configuration/dynamic_types.html">10.10. Dynamic Types profiles</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../xml_configuration/common.html">10.11. Common</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../xml_configuration/example.html">10.12. Example</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../env_vars/env_vars.html">11. Environment variables</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../../property_policies/property_policies.html">12. PropertyPolicyQos Options</a><input class="toctree-checkbox" id="toctree-checkbox-15" name="toctree-checkbox-15" role="switch" type="checkbox"/><label for="toctree-checkbox-15"><div class="visually-hidden">Toggle navigation of 12. PropertyPolicyQos Options</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../property_policies/non_consolidated_qos.html">12.1. Non consolidated QoS</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../property_policies/flow_control.html">12.2. Flow Controller Settings</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../property_policies/congestion_control.html">12.3. Congestion Control Settings <span class="sd-badge sd-outline-primary sd-text-primary" title="Exclusive to Fast DDS Pro">Pro</span></a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../property_policies/persistence.html">12.4. Persistence Service Settings</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../property_policies/security.html">12.5. Security Plugins Settings</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../property_policies/logging.html">12.6. Logging Module Settings</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../property_policies/ignore_local_endpoints.html">12.7. Ignore Local Endpoints</a></li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../../statistics/statistics.html">13. Statistics Module</a><input class="toctree-checkbox" id="toctree-checkbox-16" name="toctree-checkbox-16" role="switch" type="checkbox"/><label for="toctree-checkbox-16"><div class="visually-hidden">Toggle navigation of 13. Statistics Module</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../../statistics/dds_layer/statistics_dds_layer.html">13.1. Statistics Module DDS Layer</a><input class="toctree-checkbox" id="toctree-checkbox-17" name="toctree-checkbox-17" role="switch" type="checkbox"/><label for="toctree-checkbox-17"><div class="visually-hidden">Toggle navigation of 13.1. Statistics Module DDS Layer</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../statistics/dds_layer/topic_names.html">13.1.1. Statistics Topic names</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../statistics/dds_layer/domainParticipant.html">13.1.2. Statistics Domain Participant</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../statistics/dds_layer/qos.html">13.1.3. Statistics recommended QoS</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../statistics/dds_layer/troubleshooting.html">13.1.4. Troubleshooting</a></li>
+</ul>
+</li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../../statistics/monitor_service/monitor_service.html">13.2. Monitor Service</a><input class="toctree-checkbox" id="toctree-checkbox-18" name="toctree-checkbox-18" role="switch" type="checkbox"/><label for="toctree-checkbox-18"><div class="visually-hidden">Toggle navigation of 13.2. Monitor Service</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../statistics/monitor_service/intro.html">13.2.1. Introduction</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../statistics/monitor_service/monitor_service_topics.html">13.2.2. Monitor Service Topics</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../statistics/monitor_service/monitor_service_configuration.html">13.2.3. Monitor Service Configuration</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../../xtypes/xtypes.html">14. XTypes</a><input class="toctree-checkbox" id="toctree-checkbox-19" name="toctree-checkbox-19" role="switch" type="checkbox"/><label for="toctree-checkbox-19"><div class="visually-hidden">Toggle navigation of 14. XTypes</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../xtypes/discovery_matching.html">14.1. Remote Data Types Discovery</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../xtypes/language_binding.html">14.2. Dynamic Language Binding</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../xtypes/type_serializing.html">14.3. Serialization Utilities</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../xtypes/idl_parsing.html">14.4. Dynamic Types IDL Parsing</a></li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../../use_cases/use_cases.html">15. Use-Cases</a><input class="toctree-checkbox" id="toctree-checkbox-20" name="toctree-checkbox-20" role="switch" type="checkbox"/><label for="toctree-checkbox-20"><div class="visually-hidden">Toggle navigation of 15. Use-Cases</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../use_cases/tsn/tsn.html">15.1. DDS-TSN <span class="sd-badge sd-outline-primary sd-text-primary" title="Exclusive to Fast DDS Pro">Pro</span></a></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../../use_cases/tcp/tcp_use_case.html">15.2. Large Data mode and Fast DDS over TCP</a><input class="toctree-checkbox" id="toctree-checkbox-21" name="toctree-checkbox-21" role="switch" type="checkbox"/><label for="toctree-checkbox-21"><div class="visually-hidden">Toggle navigation of 15.2. Large Data mode and Fast DDS over TCP</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../use_cases/tcp/tcp_with_multicast_discovery.html">15.2.1. Large Data Mode</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../use_cases/tcp/tcp_large_data_with_options.html">15.2.2. Large Data with configuration options</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../use_cases/tcp/tcp_with_discovery_server.html">15.2.3. TCP Communication with Discovery Server</a></li>
+</ul>
+</li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../../use_cases/wifi/wifi.html">15.3. Fast DDS over WIFI</a><input class="toctree-checkbox" id="toctree-checkbox-22" name="toctree-checkbox-22" role="switch" type="checkbox"/><label for="toctree-checkbox-22"><div class="visually-hidden">Toggle navigation of 15.3. Fast DDS over WIFI</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../use_cases/wifi/initial_peers.html">15.3.1. Configuring Initial Peers</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../use_cases/wifi/disable_multicast.html">15.3.2. Disabling multicast discovery</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../use_cases/wifi/discovery_server_use_case.html">15.3.3. Discovery Server</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../use_cases/well_known_deployments/well_known_deployments.html">15.4. Well Known Network Deployments</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../use_cases/large_data/large_data.html">15.5. Large Data Rates</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../use_cases/many_subscribers/many_subscribers.html">15.6. Topics with many subscribers</a></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../../use_cases/realtime/realtime.html">15.7. Real-time behavior</a><input class="toctree-checkbox" id="toctree-checkbox-23" name="toctree-checkbox-23" role="switch" type="checkbox"/><label for="toctree-checkbox-23"><div class="visually-hidden">Toggle navigation of 15.7. Real-time behavior</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../use_cases/realtime/allocations.html">15.7.1. Tuning allocations</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../use_cases/realtime/blocking.html">15.7.2. Non-blocking calls</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../use_cases/reduce_memory/reduce_memory.html">15.8. Reduce memory usage</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../use_cases/zero_copy/zero_copy.html">15.9. Zero-Copy communication</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../use_cases/unique_network_flows/unique_network_flows.html">15.10. Unique network flows</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../use_cases/statistics_module/statistics_module.html">15.11. Statistics module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../use_cases/ip_mobility/ip_mobility.html">15.12. IP mobility <span class="sd-badge sd-outline-primary sd-text-primary" title="Exclusive to Fast DDS Pro">Pro</span></a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../use_cases/dds_record_and_replay/dds_record_and_replay.html">15.13. How to use eProsima DDS Record and Replay</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../use_cases/dds_record_and_replay/dds_record_and_replay.html#next-steps">15.14. Next Steps</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../use_cases/request_reply/request_reply.html">15.15. Request-Reply communication</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../use_cases/remote_type_discovery_matching/remote_type_discovery_matching.html">15.16. Remote type discovery and endpoint matching</a></li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../../ros2/ros2.html">16. ROS 2 using Fast DDS middleware</a><input class="toctree-checkbox" id="toctree-checkbox-24" name="toctree-checkbox-24" role="switch" type="checkbox"/><label for="toctree-checkbox-24"><div class="visually-hidden">Toggle navigation of 16. ROS 2 using Fast DDS middleware</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../ros2/ros2_configure.html">16.1. Configuring <em>Fast DDS</em> in ROS 2</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../ros2/discovery_server/ros2_discovery_server.html">16.2. Use ROS 2 with Fast-DDS Discovery Server</a></li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../../rpc_dds/rpc_dds_intro.html">17. RPC over DDS <span class="sd-badge sd-outline-primary sd-text-primary" title="Exclusive to Fast DDS Pro">Pro</span></a><input class="toctree-checkbox" id="toctree-checkbox-25" name="toctree-checkbox-25" role="switch" type="checkbox"/><label for="toctree-checkbox-25"><div class="visually-hidden">Toggle navigation of 17. RPC over DDS Pro</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../../rpc_dds/request_reply/request_reply_api_intro.html">17.1. RPC over DDS Request-Reply API overview</a><input class="toctree-checkbox" id="toctree-checkbox-26" name="toctree-checkbox-26" role="switch" type="checkbox"/><label for="toctree-checkbox-26"><div class="visually-hidden">Toggle navigation of 17.1. RPC over DDS Request-Reply API overview</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../rpc_dds/request_reply/rpc_service.html">17.1.1. RPC Service</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../rpc_dds/request_reply/rpc_replier.html">17.1.2. RPC Replier</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../rpc_dds/request_reply/rpc_requester.html">17.1.3. RPC Requester</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../rpc_dds/exceptions/rpc_exceptions.html">17.2. Exceptions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../rpc_dds/data_streaming/rpc_data_streaming_intro.html">17.3. RPC Data Streaming</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../troubleshooting/troubleshooting.html">18. Troubleshooting</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../../faq/faq.html">19. Frequently Asked Questions</a><input class="toctree-checkbox" id="toctree-checkbox-27" name="toctree-checkbox-27" role="switch" type="checkbox"/><label for="toctree-checkbox-27"><div class="visually-hidden">Toggle navigation of 19. Frequently Asked Questions</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../faq/getting_started/getting_started.html">19.1. Frequently Asked Getting Started Questions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../faq/dds_layer/dds_layer.html">19.2. DDS LAYER Frequently Asked Questions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../faq/rtps_layer/rtps_layer.html">19.3. RTPS LAYER Frequently Asked Questions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../faq/discovery/discovery.html">19.4. Discovery Frequently Asked Questions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../faq/transport_layer/transport_layer.html">19.5. TRANSPORT LAYER Frequently Asked Questions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../faq/persistence_service/persistence_service.html">19.6. PERSISTENCE SERVICE Frequently Asked Questions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../faq/security/security.html">19.7. Security Frequently Asked Questions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../faq/logging/logging.html">19.8. Logging Frequently Asked Questions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../faq/xml_profiles/xml_profiles.html">19.9. XML PROFILES Frequently Asked Questions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../faq/environment_variables/environment_variables.html">19.10. Environment Variables Frequently Asked Questions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../faq/statistics_module/statistics_module.html">19.11. Statistics Module Frequently Asked Questions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../faq/xtypes/xtypes.html">19.12. XTypes Frequently Asked Questions</a></li>
+</ul>
+</li>
+<li class="toctree-l1 current has-children"><a class="reference internal" href="../../api_reference.html">20. C++ API Reference</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-28" name="toctree-checkbox-28" role="switch" type="checkbox"/><label for="toctree-checkbox-28"><div class="visually-hidden">Toggle navigation of 20. C++ API Reference</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul class="current">
+<li class="toctree-l2 current has-children"><a class="reference internal" href="../dds_pim.html">20.1. DDS DCPS PIM</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-29" name="toctree-checkbox-29" role="switch" type="checkbox"/><label for="toctree-checkbox-29"><div class="visually-hidden">Toggle navigation of 20.1. DDS DCPS PIM</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul class="current">
+<li class="toctree-l3 has-children"><a class="reference internal" href="../core/core.html">20.1.1. Core</a><input class="toctree-checkbox" id="toctree-checkbox-30" name="toctree-checkbox-30" role="switch" type="checkbox"/><label for="toctree-checkbox-30"><div class="visually-hidden">Toggle navigation of 20.1.1. Core</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l4 has-children"><a class="reference internal" href="../core/condition/basecondition.html">20.1.1.1. Condition</a><input class="toctree-checkbox" id="toctree-checkbox-31" name="toctree-checkbox-31" role="switch" type="checkbox"/><label for="toctree-checkbox-31"><div class="visually-hidden">Toggle navigation of 20.1.1.1. Condition</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l5"><a class="reference internal" href="../core/condition/condition.html">20.1.1.1.1. Condition</a></li>
+<li class="toctree-l5"><a class="reference internal" href="../core/condition/conditionseq.html">20.1.1.1.2. ConditionSeq</a></li>
+<li class="toctree-l5"><a class="reference internal" href="../core/condition/guardcondition.html">20.1.1.1.3. GuardCondition</a></li>
+<li class="toctree-l5"><a class="reference internal" href="../core/condition/statuscondition.html">20.1.1.1.4. StatusCondition</a></li>
+<li class="toctree-l5"><a class="reference internal" href="../core/condition/waitset.html">20.1.1.1.5. Wait-set</a></li>
+</ul>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="../core/domainentity.html">20.1.1.2. DomainEntity</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../core/entity.html">20.1.1.3. Entity</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../core/loanablearray.html">20.1.1.4. LoanableArray</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../core/loanablecollection.html">20.1.1.5. LoanableCollection</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../core/loanablesequence.html">20.1.1.6. LoanableSequence</a></li>
+<li class="toctree-l4 has-children"><a class="reference internal" href="../core/policy/policy.html">20.1.1.7. Policy</a><input class="toctree-checkbox" id="toctree-checkbox-32" name="toctree-checkbox-32" role="switch" type="checkbox"/><label for="toctree-checkbox-32"><div class="visually-hidden">Toggle navigation of 20.1.1.7. Policy</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l5"><a class="reference internal" href="../core/policy/datarepresentationid.html">20.1.1.7.1. DataRepresentationId</a></li>
+<li class="toctree-l5"><a class="reference internal" href="../core/policy/datarepresentationqospolicy.html">20.1.1.7.2. DataRepresentationQosPolicy</a></li>
+<li class="toctree-l5"><a class="reference internal" href="../core/policy/datasharingqospolicy.html">20.1.1.7.3. DataSharingQosPolicy</a></li>
+<li class="toctree-l5"><a class="reference internal" href="../core/policy/datasharingkind.html">20.1.1.7.4. DataSharingKind</a></li>
+<li class="toctree-l5"><a class="reference internal" href="../core/policy/deadlineqospolicy.html">20.1.1.7.5. DeadlineQosPolicy</a></li>
+<li class="toctree-l5"><a class="reference internal" href="../core/policy/destinationorderqospolicy.html">20.1.1.7.6. DestinationOrderQosPolicy</a></li>
+<li class="toctree-l5"><a class="reference internal" href="../core/policy/destinationorderqospolicykind.html">20.1.1.7.7. DestinationOrderQosPolicyKind</a></li>
+<li class="toctree-l5"><a class="reference internal" href="../core/policy/disablepositiveacksqospolicy.html">20.1.1.7.8. DisablePositiveACKsQosPolicy</a></li>
+<li class="toctree-l5"><a class="reference internal" href="../core/policy/durabilityqospolicy.html">20.1.1.7.9. DurabilityQosPolicy</a></li>
+<li class="toctree-l5"><a class="reference internal" href="../core/policy/durabilityqospolicykind.html">20.1.1.7.10. DurabilityQosPolicyKind</a></li>
+<li class="toctree-l5"><a class="reference internal" href="../core/policy/durabilityserviceqospolicy.html">20.1.1.7.11. DurabilityServiceQosPolicy</a></li>
+<li class="toctree-l5"><a class="reference internal" href="../core/policy/entityfactoryqospolicy.html">20.1.1.7.12. EntityFactoryQosPolicy</a></li>
+<li class="toctree-l5"><a class="reference internal" href="../core/policy/genericdataqospolicy.html">20.1.1.7.13. GenericDataQosPolicy</a></li>
+<li class="toctree-l5"><a class="reference internal" href="../core/policy/groupdataqospolicy.html">20.1.1.7.14. GroupDataQosPolicy</a></li>
+<li class="toctree-l5"><a class="reference internal" href="../core/policy/historyqospolicy.html">20.1.1.7.15. HistoryQosPolicy</a></li>
+<li class="toctree-l5"><a class="reference internal" href="../core/policy/historyqospolicykind.html">20.1.1.7.16. HistoryQosPolicyKind</a></li>
+<li class="toctree-l5"><a class="reference internal" href="../core/policy/latencybudgetqospolicy.html">20.1.1.7.17. LatencyBudgetQosPolicy</a></li>
+<li class="toctree-l5"><a class="reference internal" href="../core/policy/lifespanqospolicy.html">20.1.1.7.18. LifespanQosPolicy</a></li>
+<li class="toctree-l5"><a class="reference internal" href="../core/policy/livelinessqospolicy.html">20.1.1.7.19. LivelinessQosPolicy</a></li>
+<li class="toctree-l5"><a class="reference internal" href="../core/policy/livelinessqospolicykind.html">20.1.1.7.20. LivelinessQosPolicyKind</a></li>
+<li class="toctree-l5"><a class="reference internal" href="../core/policy/ownershipqospolicy.html">20.1.1.7.21. OwnershipQosPolicy</a></li>
+<li class="toctree-l5"><a class="reference internal" href="../core/policy/ownershipqospolicykind.html">20.1.1.7.22. OwnershipQosPolicyKind</a></li>
+<li class="toctree-l5"><a class="reference internal" href="../core/policy/ownershipstrengthqospolicy.html">20.1.1.7.23. OwnershipStrengthQosPolicy</a></li>
+<li class="toctree-l5"><a class="reference internal" href="../core/policy/participantresourcelimitsqos.html">20.1.1.7.24. ParticipantResourceLimitsQos</a></li>
+<li class="toctree-l5"><a class="reference internal" href="../core/policy/partition_t.html">20.1.1.7.25. Partition_t</a></li>
+<li class="toctree-l5"><a class="reference internal" href="../core/policy/partitionqospolicy.html">20.1.1.7.26. PartitionQosPolicy</a></li>
+<li class="toctree-l5"><a class="reference internal" href="../core/policy/presentationqospolicy.html">20.1.1.7.27. PresentationQosPolicy</a></li>
+<li class="toctree-l5"><a class="reference internal" href="../core/policy/presentationqospolicyaccessscopekind.html">20.1.1.7.28. PresentationQosPolicyAccessScopeKind</a></li>
+<li class="toctree-l5"><a class="reference internal" href="../core/policy/propertypolicyqos.html">20.1.1.7.29. PropertyPolicyQos</a></li>
+<li class="toctree-l5"><a class="reference internal" href="../core/policy/publishmodeqospolicy.html">20.1.1.7.30. PublishModeQosPolicy</a></li>
+<li class="toctree-l5"><a class="reference internal" href="../core/policy/publishmodeqospolicykind.html">20.1.1.7.31. PublishModeQosPolicyKind</a></li>
+<li class="toctree-l5"><a class="reference internal" href="../core/policy/qospolicy.html">20.1.1.7.32. QosPolicy</a></li>
+<li class="toctree-l5"><a class="reference internal" href="../core/policy/qospolicyid_t.html">20.1.1.7.33. QosPolicyId_t</a></li>
+<li class="toctree-l5"><a class="reference internal" href="../core/policy/readerdatalifecycleqospolicy.html">20.1.1.7.34. ReaderDataLifecycleQosPolicy</a></li>
+<li class="toctree-l5"><a class="reference internal" href="../core/policy/reliabilityqospolicy.html">20.1.1.7.35. ReliabilityQosPolicy</a></li>
+<li class="toctree-l5"><a class="reference internal" href="../core/policy/reliabilityqospolicykind.html">20.1.1.7.36. ReliabilityQosPolicyKind</a></li>
+<li class="toctree-l5"><a class="reference internal" href="../core/policy/resourcelimitsqospolicy.html">20.1.1.7.37. ResourceLimitsQosPolicy</a></li>
+<li class="toctree-l5"><a class="reference internal" href="../core/policy/rtpsendpointqos.html">20.1.1.7.38. RTPSEndpointQos</a></li>
+<li class="toctree-l5"><a class="reference internal" href="../core/policy/timebasedfilterqospolicy.html">20.1.1.7.39. TimeBasedFilterQosPolicy</a></li>
+<li class="toctree-l5"><a class="reference internal" href="../core/policy/topicdataqospolicy.html">20.1.1.7.40. TopicDataQosPolicy</a></li>
+<li class="toctree-l5"><a class="reference internal" href="../core/policy/transportconfigqos.html">20.1.1.7.41. TransportConfigQos</a></li>
+<li class="toctree-l5"><a class="reference internal" href="../core/policy/transportpriorityqospolicy.html">20.1.1.7.42. TransportPriorityQosPolicy</a></li>
+<li class="toctree-l5"><a class="reference internal" href="../core/policy/typeconsistencyenforcementqospolicy.html">20.1.1.7.43. TypeConsistencyEnforcementQosPolicy</a></li>
+<li class="toctree-l5"><a class="reference internal" href="../core/policy/typeconsistencykind.html">20.1.1.7.44. TypeConsistencyKind</a></li>
+<li class="toctree-l5"><a class="reference internal" href="../core/policy/userdataqospolicy.html">20.1.1.7.45. UserDataQosPolicy</a></li>
+<li class="toctree-l5"><a class="reference internal" href="../core/policy/wireprotocolconfigqos.html">20.1.1.7.46. WireProtocolConfigQos</a></li>
+<li class="toctree-l5"><a class="reference internal" href="../core/policy/writerdatalifecycleqospolicy.html">20.1.1.7.47. WriterDataLifecycleQosPolicy</a></li>
+<li class="toctree-l5"><a class="reference internal" href="../core/policy/writerresourcelimitsqos.html">20.1.1.7.48. WriterResourceLimitsQos</a></li>
+</ul>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="../core/stackallocatedsequence.html">20.1.1.8. StackAllocatedSequence</a></li>
+<li class="toctree-l4 has-children"><a class="reference internal" href="../core/status/status.html">20.1.1.9. Status</a><input class="toctree-checkbox" id="toctree-checkbox-33" name="toctree-checkbox-33" role="switch" type="checkbox"/><label for="toctree-checkbox-33"><div class="visually-hidden">Toggle navigation of 20.1.1.9. Status</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l5"><a class="reference internal" href="../core/status/basestatus.html">20.1.1.9.1. BaseStatus</a></li>
+<li class="toctree-l5"><a class="reference internal" href="../core/status/deadlinemissedstatus.html">20.1.1.9.2. DeadlineMissedStatus</a></li>
+<li class="toctree-l5"><a class="reference internal" href="../core/status/incompatibleqosstatus.html">20.1.1.9.3. IncompatibleQosStatus</a></li>
+<li class="toctree-l5"><a class="reference internal" href="../core/status/inconsistenttopicstatus.html">20.1.1.9.4. InconsistentTopicStatus</a></li>
+<li class="toctree-l5"><a class="reference internal" href="../core/status/livelinesschangedstatus.html">20.1.1.9.5. LivelinessChangedStatus</a></li>
+<li class="toctree-l5"><a class="reference internal" href="../core/status/matchedstatus.html">20.1.1.9.6. MatchedStatus</a></li>
+<li class="toctree-l5"><a class="reference internal" href="../core/status/offereddeadlinemissedstatus.html">20.1.1.9.7. OfferedDeadlineMissedStatus</a></li>
+<li class="toctree-l5"><a class="reference internal" href="../core/status/offeredicompatibleqosstatus.html">20.1.1.9.8. OfferedIncompatibleQosStatus</a></li>
+<li class="toctree-l5"><a class="reference internal" href="../core/status/publicationmatchedstatus.html">20.1.1.9.9. PublicationMatchedStatus</a></li>
+<li class="toctree-l5"><a class="reference internal" href="../core/status/qospolicycount.html">20.1.1.9.10. QosPolicyCount</a></li>
+<li class="toctree-l5"><a class="reference internal" href="../core/status/qospolicycountseq.html">20.1.1.9.11. QosPolicyCountSeq</a></li>
+<li class="toctree-l5"><a class="reference internal" href="../core/status/requesteddeadlinemissedstatus.html">20.1.1.9.12. RequestedDeadlineMissedStatus</a></li>
+<li class="toctree-l5"><a class="reference internal" href="../core/status/requestedicompatibleqosstatus.html">20.1.1.9.13. RequestedIncompatibleQosStatus</a></li>
+<li class="toctree-l5"><a class="reference internal" href="../core/status/rtpslivelinessloststatus.html">20.1.1.9.14. LivelinessLostStatus</a></li>
+<li class="toctree-l5"><a class="reference internal" href="../core/status/sampleloststatus.html">20.1.1.9.15. SampleLostStatus</a></li>
+<li class="toctree-l5"><a class="reference internal" href="../core/status/samplerejectedstatus.html">20.1.1.9.16. SampleRejectedStatus</a></li>
+<li class="toctree-l5"><a class="reference internal" href="../core/status/samplerejectedstatuskind.html">20.1.1.9.17. SampleRejectedStatusKind</a></li>
+<li class="toctree-l5"><a class="reference internal" href="../core/status/statusmask.html">20.1.1.9.18. StatusMask</a></li>
+<li class="toctree-l5"><a class="reference internal" href="../core/status/subscriptionmatchedstatus.html">20.1.1.9.19. SubscriptionMatchedStatus</a></li>
+</ul>
+</li>
+<li class="toctree-l4 has-children"><a class="reference internal" href="../core/Time_t/time_toc.html">20.1.1.10. DDS Time_t</a><input class="toctree-checkbox" id="toctree-checkbox-34" name="toctree-checkbox-34" role="switch" type="checkbox"/><label for="toctree-checkbox-34"><div class="visually-hidden">Toggle navigation of 20.1.1.10. DDS Time_t</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l5"><a class="reference internal" href="../core/Time_t/const_values.html">20.1.1.10.1. Const values</a></li>
+<li class="toctree-l5"><a class="reference internal" href="../core/Time_t/Duration_t.html">20.1.1.10.2. DDS Layer Duration_t</a></li>
+<li class="toctree-l5"><a class="reference internal" href="../core/Time_t/operators.html">20.1.1.10.3. Time_t DDS Operators</a></li>
+<li class="toctree-l5"><a class="reference internal" href="../core/Time_t/Time_t.html">20.1.1.10.4. DDS Layer Time_t</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l3 has-children"><a class="reference internal" href="../domain/domain.html">20.1.2. Domain</a><input class="toctree-checkbox" id="toctree-checkbox-35" name="toctree-checkbox-35" role="switch" type="checkbox"/><label for="toctree-checkbox-35"><div class="visually-hidden">Toggle navigation of 20.1.2. Domain</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l4"><a class="reference internal" href="../domain/domainparticipant.html">20.1.2.1. DomainParticipant</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../domain/domainparticipantfactory.html">20.1.2.2. DomainParticipantFactory</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../domain/domainparticipantfactoryqos.html">20.1.2.3. DomainParticipantFactoryQos</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../domain/domainparticipantlistener.html">20.1.2.4. DomainParticipantListener</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../domain/domainparticipantqos.html">20.1.2.5. DomainParticipantQos</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../domain/domainparticipantextendedqos.html">20.1.2.6. DomainParticipantExtendedQos</a></li>
+</ul>
+</li>
+<li class="toctree-l3 has-children"><a class="reference internal" href="../publisher/publisher.html">20.1.3. Publisher</a><input class="toctree-checkbox" id="toctree-checkbox-36" name="toctree-checkbox-36" role="switch" type="checkbox"/><label for="toctree-checkbox-36"><div class="visually-hidden">Toggle navigation of 20.1.3. Publisher</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l4"><a class="reference internal" href="../publisher/datawriter.html">20.1.3.1. DataWriter</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../publisher/datawriterlistener.html">20.1.3.2. DataWriterListener</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../publisher/datawriterqos.html">20.1.3.3. DataWriterQos</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../publisher/publisher_class.html">20.1.3.4. Publisher</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../publisher/publisherlistener.html">20.1.3.5. PublisherListener</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../publisher/publisherqos.html">20.1.3.6. PublisherQos</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../publisher/rtpsreliablewriterqos.html">20.1.3.7. RTPSReliableWriterQos</a></li>
+</ul>
+</li>
+<li class="toctree-l3 has-children"><a class="reference internal" href="../subscriber/subscriber.html">20.1.4. Subscriber</a><input class="toctree-checkbox" id="toctree-checkbox-37" name="toctree-checkbox-37" role="switch" type="checkbox"/><label for="toctree-checkbox-37"><div class="visually-hidden">Toggle navigation of 20.1.4. Subscriber</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l4"><a class="reference internal" href="../subscriber/datareader.html">20.1.4.1. DataReader</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../subscriber/datareaderlistener.html">20.1.4.2. DataReaderListener</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../subscriber/datareaderqos.html">20.1.4.3. DataReaderQos</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../subscriber/instancestatekind.html">20.1.4.4. InstanceStateKind</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../subscriber/readcondition.html">20.1.4.5. ReadCondition</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../subscriber/readerresourcelimitsqos.html">20.1.4.6. ReaderResourceLimitsQos</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../subscriber/rtpsreliablereaderqos.html">20.1.4.7. RTPSReliableReaderQos</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../subscriber/sampleinfo.html">20.1.4.8. SampleInfo</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../subscriber/samplestatekind.html">20.1.4.9. SampleStateKind</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../subscriber/subscriber_class.html">20.1.4.10. Subscriber</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../subscriber/subscriberlistener.html">20.1.4.11. SubscriberListener</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../subscriber/subscriberqos.html">20.1.4.12. SubscriberQos</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../subscriber/viewstatekind.html">20.1.4.13. ViewStateKind</a></li>
+</ul>
+</li>
+<li class="toctree-l3 has-children"><a class="reference internal" href="../topic/topic.html">20.1.5. Topic</a><input class="toctree-checkbox" id="toctree-checkbox-38" name="toctree-checkbox-38" role="switch" type="checkbox"/><label for="toctree-checkbox-38"><div class="visually-hidden">Toggle navigation of 20.1.5. Topic</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l4"><a class="reference internal" href="../topic/topicdatatype.html">20.1.5.1. TopicDataType</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../topic/typesupport.html">20.1.5.2. TypeSupport</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../topic/topicdescription.html">20.1.5.3. TopicDescription</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../topic/topic_class.html">20.1.5.4. Topic</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../topic/contentfilteredtopic.html">20.1.5.5. ContentFilteredTopic</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../topic/icontentfilter.html">20.1.5.6. IContentFilter</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../topic/icontentfilterfactory.html">20.1.5.7. IContentFilterFactory</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../topic/topiclistener.html">20.1.5.8. TopicListener</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../topic/topicqos.html">20.1.5.9. TopicQos</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../topic/typeinformation.html">20.1.5.10. TypeInformationParameter</a></li>
+</ul>
+</li>
+<li class="toctree-l3 current has-children"><a class="reference internal" href="xtypes.html">20.1.6. XTypes</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-39" name="toctree-checkbox-39" role="switch" type="checkbox"/><label for="toctree-checkbox-39"><div class="visually-hidden">Toggle navigation of 20.1.6. XTypes</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul class="current">
+<li class="toctree-l4 current has-children"><a class="reference internal" href="dynamic_types.html">20.1.6.1. Dynamic Language Binding</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-40" name="toctree-checkbox-40" role="switch" type="checkbox"/><label for="toctree-checkbox-40"><div class="visually-hidden">Toggle navigation of 20.1.6.1. Dynamic Language Binding</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul class="current">
+<li class="toctree-l5 current current-page"><a class="current reference internal" href="#">20.1.6.1.1. AnnotationDescriptor</a></li>
+<li class="toctree-l5"><a class="reference internal" href="dynamicdata.html">20.1.6.1.2. DynamicData</a></li>
+<li class="toctree-l5"><a class="reference internal" href="dynamicdatafactory.html">20.1.6.1.3. DynamicDataFactory</a></li>
+<li class="toctree-l5"><a class="reference internal" href="dynamicpubsubtype.html">20.1.6.1.4. DynamicPubSubType</a></li>
+<li class="toctree-l5"><a class="reference internal" href="dynamictype.html">20.1.6.1.5. DynamicType</a></li>
+<li class="toctree-l5"><a class="reference internal" href="dynamictypebuilder.html">20.1.6.1.6. DynamicTypeBuilder</a></li>
+<li class="toctree-l5"><a class="reference internal" href="dynamictypebuilderfactory.html">20.1.6.1.7. DynamicTypeBuilderFactory</a></li>
+<li class="toctree-l5"><a class="reference internal" href="dynamictypemember.html">20.1.6.1.8. DynamicTypeMember</a></li>
+<li class="toctree-l5"><a class="reference internal" href="memberdescriptor.html">20.1.6.1.9. MemberDescriptor</a></li>
+<li class="toctree-l5"><a class="reference internal" href="typedescriptor.html">20.1.6.1.10. TypeDescriptor</a></li>
+<li class="toctree-l5"><a class="reference internal" href="verbatimtextdescriptor.html">20.1.6.1.11. VerbatimTextDescriptor</a></li>
+</ul>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="exception.html">20.1.6.2. InvalidArgumentError</a></li>
+<li class="toctree-l4 has-children"><a class="reference internal" href="type_representation.html">20.1.6.3. Type Representation</a><input class="toctree-checkbox" id="toctree-checkbox-41" name="toctree-checkbox-41" role="switch" type="checkbox"/><label for="toctree-checkbox-41"><div class="visually-hidden">Toggle navigation of 20.1.6.3. Type Representation</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l5"><a class="reference internal" href="typeobjectregistry.html">20.1.6.3.1. TypeObjectRegistry</a></li>
+<li class="toctree-l5"><a class="reference internal" href="typeobjectutils.html">20.1.6.3.2. TypeObjectUtils</a></li>
+</ul>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="utils.html">20.1.6.4. Utils</a></li>
+</ul>
+</li>
+<li class="toctree-l3 has-children"><a class="reference internal" href="../rpc/rpc.html">20.1.7. RPC over DDS</a><input class="toctree-checkbox" id="toctree-checkbox-42" name="toctree-checkbox-42" role="switch" type="checkbox"/><label for="toctree-checkbox-42"><div class="visually-hidden">Toggle navigation of 20.1.7. RPC over DDS</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l4"><a class="reference internal" href="../rpc/remoteexceptioncode_t.html">20.1.7.1. RemoteExceptionCode_t</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../rpc/remoteinvalidargumenterror.html">20.1.7.2. RemoteInvalidArgumentError <span class="sd-badge sd-outline-primary sd-text-primary" title="Exclusive to Fast DDS Pro">Pro</span></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../rpc/remoteoutofresourceserror.html">20.1.7.3. RemoteOutOfResourcesError <span class="sd-badge sd-outline-primary sd-text-primary" title="Exclusive to Fast DDS Pro">Pro</span></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../rpc/remoteunknownexceptionerror.html">20.1.7.4. RemoteUnknownExceptionError <span class="sd-badge sd-outline-primary sd-text-primary" title="Exclusive to Fast DDS Pro">Pro</span></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../rpc/remoteunknownoperationerror.html">20.1.7.5. RemoteUnknownOperationError <span class="sd-badge sd-outline-primary sd-text-primary" title="Exclusive to Fast DDS Pro">Pro</span></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../rpc/remoteunsupportederror.html">20.1.7.6. RemoteUnsupportedError <span class="sd-badge sd-outline-primary sd-text-primary" title="Exclusive to Fast DDS Pro">Pro</span></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../rpc/replier.html">20.1.7.7. Replier</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../rpc/replierqos.html">20.1.7.8. ReplierQos</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../rpc/requester.html">20.1.7.9. Requester</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../rpc/requesterqos.html">20.1.7.10. RequesterQos</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../rpc/requestinfo.html">20.1.7.11. RequestInfo</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../rpc/rpcbrokenpipeexception.html">20.1.7.12. RpcBrokenPipeException <span class="sd-badge sd-outline-primary sd-text-primary" title="Exclusive to Fast DDS Pro">Pro</span></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../rpc/rpcentity.html">20.1.7.13. RPCEntity</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../rpc/rpcexception.html">20.1.7.14. RpcException <span class="sd-badge sd-outline-primary sd-text-primary" title="Exclusive to Fast DDS Pro">Pro</span></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../rpc/rpcfeedcancelledexception.html">20.1.7.15. RpcFeedCancelledException <span class="sd-badge sd-outline-primary sd-text-primary" title="Exclusive to Fast DDS Pro">Pro</span></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../rpc/rpcoperationerror.html">20.1.7.16. RpcOperationError <span class="sd-badge sd-outline-primary sd-text-primary" title="Exclusive to Fast DDS Pro">Pro</span></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../rpc/rpcremoteexception.html">20.1.7.17. RpcRemoteException <span class="sd-badge sd-outline-primary sd-text-primary" title="Exclusive to Fast DDS Pro">Pro</span></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../rpc/rpcrequest.html">20.1.7.18. RpcRequest <span class="sd-badge sd-outline-primary sd-text-primary" title="Exclusive to Fast DDS Pro">Pro</span></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../rpc/rpcserver.html">20.1.7.19. RpcServer <span class="sd-badge sd-outline-primary sd-text-primary" title="Exclusive to Fast DDS Pro">Pro</span></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../rpc/rpcserverschedulingstrategy.html">20.1.7.20. RpcServerSchedulingStrategy <span class="sd-badge sd-outline-primary sd-text-primary" title="Exclusive to Fast DDS Pro">Pro</span></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../rpc/rpcstatuscode.html">20.1.7.21. RpcStatusCode <span class="sd-badge sd-outline-primary sd-text-primary" title="Exclusive to Fast DDS Pro">Pro</span></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../rpc/rpctimeoutexception.html">20.1.7.22. RpcTimeoutException <span class="sd-badge sd-outline-primary sd-text-primary" title="Exclusive to Fast DDS Pro">Pro</span></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../rpc/service.html">20.1.7.23. Service</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../rpc/servicetypesupport.html">20.1.7.24. ServiceTypeSupport</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../rtps/rtps.html">20.2. RTPS</a><input class="toctree-checkbox" id="toctree-checkbox-43" name="toctree-checkbox-43" role="switch" type="checkbox"/><label for="toctree-checkbox-43"><div class="visually-hidden">Toggle navigation of 20.2. RTPS</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l3 has-children"><a class="reference internal" href="../../rtps/attributes/attributes.html">20.2.1. Attributes</a><input class="toctree-checkbox" id="toctree-checkbox-44" name="toctree-checkbox-44" role="switch" type="checkbox"/><label for="toctree-checkbox-44"><div class="visually-hidden">Toggle navigation of 20.2.1. Attributes</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../rtps/attributes/BuiltinAttributes.html">20.2.1.1. BuiltinAttributes</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../rtps/attributes/c_default_RTPSParticipantAllocationAttributes.html">20.2.1.2. c_default_RTPSParticipantAllocationAttributes</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../rtps/attributes/DiscoveryProtocol.html">20.2.1.3. DiscoveryProtocol</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../rtps/attributes/DiscoverySettings.html">20.2.1.4. DiscoverySettings</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../rtps/attributes/EndpointAttributes.html">20.2.1.5. EndpointAttributes</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../rtps/attributes/ExternalLocators.html">20.2.1.6. ExternalLocators</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../rtps/attributes/HistoryAttributes.html">20.2.1.7. HistoryAttributes</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../rtps/attributes/InitialAnnouncementConfig.html">20.2.1.8. InitialAnnouncementConfig</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../rtps/attributes/ParticipantFilteringFlags.html">20.2.1.9. ParticipantFilteringFlags</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../rtps/attributes/PropertyPolicy.html">20.2.1.10. PropertyPolicy</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../rtps/attributes/PropertyPolicyHelper.html">20.2.1.11. PropertyPolicyHelper</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../rtps/attributes/ReaderAttributes.html">20.2.1.12. ReaderAttributes</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../rtps/attributes/ReaderTimes.html">20.2.1.13. ReaderTimes</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../rtps/attributes/RemoteLocatorsAllocationAttributes.html">20.2.1.14. RemoteLocatorsAllocationAttributes</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../rtps/attributes/RTPSParticipantAllocationAttributes.html">20.2.1.15. RTPSParticipantAllocationAttributes</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../rtps/attributes/RTPSParticipantAttributes.html">20.2.1.16. RTPSParticipantAttributes</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../rtps/attributes/RTPSWriterPublishMode.html">20.2.1.17. RTPSWriterPublishMode</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../rtps/attributes/SendBuffersAllocationAttributes.html">20.2.1.18. SendBuffersAllocationAttributes</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../rtps/attributes/SimpleEDPAttributes.html">20.2.1.19. SimpleEDPAttributes</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../rtps/attributes/ThreadSettings.html">20.2.1.20. ThreadSettings</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../rtps/attributes/VariableLengthDataLimits.html">20.2.1.21. VariableLengthDataLimits</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../rtps/attributes/WriterAttributes.html">20.2.1.22. WriterAttributes</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../rtps/attributes/WriterTimes.html">20.2.1.23. WriterTimes</a></li>
+</ul>
+</li>
+<li class="toctree-l3 has-children"><a class="reference internal" href="../../rtps/builtin/data/data.html">20.2.2. Builtin data</a><input class="toctree-checkbox" id="toctree-checkbox-45" name="toctree-checkbox-45" role="switch" type="checkbox"/><label for="toctree-checkbox-45"><div class="visually-hidden">Toggle navigation of 20.2.2. Builtin data</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../rtps/builtin/data/ContentFilterProperty.html">20.2.2.1. ContentFilterProperty</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../rtps/builtin/data/ParticipantBuiltinTopicData.html">20.2.2.2. ParticipantBuiltinTopicData</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../rtps/builtin/data/PublicationBuiltinTopicData.html">20.2.2.3. PublicationBuiltinTopicData</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../rtps/builtin/data/SubscriptionBuiltinTopicData.html">20.2.2.4. SubscriptionBuiltinTopicData</a></li>
+</ul>
+</li>
+<li class="toctree-l3 has-children"><a class="reference internal" href="../../rtps/common/common.html">20.2.3. Common</a><input class="toctree-checkbox" id="toctree-checkbox-46" name="toctree-checkbox-46" role="switch" type="checkbox"/><label for="toctree-checkbox-46"><div class="visually-hidden">Toggle navigation of 20.2.3. Common</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l4 has-children"><a class="reference internal" href="../../rtps/common/BinaryProperty/binaryproperty_toc.html">20.2.3.1. BinaryProperty</a><input class="toctree-checkbox" id="toctree-checkbox-47" name="toctree-checkbox-47" role="switch" type="checkbox"/><label for="toctree-checkbox-47"><div class="visually-hidden">Toggle navigation of 20.2.3.1. BinaryProperty</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l5"><a class="reference internal" href="../../rtps/common/BinaryProperty/BinaryProperty.html">20.2.3.1.1. BinaryProperty</a></li>
+<li class="toctree-l5"><a class="reference internal" href="../../rtps/common/BinaryProperty/BinaryPropertyHelper.html">20.2.3.1.2. BinaryPropertyHelper</a></li>
+<li class="toctree-l5"><a class="reference internal" href="../../rtps/common/BinaryProperty/BinaryPropertySeq.html">20.2.3.1.3. BinaryPropertySeq</a></li>
+</ul>
+</li>
+<li class="toctree-l4 has-children"><a class="reference internal" href="../../rtps/common/CacheChange/cachechange_toc.html">20.2.3.2. CacheChange</a><input class="toctree-checkbox" id="toctree-checkbox-48" name="toctree-checkbox-48" role="switch" type="checkbox"/><label for="toctree-checkbox-48"><div class="visually-hidden">Toggle navigation of 20.2.3.2. CacheChange</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l5"><a class="reference internal" href="../../rtps/common/CacheChange/CacheChange_t.html">20.2.3.2.1. CacheChange_t</a></li>
+<li class="toctree-l5"><a class="reference internal" href="../../rtps/common/CacheChange/ChangeKind_t.html">20.2.3.2.2. ChangeKind_t</a></li>
+</ul>
+</li>
+<li class="toctree-l4 has-children"><a class="reference internal" href="../../rtps/common/CDRMessage_t/cdrmessage_toc.html">20.2.3.3. CDRMessage</a><input class="toctree-checkbox" id="toctree-checkbox-49" name="toctree-checkbox-49" role="switch" type="checkbox"/><label for="toctree-checkbox-49"><div class="visually-hidden">Toggle navigation of 20.2.3.3. CDRMessage</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l5"><a class="reference internal" href="../../rtps/common/CDRMessage_t/CDRMessage_t.html">20.2.3.3.1. CDRMessage_t</a></li>
+<li class="toctree-l5"><a class="reference internal" href="../../rtps/common/CDRMessage_t/defines.html">20.2.3.3.2. Macro definitions (#define)</a></li>
+</ul>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="../../rtps/common/CDRSerialization/CDRSerialization.html">20.2.3.4. CDRSerialization</a></li>
+<li class="toctree-l4 has-children"><a class="reference internal" href="../../rtps/common/EntityId_t/entityid_toc.html">20.2.3.5. EntityId</a><input class="toctree-checkbox" id="toctree-checkbox-50" name="toctree-checkbox-50" role="switch" type="checkbox"/><label for="toctree-checkbox-50"><div class="visually-hidden">Toggle navigation of 20.2.3.5. EntityId</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l5"><a class="reference internal" href="../../rtps/common/EntityId_t/const_values.html">20.2.3.5.1. Const values</a></li>
+<li class="toctree-l5"><a class="reference internal" href="../../rtps/common/EntityId_t/defines.html">20.2.3.5.2. Macro definitions (#define)</a></li>
+<li class="toctree-l5"><a class="reference internal" href="../../rtps/common/EntityId_t/EntityId_t.html">20.2.3.5.3. EntityId_t</a></li>
+<li class="toctree-l5"><a class="reference internal" href="../../rtps/common/EntityId_t/operators.html">20.2.3.5.4. EntityId_t Operators</a></li>
+</ul>
+</li>
+<li class="toctree-l4 has-children"><a class="reference internal" href="../../rtps/common/FragmentNumber/fragmentnumber_toc.html">20.2.3.6. FragmentNumber</a><input class="toctree-checkbox" id="toctree-checkbox-51" name="toctree-checkbox-51" role="switch" type="checkbox"/><label for="toctree-checkbox-51"><div class="visually-hidden">Toggle navigation of 20.2.3.6. FragmentNumber</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l5"><a class="reference internal" href="../../rtps/common/FragmentNumber/FragmentNumber_t.html">20.2.3.6.1. FragmentNumber_t</a></li>
+<li class="toctree-l5"><a class="reference internal" href="../../rtps/common/FragmentNumber/FragmentNumberSet_t.html">20.2.3.6.2. FragmentNumberSet_t</a></li>
+</ul>
+</li>
+<li class="toctree-l4 has-children"><a class="reference internal" href="../../rtps/common/Guid/guid_toc.html">20.2.3.7. Guid</a><input class="toctree-checkbox" id="toctree-checkbox-52" name="toctree-checkbox-52" role="switch" type="checkbox"/><label for="toctree-checkbox-52"><div class="visually-hidden">Toggle navigation of 20.2.3.7. Guid</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l5"><a class="reference internal" href="../../rtps/common/Guid/c_Guid_Unknown.html">20.2.3.7.1. c_Guid_Unknown</a></li>
+<li class="toctree-l5"><a class="reference internal" href="../../rtps/common/Guid/GUID_t.html">20.2.3.7.2. GUID_t</a></li>
+<li class="toctree-l5"><a class="reference internal" href="../../rtps/common/Guid/operators.html">20.2.3.7.3. GUID_t Operators</a></li>
+</ul>
+</li>
+<li class="toctree-l4 has-children"><a class="reference internal" href="../../rtps/common/GuidPrefix_t/guidprefix_toc.html">20.2.3.8. GuidPrefix</a><input class="toctree-checkbox" id="toctree-checkbox-53" name="toctree-checkbox-53" role="switch" type="checkbox"/><label for="toctree-checkbox-53"><div class="visually-hidden">Toggle navigation of 20.2.3.8. GuidPrefix</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l5"><a class="reference internal" href="../../rtps/common/GuidPrefix_t/c_GuidPrefix_Unknown.html">20.2.3.8.1. c_GuidPrefix_Unknown</a></li>
+<li class="toctree-l5"><a class="reference internal" href="../../rtps/common/GuidPrefix_t/GuidPrefix_t.html">20.2.3.8.2. GuidPrefix_t</a></li>
+<li class="toctree-l5"><a class="reference internal" href="../../rtps/common/GuidPrefix_t/operators.html">20.2.3.8.3. GuidPrefix_t Operators</a></li>
+</ul>
+</li>
+<li class="toctree-l4 has-children"><a class="reference internal" href="../../rtps/common/InstanceHandle/instancehandle_toc.html">20.2.3.9. InstanceHandle</a><input class="toctree-checkbox" id="toctree-checkbox-54" name="toctree-checkbox-54" role="switch" type="checkbox"/><label for="toctree-checkbox-54"><div class="visually-hidden">Toggle navigation of 20.2.3.9. InstanceHandle</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l5"><a class="reference internal" href="../../rtps/common/InstanceHandle/c_InstanceHandle_Unknown.html">20.2.3.9.1. c_InstanceHandle_Unknown</a></li>
+<li class="toctree-l5"><a class="reference internal" href="../../rtps/common/InstanceHandle/InstanceHandle_t.html">20.2.3.9.2. InstanceHandle_t</a></li>
+<li class="toctree-l5"><a class="reference internal" href="../../rtps/common/InstanceHandle/operators.html">20.2.3.9.3. InstanceHandle_t Operators</a></li>
+</ul>
+</li>
+<li class="toctree-l4 has-children"><a class="reference internal" href="../../rtps/common/Locator/locator_toc.html">20.2.3.10. Locator</a><input class="toctree-checkbox" id="toctree-checkbox-55" name="toctree-checkbox-55" role="switch" type="checkbox"/><label for="toctree-checkbox-55"><div class="visually-hidden">Toggle navigation of 20.2.3.10. Locator</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l5"><a class="reference internal" href="../../rtps/common/Locator/defines.html">20.2.3.10.1. Macro definitions (#define)</a></li>
+<li class="toctree-l5"><a class="reference internal" href="../../rtps/common/Locator/IsAddressDefined.html">20.2.3.10.2. IsAddressDefined</a></li>
+<li class="toctree-l5"><a class="reference internal" href="../../rtps/common/Locator/IsLocatorValid.html">20.2.3.10.3. IsLocatorValid</a></li>
+<li class="toctree-l5"><a class="reference internal" href="../../rtps/common/Locator/Locator_t.html">20.2.3.10.4. Locator_t</a></li>
+<li class="toctree-l5"><a class="reference internal" href="../../rtps/common/Locator/LocatorList.html">20.2.3.10.5. LocatorList</a></li>
+<li class="toctree-l5"><a class="reference internal" href="../../rtps/common/Locator/LocatorListConstIterator.html">20.2.3.10.6. LocatorListConstIterator</a></li>
+<li class="toctree-l5"><a class="reference internal" href="../../rtps/common/Locator/LocatorListIterator.html">20.2.3.10.7. LocatorListIterator</a></li>
+<li class="toctree-l5"><a class="reference internal" href="../../rtps/common/Locator/LocatorsIterator.html">20.2.3.10.8. LocatorsIterator</a></li>
+<li class="toctree-l5"><a class="reference internal" href="../../rtps/common/Locator/Locators.html">20.2.3.10.9. Locators</a></li>
+<li class="toctree-l5"><a class="reference internal" href="../../rtps/common/Locator/operators.html">20.2.3.10.10. Locator Operators</a></li>
+</ul>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="../../rtps/common/LocatorSelectorEntry/LocatorSelectorEntry.html">20.2.3.11. LocatorSelectorEntry</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../rtps/common/LocatorSelector/LocatorSelector.html">20.2.3.12. LocatorSelector</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../rtps/common/LocatorWithMask/LocatorWithMask.html">20.2.3.13. LocatorWithMask</a></li>
+<li class="toctree-l4 has-children"><a class="reference internal" href="../../rtps/common/MatchingInfo/matchinginfo_toc.html">20.2.3.14. MatchingInfo</a><input class="toctree-checkbox" id="toctree-checkbox-56" name="toctree-checkbox-56" role="switch" type="checkbox"/><label for="toctree-checkbox-56"><div class="visually-hidden">Toggle navigation of 20.2.3.14. MatchingInfo</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l5"><a class="reference internal" href="../../rtps/common/MatchingInfo/MatchingInfo.html">20.2.3.14.1. MatchingInfo</a></li>
+<li class="toctree-l5"><a class="reference internal" href="../../rtps/common/MatchingInfo/MatchingStatus.html">20.2.3.14.2. MatchingStatus</a></li>
+</ul>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="../../rtps/common/PortParameters/PortParameters.html">20.2.3.15. PortParameters</a></li>
+<li class="toctree-l4 has-children"><a class="reference internal" href="../../rtps/common/Property/property_toc.html">20.2.3.16. Property</a><input class="toctree-checkbox" id="toctree-checkbox-57" name="toctree-checkbox-57" role="switch" type="checkbox"/><label for="toctree-checkbox-57"><div class="visually-hidden">Toggle navigation of 20.2.3.16. Property</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l5"><a class="reference internal" href="../../rtps/common/Property/Property.html">20.2.3.16.1. Property</a></li>
+<li class="toctree-l5"><a class="reference internal" href="../../rtps/common/Property/PropertyHelper.html">20.2.3.16.2. PropertyHelper</a></li>
+<li class="toctree-l5"><a class="reference internal" href="../../rtps/common/Property/PropertySeq.html">20.2.3.16.3. PropertySeq</a></li>
+</ul>
+</li>
+<li class="toctree-l4 has-children"><a class="reference internal" href="../../rtps/common/RemoteLocators/remotelocators_toc.html">20.2.3.17. RemoteLocators</a><input class="toctree-checkbox" id="toctree-checkbox-58" name="toctree-checkbox-58" role="switch" type="checkbox"/><label for="toctree-checkbox-58"><div class="visually-hidden">Toggle navigation of 20.2.3.17. RemoteLocators</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l5"><a class="reference internal" href="../../rtps/common/RemoteLocators/operators.html">20.2.3.17.1. RemoteLocators Operators</a></li>
+<li class="toctree-l5"><a class="reference internal" href="../../rtps/common/RemoteLocators/RemoteLocatorList.html">20.2.3.17.2. RemoteLocatorList</a></li>
+</ul>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="../../rtps/common/SampleIdentity/SampleIdentity.html">20.2.3.18. SampleIdentity</a></li>
+<li class="toctree-l4 has-children"><a class="reference internal" href="../../rtps/common/SequenceNumber/sequencenumber_toc.html">20.2.3.19. SequenceNumber</a><input class="toctree-checkbox" id="toctree-checkbox-59" name="toctree-checkbox-59" role="switch" type="checkbox"/><label for="toctree-checkbox-59"><div class="visually-hidden">Toggle navigation of 20.2.3.19. SequenceNumber</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l5"><a class="reference internal" href="../../rtps/common/SequenceNumber/c_SequenceNumber_Unknown.html">20.2.3.19.1. c_SequenceNumber_Unknown</a></li>
+<li class="toctree-l5"><a class="reference internal" href="../../rtps/common/SequenceNumber/operators.html">20.2.3.19.2. SequenceNumber_t Operators</a></li>
+<li class="toctree-l5"><a class="reference internal" href="../../rtps/common/SequenceNumber/SequenceNumber_t.html">20.2.3.19.3. SequenceNumber_t</a></li>
+<li class="toctree-l5"><a class="reference internal" href="../../rtps/common/SequenceNumber/SequenceNumberDiff.html">20.2.3.19.4. SequenceNumberDiff</a></li>
+<li class="toctree-l5"><a class="reference internal" href="../../rtps/common/SequenceNumber/SequenceNumberHash.html">20.2.3.19.5. SequenceNumberHash</a></li>
+<li class="toctree-l5"><a class="reference internal" href="../../rtps/common/SequenceNumber/SequenceNumberSet_t.html">20.2.3.19.6. SequenceNumberSet_t</a></li>
+<li class="toctree-l5"><a class="reference internal" href="../../rtps/common/SequenceNumber/sort_seqNum.html">20.2.3.19.7. sort_seqNum</a></li>
+</ul>
+</li>
+<li class="toctree-l4 has-children"><a class="reference internal" href="../../rtps/common/SerializedPayload/serializedpayload_toc.html">20.2.3.20. SerializedPayload</a><input class="toctree-checkbox" id="toctree-checkbox-60" name="toctree-checkbox-60" role="switch" type="checkbox"/><label for="toctree-checkbox-60"><div class="visually-hidden">Toggle navigation of 20.2.3.20. SerializedPayload</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l5"><a class="reference internal" href="../../rtps/common/SerializedPayload/defines.html">20.2.3.20.1. Macro definitions (#define)</a></li>
+<li class="toctree-l5"><a class="reference internal" href="../../rtps/common/SerializedPayload/SerializedPayload_t.html">20.2.3.20.2. SerializedPayload_t</a></li>
+</ul>
+</li>
+<li class="toctree-l4 has-children"><a class="reference internal" href="../../rtps/common/Time_t/time_toc.html">20.2.3.21. RTPS Time_t</a><input class="toctree-checkbox" id="toctree-checkbox-61" name="toctree-checkbox-61" role="switch" type="checkbox"/><label for="toctree-checkbox-61"><div class="visually-hidden">Toggle navigation of 20.2.3.21. RTPS Time_t</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l5"><a class="reference internal" href="../../rtps/common/Time_t/defines.html">20.2.3.21.1. Macro definitions (#define)</a></li>
+<li class="toctree-l5"><a class="reference internal" href="../../rtps/common/Time_t/operators.html">20.2.3.21.2. Time_t RTPS Operators</a></li>
+<li class="toctree-l5"><a class="reference internal" href="../../rtps/common/Time_t/Time_t.html">20.2.3.21.3. RTPS layer Time_t</a></li>
+</ul>
+</li>
+<li class="toctree-l4 has-children"><a class="reference internal" href="../../rtps/common/Token/token_toc.html">20.2.3.22. Token</a><input class="toctree-checkbox" id="toctree-checkbox-62" name="toctree-checkbox-62" role="switch" type="checkbox"/><label for="toctree-checkbox-62"><div class="visually-hidden">Toggle navigation of 20.2.3.22. Token</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l5"><a class="reference internal" href="../../rtps/common/Token/AuthenticatedPeerCredentialToken.html">20.2.3.22.1. AuthenticatedPeerCredentialToken</a></li>
+<li class="toctree-l5"><a class="reference internal" href="../../rtps/common/Token/DataHolder.html">20.2.3.22.2. DataHolder</a></li>
+<li class="toctree-l5"><a class="reference internal" href="../../rtps/common/Token/DataHolderHelper.html">20.2.3.22.3. DataHolderHelper</a></li>
+<li class="toctree-l5"><a class="reference internal" href="../../rtps/common/Token/DataHolderSeq.html">20.2.3.22.4. DataHolderSeq</a></li>
+<li class="toctree-l5"><a class="reference internal" href="../../rtps/common/Token/IdentityStatusToken.html">20.2.3.22.5. IdentityStatusToken</a></li>
+<li class="toctree-l5"><a class="reference internal" href="../../rtps/common/Token/IdentityToken.html">20.2.3.22.6. IdentityToken</a></li>
+<li class="toctree-l5"><a class="reference internal" href="../../rtps/common/Token/PermissionsCredentialToken.html">20.2.3.22.7. PermissionsCredentialToken</a></li>
+<li class="toctree-l5"><a class="reference internal" href="../../rtps/common/Token/PermissionsToken.html">20.2.3.22.8. PermissionsToken</a></li>
+<li class="toctree-l5"><a class="reference internal" href="../../rtps/common/Token/Token.html">20.2.3.22.9. Token</a></li>
+</ul>
+</li>
+<li class="toctree-l4 has-children"><a class="reference internal" href="../../rtps/common/Types/types_toc.html">20.2.3.23. Types</a><input class="toctree-checkbox" id="toctree-checkbox-63" name="toctree-checkbox-63" role="switch" type="checkbox"/><label for="toctree-checkbox-63"><div class="visually-hidden">Toggle navigation of 20.2.3.23. Types</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l5"><a class="reference internal" href="../../rtps/common/Types/BuiltinEndpointSet_t.html">20.2.3.23.1. BuiltinEndpointSet_t</a></li>
+<li class="toctree-l5"><a class="reference internal" href="../../rtps/common/Types/const_values.html">20.2.3.23.2. Const values</a></li>
+<li class="toctree-l5"><a class="reference internal" href="../../rtps/common/Types/Count_t.html">20.2.3.23.3. Count_t</a></li>
+<li class="toctree-l5"><a class="reference internal" href="../../rtps/common/Types/defines.html">20.2.3.23.4. Macro definitions (#define)</a></li>
+<li class="toctree-l5"><a class="reference internal" href="../../rtps/common/Types/DurabilityKind_t.html">20.2.3.23.5. DurabilityKind_t</a></li>
+<li class="toctree-l5"><a class="reference internal" href="../../rtps/common/Types/Endianness_t.html">20.2.3.23.6. Endianness_t</a></li>
+<li class="toctree-l5"><a class="reference internal" href="../../rtps/common/Types/EndpointKind_t.html">20.2.3.23.7. EndpointKind_t</a></li>
+<li class="toctree-l5"><a class="reference internal" href="../../rtps/common/Types/octet.html">20.2.3.23.8. octet</a></li>
+<li class="toctree-l5"><a class="reference internal" href="../../rtps/common/Types/ProtocolVersion_t.html">20.2.3.23.9. ProtocolVersion_t</a></li>
+<li class="toctree-l5"><a class="reference internal" href="../../rtps/common/Types/ReliabilityKind_t.html">20.2.3.23.10. ReliabilityKind_t</a></li>
+<li class="toctree-l5"><a class="reference internal" href="../../rtps/common/Types/SubmessageFlag.html">20.2.3.23.11. SubmessageFlag</a></li>
+<li class="toctree-l5"><a class="reference internal" href="../../rtps/common/Types/TopicKind_t.html">20.2.3.23.12. TopicKind_t</a></li>
+<li class="toctree-l5"><a class="reference internal" href="../../rtps/common/Types/VendorId_t.html">20.2.3.23.13. VendorId_t</a></li>
+</ul>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="../../rtps/common/WriteParams/WriteParams.html">20.2.3.24. WriteParams</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../rtps/Endpoint.html">20.2.4. Endpoint</a></li>
+<li class="toctree-l3 has-children"><a class="reference internal" href="../../rtps/flowcontrol/flowcontrol.html">20.2.5. Flow control</a><input class="toctree-checkbox" id="toctree-checkbox-64" name="toctree-checkbox-64" role="switch" type="checkbox"/><label for="toctree-checkbox-64"><div class="visually-hidden">Toggle navigation of 20.2.5. Flow control</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../rtps/flowcontrol/FlowControllerDescriptor.html">20.2.5.1. FlowControllerDescriptor</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../rtps/flowcontrol/FlowControllerSchedulerPolicy.html">20.2.5.2. FlowControllerSchedulerPolicy</a></li>
+</ul>
+</li>
+<li class="toctree-l3 has-children"><a class="reference internal" href="../../rtps/history/history.html">20.2.6. History</a><input class="toctree-checkbox" id="toctree-checkbox-65" name="toctree-checkbox-65" role="switch" type="checkbox"/><label for="toctree-checkbox-65"><div class="visually-hidden">Toggle navigation of 20.2.6. History</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../rtps/history/History_class.html">20.2.6.1. History</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../rtps/history/IChangePool.html">20.2.6.2. IChangePool</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../rtps/history/IPayloadPool.html">20.2.6.3. IPayloadPool</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../rtps/history/ReaderHistory.html">20.2.6.4. ReaderHistory</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../rtps/history/WriterHistory.html">20.2.6.5. WriterHistory</a></li>
+</ul>
+</li>
+<li class="toctree-l3 has-children"><a class="reference internal" href="../../rtps/participant/participant.html">20.2.7. RTPSParticipant</a><input class="toctree-checkbox" id="toctree-checkbox-66" name="toctree-checkbox-66" role="switch" type="checkbox"/><label for="toctree-checkbox-66"><div class="visually-hidden">Toggle navigation of 20.2.7. RTPSParticipant</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l4 has-children"><a class="reference internal" href="../../rtps/participant/participantdiscoveryinfo/participantdiscoveryinfo.html">20.2.7.1. ParticipantDiscoveryInfo</a><input class="toctree-checkbox" id="toctree-checkbox-67" name="toctree-checkbox-67" role="switch" type="checkbox"/><label for="toctree-checkbox-67"><div class="visually-hidden">Toggle navigation of 20.2.7.1. ParticipantDiscoveryInfo</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l5"><a class="reference internal" href="../../rtps/participant/participantdiscoveryinfo/ParticipantAuthenticationInfo.html">20.2.7.1.1. ParticipantAuthenticationInfo</a></li>
+<li class="toctree-l5"><a class="reference internal" href="../../rtps/participant/participantdiscoveryinfo/ParticipantDiscoveryStatus.html">20.2.7.1.2. ParticipantDiscoveryStatus</a></li>
+<li class="toctree-l5"><a class="reference internal" href="../../rtps/participant/participantdiscoveryinfo/ReaderDiscoveryStatus.html">20.2.7.1.3. ReaderDiscoveryStatus</a></li>
+<li class="toctree-l5"><a class="reference internal" href="../../rtps/participant/participantdiscoveryinfo/WriterDiscoveryStatus.html">20.2.7.1.4. WriterDiscoveryStatus</a></li>
+</ul>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="../../rtps/participant/RTPSParticipant.html">20.2.7.2. RTPSParticipant</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../rtps/participant/RTPSParticipantListener.html">20.2.7.3. RTPSParticipantListener</a></li>
+</ul>
+</li>
+<li class="toctree-l3 has-children"><a class="reference internal" href="../../rtps/reader/reader.html">20.2.8. RTPSReader</a><input class="toctree-checkbox" id="toctree-checkbox-68" name="toctree-checkbox-68" role="switch" type="checkbox"/><label for="toctree-checkbox-68"><div class="visually-hidden">Toggle navigation of 20.2.8. RTPSReader</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../rtps/reader/ReaderListener.html">20.2.8.1. ReaderListener</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../rtps/reader/RTPSReader.html">20.2.8.2. RTPSReader</a></li>
+</ul>
+</li>
+<li class="toctree-l3 has-children"><a class="reference internal" href="../../rtps/resources/resources.html">20.2.9. Resources</a><input class="toctree-checkbox" id="toctree-checkbox-69" name="toctree-checkbox-69" role="switch" type="checkbox"/><label for="toctree-checkbox-69"><div class="visually-hidden">Toggle navigation of 20.2.9. Resources</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../rtps/resources/MemoryManagementPolicy.html">20.2.9.1. MemoryManagementPolicy</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../rtps/RTPSDomain.html">20.2.10. RTPSDomain</a></li>
+<li class="toctree-l3 has-children"><a class="reference internal" href="../../rtps/writer/writer.html">20.2.11. RTPSWriter</a><input class="toctree-checkbox" id="toctree-checkbox-70" name="toctree-checkbox-70" role="switch" type="checkbox"/><label for="toctree-checkbox-70"><div class="visually-hidden">Toggle navigation of 20.2.11. RTPSWriter</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../rtps/writer/RTPSWriter.html">20.2.11.1. RTPSWriter</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../rtps/writer/WriterListener.html">20.2.11.2. WriterListener</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../transport/transport.html">20.3. Transport</a><input class="toctree-checkbox" id="toctree-checkbox-71" name="toctree-checkbox-71" role="switch" type="checkbox"/><label for="toctree-checkbox-71"><div class="visually-hidden">Toggle navigation of 20.3. Transport</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l3 has-children"><a class="reference internal" href="../../transport/transport_generic_interfaces.html">20.3.1. Transport Generic Interfaces</a><input class="toctree-checkbox" id="toctree-checkbox-72" name="toctree-checkbox-72" role="switch" type="checkbox"/><label for="toctree-checkbox-72"><div class="visually-hidden">Toggle navigation of 20.3.1. Transport Generic Interfaces</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../transport/transport_generic_interfaces/transport_descriptor_interface.html">20.3.1.1. TransportDescriptorInterface</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../transport/transport_generic_interfaces/transport_interface.html">20.3.1.2. TransportInterface</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../transport/transport_generic_interfaces/transport_receiver_interface.html">20.3.1.3. TransportReceiverInterface</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../transport/transport_generic_interfaces/port_based_transport_descriptor.html">20.3.1.4. PortBasedTransportDescriptor</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../transport/transport_generic_interfaces/socket_transport_descriptor.html">20.3.1.5. SocketTransportDescriptor</a></li>
+</ul>
+</li>
+<li class="toctree-l3 has-children"><a class="reference internal" href="../../transport/chaining_transport.html">20.3.2. Chaining of transports</a><input class="toctree-checkbox" id="toctree-checkbox-73" name="toctree-checkbox-73" role="switch" type="checkbox"/><label for="toctree-checkbox-73"><div class="visually-hidden">Toggle navigation of 20.3.2. Chaining of transports</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../transport/chaining_transport/chaining_transport_descriptor.html">20.3.2.1. ChainingTransportDescriptor</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../transport/chaining_transport/chaining_transport.html">20.3.2.2. ChainingTransport</a></li>
+</ul>
+</li>
+<li class="toctree-l3 has-children"><a class="reference internal" href="../../transport/udp_transport_interface.html">20.3.3. UDP Transport</a><input class="toctree-checkbox" id="toctree-checkbox-74" name="toctree-checkbox-74" role="switch" type="checkbox"/><label for="toctree-checkbox-74"><div class="visually-hidden">Toggle navigation of 20.3.3. UDP Transport</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../transport/udp_transport/udp_transport_descriptor.html">20.3.3.1. UDPTransportDescriptor</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../transport/udp_transport/udpv4_transport_descriptor.html">20.3.3.2. UDPv4TransportDescriptor</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../transport/udp_transport/udpv6_transport_descriptor.html">20.3.3.3. UDPv6TransportDescriptor</a></li>
+</ul>
+</li>
+<li class="toctree-l3 has-children"><a class="reference internal" href="../../transport/tcp_transport_interface.html">20.3.4. TCP Transport</a><input class="toctree-checkbox" id="toctree-checkbox-75" name="toctree-checkbox-75" role="switch" type="checkbox"/><label for="toctree-checkbox-75"><div class="visually-hidden">Toggle navigation of 20.3.4. TCP Transport</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../transport/tcp_transport/tcp_transport_descriptor.html">20.3.4.1. TCPTransportDescriptor</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../transport/tcp_transport/tcpv4_transport_descriptor.html">20.3.4.2. TCPv4TransportDescriptor</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../transport/tcp_transport/tcpv6_transport_descriptor.html">20.3.4.3. TCPv6TransportDescriptor</a></li>
+</ul>
+</li>
+<li class="toctree-l3 has-children"><a class="reference internal" href="../../transport/shm_transport_interface.html">20.3.5. Shared Memory Transport</a><input class="toctree-checkbox" id="toctree-checkbox-76" name="toctree-checkbox-76" role="switch" type="checkbox"/><label for="toctree-checkbox-76"><div class="visually-hidden">Toggle navigation of 20.3.5. Shared Memory Transport</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../transport/shm_transport/shared_mem_transport_descriptor.html">20.3.5.1. SharedMemTransportDescriptor</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../transport/shm_transport/test_shared_mem_transport_descriptor.html">20.3.5.2. SharedMemTransportDescriptor</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../log/log.html">20.4. LOG</a><input class="toctree-checkbox" id="toctree-checkbox-77" name="toctree-checkbox-77" role="switch" type="checkbox"/><label for="toctree-checkbox-77"><div class="visually-hidden">Toggle navigation of 20.4. LOG</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l3 has-children"><a class="reference internal" href="../../log/colors.html">20.4.1. Colors</a><input class="toctree-checkbox" id="toctree-checkbox-78" name="toctree-checkbox-78" role="switch" type="checkbox"/><label for="toctree-checkbox-78"><div class="visually-hidden">Toggle navigation of 20.4.1. Colors</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../log/colors/colors.html">20.4.1.1. Color Blue</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../log/colors/colors.html#color-bright">20.4.1.2. Color Bright</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../log/colors/colors.html#color-bright-blue">20.4.1.3. Color Bright Blue</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../log/colors/colors.html#color-bright-cyan">20.4.1.4. Color Bright Cyan</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../log/colors/colors.html#color-bright-green">20.4.1.5. Color Bright Green</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../log/colors/colors.html#color-bright-magenta">20.4.1.6. Color Bright Magenta</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../log/colors/colors.html#color-bright-red">20.4.1.7. Color Bright Red</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../log/colors/colors.html#color-bright-white">20.4.1.8. Color Bright White</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../log/colors/colors.html#color-bright-yellow">20.4.1.9. Color Bright Yellow</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../log/colors/colors.html#color-cyan">20.4.1.10. Color Cyan</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../log/colors/colors.html#color-def">20.4.1.11. Color Def</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../log/colors/colors.html#color-green">20.4.1.12. Color Green</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../log/colors/colors.html#color-magenta">20.4.1.13. Color Magenta</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../log/colors/colors.html#color-red">20.4.1.14. Color Red</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../log/colors/colors.html#color-white">20.4.1.15. Color White</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../log/colors/colors.html#color-yellow">20.4.1.16. Color Yellow</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../log/file_consumer.html">20.4.2. FileConsumer</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../log/log_class.html">20.4.3. Log</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../log/log_consumer.html">20.4.4. LogConsumer</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../log/logerror.html">20.4.5. EPROSIMA_LOG_ERROR</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../log/loginfo.html">20.4.6. EPROSIMA_LOG_INFO</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../log/logwarning.html">20.4.7. EPROSIMA_LOG_WARNING</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../log/ostream_consumer.html">20.4.8. OStreamConsumer</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../log/stdout_consumer.html">20.4.9. StdoutConsumer</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../log/stdouterr_consumer.html">20.4.10. StdoutErrConsumer</a></li>
+</ul>
+</li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../statistics/statistics.html">20.5. Statistics</a><input class="toctree-checkbox" id="toctree-checkbox-79" name="toctree-checkbox-79" role="switch" type="checkbox"/><label for="toctree-checkbox-79"><div class="visually-hidden">Toggle navigation of 20.5. Statistics</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../statistics/domain_participant.html">20.5.1. DomainParticipant</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../statistics/datawriter_qos.html">20.5.2. DataWriterQos</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../statistics/datareader_qos.html">20.5.3. DataReaderQos</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../statistics/topic_names.html">20.5.4. Topic names</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../../python_api_reference/python_api_reference.html">21. Python API Reference</a><input class="toctree-checkbox" id="toctree-checkbox-80" name="toctree-checkbox-80" role="switch" type="checkbox"/><label for="toctree-checkbox-80"><div class="visually-hidden">Toggle navigation of 21. Python API Reference</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../../python_api_reference/dds_pim/dds_pim.html">21.1. DDS DCPS PIM</a><input class="toctree-checkbox" id="toctree-checkbox-81" name="toctree-checkbox-81" role="switch" type="checkbox"/><label for="toctree-checkbox-81"><div class="visually-hidden">Toggle navigation of 21.1. DDS DCPS PIM</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l3 has-children"><a class="reference internal" href="../../../python_api_reference/dds_pim/core/core.html">21.1.1. Core</a><input class="toctree-checkbox" id="toctree-checkbox-82" name="toctree-checkbox-82" role="switch" type="checkbox"/><label for="toctree-checkbox-82"><div class="visually-hidden">Toggle navigation of 21.1.1. Core</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../python_api_reference/dds_pim/core/entity.html">21.1.1.1. Entity</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../python_api_reference/dds_pim/core/domainentity.html">21.1.1.2. DomainEntity</a></li>
+<li class="toctree-l4 has-children"><a class="reference internal" href="../../../python_api_reference/dds_pim/core/policy/policy.html">21.1.1.3. Policy</a><input class="toctree-checkbox" id="toctree-checkbox-83" name="toctree-checkbox-83" role="switch" type="checkbox"/><label for="toctree-checkbox-83"><div class="visually-hidden">Toggle navigation of 21.1.1.3. Policy</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l5"><a class="reference internal" href="../../../python_api_reference/dds_pim/core/policy/datarepresentationid.html">21.1.1.3.1. DataRepresentationId</a></li>
+<li class="toctree-l5"><a class="reference internal" href="../../../python_api_reference/dds_pim/core/policy/datarepresentationqospolicy.html">21.1.1.3.2. DataRepresentationQosPolicy</a></li>
+<li class="toctree-l5"><a class="reference internal" href="../../../python_api_reference/dds_pim/core/policy/datasharingqospolicy.html">21.1.1.3.3. DataSharingQosPolicy</a></li>
+<li class="toctree-l5"><a class="reference internal" href="../../../python_api_reference/dds_pim/core/policy/datasharingkind.html">21.1.1.3.4. DataSharingKind</a></li>
+<li class="toctree-l5"><a class="reference internal" href="../../../python_api_reference/dds_pim/core/policy/deadlineqospolicy.html">21.1.1.3.5. DeadlineQosPolicy</a></li>
+<li class="toctree-l5"><a class="reference internal" href="../../../python_api_reference/dds_pim/core/policy/destinationorderqospolicy.html">21.1.1.3.6. DestinationOrderQosPolicy</a></li>
+<li class="toctree-l5"><a class="reference internal" href="../../../python_api_reference/dds_pim/core/policy/destinationorderqospolicykind.html">21.1.1.3.7. DestinationOrderQosPolicyKind</a></li>
+<li class="toctree-l5"><a class="reference internal" href="../../../python_api_reference/dds_pim/core/policy/disablepositiveacksqospolicy.html">21.1.1.3.8. DisablePositiveACKsQosPolicy</a></li>
+<li class="toctree-l5"><a class="reference internal" href="../../../python_api_reference/dds_pim/core/policy/durabilityqospolicy.html">21.1.1.3.9. DurabilityQosPolicy</a></li>
+<li class="toctree-l5"><a class="reference internal" href="../../../python_api_reference/dds_pim/core/policy/durabilityqospolicykind.html">21.1.1.3.10. DurabilityQosPolicyKind</a></li>
+<li class="toctree-l5"><a class="reference internal" href="../../../python_api_reference/dds_pim/core/policy/durabilityserviceqospolicy.html">21.1.1.3.11. DurabilityServiceQosPolicy</a></li>
+<li class="toctree-l5"><a class="reference internal" href="../../../python_api_reference/dds_pim/core/policy/entityfactoryqospolicy.html">21.1.1.3.12. EntityFactoryQosPolicy</a></li>
+<li class="toctree-l5"><a class="reference internal" href="../../../python_api_reference/dds_pim/core/policy/genericdataqospolicy.html">21.1.1.3.13. GenericDataQosPolicy</a></li>
+<li class="toctree-l5"><a class="reference internal" href="../../../python_api_reference/dds_pim/core/policy/groupdataqospolicy.html">21.1.1.3.14. GroupDataQosPolicy</a></li>
+<li class="toctree-l5"><a class="reference internal" href="../../../python_api_reference/dds_pim/core/policy/historyqospolicy.html">21.1.1.3.15. HistoryQosPolicy</a></li>
+<li class="toctree-l5"><a class="reference internal" href="../../../python_api_reference/dds_pim/core/policy/historyqospolicykind.html">21.1.1.3.16. HistoryQosPolicyKind</a></li>
+<li class="toctree-l5"><a class="reference internal" href="../../../python_api_reference/dds_pim/core/policy/latencybudgetqospolicy.html">21.1.1.3.17. LatencyBudgetQosPolicy</a></li>
+<li class="toctree-l5"><a class="reference internal" href="../../../python_api_reference/dds_pim/core/policy/lifespanqospolicy.html">21.1.1.3.18. LifespanQosPolicy</a></li>
+<li class="toctree-l5"><a class="reference internal" href="../../../python_api_reference/dds_pim/core/policy/livelinessqospolicy.html">21.1.1.3.19. LivelinessQosPolicy</a></li>
+<li class="toctree-l5"><a class="reference internal" href="../../../python_api_reference/dds_pim/core/policy/livelinessqospolicykind.html">21.1.1.3.20. LivelinessQosPolicyKind</a></li>
+<li class="toctree-l5"><a class="reference internal" href="../../../python_api_reference/dds_pim/core/policy/ownershipqospolicy.html">21.1.1.3.21. OwnershipQosPolicy</a></li>
+<li class="toctree-l5"><a class="reference internal" href="../../../python_api_reference/dds_pim/core/policy/ownershipqospolicykind.html">21.1.1.3.22. OwnershipQosPolicyKind</a></li>
+<li class="toctree-l5"><a class="reference internal" href="../../../python_api_reference/dds_pim/core/policy/ownershipstrengthqospolicy.html">21.1.1.3.23. OwnershipStrengthQosPolicy</a></li>
+<li class="toctree-l5"><a class="reference internal" href="../../../python_api_reference/dds_pim/core/policy/participantresourcelimitsqos.html">21.1.1.3.24. ParticipantResourceLimitsQos</a></li>
+<li class="toctree-l5"><a class="reference internal" href="../../../python_api_reference/dds_pim/core/policy/partition_t.html">21.1.1.3.25. Partition_t</a></li>
+<li class="toctree-l5"><a class="reference internal" href="../../../python_api_reference/dds_pim/core/policy/partitionqospolicy.html">21.1.1.3.26. PartitionQosPolicy</a></li>
+<li class="toctree-l5"><a class="reference internal" href="../../../python_api_reference/dds_pim/core/policy/presentationqospolicy.html">21.1.1.3.27. PresentationQosPolicy</a></li>
+<li class="toctree-l5"><a class="reference internal" href="../../../python_api_reference/dds_pim/core/policy/presentationqospolicyaccessscopekind.html">21.1.1.3.28. PresentationQosPolicyAccessScopeKind</a></li>
+<li class="toctree-l5"><a class="reference internal" href="../../../python_api_reference/dds_pim/core/policy/propertypolicyqos.html">21.1.1.3.29. PropertyPolicyQos</a></li>
+<li class="toctree-l5"><a class="reference internal" href="../../../python_api_reference/dds_pim/core/policy/publishmodeqospolicy.html">21.1.1.3.30. PublishModeQosPolicy</a></li>
+<li class="toctree-l5"><a class="reference internal" href="../../../python_api_reference/dds_pim/core/policy/publishmodeqospolicykind.html">21.1.1.3.31. PublishModeQosPolicyKind</a></li>
+<li class="toctree-l5"><a class="reference internal" href="../../../python_api_reference/dds_pim/core/policy/qospolicy.html">21.1.1.3.32. QosPolicy</a></li>
+<li class="toctree-l5"><a class="reference internal" href="../../../python_api_reference/dds_pim/core/policy/qospolicyid_t.html">21.1.1.3.33. QosPolicyId_t</a></li>
+<li class="toctree-l5"><a class="reference internal" href="../../../python_api_reference/dds_pim/core/policy/readerdatalifecycleqospolicy.html">21.1.1.3.34. ReaderDataLifecycleQosPolicy</a></li>
+<li class="toctree-l5"><a class="reference internal" href="../../../python_api_reference/dds_pim/core/policy/reliabilityqospolicy.html">21.1.1.3.35. ReliabilityQosPolicy</a></li>
+<li class="toctree-l5"><a class="reference internal" href="../../../python_api_reference/dds_pim/core/policy/reliabilityqospolicykind.html">21.1.1.3.36. ReliabilityQosPolicyKind</a></li>
+<li class="toctree-l5"><a class="reference internal" href="../../../python_api_reference/dds_pim/core/policy/resourcelimitsqospolicy.html">21.1.1.3.37. ResourceLimitsQosPolicy</a></li>
+<li class="toctree-l5"><a class="reference internal" href="../../../python_api_reference/dds_pim/core/policy/rtpsendpointqos.html">21.1.1.3.38. RTPSEndpointQos</a></li>
+<li class="toctree-l5"><a class="reference internal" href="../../../python_api_reference/dds_pim/core/policy/timebasedfilterqospolicy.html">21.1.1.3.39. TimeBasedFilterQosPolicy</a></li>
+<li class="toctree-l5"><a class="reference internal" href="../../../python_api_reference/dds_pim/core/policy/topicdataqospolicy.html">21.1.1.3.40. TopicDataQosPolicy</a></li>
+<li class="toctree-l5"><a class="reference internal" href="../../../python_api_reference/dds_pim/core/policy/transportconfigqos.html">21.1.1.3.41. TransportConfigQos</a></li>
+<li class="toctree-l5"><a class="reference internal" href="../../../python_api_reference/dds_pim/core/policy/transportpriorityqospolicy.html">21.1.1.3.42. TransportPriorityQosPolicy</a></li>
+<li class="toctree-l5"><a class="reference internal" href="../../../python_api_reference/dds_pim/core/policy/typeconsistencyenforcementqospolicy.html">21.1.1.3.43. TypeConsistencyEnforcementQosPolicy</a></li>
+<li class="toctree-l5"><a class="reference internal" href="../../../python_api_reference/dds_pim/core/policy/typeconsistencykind.html">21.1.1.3.44. TypeConsistencyKind</a></li>
+<li class="toctree-l5"><a class="reference internal" href="../../../python_api_reference/dds_pim/core/policy/userdataqospolicy.html">21.1.1.3.45. UserDataQosPolicy</a></li>
+<li class="toctree-l5"><a class="reference internal" href="../../../python_api_reference/dds_pim/core/policy/wireprotocolconfigqos.html">21.1.1.3.46. WireProtocolConfigQos</a></li>
+<li class="toctree-l5"><a class="reference internal" href="../../../python_api_reference/dds_pim/core/policy/writerdatalifecycleqospolicy.html">21.1.1.3.47. WriterDataLifecycleQosPolicy</a></li>
+<li class="toctree-l5"><a class="reference internal" href="../../../python_api_reference/dds_pim/core/policy/writerresourcelimitsqos.html">21.1.1.3.48. WriterResourceLimitsQos</a></li>
+</ul>
+</li>
+<li class="toctree-l4 has-children"><a class="reference internal" href="../../../python_api_reference/dds_pim/core/status/status.html">21.1.1.4. Status</a><input class="toctree-checkbox" id="toctree-checkbox-84" name="toctree-checkbox-84" role="switch" type="checkbox"/><label for="toctree-checkbox-84"><div class="visually-hidden">Toggle navigation of 21.1.1.4. Status</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l5"><a class="reference internal" href="../../../python_api_reference/dds_pim/core/status/basestatus.html">21.1.1.4.1. BaseStatus</a></li>
+<li class="toctree-l5"><a class="reference internal" href="../../../python_api_reference/dds_pim/core/status/deadlinemissedstatus.html">21.1.1.4.2. DeadlineMissedStatus</a></li>
+<li class="toctree-l5"><a class="reference internal" href="../../../python_api_reference/dds_pim/core/status/incompatibleqosstatus.html">21.1.1.4.3. IncompatibleQosStatus</a></li>
+<li class="toctree-l5"><a class="reference internal" href="../../../python_api_reference/dds_pim/core/status/inconsistenttopicstatus.html">21.1.1.4.4. InconsistentTopicStatus</a></li>
+<li class="toctree-l5"><a class="reference internal" href="../../../python_api_reference/dds_pim/core/status/livelinesschangedstatus.html">21.1.1.4.5. LivelinessChangedStatus</a></li>
+<li class="toctree-l5"><a class="reference internal" href="../../../python_api_reference/dds_pim/core/status/matchedstatus.html">21.1.1.4.6. MatchedStatus</a></li>
+<li class="toctree-l5"><a class="reference internal" href="../../../python_api_reference/dds_pim/core/status/offereddeadlinemissedstatus.html">21.1.1.4.7. OfferedDeadlineMissedStatus</a></li>
+<li class="toctree-l5"><a class="reference internal" href="../../../python_api_reference/dds_pim/core/status/offeredincompatibleqosstatus.html">21.1.1.4.8. OfferedIncompatibleQosStatus</a></li>
+<li class="toctree-l5"><a class="reference internal" href="../../../python_api_reference/dds_pim/core/status/publicationmatchedstatus.html">21.1.1.4.9. PublicationMatchedStatus</a></li>
+<li class="toctree-l5"><a class="reference internal" href="../../../python_api_reference/dds_pim/core/status/qospolicycount.html">21.1.1.4.10. QosPolicyCount</a></li>
+<li class="toctree-l5"><a class="reference internal" href="../../../python_api_reference/dds_pim/core/status/qospolicycountseq.html">21.1.1.4.11. QosPolicyCountSeq</a></li>
+<li class="toctree-l5"><a class="reference internal" href="../../../python_api_reference/dds_pim/core/status/requesteddeadlinemissedstatus.html">21.1.1.4.12. RequestedDeadlineMissedStatus</a></li>
+<li class="toctree-l5"><a class="reference internal" href="../../../python_api_reference/dds_pim/core/status/requestedincompatibleqosstatus.html">21.1.1.4.13. RequestedIncompatibleQosStatus</a></li>
+<li class="toctree-l5"><a class="reference internal" href="../../../python_api_reference/dds_pim/core/status/rtpslivelinessloststatus.html">21.1.1.4.14. LivelinessLostStatus</a></li>
+<li class="toctree-l5"><a class="reference internal" href="../../../python_api_reference/dds_pim/core/status/sampleloststatus.html">21.1.1.4.15. SampleLostStatus</a></li>
+<li class="toctree-l5"><a class="reference internal" href="../../../python_api_reference/dds_pim/core/status/samplerejectedstatus.html">21.1.1.4.16. SampleRejectedStatus</a></li>
+<li class="toctree-l5"><a class="reference internal" href="../../../python_api_reference/dds_pim/core/status/samplerejectedstatuskind.html">21.1.1.4.17. SampleRejectedStatusKind</a></li>
+<li class="toctree-l5"><a class="reference internal" href="../../../python_api_reference/dds_pim/core/status/statusmask.html">21.1.1.4.18. StatusMask</a></li>
+<li class="toctree-l5"><a class="reference internal" href="../../../python_api_reference/dds_pim/core/status/subscriptionmatchedstatus.html">21.1.1.4.19. SubscriptionMatchedStatus</a></li>
+</ul>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="../../../python_api_reference/dds_pim/core/loanablearray.html">21.1.1.5. LoanableArray</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../python_api_reference/dds_pim/core/loanablecollection.html">21.1.1.6. LoanableCollection</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../python_api_reference/dds_pim/core/loanablesequence.html">21.1.1.7. LoanableSequence</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../python_api_reference/dds_pim/core/stackallocatedsequence.html">21.1.1.8. StackAllocatedSequence</a></li>
+</ul>
+</li>
+<li class="toctree-l3 has-children"><a class="reference internal" href="../../../python_api_reference/dds_pim/domain/domain.html">21.1.2. Domain</a><input class="toctree-checkbox" id="toctree-checkbox-85" name="toctree-checkbox-85" role="switch" type="checkbox"/><label for="toctree-checkbox-85"><div class="visually-hidden">Toggle navigation of 21.1.2. Domain</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../python_api_reference/dds_pim/domain/domainparticipant.html">21.1.2.1. DomainParticipant</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../python_api_reference/dds_pim/domain/domainparticipantfactory.html">21.1.2.2. DomainParticipantFactory</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../python_api_reference/dds_pim/domain/domainparticipantfactoryqos.html">21.1.2.3. DomainParticipantFactoryQos</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../python_api_reference/dds_pim/domain/domainparticipantlistener.html">21.1.2.4. DomainParticipantListener</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../python_api_reference/dds_pim/domain/domainparticipantqos.html">21.1.2.5. DomainParticipantQos</a></li>
+</ul>
+</li>
+<li class="toctree-l3 has-children"><a class="reference internal" href="../../../python_api_reference/dds_pim/publisher/publisher.html">21.1.3. Publisher</a><input class="toctree-checkbox" id="toctree-checkbox-86" name="toctree-checkbox-86" role="switch" type="checkbox"/><label for="toctree-checkbox-86"><div class="visually-hidden">Toggle navigation of 21.1.3. Publisher</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../python_api_reference/dds_pim/publisher/datawriter.html">21.1.3.1. DataWriter</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../python_api_reference/dds_pim/publisher/datawriterlistener.html">21.1.3.2. DataWriterListener</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../python_api_reference/dds_pim/publisher/datawriterqos.html">21.1.3.3. DataWriterQos</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../python_api_reference/dds_pim/publisher/publisher_class.html">21.1.3.4. Publisher</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../python_api_reference/dds_pim/publisher/publisherlistener.html">21.1.3.5. PublisherListener</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../python_api_reference/dds_pim/publisher/publisherqos.html">21.1.3.6. PublisherQos</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../python_api_reference/dds_pim/publisher/rtpsreliablewriterqos.html">21.1.3.7. RTPSReliableWriterQos</a></li>
+</ul>
+</li>
+<li class="toctree-l3 has-children"><a class="reference internal" href="../../../python_api_reference/dds_pim/subscriber/subscriber.html">21.1.4. Subscriber</a><input class="toctree-checkbox" id="toctree-checkbox-87" name="toctree-checkbox-87" role="switch" type="checkbox"/><label for="toctree-checkbox-87"><div class="visually-hidden">Toggle navigation of 21.1.4. Subscriber</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../python_api_reference/dds_pim/subscriber/datareader.html">21.1.4.1. DataReader</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../python_api_reference/dds_pim/subscriber/datareaderlistener.html">21.1.4.2. DataReaderListener</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../python_api_reference/dds_pim/subscriber/datareaderqos.html">21.1.4.3. DataReaderQos</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../python_api_reference/dds_pim/subscriber/instancestatekind.html">21.1.4.4. InstanceStateKind</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../python_api_reference/dds_pim/subscriber/readerresourcelimitsqos.html">21.1.4.5. ReaderResourceLimitsQos</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../python_api_reference/dds_pim/subscriber/rtpsreliablereaderqos.html">21.1.4.6. RTPSReliableReaderQos</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../python_api_reference/dds_pim/subscriber/sampleinfo.html">21.1.4.7. SampleInfo</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../python_api_reference/dds_pim/subscriber/samplestatekind.html">21.1.4.8. SampleStateKind</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../python_api_reference/dds_pim/subscriber/subscriber_class.html">21.1.4.9. Subscriber</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../python_api_reference/dds_pim/subscriber/subscriberlistener.html">21.1.4.10. SubscriberListener</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../python_api_reference/dds_pim/subscriber/subscriberqos.html">21.1.4.11. SubscriberQos</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../python_api_reference/dds_pim/subscriber/viewstatekind.html">21.1.4.12. ViewStateKind</a></li>
+</ul>
+</li>
+<li class="toctree-l3 has-children"><a class="reference internal" href="../../../python_api_reference/dds_pim/topic/topic.html">21.1.5. Topic</a><input class="toctree-checkbox" id="toctree-checkbox-88" name="toctree-checkbox-88" role="switch" type="checkbox"/><label for="toctree-checkbox-88"><div class="visually-hidden">Toggle navigation of 21.1.5. Topic</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../python_api_reference/dds_pim/topic/topic_class.html">21.1.5.1. Topic</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../python_api_reference/dds_pim/topic/topicdatatype.html">21.1.5.2. TopicDataType</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../python_api_reference/dds_pim/topic/topicdescription.html">21.1.5.3. TopicDescription</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../python_api_reference/dds_pim/topic/topiclistener.html">21.1.5.4. TopicListener</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../python_api_reference/dds_pim/topic/topicqos.html">21.1.5.5. TopicQos</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../python_api_reference/dds_pim/topic/typeidv1.html">21.1.5.6. TypeIdV1</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../python_api_reference/dds_pim/topic/typeinformation.html">21.1.5.7. TypeInformation</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../python_api_reference/dds_pim/topic/typeobjectv1.html">21.1.5.8. TypeObjectV1</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../python_api_reference/dds_pim/topic/typesupport.html">21.1.5.9. TypeSupport</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Fast DDS-Gen</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../../fastddsgen/introduction/introduction.html">1. Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../fastddsgen/usage/usage.html">2. Usage</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../fastddsgen/pubsub_app/pubsub_app.html">3. Building a publish/subscribe application</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../fastddsgen/python_bindings/python_bindings.html">4. Building Python auxiliary libraries</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../fastddsgen/dataTypes/dataTypes.html">5. Defining a data type via IDL</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../../../fastddsgen/interfaces/introduction.html">6. IDL interfaces <span class="sd-badge sd-outline-primary sd-text-primary" title="Exclusive to Fast DDS Pro">Pro</span></a><input class="toctree-checkbox" id="toctree-checkbox-89" name="toctree-checkbox-89" role="switch" type="checkbox"/><label for="toctree-checkbox-89"><div class="visually-hidden">Toggle navigation of 6. IDL interfaces Pro</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../../fastddsgen/interfaces/interfaces.html">6.1. Defining an IDL interface</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../fastddsgen/interfaces/exceptions.html">6.2. Exceptions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../fastddsgen/rpc_calculator_basic_app/intro.html">6.3. Building a RPC Client/Server application</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../fastddsgen/rpc_calculator_feed_app/intro.html">6.4. Building a RPC Client/Server application with data streaming</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../fastddsgen/rpc_server_schedule/intro.html">6.5. Customizing RPC Server request scheduling</a></li>
+</ul>
+</li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Fast DDS CLI</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../../fastddscli/cli/cli.html">1. CLI</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Docker Images</span></p>
+<ul>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../../../docker/docker.html">1. Docker Images</a><input class="toctree-checkbox" id="toctree-checkbox-90" name="toctree-checkbox-90" role="switch" type="checkbox"/><label for="toctree-checkbox-90"><div class="visually-hidden">Toggle navigation of 1. Docker Images</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../../docker/shm_docker.html">1.1. Leveraging Fast DDS SHM in Docker deployments</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../docker/fastdds/fast_dds.html">1.2. Fast DDS Image</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../docker/fastdds_suite/fast_dds_suite.html">1.3. Fast DDS Suite Image</a></li>
+</ul>
+</li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Versions</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../../notes/versions.html">Dependencies and compatibilities</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../notes/migration_guide.html">Migration Guide to Fast DDS v3</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../notes/notes.html">Version 3.7.0.1 <span class="sd-badge sd-outline-primary sd-text-primary" title="Exclusive to Fast DDS Pro">Pro</span></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../notes/notes_basic.html">Version 3.6.2</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../notes/previous_versions/supported_versions.html">Supported versions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../notes/previous_versions/previous_versions.html">EOL versions</a></li>
+</ul>
+
+</div>
+</div>
+
+      </div>
+      
+    </div>
+  </aside>
+  <div class="main">
+    <div class="content">
+      <div class="article-container">
+        <a href="#" class="back-to-top muted-link">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+            <path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8v12z"></path>
+          </svg>
+          <span>Back to top</span>
+        </a>
+        <div class="content-icon-container">
+          <div class="theme-toggle-container theme-toggle-content">
+            <button class="theme-toggle">
+              <div class="visually-hidden">Toggle Light / Dark / Auto color theme</div>
+              <svg class="theme-icon-when-auto-light"><use href="#svg-sun-with-moon"></use></svg>
+              <svg class="theme-icon-when-auto-dark"><use href="#svg-moon-with-sun"></use></svg>
+              <svg class="theme-icon-when-dark"><use href="#svg-moon"></use></svg>
+              <svg class="theme-icon-when-light"><use href="#svg-sun"></use></svg>
+            </button>
+          </div>
+          <label class="toc-overlay-icon toc-content-icon" for="__toc">
+            <div class="visually-hidden">Toggle table of contents sidebar</div>
+            <i class="icon"><svg><use href="#svg-toc"></use></svg></i>
+          </label>
+        </div>
+        <article role="main" id="furo-main-content">
+          <section class="api-ref" id="annotationdescriptor">
+<span id="api-pim-annotationdescriptor"></span><h1><span class="section-number">20.1.6.1.1. </span>AnnotationDescriptor<a class="headerlink" href="#annotationdescriptor" title="Link to this heading">¶</a></h1>
+<dl class="cpp class">
+<dt class="sig sig-object cpp" id="_CPPv4N8eprosima7fastdds3dds20AnnotationDescriptorE">
+<span id="_CPPv3N8eprosima7fastdds3dds20AnnotationDescriptorE"></span><span id="_CPPv2N8eprosima7fastdds3dds20AnnotationDescriptorE"></span><span id="eprosima::fastdds::dds::AnnotationDescriptor"></span><span class="target" id="classeprosima_1_1fastdds_1_1dds_1_1AnnotationDescriptor"></span><span class="k"><span class="pre">class</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">AnnotationDescriptor</span></span></span><a class="headerlink" href="#_CPPv4N8eprosima7fastdds3dds20AnnotationDescriptorE" title="Link to this definition">¶</a><br /></dt>
+<dd><div class="breathe-sectiondef docutils container">
+<p class="breathe-sectiondef-title rubric" id="breathe-section-title-public-functions">Public Functions</p>
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4NK8eprosima7fastdds3dds20AnnotationDescriptor4typeEv">
+<span id="_CPPv3NK8eprosima7fastdds3dds20AnnotationDescriptor4typeEv"></span><span id="_CPPv2NK8eprosima7fastdds3dds20AnnotationDescriptor4typeEv"></span><span id="eprosima::fastdds::dds::AnnotationDescriptor::typeC"></span><span class="target" id="classeprosima_1_1fastdds_1_1dds_1_1AnnotationDescriptor_1a8fab4e044807718695cb5e6f9c484353"></span><span class="k"><span class="pre">virtual</span></span><span class="w"> </span><span class="n"><span class="pre">traits</span></span><span class="p"><span class="pre">&lt;</span></span><a class="reference internal" href="dynamictype.html#_CPPv4N8eprosima7fastdds3dds11DynamicTypeE" title="eprosima::fastdds::dds::DynamicType"><span class="n"><span class="pre">DynamicType</span></span></a><span class="p"><span class="pre">&gt;</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">ref_type</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">type</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><span class="w"> </span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="m"><span class="pre">0</span></span><a class="headerlink" href="#_CPPv4NK8eprosima7fastdds3dds20AnnotationDescriptor4typeEv" title="Link to this definition">¶</a><br /></dt>
+<dd><p>Returns a reference to the type. </p>
+<p>The reference can be nil. </p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference internal" href="dynamictype.html#classeprosima_1_1fastdds_1_1dds_1_1DynamicType"><span class="std std-ref">DynamicType</span></a> reference. </p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N8eprosima7fastdds3dds20AnnotationDescriptor4typeEv">
+<span id="_CPPv3N8eprosima7fastdds3dds20AnnotationDescriptor4typeEv"></span><span id="_CPPv2N8eprosima7fastdds3dds20AnnotationDescriptor4typeEv"></span><span id="eprosima::fastdds::dds::AnnotationDescriptor::type"></span><span class="target" id="classeprosima_1_1fastdds_1_1dds_1_1AnnotationDescriptor_1af817851c4e11b17187181bec5a0139f8"></span><span class="k"><span class="pre">virtual</span></span><span class="w"> </span><span class="n"><span class="pre">traits</span></span><span class="p"><span class="pre">&lt;</span></span><a class="reference internal" href="dynamictype.html#_CPPv4N8eprosima7fastdds3dds11DynamicTypeE" title="eprosima::fastdds::dds::DynamicType"><span class="n"><span class="pre">DynamicType</span></span></a><span class="p"><span class="pre">&gt;</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">ref_type</span></span><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="sig-name descname"><span class="n"><span class="pre">type</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="m"><span class="pre">0</span></span><a class="headerlink" href="#_CPPv4N8eprosima7fastdds3dds20AnnotationDescriptor4typeEv" title="Link to this definition">¶</a><br /></dt>
+<dd><p>Returns a reference to the type. </p>
+<p>The reference can be nil. </p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference internal" href="dynamictype.html#classeprosima_1_1fastdds_1_1dds_1_1DynamicType"><span class="std std-ref">DynamicType</span></a> reference. </p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N8eprosima7fastdds3dds20AnnotationDescriptor4typeEN6traitsI11DynamicTypeE8ref_typeE">
+<span id="_CPPv3N8eprosima7fastdds3dds20AnnotationDescriptor4typeEN6traitsI11DynamicTypeE8ref_typeE"></span><span id="_CPPv2N8eprosima7fastdds3dds20AnnotationDescriptor4typeEN6traitsI11DynamicTypeE8ref_typeE"></span><span id="eprosima::fastdds::dds::AnnotationDescriptor::type__traits:DynamicType:::ref_type"></span><span class="target" id="classeprosima_1_1fastdds_1_1dds_1_1AnnotationDescriptor_1a5308d451ae0efa6666d4070554f281d2"></span><span class="k"><span class="pre">virtual</span></span><span class="w"> </span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">type</span></span></span><span class="sig-paren">(</span><span class="n"><span class="pre">traits</span></span><span class="p"><span class="pre">&lt;</span></span><a class="reference internal" href="dynamictype.html#_CPPv4N8eprosima7fastdds3dds11DynamicTypeE" title="eprosima::fastdds::dds::DynamicType"><span class="n"><span class="pre">DynamicType</span></span></a><span class="p"><span class="pre">&gt;</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">ref_type</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">type</span></span><span class="sig-paren">)</span><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="m"><span class="pre">0</span></span><a class="headerlink" href="#_CPPv4N8eprosima7fastdds3dds20AnnotationDescriptor4typeEN6traitsI11DynamicTypeE8ref_typeE" title="Link to this definition">¶</a><br /></dt>
+<dd><p>Modifies the underlying type reference. </p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>type</strong> – <strong>[in]</strong> <a class="reference internal" href="dynamictype.html#classeprosima_1_1fastdds_1_1dds_1_1DynamicType"><span class="std std-ref">DynamicType</span></a> reference. </p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N8eprosima7fastdds3dds20AnnotationDescriptor9get_valueER10ObjectNameRK10ObjectName">
+<span id="_CPPv3N8eprosima7fastdds3dds20AnnotationDescriptor9get_valueER10ObjectNameRK10ObjectName"></span><span id="_CPPv2N8eprosima7fastdds3dds20AnnotationDescriptor9get_valueER10ObjectNameRK10ObjectName"></span><span id="eprosima::fastdds::dds::AnnotationDescriptor::get_value__ObjectNameR.ObjectNameCR"></span><span class="target" id="classeprosima_1_1fastdds_1_1dds_1_1AnnotationDescriptor_1ac6d1d68e876fdedd2f39f597a8d7424f"></span><span class="k"><span class="pre">virtual</span></span><span class="w"> </span><span class="n"><span class="pre">ReturnCode_t</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">get_value</span></span></span><span class="sig-paren">(</span><span class="n"><span class="pre">ObjectName</span></span><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">value</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">ObjectName</span></span><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">key</span></span><span class="sig-paren">)</span><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="m"><span class="pre">0</span></span><a class="headerlink" href="#_CPPv4N8eprosima7fastdds3dds20AnnotationDescriptor9get_valueER10ObjectNameRK10ObjectName" title="Link to this definition">¶</a><br /></dt>
+<dd><p>Getter given a key for the <strong>value</strong> property. </p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>value</strong> – <strong>[inout]</strong> The value. </p></li>
+<li><p><strong>key</strong> – <strong>[in]</strong> Key used to retrieve the value. </p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>ReturnCode_t returns operation success </p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N8eprosima7fastdds3dds20AnnotationDescriptor13get_all_valueER10Parameters">
+<span id="_CPPv3N8eprosima7fastdds3dds20AnnotationDescriptor13get_all_valueER10Parameters"></span><span id="_CPPv2N8eprosima7fastdds3dds20AnnotationDescriptor13get_all_valueER10Parameters"></span><span id="eprosima::fastdds::dds::AnnotationDescriptor::get_all_value__ParametersR"></span><span class="target" id="classeprosima_1_1fastdds_1_1dds_1_1AnnotationDescriptor_1a76d9d6e18d7753dac42afb6f0c0780fd"></span><span class="k"><span class="pre">virtual</span></span><span class="w"> </span><span class="n"><span class="pre">ReturnCode_t</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">get_all_value</span></span></span><span class="sig-paren">(</span><span class="n"><span class="pre">Parameters</span></span><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">value</span></span><span class="sig-paren">)</span><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="m"><span class="pre">0</span></span><a class="headerlink" href="#_CPPv4N8eprosima7fastdds3dds20AnnotationDescriptor13get_all_valueER10Parameters" title="Link to this definition">¶</a><br /></dt>
+<dd><p>Getter for all the values. </p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>value</strong> – <strong>[inout]</strong> Parameters interface to the strings map. </p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>ReturnCode_t returns operation success. </p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N8eprosima7fastdds3dds20AnnotationDescriptor9set_valueERK10ObjectNameRK10ObjectName">
+<span id="_CPPv3N8eprosima7fastdds3dds20AnnotationDescriptor9set_valueERK10ObjectNameRK10ObjectName"></span><span id="_CPPv2N8eprosima7fastdds3dds20AnnotationDescriptor9set_valueERK10ObjectNameRK10ObjectName"></span><span id="eprosima::fastdds::dds::AnnotationDescriptor::set_value__ObjectNameCR.ObjectNameCR"></span><span class="target" id="classeprosima_1_1fastdds_1_1dds_1_1AnnotationDescriptor_1a9fd918028f369adcc504937657b0eca9"></span><span class="k"><span class="pre">virtual</span></span><span class="w"> </span><span class="n"><span class="pre">ReturnCode_t</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">set_value</span></span></span><span class="sig-paren">(</span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">ObjectName</span></span><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">key</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">ObjectName</span></span><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">value</span></span><span class="sig-paren">)</span><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="m"><span class="pre">0</span></span><a class="headerlink" href="#_CPPv4N8eprosima7fastdds3dds20AnnotationDescriptor9set_valueERK10ObjectNameRK10ObjectName" title="Link to this definition">¶</a><br /></dt>
+<dd><p>Setter given a key for the <strong>value</strong> property. </p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>key</strong> – <strong>[in]</strong> null terminated string </p></li>
+<li><p><strong>value</strong> – <strong>[in]</strong> null terminated string </p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>ReturnCode_t returns operation success </p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N8eprosima7fastdds3dds20AnnotationDescriptor9copy_fromEN6traitsI20AnnotationDescriptorE8ref_typeE">
+<span id="_CPPv3N8eprosima7fastdds3dds20AnnotationDescriptor9copy_fromEN6traitsI20AnnotationDescriptorE8ref_typeE"></span><span id="_CPPv2N8eprosima7fastdds3dds20AnnotationDescriptor9copy_fromEN6traitsI20AnnotationDescriptorE8ref_typeE"></span><span id="eprosima::fastdds::dds::AnnotationDescriptor::copy_from__traits:AnnotationDescriptor:::ref_type"></span><span class="target" id="classeprosima_1_1fastdds_1_1dds_1_1AnnotationDescriptor_1a576db7c087a871d3d046d7a75d2ad952"></span><span class="k"><span class="pre">virtual</span></span><span class="w"> </span><span class="n"><span class="pre">ReturnCode_t</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">copy_from</span></span></span><span class="sig-paren">(</span><span class="n"><span class="pre">traits</span></span><span class="p"><span class="pre">&lt;</span></span><a class="reference internal" href="#_CPPv4N8eprosima7fastdds3dds20AnnotationDescriptorE" title="eprosima::fastdds::dds::AnnotationDescriptor"><span class="n"><span class="pre">AnnotationDescriptor</span></span></a><span class="p"><span class="pre">&gt;</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">ref_type</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">descriptor</span></span><span class="sig-paren">)</span><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="m"><span class="pre">0</span></span><a class="headerlink" href="#_CPPv4N8eprosima7fastdds3dds20AnnotationDescriptor9copy_fromEN6traitsI20AnnotationDescriptorE8ref_typeE" title="Link to this definition">¶</a><br /></dt>
+<dd><p>Overwrites the contents of this descriptor with those of another descriptor (see [standard] 7.5.2.3.1) </p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>descriptor</strong> – <strong>[in]</strong> object </p>
+</dd>
+<dt class="field-even">Return values<span class="colon">:</span></dt>
+<dd class="field-even"><ul class="simple">
+<li><p><strong>RETCODE_OK</strong> – when the copy was successful. </p></li>
+<li><p><strong>RETCODE_BAD_PARAMETER</strong> – when descriptor reference is nil. </p></li>
+</ul>
+</dd>
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>standard ReturnCode_t</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N8eprosima7fastdds3dds20AnnotationDescriptor6equalsEN6traitsI20AnnotationDescriptorE8ref_typeE">
+<span id="_CPPv3N8eprosima7fastdds3dds20AnnotationDescriptor6equalsEN6traitsI20AnnotationDescriptorE8ref_typeE"></span><span id="_CPPv2N8eprosima7fastdds3dds20AnnotationDescriptor6equalsEN6traitsI20AnnotationDescriptorE8ref_typeE"></span><span id="eprosima::fastdds::dds::AnnotationDescriptor::equals__traits:AnnotationDescriptor:::ref_type"></span><span class="target" id="classeprosima_1_1fastdds_1_1dds_1_1AnnotationDescriptor_1ad98800d3fc40219207de3bc61d94589c"></span><span class="k"><span class="pre">virtual</span></span><span class="w"> </span><span class="kt"><span class="pre">bool</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">equals</span></span></span><span class="sig-paren">(</span><span class="n"><span class="pre">traits</span></span><span class="p"><span class="pre">&lt;</span></span><a class="reference internal" href="#_CPPv4N8eprosima7fastdds3dds20AnnotationDescriptorE" title="eprosima::fastdds::dds::AnnotationDescriptor"><span class="n"><span class="pre">AnnotationDescriptor</span></span></a><span class="p"><span class="pre">&gt;</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">ref_type</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">descriptor</span></span><span class="sig-paren">)</span><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="m"><span class="pre">0</span></span><a class="headerlink" href="#_CPPv4N8eprosima7fastdds3dds20AnnotationDescriptor6equalsEN6traitsI20AnnotationDescriptorE8ref_typeE" title="Link to this definition">¶</a><br /></dt>
+<dd><p>State comparison according with the [standard] sections <strong>7.5.2.3.2</strong> </p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>descriptor</strong> – <strong>[in]</strong> reference. </p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p><strong>bool</strong> <code class="docutils literal notranslate"><span class="pre">true</span></code> on equality </p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N8eprosima7fastdds3dds20AnnotationDescriptor13is_consistentEv">
+<span id="_CPPv3N8eprosima7fastdds3dds20AnnotationDescriptor13is_consistentEv"></span><span id="_CPPv2N8eprosima7fastdds3dds20AnnotationDescriptor13is_consistentEv"></span><span id="eprosima::fastdds::dds::AnnotationDescriptor::is_consistent"></span><span class="target" id="classeprosima_1_1fastdds_1_1dds_1_1AnnotationDescriptor_1aaa6dee222c6c7340dfe2b84ee5fc7460"></span><span class="k"><span class="pre">virtual</span></span><span class="w"> </span><span class="kt"><span class="pre">bool</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">is_consistent</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="m"><span class="pre">0</span></span><a class="headerlink" href="#_CPPv4N8eprosima7fastdds3dds20AnnotationDescriptor13is_consistentEv" title="Link to this definition">¶</a><br /></dt>
+<dd><p>Indicates whether the states of all of this descriptor’s properties are consistent according with the [standard] section <strong>7.5.2.3.3</strong>. </p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>bool</strong> <code class="docutils literal notranslate"><span class="pre">true</span></code> if consistent. </p>
+</dd>
+</dl>
+</dd></dl>
+
+</div>
+</dd></dl>
+
+</section>
+
+        </article>
+      </div>
+      <footer>
+        
+        <div class="related-pages">
+          <a class="next-page" href="dynamicdata.html">
+              <div class="page-info">
+                <div class="context">
+                  <span>Next</span>
+                </div>
+                <div class="title"><span class="section-number">20.1.6.1.2. </span>DynamicData</div>
+              </div>
+              <svg class="furo-related-icon"><use href="#svg-arrow-right"></use></svg>
+            </a>
+          <a class="prev-page" href="dynamic_types.html">
+              <svg class="furo-related-icon"><use href="#svg-arrow-right"></use></svg>
+              <div class="page-info">
+                <div class="context">
+                  <span>Previous</span>
+                </div>
+                
+                <div class="title"><span class="section-number">20.1.6.1. </span>Dynamic Language Binding</div>
+                
+              </div>
+            </a>
+        </div>
+        <div class="bottom-of-page">
+          <div class="left-details">
+            <div class="copyright">
+                Copyright &#169; 2019, eProsima
+            </div>
+            Made with <a href="https://www.sphinx-doc.org/">Sphinx</a> and <a class="muted-link" href="https://pradyunsg.me">@pradyunsg</a>'s
+            
+            <a href="https://github.com/pradyunsg/furo">Furo</a>
+            
+          </div>
+          <div class="right-details">
+            
+          </div>
+        </div>
+        
+      </footer>
+    </div>
+    <aside class="toc-drawer">
+      
+      
+      <div class="toc-sticky toc-scroll">
+        <div class="toc-title-container">
+          <span class="toc-title">
+            On this page
+          </span>
+        </div>
+        <div class="toc-tree-container">
+          <div class="toc-tree">
+            <ul>
+<li><a class="reference internal" href="#">20.1.6.1.1. AnnotationDescriptor</a><ul>
+<li><a class="reference internal" href="#_CPPv4N8eprosima7fastdds3dds20AnnotationDescriptorE"><code class="docutils literal notranslate"><span class="pre">eprosima::fastdds::dds::AnnotationDescriptor</span></code></a><ul>
+<li><a class="reference internal" href="#_CPPv4NK8eprosima7fastdds3dds20AnnotationDescriptor4typeEv"><code class="docutils literal notranslate"><span class="pre">type()</span></code></a></li>
+<li><a class="reference internal" href="#_CPPv4N8eprosima7fastdds3dds20AnnotationDescriptor4typeEv"><code class="docutils literal notranslate"><span class="pre">type()</span></code></a></li>
+<li><a class="reference internal" href="#_CPPv4N8eprosima7fastdds3dds20AnnotationDescriptor4typeEN6traitsI11DynamicTypeE8ref_typeE"><code class="docutils literal notranslate"><span class="pre">type()</span></code></a></li>
+<li><a class="reference internal" href="#_CPPv4N8eprosima7fastdds3dds20AnnotationDescriptor9get_valueER10ObjectNameRK10ObjectName"><code class="docutils literal notranslate"><span class="pre">get_value()</span></code></a></li>
+<li><a class="reference internal" href="#_CPPv4N8eprosima7fastdds3dds20AnnotationDescriptor13get_all_valueER10Parameters"><code class="docutils literal notranslate"><span class="pre">get_all_value()</span></code></a></li>
+<li><a class="reference internal" href="#_CPPv4N8eprosima7fastdds3dds20AnnotationDescriptor9set_valueERK10ObjectNameRK10ObjectName"><code class="docutils literal notranslate"><span class="pre">set_value()</span></code></a></li>
+<li><a class="reference internal" href="#_CPPv4N8eprosima7fastdds3dds20AnnotationDescriptor9copy_fromEN6traitsI20AnnotationDescriptorE8ref_typeE"><code class="docutils literal notranslate"><span class="pre">copy_from()</span></code></a></li>
+<li><a class="reference internal" href="#_CPPv4N8eprosima7fastdds3dds20AnnotationDescriptor6equalsEN6traitsI20AnnotationDescriptorE8ref_typeE"><code class="docutils literal notranslate"><span class="pre">equals()</span></code></a></li>
+<li><a class="reference internal" href="#_CPPv4N8eprosima7fastdds3dds20AnnotationDescriptor13is_consistentEv"><code class="docutils literal notranslate"><span class="pre">is_consistent()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+          </div>
+        </div>
+      </div>
+      
+      
+    </aside>
+  </div>
+</div><script src="../../../../_static/documentation_options.js?v=a2bcc8b1"></script>
+    <script src="../../../../_static/doctools.js?v=9bcbadda"></script>
+    <script src="../../../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../../../../_static/scripts/furo.js?v=5fa4622c"></script>
+    <script src="../../../../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../../../../_static/copybutton.js?v=f281be69"></script>
+    <script src="../../../../_static/design-tabs.js?v=f930bc37"></script>
+    <script src="../../../../_static/js/sidebar_scroll.js?v=88e08ddb"></script>
+    </body>
+</html>

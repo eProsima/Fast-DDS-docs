@@ -1,0 +1,47 @@
+<!-- {{{ X-Types API -->
+<!-- }}} -->
+
+<a id="release-notes"></a>
+
+<a id="version-3-7-0-1-pro"></a>
+
+# Version 3.7.0.1 **[Pro]**
+
+This release includes the following **features**:
+
+1. Add optional support on DynamicTypes API
+2. Support truncating large collections in json_serialize
+3. Make type support context inherit from Cdr context
+4. Support member id in idl parser
+5. Bring `Buffer<T>` from rosidl
+6. Use machine ID in SHM locators
+
+This release includes the following **improvements**:
+
+1. Require all security plugins to be configured
+2. Update fastcdr submodule to point to v2.4.0
+3. Renaming Fast DDS Monitor to DDS Monitor
+
+This release includes the following **security fixes (CVEs)**:
+
+1. [CVE-2025-67108](https://www.cve.org/CVERecord?id=CVE-2025-67108)
+
+This release includes the following **fixes**:
+
+1. Fix volatile reader desync after initial positioning GAP
+2. Fix FlowController not properly updating reader locators after reaching maximum limitation
+3. Catch exception when constructing a payload pool Node
+4. Disable Filewatch in QNX
+5. Fix compilation error with `-DBUILD_SHARED_LIBS=OFF`
+6. Fix datasharing infinite loop
+7. Fix deadlock in the monitor service when a network interface changes
+8. Account for padding when protecting payloads with GMAC only
+9. Fix IDL parsing minor failures
+10. Fix integer overflow in PartitionQosPolicy CDR deserialization
+
+#### SEE ALSO
+For further information about the corresponding versions of other products related to this Fast DDS version, please
+refer to the [eProsima products compatibility](versions.md#dependencies-compatibilities-product-compatibility) section.
+
+#### SEE ALSO
+Information about the release lifecycle can be found [here](https://github.com/eProsima/Fast-DDS/blob/master/RELEASE_SUPPORT.md).

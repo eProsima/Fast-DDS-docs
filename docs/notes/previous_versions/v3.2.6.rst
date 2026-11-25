@@ -1,0 +1,34 @@
+`Version 3.2.6 (latest) <https://fast-dds.docs.eprosima.com/en/v3.2.6/index.html>`_
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+This release includes the following **security fixes**:
+
+- `Fix CVE-2026-102681 <https://www.cve.org/CVERecord?id=CVE-2026-102681>`_
+
+This release includes the following **improvements**:
+
+#. Use the SPDX identifier Apache-2.0 in package.xml license tag
+#. Improve default TCP configuration
+
+This release includes the following **fixes**:
+
+#. Fix datasharing infinite loop
+#. Account for padding when protecting payloads with GMAC only
+#. Fix shared-memory segment crash on port open
+#. Set max ASIO buffers based on ``IOV_MAX``
+#. Fix leak in UDP when opening input channels
+#. Fix volatile reader desync after initial positioning GAP
+#. Fix a race that lets the payload pool registry hand out a null pool
+#. Release topic payload pool registry entries when their pools are released
+#. Validate shared-memory index links and check segment creation
+#. Fix FTBFS against ``OpenSSL`` 4.0
+#. Keep room in ``ReaderHistory`` for the changes a reliable reader is still missing
+#. Fix UDP send timeout for durations of one second or longer
+#. Do not acknowledge intraprocess DATA from an unmatched writer
+#. Fix piggyback heartbeat byte accounting with asynchronous flow controllers
+#. Include ``OpenSSL`` version header before version checks
+
+This release includes the following **CI improvements**:
+
+#. Fix SEGV in latency test
+#. Avoid using ``latency_data_in_`` when using loans in ``LatencyTestPublisher``

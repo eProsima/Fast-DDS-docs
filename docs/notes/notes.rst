@@ -3,7 +3,7 @@
 Information about the release lifecycle can be found
 `here <https://github.com/eProsima/Fast-DDS/blob/master/RELEASE_SUPPORT.md>`_.
 
-Version 2.6.12 (maintenance)
+Version 2.6.13 (maintenance)
 ============================
 
 .. important::
@@ -13,39 +13,38 @@ Version 2.6.12 (maintenance)
 
 This release includes the following **security fixes**:
 
-- `Fix CVE-2026-22590 <https://www.cve.org/CVERecord?id=CVE-2026-22590>`_
-- `Fix CVE-2026-22591 <https://www.cve.org/CVERecord?id=CVE-2026-22591>`_
-- `Fix CVE-2026-45094 <https://www.cve.org/CVERecord?id=CVE-2026-45094>`_
-- `Fix CVE-2026-45095 <https://www.cve.org/CVERecord?id=CVE-2026-45095>`_
-- `Fix CVE-2026-45096 <https://www.cve.org/CVERecord?id=CVE-2026-45096>`_
-- `Fix CVE-2025-63829 <https://www.cve.org/CVERecord?id=CVE-2025-63829>`_
-- `Fix CVE-2025-65865 <https://www.cve.org/CVERecord?id=CVE-2025-65865>`_
-- `Fix CVE-2026-45093 <https://www.cve.org/CVERecord?id=CVE-2026-45093>`_
-- `Fix CVE-2026-45092 <https://www.cve.org/CVERecord?id=CVE-2026-45092>`_
-- `Fix CVE-2025-67108 <https://www.cve.org/CVERecord?id=CVE-2025-67108>`_
-- `Fix CVE-2026-49861 <https://www.cve.org/CVERecord?id=CVE-2026-49861>`_
-- `Fix CVE-2026-53589 <https://www.cve.org/CVERecord?id=CVE-2026-53589>`_
-- `Fix CVE-2026-45098 <https://www.cve.org/CVERecord?id=CVE-2026-45098>`_
-- `Fix CVE-2026-49862 <https://www.cve.org/CVERecord?id=CVE-2026-49862>`_
-- `Fix CVE-2026-55063 <https://www.cve.org/CVERecord?id=CVE-2026-55063>`_
-- `Fix CVE-2026-49863 <https://www.cve.org/CVERecord?id=CVE-2026-49863>`_
-- `Fix CVE-2026-53588 <https://www.cve.org/CVERecord?id=CVE-2026-53588>`_
-- `Fix CVE-2026-53590 <https://www.cve.org/CVERecord?id=CVE-2026-53590>`_
+- `Fix CVE-2026-102681 <https://www.cve.org/CVERecord?id=CVE-2026-102681>`_
+- `Fix GHSA-f5r5-m785-f5wg <https://github.com/eProsima/Fast-DDS/security/advisories/GHSA-f5r5-m785-f5wg>`_
+- `Fix GHSA-w92j-25c7-68qx <https://github.com/eProsima/Fast-DDS/security/advisories/GHSA-w92j-25c7-68qx>`_
+- `Fix GHSA-33xc-m88x-3cp8 <https://github.com/eProsima/Fast-DDS/security/advisories/GHSA-33xc-m88x-3cp8>`_
+- `Fix GHSA-f5r6-qvhq-mx93 <https://github.com/eProsima/Fast-DDS/security/advisories/GHSA-f5r6-qvhq-mx93>`_
+- `Fix GHSA-wfcj-cv96-9wj9 <https://github.com/eProsima/Fast-DDS/security/advisories/GHSA-wfcj-cv96-9wj9>`_
+- `Fix GHSA-g355-8h7f-6w8v <https://github.com/eProsima/Fast-DDS/security/advisories/GHSA-g355-8h7f-6w8v>`_
+- `Fix GHSA-6pwr-vh77-2x8m <https://github.com/eProsima/Fast-DDS/security/advisories/GHSA-6pwr-vh77-2x8m>`_
+- `Fix GHSA-58x7-8g6g-mpp8 <https://github.com/eProsima/Fast-DDS/security/advisories/GHSA-58x7-8g6g-mpp8>`_
+- `Fix GHSA-f6cw-h682-xw3p <https://github.com/eProsima/Fast-DDS/security/advisories/GHSA-f6cw-h682-xw3p>`_
+- `Fix GHSA-mg54-9fm8-xvf3 <https://github.com/eProsima/Fast-DDS/security/advisories/GHSA-mg54-9fm8-xvf3>`_
+- `Fix GHSA-j4xc-fjx8-wfg4 <https://github.com/eProsima/Fast-DDS/security/advisories/GHSA-j4xc-fjx8-wfg4>`_
+- `Fix GHSA-57rp-jm6r-xjw5 <https://github.com/eProsima/Fast-DDS/security/advisories/GHSA-57rp-jm6r-xjw5>`_
+- `Fix GHSA-6m2p-wjv5-386v <https://github.com/eProsima/Fast-DDS/security/advisories/GHSA-6m2p-wjv5-386v>`_
+- `Fix GHSA-5fgv-8wxq-3f69 <https://github.com/eProsima/Fast-DDS/security/advisories/GHSA-5fgv-8wxq-3f69>`_
+- `Fix GHSA-hhx6-8qfx-8c23 <https://github.com/eProsima/Fast-DDS/security/advisories/GHSA-hhx6-8qfx-8c23>`_
+- `Fix GHSA-w75r-338m-pc5x <https://github.com/eProsima/Fast-DDS/security/advisories/GHSA-w75r-338m-pc5x>`_
+- `Fix GHSA-4r2x-mjm7-r285 <https://github.com/eProsima/Fast-DDS/security/advisories/GHSA-4r2x-mjm7-r285>`_
+
+This release includes the following **improvements**:
+
+#. Use the SPDX identifier Apache-2.0 in package.xml license tag
 
 This release includes the following **fixes**:
 
-#. Several fixes in ``TopicPayloadPool``
-#. Fix lock order inversion in ``StatefulWriter``
-#. Fix ``StatefulReader`` iterator invalidation during listener callback
-#. Check endianness of ``TCPControlMsgHeader`` & ``TCPHeader``
-
-This release includes the following **CI improvements**:
-
-#. Upgrade Linters CI runner image to ``ubuntu-24.04``
+#. Fix GAP messages are not sent when there is no Reader requesting the DATA
+#. Fix shared-memory segment crash on port open
 
 Previous versions
 =================
 
+.. include:: previous_versions/v2.6.12.rst
 .. include:: previous_versions/v2.6.11.rst
 .. include:: previous_versions/v2.6.10.rst
 .. include:: previous_versions/v2.6.9.rst

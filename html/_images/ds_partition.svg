@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg
+    xmlns="http://www.w3.org/2000/svg"
+    xmlns:xlink="http://www.w3.org/1999/xlink"
+    contentScriptType="application/ecmascript"
+    contentStyleType="text/css"
+    height="151px"
+    preserveAspectRatio="none"
+    style="width:214px;height:151px;"
+    version="1.1"
+    viewBox="0 0 214 151"
+    width="214px"
+    zoomAndPan="magnify">
+    <defs>
+        <filter height="300%" id="f1qxp1wm930lo" width="300%" x="-1" y="-1">
+            <feGaussianBlur result="blurOut" stdDeviation="2.0"/>
+            <feColorMatrix in="blurOut" result="blurOut2" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 .4 0"/>
+            <feOffset dx="4.0" dy="4.0" in="blurOut2" result="blurOut3"/>
+            <feBlend in="SourceGraphic" in2="blurOut3" mode="normal"/>
+        </filter>
+    </defs>
+    <g>
+        <!--MD5=[7e4a1da69a72fd3f499ce552a128784c] entity 1_s1-->
+        <rect fill="#FEFECE" filter="url(#f1qxp1wm930lo)" height="36.2969" style="stroke: #A80036; stroke-width: 1.5;" width="80" x="6" y="8"/>
+        <rect fill="#FEFECE" height="5" style="stroke: #A80036; stroke-width: 1.5;" width="10" x="1" y="13"/>
+        <rect fill="#FEFECE" height="5" style="stroke: #A80036; stroke-width: 1.5;" width="10" x="1" y="34.2969"/>
+        <text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacingAndGlyphs" textLength="60" x="16" y="30.9951">
+            Server 1
+        </text>
+        <!--MD5=[50cd4e9d1f5b5ad092a129c24b070d54] entity 1_s2-->
+        <rect fill="#FEFECE" filter="url(#f1qxp1wm930lo)" height="36.2969" style="stroke: #A80036; stroke-width: 1.5;" width="79" x="6.5" y="104"/>
+        <rect fill="#FEFECE" height="5" style="stroke: #A80036; stroke-width: 1.5;" width="10" x="1.5" y="109"/>
+        <rect fill="#FEFECE" height="5" style="stroke: #A80036; stroke-width: 1.5;" width="10" x="1.5" y="130.2969"/>
+        <text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacingAndGlyphs" textLength="59" x="16.5" y="126.9951">
+            Server 2
+        </text>
+        <ellipse cx="162.1838" cy="26.0236" fill="#FEFECE" filter="url(#f1qxp1wm930lo)" rx="41.1838" ry="14.5236" style="stroke: #A80036; stroke-width: 1.5;"/>
+        <text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacingAndGlyphs" textLength="54" x="135.1838" y="30.6721">
+            client 1
+        </text>
+        <ellipse cx="160.9767" cy="122.0236" fill="#FEFECE" filter="url(#f1qxp1wm930lo)" rx="40.4767" ry="14.5236" style="stroke: #A80036; stroke-width: 1.5;"/>
+        <text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacingAndGlyphs" textLength="53" x="134.4767" y="126.6721">
+            client 2
+        </text>
+        <!--MD5=[b77c2c6aea56162730883f261008d83a] link 1_s1 to 1_s2-->
+        <!--MD5=[c8787d7836c1d3744bb52eb6b8131575] link 1_c1 to 1_c2-->
+        <!--MD5=[b833482012ce8593a7dcd29f7ed45f02] reverse link 1_s1 to 1_c1-->
+        <path d="M91.4617,26 C101.2787,26 111.096,26 120.913,26 " fill="none" id="1_s1&lt;-1_c1" style="stroke: #A80036; stroke-width: 1.0;"/>
+        <polygon fill="#A80036" points="86.3281,26,95.3281,30,91.3281,26,95.3281,22,86.3281,26" style="stroke: #A80036; stroke-width: 1.0;"/>
+        <!--MD5=[4d1020644a1e190ff0cd691bb1e6ff21] reverse link 1_s2 to 1_c2-->
+        <path d="M90.6949,122 C100.5691,122 110.443,122 120.318,122 " fill="none" id="1_s2&lt;-1_c2" style="stroke: #A80036; stroke-width: 1.0;"/>
+        <polygon fill="#A80036" points="85.5312,122,94.5312,126,90.5312,122,94.5312,118,85.5312,122" style="stroke: #A80036; stroke-width: 1.0;"/>
+        <!--MD5=[872bf8aea5c32aea58d6cd008d010ee8]
+            @startuml
+            component [Server 1] as 1_s1
+            component [Server 2] as 1_s2
+            (client 1) as 1_c1
+            (client 2) as 1_c2
+            1_s2 -[hidden]up- 1_s1
+            1_c2 -[hidden]up- 1_c1
+            1_s1 <- 1_c1
+            1_s2 <- 1_c2
+            @enduml
+            PlantUML version 1.2020.11beta3(Unknown compile time) (GPL source distribution)
+            Java Runtime: Java(TM) SE Runtime Environment
+            JVM: Java HotSpot(TM) 64-Bit Server VM
+            Default Encoding: UTF-8
+            Language: en
+            Country: US
+        -->
+    </g>
+</svg>

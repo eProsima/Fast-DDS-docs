@@ -1,0 +1,76 @@
+<!-- {{{ X-Types API -->
+<!-- }}} -->
+
+<a id="fast-dds"></a>
+
+<a id="fast-dds-image"></a>
+
+# Fast DDS Image
+
+This Docker image contains the Fast DDS library and its dependencies, ready to be used in a final user application.
+This includes:
+
+- [eProsima Fast DDS libraries and examples](../fastdds_suite/fast_dds_suite.md#fast-dds-suite-examples): Fast DDS libraries bundled with several
+  examples that showcase a variety of capabilities of eProsima’s Fast DDS implementation.
+
+To load this image into your Docker repository, from a terminal, run:
+
+```bash
+docker load -i "ubuntu-fastdds <FastDDS-Version>.tar"
+```
+
+You can run this Docker container as follows:
+
+```bash
+docker run -it ubuntu-fastdds:<FastDDS-Version>
+```
+
+From the resulting Bash Shell you can run each feature.
+
+<a id="fast-dds-examples"></a>
+
+<a id="id1"></a>
+
+## Fast DDS Examples
+
+Included in this Docker container is a set of binary examples that showcase several functionalities of the
+Fast DDS libraries.
+These examples’ path can be accessed from a terminal by typing:
+
+```bash
+goToExamples
+```
+
+From this folder, you can access all examples, both for DDS and RTPS layers.
+
+<a id="hello-world-example"></a>
+
+### Hello World Example
+
+This is a minimal example that will perform a Publisher/Subscriber match and start sending samples.
+
+```bash
+goToExamples
+cd hello_world/bin
+tmux new-session "./hello_world publisher" \; \
+     split-window "./hello_world subscriber" \; \
+     select-layout even-vertical
+```
+
+This example is not constrained to the current instance.
+It’s possible to run several instances of this container to check the communication between them by running the
+following from each container.
+
+```bash
+goToExamples
+cd hello_world/bin
+./hello_world publisher
+```
+
+or
+
+```bash
+goToExamples
+cd hello_world/bin
+./hello_world subscriber
+```

@@ -1,0 +1,58 @@
+`Version 3.2.6 (EOL) <https://fast-dds.docs.eprosima.com/en/v3.2.6/index.html>`_
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+This release includes the following **security fixes**:
+
+- `CVE-2026-102681 <https://www.cve.org/CVERecord?id=CVE-2026-102681>`_ (`GHSA-8g7x-c9fg-g6mh <https://github.com/eProsima/Fast-DDS/security/advisories/GHSA-8g7x-c9fg-g6mh>`_)
+- `GHSA-f5r5-m785-f5wg <https://github.com/eProsima/Fast-DDS/security/advisories/GHSA-f5r5-m785-f5wg>`_
+- `GHSA-w92j-25c7-68qx <https://github.com/eProsima/Fast-DDS/security/advisories/GHSA-w92j-25c7-68qx>`_
+- `GHSA-33xc-m88x-3cp8 <https://github.com/eProsima/Fast-DDS/security/advisories/GHSA-33xc-m88x-3cp8>`_
+- `GHSA-f5r6-qvhq-mx93 <https://github.com/eProsima/Fast-DDS/security/advisories/GHSA-f5r6-qvhq-mx93>`_
+- `GHSA-wfcj-cv96-9wj9 <https://github.com/eProsima/Fast-DDS/security/advisories/GHSA-wfcj-cv96-9wj9>`_
+- `GHSA-g355-8h7f-6w8v <https://github.com/eProsima/Fast-DDS/security/advisories/GHSA-g355-8h7f-6w8v>`_
+- `GHSA-6pwr-vh77-2x8m <https://github.com/eProsima/Fast-DDS/security/advisories/GHSA-6pwr-vh77-2x8m>`_
+- `GHSA-58x7-8g6g-mpp8 <https://github.com/eProsima/Fast-DDS/security/advisories/GHSA-58x7-8g6g-mpp8>`_
+- `GHSA-f6cw-h682-xw3p <https://github.com/eProsima/Fast-DDS/security/advisories/GHSA-f6cw-h682-xw3p>`_
+- `GHSA-mg54-9fm8-xvf3 <https://github.com/eProsima/Fast-DDS/security/advisories/GHSA-mg54-9fm8-xvf3>`_
+- `GHSA-j4xc-fjx8-wfg4 <https://github.com/eProsima/Fast-DDS/security/advisories/GHSA-j4xc-fjx8-wfg4>`_
+- `GHSA-57rp-jm6r-xjw5 <https://github.com/eProsima/Fast-DDS/security/advisories/GHSA-57rp-jm6r-xjw5>`_
+- `GHSA-f4hw-9j9g-j8xj <https://github.com/eProsima/Fast-DDS/security/advisories/GHSA-f4hw-9j9g-j8xj>`_
+- `GHSA-6m2p-wjv5-386v <https://github.com/eProsima/Fast-DDS/security/advisories/GHSA-6m2p-wjv5-386v>`_
+- `GHSA-5fgv-8wxq-3f69 <https://github.com/eProsima/Fast-DDS/security/advisories/GHSA-5fgv-8wxq-3f69>`_
+- `GHSA-hhx6-8qfx-8c23 <https://github.com/eProsima/Fast-DDS/security/advisories/GHSA-hhx6-8qfx-8c23>`_
+- `GHSA-w75r-338m-pc5x <https://github.com/eProsima/Fast-DDS/security/advisories/GHSA-w75r-338m-pc5x>`_
+- `GHSA-4r2x-mjm7-r285 <https://github.com/eProsima/Fast-DDS/security/advisories/GHSA-4r2x-mjm7-r285>`_
+- `GHSA-vx4x-38rc-27w8 <https://github.com/eProsima/Fast-DDS/security/advisories/GHSA-vx4x-38rc-27w8>`_
+- `GHSA-6prg-7f44-f36j <https://github.com/eProsima/Fast-DDS/security/advisories/GHSA-6prg-7f44-f36j>`_
+- `GHSA-m6f5-9h75-494p <https://github.com/eProsima/Fast-DDS/security/advisories/GHSA-m6f5-9h75-494p>`_
+- `GHSA-p8f8-79c6-vgvg <https://github.com/eProsima/Fast-DDS/security/advisories/GHSA-p8f8-79c6-vgvg>`_
+- `GHSA-3m58-hxq8-985j <https://github.com/eProsima/Fast-DDS/security/advisories/GHSA-3m58-hxq8-985j>`_
+
+
+This release includes the following **improvements**:
+
+#. Use the SPDX identifier Apache-2.0 in package.xml license tag
+#. Improve default TCP configuration
+
+This release includes the following **fixes**:
+
+#. Fix datasharing infinite loop
+#. Account for padding when protecting payloads with GMAC only
+#. Fix shared-memory segment crash on port open
+#. Set max ASIO buffers based on ``IOV_MAX``
+#. Fix leak in UDP when opening input channels
+#. Fix volatile reader desync after initial positioning GAP
+#. Fix a race that lets the payload pool registry hand out a null pool
+#. Release topic payload pool registry entries when their pools are released
+#. Validate shared-memory index links and check segment creation
+#. Fix FTBFS against ``OpenSSL`` 4.0
+#. Keep room in ``ReaderHistory`` for the changes a reliable reader is still missing
+#. Fix UDP send timeout for durations of one second or longer
+#. Do not acknowledge intraprocess DATA from an unmatched writer
+#. Fix piggyback heartbeat byte accounting with asynchronous flow controllers
+#. Include ``OpenSSL`` version header before version checks
+
+This release includes the following **CI improvements**:
+
+#. Fix SEGV in latency test
+#. Avoid using ``latency_data_in_`` when using loans in ``LatencyTestPublisher``

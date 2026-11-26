@@ -40,6 +40,7 @@ This release includes the following **fixes**:
 
 #. Fix GAP messages are not sent when there is no Reader requesting the DATA
 #. Fix shared-memory segment crash on port open
+#. Fix build of docs after HTML refactor
 
 Previous versions
 =================

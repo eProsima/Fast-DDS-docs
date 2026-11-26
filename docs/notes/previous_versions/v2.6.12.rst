@@ -31,4 +31,4 @@ This release includes the following **fixes**:
 
 This release includes the following **CI improvements**:
 
-#. Upgrade Linters CI runner image to ``ubuntu-24.04``
+#. Upgrade ``Linters`` CI runner image to ``ubuntu-24.04``

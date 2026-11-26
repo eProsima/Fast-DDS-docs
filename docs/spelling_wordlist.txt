@@ -94,6 +94,7 @@ deserialize
 deserialized
 deserializes
 destructor
+desync
 diffie
 dir
 DNS

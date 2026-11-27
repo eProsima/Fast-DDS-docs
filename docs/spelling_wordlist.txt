@@ -343,3 +343,5 @@ WString
 Xcode
 XMLProfiles
 XTypes
+desync
+durations

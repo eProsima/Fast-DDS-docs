@@ -3,7 +3,7 @@
 
 This release includes the following **security fixes**:
 
-- `CVE-2026-102681 <https://www.cve.org/CVERecord?id=CVE-2026-102681>`_ (`GHSA-8g7x-c9fg-g6mh <https://github.com/eProsima/Fast-DDS/security/advisories/GHSA-8g7x-c9fg-g6mh>`_)
+- `CVE-2026-102681 <https://www.cve.org/CVERecord?id=CVE-2026-102681>`_
 - `GHSA-f5r5-m785-f5wg <https://github.com/eProsima/Fast-DDS/security/advisories/GHSA-f5r5-m785-f5wg>`_
 - `GHSA-w92j-25c7-68qx <https://github.com/eProsima/Fast-DDS/security/advisories/GHSA-w92j-25c7-68qx>`_
 - `GHSA-33xc-m88x-3cp8 <https://github.com/eProsima/Fast-DDS/security/advisories/GHSA-33xc-m88x-3cp8>`_

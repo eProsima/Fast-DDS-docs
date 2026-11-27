@@ -48,13 +48,13 @@ The following table shows the currently supported versions of Fast DDS and their
       - December 2026 (*)
     * - 2.14 (maintenance)
       - `2.14.x <https://github.com/eProsima/Fast-DDS/tree/2.14.x>`__
-      - `v2.14.7 <https://github.com/eProsima/Fast-DDS/releases/tag/v2.14.7>`__
+      - `v2.14.8 <https://github.com/eProsima/Fast-DDS/releases/tag/v2.14.8>`__
       - March 2024
       - September 2026
       - May 2029 (*)
     * - 2.6 (maintenance)
       - `2.6.x <https://github.com/eProsima/Fast-DDS/tree/2.6.x>`__
-      - `v2.6.12 <https://github.com/eProsima/Fast-DDS/releases/tag/v2.6.12>`__
+      - `v2.6.13 <https://github.com/eProsima/Fast-DDS/releases/tag/v2.6.13>`__
       - March 2022
       - July 2024
       - May 2027
@@ -436,7 +436,7 @@ The following table shows the corresponding versions of the Fast DDS library dep
             * - Product
               - Related version
             * - `Fast CDR <https://github.com/eProsima/Fast-CDR/>`__
-              - `v2.2.8 <https://github.com/eProsima/Fast-CDR/releases/tag/v2.2.8>`__
+              - `v2.2.9 <https://github.com/eProsima/Fast-CDR/releases/tag/v2.2.9>`__
             * - `Foonathan Memory Vendor <https://github.com/eProsima/foonathan_memory_vendor/>`__
               - `v1.3.1 <https://github.com/eProsima/foonathan_memory_vendor/releases/tag/v1.3.1>`__
             * - `Asio <https://github.com/chriskohlhoff/asio>`__
@@ -594,13 +594,13 @@ Fast DDS as the core middleware.
             * - Product
               - Related version
             * - `Fast DDS Gen <https://github.com/eProsima/Fast-DDS-Gen/>`__
-              - `v2.1.3 <https://github.com/eProsima/Fast-DDS-Gen/releases/tag/v2.1.3>`__
+              - `v2.1.4 <https://github.com/eProsima/Fast-DDS-Gen/releases/tag/v2.1.4>`__
             * - `Fast DDS Gen - IDL parser <https://github.com/eProsima/IDL-Parser/>`__
               - `v1.2.0 <https://github.com/eProsima/IDL-Parser/releases/tag/v1.2.0>`__
             * - `Fast DDS Python <https://github.com/eProsima/Fast-DDS-python/>`__
               - `v1.0.3 <https://github.com/eProsima/Fast-DDS-python/releases/tag/v1.0.3>`__
             * - `Shapes Demo <https://github.com/eProsima/ShapesDemo/>`__
-              - `v2.6.12 <https://github.com/eProsima/ShapesDemo/releases/tag/v2.6.12>`__
+              - `v2.6.13 <https://github.com/eProsima/ShapesDemo/releases/tag/v2.6.13>`__
             * - `Discovery Server <https://github.com/eProsima/Discovery-Server/>`__
               - `v1.2.1 <https://github.com/eProsima/Discovery-Server/releases/tag/v1.2.1>`__
 

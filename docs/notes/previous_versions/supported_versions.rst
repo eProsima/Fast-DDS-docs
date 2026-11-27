@@ -35,6 +35,7 @@ Version 3.2
 Version 2.14 (maintenance)
 """"""""""""""""""""""""""
 
+.. include:: v2.14.8.rst
 .. include:: v2.14.7.rst
 .. include:: v2.14.6.rst
 .. include:: v2.14.5.rst
@@ -47,6 +48,7 @@ Version 2.14 (maintenance)
 Version 2.6 (maintenance)
 """""""""""""""""""""""""
 
+.. include:: v2.6.13.rst
 .. include:: v2.6.12.rst
 .. include:: v2.6.11.rst
 .. include:: v2.6.10.rst

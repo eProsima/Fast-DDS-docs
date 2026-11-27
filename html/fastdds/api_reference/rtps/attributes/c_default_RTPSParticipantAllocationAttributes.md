@@ -1,0 +1,5 @@
+<a id="c-default-rtpsparticipantallocationattributes"></a>
+
+# c_default_RTPSParticipantAllocationAttributes
+
+### const [RTPSParticipantAllocationAttributes](RTPSParticipantAllocationAttributes.md#_CPPv4N8eprosima7fastdds4rtps35RTPSParticipantAllocationAttributesE) eprosima::fastdds::rtps::c_default_RTPSParticipantAllocationAttributes = [RTPSParticipantAllocationAttributes](RTPSParticipantAllocationAttributes.md#_CPPv4N8eprosima7fastdds4rtps35RTPSParticipantAllocationAttributesE)()

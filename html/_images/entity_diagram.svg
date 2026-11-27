@@ -1,0 +1,646 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg
+   version="1.1"
+   width="751px"
+   viewBox="-0.5 -0.5 751 291"
+   content="&lt;mxfile host=&quot;app.diagrams.net&quot; modified=&quot;2020-05-19T11:30:38.272Z&quot; agent=&quot;5.0 (X11)&quot; etag=&quot;3iFMfi3uOSY5d1tpwc-6&quot; version=&quot;13.1.1&quot; type=&quot;google&quot;&gt;&lt;diagram id=&quot;guQf1cFlqkjWLoOuA7AT&quot; name=&quot;Page-1&quot;&gt;7Vtbb9s2FP41ehmQQqQuth/jOE63ZUAwb+i6l4GSaJmNLCoyXdv79aUkUnf5Bl2cIkGBmofkEXW+j+fmRNEe1vunEAWrP6iDPQWqzl7RZgqEQIdQif6pziGRjPRxInBD4ohFmWBB/sdCqArpljh4U1jIKPUYCYpCm/o+tllBhsKQ7orLltQrPjVALq4IFjbyqtIvxGGrRDqGo0z+GRN3JZ8MzEkys0ZysXiTzQo5dJcTaY+K9hBSypJP6/0D9iLjSbsk++YNs+nBQuyzczYs7nf238+jf2cH19wfQvfbE5rcCS3fkbcVL6xA0+P6pkvK1fJTs4Mwhfm2pXLibhMDdc8XABjss8kYCY+GhR0K1ObxT15kutH/jz4j7CCfyQ+fPDaZFHZLTwBDuvUdHL0P4NO7FWF4ESA7mt1x+nHZiq09Mb0knveQnkVTJ/p4xFdONyykr1jO+NTH6aPyxpSWwSHD+5xIGPcJ0zVmIT+6KmY1CbRgOtDEeJfxBsg1qxxnTCFDgqpuqjpDk38QgF4ArlYxIHY4ucWQhmxFXeoj7zGTTjMTq3yUrXmmNBCG/YYZO4ibiraMFs2O94T9E23/ZIjRV6Es+jzb5wcHOfD56+Y2RcOvUl80yLbFo2yfcx/dcT60PGq/JqI5icwkF4iDAv0YypFdjmIcYg8x8r3oFOoAE1tfKImvj+TGuMgNqJdUbOg2tLHYlb/EJxSBSUkRQ6GLWUVRzJ/0fa6nFBzYX8zoGhGf7+rZcTz26DigPrTj0G8F5RcUMmKTAMXYxiewwgzlHsDnP/dmh+DrFc8wNPhGDfjlMJL5XWGJfABocOaZ+6535tc755ypjBpLSVnbPhyWEDjXhxt6A+QnfDg3OTrklgXRgk3zgSvPKSaI/EOisdUAYV7EHhpgP75c/J5LmUPQmvpOA6lAgVIZw5oyBJmN5HORNDNpykbyKUR8NjEGx2iawH/aqybono6xt0L7SZFFOriS9nqJjlrZg3WcuowqzJTAFfPjZ2TxGrbAPuQRl/N0ZnPMMff/08i/E14k3ouJNXGcJH3GPAYiK9YXsUfcUa7cmCrGjEu8SP0U2a9uHJdORpSjt6wcZtI6WBxByZeadeHnTv00GhlmMadshTeytDzIISxqoMvlBncC9LgC9C8fQHOcx9AsQdIK0LCkVO0LZ9DcvLDKOaLIWy/KQl+2lkc2Kxw2Jpqp2Ook+TTNGTAeOkw+QYNHHiz3lE6iK0hniKEvIWFDYuoAw+4S09HNgao1gnoNhouttbFDYh3BsEW8lktbVUGP1f8N4NVc/rd2Cf/EyBnuEnYOarmqvwFQ68r66zGsEOIvGhC7HrjuL+l8PploWod4mk21y3B4mrU57Udzf/jmvma21NzX1H6b+6BaIldJdrT1dwU9GmE72U+RLu1GGiW6VkLv2v5ghQYd9QdHav1zGvuWxtH13fQTQbWav2lO3lbP2jBLkI1unpMXUbJSwfZCyclFlLygx32s7yx5DJRLOtky9OYD7+mu+bmh9Ixmtqzoz7w5Q12UMpH0sopzL0pFUTkZ6PoLerVCzvfb5k5v2nvqc/fW/0zLmJ+h0d0e1N11uuU3c6lW0BvU8CPknB9y9HNDjjZkyCmnVFeHnIqivkNOtb/7fkNOetNuMeSkjkfrzfFUe8HvN8a0h22HMUbrIcY8/fbmBOBXYJnT3w1gvf1nrr27um9p+im0Ky7+qsobDurM2/otGVjuIp1ZaLfFgrrvfi5hQZuI6kMiCsst/2tbJ+Vfw2sPUT7M/nwkWZ79EY72+AM=&lt;/diagram&gt;&lt;/mxfile&gt;"
+   onclick="(function(svg){var src=window.event.target||window.event.srcElement;while (src!=null&amp;&amp;src.nodeName.toLowerCase()!='a'){src=src.parentNode;}if(src==null){if(svg.wnd!=null&amp;&amp;!svg.wnd.closed){svg.wnd.focus();}else{var r=function(evt){if(evt.data=='ready'&amp;&amp;evt.source==svg.wnd){svg.wnd.postMessage(decodeURIComponent(svg.getAttribute('content')),'*');window.removeEventListener('message',r);}};window.addEventListener('message',r);svg.wnd=window.open('https://app.diagrams.net/?client=1&amp;lightbox=1&amp;edit=_blank');}}})(this);"
+   style="cursor:pointer;max-width:100%;max-height:291px;"
+   id="svg148"
+   sodipodi:docname="entity_diagram.svg"
+   inkscape:version="1.4 (e7c3feb, 2024-10-09)"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:xlink="http://www.w3.org/1999/xlink"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:xhtml="http://www.w3.org/1999/xhtml">
+  <metadata
+     id="metadata152">
+    <rdf:RDF>
+      <cc:Work
+         rdf:about="">
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+      </cc:Work>
+    </rdf:RDF>
+  </metadata>
+  <sodipodi:namedview
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1"
+     objecttolerance="10"
+     gridtolerance="10"
+     guidetolerance="10"
+     inkscape:pageopacity="0"
+     inkscape:pageshadow="2"
+     inkscape:window-width="2560"
+     inkscape:window-height="1403"
+     id="namedview150"
+     showgrid="false"
+     inkscape:zoom="3.2841391"
+     inkscape:cx="292.4663"
+     inkscape:cy="173.56147"
+     inkscape:window-x="0"
+     inkscape:window-y="0"
+     inkscape:window-maximized="1"
+     inkscape:current-layer="svg148"
+     inkscape:showpageshadow="0"
+     inkscape:pagecheckerboard="0"
+     inkscape:deskcolor="#505050" />
+  <defs
+     id="defs2">
+    <rect
+       x="452.78228"
+       y="108.39979"
+       width="14.006715"
+       height="14.920196"
+       id="rect2" />
+    <rect
+       x="455.21823"
+       y="107.79081"
+       width="10.961777"
+       height="13.397727"
+       id="rect1" />
+    <rect
+       x="452.78229"
+       y="108.39979"
+       width="14.006715"
+       height="14.920196"
+       id="rect2-3" />
+    <rect
+       x="452.78229"
+       y="108.39979"
+       width="14.006715"
+       height="14.920196"
+       id="rect2-5" />
+    <rect
+       x="452.78229"
+       y="108.39979"
+       width="14.006715"
+       height="14.920196"
+       id="rect2-6" />
+    <rect
+       x="452.78229"
+       y="108.39979"
+       width="14.006715"
+       height="14.920196"
+       id="rect2-6-7" />
+    <rect
+       x="452.78229"
+       y="108.39979"
+       width="14.006715"
+       height="14.920196"
+       id="rect2-6-9" />
+  </defs>
+  <rect
+     style="fill:#09487e;stroke:none"
+     id="rect4"
+     pointer-events="all"
+     ry="9"
+     rx="9"
+     height="60"
+     width="120"
+     y="0"
+     x="310" />
+  <g
+     id="g10"
+     transform="translate(-0.5,-0.5)"
+     style="fill:#ffffff;fill-opacity:1">
+    <switch
+       id="switch8"
+       style="fill:#ffffff;fill-opacity:1">
+      <foreignObject
+         requiredFeatures="http://www.w3.org/TR/SVG11/feature#Extensibility"
+         height="100%"
+         width="100%"
+         pointer-events="none"
+         style="overflow: visible; text-align: left;">
+        <xhtml:div
+           style="display: flex; align-items: unsafe center; justify-content: unsafe center; width: 118px; height: 1px; padding-top: 30px; margin-left: 311px;">
+          <xhtml:div
+             style="box-sizing: border-box; font-size: 0; text-align: center; ">
+            <xhtml:div
+               style="display: inline-block; font-size: 12px; font-family: Helvetica; color: #000000; line-height: 1.2; pointer-events: all; white-space: normal; word-wrap: normal; ">
+              <xhtml:font
+                 color="#FFFFFF"
+                 style="font-size: 12px">Entity</xhtml:font>
+            </xhtml:div>
+          </xhtml:div>
+        </xhtml:div>
+      </foreignObject>
+      <text
+         style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:12px;font-family:Helvetica;-inkscape-font-specification:'Helvetica, Bold';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-feature-settings:normal;text-align:center;writing-mode:lr-tb;text-anchor:middle;fill:#ffffff;fill-opacity:1"
+         id="text6"
+         font-size="12px"
+         y="34"
+         x="370">Entity</text>
+    </switch>
+  </g>
+  <path
+     style="fill:none;stroke:#636363;stroke-miterlimit:10;stroke-opacity:1"
+     inkscape:connector-curvature="0"
+     id="path12"
+     pointer-events="stroke"
+     stroke-miterlimit="10"
+     d="M 370,111 V 77.12" />
+  <path
+     style="fill:none;stroke:#636363;stroke-miterlimit:10;stroke-opacity:1"
+     inkscape:connector-curvature="0"
+     id="path14"
+     pointer-events="all"
+     stroke-miterlimit="10"
+     d="m 370,62.12 7.5,15 h -15 z" />
+  <rect
+     style="fill:#09487e;stroke:none"
+     id="rect16"
+     pointer-events="all"
+     ry="9"
+     rx="9"
+     height="60"
+     width="120"
+     y="110"
+     x="310" />
+  <g
+     id="g22"
+     transform="translate(-0.5,-0.5)"
+     style="fill:#ffffff;fill-opacity:1">
+    <switch
+       id="switch20"
+       style="fill:#ffffff;fill-opacity:1">
+      <foreignObject
+         requiredFeatures="http://www.w3.org/TR/SVG11/feature#Extensibility"
+         height="100%"
+         width="100%"
+         pointer-events="none"
+         style="overflow: visible; text-align: left;">
+        <xhtml:div
+           style="display: flex; align-items: unsafe center; justify-content: unsafe center; width: 118px; height: 1px; padding-top: 140px; margin-left: 311px;">
+          <xhtml:div
+             style="box-sizing: border-box; font-size: 0; text-align: center; ">
+            <xhtml:div
+               style="display: inline-block; font-size: 12px; font-family: Helvetica; color: #000000; line-height: 1.2; pointer-events: all; white-space: normal; word-wrap: normal; ">
+              <xhtml:font
+                 color="#FFFFFF"
+                 style="font-size: 12px">Domain Entity</xhtml:font>
+            </xhtml:div>
+          </xhtml:div>
+        </xhtml:div>
+      </foreignObject>
+      <text
+         style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:12px;font-family:Helvetica;-inkscape-font-specification:'Helvetica, Bold';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-feature-settings:normal;text-align:center;writing-mode:lr-tb;text-anchor:middle;fill:#ffffff;fill-opacity:1"
+         id="text18"
+         font-size="12px"
+         y="144"
+         x="370">Domain Entity</text>
+    </switch>
+  </g>
+  <rect
+     style="fill:#0000a6;stroke:none"
+     id="rect24"
+     pointer-events="all"
+     ry="9"
+     rx="9"
+     height="60"
+     width="120"
+     y="110"
+     x="470" />
+  <g
+     id="g30"
+     transform="translate(-0.5,-0.5)"
+     style="fill:#ffffff;fill-opacity:1">
+    <switch
+       id="switch28"
+       style="fill:#ffffff;fill-opacity:1">
+      <foreignObject
+         requiredFeatures="http://www.w3.org/TR/SVG11/feature#Extensibility"
+         height="100%"
+         width="100%"
+         pointer-events="none"
+         style="overflow: visible; text-align: left;">
+        <xhtml:div
+           style="display: flex; align-items: unsafe center; justify-content: unsafe center; width: 118px; height: 1px; padding-top: 140px; margin-left: 471px;">
+          <xhtml:div
+             style="box-sizing: border-box; font-size: 0; text-align: center; ">
+            <xhtml:div
+               style="display: inline-block; font-size: 12px; font-family: Helvetica; color: #000000; line-height: 1.2; pointer-events: all; white-space: normal; word-wrap: normal; ">
+              <xhtml:font
+                 color="#FFFFFF"
+                 style="font-size: 12px">Domain Participant<xhtml:br />
+</xhtml:font>
+            </xhtml:div>
+          </xhtml:div>
+        </xhtml:div>
+      </foreignObject>
+      <text
+         style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:12px;font-family:Helvetica;-inkscape-font-specification:'Helvetica, Bold';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-feature-settings:normal;text-align:center;writing-mode:lr-tb;text-anchor:middle;fill:#ffffff;fill-opacity:1"
+         id="text26"
+         font-size="12px"
+         y="144"
+         x="530">Domain Participant</text>
+    </switch>
+  </g>
+  <path
+     style="fill:none;stroke:#636363;stroke-miterlimit:10;stroke-opacity:1"
+     inkscape:connector-curvature="0"
+     id="path32"
+     pointer-events="stroke"
+     stroke-miterlimit="10"
+     d="m 370,90 h 150 q 10,0 10,10 v 10" />
+  <path
+     style="fill:none;stroke:#636363;stroke-miterlimit:10;stroke-opacity:1"
+     inkscape:connector-curvature="0"
+     id="path34"
+     pointer-events="stroke"
+     stroke-miterlimit="10"
+     d="M 462.29,140 H 432.24" />
+  <path
+     style="fill:#636363;stroke:#636363;stroke-miterlimit:10;stroke-opacity:1;fill-opacity:1"
+     inkscape:connector-curvature="0"
+     id="path36"
+     pointer-events="all"
+     stroke-miterlimit="10"
+     d="m 469.29,140 -3.5,3.5 -3.5,-3.5 3.5,-3.5 z" />
+  <path
+     style="fill:none;stroke:#636363;stroke-miterlimit:10;stroke-opacity:1"
+     inkscape:connector-curvature="0"
+     id="path38"
+     pointer-events="all"
+     stroke-miterlimit="10"
+     d="m 438.12,136.5 -7,3.5 7,3.5" />
+  <rect
+     style="fill:#66d15c;stroke:none"
+     id="rect52"
+     pointer-events="all"
+     ry="9"
+     rx="9"
+     height="60"
+     width="120"
+     y="230"
+     x="0" />
+  <g
+     id="g58"
+     transform="translate(-0.5,-0.5)"
+     style="fill:#ffffff;fill-opacity:1">
+    <switch
+       id="switch56"
+       style="fill:#ffffff;fill-opacity:1">
+      <foreignObject
+         requiredFeatures="http://www.w3.org/TR/SVG11/feature#Extensibility"
+         height="100%"
+         width="100%"
+         pointer-events="none"
+         style="overflow: visible; text-align: left;">
+        <xhtml:div
+           style="display: flex; align-items: unsafe center; justify-content: unsafe center; width: 118px; height: 1px; padding-top: 260px; margin-left: 1px;">
+          <xhtml:div
+             style="box-sizing: border-box; font-size: 0; text-align: center; ">
+            <xhtml:div
+               style="display: inline-block; font-size: 12px; font-family: Helvetica; color: #000000; line-height: 1.2; pointer-events: all; white-space: normal; word-wrap: normal; ">
+              <xhtml:b>
+                <xhtml:font
+                   color="#FFFFFF">Publisher</xhtml:font>
+              </xhtml:b>
+            </xhtml:div>
+          </xhtml:div>
+        </xhtml:div>
+      </foreignObject>
+      <text
+         style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:12px;font-family:Helvetica;-inkscape-font-specification:'Helvetica, Bold';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-feature-settings:normal;text-align:center;writing-mode:lr-tb;text-anchor:middle;fill:#ffffff;fill-opacity:1"
+         id="text54"
+         font-size="12px"
+         y="264"
+         x="60">Publisher</text>
+    </switch>
+  </g>
+  <rect
+     style="fill:#66d15c;stroke:none"
+     id="rect60"
+     pointer-events="all"
+     ry="9"
+     rx="9"
+     height="60"
+     width="120"
+     y="230"
+     x="160" />
+  <g
+     id="g66"
+     transform="translate(-0.5,-0.5)"
+     style="fill:#ffffff;fill-opacity:1">
+    <switch
+       id="switch64"
+       style="fill:#ffffff;fill-opacity:1">
+      <foreignObject
+         requiredFeatures="http://www.w3.org/TR/SVG11/feature#Extensibility"
+         height="100%"
+         width="100%"
+         pointer-events="none"
+         style="overflow: visible; text-align: left;">
+        <xhtml:div
+           style="display: flex; align-items: unsafe center; justify-content: unsafe center; width: 118px; height: 1px; padding-top: 260px; margin-left: 161px;">
+          <xhtml:div
+             style="box-sizing: border-box; font-size: 0; text-align: center; ">
+            <xhtml:div
+               style="display: inline-block; font-size: 12px; font-family: Helvetica; color: #000000; line-height: 1.2; pointer-events: all; white-space: normal; word-wrap: normal; ">
+              <xhtml:b>
+                <xhtml:font
+                   color="#FFFFFF">DataWriter</xhtml:font>
+              </xhtml:b>
+            </xhtml:div>
+          </xhtml:div>
+        </xhtml:div>
+      </foreignObject>
+      <text
+         style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:12px;font-family:Helvetica;-inkscape-font-specification:'Helvetica, Bold';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-feature-settings:normal;text-align:center;writing-mode:lr-tb;text-anchor:middle;fill:#ffffff;fill-opacity:1"
+         id="text62"
+         font-size="12px"
+         y="264"
+         x="220">DataWriter</text>
+    </switch>
+  </g>
+  <rect
+     style="fill:#ffc001;stroke:none"
+     id="rect68"
+     pointer-events="all"
+     ry="9"
+     rx="9"
+     height="60"
+     width="120"
+     y="230"
+     x="310" />
+  <g
+     id="g74"
+     transform="translate(-0.5,-0.5)"
+     style="fill:#ffffff;fill-opacity:1">
+    <switch
+       id="switch72"
+       style="fill:#ffffff;fill-opacity:1">
+      <foreignObject
+         requiredFeatures="http://www.w3.org/TR/SVG11/feature#Extensibility"
+         height="100%"
+         width="100%"
+         pointer-events="none"
+         style="overflow: visible; text-align: left;">
+        <xhtml:div
+           style="display: flex; align-items: unsafe center; justify-content: unsafe center; width: 118px; height: 1px; padding-top: 260px; margin-left: 311px;">
+          <xhtml:div
+             style="box-sizing: border-box; font-size: 0; text-align: center; ">
+            <xhtml:div
+               style="display: inline-block; font-size: 12px; font-family: Helvetica; color: #000000; line-height: 1.2; pointer-events: all; white-space: normal; word-wrap: normal; ">
+              <xhtml:font
+                 color="#FFFFFF">Subscriber</xhtml:font>
+            </xhtml:div>
+          </xhtml:div>
+        </xhtml:div>
+      </foreignObject>
+      <text
+         style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:12px;font-family:Helvetica;-inkscape-font-specification:'Helvetica, Bold';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-feature-settings:normal;text-align:center;writing-mode:lr-tb;text-anchor:middle;fill:#ffffff;fill-opacity:1"
+         id="text70"
+         font-size="12px"
+         y="264"
+         x="370">Subscriber</text>
+    </switch>
+  </g>
+  <rect
+     style="fill:#ffc001;stroke:none"
+     id="rect76"
+     pointer-events="all"
+     ry="9"
+     rx="9"
+     height="60"
+     width="120"
+     y="230"
+     x="470" />
+  <g
+     id="g82"
+     transform="translate(-0.5,-0.5)"
+     style="fill:#ffffff;fill-opacity:1">
+    <switch
+       id="switch80"
+       style="fill:#ffffff;fill-opacity:1">
+      <foreignObject
+         requiredFeatures="http://www.w3.org/TR/SVG11/feature#Extensibility"
+         height="100%"
+         width="100%"
+         pointer-events="none"
+         style="overflow: visible; text-align: left;">
+        <xhtml:div
+           style="display: flex; align-items: unsafe center; justify-content: unsafe center; width: 118px; height: 1px; padding-top: 260px; margin-left: 471px;">
+          <xhtml:div
+             style="box-sizing: border-box; font-size: 0; text-align: center; ">
+            <xhtml:div
+               style="display: inline-block; font-size: 12px; font-family: Helvetica; color: #000000; line-height: 1.2; pointer-events: all; white-space: normal; word-wrap: normal; ">
+              <xhtml:b>
+                <xhtml:font
+                   color="#FFFFFF">DataReader</xhtml:font>
+              </xhtml:b>
+            </xhtml:div>
+          </xhtml:div>
+        </xhtml:div>
+      </foreignObject>
+      <text
+         style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:12px;font-family:Helvetica;-inkscape-font-specification:'Helvetica, Bold';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-feature-settings:normal;text-align:center;writing-mode:lr-tb;text-anchor:middle;fill:#ffffff;fill-opacity:1"
+         id="text78"
+         font-size="12px"
+         y="264"
+         x="530">DataReader</text>
+    </switch>
+  </g>
+  <rect
+     style="fill:#ff9933;stroke:none"
+     id="rect84"
+     pointer-events="all"
+     ry="9"
+     rx="9"
+     height="60"
+     width="120"
+     y="230"
+     x="630" />
+  <g
+     id="g90"
+     transform="translate(-0.5,-0.5)"
+     style="fill:#ffffff;fill-opacity:1">
+    <switch
+       id="switch88"
+       style="fill:#ffffff;fill-opacity:1">
+      <foreignObject
+         requiredFeatures="http://www.w3.org/TR/SVG11/feature#Extensibility"
+         height="100%"
+         width="100%"
+         pointer-events="none"
+         style="overflow: visible; text-align: left;">
+        <xhtml:div
+           style="display: flex; align-items: unsafe center; justify-content: unsafe center; width: 118px; height: 1px; padding-top: 260px; margin-left: 631px;">
+          <xhtml:div
+             style="box-sizing: border-box; font-size: 0; text-align: center; ">
+            <xhtml:div
+               style="display: inline-block; font-size: 12px; font-family: Helvetica; color: #000000; line-height: 1.2; pointer-events: all; white-space: normal; word-wrap: normal; ">
+              <xhtml:font
+                 color="#FFFFFF">
+                <xhtml:b>Topic</xhtml:b>
+              </xhtml:font>
+            </xhtml:div>
+          </xhtml:div>
+        </xhtml:div>
+      </foreignObject>
+      <text
+         style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:12px;font-family:Helvetica;-inkscape-font-specification:'Helvetica, Bold';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-feature-settings:normal;text-align:center;writing-mode:lr-tb;text-anchor:middle;fill:#ffffff;fill-opacity:1"
+         id="text86"
+         font-size="12px"
+         y="264"
+         x="690">Topic</text>
+    </switch>
+  </g>
+  <path
+     style="fill:none;stroke:#636363;stroke-miterlimit:10;stroke-opacity:1"
+     inkscape:connector-curvature="0"
+     id="path92"
+     pointer-events="stroke"
+     stroke-miterlimit="10"
+     d="M 370,231 V 187.12" />
+  <path
+     style="fill:none;stroke:#636363;stroke-miterlimit:10;stroke-opacity:1"
+     inkscape:connector-curvature="0"
+     id="path94"
+     pointer-events="all"
+     stroke-miterlimit="10"
+     d="m 370,172.12 7.5,15 h -15 z" />
+  <path
+     style="fill:none;stroke:#636363;stroke-miterlimit:10;stroke-opacity:1"
+     inkscape:connector-curvature="0"
+     id="path96"
+     pointer-events="stroke"
+     stroke-miterlimit="10"
+     d="m 690,230 v -10 q 0,-10 -10,-10 H 550 q -10,0 -20,0 H 370" />
+  <path
+     style="fill:none;stroke:#636363;stroke-miterlimit:10;stroke-opacity:1"
+     inkscape:connector-curvature="0"
+     id="path98"
+     pointer-events="stroke"
+     stroke-miterlimit="10"
+     d="m 60,230 v -10 q 0,-10 10,-10 h 120 q 10,0 20,0 h 160" />
+  <path
+     style="fill:none;stroke:#636363;stroke-miterlimit:10;stroke-opacity:1"
+     inkscape:connector-curvature="0"
+     id="path100"
+     pointer-events="stroke"
+     stroke-miterlimit="10"
+     d="m 127.71,260 h 30.05" />
+  <path
+     style="fill:#636363;stroke:#636363;stroke-miterlimit:10;stroke-opacity:1;fill-opacity:1"
+     inkscape:connector-curvature="0"
+     id="path102"
+     pointer-events="all"
+     stroke-miterlimit="10"
+     d="m 120.71,260 3.5,-3.5 3.5,3.5 -3.5,3.5 z" />
+  <path
+     style="fill:none;stroke:#636363;stroke-miterlimit:10;stroke-opacity:1"
+     inkscape:connector-curvature="0"
+     id="path104"
+     pointer-events="all"
+     stroke-miterlimit="10"
+     d="m 151.88,263.5 7,-3.5 -7,-3.5" />
+  <path
+     style="fill:none;stroke:#636363;stroke-miterlimit:10;stroke-opacity:1"
+     inkscape:connector-curvature="0"
+     id="path118"
+     pointer-events="stroke"
+     stroke-miterlimit="10"
+     d="m 437.71,260 h 30.05" />
+  <path
+     style="fill:#636363;stroke:#636363;stroke-miterlimit:10;stroke-opacity:1;fill-opacity:1"
+     inkscape:connector-curvature="0"
+     id="path120"
+     pointer-events="all"
+     stroke-miterlimit="10"
+     d="m 430.71,260 3.5,-3.5 3.5,3.5 -3.5,3.5 z" />
+  <path
+     style="fill:none;stroke:#636363;stroke-miterlimit:10;stroke-opacity:1"
+     inkscape:connector-curvature="0"
+     id="path122"
+     pointer-events="all"
+     stroke-miterlimit="10"
+     d="m 461.88,263.5 7,-3.5 -7,-3.5" />
+  <path
+     style="fill:none;stroke:#636363;stroke-miterlimit:10;stroke-opacity:1"
+     inkscape:connector-curvature="0"
+     id="path136"
+     pointer-events="stroke"
+     stroke-miterlimit="10"
+     d="M 220,230 V 210" />
+  <path
+     style="fill:none;stroke:#636363;stroke-miterlimit:10;stroke-opacity:1"
+     inkscape:connector-curvature="0"
+     id="path138"
+     pointer-events="stroke"
+     stroke-miterlimit="10"
+     d="M 530,230 V 210" />
+  <switch
+     id="switch146">
+    <g
+       requiredFeatures="http://www.w3.org/TR/SVG11/feature#Extensibility"
+       id="g142" />
+    <a
+       transform="translate(0,-5)"
+       xlink:href="https://desk.draw.io/support/solutions/articles/16000042487"
+       target="_blank"
+       id="a144" />
+  </switch>
+  <text
+     xml:space="preserve"
+     transform="translate(-0.5,-0.5)"
+     id="text1"
+     style="font-size:11px;font-family:'DejaVu Sans';-inkscape-font-specification:'DejaVu Sans, Normal';text-align:start;writing-mode:lr-tb;direction:ltr;white-space:pre;shape-inside:url(#rect1);display:inline;fill:#63ff63;fill-opacity:1" />
+  <text
+     xml:space="preserve"
+     transform="translate(9.2438017,12.897727)"
+     id="text2"
+     style="font-size:11px;font-family:'DejaVu Sans';-inkscape-font-specification:'DejaVu Sans, Normal';text-align:start;writing-mode:lr-tb;direction:ltr;white-space:pre;shape-inside:url(#rect2);display:inline;fill:#636363;fill-opacity:1"><tspan
+       x="452.7832"
+       y="118.13281"
+       id="tspan1">1</tspan></text>
+  <text
+     xml:space="preserve"
+     transform="translate(-21.162411,132.77595)"
+     id="text2-6"
+     style="font-size:11px;font-family:'DejaVu Sans';-inkscape-font-specification:'DejaVu Sans, Normal';text-align:start;writing-mode:lr-tb;direction:ltr;white-space:pre;shape-inside:url(#rect2-3);display:inline;fill:#636363;fill-opacity:1"><tspan
+       x="452.7832"
+       y="118.13281"
+       id="tspan2">1</tspan></text>
+  <text
+     xml:space="preserve"
+     transform="translate(-331.25512,133.69072)"
+     id="text2-3"
+     style="font-size:11px;font-family:'DejaVu Sans';-inkscape-font-specification:'DejaVu Sans, Normal';text-align:start;writing-mode:lr-tb;direction:ltr;white-space:pre;shape-inside:url(#rect2-5);display:inline;fill:#636363;fill-opacity:1"><tspan
+       x="452.7832"
+       y="118.13281"
+       id="tspan3">1</tspan></text>
+  <text
+     xml:space="preserve"
+     transform="translate(-19.373671,14.950277)"
+     id="text2-2"
+     style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:11px;font-family:'DejaVu Sans';-inkscape-font-specification:'DejaVu Sans, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;text-align:start;writing-mode:lr-tb;direction:ltr;white-space:pre;shape-inside:url(#rect2-6);display:inline;fill:#636363;fill-opacity:1"><tspan
+       x="452.7832"
+       y="118.13281"
+       id="tspan4">*</tspan></text>
+  <text
+     xml:space="preserve"
+     transform="translate(8.0048615,134.35692)"
+     id="text2-2-6"
+     style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:11px;font-family:'DejaVu Sans';-inkscape-font-specification:'DejaVu Sans, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;text-align:start;writing-mode:lr-tb;direction:ltr;white-space:pre;shape-inside:url(#rect2-6-7);display:inline;fill:#636363;fill-opacity:1"><tspan
+       x="452.7832"
+       y="118.13281"
+       id="tspan5">*</tspan></text>
+  <text
+     xml:space="preserve"
+     transform="translate(-301.5331,134.54132)"
+     id="text2-2-3"
+     style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:11px;font-family:'DejaVu Sans';-inkscape-font-specification:'DejaVu Sans, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;text-align:start;writing-mode:lr-tb;direction:ltr;white-space:pre;shape-inside:url(#rect2-6-9);display:inline;fill:#636363;fill-opacity:1"><tspan
+       x="452.7832"
+       y="118.13281"
+       id="tspan6">*</tspan></text>
+</svg>

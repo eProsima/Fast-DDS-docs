@@ -1,0 +1,338 @@
+<!-- {{{ X-Types API -->
+<!-- }}} -->
+
+<a id="auth-pki-dh"></a>
+
+<a id="authentication-plugin-dds-auth-pki-dh"></a>
+
+# Authentication plugin: DDS:Auth:PKI-DH
+
+This is the starting point for all the security mechanisms.
+The authentication plugin provides the mechanisms and operations required for [DomainParticipants](../../dds_layer/domain/domainParticipant/domainParticipant.md#dds-layer-domainparticipant) authentication at
+discovery.
+If the security module was activated at Fast DDS compilation, when a DomainParticipant is either locally created or
+discovered, it needs to be authenticated in order to be able to
+communicate in a DDS Domain.
+Therefore, when a DomainParticipant detects a remote DomainParticipant, both try to authenticate themselves using
+the activated authentication plugin.
+If the authentication process finishes successfully both DomainParticipant match and the discovery mechanism
+continues.
+On failure, the remote DomainParticipant is rejected.
+
+The authentication plugin implemented in Fast DDS is referred to as “DDS:Auth:PKI-DH”, in compliance with the
+[DDS Security](https://www.omg.org/spec/DDS-SECURITY/1.1/) specification.
+The DDS:Auth:PKI-DH plugin uses a trusted *Certificate Authority* (CA) and the ECDSA
+Digital Signature Algorithms to perform the mutual authentication.
+It also establishes a shared secret using either Elliptic Curve Diffie-Hellman (ECDH) or MODP-2048 Diffie-Hellman (DH)
+as Key Agreement protocol.
+This shared secret can be used by other security plugins as [Cryptographic plugin: DDS:Crypto:AES-GCM-GMAC](../crypto_plugin/crypto_plugin.md#crypto-aes-gcm-gmac).
+
+The DDS:Auth:PKI-DH authentication plugin, can be activated setting the [DomainParticipantQos](../../dds_layer/domain/domainParticipant/domainParticipant.md#dds-layer-domainparticipantqos)
+[`properties()`](../../api_reference/dds_pim/domain/domainparticipantqos.md#_CPPv4NK8eprosima7fastdds3dds20DomainParticipantQos10propertiesEv)
+`dds.sec.auth.plugin` with the value `builtin.PKI-DH`.
+Note that since Fast DDS **[Pro]** `v3.7.0`, secure participants must configure the authentication, access control, and
+cryptography plugins together.
+
+The following table outlines the properties used for the DDS:Auth:PKI-DH plugin configuration.
+
+| Property name                               | Property value                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                  |
+|---------------------------------------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| identity_ca                                 | URI to the X.509 v3 certificate of the Identity CA in PEM format. <br/><br/>Supported URI schemes: file. <br/>                                                                                                                                                                                                                                                                                                                                                                                                                                                  |
+| identity_certificate                        | URI to an X.509 v3 certificate signed by the Identity CA in PEM format<br/>containing the signed public key for the Participant. <br/><br/>Supported URI schemes: file.                                                                                                                                                                                                                                                                                                                                                                                         |
+| identity_crl  *(optional)*                  | URI to a X.509 Certificate Revocation List (CRL). <br/><br/>Supported URI schemes: file.                                                                                                                                                                                                                                                                                                                                                                                                                                                                        |
+| private_key                                 | URI to access the private Private Key for the Participant. <br/><br/>Supported URI schemes: file, [PKCS#11](../pkcs11_support/pkcs11_support.md#pkcs11-support).                                                                                                                                                                                                                                                                                                                                                                                                |
+| password  *(optional)*                      | A password used to decrypt the *private_key*.  <br/><br/>If the *password* property is not present, then the value supplied in the<br/>*private_key* property must contain the decrypted private key. <br/><br/>The *password* property is ignored if the *private_key* is given in PKCS#11 scheme.                                                                                                                                                                                                                                                             |
+| preferred_key_agreement  *(optional)*       | The preferred algorithm to use for generating the session’s shared secret<br/>at the end of the authentication phase. Supported values are: <br/><br/>a) `DH`, `DH+MODP-2048-256` for  Diffie-Hellman Ephemeral with 2048-bit MODP Group parameters. <br/><br/>b) `ECDH`, `ECDH+prime256v1-CEUM` for Elliptic Curve Diffie-Hellman Ephemeral with the NIST P-256 curve. <br/><br/>c) `AUTO` for selecting the key agreement based on the signature algorithm in the Identity CA’s certificate. <br/><br/>Will default to `AUTO` if the property is not present. |
+| transmit_algorithms_as_legacy  *(optional)* | Whether to transmit algorithm identifiers in non-standard legacy format. <br/><br/>Will default to `false` if the property is not present.                                                                                                                                                                                                                                                                                                                                                                                                                      |
+
+#### NOTE
+All listed properties have “dds.sec.auth.builtin.PKI-DH.” prefix.
+For example: `dds.sec.auth.builtin.PKI-DH.identity_ca`.
+
+The following is an example of how to set the properties of DomainParticipantQoS for the DDS:Auth:PKI-DH plugin
+configuration.
+
+### C++
+
+```c++
+DomainParticipantQos pqos;
+
+// Activate DDS:Auth:PKI-DH plugin
+pqos.properties().properties().emplace_back("dds.sec.auth.plugin",
+        "builtin.PKI-DH");
+
+// Configure DDS:Auth:PKI-DH plugin
+pqos.properties().properties().emplace_back(
+    "dds.sec.auth.builtin.PKI-DH.identity_ca",
+    "file://maincacert.pem");
+pqos.properties().properties().emplace_back(
+    "dds.sec.auth.builtin.PKI-DH.identity_certificate",
+    "file://partcert.pem");
+pqos.properties().properties().emplace_back(
+    "dds.sec.auth.builtin.PKI-DH.identity_crl",
+    "file://crl.pem");
+pqos.properties().properties().emplace_back(
+    "dds.sec.auth.builtin.PKI-DH.private_key",
+    "file://partkey.pem");
+pqos.properties().properties().emplace_back(
+    "dds.sec.auth.builtin.PKI-DH.password",
+    "domainParticipantPassword");
+pqos.properties().properties().emplace_back(
+    "dds.sec.auth.builtin.PKI-DH.preferred_key_agreement",
+    "ECDH");
+pqos.properties().properties().emplace_back(
+    "dds.sec.auth.builtin.PKI-DH.transmit_algorithms_as_legacy",
+    "true");
+```
+
+### XML
+
+```xml
+<participant profile_name="secure_domainparticipant_conf_auth_plugin_xml_profile">
+    <rtps>
+        <propertiesPolicy>
+            <properties>
+                <!-- Activate DDS:Auth:PKI-DH plugin -->
+                <property>
+                    <name>dds.sec.auth.plugin</name>
+                    <value>builtin.PKI-DH</value>
+                </property>
+                <!-- Configure DDS:Auth:PKI-DH plugin -->
+                <property>
+                    <name>dds.sec.auth.builtin.PKI-DH.identity_ca</name>
+                    <value>file://maincacert.pem</value>
+                </property>
+                <property>
+                    <name>dds.sec.auth.builtin.PKI-DH.identity_certificate</name>
+                    <value>file://partcert.pem</value>
+                </property>
+                <property>
+                    <name>dds.sec.auth.builtin.PKI-DH.identity_crl</name>
+                    <value>file://crl.pem</value>
+                </property>
+                <property>
+                    <name>dds.sec.auth.builtin.PKI-DH.private_key</name>
+                    <value>file://partkey.pem</value>
+                </property>
+                <property>
+                    <name>dds.sec.auth.builtin.PKI-DH.password</name>
+                    <value>domainParticipantPassword</value>
+                </property>
+                <property>
+                    <name>dds.sec.auth.builtin.PKI-DH.preferred_key_agreement</name>
+                    <value>ECDH</value>
+                </property>
+                <property>
+                    <name>dds.sec.auth.builtin.PKI-DH.transmit_algorithms_as_legacy</name>
+                    <value>true</value>
+                </property>
+            </properties>
+        </propertiesPolicy>
+    </rtps>
+</participant>
+```
+
+#### IMPORTANT
+Since version v3.7.0, Fast DDS **[Pro]** enforces to configure the three main security plugins
+(authentication, access control and cryptography) to enable secure communication.
+The previous example focuses only on the authentication plugin, but all three plugins must be configured.
+
+<a id="generate-x509"></a>
+
+<a id="generation-of-x-509-certificates"></a>
+
+## Generation of X.509 certificates
+
+An X.509 digital certificate is a document that has been encrypted and/or digitally signed according to
+[RFC 5280](https://tools.ietf.org/html/rfc5280).
+The X.509 certificate refers to the Public Key Infrastructure (PKI) certificate of the [IETF](https://ietf.org/) ,
+and specifies the standard
+formats for public-key certificates and a certification route validation algorithm.
+A simple way to generate these certificates for a proprietary PKI structure is through the
+[OpenSSL](https://www.openssl.org/) toolkit.
+This section explains how to build a certificate infrastructure from the trusted CA certificate to the end-entity
+certificate, i.e. the DomainParticipant.
+
+<a id="generating-the-ca-certificate-for-self-signing"></a>
+
+### Generating the CA certificate for self-signing
+
+First, since multiple certificates will need to be issued, one for each of the DomainParticipants, a dedicated CA is
+set up, and the CA’s certificate is installed as the root key of all DomainParticipants.
+Thus, the DomainParticipants will accept all certificates issued by our own CA.
+To create a proprietary CA certificate, a configuration file must first be written with the CA information.
+An example of the CA configuration file is shown below.
+The OpenSSL commands shown in this example are compatible with both Linux and Windows Operating Systems (OS).
+However, all other commands are only compatible with Linux OS.
+
+```ini
+# File: maincaconf.cnf
+# OpenSSL example Certificate Authority configuration file
+
+####################################################################
+[ ca ]
+default_ca = CA_default # The default ca section
+
+####################################################################
+[ CA_default ]
+
+dir = . # Where everything is kept
+certs = $dir/certs # Where the issued certs are kept
+crl_dir = $dir/crl # Where the issued crl are kept
+database = $dir/index.txt # database index file.
+unique_subject = no # Set to 'no' to allow creation of
+                    # several ctificates with same subject.
+new_certs_dir = $dir
+
+certificate = $dir/maincacert.pem # The CA certificate
+serial = $dir/serial # The current serial number
+crlnumber = $dir/crlnumber # the current crl number
+                           # must be commented out to leave a V1 CRL
+crl = $dir/crl.pem # The current CRL
+private_key = $dir/maincakey.pem # The private key
+RANDFILE = $dir/private/.rand # private random number file
+
+name_opt = ca_default # Subject Name options
+cert_opt = ca_default # Certificate field options
+
+default_days= 1825 # how long to certify for
+default_crl_days = 30 # how long before next CRL
+default_md = sha256 # which md to use.
+preserve = no # keep passed DN ordering
+
+policy = policy_match
+
+# For the CA policy
+[ policy_match ]
+countryName = match
+stateOrProvinceName = match
+organizationName = match
+organizationalUnitName = optional
+commonName = supplied
+emailAddress = optional
+
+# For the 'anything' policy
+# At this point in time, you must list all acceptable 'object'
+# types.
+[ policy_anything ]
+countryName = optional
+stateOrProvinceName = optional
+localityName = optional
+organizationName = optional
+organizationalUnitName = optional
+commonName = supplied
+emailAddress = optional
+
+[ req ]
+prompt = no
+#default_bits = 1024
+#default_keyfile = privkey.pem
+distinguished_name= req_distinguished_name
+#attributes = req_attributes
+x509_extensions = root_ca_extensions # The extensions to add to the self signed cert
+string_mask = utf8only
+
+[ req_distinguished_name ]
+countryName = ES
+stateOrProvinceName = MA
+localityName = Tres Cantos
+0.organizationName = eProsima
+commonName = eProsima Main Test CA
+emailAddress = mainca@eprosima.com
+
+[root_ca_extensions]
+basicConstraints = critical, CA:true
+```
+
+#### NOTE
+For a self-signed **root CA**, the X.509 extension `basicConstraints = CA:true` is **required**. Without it, stacks might not recognize the certificate as a CA.
+
+After writing the configuration file, next commands generate the certificate using the
+Elliptic Curve Digital Signature Algorithm (ECDSA).
+
+```bash
+openssl ecparam -name prime256v1 > ecdsaparam
+
+openssl req -nodes -x509 \
+  -days 3650 \
+  -newkey ec:ecdsaparam \
+  -keyout maincakey.pem \
+  -out maincacert.pem \
+  -config maincaconf.cnf
+```
+
+<a id="generating-the-domainparticipant-certificate"></a>
+
+### Generating the DomainParticipant certificate
+
+As was done for the CA, a DomainParticipant certificate configuration file needs to be created first.
+
+```ini
+# File: partconf.cnf
+
+prompt = no
+string_mask = utf8only
+distinguished_name = req_distinguished_name
+
+[ req_distinguished_name ]
+countryName = ES
+stateOrProvinceName = MA
+localityName = Tres Cantos
+organizationName = eProsima
+emailAddress = example@eprosima.com
+commonName = DomainParticipantName
+```
+
+After writing the DomainParticipant certificate configuration file, next commands generate the X.509 certificate,
+using ECDSA, for a DomainParticipant.
+
+```bash
+openssl ecparam -name prime256v1 > ecdsaparam
+
+openssl req -nodes -new \
+  -newkey ec:ecdsaparam \
+  -config partconf.cnf \
+  -keyout partkey.pem \
+  -out partreq.pem
+
+openssl ca -batch -create_serial \
+  -config maincaconf.cnf \
+  -days 3650 \
+  -in partreq.pem \
+  -out partcert.pem
+```
+
+<a id="generating-the-certificate-revocation-list-crl"></a>
+
+### Generating the Certificate Revocation List (CRL)
+
+Finally, the CRL is created.
+This is a list of the X.509 certificates revoked by the certificate issuing CA before they reach their expiration date.
+Any certificate that is on this list will no longer be trusted.
+To create a CRL using OpenSSL just run the following commands.
+
+```bash
+echo -ne '00' > crlnumber
+
+openssl ca -gencrl \
+  -config maincaconf.cnf \
+  -cert maincacert.pem \
+  -keyfile maincakey.pem \
+  -out crl.pem
+```
+
+As an example, below is shown how to add the X.509 certificate of a DomainParticipant to the CRL.
+
+```bash
+openssl ca \
+  -config maincaconf.cnf \
+  -cert maincacert.pem \
+  -keyfile maincakey.pem \
+  -revoke partcert.pem
+
+openssl ca -gencrl \
+  -config maincaconf.cnf \
+  -cert maincacert.pem \
+  -keyfile maincakey.pem \
+  -out crl.pem
+```
